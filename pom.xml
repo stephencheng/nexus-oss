@@ -566,6 +566,10 @@
               <exclude>**/nexus-ui-extjs3-plugin/src/main/resources/static/js/ext/ux/**</exclude>
               <exclude>**/nexus-ui-extjs3-plugin/src/main/resources/static/css/ext/ux/**</exclude>
               <exclude>**/nexus-ui-extjs3-plugin/src/main/js-lib/**</exclude>
+              <exclude>**/nexus-rapture-baseapp/src/main/resources/**</exclude>
+              <exclude>**/nexus-rapture-baseapp/src/main/baseapp/**</exclude>
+              <exclude>**/nexus-testsuite-ui-plugin/src/main/resources/static/rapture/siesta/**</exclude>
+              <exclude>**/nexus-testsuite-ui-siesta/src/main/resources/**</exclude>
 
               <!--
               Excludes for specific classes which have compatible, yet different licences.
