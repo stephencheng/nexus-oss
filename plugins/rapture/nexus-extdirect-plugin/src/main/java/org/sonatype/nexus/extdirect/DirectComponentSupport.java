@@ -10,15 +10,18 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-
 package org.sonatype.nexus.extdirect;
 
+import org.sonatype.sisu.goodies.common.ComponentSupport;
+
 /**
- * Marker interface for Ext.Direct resources.
+ * Support for {@link DirectComponent} implementations.
  *
  * @since 2.8
  */
-public interface DirectComponent
+public abstract class DirectComponentSupport
+  extends ComponentSupport
+  implements DirectComponent
 {
   // empty
 }

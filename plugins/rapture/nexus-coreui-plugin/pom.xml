@@ -23,12 +23,12 @@
     <version>2.8.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>nexus-ui-rapture-plugin</artifactId>
+  <artifactId>nexus-coreui-plugin</artifactId>
   <name>${project.groupId}:${project.artifactId}</name>
   <packaging>nexus-plugin</packaging>
 
   <properties>
-    <pluginName>Nexus Rapture UI Plugin</pluginName>
+    <pluginName>Nexus (Rapture) Core UI Plugin</pluginName>
     <pluginDescription>Provides a Nexus user interface based on Rapture.</pluginDescription>
   </properties>
 
@@ -58,27 +58,6 @@
       <plugin>
         <groupId>org.sonatype.nexus</groupId>
         <artifactId>nexus-plugin-bundle-maven-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.jvnet.jaxb2.maven2</groupId>
-        <artifactId>maven-jaxb2-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <args>
-                <arg>-Xsetters</arg>
-                <arg>-Xfluent-api</arg>
-                <arg>-Xgenerated</arg>
-                <arg>-Xannotate</arg>
-                <arg>-XjsonProperty</arg>
-              </args>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>

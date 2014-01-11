@@ -11,7 +11,7 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 
-package org.sonatype.nexus.ux.repository;
+package org.sonatype.nexus.coreui;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.sonatype.nexus.extdirect.DirectComponent;
+import org.sonatype.nexus.extdirect.DirectComponentSupport;
 import org.sonatype.nexus.proxy.NoSuchRepositoryException;
 import org.sonatype.nexus.proxy.ResourceStoreRequest;
 import org.sonatype.nexus.proxy.item.RepositoryItemUid;
@@ -31,7 +32,6 @@ import org.sonatype.nexus.proxy.repository.RemoteStatus;
 import org.sonatype.nexus.proxy.repository.Repository;
 import org.sonatype.nexus.proxy.repository.ShadowRepository;
 import org.sonatype.nexus.rest.RepositoryURLBuilder;
-import org.sonatype.nexus.ux.model.RepositoryInfoUX;
 
 import com.director.core.annotation.DirectAction;
 import com.director.core.annotation.DirectMethod;
@@ -39,15 +39,15 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 
 /**
- * Repository Ext.Direct resource.
+ * Repository {@link DirectComponent}.
  *
- * @since 2.7
+ * @since 2.8
  */
 @Named
 @Singleton
 @DirectAction(action = "repository.Repository")
-public class RepositoryDirectComponent
-    implements DirectComponent
+public class RepositoryComponent
+    extends DirectComponentSupport
 {
 
   private final RepositoryRegistry repositoryRegistry;
@@ -55,8 +55,8 @@ public class RepositoryDirectComponent
   private final RepositoryURLBuilder repositoryURLBuilder;
 
   @Inject
-  public RepositoryDirectComponent(final RepositoryRegistry repositoryRegistry,
-                                   final RepositoryURLBuilder repositoryURLBuilder)
+  public RepositoryComponent(final RepositoryRegistry repositoryRegistry,
+                             final RepositoryURLBuilder repositoryURLBuilder)
   {
     this.repositoryRegistry = repositoryRegistry;
     this.repositoryURLBuilder = repositoryURLBuilder;
@@ -66,28 +66,28 @@ public class RepositoryDirectComponent
    * Retrieve a list of available repositories info.
    */
   @DirectMethod
-  public List<RepositoryInfoUX> readInfo() {
-    return Lists.transform(repositoryRegistry.getRepositories(), new Function<Repository, RepositoryInfoUX>()
+  public List<RepositoryXO> readInfo() {
+    return Lists.transform(repositoryRegistry.getRepositories(), new Function<Repository, RepositoryXO>()
     {
       @Override
-      public RepositoryInfoUX apply(final Repository input) {
-        RepositoryInfoUX info = new RepositoryInfoUX()
-            .withId(input.getId())
-            .withName(input.getName())
-            .withType(getRepositoryType(input))
-            .withFormat(input.getProviderHint())
-            .withLocalStatus(input.getLocalStatus().toString())
-            .withUrl(repositoryURLBuilder.getExposedRepositoryContentUrl(input));
+      public RepositoryXO apply(final Repository input) {
+        RepositoryXO info = new RepositoryXO();
+        info.id = input.getId();
+        info.name = input.getName();
+        info.type = getRepositoryType(input);
+        info.format = input.getProviderHint();
+        info.localStatus = input.getLocalStatus().toString();
+        info.url = repositoryURLBuilder.getExposedRepositoryContentUrl(input);
 
         ProxyRepository proxyRepository = input.adaptToFacet(ProxyRepository.class);
         if (proxyRepository != null) {
           RemoteStatus remoteStatus = proxyRepository.getRemoteStatus(
               new ResourceStoreRequest(RepositoryItemUid.PATH_ROOT), false
           );
-          info
-              .withProxyMode(proxyRepository.getProxyMode().toString())
-              .withRemoteStatus(remoteStatus.toString())
-              .withRemoteStatusReason(remoteStatus.getReason());
+
+          info.proxyMode = proxyRepository.getProxyMode().toString();
+          info.remoteStatus = remoteStatus.toString();
+          info.remoteStatusReason = remoteStatus.getReason();
         }
 
         return info;

@@ -29,10 +29,10 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>nexus-coreui-plugin</module>
     <module>nexus-extdirect-plugin</module>
     <module>nexus-rapture-baseapp</module>
     <module>nexus-rapture-plugin</module>
-    <module>nexus-ui-rapture-plugin</module>
   </modules>
 
 </project>
