@@ -66,7 +66,7 @@ public class RepositoryComponent
    * Retrieve a list of available repositories info.
    */
   @DirectMethod
-  public List<RepositoryXO> readInfo() {
+  public List<RepositoryXO> read() {
     return Lists.transform(repositoryRegistry.getRepositories(), new Function<Repository, RepositoryXO>()
     {
       @Override

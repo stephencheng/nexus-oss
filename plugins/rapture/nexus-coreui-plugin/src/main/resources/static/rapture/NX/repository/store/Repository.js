@@ -10,15 +10,16 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.repository.store.RepositoryInfo', {
+Ext.define('NX.repository.store.Repository', {
   extend: 'Ext.data.Store',
-  model: 'NX.repository.model.RepositoryInfo',
+  model: 'NX.repository.model.Repository',
 
   proxy: {
     type: 'direct',
     paramsAsHash: false,
     api: {
-      read: NX.direct.repository.Repository.readInfo
+      // FIXME: is this needed?
+      read: NX.direct.repository.Repository.read
     },
 
     reader: {

@@ -20,7 +20,7 @@ Ext.define('NX.repository.controller.Repositories', {
   ],
 
   stores: [
-    'RepositoryInfo'
+    'Repository'
   ],
   views: [
     'List'
@@ -47,8 +47,8 @@ Ext.define('NX.repository.controller.Repositories', {
       }
     });
 
-    this.getRepositoryInfoStore().on('load', this.onRepositoryInfoStoreLoad, this);
-    this.getRepositoryInfoStore().on('beforeload', this.onRepositoryInfoStoreBeforeLoad, this);
+    this.getRepositoryStore().on('load', this.onRepositoryStoreLoad, this);
+    this.getRepositoryStore().on('beforeload', this.onRepositoryStoreBeforeLoad, this);
   },
 
   addToBrowser: function (featureBrowser) {
@@ -64,14 +64,14 @@ Ext.define('NX.repository.controller.Repositories', {
   },
 
   loadStores: function () {
-    this.getRepositoryInfoStore().load();
+    this.getRepositoryStore().load();
   },
 
-  onRepositoryInfoStoreBeforeLoad: function () {
+  onRepositoryStoreBeforeLoad: function () {
     this.getList().down('button[action=delete]').disable();
   },
 
-  onRepositoryInfoStoreLoad: function (store) {
+  onRepositoryStoreLoad: function (store) {
     var selectedModels = this.getList().getSelectionModel().getSelection();
     if (selectedModels.length > 0) {
       this.getList().down('button[action=delete]').enable();
@@ -86,22 +86,22 @@ Ext.define('NX.repository.controller.Repositories', {
     }
   },
 
-  showDetails: function (repositoryInfoModel) {
+  showDetails: function (repositoryModel) {
     var me = this,
         masterdetail = me.getList().up('nx-masterdetail-panel'),
         info;
 
-    if (Ext.isDefined(repositoryInfoModel)) {
-      masterdetail.setDescription(repositoryInfoModel.get('name'));
+    if (Ext.isDefined(repositoryModel)) {
+      masterdetail.setDescription(repositoryModel.get('name'));
       info = {
-        'Id': repositoryInfoModel.get('id'),
-        'Name': repositoryInfoModel.get('name'),
-        'type': repositoryInfoModel.get('type'),
-        'Format': repositoryInfoModel.get('format'),
-        'Local status': me.getLocalStatus(repositoryInfoModel),
-        'Proxy mode': me.getProxyMode(repositoryInfoModel),
-        'Remote status': me.getRemoteStatus(repositoryInfoModel),
-        'Url': NX.util.Url.asLink(repositoryInfoModel.get('url'))
+        'Id': repositoryModel.get('id'),
+        'Name': repositoryModel.get('name'),
+        'type': repositoryModel.get('type'),
+        'Format': repositoryModel.get('format'),
+        'Local status': me.getLocalStatus(repositoryModel),
+        'Proxy mode': me.getProxyMode(repositoryModel),
+        'Remote status': me.getRemoteStatus(repositoryModel),
+        'Url': NX.util.Url.asLink(repositoryModel.get('url'))
       };
       masterdetail.down('nx-info-panel').showInfo(info);
     }
@@ -127,12 +127,12 @@ Ext.define('NX.repository.controller.Repositories', {
     }
   },
 
-  describeRepository: function (repositoryInfoModel) {
-    return repositoryInfoModel.get('name');
+  describeRepository: function (repositoryModel) {
+    return repositoryModel.get('name');
   },
 
-  getLocalStatus: function (repositoryInfoModel) {
-    var localStatus = repositoryInfoModel.get('localStatus');
+  getLocalStatus: function (repositoryModel) {
+    var localStatus = repositoryModel.get('localStatus');
 
     if (localStatus === 'IN_SERVICE') {
       return 'In Service';
@@ -143,8 +143,8 @@ Ext.define('NX.repository.controller.Repositories', {
     return localStatus;
   },
 
-  getProxyMode: function (repositoryInfoModel) {
-    var proxyMode = repositoryInfoModel.get('proxyMode');
+  getProxyMode: function (repositoryModel) {
+    var proxyMode = repositoryModel.get('proxyMode');
 
     if (proxyMode === 'ALLOW') {
       return 'Allowed';
@@ -158,9 +158,9 @@ Ext.define('NX.repository.controller.Repositories', {
     return proxyMode;
   },
 
-  getRemoteStatus: function (repositoryInfoModel) {
-    var remoteStatus = repositoryInfoModel.get('remoteStatus'),
-        remoteStatusReason = repositoryInfoModel.get('remoteStatusReason');
+  getRemoteStatus: function (repositoryModel) {
+    var remoteStatus = repositoryModel.get('remoteStatus'),
+        remoteStatusReason = repositoryModel.get('remoteStatusReason');
 
     if (remoteStatus === 'UNKNOWN') {
       return 'Unknown';

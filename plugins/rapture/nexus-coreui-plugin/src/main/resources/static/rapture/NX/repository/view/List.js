@@ -14,7 +14,7 @@ Ext.define('NX.repository.view.List', {
   extend: 'Ext.grid.Panel',
   alias: 'widget.nx-repository-list',
 
-  store: 'RepositoryInfo',
+  store: 'Repository',
 
   columns: [
     {header: 'Name', dataIndex: 'name', flex: 1},
