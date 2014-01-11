@@ -29,7 +29,7 @@
 
   <properties>
     <pluginName>Nexus Rapture Plugin</pluginName>
-    <pluginDescription>Nexus-generation UI for Nexus.</pluginDescription>
+    <pluginDescription>Next-gen UI framework.</pluginDescription>
   </properties>
 
   <dependencies>
