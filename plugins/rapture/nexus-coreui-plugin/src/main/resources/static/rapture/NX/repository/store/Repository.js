@@ -17,9 +17,9 @@ Ext.define('NX.repository.store.Repository', {
   proxy: {
     type: 'direct',
     paramsAsHash: false,
+
     api: {
-      // FIXME: is this needed?
-      read: NX.direct.repository.Repository.read
+      read: 'NX.direct.repository.Repository.read'
     },
 
     reader: {
@@ -32,5 +32,4 @@ Ext.define('NX.repository.store.Repository', {
 
   sortOnLoad: true,
   sorters: { property: 'name', direction: 'ASC' }
-
 });

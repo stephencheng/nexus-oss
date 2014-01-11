@@ -25,5 +25,4 @@ Ext.define('NX.repository.view.List', {
   tbar: [
     { xtype: 'button', text: 'Delete', action: 'delete', disabled: true }
   ]
-
 });
