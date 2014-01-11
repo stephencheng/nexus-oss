@@ -28,15 +28,12 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>nexus-extdirect-plugin</module>
     <module>nexus-groovyremote-client</module>
     <module>nexus-groovyremote-plugin</module>
     <module>nexus-plexusplugin-plugin</module>
     <module>nexus-atlas-plugin</module>
     <module>nexus-wonderland-model</module>
     <module>nexus-wonderland-plugin</module>
-    <module>nexus-rapture-baseapp</module>
-    <module>nexus-rapture-plugin</module>
   </modules>
 
 </project>
