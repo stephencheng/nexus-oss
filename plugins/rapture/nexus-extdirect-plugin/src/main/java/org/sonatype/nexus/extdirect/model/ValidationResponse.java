@@ -11,30 +11,28 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 
-package org.sonatype.nexus.extdirect.ux.model;
+package org.sonatype.nexus.extdirect.model;
+
+import java.util.List;
+
+import org.sonatype.configuration.validation.ValidationMessage;
 
 import com.google.common.collect.Lists;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 /**
- * Ext.Direct error response.
+ * Ext.Direct validation response.
  *
  * @since 2.8
  */
-public class ErrorResponse
+public class ValidationResponse
     extends Response<Object>
 {
 
-  private String message;
+  private List<ValidationMessage> validationMessages;
 
-  public ErrorResponse(final Throwable cause) {
-    this(checkNotNull(cause).getMessage());
-  }
-
-  public ErrorResponse(final String message) {
+  public ValidationResponse(List<ValidationMessage> validationMessages) {
     super(false, Lists.newArrayList());
-    this.message = checkNotNull(message);
+    this.validationMessages = validationMessages;
   }
 
 }

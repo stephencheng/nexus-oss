@@ -11,7 +11,7 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 
-package org.sonatype.nexus.extdirect.ux.model;
+package org.sonatype.nexus.extdirect.model;
 
 import java.util.List;
 

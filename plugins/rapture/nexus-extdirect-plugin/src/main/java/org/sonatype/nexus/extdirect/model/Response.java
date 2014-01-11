@@ -11,28 +11,23 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 
-package org.sonatype.nexus.extdirect.ux.model;
-
-import java.util.List;
-
-import org.sonatype.configuration.validation.ValidationMessage;
-
-import com.google.common.collect.Lists;
+package org.sonatype.nexus.extdirect.model;
 
 /**
- * Ext.Direct validation response.
+ * Ext.Direct response.
  *
  * @since 2.8
  */
-public class ValidationResponse
-    extends Response<Object>
+public class Response<T>
 {
 
-  private List<ValidationMessage> validationMessages;
+  private boolean success;
 
-  public ValidationResponse(List<ValidationMessage> validationMessages) {
-    super(false, Lists.newArrayList());
-    this.validationMessages = validationMessages;
+  private T data;
+
+  public Response(boolean success, T data) {
+    this.success = success;
+    this.data = data;
   }
 
 }

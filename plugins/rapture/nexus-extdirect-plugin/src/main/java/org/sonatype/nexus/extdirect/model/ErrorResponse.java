@@ -11,23 +11,30 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 
-package org.sonatype.nexus.extdirect.ux.model;
+package org.sonatype.nexus.extdirect.model;
+
+import com.google.common.collect.Lists;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Ext.Direct response.
+ * Ext.Direct error response.
  *
  * @since 2.8
  */
-public class Response<T>
+public class ErrorResponse
+    extends Response<Object>
 {
 
-  private boolean success;
+  private String message;
 
-  private T data;
+  public ErrorResponse(final Throwable cause) {
+    this(checkNotNull(cause).getMessage());
+  }
 
-  public Response(boolean success, T data) {
-    this.success = success;
-    this.data = data;
+  public ErrorResponse(final String message) {
+    super(false, Lists.newArrayList());
+    this.message = checkNotNull(message);
   }
 
 }

@@ -21,7 +21,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.sonatype.configuration.validation.InvalidConfigurationException;
-import org.sonatype.nexus.extdirect.ux.model.Response;
+import org.sonatype.nexus.extdirect.model.Response;
 
 import com.director.core.DirectAction;
 import com.director.core.DirectContext;
@@ -38,9 +38,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.sonatype.nexus.extdirect.ux.model.Responses.error;
-import static org.sonatype.nexus.extdirect.ux.model.Responses.invalid;
-import static org.sonatype.nexus.extdirect.ux.model.Responses.success;
+import static org.sonatype.nexus.extdirect.model.Responses.error;
+import static org.sonatype.nexus.extdirect.model.Responses.invalid;
+import static org.sonatype.nexus.extdirect.model.Responses.success;
 
 /**
  * An {@link ExecutorAdapter} that invokes actions on guice components.
