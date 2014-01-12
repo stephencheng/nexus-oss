@@ -12,11 +12,14 @@
  */
 package org.sonatype.nexus.coreui
 
+import groovy.transform.ToString
+
 /**
  * Repository exchange object.
  * 
  * @since 2.8
  */
+@ToString(includePackage = false, includeNames = true)
 class RepositoryXO
 {
   String id
