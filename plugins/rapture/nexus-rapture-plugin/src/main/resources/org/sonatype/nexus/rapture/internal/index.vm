@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nexus Rapture</title>
+  <title>Sonatype Nexus</title>
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -49,12 +49,6 @@
       padding: 2px;
       margin:-180px 0 0 -320px;
       z-index: 20001;
-    }
-
-    #loading-image {
-      margin-right: 8px;
-      float: left;
-      vertical-align: top;
     }
 
     #loading .loading-indicator {
