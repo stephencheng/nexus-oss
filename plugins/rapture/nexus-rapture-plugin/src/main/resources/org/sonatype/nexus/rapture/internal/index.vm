@@ -21,9 +21,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <meta name="description" content="Sonatype Nexus"/>
 
-  <link rel="icon" type="image/png" href="$baseUrl/resources/favicon.png"/>
+  <link rel="icon" type="image/png" href="$raptureUrl/resources/favicon.png"/>
   <!--[if IE]>
-  <link rel="SHORTCUT ICON" href="$baseUrl/resources/favicon.ico"/>
+  <link rel="SHORTCUT ICON" href="$raptureUrl/resources/favicon.ico"/>
   <![endif]-->
 
   ##<link rel="stylesheet" type="text/css" href="$raptureUrl/resources/baseapp.css">
