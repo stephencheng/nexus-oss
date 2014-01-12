@@ -13,10 +13,68 @@
 Ext.define('NX.view.Viewport', {
   extend: 'Ext.container.Viewport',
 
-  layout: 'fit',
+  layout: 'border',
   items: [
     {
-      xtype: 'nx-featurebrowser'
+      xtype: 'nx-header',
+      region: 'north',
+      collapsible: false
+    },
+
+    // HACK: nav placeholder
+    {
+      xtype: 'panel',
+      region: 'west',
+      resizable: true,
+      resizeHandles: 'e',
+      items: {
+        xtype: 'label',
+        text: 'TEST'
+      }
+    },
+
+    {
+      xtype: 'nx-featurebrowser',
+      region: 'center'
+    },
+
+    // HACK: options placeholder
+    {
+      xtype: 'panel',
+      region: 'east',
+      title: 'Options',
+      collapsible: true,
+      collapsed: true,
+      resizable: true,
+      resizeHandles: 'w',
+      items: {
+        xtype: 'label',
+        text: 'TEST'
+      }
+    },
+
+    {
+      xtype: 'nx-devtools',
+      region: 'south',
+      collapsible: true,
+      collapsed: true,
+      resizable: true,
+      resizeHandles: 'n',
+
+      // default to hidden, only show if debug enabled
+      hidden: true
     }
-  ]
+  ],
+
+  /**
+   * @protected
+   */
+  initComponent: function() {
+    this.callParent();
+
+    // if debug enabled, show developer tools
+    if (window.location.search === '?debug') {
+      this.down('nx-devtools').show();
+    }
+  }
 });

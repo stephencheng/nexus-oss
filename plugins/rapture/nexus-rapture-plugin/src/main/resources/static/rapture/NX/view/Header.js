@@ -10,28 +10,12 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.controller.Main', {
-  extend: 'Ext.app.Controller',
+Ext.define('NX.view.Header', {
+  extend: 'Ext.panel.Panel',
+  alias: 'widget.nx-header',
 
-  views: [
-    'Header',
-    'DevTools',
-    'FeatureBrowser',
-    'Info',
-    'InfoPanel'
-  ],
-
-  init: function () {
-    this.control({
-      'nx-featurebrowser': {
-        afterrender: this.setActiveTab
-      }
-    });
-  },
-
-  setActiveTab: function (featureBrowser) {
-    // TODO any other algorithm?
-    featureBrowser.setActiveTab(0);
+  items: {
+    xtype: 'label',
+    text: 'TODO'
   }
-
 });
