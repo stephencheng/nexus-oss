@@ -12,10 +12,7 @@
  */
 package org.sonatype.nexus.rapture.internal;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,16 +21,12 @@ import javax.inject.Named;
 import javax.inject.Provider;
 import javax.inject.Singleton;
 
-import org.sonatype.nexus.web.WebResource;
 import org.sonatype.nexus.webresources.WebResourceService;
-import org.sonatype.sisu.goodies.common.ComponentSupport;
-import org.sonatype.sisu.goodies.template.TemplateEngine;
 import org.sonatype.sisu.goodies.template.TemplateParameters;
 
 import com.google.common.collect.Lists;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Provides {@code /static/rapture/app.js}.
@@ -43,22 +36,17 @@ import static com.google.common.base.Preconditions.checkState;
 @Named
 @Singleton
 public class AppJsWebResource
-    extends ComponentSupport
-    implements WebResource
+    extends TemplateWebResource
 {
+
   private static final String NS_PREFIX = "/static/rapture/NX/";
 
   private static final String PLUGIN_CONFIG_SUFFIX = "/app/PluginConfig.js";
 
-  private final TemplateEngine templateEngine;
-
   private final Provider<WebResourceService> webResourceServiceProvider; // avoid circular dep
 
   @Inject
-  public AppJsWebResource(final TemplateEngine templateEngine,
-                          final Provider<WebResourceService> webResourceServiceProvider)
-  {
-    this.templateEngine = checkNotNull(templateEngine);
+  public AppJsWebResource(final Provider<WebResourceService> webResourceServiceProvider) {
     this.webResourceServiceProvider = checkNotNull(webResourceServiceProvider);
   }
 
@@ -69,26 +57,11 @@ public class AppJsWebResource
 
   @Override
   public String getContentType() {
-    return "application/x-javascript";
+    return JAVASCRIPT;
   }
 
   @Override
-  public long getSize() {
-    return UNKNOWN_SIZE;
-  }
-
-  @Override
-  public long getLastModified() {
-    return System.currentTimeMillis();
-  }
-
-  @Override
-  public boolean isCacheable() {
-    return false;
-  }
-
-  @Override
-  public InputStream getInputStream() throws IOException {
+  protected byte[] render() throws IOException {
     List<String> classNames = getPluginConfigClassNames();
     if (classNames.isEmpty()) {
       log.warn("Did not detect any rapture plugin configurations");
@@ -97,11 +70,8 @@ public class AppJsWebResource
       log.debug("Plugin config class names: {}", classNames);
     }
 
-    URL template = AppJsWebResource.class.getResource("app.vm");
-    checkState(template != null, "Missing app.vm template");
-
-    return new ByteArrayInputStream(templateEngine.render(
-        this, template, new TemplateParameters().set("pluginConfigClassNames", join(classNames))).getBytes()
+    return render("app.vm", new TemplateParameters()
+        .set("pluginConfigClassNames", join(classNames))
     );
   }
 
