@@ -54,7 +54,7 @@ class RepositoryComponent
   @DirectMethod
   List<RepositoryXO> read() {
     return repositoryRegistry.repositories.collect { input ->
-      def repo = new RepositoryXO(
+      def result = new RepositoryXO(
           id: input.id,
           name: input.name,
           type: typeOf(input),
@@ -65,14 +65,14 @@ class RepositoryComponent
 
       // add additional details if repo is a proxy
       input.adaptToFacet(ProxyRepository.class)?.with { proxy ->
-        repo.proxyMode = proxy.proxyMode
+        result.proxyMode = proxy.proxyMode
 
         def remoteStatus = proxy.getRemoteStatus(new ResourceStoreRequest(RepositoryItemUid.PATH_ROOT), false)
-        repo.remoteStatus = remoteStatus
-        repo.remoteStatusReason = remoteStatus.reason
+        result.remoteStatus = remoteStatus
+        result.remoteStatusReason = remoteStatus.reason
       }
 
-      return repo
+      return result
     }
   }
 
