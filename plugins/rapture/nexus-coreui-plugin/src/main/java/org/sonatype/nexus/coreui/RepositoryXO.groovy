@@ -10,30 +10,30 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-package org.sonatype.nexus.coreui;
+package org.sonatype.nexus.coreui
 
 /**
  * Repository exchange object.
  * 
  * @since 2.8
  */
-public class RepositoryXO
+class RepositoryXO
 {
-  String id;
+  String id
 
-  String name;
+  String name
 
-  String type;
+  String type
 
-  String format;
+  String format
 
-  String localStatus;
+  String localStatus
 
-  String proxyMode;
+  String proxyMode
 
-  String remoteStatus;
+  String remoteStatus
 
-  String remoteStatusReason;
+  String remoteStatusReason
 
-  String url;
+  String url
 }
