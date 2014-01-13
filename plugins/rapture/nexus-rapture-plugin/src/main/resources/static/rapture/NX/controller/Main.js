@@ -27,19 +27,6 @@ Ext.define('NX.controller.Main', {
 
   stores: [
     'Feature'
-  ],
-
-  init: function () {
-    this.control({
-      'nx-featurebrowser': {
-        afterrender: this.setActiveTab
-      }
-    });
-  },
-
-  setActiveTab: function (featureBrowser) {
-    // TODO any other algorithm?
-    featureBrowser.setActiveTab(0);
-  }
+  ]
 
 });

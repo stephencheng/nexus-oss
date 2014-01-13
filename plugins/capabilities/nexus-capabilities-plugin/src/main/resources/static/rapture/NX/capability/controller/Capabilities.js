@@ -84,6 +84,7 @@ Ext.define('NX.capability.controller.Capabilities', {
         {
           xtype: 'nx-masterdetail-panel',
           title: 'Capability',
+          bookmark: 'capability',
           list: 'nx-capability-list',
           tabs: [
             { xtype: 'nx-capability-summary' },

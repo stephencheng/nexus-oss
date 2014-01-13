@@ -56,6 +56,7 @@ Ext.define('NX.coreui.controller.Repositories', {
         {
           xtype: 'nx-masterdetail-panel',
           title: 'Repositories',
+          bookmark: 'repository',
           modelName: 'repository',
           list: 'nx-repository-list',
           tabs: { xtype: 'nx-info-panel' }

@@ -50,6 +50,7 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
         {
           xtype: 'nx-masterdetail-panel',
           title: 'Plugin Console',
+          bookmark: 'plugins',
           emptyText: 'Please select a plugin to view details',
           list: 'nx-pluginconsole-list',
           tabs: { xtype: 'nx-info-panel' }

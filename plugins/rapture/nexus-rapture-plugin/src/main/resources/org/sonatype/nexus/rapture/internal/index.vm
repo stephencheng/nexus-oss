@@ -89,5 +89,11 @@
   </div>
 </div>
 
+<!-- Fields required for history management -->
+<form id="history-form" class="x-hide-display">
+  <input type="hidden" id="x-history-field" />
+  <iframe id="x-history-frame"></iframe>
+</form>
+
 </body>
 </html>
