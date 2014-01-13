@@ -13,6 +13,9 @@
 Ext.define('NX.view.Viewport', {
   extend: 'Ext.container.Viewport',
 
+  // TODO: Keep the viewport simple have it delegate to another component w/fit layout so that we can
+  // TODO: easily switch the entire UI (for startup/upgrade or licensing wizards)
+
   layout: 'border',
   items: [
     {
