@@ -47,9 +47,12 @@ Ext.define('NX.view.Viewport', {
       region: 'east',
       title: 'Options',
       collapsible: true,
-      collapsed: true,
+      collapseMode: 'mini',
+      collapsed: false, // FIXME: true here with 'mini' will not render properly
       resizable: true,
       resizeHandles: 'w',
+
+      width: 100,
       items: {
         xtype: 'label',
         text: 'TEST'
