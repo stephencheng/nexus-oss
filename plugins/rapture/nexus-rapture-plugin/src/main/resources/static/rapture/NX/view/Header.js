@@ -27,6 +27,11 @@ Ext.define('NX.view.Header', {
         xtype: 'label',
         text: 'Sonatype Nexus'
       },
+      '-',
+      {
+        xtype: 'label',
+        text: 'Community Edition v3.0-beta'
+      },
       '->',
       {
         xtype: 'textfield',
