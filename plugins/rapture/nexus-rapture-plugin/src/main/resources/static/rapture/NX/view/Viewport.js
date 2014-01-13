@@ -15,7 +15,6 @@ Ext.define('NX.view.Viewport', {
 
   // TODO: Keep the viewport simple have it delegate to another component w/fit layout so that we can
   // TODO: easily switch the entire UI (for startup/upgrade or licensing wizards)
-
   layout: 'border',
   items: [
     {
@@ -26,14 +25,15 @@ Ext.define('NX.view.Viewport', {
 
     // HACK: nav placeholder
     {
-      xtype: 'panel',
+      xtype: 'treepanel',
       region: 'west',
       resizable: true,
       resizeHandles: 'e',
-      items: {
-        xtype: 'label',
-        text: 'TEST'
-      }
+
+      width: 200,
+      store: 'Feature',
+      rootVisible: false,
+      lines: false
     },
 
     {
