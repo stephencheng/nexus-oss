@@ -68,7 +68,7 @@
 </head>
 <body class="x-border-box">
 
-<div id="loading-mask" style=""></div>
+<div id="loading-mask"></div>
 <div id="loading">
   <div class="loading-indicator">
     <img id="welcome-image" src="$raptureUrl/resources/images/welcome.jpg"/>
