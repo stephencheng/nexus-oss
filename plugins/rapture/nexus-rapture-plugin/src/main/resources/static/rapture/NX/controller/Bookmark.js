@@ -12,7 +12,9 @@
  */
 Ext.define('NX.controller.Bookmark', {
   extend: 'Ext.app.Controller',
-
+  require: [
+    'Ext.util.History'
+  ],
   mixins: {
     logAware: 'NX.LogAware'
   },
