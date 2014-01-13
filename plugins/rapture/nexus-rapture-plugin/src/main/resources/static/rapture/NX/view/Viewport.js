@@ -67,7 +67,7 @@ Ext.define('NX.view.Viewport', {
     },
 
     {
-      xtype: 'nx-devtools',
+      xtype: 'nx-developer',
       region: 'south',
       collapsible: true,
       collapsed: true,
@@ -87,7 +87,7 @@ Ext.define('NX.view.Viewport', {
 
     // if debug enabled, show developer tools
     if (window.location.search === '?debug') {
-      this.down('nx-devtools').show();
+      this.down('nx-developer').show();
     }
   }
 });

@@ -44,7 +44,7 @@ Ext.define('NX.app.Application', {
   ],
   views: [
     'Header',
-    'DevTools'
+    'Developer'
   ],
 
   constructor: function (config) {
