@@ -15,7 +15,7 @@ Ext.define('NX.controller.Main', {
 
   views: [
     'Header',
-    'DevTools',
+    'Developer',
     'FeatureBrowser',
     'Info',
     'InfoPanel'
