@@ -20,6 +20,8 @@ import java.io.InputStream;
 import org.sonatype.nexus.web.WebResource.Prepareable;
 import org.sonatype.sisu.goodies.common.ComponentSupport;
 
+import static com.google.common.base.Preconditions.checkState;
+
 /**
  * Support for generated {@link WebResource} implementations.
  *
@@ -57,6 +59,8 @@ public abstract class GeneratedWebResource
 
       {
         content = generate();
+        checkState(content != null);
+        assert content != null; // for IDEA
         log.trace("Generated: {} {} bytes", getPath(), content.length);
       }
 
