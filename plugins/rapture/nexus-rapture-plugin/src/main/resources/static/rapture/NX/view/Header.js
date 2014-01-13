@@ -15,7 +15,47 @@ Ext.define('NX.view.Header', {
   alias: 'widget.nx-header',
 
   items: {
-    xtype: 'label',
-    text: 'TODO'
+    xtype: 'toolbar',
+    items: [
+      {
+        xtype: 'image',
+        src: 'http://localhost:8081/nexus/static/rapture/resources/images/nexus-16x16.png',
+        autoEl: 'span',
+        width: 16
+      },
+      {
+        xtype: 'label',
+        text: 'Sonatype Nexus'
+      },
+      '->',
+      {
+        xtype: 'textfield',
+        emptyText: 'quick search'
+
+      },
+      '-',
+      {
+        xtype: 'button',
+        text: 'Refresh'
+      },
+      {
+        xtype: 'button',
+        text: 'Help'
+      },
+      '-',
+      {
+        xtype: 'button',
+        text: 'User',
+        menu: [
+          {
+            text: 'Profile'
+          },
+          '-',
+          {
+            text: 'Logout'
+          }
+        ]
+      }
+    ]
   }
 });
