@@ -19,7 +19,7 @@ Ext.define('NX.store.Feature', {
     expanded: true,
     text: 'Features',
     children: [
-      { text: 'Repositories', leaf: true },
+      { text: 'Welcome', leaf: true },
       { text: 'Plugins', leaf: true },
       { text: 'Capabilities', leaf: true },
       { text: 'Settings', leaf: true }
