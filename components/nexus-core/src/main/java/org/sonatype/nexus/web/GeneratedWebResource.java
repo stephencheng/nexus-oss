@@ -61,7 +61,7 @@ public abstract class GeneratedWebResource
         content = generate();
         checkState(content != null);
         assert content != null; // for IDEA
-        log.trace("Generated: {} {} bytes", getPath(), content.length);
+        log.trace("Generated: {}, {} bytes", getPath(), content.length);
       }
 
       @Override
