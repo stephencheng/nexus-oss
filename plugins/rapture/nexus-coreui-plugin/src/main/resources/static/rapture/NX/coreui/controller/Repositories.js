@@ -16,11 +16,11 @@ Ext.define('NX.coreui.controller.Repositories', {
   requires: [
     'NX.util.Url',
     'NX.util.Msg',
-    'NX.util.ExtDirect',
-    'NX.store.Feature'
+    'NX.util.ExtDirect'
   ],
 
   stores: [
+    'Feature@NX.store',
     'Repository'
   ],
   views: [
@@ -53,16 +53,6 @@ Ext.define('NX.coreui.controller.Repositories', {
 
     this.getRepositoryStore().on('load', this.onRepositoryStoreLoad, this);
     this.getRepositoryStore().on('beforeload', this.onRepositoryStoreBeforeLoad, this);
-  },
-
-  /**
-   * The 'Feature' store is not able to resolve (for some reason) in the main namespace when this
-   * controller loads, so we have to require it and resolve the store instance explicitly.
-   *
-   * @returns {Ext.data.Store|*}
-   */
-  getFeatureStore: function() {
-    return this.getStore('Feature');
   },
 
   addToBrowser: function (featureBrowser) {
