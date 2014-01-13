@@ -27,12 +27,10 @@ import com.google.common.collect.Lists;
 public class ValidationResponse
     extends Response<Object>
 {
-
   private List<ValidationMessage> validationMessages;
 
   public ValidationResponse(List<ValidationMessage> validationMessages) {
     super(false, Lists.newArrayList());
     this.validationMessages = validationMessages;
   }
-
 }

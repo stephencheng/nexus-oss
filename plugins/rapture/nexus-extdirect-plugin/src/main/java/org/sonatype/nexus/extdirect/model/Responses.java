@@ -25,7 +25,6 @@ import org.sonatype.configuration.validation.ValidationMessage;
  */
 public class Responses
 {
-
   public static Response<Object> success() {
     return success(null);
   }
@@ -49,5 +48,4 @@ public class Responses
   public static ValidationResponse invalid(final List<ValidationMessage> messages) {
     return new ValidationResponse(messages);
   }
-
 }

@@ -22,6 +22,7 @@ import javax.inject.Singleton;
 
 import org.sonatype.configuration.validation.InvalidConfigurationException;
 import org.sonatype.nexus.extdirect.model.Response;
+import org.sonatype.sisu.goodies.common.ComponentSupport;
 
 import com.director.core.DirectAction;
 import com.director.core.DirectContext;
@@ -34,8 +35,6 @@ import com.director.core.json.JsonParser;
 import com.google.inject.Key;
 import org.eclipse.sisu.BeanEntry;
 import org.eclipse.sisu.inject.BeanLocator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.sonatype.nexus.extdirect.model.Responses.error;
@@ -50,11 +49,9 @@ import static org.sonatype.nexus.extdirect.model.Responses.success;
 @Named
 @Singleton
 public class ExtDirectExecutorAdapter
-    implements ExecutorAdapter
+  extends ComponentSupport
+  implements ExecutorAdapter
 {
-
-  private static final Logger LOG = LoggerFactory.getLogger(ExtDirectExecutorAdapter.class);
-
   private final BeanLocator beanLocator;
 
   @Inject
@@ -68,7 +65,7 @@ public class ExtDirectExecutorAdapter
                                          final DirectTransactionData data) throws DirectException
   {
     try {
-      LOG.debug("Invoking {}#{}", directAction.getName(), directMethod.getName());
+      log.debug("Invoking {}#{}", directAction.getName(), directMethod.getName());
       Iterable<BeanEntry<Annotation, Object>> actionInstance = beanLocator.locate(
           Key.get(directAction.getActionClass())
       );
@@ -77,7 +74,7 @@ public class ExtDirectExecutorAdapter
       return result(directMethod, result);
     }
     catch (InvocationTargetException e) {
-      LOG.error(
+      log.error(
           "Failed to invoke action method {} of direct class {}",
           directMethod.getName(), directAction.getName(), e.getTargetException()
       );
@@ -87,7 +84,7 @@ public class ExtDirectExecutorAdapter
       return result(directMethod, error(e.getTargetException().getMessage()));
     }
     catch (Throwable e) {
-      LOG.error(
+      log.error(
           "Failed to invoke action method {} of direct class {}",
           directMethod.getName(), directAction.getName(), e
       );
@@ -114,5 +111,4 @@ public class ExtDirectExecutorAdapter
     JsonParser parser = DirectContext.get().getConfiguration().getParser();
     return parser.buildResult(directMethod, response);
   }
-
 }

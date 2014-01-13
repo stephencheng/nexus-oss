@@ -38,9 +38,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ExtDirectServlet
     extends HttpServlet
 {
-
-  private static final String ENCODING = "UTF-8";
-
   private final DirectConfiguration configuration;
 
   @Inject
@@ -53,7 +50,7 @@ public class ExtDirectServlet
       throws ServletException, IOException
   {
     response.setContentType("application/json");
-    response.setCharacterEncoding(ENCODING);
+    response.setCharacterEncoding("UTF-8");
 
     String providerId = request.getParameter(configuration.getProviderParamName());
     // TODO throw 403 if no provider id
@@ -62,5 +59,4 @@ public class ExtDirectServlet
       provider.process(request, response);
     }
   }
-
 }

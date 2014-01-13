@@ -46,19 +46,20 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ExtDirectConfiguration
     extends DirectConfiguration
 {
-
-  private static final Logger LOG = LoggerFactory.getLogger(ExtDirectConfiguration.class);
+  private static final Logger log = LoggerFactory.getLogger(ExtDirectConfiguration.class);
 
   @Inject
   public ExtDirectConfiguration(final BeanLocator beanLocator,
                                 final ExtDirectExecutorAdapter executorAdapter)
   {
+    checkNotNull(beanLocator);
+
     setRouterUrl(ExtDirectModule.ROUTER_MOUNT_POINT);
     registerAdapter(checkNotNull(executorAdapter));
 
-    Iterable<? extends BeanEntry<Annotation, DirectComponent>> entries = checkNotNull(beanLocator).locate(
-        Key.get(DirectComponent.class)
-    );
+    Iterable<? extends BeanEntry<Annotation, DirectComponent>> entries =
+        beanLocator.locate(Key.get(DirectComponent.class));
+
     List<Class<?>> apiClasses = Lists.newArrayList(
         Iterables.transform(entries, new Function<BeanEntry<Annotation, DirectComponent>, Class<?>>()
         {
@@ -70,12 +71,14 @@ public class ExtDirectConfiguration
         })
     );
     for (Class<?> entry : apiClasses) {
-      LOG.debug("Registering direct resource {}", entry.getName());
+      log.debug("Registering direct resource {}", entry.getName());
+
       DirectAction actionAnno = entry.getAnnotation(DirectAction.class);
       String actionName = entry.getSimpleName();
       if (actionAnno != null && !actionAnno.action().trim().equals("")) {
         actionName = actionAnno.action().trim();
       }
+
       String nameSpace = "NX.direct";
       if (actionName.contains(".")) {
         int pos = actionName.lastIndexOf(".");
@@ -85,5 +88,4 @@ public class ExtDirectConfiguration
       registerClass(entry, nameSpace, actionName);
     }
   }
-
 }

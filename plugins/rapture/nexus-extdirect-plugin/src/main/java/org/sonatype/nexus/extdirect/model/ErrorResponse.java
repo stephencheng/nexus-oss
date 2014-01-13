@@ -25,7 +25,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ErrorResponse
     extends Response<Object>
 {
-
   private String message;
 
   public ErrorResponse(final Throwable cause) {
@@ -36,5 +35,4 @@ public class ErrorResponse
     super(false, Lists.newArrayList());
     this.message = checkNotNull(message);
   }
-
 }

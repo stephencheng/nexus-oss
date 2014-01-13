@@ -20,7 +20,6 @@ package org.sonatype.nexus.extdirect.model;
  */
 public class Response<T>
 {
-
   private boolean success;
 
   private T data;
@@ -29,5 +28,4 @@ public class Response<T>
     this.success = success;
     this.data = data;
   }
-
 }
