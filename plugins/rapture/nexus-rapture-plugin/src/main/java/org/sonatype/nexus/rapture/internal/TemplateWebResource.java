@@ -13,17 +13,13 @@
 
 package org.sonatype.nexus.rapture.internal;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 
 import javax.inject.Inject;
 
-import org.sonatype.nexus.web.DelegatingWebResource;
+import org.sonatype.nexus.web.GeneratedWebResource;
 import org.sonatype.nexus.web.WebResource;
-import org.sonatype.nexus.web.WebResource.Prepareable;
-import org.sonatype.sisu.goodies.common.ComponentSupport;
 import org.sonatype.sisu.goodies.template.TemplateEngine;
 import org.sonatype.sisu.goodies.template.TemplateParameters;
 
@@ -38,8 +34,7 @@ import static com.google.common.base.Preconditions.checkState;
  * @since 2.8
  */
 public abstract class TemplateWebResource
-    extends ComponentSupport
-    implements WebResource, Prepareable
+    extends GeneratedWebResource
 {
   private TemplateEngine templateEngine;
 
@@ -53,44 +48,6 @@ public abstract class TemplateWebResource
     return templateEngine;
   }
 
-  @Override
-  public boolean isCacheable() {
-    return false;
-  }
-
-  @Override
-  public long getLastModified() {
-    return System.currentTimeMillis();
-  }
-
-  @Override
-  public long getSize() {
-    throw new UnsupportedOperationException("Preparation required");
-  }
-
-  @Override
-  public InputStream getInputStream() throws IOException {
-    throw new UnsupportedOperationException("Preparation required");
-  }
-
-  @Override
-  public WebResource prepare() throws IOException {
-    return new DelegatingWebResource(this)
-    {
-      private final byte[] content = render();
-
-      @Override
-      public long getSize() {
-        return content.length;
-      }
-
-      @Override
-      public InputStream getInputStream() throws IOException {
-        return new ByteArrayInputStream(content);
-      }
-    };
-  }
-
   protected URL template(final String name) {
     URL template = getClass().getResource(name);
     checkState(template != null, "Missing template: %s", name);
@@ -100,6 +57,4 @@ public abstract class TemplateWebResource
   protected byte[] render(final String template, final TemplateParameters parameters) throws IOException {
     return getTemplateEngine().render(this, template(template), parameters).getBytes();
   }
-
-  protected abstract byte[] render() throws IOException;
 }

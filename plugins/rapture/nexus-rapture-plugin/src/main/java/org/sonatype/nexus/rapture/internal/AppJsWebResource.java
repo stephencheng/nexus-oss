@@ -61,7 +61,7 @@ public class AppJsWebResource
   }
 
   @Override
-  protected byte[] render() throws IOException {
+  protected byte[] generate() throws IOException {
     List<String> classNames = getPluginConfigClassNames();
     if (classNames.isEmpty()) {
       log.warn("Did not detect any rapture plugin configurations");

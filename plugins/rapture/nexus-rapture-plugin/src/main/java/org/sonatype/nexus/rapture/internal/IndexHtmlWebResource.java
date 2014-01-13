@@ -44,7 +44,7 @@ public class IndexHtmlWebResource
   }
 
   @Override
-  protected byte[] render() throws IOException {
+  protected byte[] generate() throws IOException {
     return render("index.vm", new TemplateParameters()
         .set("baseUrl", BaseUrlHolder.get())
     );
