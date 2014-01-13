@@ -13,16 +13,16 @@
 
 package org.sonatype.nexus.extdirect.internal;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
-import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import org.sonatype.nexus.web.GeneratedWebResource;
 import org.sonatype.nexus.web.WebResource;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Ext.Direct API {@link WebResource}.
@@ -32,17 +32,13 @@ import org.sonatype.nexus.web.WebResource;
 @Named
 @Singleton
 public class ExtDirectApiWebResource
-    implements WebResource
+    extends GeneratedWebResource
 {
-
-  private final String api;
-
-  private final long lastModified;
+  private final ExtDirectConfiguration configuration;
 
   @Inject
   public ExtDirectApiWebResource(final ExtDirectConfiguration configuration) {
-    api = configuration.getFormattedApi();
-    lastModified = System.currentTimeMillis();
+    this.configuration = checkNotNull(configuration);
   }
 
   @Override
@@ -50,30 +46,13 @@ public class ExtDirectApiWebResource
     return "/js/extdirect.js";
   }
 
-  @Nullable
   @Override
   public String getContentType() {
-    return "text/javascript";
+    return JAVASCRIPT;
   }
 
   @Override
-  public long getSize() {
-    return api.getBytes().length;
+  protected byte[] generate() throws IOException {
+    return configuration.getFormattedApi().getBytes();
   }
-
-  @Override
-  public long getLastModified() {
-    return lastModified;
-  }
-
-  @Override
-  public boolean isCacheable() {
-    return true;
-  }
-
-  @Override
-  public InputStream getInputStream() throws IOException {
-    return new ByteArrayInputStream(api.getBytes());
-  }
-
 }
