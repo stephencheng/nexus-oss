@@ -17,7 +17,6 @@ Ext.define('NX.coreui.view.Repositories', {
     'NX.view.Info',
     'NX.view.InfoPanel'
   ],
-  alias: 'widget.nx-repositories',
 
   title: 'Repositories',
   bookmark: 'repository',
