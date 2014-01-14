@@ -33,7 +33,6 @@ Ext.define('NX.controller.Main', {
     'Feature'
   ],
 
-  // FIXME: view def above does not seem sufficient here?!
   refs: [
     {
       ref: 'featureContent',
@@ -59,10 +58,12 @@ Ext.define('NX.controller.Main', {
         view,
         cmp;
 
-    view = record.get('view');
+    view = record.get('view'); // this is a class ref
     me.logDebug('Selecting feature view: ' + view);
 
-    cmp = me.getView(view);
-    me.getFeatureContent().replace(cmp);
+    // create thew and replace any current view
+    cmp = me.getView(view).create();
+    me.getFeatureContent().removeAll();
+    me.getFeatureContent().add(cmp);
   }
 });

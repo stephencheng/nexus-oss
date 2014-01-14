@@ -14,13 +14,5 @@ Ext.define('NX.view.FeatureContent', {
   extend: 'Ext.Panel',
   alias: 'widget.nx-featurecontent',
 
-  layout: 'fit',
-
-  /**
-   * @public
-   */
-  replace: function(component) {
-    this.removeAll();
-    this.add(component);
-  }
+  layout: 'fit'
 });
