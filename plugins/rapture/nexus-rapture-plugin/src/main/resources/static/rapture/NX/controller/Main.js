@@ -55,15 +55,16 @@ Ext.define('NX.controller.Main', {
    */
   selectFeature: function(panel, record, index, opts) {
     var me = this,
+        content = me.getFeatureContent(),
         view,
         cmp;
 
-    view = record.get('view'); // this is a class ref
+    view = record.get('view');
     me.logDebug('Selecting feature view: ' + view);
 
-    // create thew and replace any current view
+    // create new view and replace any current view
     cmp = me.getView(view).create();
-    me.getFeatureContent().removeAll();
-    me.getFeatureContent().add(cmp);
+    content.removeAll();
+    content.add(cmp);
   }
 });
