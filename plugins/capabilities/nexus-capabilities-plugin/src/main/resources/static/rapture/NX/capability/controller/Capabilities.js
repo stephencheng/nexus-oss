@@ -19,6 +19,7 @@ Ext.define('NX.capability.controller.Capabilities', {
   ],
 
   stores: [
+    'Feature@NX.store',
     'Capability',
     'CapabilityStatus',
     'CapabilityType'
@@ -27,6 +28,7 @@ Ext.define('NX.capability.controller.Capabilities', {
     'Capability'
   ],
   views: [
+    'Feature',
     'Add',
     'List',
     'Summary',
@@ -46,9 +48,6 @@ Ext.define('NX.capability.controller.Capabilities', {
 
   init: function () {
     this.control({
-      'nx-featurebrowser': {
-        beforerender: this.addToBrowser
-      },
       'nx-capability-list': {
         beforerender: this.loadStores,
         selectionchange: this.onSelectionChange
@@ -73,27 +72,17 @@ Ext.define('NX.capability.controller.Capabilities', {
       }
     });
 
+    // HACK: Testing registration of feature for navigation
+    this.getFeatureStore().getRootNode().appendChild({
+      text: 'Capabilities',
+      view: 'NX.capability.view.Feature',
+      leaf: true
+    });
+
     this.getCapabilityStatusStore().on('load', this.onCapabilityStatusStoreLoad, this);
     this.getCapabilityStatusStore().on('beforeload', this.onCapabilityStatusStoreBeforeLoad, this);
     this.getCapabilityTypeStore().on('load', this.onCapabilityTypeStoreLoad, this);
     this.getCapabilityTypeStore().on('beforeload', this.onCapabilityTypeStoreBeforeLoad, this);
-  },
-
-  addToBrowser: function (featureBrowser) {
-    featureBrowser.add(
-        {
-          xtype: 'nx-masterdetail-panel',
-          title: 'Capability',
-          bookmark: 'capability',
-          list: 'nx-capability-list',
-          tabs: [
-            { xtype: 'nx-capability-summary' },
-            { xtype: 'nx-capability-settings' },
-            { xtype: 'nx-capability-status' },
-            { xtype: 'nx-capability-about' }
-          ]
-        }
-    );
   },
 
   loadStores: function () {
