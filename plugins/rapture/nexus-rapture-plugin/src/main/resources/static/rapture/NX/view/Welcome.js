@@ -14,6 +14,8 @@ Ext.define('NX.view.Welcome', {
   extend: 'Ext.Panel',
   alias: 'widget.nx-welcome',
 
+  // TODO: This should be transformed into a dashboard
+
   title: 'Welcome',
   layout: 'fit',
 

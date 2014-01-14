@@ -14,6 +14,8 @@ Ext.define('NX.view.Header', {
   extend: 'Ext.panel.Panel',
   alias: 'widget.nx-header',
 
+  // TODO: Add branding here, but only show if configured
+
   items: {
     xtype: 'toolbar',
     items: [
