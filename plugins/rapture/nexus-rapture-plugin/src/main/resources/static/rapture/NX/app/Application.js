@@ -44,7 +44,13 @@ Ext.define('NX.app.Application', {
   ],
   views: [
     'Header',
-    'Developer'
+    'Developer',
+    'FeatureMenu',
+    'FeatureContent',
+    'FeatureOptions',
+    'Welcome',
+    'Info',
+    'InfoPanel'
   ],
 
   constructor: function (config) {

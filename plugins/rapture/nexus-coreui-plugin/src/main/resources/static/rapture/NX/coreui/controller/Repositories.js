@@ -24,6 +24,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     'Repository'
   ],
   views: [
+    'Repositories',
     'RepositoryList'
   ],
 
@@ -36,9 +37,6 @@ Ext.define('NX.coreui.controller.Repositories', {
 
   init: function () {
     this.control({
-      'nx-featurebrowser': {
-        beforerender: this.addToBrowser
-      },
       'nx-repository-list': {
         beforerender: this.loadStores,
         selectionchange: this.onSelectionChange
@@ -49,23 +47,14 @@ Ext.define('NX.coreui.controller.Repositories', {
     });
 
     // HACK: Testing registration of feature for navigation
-    this.getFeatureStore().getRootNode().appendChild({ text: 'Repository', leaf: true });
+    this.getFeatureStore().getRootNode().appendChild({
+      text: 'Repositories',
+      view: 'NX.coreui.view.Repositories',
+      leaf: true
+    });
 
     this.getRepositoryStore().on('load', this.onRepositoryStoreLoad, this);
     this.getRepositoryStore().on('beforeload', this.onRepositoryStoreBeforeLoad, this);
-  },
-
-  addToBrowser: function (featureBrowser) {
-    featureBrowser.add(
-        {
-          xtype: 'nx-masterdetail-panel',
-          title: 'Repositories',
-          bookmark: 'repository',
-          modelName: 'repository',
-          list: 'nx-repository-list',
-          tabs: { xtype: 'nx-info-panel' }
-        }
-    );
   },
 
   loadStores: function () {

@@ -10,14 +10,15 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
+Ext.define('NX.view.Welcome', {
+  extend: 'Ext.Panel',
+  alias: 'widget.nx-welcome',
 
-// FIXME: To be removed
+  title: 'Welcome',
+  layout: 'fit',
 
-Ext.define('NX.view.FeatureBrowser', {
-  extend: 'Ext.tab.Panel',
-  alias: 'widget.nx-featurebrowser',
-
-  config: {
-    tabPosition: 'left'
+  items: {
+    xtype: 'label',
+    text: 'Howdy folks!'
   }
 });

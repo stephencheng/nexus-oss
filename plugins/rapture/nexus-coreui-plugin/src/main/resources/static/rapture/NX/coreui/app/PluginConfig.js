@@ -19,5 +19,4 @@ Ext.define('NX.coreui.app.PluginConfig', {
   controllers: [
     'NX.coreui.controller.Repositories'
   ]
-
 });

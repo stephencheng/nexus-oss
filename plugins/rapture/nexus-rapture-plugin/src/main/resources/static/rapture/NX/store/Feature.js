@@ -14,15 +14,11 @@ Ext.define('NX.store.Feature', {
   extend: 'Ext.data.TreeStore',
   model: 'NX.model.Feature',
 
-  // HACK: Adding some data for basic testing
   root: {
     expanded: true,
     text: 'Features',
     children: [
-      { text: 'Welcome', leaf: true },
-      { text: 'Plugins', leaf: true },
-      { text: 'Capabilities', leaf: true },
-      { text: 'Settings', leaf: true }
+      { text: 'Welcome', view: 'Welcome', leaf: true }
     ]
   }
 });

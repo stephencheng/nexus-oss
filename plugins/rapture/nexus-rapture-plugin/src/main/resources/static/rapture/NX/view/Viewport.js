@@ -29,41 +29,26 @@ Ext.define('NX.view.Viewport', {
       collapsible: false
     },
 
-    // HACK: nav placeholder
     {
-      xtype: 'treepanel',
+      xtype: 'nx-featuremenu',
       region: 'west',
       resizable: true,
-      resizeHandles: 'e',
-
-      title: 'Menu',
-      width: 200,
-      store: 'Feature',
-      rootVisible: false,
-      lines: false
+      resizeHandles: 'e'
     },
 
     {
-      xtype: 'nx-featurebrowser',
+      xtype: 'nx-featurecontent',
       region: 'center'
     },
 
-    // HACK: options placeholder
     {
-      xtype: 'panel',
+      xtype: 'nx-featureoptions',
       region: 'east',
-      title: 'Options',
       collapsible: true,
       collapseMode: 'mini',
       collapsed: false, // FIXME: true here with 'mini' will not render properly
       resizable: true,
-      resizeHandles: 'w',
-
-      width: 100,
-      items: {
-        xtype: 'label',
-        text: 'TEST'
-      }
+      resizeHandles: 'w'
     },
 
     {

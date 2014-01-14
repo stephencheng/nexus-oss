@@ -12,13 +12,17 @@
  */
 Ext.define('NX.controller.Main', {
   extend: 'Ext.app.Controller',
+  mixins: {
+    logAware: 'NX.LogAware'
+  },
 
   views: [
     'Header',
     'Developer',
-    'FeatureBrowser',
-    'Info',
-    'InfoPanel'
+    'FeatureMenu',
+    'FeatureContent',
+    'FeatureOptions',
+    'Welcome'
   ],
 
   models: [
@@ -27,6 +31,38 @@ Ext.define('NX.controller.Main', {
 
   stores: [
     'Feature'
-  ]
+  ],
 
+  // FIXME: view def above does not seem sufficient here?!
+  refs: [
+    {
+      ref: 'featureContent',
+      selector: 'nx-featurecontent'
+    }
+  ],
+
+  init: function () {
+    var me = this;
+
+    this.control({
+      'nx-featuremenu': {
+        select: me.selectFeature
+      }
+    });
+  },
+
+  /**
+   * @private
+   */
+  selectFeature: function(panel, record, index, opts) {
+    var me = this,
+        view,
+        cmp;
+
+    view = record.get('view');
+    me.logDebug('Selecting feature view: ' + view);
+
+    cmp = me.getView(view);
+    me.getFeatureContent().replace(cmp);
+  }
 });

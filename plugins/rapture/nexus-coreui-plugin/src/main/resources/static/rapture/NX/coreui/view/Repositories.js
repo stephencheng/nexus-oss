@@ -11,13 +11,21 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 
-// FIXME: To be removed
+Ext.define('NX.coreui.view.Repositories', {
+  extend: 'NX.view.masterdetail.Panel',
+  require: [
+    'NX.view.Info',
+    'NX.view.InfoPanel'
+  ],
+  alias: 'widget.nx-repositories',
 
-Ext.define('NX.view.FeatureBrowser', {
-  extend: 'Ext.tab.Panel',
-  alias: 'widget.nx-featurebrowser',
+  title: 'Repositories',
+  bookmark: 'repository',
 
-  config: {
-    tabPosition: 'left'
+  modelName: 'repository',
+  list: 'nx-repository-list',
+
+  tabs: {
+    xtype: 'nx-info-panel'
   }
 });

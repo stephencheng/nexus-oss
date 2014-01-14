@@ -14,6 +14,7 @@ Ext.define('NX.model.Feature', {
   extend: 'Ext.data.TreeModel',
   fields: [
     'id',
-    'text'
+    'text',
+    'view'
   ]
 });
