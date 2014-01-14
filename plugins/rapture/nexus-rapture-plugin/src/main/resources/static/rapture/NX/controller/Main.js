@@ -43,7 +43,7 @@ Ext.define('NX.controller.Main', {
   init: function () {
     var me = this;
 
-    this.control({
+    me.control({
       'nx-featuremenu': {
         select: me.selectFeature
       }
