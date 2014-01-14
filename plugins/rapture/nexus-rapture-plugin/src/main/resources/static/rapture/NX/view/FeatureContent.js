@@ -20,7 +20,7 @@ Ext.define('NX.view.FeatureContent', {
    * @public
    */
   replace: function(component) {
-    this.removeAll(false);
+    this.removeAll();
     this.add(component);
   }
 });
