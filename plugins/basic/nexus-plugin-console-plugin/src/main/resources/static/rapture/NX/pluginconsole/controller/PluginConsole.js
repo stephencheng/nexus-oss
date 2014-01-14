@@ -18,9 +18,11 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
   ],
 
   stores: [
+    'Feature@NX.store',
     'PluginInfo'
   ],
   views: [
+    'Feature',
     'List'
   ],
 
@@ -33,29 +35,20 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
 
   init: function () {
     this.control({
-      'nx-featurebrowser': {
-        beforerender: this.addToBrowser
-      },
       'nx-pluginconsole-list': {
         beforerender: this.loadStores,
         selectionchange: this.onSelectionChange
       }
     });
 
-    this.getPluginInfoStore().on('load', this.onPluginInfoStoreLoad, this);
-  },
+    // HACK: Testing registration of feature for navigation
+    this.getFeatureStore().getRootNode().appendChild({
+      text: 'Plugins',
+      view: 'NX.pluginconsole.view.Feature',
+      leaf: true
+    });
 
-  addToBrowser: function (featureBrowser) {
-    featureBrowser.add(
-        {
-          xtype: 'nx-masterdetail-panel',
-          title: 'Plugin Console',
-          bookmark: 'plugins',
-          emptyText: 'Please select a plugin to view details',
-          list: 'nx-pluginconsole-list',
-          tabs: { xtype: 'nx-info-panel' }
-        }
-    );
+    this.getPluginInfoStore().on('load', this.onPluginInfoStoreLoad, this);
   },
 
   loadStores: function () {

@@ -33,7 +33,8 @@ Ext.define('NX.view.Viewport', {
       xtype: 'nx-featuremenu',
       region: 'west',
       resizable: true,
-      resizeHandles: 'e'
+      resizeHandles: 'e',
+      split: true
     },
 
     {
@@ -45,8 +46,7 @@ Ext.define('NX.view.Viewport', {
       xtype: 'nx-featureoptions',
       region: 'east',
       collapsible: true,
-      collapseMode: 'mini',
-      collapsed: false, // FIXME: true here with 'mini' will not render properly
+      collapsed: true,
       resizable: true,
       resizeHandles: 'w'
     },
