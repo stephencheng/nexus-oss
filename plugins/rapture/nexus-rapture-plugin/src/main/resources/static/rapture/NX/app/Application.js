@@ -32,7 +32,8 @@ Ext.define('NX.app.Application', {
   namespaces: [],
   controllers: [
     'Main',
-    'MasterDetail'
+    'MasterDetail',
+    'Login'
   ],
   models: [
     'Feature'

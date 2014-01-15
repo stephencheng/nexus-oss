@@ -52,7 +52,13 @@ Ext.define('NX.view.Header', {
       '-',
       {
         xtype: 'button',
+        text: 'Login',
+        action: 'login'
+      },
+      {
+        xtype: 'button',
         text: 'User',
+        hidden: true,
         menu: [
           {
             text: 'Profile'
