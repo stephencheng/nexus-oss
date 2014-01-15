@@ -32,6 +32,8 @@ Ext.define('NX.view.Viewport', {
     {
       xtype: 'nx-feature-menu',
       region: 'west',
+      collapsible: true,
+      collapsed: false,
       resizable: true,
       resizeHandles: 'e',
       split: true
