@@ -34,8 +34,6 @@ Ext.define('NX.view.Viewport', {
       region: 'west',
       collapsible: true,
       collapsed: false,
-      resizable: true,
-      resizeHandles: 'e',
       split: true
     },
 
