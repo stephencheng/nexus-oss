@@ -18,12 +18,18 @@ Ext.define('NX.view.Header', {
 
   items: {
     xtype: 'toolbar',
+
+    defaults: {
+      scale: 'medium'
+    },
+
     items: [
       {
         xtype: 'image',
-        src: 'http://localhost:8081/nexus/static/rapture/resources/images/nexus-16x16.png',
+        src: 'http://localhost:8081/nexus/static/rapture/resources/images/nexus-32x32.png',
         autoEl: 'span',
-        width: 16
+        height: 32,
+        width: 32
       },
       {
         xtype: 'label',
@@ -47,7 +53,7 @@ Ext.define('NX.view.Header', {
       },
       {
         xtype: 'button',
-        text: 'Help'
+        text: 'Help',
       },
       '-',
       {
