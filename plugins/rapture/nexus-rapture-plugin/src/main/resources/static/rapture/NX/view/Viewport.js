@@ -30,7 +30,7 @@ Ext.define('NX.view.Viewport', {
     },
 
     {
-      xtype: 'nx-featuremenu',
+      xtype: 'nx-feature-menu',
       region: 'west',
       resizable: true,
       resizeHandles: 'e',
@@ -38,12 +38,12 @@ Ext.define('NX.view.Viewport', {
     },
 
     {
-      xtype: 'nx-featurecontent',
+      xtype: 'nx-feature-content',
       region: 'center'
     },
 
     {
-      xtype: 'nx-featureoptions',
+      xtype: 'nx-feature-options',
       region: 'east',
       collapsible: true,
       collapsed: true,

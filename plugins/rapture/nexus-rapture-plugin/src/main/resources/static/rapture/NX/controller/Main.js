@@ -19,10 +19,12 @@ Ext.define('NX.controller.Main', {
   views: [
     'Header',
     'Developer',
-    'FeatureMenu',
-    'FeatureContent',
-    'FeatureOptions',
-    'Welcome'
+    'feature.Menu',
+    'feature.Content',
+    'feature.Options',
+    'Welcome',
+    'info.Entry',
+    'info.Panel'
   ],
 
   models: [
@@ -36,11 +38,11 @@ Ext.define('NX.controller.Main', {
   refs: [
     {
       ref: 'featureContent',
-      selector: 'nx-featurecontent'
+      selector: 'nx-feature-content'
     },
     {
       ref: 'featureMenu',
-      selector: 'nx-featuremenu'
+      selector: 'nx-feature-menu'
     }
   ],
 
@@ -57,7 +59,7 @@ Ext.define('NX.controller.Main', {
     });
 
     me.control({
-      'nx-featuremenu': {
+      'nx-feature-menu': {
         select: me.selectFeature,
         afterrender: me.initBookmark
       }
