@@ -41,16 +41,6 @@ Ext.define('NX.app.Application', {
   stores: [
     'Feature'
   ],
-  views: [
-    'Header',
-    'Developer',
-    'FeatureMenu',
-    'FeatureContent',
-    'FeatureOptions',
-    'Welcome',
-    'info.Entry',
-    'info.Panel'
-  ],
 
   constructor: function (config) {
     var self = this, custom, keys;
