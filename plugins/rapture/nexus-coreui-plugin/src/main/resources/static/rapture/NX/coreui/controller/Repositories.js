@@ -50,6 +50,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     this.getFeatureStore().getRootNode().appendChild({
       text: 'Repositories',
       view: 'NX.coreui.view.Repositories',
+      bookmark: 'repositories',
       leaf: true
     });
 

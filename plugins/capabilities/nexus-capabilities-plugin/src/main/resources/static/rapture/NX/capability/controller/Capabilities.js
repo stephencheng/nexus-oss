@@ -76,6 +76,7 @@ Ext.define('NX.capability.controller.Capabilities', {
     this.getFeatureStore().getRootNode().appendChild({
       text: 'Capabilities',
       view: 'NX.capability.view.Feature',
+      bookmark: 'capabilities',
       leaf: true
     });
 

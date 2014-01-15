@@ -19,7 +19,6 @@ Ext.define('NX.coreui.view.Repositories', {
   ],
 
   title: 'Repositories',
-  bookmark: 'repository',
 
   modelName: 'repository',
   list: 'nx-repository-list',

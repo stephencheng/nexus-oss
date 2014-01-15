@@ -18,7 +18,6 @@ Ext.define('NX.capability.view.Feature', {
   ],
 
   title: 'Capability',
-  bookmark: 'capability',
   list: 'nx-capability-list',
   tabs: [
     { xtype: 'nx-capability-summary' },

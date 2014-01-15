@@ -15,6 +15,7 @@ Ext.define('NX.model.Feature', {
   fields: [
     'id',
     'text',
-    'view'
+    'view',
+    'bookmark'
   ]
 });

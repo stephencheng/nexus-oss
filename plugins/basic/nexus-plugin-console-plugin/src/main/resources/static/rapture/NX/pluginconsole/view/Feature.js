@@ -18,7 +18,6 @@ Ext.define('NX.pluginconsole.view.Feature', {
   ],
 
   title: 'Plugins',
-  bookmark: 'plugins',
   emptyText: 'Please select a plugin to view details',
   list: 'nx-pluginconsole-list',
   tabs: {

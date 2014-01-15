@@ -45,6 +45,7 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
     this.getFeatureStore().getRootNode().appendChild({
       text: 'Plugins',
       view: 'NX.pluginconsole.view.Feature',
+      bookmark: 'plugins',
       leaf: true
     });
 

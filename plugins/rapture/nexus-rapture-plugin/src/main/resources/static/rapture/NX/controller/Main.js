@@ -37,15 +37,29 @@ Ext.define('NX.controller.Main', {
     {
       ref: 'featureContent',
       selector: 'nx-featurecontent'
+    },
+    {
+      ref: 'featureMenu',
+      selector: 'nx-featuremenu'
     }
   ],
 
   init: function () {
     var me = this;
 
+    // The only requirement for this to work is that you must have a hidden field and
+    // an iframe available in the page with ids corresponding to Ext.History.fieldId
+    // and Ext.History.iframeId.  See history.html for an example.
+    Ext.History.init();
+
+    Ext.History.on('change', function (token) {
+      me.restoreBookmark(token);
+    });
+
     me.control({
       'nx-featuremenu': {
-        select: me.selectFeature
+        select: me.selectFeature,
+        afterrender: me.initBookmark
       }
     });
   },
@@ -53,7 +67,7 @@ Ext.define('NX.controller.Main', {
   /**
    * @private
    */
-  selectFeature: function(panel, record, index, opts) {
+  selectFeature: function (panel, record, index, opts) {
     var me = this,
         content = me.getFeatureContent(),
         view,
@@ -66,5 +80,50 @@ Ext.define('NX.controller.Main', {
     cmp = me.getView(view).create();
     content.removeAll();
     content.add(cmp);
+
+    me.bookmark(record.get('bookmark'));
+  },
+
+  /**
+   * @private
+   */
+  bookmark: function (newToken) {
+    var oldToken = Ext.History.getToken();
+
+    if (newToken && oldToken === null || oldToken.search(newToken) === -1) {
+      Ext.History.add(newToken);
+    }
+  },
+
+  /**
+   * @private
+   */
+  restoreBookmark: function (token) {
+    var me = this,
+        node;
+
+    me.logDebug('Restore bookmark: ' + token);
+
+    node = me.getFeatureStore().getRootNode().findChild('bookmark', token, true);
+    if (node) {
+      me.getFeatureMenu().getSelectionModel().select(node);
+    }
+  },
+
+  /**
+   * @private
+   */
+  initBookmark: function () {
+    var me = this,
+        token = Ext.History.getToken();
+
+    if (!token) {
+      token = 'welcome';
+    }
+
+    me.logDebug('Init bookmark: ' + token);
+
+    me.restoreBookmark(token);
   }
+
 });
