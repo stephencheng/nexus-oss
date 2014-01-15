@@ -48,8 +48,8 @@ Ext.define('NX.app.Application', {
     'FeatureContent',
     'FeatureOptions',
     'Welcome',
-    'Info',
-    'InfoPanel'
+    'info.Entry',
+    'info.Panel'
   ],
 
   constructor: function (config) {
