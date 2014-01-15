@@ -119,6 +119,7 @@ Ext.define('NX.controller.Main', {
     var me = this,
         token = Ext.History.getToken();
 
+    // default to the welcome feature
     if (!token) {
       token = 'welcome';
     }
