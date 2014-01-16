@@ -21,8 +21,12 @@ Ext.define('NX.view.feature.Options', {
 
   layout: {
     type: 'vbox',
-    padding: 10,
-    defaultMargins: {top: 0, right: 0, bottom: 5, left: 0}
+    padding: 4,
+    defaultMargins: {top: 0, right: 0, bottom: 4, left: 0}
+  },
+
+  defaults: {
+    width: '100%'
   },
 
   items: [
