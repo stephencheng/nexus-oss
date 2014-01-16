@@ -19,7 +19,11 @@ Ext.define('NX.view.feature.Options', {
   stateful: true,
   stateId: 'nx-feature-options',
 
-  layout: 'vbox',
+  layout: {
+    type: 'vbox',
+    padding: 10,
+    defaultMargins: {top: 0, right: 0, bottom: 5, left: 0}
+  },
 
   items: [
     {

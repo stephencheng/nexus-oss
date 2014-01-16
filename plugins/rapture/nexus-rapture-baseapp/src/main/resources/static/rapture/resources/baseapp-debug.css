@@ -64,6 +64,126 @@
 /* including package ext-theme-neptune */
 /* including package rapture-theme */
 /* including package rapture-theme */
+/** @class Ext.Component */
+/** @class Ext.button.Button */
+/**
+ * @var {color}
+ * The base color for the `foo` button UI
+ */
+/**
+ * @var {color}
+ * The base color for the `foo` button UI when the cursor is over the button
+ */
+/**
+ * @var {color}
+ * The base color for the `foo` button UI when the button is focused
+ */
+/**
+ * @var {color}
+ * The base color for the `foo` button UI when the button is pressed
+ */
+/**
+ * @var {color}
+ * The base color for the `foo` button UI when the button is disabled
+ */
+/**
+ * @var {color}
+ * The border-color for the `foo` button UI
+ */
+/**
+ * @var {color}
+ * The border-color for the `foo` button UI when the cursor is over the button
+ */
+/**
+ * @var {color}
+ * The border-color for the `foo` button UI when the button is focused
+ */
+/**
+ * @var {color}
+ * The border-color for the `foo` button UI when the button is pressed
+ */
+/**
+ * @var {color}
+ * The border-color for the `foo` button UI when the button is disabled
+ */
+/**
+ * @var {color}
+ * The background-color for the `foo` button UI
+ */
+/**
+ * @var {color}
+ * The background-color for the `foo` button UI when the cursor is over the button
+ */
+/**
+ * @var {color}
+ * The background-color for the `foo` button UI when the button is focused
+ */
+/**
+ * @var {color}
+ * The background-color for the `foo` button UI when the button is pressed
+ */
+/**
+ * @var {color}
+ * The background-color for the `foo` button UI when the button is disabled
+ */
+/**
+ * @var {string/list}
+ * The background-gradient for the `foo` button UI.  Can be either the name of a
+ * predefined gradient or a list of color stops. Used as the `$type` parameter for
+ * {@link Global_CSS#background-gradient}.
+ */
+/**
+ * @var {string/list}
+ * The background-gradient for the `foo` button UI when the cursor is over the button.
+ * Can be either the name of a predefined gradient or a list of color stops. Used as the
+ * `$type` parameter for {@link Global_CSS#background-gradient}.
+ */
+/**
+ * @var {string/list}
+ * The background-gradient for the `foo` button UI when the button is focused.  Can be
+ * either the name of a predefined gradient or a list of color stops. Used as the `$type`
+ * parameter for {@link Global_CSS#background-gradient}.
+ */
+/**
+ * @var {string/list}
+ * The background-gradient for the `foo` button UI when the button is pressed.  Can be
+ * either the name of a predefined gradient or a list of color stops. Used as the `$type`
+ * parameter for {@link Global_CSS#background-gradient}.
+ */
+/**
+ * @var {string/list}
+ * The background-gradient for the `foo` button UI when the button is disabled.  Can be
+ * either the name of a predefined gradient or a list of color stops. Used as the `$type`
+ * parameter for {@link Global_CSS#background-gradient}.
+ */
+/**
+ * @var {color}
+ * The text color for the `foo` button UI
+ */
+/**
+ * @var {color}
+ * The text color for the `foo` button UI when the cursor is over the button
+ */
+/**
+ * @var {color}
+ * The text color for the `foo` button UI when the button is focused
+ */
+/**
+ * @var {color}
+ * The text color for the `foo` button UI when the button is pressed
+ */
+/**
+ * @var {color}
+ * The text color for the `foo` button UI when the button is disabled
+ */
+/**
+ * @var {color}
+ * The color of the {@link #glyph} icon for the `foo` button UI
+ */
+/**
+ * @var {color}
+ * The opacity of the {@link #glyph} icon for the `foo` button UI
+ */
 /* including package ext-theme-neptune */
 /** @class Global_CSS */
 /** @class Ext.LoadMask */
@@ -23734,3 +23854,514 @@ a.x-color-picker-item:hover {
 .x-resizable-pinned .x-resizable-handle-southwest {
   background-position: 2px -2px;
 }
+
+/* including package rapture-theme */
+/** @class Ext.button.Button */
+/* line 255, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small {
+  border-color: #006600;
+}
+
+/* line 137, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding: 3px 3px 3px 3px;
+  border-width: 1px;
+  border-style: solid;
+  background-image: none;
+  background-color: #00cc00;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #19d119), color-stop(50%, #00cc00), color-stop(51%, #00c100), color-stop(100%, #00cc00));
+  background-image: -webkit-linear-gradient(top, #19d119, #00cc00 50%, #00c100 51%, #00cc00);
+  background-image: -moz-linear-gradient(top, #19d119, #00cc00 50%, #00c100 51%, #00cc00);
+  background-image: -o-linear-gradient(top, #19d119, #00cc00 50%, #00c100 51%, #00cc00);
+  background-image: -ms-linear-gradient(top, #19d119, #00cc00 50%, #00c100 51%, #00cc00);
+  background-image: linear-gradient(top, #19d119, #00cc00 50%, #00c100 51%, #00cc00);
+}
+
+/* line 187, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-mc {
+  background-image: url(images/btn/btn-foo-small-fbg.gif);
+  background-position: 0 top;
+  background-color: #00cc00;
+}
+
+/* line 212, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-nlg .x-btn-foo-small {
+  background-image: url(images/btn/btn-foo-small-bg.gif);
+  background-position: 0 top;
+}
+
+/* line 234, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-nbr .x-btn-foo-small {
+  padding: 0 !important;
+  border-width: 0 !important;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  background-color: transparent;
+  background-image: none;
+}
+
+/* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-frameInfo {
+  font-family: th-3-3-3-3-1-1-1-1-3-3-3-3;
+}
+
+/* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-tl {
+  background-position: 0 -6px;
+}
+
+/* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-tr {
+  background-position: right -9px;
+}
+
+/* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-bl {
+  background-position: 0 -12px;
+}
+
+/* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-br {
+  background-position: right -15px;
+}
+
+/* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-ml {
+  background-position: 0 top;
+}
+
+/* line 335, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-mr {
+  background-position: right top;
+}
+
+/* line 339, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-tc {
+  background-position: 0 0;
+}
+
+/* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-bc {
+  background-position: 0 -3px;
+}
+
+/* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-tr,
+.x-btn-foo-small-br,
+.x-btn-foo-small-mr {
+  padding-right: 3px;
+}
+
+/* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-tl,
+.x-btn-foo-small-bl,
+.x-btn-foo-small-ml {
+  padding-left: 3px;
+}
+
+/* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-tc {
+  height: 3px;
+}
+
+/* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-bc {
+  height: 3px;
+}
+
+/* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-tl,
+.x-btn-foo-small-bl,
+.x-btn-foo-small-tr,
+.x-btn-foo-small-br,
+.x-btn-foo-small-tc,
+.x-btn-foo-small-bc,
+.x-btn-foo-small-ml,
+.x-btn-foo-small-mr {
+  zoom: 1;
+  background-image: url(images/btn/btn-foo-small-corners.gif);
+}
+
+/* line 418, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-ml,
+.x-btn-foo-small-mr {
+  zoom: 1;
+  background-image: url(images/btn/btn-foo-small-sides.gif);
+}
+
+/* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-btn-foo-small-mc {
+  padding: 1px 1px 1px 1px;
+}
+
+/* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-strict .x-ie7 .x-btn-foo-small-tl,
+.x-strict .x-ie7 .x-btn-foo-small-bl {
+  position: relative;
+  right: 0;
+}
+
+/*<if slicer>*/
+/* line 78, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-btn-foo-small:after {
+  display: none;
+  content: "x-slicer:stretch:bottom, frame-bg:url(images/btn/btn-foo-small-fbg.gif), bg:url(images/btn/btn-foo-small-bg.gif), corners:url(images/btn/btn-foo-small-corners.gif), sides:url(images/btn/btn-foo-small-sides.gif)";
+}
+
+/*</if slicer>*/
+/* */
+/* line 262, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small .x-btn-inner {
+  font-size: 12px;
+  font-weight: bold;
+  font-family: arial, tahoma, verdana, helvetica, sans-serif;
+  color: black;
+  padding: 0 5px;
+}
+/* line 270, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small .x-btn-arrow {
+  background-image: url(images/button/foo-small-arrow.png);
+}
+/* line 278, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small .x-btn-arrow-right {
+  padding-right: 21px;
+}
+/* line 289, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small .x-btn-arrow-bottom {
+  padding-bottom: 18px;
+}
+/* line 293, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small .x-btn-glyph {
+  font-size: 16px;
+  line-height: 16px;
+  color: white;
+  opacity: 0.5;
+}
+/* line 313, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-ie8m .x-btn-foo-small .x-btn-glyph {
+  color: #7fe57f;
+}
+
+/* line 320, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-disabled {
+  background-image: none;
+  background-color: #00cc00;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #19d119), color-stop(50%, #00cc00), color-stop(51%, #00c100), color-stop(100%, #00cc00));
+  background-image: -webkit-linear-gradient(top, #19d119, #00cc00 50%, #00c100 51%, #00cc00);
+  background-image: -moz-linear-gradient(top, #19d119, #00cc00 50%, #00c100 51%, #00cc00);
+  background-image: -o-linear-gradient(top, #19d119, #00cc00 50%, #00c100 51%, #00cc00);
+  background-image: -ms-linear-gradient(top, #19d119, #00cc00 50%, #00c100 51%, #00cc00);
+  background-image: linear-gradient(top, #19d119, #00cc00 50%, #00c100 51%, #00cc00);
+}
+
+/* line 346, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon .x-btn-button,
+.x-btn-foo-small-noicon .x-btn-button {
+  height: 16px;
+}
+/* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon .x-btn-inner,
+.x-btn-foo-small-noicon .x-btn-inner {
+  line-height: 16px;
+}
+
+/* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon .x-btn-arrow-right .x-btn-inner,
+.x-btn-foo-small-noicon .x-btn-arrow-right .x-btn-inner,
+.x-btn-foo-small-icon-text-left .x-btn-arrow-right .x-btn-inner {
+  padding-right: 0;
+}
+
+/* line 375, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon .x-btn-inner {
+  width: 16px;
+  padding: 0;
+}
+/* line 381, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon .x-btn-icon-el {
+  width: 16px;
+  height: 16px;
+}
+
+/* line 388, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon-text-left .x-btn-button {
+  height: 16px;
+}
+/* line 393, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon-text-left .x-btn-inner {
+  line-height: 16px;
+  padding-left: 21px;
+}
+/* line 409, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon-text-left .x-btn-icon-el {
+  width: 16px;
+  right: auto;
+}
+/* line 415, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-ie6 .x-btn-foo-small-icon-text-left .x-btn-icon-el, .x-quirks .x-ie .x-btn-foo-small-icon-text-left .x-btn-icon-el {
+  height: 16px;
+}
+
+/* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon-text-right .x-btn-button {
+  height: 16px;
+}
+/* line 435, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon-text-right .x-btn-inner {
+  line-height: 16px;
+  padding-right: 21px;
+}
+/* line 447, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon-text-right .x-btn-icon-el {
+  width: 16px;
+  left: auto;
+}
+/* line 453, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-ie6 .x-btn-foo-small-icon-text-right .x-btn-icon-el, .x-quirks .x-ie .x-btn-foo-small-icon-text-right .x-btn-icon-el {
+  height: 16px;
+}
+
+/* line 468, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon-text-top .x-btn-inner {
+  padding-top: 21px;
+}
+/* line 472, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon-text-top .x-btn-icon-el {
+  height: 16px;
+  bottom: auto;
+}
+/* line 480, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-ie6 .x-btn-foo-small-icon-text-top .x-btn-icon-el, .x-quirks .x-ie .x-btn-foo-small-icon-text-top .x-btn-icon-el {
+  width: 100%;
+}
+
+/* line 488, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon-text-bottom .x-btn-inner {
+  padding-bottom: 21px;
+}
+/* line 492, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-icon-text-bottom .x-btn-icon-el {
+  height: 16px;
+  top: auto;
+}
+/* line 500, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-ie6 .x-btn-foo-small-icon-text-bottom .x-btn-icon-el, .x-quirks .x-ie .x-btn-foo-small-icon-text-bottom .x-btn-icon-el {
+  width: 100%;
+}
+
+/* line 507, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-focus {
+  border-color: #005d00;
+  background-image: none;
+  background-color: #00bb00;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #19c119), color-stop(50%, #00bb00), color-stop(51%, #00b100), color-stop(100%, #00bb00));
+  background-image: -webkit-linear-gradient(top, #19c119, #00bb00 50%, #00b100 51%, #00bb00);
+  background-image: -moz-linear-gradient(top, #19c119, #00bb00 50%, #00b100 51%, #00bb00);
+  background-image: -o-linear-gradient(top, #19c119, #00bb00 50%, #00b100 51%, #00bb00);
+  background-image: -ms-linear-gradient(top, #19c119, #00bb00 50%, #00b100 51%, #00bb00);
+  background-image: linear-gradient(top, #19c119, #00bb00 50%, #00b100 51%, #00bb00);
+}
+
+/* line 531, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-over {
+  border-color: #005d00;
+  background-image: none;
+  background-color: #00bb00;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #19c119), color-stop(50%, #00bb00), color-stop(51%, #00b100), color-stop(100%, #00bb00));
+  background-image: -webkit-linear-gradient(top, #19c119, #00bb00 50%, #00b100 51%, #00bb00);
+  background-image: -moz-linear-gradient(top, #19c119, #00bb00 50%, #00b100 51%, #00bb00);
+  background-image: -o-linear-gradient(top, #19c119, #00bb00 50%, #00b100 51%, #00bb00);
+  background-image: -ms-linear-gradient(top, #19c119, #00bb00 50%, #00b100 51%, #00bb00);
+  background-image: linear-gradient(top, #19c119, #00bb00 50%, #00b100 51%, #00bb00);
+}
+
+/* line 556, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-menu-active,
+.x-btn-foo-small-pressed {
+  border-color: #004c00;
+  background-image: none;
+  background-color: #009900;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #009900), color-stop(50%, #009100), color-stop(51%, #009900), color-stop(100%, #19a319));
+  background-image: -webkit-linear-gradient(top, #009900, #009100 50%, #009900 51%, #19a319);
+  background-image: -moz-linear-gradient(top, #009900, #009100 50%, #009900 51%, #19a319);
+  background-image: -o-linear-gradient(top, #009900, #009100 50%, #009900 51%, #19a319);
+  background-image: -ms-linear-gradient(top, #009900, #009100 50%, #009900 51%, #19a319);
+  background-image: linear-gradient(top, #009900, #009100 50%, #009900 51%, #19a319);
+}
+
+/* line 588, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-focus .x-frame-tl,
+.x-btn-foo-small-focus .x-frame-bl,
+.x-btn-foo-small-focus .x-frame-tr,
+.x-btn-foo-small-focus .x-frame-br,
+.x-btn-foo-small-focus .x-frame-tc,
+.x-btn-foo-small-focus .x-frame-bc {
+  background-image: url(images/btn/btn-foo-small-focus-corners.gif);
+}
+/* line 592, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-focus .x-frame-ml,
+.x-btn-foo-small-focus .x-frame-mr {
+  background-image: url(images/btn/btn-foo-small-focus-sides.gif);
+}
+/* line 595, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-focus .x-frame-mc {
+  background-color: #00bb00;
+  background-image: url(images/btn/btn-foo-small-focus-fbg.gif);
+}
+
+/* line 610, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-over .x-frame-tl,
+.x-btn-foo-small-over .x-frame-bl,
+.x-btn-foo-small-over .x-frame-tr,
+.x-btn-foo-small-over .x-frame-br,
+.x-btn-foo-small-over .x-frame-tc,
+.x-btn-foo-small-over .x-frame-bc {
+  background-image: url(images/btn/btn-foo-small-over-corners.gif);
+}
+/* line 614, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-over .x-frame-ml,
+.x-btn-foo-small-over .x-frame-mr {
+  background-image: url(images/btn/btn-foo-small-over-sides.gif);
+}
+/* line 617, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-over .x-frame-mc {
+  background-color: #00bb00;
+  background-image: url(images/btn/btn-foo-small-over-fbg.gif);
+}
+
+/* line 633, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-menu-active .x-frame-tl,
+.x-btn-foo-small-menu-active .x-frame-bl,
+.x-btn-foo-small-menu-active .x-frame-tr,
+.x-btn-foo-small-menu-active .x-frame-br,
+.x-btn-foo-small-menu-active .x-frame-tc,
+.x-btn-foo-small-menu-active .x-frame-bc,
+.x-btn-foo-small-pressed .x-frame-tl,
+.x-btn-foo-small-pressed .x-frame-bl,
+.x-btn-foo-small-pressed .x-frame-tr,
+.x-btn-foo-small-pressed .x-frame-br,
+.x-btn-foo-small-pressed .x-frame-tc,
+.x-btn-foo-small-pressed .x-frame-bc {
+  background-image: url(images/btn/btn-foo-small-pressed-corners.gif);
+}
+/* line 637, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-menu-active .x-frame-ml,
+.x-btn-foo-small-menu-active .x-frame-mr,
+.x-btn-foo-small-pressed .x-frame-ml,
+.x-btn-foo-small-pressed .x-frame-mr {
+  background-image: url(images/btn/btn-foo-small-pressed-sides.gif);
+}
+/* line 640, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-menu-active .x-frame-mc,
+.x-btn-foo-small-pressed .x-frame-mc {
+  background-color: #009900;
+  background-image: url(images/btn/btn-foo-small-pressed-fbg.gif);
+}
+
+/* line 655, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-disabled .x-frame-tl,
+.x-btn-foo-small-disabled .x-frame-bl,
+.x-btn-foo-small-disabled .x-frame-tr,
+.x-btn-foo-small-disabled .x-frame-br,
+.x-btn-foo-small-disabled .x-frame-tc,
+.x-btn-foo-small-disabled .x-frame-bc {
+  background-image: url(images/btn/btn-foo-small-disabled-corners.gif);
+}
+/* line 659, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-disabled .x-frame-ml,
+.x-btn-foo-small-disabled .x-frame-mr {
+  background-image: url(images/btn/btn-foo-small-disabled-sides.gif);
+}
+/* line 662, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-disabled .x-frame-mc {
+  background-color: #00cc00;
+  background-image: url(images/btn/btn-foo-small-disabled-fbg.gif);
+}
+
+/* line 674, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-nlg .x-btn-foo-small-focus {
+  background-image: url(images/btn/btn-foo-small-focus-bg.gif);
+}
+
+/* line 682, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-nlg .x-btn-foo-small-over {
+  background-image: url(images/btn/btn-foo-small-over-bg.gif);
+}
+
+/* line 691, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-nlg .x-btn-foo-small-menu-active,
+.x-nlg .x-btn-foo-small-pressed {
+  background-image: url(images/btn/btn-foo-small-pressed-bg.gif);
+}
+
+/* line 699, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-nlg .x-btn-foo-small-disabled {
+  background-image: url(images/btn/btn-foo-small-disabled-bg.gif);
+}
+
+/* line 707, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-nbr .x-btn-foo-small {
+  background-image: none;
+}
+
+/* line 722, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small .x-btn-split-right {
+  background-image: url(images/button/foo-small-s-arrow.png);
+  padding-right: 23px;
+}
+/* line 735, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small .x-btn-split-bottom {
+  background-image: url(images/button/foo-small-s-arrow-b.png);
+  padding-bottom: 20px;
+}
+
+/* line 758, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
+.x-btn-foo-small-disabled {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+}
+
+/*<if slicer>*/
+/* line 78, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-btn-foo-small-focus:after {
+  display: none;
+  content: "x-slicer:stretch:bottom, corners:url(images/btn/btn-foo-small-focus-corners.gif), sides:url(images/btn/btn-foo-small-focus-sides.gif), frame-bg:url(images/btn/btn-foo-small-focus-fbg.gif), bg:url(images/btn/btn-foo-small-focus-bg.gif)";
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 78, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-btn-foo-small-over:after {
+  display: none;
+  content: "x-slicer:stretch:bottom, corners:url(images/btn/btn-foo-small-over-corners.gif), sides:url(images/btn/btn-foo-small-over-sides.gif), frame-bg:url(images/btn/btn-foo-small-over-fbg.gif), bg:url(images/btn/btn-foo-small-over-bg.gif)";
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 78, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-btn-foo-small-pressed:after {
+  display: none;
+  content: "x-slicer:stretch:bottom, corners:url(images/btn/btn-foo-small-pressed-corners.gif), sides:url(images/btn/btn-foo-small-pressed-sides.gif), frame-bg:url(images/btn/btn-foo-small-pressed-fbg.gif), bg:url(images/btn/btn-foo-small-pressed-bg.gif)";
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 78, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-btn-foo-small-disabled:after {
+  display: none;
+  content: "x-slicer:stretch:bottom, corners:url(images/btn/btn-foo-small-disabled-corners.gif), sides:url(images/btn/btn-foo-small-disabled-sides.gif), frame-bg:url(images/btn/btn-foo-small-disabled-fbg.gif), bg:url(images/btn/btn-foo-small-disabled-bg.gif)";
+}
+
+/*</if slicer>*/
+/* */

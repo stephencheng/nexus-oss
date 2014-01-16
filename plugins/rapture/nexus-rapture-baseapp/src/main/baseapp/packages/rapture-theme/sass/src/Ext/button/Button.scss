@@ -1,0 +1,41 @@
+/** @class Ext.button.Button */
+
+@include extjs-button-small-ui(
+  $ui: 'foo',
+
+  $border-color: $button-foo-border-color,
+  $border-color-over: $button-foo-border-color-over,
+  $border-color-focus: $button-foo-border-color-focus,
+  $border-color-pressed: $button-foo-border-color-pressed,
+  $border-color-disabled: $button-foo-border-color-disabled,
+
+  $background-color: $button-foo-background-color,
+  $background-color-over: $button-foo-background-color-over,
+  $background-color-focus: $button-foo-background-color-focus,
+  $background-color-pressed: $button-foo-background-color-pressed,
+  $background-color-disabled: $button-foo-background-color-disabled,
+
+  $color: $button-foo-color,
+  $color-over: $button-foo-color-over,
+  $color-focus: $button-foo-color-focus,
+  $color-pressed: $button-foo-color-pressed,
+  $color-disabled: $button-foo-color-disabled,
+
+  $font-size: $button-small-font-size,
+  $font-size-over: $button-small-font-size-over,
+  $font-size-focus: $button-small-font-size-focus,
+  $font-size-pressed: $button-small-font-size-pressed,
+  $font-size-disabled: $button-small-font-size-disabled,
+
+  $font-weight: $button-small-font-weight,
+  $font-weight-over: $button-small-font-weight-over,
+  $font-weight-focus: $button-small-font-weight-focus,
+  $font-weight-pressed: $button-small-font-weight-pressed,
+  $font-weight-disabled: $button-small-font-weight-disabled,
+
+  $font-family: $button-small-font-family,
+  $font-family-over: $button-small-font-family-over,
+  $font-family-focus: $button-small-font-family-focus,
+  $font-family-pressed: $button-small-font-family-pressed,
+  $font-family-disabled: $button-small-font-family-disabled
+);
