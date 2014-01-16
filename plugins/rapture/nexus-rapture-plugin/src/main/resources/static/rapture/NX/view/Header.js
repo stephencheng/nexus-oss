@@ -20,6 +20,7 @@ Ext.define('NX.view.Header', {
     xtype: 'toolbar',
 
     defaults: {
+      // make all buttons medium
       scale: 'medium'
     },
 
@@ -53,7 +54,7 @@ Ext.define('NX.view.Header', {
       },
       {
         xtype: 'button',
-        text: 'Help',
+        text: 'Help'
       },
       '-',
       {
