@@ -19,8 +19,17 @@ Ext.define('NX.view.feature.Options', {
   stateful: true,
   stateId: 'nx-feature-options',
 
-  items: {
-    xtype: 'label',
-    text: 'TEST'
-  }
+  layout: 'vbox',
+
+  items: [
+    {
+      xtype: 'button',
+      text: 'normal'
+    },
+    {
+      xtype: 'button',
+      text: 'foo',
+      ui: 'foo'
+    }
+  ]
 });
