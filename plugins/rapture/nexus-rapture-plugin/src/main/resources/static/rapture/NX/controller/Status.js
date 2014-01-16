@@ -72,6 +72,7 @@ Ext.define('NX.controller.Status', {
 
     if (status.loggedIn) {
       loginButton.hide();
+      userButton.setText(status.loggedInUsername);
       userButton.show();
     }
     else {
@@ -98,13 +99,10 @@ Ext.define('NX.controller.Status', {
 
     win.getEl().mask("Logging you in...");
 
-    me.logDebug('Login...')
+    me.logDebug('Login...');
 
     Ext.Ajax.request({
       method: 'GET',
-      cbPassThru: {
-        username: values.username
-      },
       headers: {
         'Authorization': 'Basic ' + NX.util.Base64.encode(values.username + ':' + values.password)
       },
