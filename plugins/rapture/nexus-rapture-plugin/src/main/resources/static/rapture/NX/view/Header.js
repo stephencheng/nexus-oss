@@ -45,7 +45,6 @@ Ext.define('NX.view.Header', {
       {
         xtype: 'textfield',
         emptyText: 'quick search'
-
       },
       '-',
       {
