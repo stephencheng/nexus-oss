@@ -10,7 +10,7 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.controller.Login', {
+Ext.define('NX.controller.Status', {
   extend: 'Ext.app.Controller',
   requires: [
     'NX.util.Url',
@@ -24,6 +24,13 @@ Ext.define('NX.controller.Login', {
     'Login'
   ],
 
+  refs: [
+    {
+      ref: 'header',
+      selector: 'nx-header'
+    }
+  ],
+
   init: function () {
     var me = this;
 
@@ -33,8 +40,44 @@ Ext.define('NX.controller.Login', {
       },
       'nx-login button[action=login]': {
         click: me.login
+      },
+      'nx-header button[action=user] menuitem[action=logout]': {
+        click: me.logout
       }
     });
+
+    me.statusProvider = Ext.Direct.addProvider({
+      type: 'polling',
+      url: NX.direct.api.POLLING_URLS.status,
+      interval: 5000,
+      listeners: {
+        data: me.updateStatus,
+        scope: this
+      },
+      connectNow: function () {
+        me.statusProvider.disconnect();
+        me.statusProvider.connect();
+      }
+    });
+  },
+
+  /**
+   * @private
+   */
+  updateStatus: function (provider, event) {
+    var me = this,
+        status = event.data.data,
+        loginButton = me.getHeader().down('button[action=login]'),
+        userButton = me.getHeader().down('button[action=user]');
+
+    if (status.loggedIn) {
+      loginButton.hide();
+      userButton.show();
+    }
+    else {
+      loginButton.show();
+      userButton.hide();
+    }
   },
 
   /**
@@ -55,6 +98,8 @@ Ext.define('NX.controller.Login', {
 
     win.getEl().mask("Logging you in...");
 
+    me.logDebug('Login...')
+
     Ext.Ajax.request({
       method: 'GET',
       cbPassThru: {
@@ -65,11 +110,29 @@ Ext.define('NX.controller.Login', {
       },
       url: NX.util.Url.urlOf('service/local/authentication/login'),
       success: function (response, options) {
+        me.statusProvider.connectNow();
         win.getEl().unmask();
         win.close();
       },
       failure: function (response, options) {
         win.getEl().unmask();
+      }
+    });
+  },
+
+  /**
+   * @private
+   */
+  logout: function () {
+    var me = this;
+
+    me.logDebug('Logout...')
+
+    Ext.Ajax.request({
+      method: 'GET',
+      url: NX.util.Url.urlOf('service/local/authentication/logout'),
+      success: function (response, options) {
+        me.statusProvider.connectNow();
       }
     });
   }

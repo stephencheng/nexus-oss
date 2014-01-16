@@ -59,11 +59,13 @@ Ext.define('NX.view.Header', {
       {
         xtype: 'button',
         text: 'Login',
-        action: 'login'
+        action: 'login',
+        hidden: true
       },
       {
         xtype: 'button',
         text: 'User',
+        action: 'user',
         hidden: true,
         menu: [
           {
@@ -71,7 +73,8 @@ Ext.define('NX.view.Header', {
           },
           '-',
           {
-            text: 'Logout'
+            text: 'Logout',
+            action: 'logout'
           }
         ]
       }

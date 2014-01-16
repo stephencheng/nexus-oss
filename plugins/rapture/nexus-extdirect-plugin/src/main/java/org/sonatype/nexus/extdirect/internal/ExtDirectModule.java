@@ -41,6 +41,8 @@ public class ExtDirectModule
 
   private static final String MOUNT_POINT = "/service/extdirect";
 
+  private static final String ROUTER_MOUNT_POINT = MOUNT_POINT + "/router";
+
   @Override
   protected void configure() {
     install(new ServletModule()
@@ -48,11 +50,11 @@ public class ExtDirectModule
       @Override
       protected void configureServlets() {
         Map<String, String> directServletConfig = Maps.newHashMap();
-        directServletConfig.put(GlobalParameters.PROVIDERS_URL, MOUNT_POINT.substring(1));
+        directServletConfig.put(GlobalParameters.PROVIDERS_URL, ROUTER_MOUNT_POINT.substring(1));
         directServletConfig.put(GlobalParameters.DEBUG, Boolean.toString(log.isDebugEnabled()));
 
-        serve(MOUNT_POINT).with(ExtDirectServlet.class, directServletConfig);
-        filter(MOUNT_POINT).through(SecurityFilter.class);
+        serve(ROUTER_MOUNT_POINT + "*").with(ExtDirectServlet.class, directServletConfig);
+        filter(ROUTER_MOUNT_POINT + "*").through(SecurityFilter.class);
       }
     });
 
@@ -60,7 +62,7 @@ public class ExtDirectModule
     {
       @Override
       protected void configure() {
-        addFilterChain(MOUNT_POINT, "noSessionCreation,authcBasic");
+        addFilterChain(MOUNT_POINT + "/**", "noSessionCreation,authcBasic");
       }
     });
   }
