@@ -44,10 +44,10 @@ NX.define('Nexus.logging.store.Logger', {
       proxy: NX.create('Ext.data.DirectProxy', {
         paramsAsHash: false,
         api: {
-          read: NX.direct.logging.Loggers.read,
-          create: NX.direct.logging.Loggers.update,
-          update: NX.direct.logging.Loggers.update,
-          destroy: NX.direct.logging.Loggers.destroy
+          read: NX.direct.Loggers.read,
+          create: NX.direct.Loggers.update,
+          update: NX.direct.Loggers.update,
+          destroy: NX.direct.Loggers.destroy
         }
       }),
 

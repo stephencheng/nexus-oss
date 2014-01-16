@@ -12,6 +12,8 @@
  */
 startTest(function (t) {
 
+  Ext.Direct.addProvider(NX.direct.api.REMOTING_API);
+
   t.requireOk(
       [
         'NX.capability.model.CapabilityStatus',

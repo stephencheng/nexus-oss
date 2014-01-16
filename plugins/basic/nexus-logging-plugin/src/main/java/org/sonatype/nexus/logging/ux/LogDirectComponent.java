@@ -17,15 +17,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.sonatype.nexus.extdirect.DirectComponent;
+import org.sonatype.nexus.extdirect.DirectComponentSupport;
 import org.sonatype.nexus.log.LogManager;
 import org.sonatype.nexus.log.LoggerLevel;
 import org.sonatype.nexus.logging.LoggingPlugin;
 import org.sonatype.nexus.logging.model.MarkerXO;
-import org.sonatype.sisu.goodies.common.ComponentSupport;
 
-import com.director.core.annotation.DirectAction;
-import com.director.core.annotation.DirectMethod;
+import com.softwarementors.extjs.djn.config.annotations.DirectAction;
+import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.codehaus.plexus.util.StringUtils;
 
@@ -39,10 +38,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 @Named
 @Singleton
-@DirectAction(action = "logging.Log")
+@DirectAction(action = "Log")
 public class LogDirectComponent
-    extends ComponentSupport
-    implements DirectComponent
+    extends DirectComponentSupport
 {
 
   private final LogManager logManager;

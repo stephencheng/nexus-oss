@@ -19,7 +19,7 @@ Ext.define('NX.coreui.store.Repository', {
     paramsAsHash: false,
 
     api: {
-      read: 'NX.direct.repository.Repository.read'
+      read: 'NX.direct.Repository.read'
     },
 
     reader: {

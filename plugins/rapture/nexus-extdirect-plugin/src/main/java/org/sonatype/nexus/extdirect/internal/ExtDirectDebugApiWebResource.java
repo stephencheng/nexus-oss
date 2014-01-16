@@ -11,28 +11,37 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 
-package org.sonatype.nexus.plugins.helper.extdirect;
+package org.sonatype.nexus.extdirect.internal;
 
-import java.util.Date;
+import java.io.File;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.sonatype.nexus.extdirect.DirectComponentSupport;
+import org.sonatype.nexus.configuration.application.ApplicationConfiguration;
+import org.sonatype.nexus.plugin.support.FileWebResource;
+import org.sonatype.nexus.web.WebResource;
 
-import com.softwarementors.extjs.djn.config.annotations.DirectAction;
-import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
-
-@Singleton
+/**
+ * Ext.Direct Debug API {@link WebResource}.
+ *
+ * @since 2.8
+ */
 @Named
-@DirectAction(action = "Test")
-public class TestDirectComponent
-    extends DirectComponentSupport
+@Singleton
+public class ExtDirectDebugApiWebResource
+    extends FileWebResource
 {
 
-  @DirectMethod
-  public String currentTime() {
-    return new Date().toString();
+  @Inject
+  public ExtDirectDebugApiWebResource(final ApplicationConfiguration applicationConfiguration) {
+    super(
+        new File(applicationConfiguration.getTemporaryDirectory(), "djn/Nexus-debug.js"),
+        "/static/rapture/extdirect-debug.js",
+        JAVASCRIPT,
+        true
+    );
   }
 
 }

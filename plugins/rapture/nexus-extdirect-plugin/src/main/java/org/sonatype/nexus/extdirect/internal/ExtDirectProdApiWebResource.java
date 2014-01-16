@@ -13,46 +13,35 @@
 
 package org.sonatype.nexus.extdirect.internal;
 
-import java.io.IOException;
+import java.io.File;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.sonatype.nexus.web.GeneratedWebResource;
+import org.sonatype.nexus.configuration.application.ApplicationConfiguration;
+import org.sonatype.nexus.plugin.support.FileWebResource;
 import org.sonatype.nexus.web.WebResource;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 /**
- * Ext.Direct API {@link WebResource}.
+ * Ext.Direct Prod API {@link WebResource}.
  *
  * @since 2.8
  */
 @Named
 @Singleton
-public class ExtDirectApiWebResource
-    extends GeneratedWebResource
+public class ExtDirectProdApiWebResource
+    extends FileWebResource
 {
-  private final ExtDirectConfiguration configuration;
 
   @Inject
-  public ExtDirectApiWebResource(final ExtDirectConfiguration configuration) {
-    this.configuration = checkNotNull(configuration);
+  public ExtDirectProdApiWebResource(final ApplicationConfiguration applicationConfiguration) {
+    super(
+        new File(applicationConfiguration.getTemporaryDirectory(), "djn/Nexus-min.js"),
+        "/static/rapture/extdirect-prod.js",
+        JAVASCRIPT,
+        true
+    );
   }
 
-  @Override
-  public String getPath() {
-    return "/js/extdirect.js";
-  }
-
-  @Override
-  public String getContentType() {
-    return JAVASCRIPT;
-  }
-
-  @Override
-  protected byte[] generate() throws IOException {
-    return configuration.getFormattedApi().getBytes();
-  }
 }

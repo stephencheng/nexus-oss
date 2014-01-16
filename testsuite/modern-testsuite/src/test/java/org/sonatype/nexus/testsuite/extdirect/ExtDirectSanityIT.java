@@ -14,7 +14,6 @@
 package org.sonatype.nexus.testsuite.extdirect;
 
 import java.io.ByteArrayOutputStream;
-import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 
@@ -22,13 +21,11 @@ import org.sonatype.nexus.client.core.subsystem.Utilities;
 import org.sonatype.nexus.client.rest.jersey.JerseyNexusClient;
 import org.sonatype.nexus.testsuite.NexusCoreITSupport;
 
-import com.sun.jersey.api.client.GenericType;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
@@ -49,10 +46,20 @@ public class ExtDirectSanityIT
    * Verify that generated Ext.Direct api contains discovered "Test" resource.
    */
   @Test
-  public void api() throws Exception {
+  public void debugApi() throws Exception {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
-    client().getSubsystem(Utilities.class).download("js/extdirect.js", out);
-    assertThat(out.toString("UTF-8"), containsString("\"Test\""));
+    client().getSubsystem(Utilities.class).download("static/rapture/extdirect-debug.js", out);
+    assertThat(out.toString("UTF-8"), containsString("Test:"));
+  }
+
+  /**
+   * Verify that generated Ext.Direct api contains discovered "Test" resource.
+   */
+  @Test
+  public void prodApi() throws Exception {
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    client().getSubsystem(Utilities.class).download("static/rapture/extdirect-prod.js", out);
+    assertThat(out.toString("UTF-8"), containsString("Test:"));
   }
 
   /**
@@ -64,14 +71,11 @@ public class ExtDirectSanityIT
     payload.action = "Test";
     payload.method = "currentTime";
 
-    List<ExtDirectResponse> results = ((JerseyNexusClient) client())
-        .uri("service/extdirect/DirectRouter?providerId=NX.direct-remoting-provider")
+    ExtDirectResponse result = ((JerseyNexusClient) client())
+        .uri("service/extdirect")
         .type(MediaType.APPLICATION_JSON_TYPE)
-        .post(new GenericType<List<ExtDirectResponse>>() {}, payload);
+        .post(ExtDirectResponse.class, payload);
 
-    assertThat(results, is(notNullValue()));
-    assertThat(results, hasSize(1));
-    ExtDirectResponse result = results.get(0);
     assertThat(result, is(notNullValue()));
     assertThat(result.result, is(notNullValue()));
     assertThat(result.result.success, is(true));

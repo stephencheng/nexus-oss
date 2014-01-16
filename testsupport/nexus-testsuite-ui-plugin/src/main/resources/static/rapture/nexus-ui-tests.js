@@ -20,7 +20,7 @@ Harness.configure({
     "resources/baseapp-debug.css",
     "resources/rapture.css",
     "baseapp-debug.js",
-    "../../js/extdirect.js"
+    "extdirect-debug.js"
   ]
 });
 

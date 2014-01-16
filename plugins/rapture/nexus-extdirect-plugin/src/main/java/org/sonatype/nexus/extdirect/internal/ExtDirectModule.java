@@ -13,13 +13,19 @@
 
 package org.sonatype.nexus.extdirect.internal;
 
+import java.util.Map;
+
 import javax.inject.Named;
 
 import org.sonatype.nexus.guice.FilterChainModule;
 import org.sonatype.nexus.web.internal.SecurityFilter;
 
+import com.google.common.collect.Maps;
 import com.google.inject.AbstractModule;
 import com.google.inject.servlet.ServletModule;
+import com.softwarementors.extjs.djn.servlet.DirectJNgineServlet.GlobalParameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Ext.Direct module.
@@ -31,9 +37,9 @@ public class ExtDirectModule
     extends AbstractModule
 {
 
-  private static final String MOUNT_POINT = "/service/extdirect";
+  private static final Logger log = LoggerFactory.getLogger(ExtDirectModule.class);
 
-  static final String ROUTER_MOUNT_POINT = MOUNT_POINT + "/DirectRouter";
+  private static final String MOUNT_POINT = "/service/extdirect";
 
   @Override
   protected void configure() {
@@ -41,8 +47,12 @@ public class ExtDirectModule
     {
       @Override
       protected void configureServlets() {
-        serve(ROUTER_MOUNT_POINT).with(ExtDirectServlet.class);
-        filter(MOUNT_POINT + "/*").through(SecurityFilter.class);
+        Map<String, String> directServletConfig = Maps.newHashMap();
+        directServletConfig.put(GlobalParameters.PROVIDERS_URL, MOUNT_POINT.substring(1));
+        directServletConfig.put(GlobalParameters.DEBUG, Boolean.toString(log.isDebugEnabled()));
+
+        serve(MOUNT_POINT).with(ExtDirectServlet.class, directServletConfig);
+        filter(MOUNT_POINT).through(SecurityFilter.class);
       }
     });
 
@@ -50,7 +60,7 @@ public class ExtDirectModule
     {
       @Override
       protected void configure() {
-        addFilterChain(MOUNT_POINT + "/**", "noSessionCreation,authcBasic");
+        addFilterChain(MOUNT_POINT, "noSessionCreation,authcBasic");
       }
     });
   }

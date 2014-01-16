@@ -18,7 +18,7 @@ Ext.define('NX.pluginconsole.store.PluginInfo', {
     type: 'direct',
     paramsAsHash: false,
     api: {
-      read: NX.direct.pluginconsole.PluginConsole.read
+      read: NX.direct.PluginConsole.read
     },
 
     reader: {

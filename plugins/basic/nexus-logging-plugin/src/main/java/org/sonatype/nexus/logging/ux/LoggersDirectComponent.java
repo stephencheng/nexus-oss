@@ -19,15 +19,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.sonatype.nexus.extdirect.DirectComponent;
+import org.sonatype.nexus.extdirect.DirectComponentSupport;
 import org.sonatype.nexus.logging.LoggingConfigurator;
 import org.sonatype.nexus.logging.LoggingPlugin;
 import org.sonatype.nexus.logging.model.LoggerXO;
-import org.sonatype.sisu.goodies.common.ComponentSupport;
 
-import com.director.core.annotation.DirectAction;
-import com.director.core.annotation.DirectMethod;
 import com.google.common.collect.Lists;
+import com.softwarementors.extjs.djn.config.annotations.DirectAction;
+import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.codehaus.plexus.util.StringUtils;
 
@@ -41,10 +40,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 @Named
 @Singleton
-@DirectAction(action = "logging.Loggers")
+@DirectAction(action = "Loggers")
 public class LoggersDirectComponent
-    extends ComponentSupport
-    implements DirectComponent
+    extends DirectComponentSupport
 {
 
   private final LoggingConfigurator configurator;

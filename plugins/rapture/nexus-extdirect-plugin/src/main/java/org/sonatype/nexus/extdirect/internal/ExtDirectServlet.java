@@ -10,23 +10,42 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-
 package org.sonatype.nexus.extdirect.internal;
 
-import java.io.IOException;
+import java.io.File;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletConfig;
 
-import com.director.core.DirectConfiguration;
-import com.director.core.Provider;
+import org.sonatype.configuration.validation.InvalidConfigurationException;
+import org.sonatype.nexus.configuration.application.ApplicationConfiguration;
+import org.sonatype.nexus.extdirect.DirectComponent;
+import org.sonatype.nexus.extdirect.model.Response;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.inject.Key;
+import com.softwarementors.extjs.djn.api.RegisteredMethod;
+import com.softwarementors.extjs.djn.config.ApiConfiguration;
+import com.softwarementors.extjs.djn.router.dispatcher.Dispatcher;
+import com.softwarementors.extjs.djn.servlet.DirectJNgineServlet;
+import com.softwarementors.extjs.djn.servlet.ssm.SsmDispatcher;
+import org.eclipse.sisu.BeanEntry;
+import org.eclipse.sisu.inject.BeanLocator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.sonatype.nexus.extdirect.model.Responses.error;
+import static org.sonatype.nexus.extdirect.model.Responses.invalid;
+import static org.sonatype.nexus.extdirect.model.Responses.success;
 
 /**
  * Ext.Direct Servlet.
@@ -36,27 +55,111 @@ import static com.google.common.base.Preconditions.checkNotNull;
 @Named
 @Singleton
 public class ExtDirectServlet
-    extends HttpServlet
+    extends DirectJNgineServlet
 {
-  private final DirectConfiguration configuration;
+
+  private static final Logger log = LoggerFactory.getLogger(ExtDirectServlet.class);
+
+  private final ApplicationConfiguration applicationConfiguration;
+
+  private final BeanLocator beanLocator;
 
   @Inject
-  public ExtDirectServlet(final ExtDirectConfiguration configuration) {
-    this.configuration = checkNotNull(configuration);
+  public ExtDirectServlet(final ApplicationConfiguration applicationConfiguration,
+                          final BeanLocator beanLocator)
+  {
+    this.applicationConfiguration = checkNotNull(applicationConfiguration);
+    this.beanLocator = checkNotNull(beanLocator);
   }
 
   @Override
-  protected void service(final HttpServletRequest request, final HttpServletResponse response)
-      throws ServletException, IOException
+  protected List<ApiConfiguration> createApiConfigurationsFromServletConfigurationApi(
+      final ServletConfig configuration)
   {
-    response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
-
-    String providerId = request.getParameter(configuration.getProviderParamName());
-    // TODO throw 403 if no provider id
-    if (providerId != null) {
-      Provider provider = configuration.getProvider(providerId);
-      provider.process(request, response);
-    }
+    Iterable<? extends BeanEntry<Annotation, DirectComponent>> entries = beanLocator
+        .locate(Key.get(DirectComponent.class));
+    List<Class<?>> apiClasses = Lists.newArrayList(
+        Iterables.transform(entries, new Function<BeanEntry<Annotation, DirectComponent>, Class<?>>()
+        {
+          @Nullable
+          @Override
+          public Class<?> apply(final BeanEntry<Annotation, DirectComponent> input) {
+            Class<DirectComponent> implementationClass = input.getImplementationClass();
+            log.debug("Registering Ext.Direct component '{}'", implementationClass);
+            return implementationClass;
+          }
+        })
+    );
+    File apiFile = new File(applicationConfiguration.getTemporaryDirectory(), "djn/Nexus.js");
+    return Lists.newArrayList(
+        new ApiConfiguration(
+            "nexus",
+            apiFile.getName(),
+            apiFile.getAbsolutePath(),
+            "NX.direct.api",
+            "NX.direct",
+            apiClasses
+        )
+    );
   }
+
+  @Override
+  protected Dispatcher createDispatcher(final Class<? extends Dispatcher> cls) {
+    return new SsmDispatcher()
+    {
+      @Override
+      protected Object createInvokeInstanceForMethodWithDefaultConstructor(final RegisteredMethod method)
+          throws Exception
+      {
+        log.debug(
+            "Creating instance of action class '{}' mapped to '{}",
+            method.getActionClass().getName(), method.getActionName()
+        );
+        Iterable<BeanEntry<Annotation, Object>> actionInstance = beanLocator.locate(
+            Key.get((Class) method.getActionClass())
+        );
+        return actionInstance.iterator().next().getValue();
+      }
+
+      @Override
+      protected Object invokeMethod(final RegisteredMethod method, final Object actionInstance,
+                                    final Object[] parameters) throws Exception
+      {
+        try {
+          return asResponse(super.invokeMethod(method, actionInstance, parameters));
+        }
+        catch (InvocationTargetException e) {
+          log.error("Failed to invoke action method {}", method.getFullJavaMethodName(), e.getTargetException());
+          if (e.getTargetException() instanceof InvalidConfigurationException) {
+            return asResponse(invalid((InvalidConfigurationException) e.getTargetException()));
+          }
+          return asResponse(error(e.getTargetException().getMessage()));
+        }
+        catch (Throwable e) {
+          log.error("Failed to invoke action method {}", method.getFullJavaMethodName(), e);
+          if (e instanceof InvalidConfigurationException) {
+            return asResponse(invalid((InvalidConfigurationException) e));
+          }
+          return asResponse(error(e.getMessage()));
+        }
+      }
+
+      private Response asResponse(final Object result) {
+        Response response;
+        if (result == null) {
+          response = success();
+        }
+        else {
+          if (result instanceof Response) {
+            response = (Response) result;
+          }
+          else {
+            response = success(result);
+          }
+        }
+        return response;
+      }
+    };
+  }
+
 }

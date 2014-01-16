@@ -206,7 +206,7 @@ Ext.define('NX.capability.controller.Capabilities', {
 
     capabilityModel.set(values);
 
-    NX.direct.capabilities.Capability.create(capabilityModel.data, function (response, status) {
+    NX.direct.Capability.create(capabilityModel.data, function (response, status) {
       if (!NX.util.ExtDirect.showExceptionIfPresent('Capability could not be created', response, status)) {
         if (Ext.isDefined(response)) {
           if (response.success) {
@@ -237,7 +237,7 @@ Ext.define('NX.capability.controller.Capabilities', {
 
     capabilityModel.set(values);
 
-    NX.direct.capabilities.Capability.update(capabilityModel.data, function (response, status) {
+    NX.direct.Capability.update(capabilityModel.data, function (response, status) {
       if (!NX.util.ExtDirect.showExceptionIfPresent('Capability could not be saved', response, status)) {
         if (Ext.isDefined(response)) {
           if (response.success) {
@@ -262,7 +262,7 @@ Ext.define('NX.capability.controller.Capabilities', {
 
     if (Ext.isDefined(selection) && selection.length > 0) {
       NX.util.Msg.askConfirmation('Confirm deletion?', me.describeCapability(selection[0]), function () {
-        NX.direct.capabilities.Capability.delete(selection[0].getId(), function (response, status) {
+        NX.direct.Capability.delete(selection[0].getId(), function (response, status) {
           if (!NX.util.ExtDirect.showExceptionIfPresent('Capability could not be deleted', response, status)) {
             if (Ext.isDefined(response)) {
               if (response.success) {

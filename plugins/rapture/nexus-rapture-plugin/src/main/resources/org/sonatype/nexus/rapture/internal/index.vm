@@ -92,7 +92,7 @@
 
     ## Then load extensions and the main application
     #message("Initializing...");
-    #script("$baseUrl/js/extdirect.js");
+    #script("$raptureUrl/extdirect-${baseappMode}.js");
     #script("$raptureUrl/app.js");
   </div>
 </div>

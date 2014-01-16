@@ -40,8 +40,28 @@
     </dependency>
 
     <dependency>
-      <groupId>com.googlecode.director</groupId>
-      <artifactId>director-core</artifactId>
+      <groupId>com.softwarementors.extjs</groupId>
+      <artifactId>directjngine</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.yahoo.platform.yui</groupId>
+      <artifactId>yuicompressor</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>rhino</groupId>
+      <artifactId>js</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
     </dependency>
   </dependencies>
 
@@ -52,7 +72,7 @@
         <artifactId>nexus-plugin-bundle-maven-plugin</artifactId>
         <configuration>
           <sharedDependencies>
-            <sharedDependency>com.googlecode.director:director-core</sharedDependency>
+            <sharedDependency>com.softwarementors.extjs:directjngine</sharedDependency>
           </sharedDependencies>
         </configuration>
       </plugin>

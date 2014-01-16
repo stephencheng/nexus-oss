@@ -29,7 +29,7 @@ import org.sonatype.nexus.capability.ux.model.CapabilityStatusUX;
 import org.sonatype.nexus.capability.ux.model.CapabilityUX;
 import org.sonatype.nexus.capability.ux.model.PropertyUX;
 import org.sonatype.nexus.capability.ux.model.TagUX;
-import org.sonatype.nexus.extdirect.DirectComponent;
+import org.sonatype.nexus.extdirect.DirectComponentSupport;
 import org.sonatype.nexus.plugins.capabilities.Capability;
 import org.sonatype.nexus.plugins.capabilities.CapabilityDescriptor;
 import org.sonatype.nexus.plugins.capabilities.CapabilityReference;
@@ -37,16 +37,15 @@ import org.sonatype.nexus.plugins.capabilities.CapabilityRegistry;
 import org.sonatype.nexus.plugins.capabilities.Tag;
 import org.sonatype.nexus.plugins.capabilities.Taggable;
 import org.sonatype.nexus.plugins.capabilities.support.CapabilityReferenceFilterBuilder;
-import org.sonatype.sisu.goodies.common.ComponentSupport;
 
-import com.director.core.annotation.DirectAction;
-import com.director.core.annotation.DirectMethod;
 import com.google.common.base.Function;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.softwarementors.extjs.djn.config.annotations.DirectAction;
+import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,10 +60,9 @@ import static org.sonatype.nexus.plugins.capabilities.CapabilityType.capabilityT
  */
 @Named
 @Singleton
-@DirectAction(action = "capabilities.Capability")
+@DirectAction(action = "Capability")
 public class CapabilityDirectComponent
-    extends ComponentSupport
-    implements DirectComponent
+    extends DirectComponentSupport
 {
 
   private static final Logger log = LoggerFactory.getLogger(CapabilityDirectComponent.class);

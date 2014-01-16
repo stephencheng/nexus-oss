@@ -22,16 +22,16 @@ import javax.inject.Singleton;
 
 import org.sonatype.nexus.capability.ux.model.CapabilityTypeUX;
 import org.sonatype.nexus.capability.ux.model.FormFieldUX;
-import org.sonatype.nexus.extdirect.DirectComponent;
+import org.sonatype.nexus.extdirect.DirectComponentSupport;
 import org.sonatype.nexus.formfields.FormField;
 import org.sonatype.nexus.formfields.Selectable;
 import org.sonatype.nexus.plugins.capabilities.CapabilityDescriptor;
 import org.sonatype.nexus.plugins.capabilities.CapabilityDescriptorRegistry;
 
-import com.director.core.annotation.DirectAction;
-import com.director.core.annotation.DirectMethod;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
+import com.softwarementors.extjs.djn.config.annotations.DirectAction;
+import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 
 /**
  * Capability Type Ext.Direct resource.
@@ -40,9 +40,9 @@ import com.google.common.collect.Lists;
  */
 @Named
 @Singleton
-@DirectAction(action = "capabilities.CapabilityType")
+@DirectAction(action = "CapabilityType")
 public class CapabilityTypeDirectComponent
-    implements DirectComponent
+    extends DirectComponentSupport
 {
 
   private final CapabilityDescriptorRegistry capabilityDescriptorRegistry;
