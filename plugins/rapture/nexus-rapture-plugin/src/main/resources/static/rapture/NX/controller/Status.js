@@ -129,13 +129,15 @@ Ext.define('NX.controller.Status', {
   logout: function () {
     var me = this;
 
-    me.logDebug('Logout...')
+    me.logDebug('Logout...');
 
-    Ext.Ajax.request({
-      method: 'GET',
-      url: NX.util.Url.urlOf('service/local/authentication/logout'),
-      success: function (response, options) {
-        me.statusProvider.connectNow();
+    NX.direct.Application.logout(function (response, status) {
+      if (!NX.util.ExtDirect.showExceptionIfPresent('User could not be logged out', response, status)) {
+        if (Ext.isDefined(response)) {
+          if (response.success) {
+            me.statusProvider.connectNow();
+          }
+        }
       }
     });
   }
