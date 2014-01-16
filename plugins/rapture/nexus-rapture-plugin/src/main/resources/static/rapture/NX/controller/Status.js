@@ -68,7 +68,12 @@ Ext.define('NX.controller.Status', {
     var me = this,
         status = event.data.data,
         loginButton = me.getHeader().down('button[action=login]'),
-        userButton = me.getHeader().down('button[action=user]');
+        userButton = me.getHeader().down('button[action=user]'),
+        nameLabel = me.getHeader().down('label#name'),
+        editionLabel = me.getHeader().down('label#edition');
+
+    nameLabel.setText(status.name);
+    editionLabel.setText(status.edition + ' ' + status.version);
 
     if (status.loggedIn) {
       loginButton.hide();

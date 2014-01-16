@@ -34,12 +34,14 @@ Ext.define('NX.view.Header', {
       },
       {
         xtype: 'label',
+        id: 'name',
         text: 'Sonatype Nexus'
       },
       '-',
       {
         xtype: 'label',
-        text: 'Community Edition v3.0-beta'
+        id: 'edition',
+        text: 'Unknown'
       },
       '->',
       {

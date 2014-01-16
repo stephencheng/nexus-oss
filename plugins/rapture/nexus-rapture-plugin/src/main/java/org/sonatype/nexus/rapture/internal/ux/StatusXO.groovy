@@ -23,6 +23,12 @@ import groovy.transform.ToString
 @ToString(includePackage = false, includeNames = true)
 class StatusXO
 {
+  String name
+
+  String edition
+
+  String version
+
   boolean loggedIn
 
   String loggedInUsername

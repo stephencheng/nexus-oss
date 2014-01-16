@@ -20,6 +20,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.sonatype.nexus.ApplicationStatusSource;
+import org.sonatype.nexus.SystemStatus;
 import org.sonatype.nexus.extdirect.DirectComponentSupport;
 import org.sonatype.security.SecuritySystem;
 
@@ -57,6 +58,12 @@ public class StatusDirectComponent
   @DirectPollMethod
   public StatusXO status(final Map<String, String> parameters) {
     StatusXO statusXO = new StatusXO();
+
+    SystemStatus status = applicationStatusSource.getSystemStatus();
+
+    statusXO.setName(status.getAppName());
+    statusXO.setEdition(status.getEditionShort());
+    statusXO.setVersion(status.getVersion());
 
     Subject subject = SecurityUtils.getSubject();
 
