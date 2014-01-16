@@ -70,21 +70,15 @@ public class ApplicationDirectComponent
     statusXO.setVersion(status.getVersion());
 
     Subject subject = securitySystem.getSubject();
+    if (subject != null) {
+      statusXO.setLoggedIn(subject.isAuthenticated());
+      if (statusXO.isLoggedIn()) {
+        // try to set the loggedInUsername
+        Object principal = subject.getPrincipal();
 
-    if (securitySystem.isAnonymousAccessEnabled()) {
-      statusXO.setLoggedIn(!securitySystem.getAnonymousUsername().equals(subject.getPrincipal()));
-    }
-    else {
-      // anon access is disabled, simply ask JSecurity about this
-      statusXO.setLoggedIn(subject != null && subject.isAuthenticated());
-    }
-
-    if (subject != null && statusXO.isLoggedIn()) {
-      // try to set the loggedInUsername
-      Object principal = subject.getPrincipal();
-
-      if (principal != null) {
-        statusXO.setLoggedInUsername(principal.toString());
+        if (principal != null) {
+          statusXO.setLoggedInUsername(principal.toString());
+        }
       }
     }
 

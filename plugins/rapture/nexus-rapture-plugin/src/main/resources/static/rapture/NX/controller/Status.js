@@ -100,24 +100,28 @@ Ext.define('NX.controller.Status', {
     var me = this,
         win = button.up('window'),
         form = button.up('form'),
-        values = form.getValues();
+        values = form.getValues(),
+        userName = NX.util.Base64.encode(values.username),
+        userPass = NX.util.Base64.encode(values.password);
 
     win.getEl().mask("Logging you in...");
 
     me.logDebug('Login...');
 
-    Ext.Ajax.request({
-      method: 'GET',
-      headers: {
-        'Authorization': 'Basic ' + NX.util.Base64.encode(values.username + ':' + values.password)
-      },
-      url: NX.util.Url.urlOf('service/local/authentication/login'),
-      success: function (response, options) {
-        me.statusProvider.connectNow();
-        win.getEl().unmask();
-        win.close();
-      },
-      failure: function (response, options) {
+    NX.direct.Application.login(userName, userPass, function (response, status) {
+      if (!NX.util.ExtDirect.showExceptionIfPresent('User could not be logged in', response, status)) {
+        if (Ext.isDefined(response)) {
+          if (response.success) {
+            me.statusProvider.connectNow();
+            win.getEl().unmask();
+            win.close();
+          }
+          else {
+            win.getEl().unmask();
+          }
+        }
+      }
+      else {
         win.getEl().unmask();
       }
     });

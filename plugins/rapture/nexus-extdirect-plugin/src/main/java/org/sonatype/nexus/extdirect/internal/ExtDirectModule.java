@@ -17,7 +17,6 @@ import java.util.Map;
 
 import javax.inject.Named;
 
-import org.sonatype.nexus.guice.FilterChainModule;
 import org.sonatype.nexus.web.internal.SecurityFilter;
 
 import com.google.common.collect.Maps;
@@ -55,14 +54,6 @@ public class ExtDirectModule
 
         serve(ROUTER_MOUNT_POINT + "*").with(ExtDirectServlet.class, directServletConfig);
         filter(ROUTER_MOUNT_POINT + "*").through(SecurityFilter.class);
-      }
-    });
-
-    install(new FilterChainModule()
-    {
-      @Override
-      protected void configure() {
-        addFilterChain(MOUNT_POINT + "/**", "noSessionCreation,authcBasic");
       }
     });
   }
