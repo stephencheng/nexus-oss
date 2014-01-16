@@ -11,6 +11,7 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  *#
 #set($raptureUrl="$baseUrl/static/rapture")
+#set($baseappMode="debug") ## or "prod"
 
 <!DOCTYPE html>
 <html>
@@ -26,8 +27,7 @@
   <link rel="SHORTCUT ICON" href="$raptureUrl/resources/favicon.ico"/>
   <![endif]-->
 
-  ##<link rel="stylesheet" type="text/css" href="$raptureUrl/resources/baseapp.css">
-  <link rel="stylesheet" type="text/css" href="$raptureUrl/resources/baseapp-debug.css">
+  <link rel="stylesheet" type="text/css" href="$raptureUrl/resources/baseapp-${baseappMode}.css">
   <link rel="stylesheet" type="text/css" href="$raptureUrl/resources/rapture.css">
 
   <style type="text/css">
@@ -79,13 +79,21 @@
     </div>
   </div>
   <div id="code-load" class="x-hide-display">
-    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Loading baseapp...';</script>
-    ##<script type="text/javascript" src="$raptureUrl/baseapp.js"></script>
-    <script type="text/javascript" src="$raptureUrl/baseapp-debug.js"></script>
+    #macro(message $text)
+      <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '$text';</script>
+    #end
+    #macro(script $src)
+      <script type="text/javascript" src="$src"></script>
+    #end
 
-    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Initializing...';</script>
-    <script type="text/javascript" src="$baseUrl/js/extdirect.js"></script>
-    <script type="text/javascript" src="$raptureUrl/app.js"></script>
+    ## Load core application first
+    #message("Loading baseapp...");
+    #script("$raptureUrl/baseapp-${baseappMode}.js");
+
+    ## Then load extensions and the main application
+    #message("Initializing...");
+    #script("$baseUrl/js/extdirect.js");
+    #script("$raptureUrl/app.js");
   </div>
 </div>
 

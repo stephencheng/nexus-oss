@@ -48,15 +48,17 @@ ant.delete(dir: outdir)
 ant.mkdir(dir: "$outdir/resources")
 ant.mkdir(dir: "$outdir/resources/images")
 
-// install non-debug files
-ant.copy(file: "$basedir/target/production/BaseApp/app.js", tofile: "$outdir/baseapp.js")
-ant.copy(file: "$basedir/target/production/BaseApp/resources/BaseApp-all.css", tofile: "$outdir/resources/baseapp.css")
+// install prod/debug js + css content
+[ prod: 'production', debug: 'testing'].each { name, flavor ->
+  ant.copy(file: "$basedir/target/$flavor/BaseApp/app.js", tofile: "$outdir/baseapp-${name}.js")
+  ant.copy(todir: "$outdir/resources") {
+    fileset(dir: "$basedir/target/$flavor/BaseApp/resources") {
+      include(name: "baseapp-${name}*")
+    }
+  }
+}
 
-// install debug files
-ant.copy(file: "$basedir/target/testing/BaseApp/app.js", tofile: "$outdir/baseapp-debug.js")
-ant.copy(file: "$basedir/target/testing/BaseApp/resources/BaseApp-all.css", tofile: "$outdir/resources/baseapp-debug.css")
-
-// install non-debug images
+// install prod image content
 ant.copy(todir: "$outdir/resources/images", overwrite: true) {
   fileset(dir: "$basedir/target/production/BaseApp/resources/images") {
     include(name: '**')
