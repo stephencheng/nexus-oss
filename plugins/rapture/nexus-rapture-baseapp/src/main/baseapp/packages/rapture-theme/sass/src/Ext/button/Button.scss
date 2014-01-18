@@ -3,65 +3,25 @@
  */
 
 @include extjs-button-small-ui(
-  $ui: 'foo',
+  $ui: 'primary',
 
-  $border-color: $button-foo-border-color,
-  $border-color-over: $button-foo-border-color-over,
-  $border-color-focus: $button-foo-border-color-focus,
-  $border-color-pressed: $button-foo-border-color-pressed,
-  $border-color-disabled: $button-foo-border-color-disabled,
+  $border-color: $button-primary-border-color,
+  $border-color-over: $button-primary-border-color-over,
+  $border-color-focus: $button-primary-border-color-focus,
+  $border-color-pressed: $button-primary-border-color-pressed,
+  $border-color-disabled: $button-primary-border-color-disabled,
 
-  $background-color: $button-foo-background-color,
-  $background-color-over: $button-foo-background-color-over,
-  $background-color-focus: $button-foo-background-color-focus,
-  $background-color-pressed: $button-foo-background-color-pressed,
-  $background-color-disabled: $button-foo-background-color-disabled,
+  $background-color: $button-primary-background-color,
+  $background-color-over: $button-primary-background-color-over,
+  $background-color-focus: $button-primary-background-color-focus,
+  $background-color-pressed: $button-primary-background-color-pressed,
+  $background-color-disabled: $button-primary-background-color-disabled,
 
-  $color: $button-foo-color,
-  $color-over: $button-foo-color-over,
-  $color-focus: $button-foo-color-focus,
-  $color-pressed: $button-foo-color-pressed,
-  $color-disabled: $button-foo-color-disabled,
-
-  $font-size: $button-small-font-size,
-  $font-size-over: $button-small-font-size-over,
-  $font-size-focus: $button-small-font-size-focus,
-  $font-size-pressed: $button-small-font-size-pressed,
-  $font-size-disabled: $button-small-font-size-disabled,
-
-  $font-weight: $button-small-font-weight,
-  $font-weight-over: $button-small-font-weight-over,
-  $font-weight-focus: $button-small-font-weight-focus,
-  $font-weight-pressed: $button-small-font-weight-pressed,
-  $font-weight-disabled: $button-small-font-weight-disabled,
-
-  $font-family: $button-small-font-family,
-  $font-family-over: $button-small-font-family-over,
-  $font-family-focus: $button-small-font-family-focus,
-  $font-family-pressed: $button-small-font-family-pressed,
-  $font-family-disabled: $button-small-font-family-disabled
-);
-
-@include extjs-button-small-ui(
-  $ui: 'blue',
-
-  $border-color: $button-blue-border-color,
-  $border-color-over: $button-blue-border-color-over,
-  $border-color-focus: $button-blue-border-color-focus,
-  $border-color-pressed: $button-blue-border-color-pressed,
-  $border-color-disabled: $button-blue-border-color-disabled,
-
-  $background-color: $button-blue-background-color,
-  $background-color-over: $button-blue-background-color-over,
-  $background-color-focus: $button-blue-background-color-focus,
-  $background-color-pressed: $button-blue-background-color-pressed,
-  $background-color-disabled: $button-blue-background-color-disabled,
-
-  $color: $button-blue-color,
-  $color-over: $button-blue-color-over,
-  $color-focus: $button-blue-color-focus,
-  $color-pressed: $button-blue-color-pressed,
-  $color-disabled: $button-blue-color-disabled,
+  $color: $button-primary-color,
+  $color-over: $button-primary-color-over,
+  $color-focus: $button-primary-color-focus,
+  $color-pressed: $button-primary-color-pressed,
+  $color-disabled: $button-primary-color-disabled,
 
   $font-size: $button-small-font-size,
   $font-size-over: $button-small-font-size-over,
@@ -83,25 +43,25 @@
 );
 
 @include extjs-button-small-ui(
-  $ui: 'red',
+  $ui: 'danger',
 
-  $border-color: $button-red-border-color,
-  $border-color-over: $button-red-border-color-over,
-  $border-color-focus: $button-red-border-color-focus,
-  $border-color-pressed: $button-red-border-color-pressed,
-  $border-color-disabled: $button-red-border-color-disabled,
+  $border-color: $button-danger-border-color,
+  $border-color-over: $button-danger-border-color-over,
+  $border-color-focus: $button-danger-border-color-focus,
+  $border-color-pressed: $button-danger-border-color-pressed,
+  $border-color-disabled: $button-danger-border-color-disabled,
 
-  $background-color: $button-red-background-color,
-  $background-color-over: $button-red-background-color-over,
-  $background-color-focus: $button-red-background-color-focus,
-  $background-color-pressed: $button-red-background-color-pressed,
-  $background-color-disabled: $button-red-background-color-disabled,
+  $background-color: $button-danger-background-color,
+  $background-color-over: $button-danger-background-color-over,
+  $background-color-focus: $button-danger-background-color-focus,
+  $background-color-pressed: $button-danger-background-color-pressed,
+  $background-color-disabled: $button-danger-background-color-disabled,
 
-  $color: $button-red-color,
-  $color-over: $button-red-color-over,
-  $color-focus: $button-red-color-focus,
-  $color-pressed: $button-red-color-pressed,
-  $color-disabled: $button-red-color-disabled,
+  $color: $button-danger-color,
+  $color-over: $button-danger-color-over,
+  $color-focus: $button-danger-color-focus,
+  $color-pressed: $button-danger-color-pressed,
+  $color-disabled: $button-danger-color-disabled,
 
   $font-size: $button-small-font-size,
   $font-size-over: $button-small-font-size-over,
@@ -123,25 +83,65 @@
 );
 
 @include extjs-button-small-ui(
-  $ui: 'orange',
+  $ui: 'warning',
 
-  $border-color: $button-orange-border-color,
-  $border-color-over: $button-orange-border-color-over,
-  $border-color-focus: $button-orange-border-color-focus,
-  $border-color-pressed: $button-orange-border-color-pressed,
-  $border-color-disabled: $button-orange-border-color-disabled,
+  $border-color: $button-warning-border-color,
+  $border-color-over: $button-warning-border-color-over,
+  $border-color-focus: $button-warning-border-color-focus,
+  $border-color-pressed: $button-warning-border-color-pressed,
+  $border-color-disabled: $button-warning-border-color-disabled,
 
-  $background-color: $button-orange-background-color,
-  $background-color-over: $button-orange-background-color-over,
-  $background-color-focus: $button-orange-background-color-focus,
-  $background-color-pressed: $button-orange-background-color-pressed,
-  $background-color-disabled: $button-orange-background-color-disabled,
+  $background-color: $button-warning-background-color,
+  $background-color-over: $button-warning-background-color-over,
+  $background-color-focus: $button-warning-background-color-focus,
+  $background-color-pressed: $button-warning-background-color-pressed,
+  $background-color-disabled: $button-warning-background-color-disabled,
 
-  $color: $button-orange-color,
-  $color-over: $button-orange-color-over,
-  $color-focus: $button-orange-color-focus,
-  $color-pressed: $button-orange-color-pressed,
-  $color-disabled: $button-orange-color-disabled,
+  $color: $button-warning-color,
+  $color-over: $button-warning-color-over,
+  $color-focus: $button-warning-color-focus,
+  $color-pressed: $button-warning-color-pressed,
+  $color-disabled: $button-warning-color-disabled,
+
+  $font-size: $button-small-font-size,
+  $font-size-over: $button-small-font-size-over,
+  $font-size-focus: $button-small-font-size-focus,
+  $font-size-pressed: $button-small-font-size-pressed,
+  $font-size-disabled: $button-small-font-size-disabled,
+
+  $font-weight: $button-small-font-weight,
+  $font-weight-over: $button-small-font-weight-over,
+  $font-weight-focus: $button-small-font-weight-focus,
+  $font-weight-pressed: $button-small-font-weight-pressed,
+  $font-weight-disabled: $button-small-font-weight-disabled,
+
+  $font-family: $button-small-font-family,
+  $font-family-over: $button-small-font-family-over,
+  $font-family-focus: $button-small-font-family-focus,
+  $font-family-pressed: $button-small-font-family-pressed,
+  $font-family-disabled: $button-small-font-family-disabled
+);
+
+@include extjs-button-small-ui(
+  $ui: 'success',
+
+  $border-color: $button-success-border-color,
+  $border-color-over: $button-success-border-color-over,
+  $border-color-focus: $button-success-border-color-focus,
+  $border-color-pressed: $button-success-border-color-pressed,
+  $border-color-disabled: $button-success-border-color-disabled,
+
+  $background-color: $button-success-background-color,
+  $background-color-over: $button-success-background-color-over,
+  $background-color-focus: $button-success-background-color-focus,
+  $background-color-pressed: $button-success-background-color-pressed,
+  $background-color-disabled: $button-success-background-color-disabled,
+
+  $color: $button-success-color,
+  $color-over: $button-success-color-over,
+  $color-focus: $button-success-color-focus,
+  $color-pressed: $button-success-color-pressed,
+  $color-disabled: $button-success-color-disabled,
 
   $font-size: $button-small-font-size,
   $font-size-over: $button-small-font-size-over,

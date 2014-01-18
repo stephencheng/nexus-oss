@@ -34,7 +34,8 @@ Ext.define('NX.view.dev.Buttons', {
 
     me.items = [];
 
-    Ext.each(['default', 'blue', 'red', 'orange', 'foo'], function (ui) {
+    // render buttons for each of the main theme ui flavors
+    Ext.each(['default', 'primary', 'danger', 'warning', 'success'], function (ui) {
       me.items.push({
         xtype: 'container',
         layout: {

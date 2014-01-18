@@ -2,153 +2,150 @@
  * @class Ext.button.Button
  */
 
-// FIXME: Change to primary, success, warning, danger
-
 /**
- * 'foo' button UI.
+ * 'primary' button UI.
  */
 
-$button-foo-base-color: #0B9743 !default;
-$button-foo-base-color-over: button-default-background-color-over($button-foo-base-color) !default;
-$button-foo-base-color-focus: button-default-background-color-focus($button-foo-base-color) !default;
-$button-foo-base-color-pressed: button-default-background-color-pressed($button-foo-base-color) !default;
-$button-foo-base-color-disabled: button-default-background-color-disabled($button-foo-base-color) !default;
+$button-primary-base-color: #2476C3 !default;
+$button-primary-base-color-over: button-default-background-color-over($button-primary-base-color) !default;
+$button-primary-base-color-focus: button-default-background-color-focus($button-primary-base-color) !default;
+$button-primary-base-color-pressed: button-default-background-color-pressed($button-primary-base-color) !default;
+$button-primary-base-color-disabled: button-default-background-color-disabled($button-primary-base-color) !default;
 
-$button-foo-border-color: #04642A !default;
-$button-foo-border-color-over: button-default-border-color-over($button-foo-border-color) !default;
-$button-foo-border-color-focus: button-default-border-color-focus($button-foo-border-color) !default;
-$button-foo-border-color-pressed: button-default-border-color-pressed($button-foo-border-color) !default;
-$button-foo-border-color-disabled: button-default-border-color-disabled($button-foo-border-color) !default;
+$button-primary-border-color: #17558E !default;
+$button-primary-border-color-over: button-default-border-color-over($button-primary-border-color) !default;
+$button-primary-border-color-focus: button-default-border-color-focus($button-primary-border-color) !default;
+$button-primary-border-color-pressed: button-default-border-color-pressed($button-primary-border-color) !default;
+$button-primary-border-color-disabled: button-default-border-color-disabled($button-primary-border-color) !default;
 
-$button-foo-background-color: $button-foo-base-color !default;
-$button-foo-background-color-over: $button-foo-base-color-over !default;
-$button-foo-background-color-focus: $button-foo-base-color-focus !default;
-$button-foo-background-color-pressed: $button-foo-base-color-pressed !default;
-$button-foo-background-color-disabled: $button-foo-base-color-disabled !default;
+$button-primary-background-color: $button-primary-base-color !default;
+$button-primary-background-color-over: $button-primary-base-color-over !default;
+$button-primary-background-color-focus: $button-primary-base-color-focus !default;
+$button-primary-background-color-pressed: $button-primary-base-color-pressed !default;
+$button-primary-background-color-disabled: $button-primary-base-color-disabled !default;
 
-$button-foo-background-gradient: 'glossy-button' !default;
-$button-foo-background-gradient-over: 'glossy-button-over' !default;
-$button-foo-background-gradient-focus: $button-foo-background-gradient-over !default;
-$button-foo-background-gradient-pressed: 'glossy-button-pressed' !default;
-$button-foo-background-gradient-disabled: 'glossy-button-disabled' !default;
+$button-primary-background-gradient: 'glossy-button' !default;
+$button-primary-background-gradient-over: 'glossy-button-over' !default;
+$button-primary-background-gradient-focus: $button-primary-background-gradient-over !default;
+$button-primary-background-gradient-pressed: 'glossy-button-pressed' !default;
+$button-primary-background-gradient-disabled: 'glossy-button-disabled' !default;
 
-$button-foo-color: #FFFFFF !default;
-$button-foo-color-over: button-default-color-over($button-foo-color) !default;
-$button-foo-color-focus: button-default-color-focus($button-foo-color) !default;
-$button-foo-color-pressed: button-default-color-pressed($button-foo-color) !default;
-$button-foo-color-disabled: button-default-color-disabled($button-foo-color) !default;
+$button-primary-color: #FFFFFF !default;
+$button-primary-color-over: button-default-color-over($button-primary-color) !default;
+$button-primary-color-focus: button-default-color-focus($button-primary-color) !default;
+$button-primary-color-pressed: button-default-color-pressed($button-primary-color) !default;
+$button-primary-color-disabled: button-default-color-disabled($button-primary-color) !default;
 
-$button-foo-glyph-color: $button-foo-color !default;
-$button-foo-glyph-opacity: .5 !default;
-
-
-/**
- * 'blue' button UI.
- */
-
-$button-blue-base-color: #2476C3 !default;
-$button-blue-base-color-over: button-default-background-color-over($button-blue-base-color) !default;
-$button-blue-base-color-focus: button-default-background-color-focus($button-blue-base-color) !default;
-$button-blue-base-color-pressed: button-default-background-color-pressed($button-blue-base-color) !default;
-$button-blue-base-color-disabled: button-default-background-color-disabled($button-blue-base-color) !default;
-
-$button-blue-border-color: #17558E !default;
-$button-blue-border-color-over: button-default-border-color-over($button-blue-border-color) !default;
-$button-blue-border-color-focus: button-default-border-color-focus($button-blue-border-color) !default;
-$button-blue-border-color-pressed: button-default-border-color-pressed($button-blue-border-color) !default;
-$button-blue-border-color-disabled: button-default-border-color-disabled($button-blue-border-color) !default;
-
-$button-blue-background-color: $button-blue-base-color !default;
-$button-blue-background-color-over: $button-blue-base-color-over !default;
-$button-blue-background-color-focus: $button-blue-base-color-focus !default;
-$button-blue-background-color-pressed: $button-blue-base-color-pressed !default;
-$button-blue-background-color-disabled: $button-blue-base-color-disabled !default;
-
-$button-blue-background-gradient: 'glossy-button' !default;
-$button-blue-background-gradient-over: 'glossy-button-over' !default;
-$button-blue-background-gradient-focus: $button-blue-background-gradient-over !default;
-$button-blue-background-gradient-pressed: 'glossy-button-pressed' !default;
-$button-blue-background-gradient-disabled: 'glossy-button-disabled' !default;
-
-$button-blue-color: #FFFFFF !default;
-$button-blue-color-over: button-default-color-over($button-blue-color) !default;
-$button-blue-color-focus: button-default-color-focus($button-blue-color) !default;
-$button-blue-color-pressed: button-default-color-pressed($button-blue-color) !default;
-$button-blue-color-disabled: button-default-color-disabled($button-blue-color) !default;
-
-$button-blue-glyph-color: $button-blue-color !default;
-$button-blue-glyph-opacity: .5 !default;
+$button-primary-glyph-color: $button-primary-color !default;
+$button-primary-glyph-opacity: .5 !default;
 
 /**
- * 'red' button UI.
+ * 'danger' button UI.
  */
 
-$button-red-base-color: #da4f49 !default;
-$button-red-base-color-over: button-default-background-color-over($button-red-base-color) !default;
-$button-red-base-color-focus: button-default-background-color-focus($button-red-base-color) !default;
-$button-red-base-color-pressed: button-default-background-color-pressed($button-red-base-color) !default;
-$button-red-base-color-disabled: button-default-background-color-disabled($button-red-base-color) !default;
+$button-danger-base-color: #da4f49 !default;
+$button-danger-base-color-over: button-default-background-color-over($button-danger-base-color) !default;
+$button-danger-base-color-focus: button-default-background-color-focus($button-danger-base-color) !default;
+$button-danger-base-color-pressed: button-default-background-color-pressed($button-danger-base-color) !default;
+$button-danger-base-color-disabled: button-default-background-color-disabled($button-danger-base-color) !default;
 
-$button-red-border-color: #bd362f !default;
-$button-red-border-color-over: button-default-border-color-over($button-red-border-color) !default;
-$button-red-border-color-focus: button-default-border-color-focus($button-red-border-color) !default;
-$button-red-border-color-pressed: button-default-border-color-pressed($button-red-border-color) !default;
-$button-red-border-color-disabled: button-default-border-color-disabled($button-red-border-color) !default;
+$button-danger-border-color: #bd362f !default;
+$button-danger-border-color-over: button-default-border-color-over($button-danger-border-color) !default;
+$button-danger-border-color-focus: button-default-border-color-focus($button-danger-border-color) !default;
+$button-danger-border-color-pressed: button-default-border-color-pressed($button-danger-border-color) !default;
+$button-danger-border-color-disabled: button-default-border-color-disabled($button-danger-border-color) !default;
 
-$button-red-background-color: $button-red-base-color !default;
-$button-red-background-color-over: $button-red-base-color-over !default;
-$button-red-background-color-focus: $button-red-base-color-focus !default;
-$button-red-background-color-pressed: $button-red-base-color-pressed !default;
-$button-red-background-color-disabled: $button-red-base-color-disabled !default;
+$button-danger-background-color: $button-danger-base-color !default;
+$button-danger-background-color-over: $button-danger-base-color-over !default;
+$button-danger-background-color-focus: $button-danger-base-color-focus !default;
+$button-danger-background-color-pressed: $button-danger-base-color-pressed !default;
+$button-danger-background-color-disabled: $button-danger-base-color-disabled !default;
 
-$button-red-background-gradient: 'glossy-button' !default;
-$button-red-background-gradient-over: 'glossy-button-over' !default;
-$button-red-background-gradient-focus: $button-red-background-gradient-over !default;
-$button-red-background-gradient-pressed: 'glossy-button-pressed' !default;
-$button-red-background-gradient-disabled: 'glossy-button-disabled' !default;
+$button-danger-background-gradient: 'glossy-button' !default;
+$button-danger-background-gradient-over: 'glossy-button-over' !default;
+$button-danger-background-gradient-focus: $button-danger-background-gradient-over !default;
+$button-danger-background-gradient-pressed: 'glossy-button-pressed' !default;
+$button-danger-background-gradient-disabled: 'glossy-button-disabled' !default;
 
-$button-red-color: #FFFFFF !default;
-$button-red-color-over: button-default-color-over($button-red-color) !default;
-$button-red-color-focus: button-default-color-focus($button-red-color) !default;
-$button-red-color-pressed: button-default-color-pressed($button-red-color) !default;
-$button-red-color-disabled: button-default-color-disabled($button-red-color) !default;
+$button-danger-color: #FFFFFF !default;
+$button-danger-color-over: button-default-color-over($button-danger-color) !default;
+$button-danger-color-focus: button-default-color-focus($button-danger-color) !default;
+$button-danger-color-pressed: button-default-color-pressed($button-danger-color) !default;
+$button-danger-color-disabled: button-default-color-disabled($button-danger-color) !default;
 
-$button-red-glyph-color: $button-red-color !default;
-$button-red-glyph-opacity: .5 !default;
+$button-danger-glyph-color: $button-danger-color !default;
+$button-danger-glyph-opacity: .5 !default;
 
 /**
- * 'orange' button UI.
+ * 'warning' button UI.
  */
 
-$button-orange-base-color: #F2862F !default;
-$button-orange-base-color-over: button-default-background-color-over($button-orange-base-color) !default;
-$button-orange-base-color-focus: button-default-background-color-focus($button-orange-base-color) !default;
-$button-orange-base-color-pressed: button-default-background-color-pressed($button-orange-base-color) !default;
-$button-orange-base-color-disabled: button-default-background-color-disabled($button-orange-base-color) !default;
+$button-warning-base-color: #F2862F !default;
+$button-warning-base-color-over: button-default-background-color-over($button-warning-base-color) !default;
+$button-warning-base-color-focus: button-default-background-color-focus($button-warning-base-color) !default;
+$button-warning-base-color-pressed: button-default-background-color-pressed($button-warning-base-color) !default;
+$button-warning-base-color-disabled: button-default-background-color-disabled($button-warning-base-color) !default;
 
-$button-orange-border-color: #C56213 !default;
-$button-orange-border-color-over: button-default-border-color-over($button-orange-border-color) !default;
-$button-orange-border-color-focus: button-default-border-color-focus($button-orange-border-color) !default;
-$button-orange-border-color-pressed: button-default-border-color-pressed($button-orange-border-color) !default;
-$button-orange-border-color-disabled: button-default-border-color-disabled($button-orange-border-color) !default;
+$button-warning-border-color: #C56213 !default;
+$button-warning-border-color-over: button-default-border-color-over($button-warning-border-color) !default;
+$button-warning-border-color-focus: button-default-border-color-focus($button-warning-border-color) !default;
+$button-warning-border-color-pressed: button-default-border-color-pressed($button-warning-border-color) !default;
+$button-warning-border-color-disabled: button-default-border-color-disabled($button-warning-border-color) !default;
 
-$button-orange-background-color: $button-orange-base-color !default;
-$button-orange-background-color-over: $button-orange-base-color-over !default;
-$button-orange-background-color-focus: $button-orange-base-color-focus !default;
-$button-orange-background-color-pressed: $button-orange-base-color-pressed !default;
-$button-orange-background-color-disabled: $button-orange-base-color-disabled !default;
+$button-warning-background-color: $button-warning-base-color !default;
+$button-warning-background-color-over: $button-warning-base-color-over !default;
+$button-warning-background-color-focus: $button-warning-base-color-focus !default;
+$button-warning-background-color-pressed: $button-warning-base-color-pressed !default;
+$button-warning-background-color-disabled: $button-warning-base-color-disabled !default;
 
-$button-orange-background-gradient: 'glossy-button' !default;
-$button-orange-background-gradient-over: 'glossy-button-over' !default;
-$button-orange-background-gradient-focus: $button-orange-background-gradient-over !default;
-$button-orange-background-gradient-pressed: 'glossy-button-pressed' !default;
-$button-orange-background-gradient-disabled: 'glossy-button-disabled' !default;
+$button-warning-background-gradient: 'glossy-button' !default;
+$button-warning-background-gradient-over: 'glossy-button-over' !default;
+$button-warning-background-gradient-focus: $button-warning-background-gradient-over !default;
+$button-warning-background-gradient-pressed: 'glossy-button-pressed' !default;
+$button-warning-background-gradient-disabled: 'glossy-button-disabled' !default;
 
-$button-orange-color: #FFFFFF !default;
-$button-orange-color-over: button-default-color-over($button-orange-color) !default;
-$button-orange-color-focus: button-default-color-focus($button-orange-color) !default;
-$button-orange-color-pressed: button-default-color-pressed($button-orange-color) !default;
-$button-orange-color-disabled: button-default-color-disabled($button-orange-color) !default;
+$button-warning-color: #FFFFFF !default;
+$button-warning-color-over: button-default-color-over($button-warning-color) !default;
+$button-warning-color-focus: button-default-color-focus($button-warning-color) !default;
+$button-warning-color-pressed: button-default-color-pressed($button-warning-color) !default;
+$button-warning-color-disabled: button-default-color-disabled($button-warning-color) !default;
 
-$button-orange-glyph-color: $button-orange-color !default;
-$button-orange-glyph-opacity: .5 !default;
+$button-warning-glyph-color: $button-warning-color !default;
+$button-warning-glyph-opacity: .5 !default;
+
+/**
+ * 'success' button UI.
+ */
+
+$button-success-base-color: #0B9743 !default;
+$button-success-base-color-over: button-default-background-color-over($button-success-base-color) !default;
+$button-success-base-color-focus: button-default-background-color-focus($button-success-base-color) !default;
+$button-success-base-color-pressed: button-default-background-color-pressed($button-success-base-color) !default;
+$button-success-base-color-disabled: button-default-background-color-disabled($button-success-base-color) !default;
+
+$button-success-border-color: #04642A !default;
+$button-success-border-color-over: button-default-border-color-over($button-success-border-color) !default;
+$button-success-border-color-focus: button-default-border-color-focus($button-success-border-color) !default;
+$button-success-border-color-pressed: button-default-border-color-pressed($button-success-border-color) !default;
+$button-success-border-color-disabled: button-default-border-color-disabled($button-success-border-color) !default;
+
+$button-success-background-color: $button-success-base-color !default;
+$button-success-background-color-over: $button-success-base-color-over !default;
+$button-success-background-color-focus: $button-success-base-color-focus !default;
+$button-success-background-color-pressed: $button-success-base-color-pressed !default;
+$button-success-background-color-disabled: $button-success-base-color-disabled !default;
+
+$button-success-background-gradient: 'glossy-button' !default;
+$button-success-background-gradient-over: 'glossy-button-over' !default;
+$button-success-background-gradient-focus: $button-success-background-gradient-over !default;
+$button-success-background-gradient-pressed: 'glossy-button-pressed' !default;
+$button-success-background-gradient-disabled: 'glossy-button-disabled' !default;
+
+$button-success-color: #FFFFFF !default;
+$button-success-color-over: button-default-color-over($button-success-color) !default;
+$button-success-color-focus: button-default-color-focus($button-success-color) !default;
+$button-success-color-pressed: button-default-color-pressed($button-success-color) !default;
+$button-success-color-disabled: button-default-color-disabled($button-success-color) !default;
+
+$button-success-glyph-color: $button-success-color !default;
+$button-success-glyph-opacity: .5 !default;
