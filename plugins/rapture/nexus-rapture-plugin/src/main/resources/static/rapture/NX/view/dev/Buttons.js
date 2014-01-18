@@ -32,9 +32,8 @@ Ext.define('NX.view.dev.Buttons', {
   initComponent: function () {
     var me = this;
 
+    // Add a panel for each button theme and render some example button states
     me.items = [];
-
-    // render buttons for each of the main theme ui flavors
     Ext.each(['default', 'primary', 'danger', 'warning', 'success'], function (ui) {
       me.items.push({
         xtype: 'container',
