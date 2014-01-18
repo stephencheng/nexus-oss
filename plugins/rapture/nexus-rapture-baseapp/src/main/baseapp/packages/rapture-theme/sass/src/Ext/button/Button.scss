@@ -41,3 +41,123 @@
   $font-family-pressed: $button-small-font-family-pressed,
   $font-family-disabled: $button-small-font-family-disabled
 );
+
+@include extjs-button-small-ui(
+  $ui: 'blue',
+
+  $border-color: $button-blue-border-color,
+  $border-color-over: $button-blue-border-color-over,
+  $border-color-focus: $button-blue-border-color-focus,
+  $border-color-pressed: $button-blue-border-color-pressed,
+  $border-color-disabled: $button-blue-border-color-disabled,
+
+  $background-color: $button-blue-background-color,
+  $background-color-over: $button-blue-background-color-over,
+  $background-color-focus: $button-blue-background-color-focus,
+  $background-color-pressed: $button-blue-background-color-pressed,
+  $background-color-disabled: $button-blue-background-color-disabled,
+
+  $color: $button-blue-color,
+  $color-over: $button-blue-color-over,
+  $color-focus: $button-blue-color-focus,
+  $color-pressed: $button-blue-color-pressed,
+  $color-disabled: $button-blue-color-disabled,
+
+  $font-size: $button-small-font-size,
+  $font-size-over: $button-small-font-size-over,
+  $font-size-focus: $button-small-font-size-focus,
+  $font-size-pressed: $button-small-font-size-pressed,
+  $font-size-disabled: $button-small-font-size-disabled,
+
+  $font-weight: $button-small-font-weight,
+  $font-weight-over: $button-small-font-weight-over,
+  $font-weight-focus: $button-small-font-weight-focus,
+  $font-weight-pressed: $button-small-font-weight-pressed,
+  $font-weight-disabled: $button-small-font-weight-disabled,
+
+  $font-family: $button-small-font-family,
+  $font-family-over: $button-small-font-family-over,
+  $font-family-focus: $button-small-font-family-focus,
+  $font-family-pressed: $button-small-font-family-pressed,
+  $font-family-disabled: $button-small-font-family-disabled
+);
+
+@include extjs-button-small-ui(
+  $ui: 'red',
+
+  $border-color: $button-red-border-color,
+  $border-color-over: $button-red-border-color-over,
+  $border-color-focus: $button-red-border-color-focus,
+  $border-color-pressed: $button-red-border-color-pressed,
+  $border-color-disabled: $button-red-border-color-disabled,
+
+  $background-color: $button-red-background-color,
+  $background-color-over: $button-red-background-color-over,
+  $background-color-focus: $button-red-background-color-focus,
+  $background-color-pressed: $button-red-background-color-pressed,
+  $background-color-disabled: $button-red-background-color-disabled,
+
+  $color: $button-red-color,
+  $color-over: $button-red-color-over,
+  $color-focus: $button-red-color-focus,
+  $color-pressed: $button-red-color-pressed,
+  $color-disabled: $button-red-color-disabled,
+
+  $font-size: $button-small-font-size,
+  $font-size-over: $button-small-font-size-over,
+  $font-size-focus: $button-small-font-size-focus,
+  $font-size-pressed: $button-small-font-size-pressed,
+  $font-size-disabled: $button-small-font-size-disabled,
+
+  $font-weight: $button-small-font-weight,
+  $font-weight-over: $button-small-font-weight-over,
+  $font-weight-focus: $button-small-font-weight-focus,
+  $font-weight-pressed: $button-small-font-weight-pressed,
+  $font-weight-disabled: $button-small-font-weight-disabled,
+
+  $font-family: $button-small-font-family,
+  $font-family-over: $button-small-font-family-over,
+  $font-family-focus: $button-small-font-family-focus,
+  $font-family-pressed: $button-small-font-family-pressed,
+  $font-family-disabled: $button-small-font-family-disabled
+);
+
+@include extjs-button-small-ui(
+  $ui: 'orange',
+
+  $border-color: $button-orange-border-color,
+  $border-color-over: $button-orange-border-color-over,
+  $border-color-focus: $button-orange-border-color-focus,
+  $border-color-pressed: $button-orange-border-color-pressed,
+  $border-color-disabled: $button-orange-border-color-disabled,
+
+  $background-color: $button-orange-background-color,
+  $background-color-over: $button-orange-background-color-over,
+  $background-color-focus: $button-orange-background-color-focus,
+  $background-color-pressed: $button-orange-background-color-pressed,
+  $background-color-disabled: $button-orange-background-color-disabled,
+
+  $color: $button-orange-color,
+  $color-over: $button-orange-color-over,
+  $color-focus: $button-orange-color-focus,
+  $color-pressed: $button-orange-color-pressed,
+  $color-disabled: $button-orange-color-disabled,
+
+  $font-size: $button-small-font-size,
+  $font-size-over: $button-small-font-size-over,
+  $font-size-focus: $button-small-font-size-focus,
+  $font-size-pressed: $button-small-font-size-pressed,
+  $font-size-disabled: $button-small-font-size-disabled,
+
+  $font-weight: $button-small-font-weight,
+  $font-weight-over: $button-small-font-weight-over,
+  $font-weight-focus: $button-small-font-weight-focus,
+  $font-weight-pressed: $button-small-font-weight-pressed,
+  $font-weight-disabled: $button-small-font-weight-disabled,
+
+  $font-family: $button-small-font-family,
+  $font-family-over: $button-small-font-family-over,
+  $font-family-focus: $button-small-font-family-focus,
+  $font-family-pressed: $button-small-font-family-pressed,
+  $font-family-disabled: $button-small-font-family-disabled
+);

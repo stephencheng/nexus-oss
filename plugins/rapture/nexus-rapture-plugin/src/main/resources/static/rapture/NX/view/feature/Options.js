@@ -12,6 +12,9 @@
  */
 Ext.define('NX.view.feature.Options', {
   extend: 'Ext.Panel',
+  requires: [
+    'NX.view.BlueButton'
+  ],
   alias: 'widget.nx-feature-options',
 
   title: 'Options',
@@ -36,8 +39,28 @@ Ext.define('NX.view.feature.Options', {
     },
     {
       xtype: 'button',
-      text: 'foo',
+      text: 'disabled',
+      disabled: true
+    },
+    {
+      xtype: 'button',
+      text: 'success',
       ui: 'foo'
+    },
+    {
+      xtype: 'button',
+      text: 'primary',
+      ui: 'blue'
+    },
+    {
+      xtype: 'button',
+      text: 'danger',
+      ui: 'red'
+    },
+    {
+      xtype: 'button',
+      text: 'warning',
+      ui: 'orange'
     }
   ]
 });
