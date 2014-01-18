@@ -12,9 +12,6 @@
  */
 Ext.define('NX.view.feature.Options', {
   extend: 'Ext.Panel',
-  requires: [
-    'NX.view.BlueButton'
-  ],
   alias: 'widget.nx-feature-options',
 
   title: 'Options',
