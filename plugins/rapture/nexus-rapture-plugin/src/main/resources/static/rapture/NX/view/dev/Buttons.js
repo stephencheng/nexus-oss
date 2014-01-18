@@ -48,7 +48,17 @@ Ext.define('NX.view.dev.Buttons', {
         items: [
           { xtype: 'label', text: 'ui: \'' + ui + '\''},
           { xtype: 'button', text: 'normal', ui: ui },
-          { xtype: 'button', text: 'disabled', ui: ui, disabled: true }
+          { xtype: 'button', text: 'disabled', ui: ui, disabled: true },
+          {
+            xtype: 'button',
+            text: 'menu',
+            ui: ui,
+            menu: [
+              { text: 'Hello' },
+              '-',
+              { text: 'Goodbye' }
+            ]
+          }
         ]
       });
     });
