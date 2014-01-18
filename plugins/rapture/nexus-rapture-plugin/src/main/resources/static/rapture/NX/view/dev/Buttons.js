@@ -10,14 +10,11 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.view.feature.Options', {
-  extend: 'Ext.Panel',
-  alias: 'widget.nx-feature-options',
+Ext.define('NX.view.dev.Buttons', {
+  extend: 'Ext.panel.Panel',
+  alias: 'widget.nx-dev-buttons',
 
-  title: 'Options',
-  width: 100,
-  stateful: true,
-  stateId: 'nx-feature-options',
+  title: 'Buttons',
 
   layout: {
     type: 'vbox',
@@ -29,10 +26,33 @@ Ext.define('NX.view.feature.Options', {
     width: '100%'
   },
 
-  items: [
-    {
-      xtype: 'button',
-      text: 'normal'
-    }
-  ]
+  /**
+   * @protected
+   */
+  initComponent: function () {
+    var me = this;
+
+    me.items = [];
+
+    Ext.each(['default', 'blue', 'red', 'orange', 'foo'], function (ui) {
+      me.items.push({
+        xtype: 'container',
+        layout: {
+          type: 'hbox',
+          padding: 4,
+          defaultMargins: {top: 0, right: 4, bottom: 0, left: 0}
+        },
+        defaults: {
+          width: 80
+        },
+        items: [
+          { xtype: 'label', text: 'ui: \'' + ui + '\''},
+          { xtype: 'button', text: 'normal', ui: ui },
+          { xtype: 'button', text: 'disabled', ui: ui, disabled: true }
+        ]
+      });
+    });
+
+    me.callSuper();
+  }
 });
