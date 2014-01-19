@@ -20,7 +20,7 @@ Ext.define('NX.store.Feature', {
     children: [
       {
         text: 'Dashboard',
-        view: 'NX.view.dashboard.Panel',
+        view: 'NX.view.dashboard.Feature',
         bookmark: 'dashboard',
         leaf: true
       }

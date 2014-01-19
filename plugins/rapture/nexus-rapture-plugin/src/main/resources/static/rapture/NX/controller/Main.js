@@ -19,7 +19,7 @@ Ext.define('NX.controller.Main', {
   views: [
     'Main',
     'Header',
-    'dashboard.Panel',
+    'dashboard.Feature',
     'dev.Panel',
     'dev.Buttons',
     'feature.Menu',
