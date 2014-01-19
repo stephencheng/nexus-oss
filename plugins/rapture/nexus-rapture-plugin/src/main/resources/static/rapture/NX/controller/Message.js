@@ -45,6 +45,7 @@ Ext.define('NX.controller.Message', {
    * @public
    */
   addMessage: function(message) {
+    // TODO: This should probably have a reverse order, so that latest messages are at the top?
     this.getMessageStore().add(message);
 
     // TODO: Show transient message display
