@@ -17,11 +17,6 @@ Ext.define('NX.view.Viewport', {
   // TODO: easily switch the entire UI (for startup/upgrade or licensing wizards)
   layout: 'border',
 
-  defaults: {
-    // HACK: Add border to make areas standout
-    border: true
-  },
-
   items: [
     {
       xtype: 'nx-header',
