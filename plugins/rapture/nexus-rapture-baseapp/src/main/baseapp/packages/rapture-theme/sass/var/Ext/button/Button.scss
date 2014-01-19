@@ -149,3 +149,34 @@ $button-success-color-disabled: button-default-color-disabled($button-success-co
 
 $button-success-glyph-color: $button-success-color !default;
 $button-success-glyph-opacity: .5 !default;
+
+/**
+ * 'header' toolbar button UI.
+ */
+
+$button-header-toolbar-border-color: #447712 !default;
+$button-header-toolbar-border-color-over: button-toolbar-border-color-over($button-header-toolbar-border-color) !default;
+$button-header-toolbar-border-color-focus: button-toolbar-border-color-focus($button-header-toolbar-border-color) !default;
+$button-header-toolbar-border-color-pressed: button-toolbar-border-color-pressed($button-header-toolbar-border-color) !default;
+$button-header-toolbar-border-color-disabled: button-toolbar-border-color-disabled($button-header-toolbar-border-color) !default;
+
+$button-header-toolbar-background-color: #62912E !default;
+$button-header-toolbar-background-color-over: button-toolbar-background-color-over($button-header-toolbar-background-color) !default;
+$button-header-toolbar-background-color-focus: button-toolbar-background-color-focus($button-header-toolbar-background-color) !default;
+$button-header-toolbar-background-color-pressed: button-toolbar-background-color-pressed($button-header-toolbar-background-color) !default;
+$button-header-toolbar-background-color-disabled: button-toolbar-background-color-disabled($button-header-toolbar-background-color) !default;
+
+$button-header-toolbar-background-gradient: 'glossy-button' !default;
+$button-header-toolbar-background-gradient-over: 'glossy-button-over' !default;
+$button-header-toolbar-background-gradient-focus: $button-header-toolbar-background-gradient-over !default;
+$button-header-toolbar-background-gradient-pressed: 'glossy-button-pressed' !default;
+$button-header-toolbar-background-gradient-disabled: 'glossy-button-disabled' !default;
+
+$button-header-toolbar-color: #FFFFFF !default;
+$button-header-toolbar-color-over: button-toolbar-color-over($button-header-toolbar-color) !default;
+$button-header-toolbar-color-focus: button-toolbar-color-focus($button-header-toolbar-color) !default;
+$button-header-toolbar-color-pressed: button-toolbar-color-pressed($button-header-toolbar-color) !default;
+$button-header-toolbar-color-disabled: button-toolbar-color-disabled($button-header-toolbar-color) !default;
+
+$button-header-toolbar-glyph-color: $button-header-toolbar-color !default;
+$button-header-toolbar-glyph-opacity: .5 !default;

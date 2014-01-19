@@ -19,8 +19,12 @@ Ext.define('NX.view.Header', {
   items: {
     xtype: 'toolbar',
 
+    style: {
+      'background-color': '#000000'
+    },
+
     defaults: {
-      // make all buttons medium
+      ui: 'header',
       scale: 'medium'
     },
 
@@ -35,13 +39,21 @@ Ext.define('NX.view.Header', {
       {
         xtype: 'label',
         id: 'name',
-        text: 'Sonatype Nexus'
+        text: 'Sonatype Nexus',
+        style: {
+          'color': '#FFFFFF',
+          'font-size': '20px'
+        }
       },
       '-',
       {
         xtype: 'label',
         id: 'edition',
-        text: 'Unknown'
+        text: 'Unknown',
+        style: {
+          'color': '#DDDDDD',
+          'font-size': '12px'
+        }
       },
       '->',
       {

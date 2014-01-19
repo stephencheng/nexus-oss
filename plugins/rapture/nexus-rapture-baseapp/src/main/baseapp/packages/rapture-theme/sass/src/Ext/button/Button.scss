@@ -161,3 +161,43 @@
   $font-family-pressed: $button-small-font-family-pressed,
   $font-family-disabled: $button-small-font-family-disabled
 );
+
+@include extjs-button-toolbar-medium-ui(
+  $ui: 'header',
+
+  $border-color: $button-header-toolbar-border-color,
+  $border-color-over: $button-header-toolbar-border-color-over,
+  $border-color-focus: $button-header-toolbar-border-color-focus,
+  $border-color-pressed: $button-header-toolbar-border-color-pressed,
+  $border-color-disabled: $button-header-toolbar-border-color-disabled,
+
+  $background-color: $button-header-toolbar-background-color,
+  $background-color-over: $button-header-toolbar-background-color-over,
+  $background-color-focus: $button-header-toolbar-background-color-focus,
+  $background-color-pressed: $button-header-toolbar-background-color-pressed,
+  $background-color-disabled: $button-header-toolbar-background-color-disabled,
+
+  $color: $button-header-toolbar-color,
+  $color-over: $button-header-toolbar-color-over,
+  $color-focus: $button-header-toolbar-color-focus,
+  $color-pressed: $button-header-toolbar-color-pressed,
+  $color-disabled: $button-header-toolbar-color-disabled,
+
+  $font-size: $button-medium-font-size,
+  $font-size-over: $button-medium-font-size-over,
+  $font-size-focus: $button-medium-font-size-focus,
+  $font-size-pressed: $button-medium-font-size-pressed,
+  $font-size-disabled: $button-medium-font-size-disabled,
+
+  $font-weight: $button-medium-font-weight,
+  $font-weight-over: $button-medium-font-weight-over,
+  $font-weight-focus: $button-medium-font-weight-focus,
+  $font-weight-pressed: $button-medium-font-weight-pressed,
+  $font-weight-disabled: $button-medium-font-weight-disabled,
+
+  $font-family: $button-medium-font-family,
+  $font-family-over: $button-medium-font-family-over,
+  $font-family-focus: $button-medium-font-family-focus,
+  $font-family-pressed: $button-medium-font-family-pressed,
+  $font-family-disabled: $button-medium-font-family-disabled
+);
