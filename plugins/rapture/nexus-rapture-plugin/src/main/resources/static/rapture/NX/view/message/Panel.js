@@ -30,7 +30,8 @@ Ext.define('NX.view.message.Panel', {
       xtype: 'gridpanel',
       store: 'Message',
       columns: [
-        { text: 'text', dataIndex: 'text', flex: 1 }
+        // HACK: Using template for now to show more than one model field, will refine later
+        { xtype:'templatecolumn', tpl: '{text}: {timestamp}', flex: 1 }
       ],
       hideHeaders: true,
       emptyText: 'No messages',

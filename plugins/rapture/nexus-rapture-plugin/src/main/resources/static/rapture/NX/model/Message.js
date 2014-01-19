@@ -13,6 +13,7 @@
 Ext.define('NX.model.Message', {
   extend: 'Ext.data.Model',
   fields: [
+    { name: 'timestamp', type: 'date' },
     { name: 'text', type: 'string' }
 
     // TODO: timestamp, icon, etc

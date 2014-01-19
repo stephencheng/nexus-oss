@@ -45,8 +45,12 @@ Ext.define('NX.controller.Message', {
    * @public
    */
   addMessage: function(message) {
+    var me = this;
+
+    message.timestamp = new Date();
+
     // TODO: This should probably have a reverse order, so that latest messages are at the top?
-    this.getMessageStore().add(message);
+    me.getMessageStore().add(message);
 
     // TODO: Show transient message display
   }
