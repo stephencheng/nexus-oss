@@ -19,7 +19,7 @@ Ext.define('NX.controller.Main', {
   views: [
     'Main',
     'Header',
-    'Welcome',
+    'dashboard.Panel',
     'dev.Panel',
     'dev.Buttons',
     'feature.Menu',
@@ -121,9 +121,9 @@ Ext.define('NX.controller.Main', {
     var me = this,
         token = Ext.History.getToken();
 
-    // default to the welcome feature
+    // default to the dashboard feature
     if (!token) {
-      token = 'welcome';
+      token = 'dashboard';
     }
 
     me.logDebug('Init bookmark: ' + token);

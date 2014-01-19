@@ -18,7 +18,12 @@ Ext.define('NX.store.Feature', {
     expanded: true,
     text: 'Features',
     children: [
-      { text: 'Welcome', view: 'Welcome', bookmark: 'welcome', leaf: true }
+      {
+        text: 'Dashboard',
+        view: 'NX.view.dashboard.Panel',
+        bookmark: 'dashboard',
+        leaf: true
+      }
     ]
   }
 });

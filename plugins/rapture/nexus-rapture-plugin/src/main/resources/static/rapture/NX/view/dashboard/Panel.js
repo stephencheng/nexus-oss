@@ -10,13 +10,11 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.view.Welcome', {
+Ext.define('NX.view.dashboard.Panel', {
   extend: 'Ext.Panel',
-  alias: 'widget.nx-welcome',
+  alias: 'widget.nx-dashboard-panel',
 
-  // TODO: This should be transformed into a dashboard
-
-  title: 'Welcome',
+  title: 'Dashboard',
   layout: 'fit',
 
   items: {
