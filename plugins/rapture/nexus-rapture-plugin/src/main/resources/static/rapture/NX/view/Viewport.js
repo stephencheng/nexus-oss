@@ -13,64 +13,9 @@
 Ext.define('NX.view.Viewport', {
   extend: 'Ext.container.Viewport',
 
-  // TODO: Keep the viewport simple have it delegate to another component w/fit layout so that we can
-  // TODO: easily switch the entire UI (for startup/upgrade or licensing wizards)
-  layout: 'border',
+  layout: 'fit',
 
-  defaults: {
-    border: true
-  },
-
-  items: [
-    {
-      xtype: 'nx-header',
-      region: 'north',
-      collapsible: false
-    },
-
-    {
-      xtype: 'nx-feature-menu',
-      region: 'west',
-      collapsible: true,
-      collapsed: false,
-      split: true
-    },
-
-    {
-      xtype: 'nx-feature-content',
-      region: 'center'
-    },
-
-    {
-      xtype: 'nx-message-panel',
-      region: 'east',
-      collapsible: true,
-      collapsed: true,
-      split: true
-    },
-
-    {
-      xtype: 'nx-dev-panel',
-      region: 'south',
-      collapsible: true,
-      collapsed: true,
-      resizable: true,
-      resizeHandles: 'n',
-
-      // default to hidden, only show if debug enabled
-      hidden: true
-    }
-  ],
-
-  /**
-   * @protected
-   */
-  initComponent: function() {
-    this.callParent();
-
-    // if debug enabled, show developer tools
-    if (window.location.search === '?debug') {
-      this.down('nx-dev-panel').show();
-    }
+  items: {
+    xtype: 'nx-main'
   }
 });

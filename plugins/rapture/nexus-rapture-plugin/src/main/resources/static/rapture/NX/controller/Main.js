@@ -17,6 +17,7 @@ Ext.define('NX.controller.Main', {
   },
 
   views: [
+    'Main',
     'Header',
     'dev.Panel',
     'dev.Buttons',
