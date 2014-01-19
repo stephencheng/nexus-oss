@@ -41,18 +41,20 @@ Ext.define('NX.view.Login', {
           labelAlign: 'right',
           labelWidth: '80'
         },
-        bodyPadding: 5,
+        bodyPadding: 10,
         items: [
           {
             xtype: 'textfield',
             name: 'username',
-            fieldLabel: 'Username'
+            fieldLabel: 'Username',
+            emptyText: 'enter your username'
           },
           {
             xtype: 'textfield',
             name: 'password',
             fieldLabel: 'Password',
-            inputType: 'password'
+            inputType: 'password',
+            emptyText: 'enter your password'
           }
         ],
 
