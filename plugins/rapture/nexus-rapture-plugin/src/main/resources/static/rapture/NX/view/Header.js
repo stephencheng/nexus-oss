@@ -46,7 +46,8 @@ Ext.define('NX.view.Header', {
       '->',
       {
         xtype: 'textfield',
-        emptyText: 'quick search'
+        emptyText: 'quick search',
+        minWidth: 250
       },
       '-',
       {
@@ -55,7 +56,15 @@ Ext.define('NX.view.Header', {
       },
       {
         xtype: 'button',
-        text: 'Help'
+        text: 'Help',
+        menu: [
+          // HACK: This is context help for the selected feature, should update when feature changes
+          { text: 'Repositories' },
+          '-',
+          { text: 'About' },
+          { text: 'Manual' },
+          { text: 'Support' }
+        ]
       },
       '-',
       {
