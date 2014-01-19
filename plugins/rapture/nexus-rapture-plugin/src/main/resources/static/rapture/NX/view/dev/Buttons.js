@@ -63,6 +63,6 @@ Ext.define('NX.view.dev.Buttons', {
       });
     });
 
-    me.callSuper();
+    me.callParent();
   }
 });

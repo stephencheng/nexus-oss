@@ -44,7 +44,7 @@ Ext.define('NX.view.masterdetail.Panel', {
 
   destroy: function () {
     this.down(this.list).un('selectionchange', this.selectionChange);
-    this.callSuper();
+    this.callParent();
   },
 
   setDescription: function (description) {

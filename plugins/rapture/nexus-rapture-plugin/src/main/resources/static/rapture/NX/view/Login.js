@@ -22,6 +22,9 @@ Ext.define('NX.view.Login', {
   constrain: true,
   width: 320,
 
+  /**
+   * @protected
+   */
   initComponent: function () {
     var me = this;
 
@@ -57,7 +60,7 @@ Ext.define('NX.view.Login', {
       }
     });
 
-    me.callParent(arguments);
+    me.callParent();
   }
 
 });
