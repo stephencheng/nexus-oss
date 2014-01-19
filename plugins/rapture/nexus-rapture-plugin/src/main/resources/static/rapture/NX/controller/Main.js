@@ -19,12 +19,12 @@ Ext.define('NX.controller.Main', {
   views: [
     'Main',
     'Header',
+    'Welcome',
     'dev.Panel',
     'dev.Buttons',
     'feature.Menu',
     'feature.Content',
     'message.Panel',
-    'Welcome',
     'info.Entry',
     'info.Panel'
   ],
