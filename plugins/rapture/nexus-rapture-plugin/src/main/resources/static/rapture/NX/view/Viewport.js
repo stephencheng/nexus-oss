@@ -43,7 +43,7 @@ Ext.define('NX.view.Viewport', {
     },
 
     {
-      xtype: 'nx-feature-options',
+      xtype: 'nx-message-panel',
       region: 'east',
       collapsible: true,
       collapsed: true,

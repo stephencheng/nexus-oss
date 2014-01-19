@@ -79,10 +79,16 @@ Ext.define('NX.controller.Status', {
       loginButton.hide();
       userButton.setText(status.loggedInUsername);
       userButton.show();
+
+      // FIXME: This actually shows way too many times, but good to show data for now
+      me.getApplication().getMessageController().addMessage({text: 'User logged in: ' + status.loggedInUsername});
     }
     else {
       loginButton.show();
       userButton.hide();
+
+      // FIXME: Again not ideal, but good for showing data for now
+      me.getApplication().getMessageController().addMessage({text: 'User logged out'});
     }
   },
 

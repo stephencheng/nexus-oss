@@ -10,29 +10,11 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.view.feature.Options', {
-  extend: 'Ext.Panel',
-  alias: 'widget.nx-feature-options',
+Ext.define('NX.model.Message', {
+  extend: 'Ext.data.Model',
+  fields: [
+    { name: 'text', type: 'string' }
 
-  title: 'Options',
-  width: 100,
-  stateful: true,
-  stateId: 'nx-feature-options',
-
-  layout: {
-    type: 'vbox',
-    padding: 4,
-    defaultMargins: {top: 0, right: 0, bottom: 4, left: 0}
-  },
-
-  defaults: {
-    width: '100%'
-  },
-
-  items: [
-    {
-      xtype: 'button',
-      text: 'normal'
-    }
+    // TODO: timestamp, icon, etc
   ]
 });

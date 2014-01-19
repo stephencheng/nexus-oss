@@ -33,15 +33,18 @@ Ext.define('NX.app.Application', {
   controllers: [
     'Main',
     'MasterDetail',
+    'Message',
     'Status'
   ],
   models: [
-    'Feature'
+    'Feature',
+    'Message'
+  ],
+  stores: [
+    'Feature',
+    'Message'
   ],
   refs: [],
-  stores: [
-    'Feature'
-  ],
 
   constructor: function (config) {
     var self = this, custom, keys;
