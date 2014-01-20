@@ -60,14 +60,19 @@ Ext.define('NX.controller.Main', {
       me.restoreBookmark(token);
     });
 
-    me.control({
-      'nx-feature-menu': {
-        select: me.selectFeature,
-        afterrender: me.initBookmark
+    me.listen({
+      store:{
+        '#Feature': {
+          beforeremove: me.checkFeature
+        }
+      },
+      component: {
+        'nx-feature-menu': {
+          select: me.selectFeature,
+          afterrender: me.initBookmark
+        }
       }
     });
-
-    me.getFeatureStore().on('beforeremove', me.checkFeature, me);
   },
 
   /**
