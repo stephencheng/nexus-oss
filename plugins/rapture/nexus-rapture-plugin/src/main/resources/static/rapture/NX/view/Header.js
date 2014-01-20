@@ -19,8 +19,11 @@ Ext.define('NX.view.Header', {
   items: {
     xtype: 'toolbar',
 
+    // dark background with south border highlight
+    border: '0 0 2 0',
     style: {
-      'background-color': '#000000'
+      backgroundColor: '#000000',
+      borderColor: '#4d801a'
     },
 
     defaults: {
