@@ -43,7 +43,7 @@ Ext.define('NX.controller.Message', {
       }
     });
 
-    me.getStore('Message').on('datachanged', me.updateTitle, me);
+    me.getMessageStore().on('datachanged', me.updateTitle, me);
   },
 
   /**
@@ -53,8 +53,7 @@ Ext.define('NX.controller.Message', {
    */
   updateTitle: function() {
     var me = this,
-        store = me.getStore('Message'),
-        count = store.getCount(),
+        count = me.getMessageStore().getCount(),
         title = 'Messages';
 
     if (count != 0) {
