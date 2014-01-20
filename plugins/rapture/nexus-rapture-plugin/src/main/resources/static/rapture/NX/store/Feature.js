@@ -23,6 +23,19 @@ Ext.define('NX.store.Feature', {
         view: 'NX.view.dashboard.Feature',
         bookmark: 'dashboard',
         leaf: true
+      },
+
+      // HACK: Grouping example data
+      {
+        text: 'Settings',
+        bookmark: 'settings',
+        leaf: false,
+        children: [
+          { text: 'SMTP', leaf: true },
+          { text: 'HTTP Request', leaf: true },
+          { text: 'Security', leaf: true },
+          { text: 'Notifications', leaf: true },
+        ]
       }
     ]
   }

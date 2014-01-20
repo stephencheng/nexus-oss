@@ -77,6 +77,11 @@ Ext.define('NX.controller.Main', {
         view,
         cmp;
 
+    // records which are not leaves are groups, ignore selection
+    if (!record.isLeaf()) {
+      return;
+    }
+
     view = record.get('view');
     me.logDebug('Selecting feature view: ' + view);
 
