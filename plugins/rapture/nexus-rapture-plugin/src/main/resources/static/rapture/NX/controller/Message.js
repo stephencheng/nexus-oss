@@ -24,6 +24,16 @@ Ext.define('NX.controller.Message', {
     'Message'
   ],
 
+  refs: [
+    {
+      ref: 'panel',
+      selector: 'nx-message-panel'
+    }
+  ],
+
+  /**
+   * @protected
+   */
   init: function () {
     var me = this;
 
@@ -32,6 +42,26 @@ Ext.define('NX.controller.Message', {
         click: me.clearMessages
       }
     });
+
+    me.getStore('Message').on('datachanged', me.updateTitle, me);
+  },
+
+  /**
+   * Change the panel title when the # of records in the store changes.
+   *
+   * @private
+   */
+  updateTitle: function() {
+    var me = this,
+        store = me.getStore('Message'),
+        count = store.getCount(),
+        title = 'Messages';
+
+    if (count != 0) {
+      title = Ext.util.Format.plural(count, 'Message', 'Messages');
+    }
+
+    me.getPanel().setTitle(title);
   },
 
   /**
