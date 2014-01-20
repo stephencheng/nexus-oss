@@ -26,7 +26,13 @@ Ext.define('NX.controller.Info', {
   init: function () {
     var me = this;
 
-    me.getApplication().getStatusController().on('info', me.updateInfo, me);
+    me.listen({
+      controller: {
+        '#Status': {
+          info: me.updateInfo
+        }
+      }
+    });
   },
 
   /**
