@@ -38,10 +38,17 @@ Ext.define('NX.coreui.controller.Repositories', {
 
   init: function () {
     var me = this;
+
     me.listen({
       controller: {
         '#User': {
           permissionsChanged: me.onPermissionsChanged
+        }
+      },
+      store:{
+        '#RepositoryStore': {
+          load: me.onRepositoryStoreLoad,
+          beforeload: me.onRepositoryStoreBeforeLoad
         }
       },
       component: {
@@ -54,9 +61,6 @@ Ext.define('NX.coreui.controller.Repositories', {
         }
       }
     });
-
-    this.getRepositoryStore().on('load', this.onRepositoryStoreLoad, this);
-    this.getRepositoryStore().on('beforeload', this.onRepositoryStoreBeforeLoad, this);
   },
 
   onListRendered: function () {
