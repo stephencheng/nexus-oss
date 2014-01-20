@@ -12,6 +12,9 @@
  */
 Ext.define('NX.controller.Message', {
   extend: 'Ext.app.Controller',
+  requires: [
+    'Ext.ux.window.Notification'
+  ],
   mixins: {
     logAware: 'NX.LogAware'
   },
@@ -40,6 +43,9 @@ Ext.define('NX.controller.Message', {
     me.control({
       'nx-message-panel button[action=clear]': {
         click: me.clearMessages
+      },
+      'nx-message-panel button[action=test]': {
+        click: me.testMessage
       }
     });
 
@@ -70,6 +76,13 @@ Ext.define('NX.controller.Message', {
   },
 
   /**
+   * @private
+   */
+  testMessage: function() {
+    this.addMessage({ text: 'test' });
+  },
+
+  /**
    * @public
    */
   addMessage: function(message) {
@@ -81,9 +94,21 @@ Ext.define('NX.controller.Message', {
     // add new messages to the top of the store
     store.insert(0, message);
 
-    // TODO: Limit store size, remove records > 100 or something?
-    // TODO: store.removeAt(...)
-
-    // TODO: Show transient message display
+    // show transient message window
+    Ext.create('Ext.ux.window.Notification', {
+      title: message.text,
+      position: 'br',
+      manager: 'default',
+      stickWhileHover: false,
+      //iconCls: 'ux-notification-icon-information',
+      //html: message.text,
+      slideInDuration: 800,
+      slideBackDuration: 1500,
+      autoCloseDelay: 4000,
+      slideInAnimation: 'elasticIn',
+      slideBackAnimation: 'elasticIn',
+      width: 200
+      //height: 124
+    }).show();
   }
 });

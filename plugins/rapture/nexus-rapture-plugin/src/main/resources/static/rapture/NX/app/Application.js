@@ -29,6 +29,10 @@ Ext.define('NX.app.Application', {
   name: 'NX',
   appFolder: 'static/rapture/NX', // relative to /rapture.html
 
+  paths: {
+    'Ext.ux': 'static/rapture/Ext/ux'
+  },
+
   namespaces: [],
   controllers: [
     'Main',
