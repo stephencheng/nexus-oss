@@ -32,29 +32,29 @@ Ext.define('NX.controller.User', {
   ],
 
   user: {
-
   },
 
   init: function () {
     var me = this;
 
-    me.addEvents(
-        'permissions'
-    );
-
-    me.control({
-      'nx-header button[action=login]': {
-        click: me.showLoginWindow
+    me.listen({
+      controller: {
+        '#Status': {
+          user: me.updateUser
+        }
       },
-      'nx-login button[action=login]': {
-        click: me.login
-      },
-      'nx-header button[action=user] menuitem[action=logout]': {
-        click: me.logout
+      component: {
+        'nx-header button[action=login]': {
+          click: me.showLoginWindow
+        },
+        'nx-login button[action=login]': {
+          click: me.login
+        },
+        'nx-header button[action=user] menuitem[action=logout]': {
+          click: me.logout
+        }
       }
     });
-
-    me.getApplication().getStatusController().on('user', me.updateUser, me);
   },
 
   /**
@@ -75,7 +75,7 @@ Ext.define('NX.controller.User', {
         }
         me.user = user;
         NX.util.Permissions.setPermissions(user.permissions);
-        me.fireEvent('permissions', NX.util.Permissions);
+        me.fireEvent('permissionsChanged', NX.util.Permissions);
       }
     }
     else {
@@ -86,7 +86,7 @@ Ext.define('NX.controller.User', {
 
         me.user = {};
         NX.util.Permissions.setPermissions({});
-        me.fireEvent('permissions', NX.util.Permissions);
+        me.fireEvent('permissionsChanged', NX.util.Permissions);
       }
     }
   },
