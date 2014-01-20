@@ -34,7 +34,7 @@ Ext.define('NX.store.Feature', {
         leaf: false,
         children: [
           { text: 'SMTP', weight: 9, leaf: true },
-          { text: 'HTTP Request', weight: 10, leaf: true },
+          { text: 'HTTP', weight: 10, leaf: true },
           { text: 'Security', weight: 5, leaf: true },
           { text: 'Notifications', weight: 1, leaf: true },
         ]
@@ -42,21 +42,28 @@ Ext.define('NX.store.Feature', {
     ]
   },
 
-  // FIXME: This is not ideal, causes removes to be missed etc.
-
   /**
-   * @override
+   *@override
    */
-  onNodeAdded: function(parent, node) {
+  onNodeAdded: function (parent, node) {
     this.sort();
     this.callParent(arguments);
   },
 
   /**
+   *@override
+   */
+  onNodeRemove: function (parent, node, ismove) {
+    this.sort();
+    this.callParent(arguments);
+  },
+
+  /**
+   * Always sort by weight.
+   *
    * @override
    */
-  onBeforeSort: function() {
-    console.log('here');
+  onBeforeSort: function () {
     this.sort({
       property: 'weight',
       direction: 'ASC'

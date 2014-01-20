@@ -84,9 +84,6 @@ Ext.define('NX.controller.Main', {
         view,
         cmp;
 
-    // HACK
-    console.log(record.get('weight'));
-
     // records which are not leaves are groups, ignore selection
     if (!record.isLeaf()) {
       return;
