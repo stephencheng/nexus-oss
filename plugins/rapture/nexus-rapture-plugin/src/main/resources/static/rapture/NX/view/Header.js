@@ -60,9 +60,12 @@ Ext.define('NX.view.Header', {
       },
       '->',
       {
-        xtype: 'textfield',
+        xtype: 'triggerfield',
         emptyText: 'quick search',
-        minWidth: 250
+        minWidth: 250,
+        // TODO: Only show clear trigger if we have text
+        trigger1Cls: Ext.baseCSSPrefix + 'form-clear-trigger',
+        trigger2Cls: Ext.baseCSSPrefix + 'form-search-trigger'
       },
       '-',
       {
