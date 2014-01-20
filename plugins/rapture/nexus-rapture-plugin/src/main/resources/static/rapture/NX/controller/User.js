@@ -79,14 +79,15 @@ Ext.define('NX.controller.User', {
       }
     }
     else {
-      if (me.user.id) {
+      if (me.user.hash) {
         me.getApplication().getMessageController().addMessage({text: 'User logged out'});
         loginButton.show();
         userButton.hide();
+
+        me.user = {};
+        NX.util.Permissions.setPermissions({});
+        me.fireEvent('permissions', NX.util.Permissions);
       }
-      me.user = {};
-      NX.util.Permissions.setPermissions({});
-      me.fireEvent('permissions', NX.util.Permissions);
     }
   },
 
