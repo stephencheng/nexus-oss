@@ -46,7 +46,7 @@ Ext.define('NX.coreui.controller.Repositories', {
         }
       },
       store:{
-        '#RepositoryStore': {
+        '#Repository': {
           load: me.onRepositoryStoreLoad,
           beforeload: me.onRepositoryStoreBeforeLoad
         }
