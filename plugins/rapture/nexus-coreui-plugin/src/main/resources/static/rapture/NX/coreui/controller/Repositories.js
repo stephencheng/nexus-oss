@@ -48,13 +48,7 @@ Ext.define('NX.coreui.controller.Repositories', {
       }
     });
 
-    // HACK: Testing registration of feature for navigation
-    this.getFeatureStore().getRootNode().appendChild({
-      text: 'Repositories',
-      view: 'NX.coreui.view.Repositories',
-      bookmark: 'repositories',
-      leaf: true
-    });
+    this.getApplication().getUserController().on('permissions', this.applyPermissionsOnMenu, this);
 
     this.getRepositoryStore().on('load', this.onRepositoryStoreLoad, this);
     this.getRepositoryStore().on('beforeload', this.onRepositoryStoreBeforeLoad, this);
@@ -71,7 +65,7 @@ Ext.define('NX.coreui.controller.Repositories', {
   onListDestroyed: function () {
     var me = this;
 
-    me.getApplication().getUserController().on('permissions', me.applyPermissions, me);
+    me.getApplication().getUserController().un('permissions', me.applyPermissions, me);
   },
 
   loadStores: function () {
@@ -200,6 +194,29 @@ Ext.define('NX.coreui.controller.Repositories', {
     }
     else {
       deleteButton.disable();
+    }
+  },
+
+  applyPermissionsOnMenu: function () {
+    var me = this,
+        perms = NX.util.Permissions;
+
+    if (perms.check('nexus:repositories', perms.READ)) {
+      // HACK: Testing registration of feature for navigation
+      if (!me.menuNode) {
+        me.menuNode = me.getFeatureStore().getRootNode().appendChild({
+          text: 'Repositories',
+          view: 'NX.coreui.view.Repositories',
+          bookmark: 'repositories',
+          leaf: true
+        });
+      }
+    }
+    else {
+      if (me.menuNode) {
+        me.getFeatureStore().getRootNode().removeChild(me.menuNode, true);
+        delete me.menuNode;
+      }
     }
   }
 
