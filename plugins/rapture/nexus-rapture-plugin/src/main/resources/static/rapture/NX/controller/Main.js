@@ -77,6 +77,9 @@ Ext.define('NX.controller.Main', {
         view,
         cmp;
 
+    // HACK
+    console.log(record.get('weight'));
+
     // records which are not leaves are groups, ignore selection
     if (!record.isLeaf()) {
       return;
@@ -85,7 +88,7 @@ Ext.define('NX.controller.Main', {
     view = record.get('view');
     me.logDebug('Selecting feature view: ' + view);
 
-    // create new view and replace any current view
+// create new view and replace any current view
     cmp = me.getView(view).create();
     content.removeAll();
     content.add(cmp);

@@ -21,6 +21,7 @@ Ext.define('NX.store.Feature', {
       {
         text: 'Dashboard',
         view: 'NX.view.dashboard.Feature',
+        weight: 10,
         bookmark: 'dashboard',
         leaf: true
       },
@@ -28,15 +29,38 @@ Ext.define('NX.store.Feature', {
       // HACK: Grouping example data
       {
         text: 'Settings',
+        weight: 1000,
         bookmark: 'settings',
         leaf: false,
         children: [
-          { text: 'SMTP', leaf: true },
-          { text: 'HTTP Request', leaf: true },
-          { text: 'Security', leaf: true },
-          { text: 'Notifications', leaf: true },
+          { text: 'SMTP', weight: 9, leaf: true },
+          { text: 'HTTP Request', weight: 10, leaf: true },
+          { text: 'Security', weight: 5, leaf: true },
+          { text: 'Notifications', weight: 1, leaf: true },
         ]
       }
     ]
+  },
+
+  // FIXME: This is not ideal, causes removes to be missed etc.
+
+  /**
+   * @override
+   */
+  onNodeAdded: function(parent, node) {
+    this.sort();
+    this.callParent(arguments);
+  },
+
+  /**
+   * @override
+   */
+  onBeforeSort: function() {
+    console.log('here');
+    this.sort({
+      property: 'weight',
+      direction: 'ASC'
+    }, 'prepend', false);
+    this.callParent();
   }
 });
