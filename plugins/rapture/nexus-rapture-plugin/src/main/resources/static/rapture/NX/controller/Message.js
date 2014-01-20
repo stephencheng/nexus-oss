@@ -54,8 +54,11 @@ Ext.define('NX.controller.Message', {
   updateTitle: function() {
     var me = this,
         count = me.getMessageStore().getCount(),
-        title = Ext.util.Format.plural(count, 'Message', 'Messages');
+        title = 'Messages';
 
+    if (count != 0) {
+      title = Ext.util.Format.plural(count, 'Message');
+    }
     me.getPanel().setTitle(title);
   },
 
