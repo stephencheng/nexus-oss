@@ -122,7 +122,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     }
   },
 
-  deleteRepository: function() {
+  deleteRepository: function () {
     var me = this,
         selection = me.getList().getSelectionModel().getSelection();
 
@@ -195,13 +195,11 @@ Ext.define('NX.coreui.controller.Repositories', {
         selectedModels = me.getList().getSelectionModel().getSelection(),
         deleteButton = me.getList().down('button[action=delete]');
 
-    if (perms.check('nexus:repositories', perms.DELETE)) {
-      if (selectedModels.length > 0) {
-        deleteButton.enable();
-      }
-      else {
-        deleteButton.disable();
-      }
+    if (selectedModels.length > 0 && perms.check('nexus:repositories', perms.DELETE)) {
+      deleteButton.enable();
+    }
+    else {
+      deleteButton.disable();
     }
   }
 
