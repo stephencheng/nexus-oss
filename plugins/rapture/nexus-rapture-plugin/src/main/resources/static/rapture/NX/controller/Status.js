@@ -45,8 +45,7 @@ Ext.define('NX.controller.Status', {
       url: NX.direct.api.POLLING_URLS.status,
       interval: 5000,
       listeners: {
-        data: me.updateStatus,
-        exception: me.handleException,
+        data: me.onData,
         scope: me
       }
     });
@@ -55,7 +54,7 @@ Ext.define('NX.controller.Status', {
   /**
    * @private
    */
-  updateStatus: function (provider, event) {
+  onData: function (provider, event) {
     var me = this,
         status;
 
@@ -64,12 +63,14 @@ Ext.define('NX.controller.Status', {
       me.fireEvent('info', status.info);
       me.fireEvent('user', status.user);
     }
-  },
-
-  handleException: function () {
-    var me = this;
-
-    me.getApplication().getMessageController().addMessage({text: 'Problem'});
+    else {
+      if (event.code === 'xhr') {
+        me.getApplication().getMessageController().addMessage({text: 'Server disconnected'});
+      }
+      else if (event.type === 'exception') {
+        me.getApplication().getMessageController().addMessage({text: event.message});
+      }
+    }
   },
 
   refresh: function () {
