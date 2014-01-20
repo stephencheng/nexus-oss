@@ -66,6 +66,8 @@ Ext.define('NX.controller.Main', {
         afterrender: me.initBookmark
       }
     });
+
+    me.getFeatureStore().on('beforeremove', me.checkFeature, me);
   },
 
   /**
@@ -88,7 +90,7 @@ Ext.define('NX.controller.Main', {
     view = record.get('view');
     me.logDebug('Selecting feature view: ' + view);
 
-// create new view and replace any current view
+    // create new view and replace any current view
     cmp = me.getView(view).create();
     content.removeAll();
     content.add(cmp);
@@ -137,6 +139,17 @@ Ext.define('NX.controller.Main', {
     me.logDebug('Init bookmark: ' + token);
 
     me.restoreBookmark(token);
+  },
+
+  /**
+   * @private
+   */
+  checkFeature: function (treeStore, node) {
+    var me = this;
+
+    if (node.data.bookmark === Ext.History.getToken()) {
+      me.restoreBookmark('dashboard');
+    }
   }
 
 });
