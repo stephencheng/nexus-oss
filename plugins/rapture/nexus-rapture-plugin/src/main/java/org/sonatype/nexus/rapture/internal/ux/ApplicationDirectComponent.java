@@ -119,12 +119,13 @@ public class ApplicationDirectComponent
   }
 
   private UserXO getUser() {
-    UserXO userXO = new UserXO();
+    UserXO userXO = null;
 
     // TODO: only send back user if user info changed (based on hash)
 
     Subject subject = securitySystem.getSubject();
     if (subject != null && subject.isAuthenticated()) {
+      userXO = new UserXO();
       Object principal = subject.getPrincipal();
       if (principal != null) {
         userXO.setId(principal.toString());
