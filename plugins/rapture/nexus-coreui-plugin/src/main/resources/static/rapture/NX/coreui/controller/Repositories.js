@@ -16,7 +16,8 @@ Ext.define('NX.coreui.controller.Repositories', {
   requires: [
     'NX.util.Url',
     'NX.util.Msg',
-    'NX.util.ExtDirect'
+    'NX.util.ExtDirect',
+    'NX.util.Permissions'
   ],
 
   stores: [
@@ -38,7 +39,8 @@ Ext.define('NX.coreui.controller.Repositories', {
   init: function () {
     this.control({
       'nx-repository-list': {
-        beforerender: this.loadStores,
+        beforerender: this.onListRendered,
+        destroy: this.onListDestroyed,
         selectionchange: this.onSelectionChange
       },
       'nx-repository-list button[action=delete]': {
@@ -58,6 +60,20 @@ Ext.define('NX.coreui.controller.Repositories', {
     this.getRepositoryStore().on('beforeload', this.onRepositoryStoreBeforeLoad, this);
   },
 
+  onListRendered: function () {
+    var me = this;
+
+    me.loadStores();
+    me.applyPermissions();
+    me.getApplication().getUserController().on('permissions', me.applyPermissions, me);
+  },
+
+  onListDestroyed: function () {
+    var me = this;
+
+    me.getApplication().getUserController().on('permissions', me.applyPermissions, me);
+  },
+
   loadStores: function () {
     this.getRepositoryStore().load();
   },
@@ -67,17 +83,21 @@ Ext.define('NX.coreui.controller.Repositories', {
   },
 
   onRepositoryStoreLoad: function (store) {
-    var selectedModels = this.getList().getSelectionModel().getSelection();
+    var me = this,
+        selectedModels = me.getList().getSelectionModel().getSelection();
+
     if (selectedModels.length > 0) {
-      this.getList().down('button[action=delete]').enable();
-      this.showDetails(store.getById(selectedModels[0].getId()));
+      me.applyPermissions();
+      me.showDetails(store.getById(selectedModels[0].getId()));
     }
   },
 
   onSelectionChange: function (selectionModel, selectedModels) {
+    var me = this;
+
     if (selectedModels.length > 0) {
-      this.getList().down('button[action=delete]').enable();
-      this.showDetails(selectedModels[0]);
+      me.applyPermissions();
+      me.showDetails(selectedModels[0]);
     }
   },
 
@@ -102,7 +122,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     }
   },
 
-  deleteRepository: function (button) {
+  deleteRepository: function() {
     var me = this,
         selection = me.getList().getSelectionModel().getSelection();
 
@@ -167,6 +187,22 @@ Ext.define('NX.coreui.controller.Repositories', {
       return 'Unavailable' + (remoteStatusReason ? ' due to ' + remoteStatusReason : '');
     }
     return remoteStatus;
+  },
+
+  applyPermissions: function () {
+    var me = this,
+        perms = NX.util.Permissions,
+        selectedModels = me.getList().getSelectionModel().getSelection(),
+        deleteButton = me.getList().down('button[action=delete]');
+
+    if (perms.check('nexus:repositories', perms.DELETE)) {
+      if (selectedModels.length > 0) {
+        deleteButton.enable();
+      }
+      else {
+        deleteButton.disable();
+      }
+    }
   }
 
 });
