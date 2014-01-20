@@ -37,18 +37,23 @@ Ext.define('NX.coreui.controller.Repositories', {
   ],
 
   init: function () {
-    this.control({
-      'nx-repository-list': {
-        beforerender: this.onListRendered,
-        destroy: this.onListDestroyed,
-        selectionchange: this.onSelectionChange
+    var me = this;
+    me.listen({
+      controller: {
+        '#User': {
+          permissionsChanged: me.onPermissionsChanged
+        }
       },
-      'nx-repository-list button[action=delete]': {
-        click: this.deleteRepository
+      component: {
+        'nx-repository-list': {
+          beforerender: me.onListRendered,
+          selectionchange: me.onSelectionChange
+        },
+        'nx-repository-list button[action=delete]': {
+          click: me.deleteRepository
+        }
       }
     });
-
-    this.getApplication().getUserController().on('permissions', this.applyPermissionsOnMenu, this);
 
     this.getRepositoryStore().on('load', this.onRepositoryStoreLoad, this);
     this.getRepositoryStore().on('beforeload', this.onRepositoryStoreBeforeLoad, this);
@@ -59,13 +64,6 @@ Ext.define('NX.coreui.controller.Repositories', {
 
     me.loadStores();
     me.applyPermissions();
-    me.getApplication().getUserController().on('permissions', me.applyPermissions, me);
-  },
-
-  onListDestroyed: function () {
-    var me = this;
-
-    me.getApplication().getUserController().un('permissions', me.applyPermissions, me);
   },
 
   loadStores: function () {
@@ -191,7 +189,7 @@ Ext.define('NX.coreui.controller.Repositories', {
 
     if (list) {
       selectedModels = me.getList().getSelectionModel().getSelection(),
-      deleteButton = me.getList().down('button[action=delete]');
+          deleteButton = me.getList().down('button[action=delete]');
 
       if (selectedModels.length > 0 && perms.check('nexus:repositories', perms.DELETE)) {
         deleteButton.enable();
@@ -202,7 +200,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     }
   },
 
-  applyPermissionsOnMenu: function () {
+  onPermissionsChanged: function () {
     var me = this,
         perms = NX.util.Permissions;
 
@@ -223,6 +221,8 @@ Ext.define('NX.coreui.controller.Repositories', {
         delete me.menuNode;
       }
     }
+
+    me.applyPermissions();
   }
 
 });
