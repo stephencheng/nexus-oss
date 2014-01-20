@@ -16,14 +16,14 @@ package org.sonatype.nexus.rapture.internal.ux
 import groovy.transform.ToString
 
 /**
- * Status exchange object.
+ * Permission exchange object.
  *
  * @since 2.8
  */
 @ToString(includePackage = false, includeNames = true)
-class StatusXO
+class PermissionXO
 {
-  InfoXO info
+  String id
 
-  UserXO user
+  int value
 }

@@ -10,20 +10,11 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.controller.Status', {
+Ext.define('NX.controller.Info', {
   extend: 'Ext.app.Controller',
-  requires: [
-    'NX.util.Url',
-    'NX.util.Base64',
-    'NX.util.Permissions'
-  ],
   mixins: {
     logAware: 'NX.LogAware'
   },
-
-  views: [
-    'Login'
-  ],
 
   refs: [
     {
@@ -35,48 +26,19 @@ Ext.define('NX.controller.Status', {
   init: function () {
     var me = this;
 
-    me.addEvents(
-        'info',
-        'user'
-    );
-
-    me.statusProvider = Ext.Direct.addProvider({
-      type: 'polling',
-      url: NX.direct.api.POLLING_URLS.status,
-      interval: 5000,
-      listeners: {
-        data: me.updateStatus,
-        exception: me.handleException,
-        scope: me
-      }
-    });
+    me.getApplication().getStatusController().on('info', me.updateInfo, me);
   },
 
   /**
    * @private
    */
-  updateStatus: function (provider, event) {
+  updateInfo: function (info) {
     var me = this,
-        status;
+        nameLabel = me.getHeader().down('label#name'),
+        editionLabel = me.getHeader().down('label#edition');
 
-    if (event.data) {
-      status = event.data.data;
-      me.fireEvent('info', status.info);
-      me.fireEvent('user', status.user);
-    }
-  },
-
-  handleException: function () {
-    var me = this;
-
-    me.getApplication().getMessageController().addMessage({text: 'Problem'});
-  },
-
-  refresh: function () {
-    var me = this;
-
-    me.statusProvider.disconnect();
-    me.statusProvider.connect();
+    nameLabel.setText(info.name);
+    editionLabel.setText(info.edition + ' ' + info.version);
   }
 
 });

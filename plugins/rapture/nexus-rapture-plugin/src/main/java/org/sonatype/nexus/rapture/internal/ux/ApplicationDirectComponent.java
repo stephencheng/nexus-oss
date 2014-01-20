@@ -13,7 +13,9 @@
 
 package org.sonatype.nexus.rapture.internal.ux;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,12 +26,17 @@ import org.sonatype.nexus.ApplicationStatusSource;
 import org.sonatype.nexus.SystemStatus;
 import org.sonatype.nexus.extdirect.DirectComponentSupport;
 import org.sonatype.security.SecuritySystem;
+import org.sonatype.security.authorization.Privilege;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.softwarementors.extjs.djn.config.annotations.DirectAction;
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
 import com.softwarementors.extjs.djn.config.annotations.DirectPollMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.WebContextManager;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.Permission;
+import org.apache.shiro.authz.permission.WildcardPermission;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.subject.Subject;
 
@@ -47,6 +54,16 @@ public class ApplicationDirectComponent
     extends DirectComponentSupport
 {
 
+  private static final int NONE = 0;
+
+  private static final int READ = 1;
+
+  private static final int UPDATE = 2;
+
+  private static final int DELETE = 4;
+
+  private static final int CREATE = 8;
+
   private final ApplicationStatusSource applicationStatusSource;
 
   private final SecuritySystem securitySystem;
@@ -63,24 +80,8 @@ public class ApplicationDirectComponent
   public StatusXO status(final Map<String, String> parameters) {
     StatusXO statusXO = new StatusXO();
 
-    SystemStatus status = applicationStatusSource.getSystemStatus();
-
-    statusXO.setName(status.getAppName());
-    statusXO.setEdition(status.getEditionShort());
-    statusXO.setVersion(status.getVersion());
-
-    Subject subject = securitySystem.getSubject();
-    if (subject != null) {
-      statusXO.setLoggedIn(subject.isAuthenticated());
-      if (statusXO.isLoggedIn()) {
-        // try to set the loggedInUsername
-        Object principal = subject.getPrincipal();
-
-        if (principal != null) {
-          statusXO.setLoggedInUsername(principal.toString());
-        }
-      }
-    }
+    statusXO.setInfo(getInfo());
+    statusXO.setUser(getUser());
 
     return statusXO;
   }
@@ -104,6 +105,108 @@ public class ApplicationDirectComponent
     if (session != null) {
       session.invalidate();
     }
+  }
+
+  private InfoXO getInfo() {
+    InfoXO infoXO = new InfoXO();
+    SystemStatus status = applicationStatusSource.getSystemStatus();
+
+    infoXO.setName(status.getAppName());
+    infoXO.setEdition(status.getEditionShort());
+    infoXO.setVersion(status.getVersion());
+
+    return infoXO;
+  }
+
+  private UserXO getUser() {
+    UserXO userXO = new UserXO();
+
+    // TODO: only send back user if user info changed (based on hash)
+
+    Subject subject = securitySystem.getSubject();
+    if (subject != null && subject.isAuthenticated()) {
+      Object principal = subject.getPrincipal();
+      if (principal != null) {
+        userXO.setId(principal.toString());
+      }
+      userXO.setHash(userXO.getId());
+      userXO.setPermissions(calculatePermissions(subject));
+    }
+    return userXO;
+  }
+
+  private List<PermissionXO> calculatePermissions(final Subject subject) {
+    Map<String, Integer> privilegeMap = Maps.newHashMap();
+
+    for (Privilege priv : securitySystem.listPrivileges()) {
+      if (priv.getType().equals("method")) {
+        String permission = priv.getPrivilegeProperty("permission");
+        privilegeMap.put(permission, NONE);
+      }
+    }
+
+    List<Permission> permissionList = Lists.newArrayList();
+    List<String> permissionNameList = Lists.newArrayList();
+
+    for (String privilegeKey : privilegeMap.keySet()) {
+      permissionList.add(new WildcardPermission(privilegeKey + ":read"));
+      permissionList.add(new WildcardPermission(privilegeKey + ":create"));
+      permissionList.add(new WildcardPermission(privilegeKey + ":update"));
+      permissionList.add(new WildcardPermission(privilegeKey + ":delete"));
+      permissionNameList.add(privilegeKey + ":read");
+      permissionNameList.add(privilegeKey + ":create");
+      permissionNameList.add(privilegeKey + ":update");
+      permissionNameList.add(privilegeKey + ":delete");
+    }
+
+    // get the privileges for this subject
+    boolean[] boolResults = subject.isPermitted(permissionList);
+
+    // put then in a map so we can access them easily
+    Map<String, Boolean> resultMap = Maps.newHashMap();
+    for (int ii = 0; ii < permissionList.size(); ii++) {
+      String permissionName = permissionNameList.get(ii);
+      boolean b = boolResults[ii];
+      resultMap.put(permissionName, b);
+    }
+
+    // now loop through the original set and figure out the correct value
+    for (Entry<String, Integer> priv : privilegeMap.entrySet()) {
+
+      boolean readPriv = resultMap.get(priv.getKey() + ":read");
+      boolean createPriv = resultMap.get(priv.getKey() + ":create");
+      boolean updaetPriv = resultMap.get(priv.getKey() + ":update");
+      boolean deletePriv = resultMap.get(priv.getKey() + ":delete");
+
+      int perm = NONE;
+
+      if (readPriv) {
+        perm |= READ;
+      }
+      if (createPriv) {
+        perm |= CREATE;
+      }
+      if (updaetPriv) {
+        perm |= UPDATE;
+      }
+      if (deletePriv) {
+        perm |= DELETE;
+      }
+      // now set the value
+      priv.setValue(perm);
+    }
+
+    List<PermissionXO> perms = Lists.newArrayList();
+
+    for (Entry<String, Integer> entry : privilegeMap.entrySet()) {
+      PermissionXO permissionXO = new PermissionXO();
+      permissionXO.setId(entry.getKey());
+      permissionXO.setValue(entry.getValue());
+
+      perms.add(permissionXO);
+    }
+
+    return perms;
   }
 
 }

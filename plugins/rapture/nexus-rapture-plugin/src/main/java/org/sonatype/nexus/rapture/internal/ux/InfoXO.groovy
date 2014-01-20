@@ -21,9 +21,11 @@ import groovy.transform.ToString
  * @since 2.8
  */
 @ToString(includePackage = false, includeNames = true)
-class StatusXO
+class InfoXO
 {
-  InfoXO info
+  String name
 
-  UserXO user
+  String edition
+
+  String version
 }

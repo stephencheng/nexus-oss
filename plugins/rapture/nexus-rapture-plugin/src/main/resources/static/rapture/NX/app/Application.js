@@ -34,7 +34,9 @@ Ext.define('NX.app.Application', {
     'Main',
     'MasterDetail',
     'Message',
-    'Status'
+    'Status',
+    'Info',
+    'User'
   ],
   models: [
     'Feature',
