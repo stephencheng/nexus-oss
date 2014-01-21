@@ -32,16 +32,28 @@ Ext.define('NX.controller.Developer', {
       'nx-dev-tests button[action=testError]': {
         click: me.testError
       },
+      'nx-dev-tests button[action=testExtError]': {
+        click: me.testExtError
+      },
       'nx-dev-tests button[action=testMessages]': {
         click: me.testMessages
       }
     });
+
+    me.getApplication().getController('Icon').addIcon('foo');
   },
 
   /**
    * @private
    */
   testError: function() {
+    console.log_no_such_method();
+  },
+
+  /**
+   * @private
+   */
+  testExtError: function() {
     Ext.Error.raise('simulated error');
   },
 

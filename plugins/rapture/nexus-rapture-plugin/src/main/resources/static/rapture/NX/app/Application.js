@@ -36,14 +36,14 @@ Ext.define('NX.app.Application', {
 
   namespaces: [],
   controllers: [
-    'Main',
+    'Dashboard',
     'Developer',
+    'Info',
+    'Main',
     'MasterDetail',
     'Message',
     'Status',
-    'Info',
-    'User',
-    'Dashboard'
+    'User'
   ],
   models: [
     'Message'
@@ -115,13 +115,58 @@ Ext.define('NX.app.Application', {
   },
 
   init: function (app) {
-    // pass unhandled errors to application error handler
-    Ext.Error.handle = function(err) {
-      app.errorHandler(err);
-    };
-
+    app.initErrorHandler();
     app.initDirect();
     app.initState();
+  },
+
+  /**
+   * @private
+   */
+  initErrorHandler: function() {
+    var me = this,
+        originalOnerror = window.onerror;
+
+    // pass unhandled errors to application error handler
+    Ext.Error.handle = function(err) {
+      me.errorHandler(err);
+    };
+
+    // FIXME: This will catch more errors, but duplicates messages for ext errors
+    // FIXME: Without this however some javascript errors will go unhandled
+    window.onerror = function(msg, url, line) {
+      me.errorHandler({ msg: msg + ' (' + url + ':' + line + ')' });
+
+      // maybe delegate to original window.onerror handler
+      if (originalOnerror) {
+        originalOnerror(msg, url, line);
+      }
+    };
+  },
+
+  /**
+   * Customize error to-string handling.
+   *
+   * Ext.Error.toString() assumes instance, but raise(String) makes anonymous object.
+   *
+   * @private
+   */
+  errorAsString: function(error) {
+    var className = error.sourceClass ? error.sourceClass : '',
+        methodName = error.sourceMethod ? '.' + error.sourceMethod + '(): ' : '',
+        msg = error.msg || '(No description provided)';
+    return className + methodName + msg;
+  },
+
+  /**
+   * @private
+   */
+  errorHandler: function(error) {
+    var me = this;
+    me.getMessageController().addMessage({
+      type: 'danger',
+      text: me.errorAsString(error)
+    });
   },
 
   /**
@@ -154,29 +199,6 @@ Ext.define('NX.app.Application', {
     });
 
     Ext.state.Manager.setProvider(provider);
-  },
-
-  /**
-   * Customize error to-string handling, as default framework is busted.
-   *
-   * @private
-   */
-  errorAsString: function(error) {
-    var className = error.sourceClass ? error.sourceClass : '',
-        methodName = error.sourceMethod ? '.' + error.sourceMethod + '(): ' : '',
-        msg = error.msg || '(No description provided)';
-    return className + methodName + msg;
-  },
-
-  /**
-   * @private
-   */
-  errorHandler: function(error) {
-    var me = this;
-    me.getMessageController().addMessage({
-      type: 'danger',
-      text: me.errorAsString(error)
-    });
   },
 
   /**
