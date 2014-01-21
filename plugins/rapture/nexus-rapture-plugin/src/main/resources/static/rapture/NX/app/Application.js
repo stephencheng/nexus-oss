@@ -54,28 +54,28 @@ Ext.define('NX.app.Application', {
   refs: [],
 
   constructor: function (config) {
-    var self = this, custom, keys;
+    var me = this, custom, keys;
 
     // only these customizations will be allowed
     custom = {
-      namespaces: self.namespaces,
-      controllers: self.controllers,
-      models: self.models,
-      refs: self.refs,
-      stores: self.stores,
-      views: self.views
+      namespaces: me.namespaces,
+      controllers: me.controllers,
+      models: me.models,
+      refs: me.refs,
+      stores: me.stores,
+      views: me.views
     };
     keys = Object.keys(custom);
-    self.logDebug('Supported customizations: ' + keys);
+    me.logDebug('Supported customizations: ' + keys);
 
     // TODO: More error handling around pluginConfigClassNames content, this needs to be defined, should have at least one element, etc
 
     // for each plugin, merge its customizations
-    self.logDebug('Plugins config class names: ' + NX.app.pluginConfigClassNames);
+    me.logDebug('Plugins config class names: ' + NX.app.pluginConfigClassNames);
     Ext.each(NX.app.pluginConfigClassNames, function (className) {
       var pluginConfig;
 
-      self.logDebug('Loading plugin config from class: ' + className);
+      me.logDebug('Loading plugin config from class: ' + className);
       pluginConfig = Ext.create(className);
 
       // Detect customizations, these are simply fields defined on the plugin object
@@ -83,7 +83,7 @@ Ext.define('NX.app.Application', {
       Ext.each(keys, function (key) {
         var value = pluginConfig[key];
         if (value) {
-          self.logDebug(key + ': ' + value);
+          me.logDebug(key + ': ' + value);
           if (Ext.isString(value)) {
             custom[key].push(value);
           }
@@ -98,12 +98,12 @@ Ext.define('NX.app.Application', {
     });
 
     // apply the customization to this application
-    self.logDebug('Applying customizations');
+    me.logDebug('Applying customizations');
 
     Ext.each(keys, function (key) {
-      self.logDebug(key + ': ' + custom[key]);
+      me.logDebug(key + ': ' + custom[key]);
     });
-    Ext.apply(self, custom);
+    Ext.apply(me, custom);
 
     // Have to manually add namespaces, this is done by onClassExtended in super not in parent call
     if (custom.namespaces) {
@@ -111,7 +111,7 @@ Ext.define('NX.app.Application', {
     }
 
     // and then let the super-class do the real work
-    self.callParent(arguments);
+    me.callParent(arguments);
   },
 
   init: function (app) {
@@ -181,7 +181,7 @@ Ext.define('NX.app.Application', {
    * @private
    */
   initState: function () {
-    var self = this, provider;
+    var me = this, provider;
 
     // prefer local storage if its supported
     if (Ext.util.LocalStorage.supported) {
@@ -195,7 +195,7 @@ Ext.define('NX.app.Application', {
 
     // HACK: for debugging
     provider.on('statechange', function (provider, key, value, opts) {
-      self.logDebug('State changed: ' + key + '=' + value);
+      me.logDebug('State changed: ' + key + '=' + value);
     });
 
     Ext.state.Manager.setProvider(provider);
