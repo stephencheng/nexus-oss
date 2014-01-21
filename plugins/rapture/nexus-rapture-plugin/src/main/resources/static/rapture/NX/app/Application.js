@@ -14,6 +14,7 @@ Ext.define('NX.app.Application', {
   extend: 'Ext.app.Application',
 
   requires: [
+    'Ext.Error',
     'Ext.Direct',
     'Ext.state.Manager',
     'Ext.state.CookieProvider',
@@ -115,15 +116,26 @@ Ext.define('NX.app.Application', {
   },
 
   init: function (app) {
+    // pass unhandled errors to application error handler
+    Ext.Error.handle = function(err) {
+      app.errorHandler(err);
+    };
+
     app.initDirect();
     app.initState();
   },
 
+  /**
+   * @private
+   */
   initDirect: function () {
     Ext.Direct.addProvider(NX.direct.api.REMOTING_API);
     this.logDebug('Configured direct');
   },
 
+  /**
+   * @private
+   */
   initState: function () {
     var self = this, provider;
 
@@ -145,6 +157,32 @@ Ext.define('NX.app.Application', {
     Ext.state.Manager.setProvider(provider);
   },
 
+  /**
+   * Customize error to-string handling, as default framework is busted.
+   *
+   * @private
+   */
+  errorAsString: function(error) {
+    var className = error.sourceClass ? error.sourceClass : '',
+        methodName = error.sourceMethod ? '.' + error.sourceMethod + '(): ' : '',
+        msg = error.msg || '(No description provided)';
+    return className + methodName + msg;
+  },
+
+  /**
+   * @private
+   */
+  errorHandler: function(error) {
+    var me = this;
+    me.getMessageController().addMessage({
+      type: 'danger',
+      text: me.errorAsString(error)
+    });
+  },
+
+  /**
+   * @public
+   */
   launch: function (profile) {
     Ext.create('NX.view.Viewport');
 

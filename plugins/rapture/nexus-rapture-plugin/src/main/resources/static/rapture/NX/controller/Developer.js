@@ -18,8 +18,8 @@ Ext.define('NX.controller.Developer', {
 
   views: [
     'dev.Panel',
-    'dev.Buttons',
-    'dev.Messages'
+    'dev.Tests',
+    'dev.Buttons'
   ],
 
   /**
@@ -29,8 +29,11 @@ Ext.define('NX.controller.Developer', {
     var me = this;
 
     me.control({
-      'nx-dev-messages button[action=testAll]': {
-        click: me.messages_testAll
+      'nx-dev-tests button[action=testError]': {
+        click: me.testError
+      },
+      'nx-dev-tests button[action=testMessages]': {
+        click: me.testMessages
       }
     });
   },
@@ -38,7 +41,14 @@ Ext.define('NX.controller.Developer', {
   /**
    * @private
    */
-  messages_testAll: function() {
+  testError: function() {
+    Ext.Error.raise('oops');
+  },
+
+  /**
+   * @private
+   */
+  testMessages: function() {
     var me = this;
 
     Ext.each(['default', 'primary', 'danger', 'warning', 'success'], function(type) {

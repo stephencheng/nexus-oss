@@ -24,7 +24,7 @@ Ext.define('NX.view.dev.Panel', {
   plain: true,
 
   items: [
-    { xtype: 'nx-dev-buttons' },
-    { xtype: 'nx-dev-messages' }
+    { xtype: 'nx-dev-tests' },
+    { xtype: 'nx-dev-buttons' }
   ]
 });
