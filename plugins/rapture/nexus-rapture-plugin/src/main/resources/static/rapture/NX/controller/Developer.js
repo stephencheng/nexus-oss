@@ -42,7 +42,7 @@ Ext.define('NX.controller.Developer', {
    * @private
    */
   testError: function() {
-    Ext.Error.raise('oops');
+    Ext.Error.raise('simulated error');
   },
 
   /**
