@@ -1,0 +1,55 @@
+/**
+ * @class Ext.window.Window
+ */
+
+@include extjs-window-ui(
+  $ui: 'message-default'
+);
+
+@include extjs-window-ui(
+  $ui: 'message-primary',
+
+  $ui-border-color: #1c5e9b,
+  $ui-header-color: #ffffff,
+  $ui-header-background-color: #2476c3,
+
+  $ui-body-border-color: #1c5e9b,
+  $ui-body-color: #ffffff,
+  $ui-body-background-color: #2476c3
+);
+
+@include extjs-window-ui(
+  $ui: 'message-danger',
+
+  $ui-border-color: #802420,
+  $ui-header-color: #ffffff,
+  $ui-header-background-color: #d64b46,
+
+  $ui-body-border-color: #802420,
+  $ui-body-color: #ffffff,
+  $ui-body-background-color: #d64b46
+);
+
+@include extjs-window-ui(
+  $ui: 'message-warning',
+
+  $ui-border-color: #c06a25,
+  $ui-header-color: #ffffff,
+  $ui-header-background-color: #f69e40,
+
+  $ui-body-border-color: #c06a25,
+  $ui-body-color: #ffffff,
+  $ui-body-background-color: #f69e40
+);
+
+@include extjs-window-ui(
+  $ui: 'message-success',
+
+  $ui-border-color: #408140,
+  $ui-header-color: #ffffff,
+  $ui-header-background-color: #5ab45a,
+
+  $ui-body-border-color: #408140,
+  $ui-body-color: #ffffff,
+  $ui-body-background-color: #5ab45a
+);

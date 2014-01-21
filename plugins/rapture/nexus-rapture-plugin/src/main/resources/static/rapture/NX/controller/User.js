@@ -68,7 +68,7 @@ Ext.define('NX.controller.User', {
     if (user) {
       if (me.user.hash != user.hash) {
         if (me.user.id != user.id) {
-          me.getApplication().getMessageController().addMessage({text: 'User logged in: ' + user.id});
+          me.getApplication().getMessageController().addMessage({text: 'User logged in: ' + user.id, type: 'success' });
           loginButton.hide();
           userButton.setText(user.id);
           userButton.show();
@@ -80,7 +80,7 @@ Ext.define('NX.controller.User', {
     }
     else {
       if (me.user.hash) {
-        me.getApplication().getMessageController().addMessage({text: 'User logged out'});
+        me.getApplication().getMessageController().addMessage({text: 'User logged out', type: 'success' });
         loginButton.show();
         userButton.hide();
 

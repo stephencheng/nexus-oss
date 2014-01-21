@@ -65,10 +65,10 @@ Ext.define('NX.controller.Status', {
     }
     else {
       if (event.code === 'xhr') {
-        me.getApplication().getMessageController().addMessage({text: 'Server disconnected'});
+        me.getApplication().getMessageController().addMessage({text: 'Server disconnected', type: 'warning' });
       }
       else if (event.type === 'exception') {
-        me.getApplication().getMessageController().addMessage({text: event.message});
+        me.getApplication().getMessageController().addMessage({text: event.message, type: 'danger' });
       }
     }
   },

@@ -21,7 +21,6 @@ Ext.define('NX.controller.Main', {
     'Header',
     'dashboard.Feature',
     'dev.Panel',
-    'dev.Buttons',
     'feature.Menu',
     'feature.Content',
     'message.Panel',

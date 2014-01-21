@@ -10,21 +10,42 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.view.dev.Panel', {
-  extend: 'Ext.tab.Panel',
-  requires: [
-    'NX.view.dev.Buttons'
+Ext.define('NX.controller.Developer', {
+  extend: 'Ext.app.Controller',
+  mixins: {
+    logAware: 'NX.LogAware'
+  },
+
+  views: [
+    'dev.Panel',
+    'dev.Buttons',
+    'dev.Messages'
   ],
-  alias: 'widget.nx-dev-panel',
 
-  title: 'Developer',
-  stateful: true,
-  stateId: 'nx-dev-panel',
+  /**
+   * @protected
+   */
+  init: function () {
+    var me = this;
 
-  plain: true,
+    me.control({
+      'nx-dev-messages button[action=testAll]': {
+        click: me.messages_testAll
+      }
+    });
+  },
 
-  items: [
-    { xtype: 'nx-dev-buttons' },
-    { xtype: 'nx-dev-messages' }
-  ]
+  /**
+   * @private
+   */
+  messages_testAll: function() {
+    var me = this;
+
+    Ext.each(['default', 'primary', 'danger', 'warning', 'success'], function(type) {
+      me.getApplication().getMessageController().addMessage({
+        type: type,
+        text: 'test of ' + type
+      });
+    });
+  }
 });

@@ -36,6 +36,7 @@ Ext.define('NX.app.Application', {
   namespaces: [],
   controllers: [
     'Main',
+    'Developer',
     'MasterDetail',
     'Message',
     'Status',

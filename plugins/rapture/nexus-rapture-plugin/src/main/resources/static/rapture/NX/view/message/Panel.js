@@ -23,7 +23,6 @@ Ext.define('NX.view.message.Panel', {
 
   tbar: [
     { xtype: 'button', text: 'Clear', action: 'clear'},
-    { xtype: 'button', text: 'Test', action: 'test', hidden: true}
   ],
 
   items: [
@@ -38,17 +37,5 @@ Ext.define('NX.view.message.Panel', {
       emptyText: 'No messages',
       autoScroll: true
     }
-  ],
-
-  /**
-   * @protected
-   */
-  initComponent: function() {
-    this.callParent();
-
-    // if debug enabled, show developer tools
-    if (window.location.search === '?debug') {
-      this.down('button[action=test]').show();
-    }
-  }
+  ]
 });

@@ -43,9 +43,6 @@ Ext.define('NX.controller.Message', {
     me.control({
       'nx-message-panel button[action=clear]': {
         click: me.clearMessages
-      },
-      'nx-message-panel button[action=test]': {
-        click: me.testMessage
       }
     });
 
@@ -76,18 +73,15 @@ Ext.define('NX.controller.Message', {
   },
 
   /**
-   * @private
-   */
-  testMessage: function() {
-    this.addMessage({ text: 'test' });
-  },
-
-  /**
    * @public
    */
   addMessage: function(message) {
     var me = this,
         store = me.getMessageStore();
+
+    if (!message.type) {
+      message.type = 'default'
+    }
 
     message.timestamp = new Date();
 
@@ -96,12 +90,13 @@ Ext.define('NX.controller.Message', {
 
     // show transient message window
     Ext.create('Ext.ux.window.Notification', {
-      title: message.text,
+      ui: 'message-' + message.type,
+      title: Ext.String.capitalize(message.type),
       position: 'br',
       manager: 'default',
       stickWhileHover: false,
       //iconCls: 'ux-notification-icon-information',
-      //html: message.text,
+      html: message.text,
       slideInDuration: 800,
       slideBackDuration: 1500,
       autoCloseDelay: 4000,
