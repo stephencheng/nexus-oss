@@ -47,32 +47,46 @@ Ext.define('NX.capability.controller.Capabilities', {
   ],
 
   init: function () {
-    this.control({
-      'nx-capability-list': {
-        beforerender: this.loadStores,
-        selectionchange: this.onSelectionChange
+    var me = this;
+
+    me.listen({
+      component: {
+        'nx-capability-list': {
+          beforerender: this.loadStores,
+          selectionchange: this.onSelectionChange
+        },
+        'nx-capability-list button[action=new]': {
+          click: this.showAddWindow
+        },
+        'nx-capability-list button[action=delete]': {
+          click: this.deleteCapability
+        },
+        'nx-capability-summary button[action=save]': {
+          click: this.updateCapability
+        },
+        'nx-capability-settings button[action=save]': {
+          click: this.updateCapability
+        },
+        'nx-capability-add combo[name=typeId]': {
+          select: this.changeCapabilityType
+        },
+        'nx-capability-add button[action=add]': {
+          click: this.createCapability
+        }
       },
-      'nx-capability-list button[action=new]': {
-        click: this.showAddWindow
-      },
-      'nx-capability-list button[action=delete]': {
-        click: this.deleteCapability
-      },
-      'nx-capability-summary button[action=save]': {
-        click: this.updateCapability
-      },
-      'nx-capability-settings button[action=save]': {
-        click: this.updateCapability
-      },
-      'nx-capability-add combo[name=typeId]': {
-        select: this.changeCapabilityType
-      },
-      'nx-capability-add button[action=add]': {
-        click: this.createCapability
+      store: {
+        '#CapabilityStatus': {
+          load: me.onCapabilityStatusStoreLoad,
+          beforeload: me.onCapabilityStatusStoreBeforeLoad
+        },
+        '#CapabilityType': {
+          load: me.onCapabilityTypeStoreLoad,
+          beforeload: me.onCapabilityTypeStoreBeforeLoad
+        }
       }
     });
 
-    this.getApplication().getMainController().registerFeature({
+    me.getApplication().getMainController().registerFeature({
       path: '/Foo/Capabilities',
       view: 'NX.capability.view.Feature',
       bookmark: 'capabilities',
@@ -82,11 +96,6 @@ Ext.define('NX.capability.controller.Capabilities', {
         return perms.check('nexus:capabilities', perms.READ);
       }
     });
-
-    this.getCapabilityStatusStore().on('load', this.onCapabilityStatusStoreLoad, this);
-    this.getCapabilityStatusStore().on('beforeload', this.onCapabilityStatusStoreBeforeLoad, this);
-    this.getCapabilityTypeStore().on('load', this.onCapabilityTypeStoreLoad, this);
-    this.getCapabilityTypeStore().on('beforeload', this.onCapabilityTypeStoreBeforeLoad, this);
   },
 
   loadStores: function () {
