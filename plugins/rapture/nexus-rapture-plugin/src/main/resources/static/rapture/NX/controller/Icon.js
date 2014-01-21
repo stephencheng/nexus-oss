@@ -52,6 +52,8 @@ Ext.define('NX.controller.Icon', {
       styles.push(style);
     });
 
+    // TODO: Background-load icons?
+
     // create the style sheet
     me.stylesheet = Ext.util.CSS.createStyleSheet(styles.join(' '), 'nx-icons');
   },
