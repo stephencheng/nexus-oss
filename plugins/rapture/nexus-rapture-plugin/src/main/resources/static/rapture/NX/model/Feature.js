@@ -14,9 +14,11 @@ Ext.define('NX.model.Feature', {
   extend: 'Ext.data.TreeModel',
   fields: [
     { name: 'id' },
+    { name: 'path' },
     { name: 'text' },
     { name: 'weight', defaultValue: 100 },
     { name: 'view' },
+    { name: 'visible' },
     { name: 'bookmark' }
   ]
 });
