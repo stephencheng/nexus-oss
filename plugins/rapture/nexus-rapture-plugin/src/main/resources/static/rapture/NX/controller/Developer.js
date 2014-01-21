@@ -27,7 +27,8 @@ Ext.define('NX.controller.Developer', {
    * @protected
    */
   init: function () {
-    var me = this;
+    var me = this,
+        icons = me.getApplication().getIconController();
 
     me.control({
       'nx-dev-tests button[action=testError]': {
@@ -41,25 +42,25 @@ Ext.define('NX.controller.Developer', {
       }
     });
 
-    me.getApplication().getIconController().addIcon({
+    icons.addIcon({
       name: 'arrow_refresh',
       file: 'arrow_refresh.png',
       variant: 'x16'
     });
 
-    me.getApplication().getIconController().addIcon({
+    icons.addIcon({
       name: 'arrow_refresh',
       file: 'arrow_refresh.png',
       variant: 'x32'
     });
 
-    me.getApplication().getIconController().addIcon({
+    icons.addIcon({
       name: 'refresh',
       ref: 'arrow_refresh',
       variant: 'x16'
     });
 
-    me.getApplication().getIconController().addIcon({
+    icons.addIcon({
       name: 'refresh',
       ref: 'arrow_refresh',
       variant: 'x32'
