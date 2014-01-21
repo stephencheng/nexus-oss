@@ -10,14 +10,22 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.store.Feature', {
-  extend: 'Ext.data.TreeStore',
-  model: 'NX.model.Feature',
+Ext.define('NX.controller.Dashboard', {
+  extend: 'Ext.app.Controller',
 
-  root: {
-    expanded: true,
-    text: 'Features',
-    children: []
+  views: [
+    'dashboard.Feature'
+  ],
+
+  init: function () {
+    var me = this;
+
+    me.getApplication().getMainController().registerFeature({
+      path: '/Dashboard',
+      view: 'NX.view.dashboard.Feature',
+      weight: 10,
+      bookmark: 'dashboard'
+    });
   }
 
 });

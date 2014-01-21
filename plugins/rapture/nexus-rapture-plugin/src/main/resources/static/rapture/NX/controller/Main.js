@@ -19,7 +19,6 @@ Ext.define('NX.controller.Main', {
   views: [
     'Main',
     'Header',
-    'dashboard.Feature',
     'dev.Panel',
     'feature.Menu',
     'feature.Content',
@@ -27,11 +26,9 @@ Ext.define('NX.controller.Main', {
     'info.Entry',
     'info.Panel'
   ],
-
   models: [
     'Feature'
   ],
-
   stores: [
     'Feature'
   ],
@@ -47,6 +44,8 @@ Ext.define('NX.controller.Main', {
     }
   ],
 
+  features: [],
+
   init: function () {
     var me = this;
 
@@ -60,14 +59,15 @@ Ext.define('NX.controller.Main', {
     });
 
     me.listen({
-      store:{
-        '#Feature': {
-          beforeremove: me.checkFeature
+      controller: {
+        '#User': {
+          permissionsChanged: me.refresh
         }
       },
       component: {
         'nx-feature-menu': {
           select: me.selectFeature,
+          beforerender: me.refresh,
           afterrender: me.initBookmark
         }
       }
@@ -117,11 +117,9 @@ Ext.define('NX.controller.Main', {
     var me = this,
         node;
 
-    me.logDebug('Restore bookmark: ' + token);
-
     node = me.getFeatureStore().getRootNode().findChild('bookmark', token, true);
     if (node) {
-      me.getFeatureMenu().getSelectionModel().select(node);
+      me.getFeatureMenu().selectPath(node.getPath('text'), 'text');
     }
   },
 
@@ -136,21 +134,103 @@ Ext.define('NX.controller.Main', {
     if (!token) {
       token = 'dashboard';
     }
-
-    me.logDebug('Init bookmark: ' + token);
-
     me.restoreBookmark(token);
   },
 
-  /**
-   * @private
-   */
-  checkFeature: function (treeStore, node) {
+  registerFeature: function (features) {
     var me = this;
 
-    if (node.data.bookmark === Ext.History.getToken()) {
+    if (features) {
+      if (!Ext.isArray(features)) {
+        features = [features];
+      }
+      Ext.each(features, function(feature){
+        // TODO assert feature path
+        me.features.push(feature);
+      });
+    }
+  },
+
+  refresh: function () {
+    var me = this,
+        segments, parent, child, node;
+
+    me.getFeatureStore().getRootNode().removeAll();
+
+    Ext.each(me.features, function (feature) {
+      if (Ext.isDefined(feature.view) && me.isFeatureVisible(feature)) {
+        segments = feature.path.split('/');
+        parent = me.getFeatureStore().getRootNode();
+        for (var i = 1; i < segments.length; i++) {
+          child = parent.findChild('text', segments[i], false);
+          if (child) {
+            if (i == segments.length - 1) {
+              child.data = Ext.apply(child.data, Ext.apply(feature, {
+                text: segments[i],
+                leaf: true
+              }));
+            }
+          }
+          else {
+            if (i < segments.length - 1) {
+              child = parent.appendChild({
+                text: segments[i],
+                leaf: false
+              });
+            }
+            else {
+              child = parent.appendChild(Ext.apply(feature, {
+                text: segments[i],
+                leaf: true
+              }));
+            }
+          }
+          parent = child;
+        }
+      }
+    });
+
+    Ext.each(me.features, function (feature) {
+      if (!Ext.isDefined(feature.view) && me.isFeatureVisible(feature)) {
+        segments = feature.path.split('/');
+        parent = me.getFeatureStore().getRootNode();
+        for (var i = 1; i < segments.length; i++) {
+          child = parent.findChild('text', segments[i], false);
+          if (child && !child.data.leaf) {
+            if (i == segments.length - 1) {
+              child.data = Ext.apply(child.data, feature);
+            }
+          }
+          parent = child;
+        }
+      }
+    });
+
+    me.getFeatureStore().sort('weight', 'ASC');
+
+    node = me.getFeatureStore().getRootNode().findChild('bookmark', Ext.History.getToken(), true);
+    if (node) {
+      me.restoreBookmark(Ext.History.getToken());
+    }
+    else {
       me.restoreBookmark('dashboard');
     }
+  },
+
+  isFeatureVisible: function (feature) {
+    var visible = true;
+    if (feature.visible) {
+      if (Ext.isBoolean(feature.visible)) {
+        visible = feature.visible;
+      }
+      else if (typeof feature.visible === 'function') {
+        visible = feature.visible.call();
+      }
+      else {
+        visible = false;
+      }
+    }
+    return visible;
   }
 
 });

@@ -42,14 +42,13 @@ Ext.define('NX.app.Application', {
     'Message',
     'Status',
     'Info',
-    'User'
+    'User',
+    'Dashboard'
   ],
   models: [
-    'Feature',
     'Message'
   ],
   stores: [
-    'Feature',
     'Message'
   ],
   refs: [],

@@ -14,11 +14,11 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
   extend: 'Ext.app.Controller',
 
   requires: [
-    'NX.util.Url'
+    'NX.util.Url',
+    'NX.util.Permissions'
   ],
 
   stores: [
-    'Feature@NX.store',
     'PluginInfo'
   ],
   views: [
@@ -41,12 +41,12 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
       }
     });
 
-    // HACK: Testing registration of feature for navigation
-    this.getFeatureStore().getRootNode().appendChild({
-      text: 'Plugins',
+    this.getApplication().getMainController().registerFeature({
+      path: '/Foo/Plugins',
       view: 'NX.pluginconsole.view.Feature',
       bookmark: 'plugins',
-      leaf: true
+      visible: true,
+      weight: 10
     });
 
     this.getPluginInfoStore().on('load', this.onPluginInfoStoreLoad, this);

@@ -15,11 +15,11 @@ Ext.define('NX.capability.controller.Capabilities', {
 
   requires: [
     'NX.util.Msg',
-    'NX.util.ExtDirect'
+    'NX.util.ExtDirect',
+    'NX.util.Permissions'
   ],
 
   stores: [
-    'Feature@NX.store',
     'Capability',
     'CapabilityStatus',
     'CapabilityType'
@@ -72,12 +72,15 @@ Ext.define('NX.capability.controller.Capabilities', {
       }
     });
 
-    // HACK: Testing registration of feature for navigation
-    this.getFeatureStore().getRootNode().appendChild({
-      text: 'Capabilities',
+    this.getApplication().getMainController().registerFeature({
+      path: '/Foo/Capabilities',
       view: 'NX.capability.view.Feature',
       bookmark: 'capabilities',
-      leaf: true
+      weight: 5,
+      visible: function () {
+        var perms = NX.util.Permissions;
+        return perms.check('nexus:capabilities', perms.READ);
+      }
     });
 
     this.getCapabilityStatusStore().on('load', this.onCapabilityStatusStoreLoad, this);

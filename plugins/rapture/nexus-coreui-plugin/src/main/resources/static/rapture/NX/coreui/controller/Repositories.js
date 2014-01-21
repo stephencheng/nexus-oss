@@ -21,7 +21,6 @@ Ext.define('NX.coreui.controller.Repositories', {
   ],
 
   stores: [
-    'Feature@NX.store',
     'Repository'
   ],
   views: [
@@ -42,7 +41,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     me.listen({
       controller: {
         '#User': {
-          permissionsChanged: me.onPermissionsChanged
+          permissionsChanged: me.applyPermissions
         }
       },
       store: {
@@ -61,6 +60,22 @@ Ext.define('NX.coreui.controller.Repositories', {
         }
       }
     });
+
+    me.getApplication().getMainController().registerFeature([
+      {
+        path: '/Foo/Bar',
+        weight: 1
+      },
+      {
+        path: '/Foo/Bar/Repositories',
+        view: 'NX.coreui.view.Repositories',
+        bookmark: 'repositories',
+        visible: function () {
+          var perms = NX.util.Permissions;
+          return perms.check('nexus:repositories', perms.READ);
+        }
+      }
+    ]);
   },
 
   onListRendered: function () {
@@ -202,31 +217,6 @@ Ext.define('NX.coreui.controller.Repositories', {
         deleteButton.disable();
       }
     }
-  },
-
-  onPermissionsChanged: function () {
-    var me = this,
-        perms = NX.util.Permissions;
-
-    if (perms.check('nexus:repositories', perms.READ)) {
-      // HACK: Testing registration of feature for navigation
-      if (!me.menuNode) {
-        me.menuNode = me.getFeatureStore().getRootNode().appendChild({
-          text: 'Repositories',
-          view: 'NX.coreui.view.Repositories',
-          bookmark: 'repositories',
-          leaf: true
-        });
-      }
-    }
-    else {
-      if (me.menuNode) {
-        me.getFeatureStore().getRootNode().removeChild(me.menuNode, true);
-        delete me.menuNode;
-      }
-    }
-
-    me.applyPermissions();
   }
 
 });
