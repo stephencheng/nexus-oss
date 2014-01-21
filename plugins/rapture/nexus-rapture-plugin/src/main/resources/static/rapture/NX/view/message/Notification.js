@@ -12,7 +12,7 @@
  */
 Ext.define('NX.view.message.Notification', {
   extend: 'Ext.ux.window.Notification',
-  alias: 'widget.nx-message-notif',
+  alias: 'widget.nx-message-notification',
 
   minWidth: 200,
   maxWidth: 400,
