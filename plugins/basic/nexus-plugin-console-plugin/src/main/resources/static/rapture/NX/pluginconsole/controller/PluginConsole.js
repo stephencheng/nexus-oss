@@ -34,22 +34,29 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
   ],
 
   init: function () {
-    this.control({
-      'nx-pluginconsole-list': {
-        beforerender: this.loadStores,
-        selectionchange: this.onSelectionChange
+    var me = this;
+
+    me.listen({
+      component: {
+        'nx-pluginconsole-list': {
+          beforerender: this.loadStores,
+          selectionchange: this.onSelectionChange
+        }
+      },
+      store: {
+        '#PluginInfo': {
+          load: me.onPluginInfoStoreLoad
+        }
       }
     });
 
-    this.getApplication().getMainController().registerFeature({
+    me.getApplication().getMainController().registerFeature({
       path: '/Foo/Plugins',
       view: 'NX.pluginconsole.view.Feature',
       bookmark: 'plugins',
       visible: true,
       weight: 10
     });
-
-    this.getPluginInfoStore().on('load', this.onPluginInfoStoreLoad, this);
   },
 
   loadStores: function () {
