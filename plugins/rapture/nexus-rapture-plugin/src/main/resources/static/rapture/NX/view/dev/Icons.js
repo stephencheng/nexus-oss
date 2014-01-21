@@ -10,22 +10,21 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.view.dev.Panel', {
-  extend: 'Ext.tab.Panel',
-  requires: [
-    'NX.view.dev.Buttons'
-  ],
-  alias: 'widget.nx-dev-panel',
+Ext.define('NX.view.dev.Icons', {
+  extend: 'Ext.grid.Panel',
+  alias: 'widget.nx-dev-icons',
 
-  title: 'Developer',
-  stateful: true,
-  stateId: 'nx-dev-panel',
+  title: 'Icons',
+  store: 'Icon',
 
-  plain: true,
-
-  items: [
-    { xtype: 'nx-dev-tests' },
-    { xtype: 'nx-dev-buttons' },
-    { xtype: 'nx-dev-icons' }
+  columns: [
+    { text: 'cls', dataIndex: 'cls', width: 200 },
+    { text: 'name', dataIndex: 'name' },
+    { text: 'file', dataIndex: 'file' },
+    { text: 'ref', dataIndex: 'ref' },
+    { text: 'variant', dataIndex: 'variant', width: 50 },
+    { text: 'size', xtype: 'templatecolumn', tpl: '{height}x{width}', width: 80 },
+    { text: 'href', xtype: 'templatecolumn', tpl: '<a href="{url}">{url}</a>', flex: 1 },
+    { text: 'image', xtype: 'templatecolumn', tpl: '<img class="{cls}"/>' }
   ]
 });

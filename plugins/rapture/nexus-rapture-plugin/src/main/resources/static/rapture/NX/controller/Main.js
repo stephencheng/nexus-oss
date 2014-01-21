@@ -144,7 +144,7 @@ Ext.define('NX.controller.Main', {
       if (!Ext.isArray(features)) {
         features = [features];
       }
-      Ext.each(features, function(feature){
+      Ext.each(features, function(feature) {
         // TODO assert feature path
         me.features.push(feature);
       });

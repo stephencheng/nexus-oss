@@ -19,7 +19,8 @@ Ext.define('NX.controller.Developer', {
   views: [
     'dev.Panel',
     'dev.Tests',
-    'dev.Buttons'
+    'dev.Buttons',
+    'dev.Icons'
   ],
 
   /**
@@ -40,7 +41,29 @@ Ext.define('NX.controller.Developer', {
       }
     });
 
-    me.getApplication().getController('Icon').addIcon('foo');
+    me.getApplication().getIconController().addIcon({
+      name: 'arrow_refresh',
+      file: 'arrow_refresh.png',
+      variant: 'x16'
+    });
+
+    me.getApplication().getIconController().addIcon({
+      name: 'arrow_refresh',
+      file: 'arrow_refresh.png',
+      variant: 'x32'
+    });
+
+    me.getApplication().getIconController().addIcon({
+      name: 'refresh',
+      ref: 'arrow_refresh',
+      variant: 'x16'
+    });
+
+    me.getApplication().getIconController().addIcon({
+      name: 'refresh',
+      ref: 'arrow_refresh',
+      variant: 'x32'
+    });
   },
 
   /**

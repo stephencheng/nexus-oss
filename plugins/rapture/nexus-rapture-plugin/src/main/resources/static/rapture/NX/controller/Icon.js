@@ -12,32 +12,158 @@
  */
 Ext.define('NX.controller.Icon', {
   extend: 'Ext.app.Controller',
+  requires: [
+    'Ext.Error',
+    'Ext.util.CSS',
+    'NX.util.Url'
+  ],
   mixins: {
     logAware: 'NX.LogAware'
   },
 
+  models: [
+    'Icon'
+  ],
+
+  stores: [
+    'Icon'
+  ],
+
+  /**
+   * @private
+   */
+  stylesheet: undefined,
+
   /**
    * @override
    */
-  init: function () {
-    var me = this;
+  onLaunch: function () {
+    var me = this,
+        styles = [];
 
-    // TODO: ???
+    me.logDebug('Building stylesheet');
+
+    // build styles for each icon in store
+    me.getIconStore().each(function(record) {
+      var style = me.buildIconStyle(record.data);
+      me.logDebug('Adding style: ' + style);
+      styles.push(style);
+    });
+
+    // create the style sheet
+    me.stylesheet = Ext.util.CSS.createStyleSheet(styles.join(' '), 'nx-icons');
   },
 
   /**
-   * @override
+   * @private
    */
-  onLaunch: function() {
-    this.logDebug('on-launch');
-    // TODO: render stylesheet here
+  buildIconStyle: function(icon) {
+    var style;
+
+    style = '.' + icon.cls + ' {';
+    style += 'background: url(' + icon.url + ') no-repeat !important;';
+
+    // add height and width if we have them
+    if (icon.height) {
+      style += ' height: ' + icon.height + 'px;';
+    }
+    if (icon.width) {
+      style += ' width: ' + icon.width + 'px;';
+    }
+
+    style += '}';
+    return style;
   },
 
   /**
    * @public
    */
-  addIcon: function(icon) {
-    this.logDebug('add-icon: ' + icon);
-    // TODO: add icon
+  addIcon: function (icon) {
+    var me = this;
+
+    if (icon.ref) {
+      me.resolveReference(icon);
+    }
+    me.configureIcon(icon);
+    me.getIconStore().add(icon);
+  },
+
+  /**
+   * @public
+   */
+  findIcon: function (name, variant) {
+    var me = this,
+        store = me.getIconStore(),
+        recordId;
+
+    recordId = store.findBy(function (record, id) {
+      // find matching icon name
+      if (name === record.get('name')) {
+        // if icon has a variant match that too
+        if (variant) {
+          if (variant === record.get('variant')) {
+            return true; // match
+          }
+        }
+      }
+      return false; // no match
+    });
+
+    if (recordId === -1) {
+      return null;
+    }
+    return store.getAt(recordId);
+  },
+
+  /**
+   * @private
+   */
+  resolveReference: function (icon) {
+    var me = this,
+        ref;
+
+    // resolve icon references
+    me.logDebug('Resolving reference: ' + icon.ref);
+    ref = me.findIcon(icon.ref, icon.variant);
+    if (ref === null) {
+      Ext.Error.raise('Missing icon reference: ' + icon.ref);
+    }
+
+    // apply missing fields to this configuration
+    Ext.applyIf(icon, ref.data);
+  },
+
+  /**
+   * @private
+   */
+  configureIcon: function (icon) {
+    var me = this,
+        cls,
+        url;
+
+    // automatically set size for known variants
+    switch (icon.variant) {
+      case 'x16':
+        icon.height = icon.width = 16;
+        break;
+      case 'x32':
+        icon.height = icon.width = 32;
+        break;
+    }
+
+    // calculate image URL
+    url = NX.util.Url.baseUrl + 'static/rapture/resources/icons/';
+    if (icon.variant) {
+      url += icon.variant + '/';
+    }
+    url += icon.file;
+    icon.url = url;
+
+    // calculate image css class name
+    cls = 'nx-icon-' + icon.name.replace('_', '-');
+    if (icon.variant) {
+      cls += '-' + icon.variant;
+    }
+    icon.cls = cls;
   }
 });

@@ -25,6 +25,7 @@ Ext.define('NX.view.dev.Tests', {
   items: [
     { xtype: 'button', text: 'javascript error', action: 'testError' },
     { xtype: 'button', text: 'ext error', action: 'testExtError' },
-    { xtype: 'button', text: 'message types', action: 'testMessages' }
+    { xtype: 'button', text: 'message types', action: 'testMessages' },
+    { xtype: 'button', text: 'button icon', iconCls: 'nx-icon-refresh-x16' }
   ]
 });
