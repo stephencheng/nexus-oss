@@ -12,15 +12,13 @@
  */
 Ext.define('NX.controller.Message', {
   extend: 'Ext.app.Controller',
-  requires: [
-    'Ext.ux.window.Notification'
-  ],
   mixins: {
     logAware: 'NX.LogAware'
   },
 
   views: [
-    'message.Panel'
+    'message.Panel',
+    'message.Notification'
   ],
 
   stores: [
@@ -88,22 +86,11 @@ Ext.define('NX.controller.Message', {
     // add new messages to the top of the store
     store.insert(0, message);
 
-    // show transient message window
-    Ext.create('Ext.ux.window.Notification', {
+    // create and show transient message notification
+    me.getView('message.Notification').create({
       ui: 'message-' + message.type,
       title: Ext.String.capitalize(message.type),
-      position: 'br',
-      manager: 'default',
-      stickWhileHover: false,
-      //iconCls: 'ux-notification-icon-information',
-      html: message.text,
-      slideInDuration: 800,
-      slideBackDuration: 1500,
-      autoCloseDelay: 4000,
-      slideInAnimation: 'elasticIn',
-      slideBackAnimation: 'elasticIn',
-      width: 200
-      //height: 124
-    }).show();
+      html: message.text
+    });
   }
 });
