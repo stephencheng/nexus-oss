@@ -45,7 +45,7 @@ Ext.define('NX.coreui.controller.Repositories', {
           permissionsChanged: me.onPermissionsChanged
         }
       },
-      store:{
+      store: {
         '#Repository': {
           load: me.onRepositoryStoreLoad,
           beforeload: me.onRepositoryStoreBeforeLoad
@@ -192,8 +192,8 @@ Ext.define('NX.coreui.controller.Repositories', {
         selectedModels, deleteButton;
 
     if (list) {
-      selectedModels = me.getList().getSelectionModel().getSelection(),
-          deleteButton = me.getList().down('button[action=delete]');
+      selectedModels = me.getList().getSelectionModel().getSelection();
+      deleteButton = me.getList().down('button[action=delete]');
 
       if (selectedModels.length > 0 && perms.check('nexus:repositories', perms.DELETE)) {
         deleteButton.enable();
