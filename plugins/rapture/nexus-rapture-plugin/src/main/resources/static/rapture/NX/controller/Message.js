@@ -86,7 +86,7 @@ Ext.define('NX.controller.Message', {
     // add new messages to the top of the store
     store.insert(0, message);
 
-    // create and show transient message notification
+    // show transient message notification
     me.getView('message.Notification').create({
       ui: 'message-' + message.type,
       title: Ext.String.capitalize(message.type),
