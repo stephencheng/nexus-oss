@@ -35,6 +35,8 @@ Ext.define('NX.controller.Icon', {
   stylesheet: undefined,
 
   /**
+   * Generate and install stylesheet for icons when the applications is launching.
+   *
    * @override
    */
   onLaunch: function () {
@@ -55,6 +57,8 @@ Ext.define('NX.controller.Icon', {
   },
 
   /**
+   * Build style for given icon.
+   *
    * @private
    */
   buildIconStyle: function(icon) {
@@ -76,6 +80,8 @@ Ext.define('NX.controller.Icon', {
   },
 
   /**
+   * Add a new icon.
+   *
    * @public
    */
   addIcon: function (icon) {
@@ -89,6 +95,8 @@ Ext.define('NX.controller.Icon', {
   },
 
   /**
+   * Find an icon by name with optional variant.
+   *
    * @public
    */
   findIcon: function (name, variant) {
@@ -116,6 +124,8 @@ Ext.define('NX.controller.Icon', {
   },
 
   /**
+   * Resolve icon references.
+   *
    * @private
    */
   resolveReference: function (icon) {
@@ -134,6 +144,8 @@ Ext.define('NX.controller.Icon', {
   },
 
   /**
+   * Apply basic icon configuration.
+   *
    * @private
    */
   configureIcon: function (icon) {

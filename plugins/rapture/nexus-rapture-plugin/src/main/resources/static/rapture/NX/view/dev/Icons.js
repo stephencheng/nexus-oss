@@ -24,7 +24,7 @@ Ext.define('NX.view.dev.Icons', {
     { text: 'ref', dataIndex: 'ref' },
     { text: 'variant', dataIndex: 'variant', width: 50 },
     { text: 'size', xtype: 'templatecolumn', tpl: '{height}x{width}', width: 80 },
-    { text: 'href', xtype: 'templatecolumn', tpl: '<a href="{url}">{url}</a>', flex: 1 },
+    { text: 'href', xtype: 'templatecolumn', tpl: '<a href="{url}" target="_blank">{url}</a>', flex: 1 },
     { text: 'image', xtype: 'templatecolumn', tpl: '<img class="{cls}"/>' }
   ]
 });
