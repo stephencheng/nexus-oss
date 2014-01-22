@@ -82,24 +82,27 @@ Ext.define('NX.controller.Main', {
         view,
         cmp;
 
-    // records which are not leaves are groups, ignore selection
-    if (!record.isLeaf()) {
-      return;
+    if (record.isLeaf()) {
+      view = record.get('view');
+      me.logDebug('Selecting feature view: ' + view);
+
+      // create new view and replace any current view
+      cmp = me.getView(view).create();
+
+      content.removeAll();
+      content.setTitle(record.get('text'));
+      content.setIconCls(record.get('iconCls'));
+
+      content.add(cmp);
+
+      me.bookmark(record.get('bookmark'));
     }
-
-    view = record.get('view');
-    me.logDebug('Selecting feature view: ' + view);
-
-    // create new view and replace any current view
-    cmp = me.getView(view).create();
-
-    content.removeAll();
-    content.setTitle(record.get('text'));
-    content.setIconCls(record.get('iconCls'));
-
-    content.add(cmp);
-
-    me.bookmark(record.get('bookmark'));
+    else {
+      // if a group, automatically select first leaf
+      if (record.hasChildNodes()) {
+        me.getFeatureMenu().selectPath(record.firstChild.getPath('text'), 'text');
+      }
+    }
   },
 
   /**
