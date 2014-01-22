@@ -16,6 +16,7 @@ Ext.define('NX.view.dev.Permissions', {
 
   title: 'Permissions',
   store: 'Permission',
+  emptyText: 'No permissions',
 
   columns: [
     { text: 'permission', dataIndex: 'id', width: 300 },

@@ -16,6 +16,7 @@ Ext.define('NX.view.dev.Features', {
 
   title: 'Features',
   store: 'FeatureMenu',
+  emptyText: 'No features',
 
   columns: [
     { text: 'path', dataIndex: 'path', width: 200, editor: 'textfield' },

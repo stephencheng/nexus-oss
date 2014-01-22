@@ -16,6 +16,7 @@ Ext.define('NX.view.dev.Icons', {
 
   title: 'Icons',
   store: 'Icon',
+  emptyText: 'No icons',
 
   columns: [
     { text: 'cls', dataIndex: 'cls', width: 200 },
