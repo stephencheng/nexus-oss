@@ -18,15 +18,25 @@ Ext.define('NX.view.dev.Features', {
   store: 'FeatureMenu',
 
   columns: [
-    { text: 'path', dataIndex: 'path', width: 200 },
-    { text: 'bookmark', dataIndex: 'bookmark' },
-    { text: 'view', dataIndex: 'view', width: 250 },
-    { text: 'iconCls', dataIndex: 'iconCls', width: 250 },
+    { text: 'path', dataIndex: 'path', width: 200, editor: 'textfield' },
+    { text: 'bookmark', dataIndex: 'bookmark', editor: 'textfield' },
+    { text: 'weight', dataIndex: 'weight', editor: 'textfield' },
+    { text: 'view', dataIndex: 'view', width: 250, editor: 'textfield' },
+    { text: 'iconCls', dataIndex: 'iconCls', width: 250, editor: 'textfield' },
     {
       xtype: 'templatecolumn',
       text: 'icon',
       // NOTE: img must have src value for Chrome to render it w/o a border?!
       tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="{iconCls}"/>'
     }
-  ]
+  ],
+
+  plugins: [
+    { ptype: 'rowediting', clicksToEdit: 1 }
+  ],
+
+  viewConfig: {
+    markDirty: false
+  }
+
 });

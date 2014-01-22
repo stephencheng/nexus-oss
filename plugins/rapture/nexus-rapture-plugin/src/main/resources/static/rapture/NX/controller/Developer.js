@@ -31,15 +31,22 @@ Ext.define('NX.controller.Developer', {
     var me = this,
         icons = me.getApplication().getIconController();
 
-    me.control({
-      'nx-dev-tests button[action=testError]': {
-        click: me.testError
+    me.listen({
+      component: {
+        'nx-dev-tests button[action=testError]': {
+          click: me.testError
+        },
+        'nx-dev-tests button[action=testExtError]': {
+          click: me.testExtError
+        },
+        'nx-dev-tests button[action=testMessages]': {
+          click: me.testMessages
+        }
       },
-      'nx-dev-tests button[action=testExtError]': {
-        click: me.testExtError
-      },
-      'nx-dev-tests button[action=testMessages]': {
-        click: me.testMessages
+      store: {
+        '#FeatureMenu': {
+          update: me.onFeatureUpdated
+        }
       }
     });
 
@@ -94,5 +101,14 @@ Ext.define('NX.controller.Developer', {
         text: 'test of ' + type
       });
     });
+  },
+
+  /**
+   * @private
+   */
+  onFeatureUpdated: function() {
+    var me = this;
+
+    me.getApplication().getMainController().refresh();
   }
 });
