@@ -21,7 +21,8 @@ Ext.define('NX.controller.Developer', {
     'dev.Tests',
     'dev.Buttons',
     'dev.Icons',
-    'dev.Features'
+    'dev.Features',
+    'dev.Permissions'
   ],
 
   /**

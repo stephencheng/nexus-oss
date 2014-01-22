@@ -28,6 +28,9 @@ Ext.define('NX.store.Permission', {
       idProperty: 'id',
       successProperty: 'success'
     }
-  }
+  },
+
+  sortOnLoad: true,
+  sorters: { property: 'id', direction: 'ASC' }
 
 });
