@@ -31,7 +31,7 @@ Ext.define('NX.view.dev.Icons', {
       xtype: 'templatecolumn',
       text: 'img class',
       // NOTE: img must have src value for Chrome to render it w/o a border?!
-      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" height="{height}" width="{width}" class="{cls}"/>'
+      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="{cls}"/>'
     }
   ]
 });
