@@ -53,7 +53,8 @@ Ext.define('NX.coreui.controller.Repositories', {
       component: {
         'nx-repository-list': {
           beforerender: me.onListRendered,
-          selectionchange: me.onSelectionChange
+          selectionchange: me.onSelectionChange,
+          refresh: me.loadStores
         },
         'nx-repository-list button[action=delete]': {
           click: me.deleteRepository

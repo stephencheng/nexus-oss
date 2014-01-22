@@ -74,7 +74,8 @@ Ext.define('NX.view.Header', {
       '-',
       {
         xtype: 'button',
-        text: 'Refresh'
+        text: 'Refresh',
+        action: 'refresh'
       },
       {
         xtype: 'button',

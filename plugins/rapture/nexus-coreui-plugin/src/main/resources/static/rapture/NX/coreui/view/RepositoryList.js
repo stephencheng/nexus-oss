@@ -24,5 +24,7 @@ Ext.define('NX.coreui.view.RepositoryList', {
 
   tbar: [
     { xtype: 'button', text: 'Delete', action: 'delete', disabled: true }
-  ]
+  ],
+
+  refreshable: true
 });

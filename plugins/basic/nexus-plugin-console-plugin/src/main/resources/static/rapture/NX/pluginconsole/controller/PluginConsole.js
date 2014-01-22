@@ -53,7 +53,8 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
       component: {
         'nx-pluginconsole-list': {
           beforerender: this.loadStores,
-          selectionchange: this.onSelectionChange
+          selectionchange: this.onSelectionChange,
+          refresh: me.loadStores
         }
       },
       store: {

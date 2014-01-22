@@ -68,6 +68,9 @@ Ext.define('NX.controller.Main', {
           select: me.selectFeature,
           beforerender: me.refresh,
           afterrender: me.initBookmark
+        },
+        'nx-header button[action=refresh]': {
+          click: me.refreshFeature
         }
       }
     });
@@ -141,6 +144,16 @@ Ext.define('NX.controller.Main', {
       token = 'dashboard';
     }
     me.restoreBookmark(token);
+  },
+
+  refreshFeature: function () {
+    var refreshables = Ext.ComponentQuery.query('panel[refreshable=true]');
+
+    if (refreshables) {
+      Ext.each(refreshables, function (refreshable) {
+        refreshable.fireEvent('refresh', refreshable);
+      });
+    }
   },
 
   /**
