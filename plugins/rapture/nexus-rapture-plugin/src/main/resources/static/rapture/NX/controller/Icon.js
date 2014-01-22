@@ -70,8 +70,11 @@ Ext.define('NX.controller.Icon', {
     var me = this,
         style;
 
-    style = '.' + icon.cls + ' {\n';
-    style += 'background-image: url(' + icon.url + ');\n';
+    style = '.' + icon.cls + ' {';
+    style += 'background-image: url(' + icon.url + ');';
+    style += 'background-position: center center;';
+    style += 'height: ' + icon.height + 'px;';
+    style += 'width: ' + icon.width + 'px;';
     style += '}';
 
     return style;
