@@ -179,10 +179,7 @@ Ext.define('NX.controller.Main', {
             if (i < segments.length - 1) {
               child = parent.appendChild({
                 text: segments[i],
-                leaf: false,
-
-                // expand the menu by default
-                expanded: true
+                leaf: false
               });
             }
             else {

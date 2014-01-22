@@ -17,6 +17,7 @@ Ext.define('NX.model.FeatureMenu', {
     { name: 'weight', defaultValue: 100 },
     { name: 'view', defaultValue: undefined },
     { name: 'visible', defaultValue: true },
+    { name: 'expanded', defaultValue: true },
     { name: 'bookmark', defaultValue: undefined },
     { name: 'iconCls', defaultValue: undefined }
   ]
