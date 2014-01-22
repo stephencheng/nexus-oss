@@ -24,6 +24,10 @@ Ext.define('NX.controller.User', {
     'Login'
   ],
 
+  stores: [
+    'Permission'
+  ],
+
   refs: [
     {
       ref: 'header',
@@ -41,6 +45,11 @@ Ext.define('NX.controller.User', {
       controller: {
         '#Status': {
           user: me.updateUser
+        }
+      },
+      store: {
+        '#Permission': {
+          load: me.onPermissionLoad
         }
       },
       component: {
@@ -74,8 +83,7 @@ Ext.define('NX.controller.User', {
           userButton.show();
         }
         me.user = user;
-        NX.util.Permissions.setPermissions(user.permissions);
-        me.fireEvent('permissionsChanged', NX.util.Permissions);
+        me.getPermissionStore().load();
       }
     }
     else {
@@ -85,8 +93,8 @@ Ext.define('NX.controller.User', {
         userButton.hide();
 
         me.user = {};
-        NX.util.Permissions.setPermissions({});
-        me.fireEvent('permissionsChanged', NX.util.Permissions);
+        me.getPermissionStore().removeAll();
+        me.onPermissionLoad();
       }
     }
   },
@@ -150,6 +158,30 @@ Ext.define('NX.controller.User', {
         }
       }
     });
+  },
+
+  /**
+   * @private
+   */
+  onPermissionLoad: function () {
+    var me = this;
+
+    NX.util.Permissions.setPermissions(me.getPermissions());
+    me.fireEvent('permissionsChanged', NX.util.Permissions);
+  },
+
+  /**
+   * @private
+   */
+  getPermissions: function () {
+    var me = this,
+        perms = {};
+
+    me.getPermissionStore().each(function (rec) {
+      perms[rec.get('id')] = rec.get('value');
+    });
+
+    return perms;
   }
 
 });
