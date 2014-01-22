@@ -128,6 +128,8 @@ Ext.define('NX.app.Application', {
     var me = this,
         originalOnerror = window.onerror;
 
+    // FIXME: This needs further refinement, seems like javascript errors are lost in Firefox (but show up fine in Chrome)
+
     // pass unhandled errors to application error handler
     Ext.Error.handle = function(err) {
       me.errorHandler(err);
