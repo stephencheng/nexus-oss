@@ -18,13 +18,27 @@ Ext.define('NX.controller.Dashboard', {
   ],
 
   init: function () {
-    var me = this;
+    var me = this,
+        icons = me.getApplication().getIconController();
+
+    icons.addIcon({
+      name: 'feature-dashboard',
+      file: 'dashboard.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'feature-dashboard',
+      file: 'dashboard.png',
+      variant: 'x32'
+    });
 
     me.getApplication().getMainController().registerFeature({
       path: '/Dashboard',
       view: 'NX.view.dashboard.Feature',
       weight: 10,
-      bookmark: 'dashboard'
+      bookmark: 'dashboard',
+      iconCls: 'nx-icon-feature-dashboard-x16'
     });
   }
 

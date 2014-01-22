@@ -32,7 +32,8 @@ Ext.define('NX.view.Main', {
       region: 'west',
       collapsible: true,
       collapsed: false,
-      split: true
+      resizable: true,
+      resizeHandles: 'e'
     },
 
     {
@@ -45,7 +46,8 @@ Ext.define('NX.view.Main', {
       region: 'east',
       collapsible: true,
       collapsed: true,
-      split: true
+      resizable: true,
+      resizeHandles: 'w'
     },
 
     {

@@ -39,7 +39,7 @@ Ext.define('NX.view.Login', {
         },
         fieldDefaults: {
           labelAlign: 'right',
-          labelWidth: '80'
+          labelWidth: '80px'
         },
         bodyPadding: 10,
         items: [

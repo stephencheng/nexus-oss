@@ -19,22 +19,51 @@ Ext.define('NX.controller.Developer', {
   views: [
     'dev.Panel',
     'dev.Tests',
-    'dev.Buttons'
+    'dev.Buttons',
+    'dev.Icons'
   ],
 
   /**
    * @protected
    */
   init: function () {
-    var me = this;
+    var me = this,
+        icons = me.getApplication().getIconController();
 
     me.control({
       'nx-dev-tests button[action=testError]': {
         click: me.testError
       },
+      'nx-dev-tests button[action=testExtError]': {
+        click: me.testExtError
+      },
       'nx-dev-tests button[action=testMessages]': {
         click: me.testMessages
       }
+    });
+
+    icons.addIcon({
+      name: 'arrow_refresh',
+      file: 'arrow_refresh.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'arrow_refresh',
+      file: 'arrow_refresh.png',
+      variant: 'x32'
+    });
+
+    icons.addIcon({
+      name: 'refresh',
+      ref: 'arrow_refresh',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'refresh',
+      ref: 'arrow_refresh',
+      variant: 'x32'
     });
   },
 
@@ -42,6 +71,13 @@ Ext.define('NX.controller.Developer', {
    * @private
    */
   testError: function() {
+    console.log_no_such_method();
+  },
+
+  /**
+   * @private
+   */
+  testExtError: function() {
     Ext.Error.raise('simulated error');
   },
 

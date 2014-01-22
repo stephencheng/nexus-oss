@@ -34,7 +34,20 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
   ],
 
   init: function () {
-    var me = this;
+    var me = this,
+        icons = me.getApplication().getIconController();
+
+    icons.addIcon({
+      name: 'feature-pluginconsole',
+      file: 'plugin.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'feature-pluginconsole',
+      file: 'plugin.png',
+      variant: 'x32'
+    });
 
     me.listen({
       component: {
@@ -55,7 +68,8 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
       view: 'NX.pluginconsole.view.Feature',
       bookmark: 'plugins',
       visible: true,
-      weight: 10
+      weight: 10,
+      iconCls: 'nx-icon-feature-pluginconsole-x16'
     });
   },
 

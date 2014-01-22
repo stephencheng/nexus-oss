@@ -23,6 +23,9 @@ Ext.define('NX.view.masterdetail.Tabs', {
   flex: 0.5,
   activeItem: 0,
 
+  // HACK: For now make all detail panels light themed while we sort out the overall look of rapture
+  ui: 'light',
+
   warningTpl: new Ext.XTemplate(
       '<div class="nx-masterdetail-warning">',
       '  <div>{icon}{text}</div>',

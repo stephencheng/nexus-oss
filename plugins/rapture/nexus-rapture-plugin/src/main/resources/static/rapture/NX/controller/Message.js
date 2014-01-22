@@ -12,19 +12,17 @@
  */
 Ext.define('NX.controller.Message', {
   extend: 'Ext.app.Controller',
-  requires: [
-    'Ext.ux.window.Notification'
-  ],
   mixins: {
     logAware: 'NX.LogAware'
   },
 
   views: [
-    'message.Panel'
+    'message.Panel',
+    'message.Notification'
   ],
 
   stores: [
-    'Message'
+    'Message',
   ],
 
   refs: [
@@ -38,7 +36,8 @@ Ext.define('NX.controller.Message', {
    * @protected
    */
   init: function () {
-    var me = this;
+    var me = this,
+        icons = me.getApplication().getIconController();
 
     me.control({
       'nx-message-panel button[action=clear]': {
@@ -46,7 +45,37 @@ Ext.define('NX.controller.Message', {
       }
     });
 
-    me.getMessageStore().on('datachanged', me.updateTitle, me);
+    me.getMessageStore().on('datachanged', me.updateHeader, me);
+
+    icons.addIcon({
+      name: 'message-default',
+      file: 'bell.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'message-primary',
+      file: 'information.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'message-danger',
+      file: 'exclamation.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'message-warning',
+      file: 'warning.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'message-success',
+      file: 'accept.png',
+      variant: 'x16'
+    });
   },
 
   /**
@@ -54,14 +83,21 @@ Ext.define('NX.controller.Message', {
    *
    * @private
    */
-  updateTitle: function() {
+  updateHeader: function() {
     var me = this,
         count = me.getMessageStore().getCount(),
         title = 'Messages';
 
     if (count != 0) {
       title = Ext.util.Format.plural(count, 'Message');
+
+      // update icon to highlight new messages
+      me.getPanel().setIconCls('nx-icon-message-default-x16');
     }
+    else {
+      me.getPanel().setIconCls(undefined);
+    }
+
     me.getPanel().setTitle(title);
   },
 
@@ -88,22 +124,12 @@ Ext.define('NX.controller.Message', {
     // add new messages to the top of the store
     store.insert(0, message);
 
-    // show transient message window
-    Ext.create('Ext.ux.window.Notification', {
+    // show transient message notification
+    me.getView('message.Notification').create({
       ui: 'message-' + message.type,
+      iconCls: 'nx-icon-message-' + message.type + '-x16',
       title: Ext.String.capitalize(message.type),
-      position: 'br',
-      manager: 'default',
-      stickWhileHover: false,
-      //iconCls: 'ux-notification-icon-information',
-      html: message.text,
-      slideInDuration: 800,
-      slideBackDuration: 1500,
-      autoCloseDelay: 4000,
-      slideInAnimation: 'elasticIn',
-      slideBackAnimation: 'elasticIn',
-      width: 200
-      //height: 124
-    }).show();
+      html: message.text
+    });
   }
 });

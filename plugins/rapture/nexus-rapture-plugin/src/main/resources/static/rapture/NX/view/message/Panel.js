@@ -30,12 +30,16 @@ Ext.define('NX.view.message.Panel', {
       xtype: 'gridpanel',
       store: 'Message',
       columns: [
-        // HACK: Using template for now to show more than one model field, will refine later
-        { xtype:'templatecolumn', tpl: '{text}: {timestamp}', flex: 1 }
+        {
+          xtype: 'templatecolumn',
+          width: 25,
+          // NOTE: img must have src value for Chrome to render it w/o a border?!
+          tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="nx-icon-message-{type}-x16" height="16" width="16"/>'
+        },
+        { xtype: 'templatecolumn', tpl: '{text}: {timestamp}', flex: 1 }
       ],
       hideHeaders: true,
-      emptyText: 'No messages',
-      autoScroll: true
+      emptyText: 'No messages'
     }
   ]
 });

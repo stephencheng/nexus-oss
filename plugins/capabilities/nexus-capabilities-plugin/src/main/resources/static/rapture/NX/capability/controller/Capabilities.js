@@ -47,7 +47,20 @@ Ext.define('NX.capability.controller.Capabilities', {
   ],
 
   init: function () {
-    var me = this;
+    var me = this,
+      icons = me.getApplication().getIconController();
+
+    icons.addIcon({
+      name: 'feature-capability',
+      file: 'brick.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'feature-capability',
+      file: 'brick.png',
+      variant: 'x32'
+    });
 
     me.listen({
       component: {
@@ -94,7 +107,8 @@ Ext.define('NX.capability.controller.Capabilities', {
       visible: function () {
         var perms = NX.util.Permissions;
         return perms.check('nexus:capabilities', perms.READ);
-      }
+      },
+      iconCls: 'nx-icon-feature-capability-x16'
     });
   },
 

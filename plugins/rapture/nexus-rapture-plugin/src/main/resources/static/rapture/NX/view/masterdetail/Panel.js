@@ -25,7 +25,7 @@ Ext.define('NX.view.masterdetail.Panel', {
       },
       {
         xtype: 'nx-masterdetail-tabs',
-        modelName: this.modelName || this.title.toLowerCase(),
+        modelName: this.modelName,
         emptyText: this.emptyText,
         items: this.tabs
       }
