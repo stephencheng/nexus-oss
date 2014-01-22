@@ -21,8 +21,6 @@ Ext.define('NX.view.dev.Panel', {
   stateful: true,
   stateId: 'nx-dev-panel',
 
-  plain: true,
-
   items: [
     { xtype: 'nx-dev-tests' },
     { xtype: 'nx-dev-buttons' },

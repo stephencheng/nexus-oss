@@ -18,8 +18,6 @@ Ext.define('NX.coreui.view.Repositories', {
     'NX.view.InfoPanel'
   ],
 
-  title: 'Repositories',
-
   modelName: 'repository',
   list: 'nx-repository-list',
 

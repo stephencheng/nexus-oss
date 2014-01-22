@@ -17,7 +17,6 @@ Ext.define('NX.pluginconsole.view.Feature', {
     'NX.view.InfoPanel'
   ],
 
-  title: 'Plugins',
   emptyText: 'Please select a plugin to view details',
   list: 'nx-pluginconsole-list',
   tabs: {

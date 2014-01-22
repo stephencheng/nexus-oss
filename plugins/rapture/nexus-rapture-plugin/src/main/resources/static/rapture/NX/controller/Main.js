@@ -93,7 +93,11 @@ Ext.define('NX.controller.Main', {
 
     // create new view and replace any current view
     cmp = me.getView(view).create();
+
     content.removeAll();
+    content.setTitle(record.get('text'));
+    content.setIconCls(record.get('iconCls'));
+
     content.add(cmp);
 
     me.bookmark(record.get('bookmark'));
@@ -175,7 +179,10 @@ Ext.define('NX.controller.Main', {
             if (i < segments.length - 1) {
               child = parent.appendChild({
                 text: segments[i],
-                leaf: false
+                leaf: false,
+
+                // expand the menu by default
+                expanded: true
               });
             }
             else {

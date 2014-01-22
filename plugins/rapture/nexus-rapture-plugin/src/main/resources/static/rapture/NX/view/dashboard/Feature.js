@@ -14,8 +14,6 @@ Ext.define('NX.view.dashboard.Feature', {
   extend: 'Ext.Panel',
   alias: 'widget.nx-dashboard-feature',
 
-  title: 'Dashboard',
-  iconCls: 'nx-icon-feature-dashboard-x16',
   layout: 'fit',
 
   items: {
