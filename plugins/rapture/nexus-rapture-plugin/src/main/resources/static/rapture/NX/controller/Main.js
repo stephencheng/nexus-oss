@@ -143,6 +143,10 @@ Ext.define('NX.controller.Main', {
     me.restoreBookmark(token);
   },
 
+  /**
+   * Registers features.
+   * @param {NX.model.FeatureMenu/NX.model.FeatureMenu[]} features to be registered
+   */
   registerFeature: function (features) {
     var me = this;
 
@@ -157,20 +161,26 @@ Ext.define('NX.controller.Main', {
     }
   },
 
+  /**
+   * Refresh feature menu.
+   */
   refresh: function () {
     var me = this,
         feature, segments, parent, child, node;
 
     me.getFeatureStore().getRootNode().removeAll();
 
+    // create leafs and all parent groups of those leafs
     me.getFeatureMenuStore().each(function (rec) {
       feature = rec.getData();
+      // iterate only visible leafs
       if (Ext.isDefined(feature.view) && me.isFeatureVisible(feature)) {
         segments = feature.path.split('/');
         parent = me.getFeatureStore().getRootNode();
         for (var i = 1; i < segments.length; i++) {
           child = parent.findChild('text', segments[i], false);
           if (child) {
+            // if leaf was already created (leaf configured more times), merge the definitions
             if (i == segments.length - 1) {
               child.data = Ext.apply(child.data, Ext.apply(feature, {
                 text: segments[i],
@@ -180,6 +190,7 @@ Ext.define('NX.controller.Main', {
           }
           else {
             if (i < segments.length - 1) {
+              // create the group
               child = parent.appendChild({
                 text: segments[i],
                 leaf: false,
@@ -189,6 +200,7 @@ Ext.define('NX.controller.Main', {
               });
             }
             else {
+              // create the leaf
               child = parent.appendChild(Ext.apply(feature, {
                 text: segments[i],
                 leaf: true
@@ -200,8 +212,10 @@ Ext.define('NX.controller.Main', {
       }
     });
 
+    // apply configuration for group entries
     me.getFeatureMenuStore().each(function (rec) {
       feature = rec.getData();
+      // iterate only visible groups
       if (!Ext.isDefined(feature.view) && me.isFeatureVisible(feature)) {
         segments = feature.path.split('/');
         parent = me.getFeatureStore().getRootNode();
@@ -219,6 +233,7 @@ Ext.define('NX.controller.Main', {
 
     me.getFeatureStore().sort('weight', 'ASC');
 
+    // check out if current view is still valid. if not go to dashboard
     node = me.getFeatureStore().getRootNode().findChild('bookmark', Ext.History.getToken(), true);
     if (node) {
       me.restoreBookmark(Ext.History.getToken());
@@ -228,6 +243,10 @@ Ext.define('NX.controller.Main', {
     }
   },
 
+  /**
+   * Check if a feature is visible.
+   * @private
+   */
   isFeatureVisible: function (feature) {
     var visible = true;
     if (feature.visible) {
