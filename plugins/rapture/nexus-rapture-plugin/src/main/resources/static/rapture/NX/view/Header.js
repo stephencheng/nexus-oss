@@ -12,7 +12,7 @@
  */
 Ext.define('NX.view.Header', {
   extend: 'Ext.panel.Panel',
-  extends: [
+  require: [
     'NX.util.Url'
   ],
   alias: 'widget.nx-header',
