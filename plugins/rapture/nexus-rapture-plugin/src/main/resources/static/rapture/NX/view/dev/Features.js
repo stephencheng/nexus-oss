@@ -10,21 +10,23 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.view.dev.Panel', {
-  extend: 'Ext.tab.Panel',
-  requires: [
-    'NX.view.dev.Buttons'
-  ],
-  alias: 'widget.nx-dev-panel',
+Ext.define('NX.view.dev.Features', {
+  extend: 'Ext.grid.Panel',
+  alias: 'widget.nx-dev-features',
 
-  title: 'Developer',
-  stateful: true,
-  stateId: 'nx-dev-panel',
+  title: 'Features',
+  store: 'FeatureMenu',
 
-  items: [
-    { xtype: 'nx-dev-tests' },
-    { xtype: 'nx-dev-buttons' },
-    { xtype: 'nx-dev-icons' },
-    { xtype: 'nx-dev-features' }
+  columns: [
+    { text: 'path', dataIndex: 'path', width: 200 },
+    { text: 'bookmark', dataIndex: 'bookmark' },
+    { text: 'view', dataIndex: 'view', width: 250 },
+    { text: 'iconCls', dataIndex: 'iconCls', width: 250 },
+    {
+      xtype: 'templatecolumn',
+      text: 'icon',
+      // NOTE: img must have src value for Chrome to render it w/o a border?!
+      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="{iconCls}"/>'
+    }
   ]
 });
