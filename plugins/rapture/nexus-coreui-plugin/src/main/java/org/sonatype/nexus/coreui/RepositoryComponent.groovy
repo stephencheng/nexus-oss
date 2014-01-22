@@ -14,6 +14,7 @@ package org.sonatype.nexus.coreui
 
 import com.softwarementors.extjs.djn.config.annotations.DirectAction
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod
+import org.apache.shiro.authz.annotation.RequiresPermissions
 import org.sonatype.nexus.extdirect.DirectComponent
 import org.sonatype.nexus.extdirect.DirectComponentSupport
 import org.sonatype.nexus.proxy.ResourceStoreRequest
@@ -51,6 +52,7 @@ class RepositoryComponent
    * Retrieve a list of available repositories.
    */
   @DirectMethod
+  @RequiresPermissions('nexus:repositories:read')
   List<RepositoryXO> read() {
     return repositoryRegistry.repositories.collect { input ->
       def result = new RepositoryXO(
@@ -76,6 +78,7 @@ class RepositoryComponent
   }
 
   @DirectMethod
+  @RequiresPermissions('nexus:repositories:delete')
   void delete(final String id) {
     repositoryRegistry.removeRepository(id)
   }
