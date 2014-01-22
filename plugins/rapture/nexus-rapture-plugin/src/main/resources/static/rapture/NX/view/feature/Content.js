@@ -14,5 +14,7 @@ Ext.define('NX.view.feature.Content', {
   extend: 'Ext.Panel',
   alias: 'widget.nx-feature-content',
 
-  layout: 'fit'
+  layout: 'fit',
+
+  ui: 'light'
 });
