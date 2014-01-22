@@ -200,11 +200,13 @@ public class ApplicationDirectComponent
     List<PermissionXO> perms = Lists.newArrayList();
 
     for (Entry<String, Integer> entry : privilegeMap.entrySet()) {
-      PermissionXO permissionXO = new PermissionXO();
-      permissionXO.setId(entry.getKey());
-      permissionXO.setValue(entry.getValue());
+      if (entry.getValue() > NONE) {
+        PermissionXO permissionXO = new PermissionXO();
+        permissionXO.setId(entry.getKey());
+        permissionXO.setValue(entry.getValue());
 
-      perms.add(permissionXO);
+        perms.add(permissionXO);
+      }
     }
 
     return perms;
