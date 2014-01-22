@@ -38,7 +38,8 @@ Ext.define('NX.view.Header', {
       {
         xtype: 'image',
         // HACK: This isn't proper for class def which depend on others wrt to the class loader
-        src: NX.util.Url.baseUrl + 'static/rapture/resources/images/nexus-32x32.png',
+        //src: NX.util.Url.baseUrl + 'static/rapture/resources/images/nexus-32x32.png',
+        src: 'http://localhost:8081/nexus/static/rapture/resources/images/nexus-32x32.png',
         autoEl: 'span',
         height: 32,
         width: 32
