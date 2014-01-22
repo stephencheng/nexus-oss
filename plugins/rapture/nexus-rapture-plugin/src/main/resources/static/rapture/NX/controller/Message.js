@@ -45,7 +45,7 @@ Ext.define('NX.controller.Message', {
       }
     });
 
-    me.getMessageStore().on('datachanged', me.updateTitle, me);
+    me.getMessageStore().on('datachanged', me.updateHeader, me);
 
     icons.addIcon({
       name: 'message-default',
@@ -83,14 +83,21 @@ Ext.define('NX.controller.Message', {
    *
    * @private
    */
-  updateTitle: function() {
+  updateHeader: function() {
     var me = this,
         count = me.getMessageStore().getCount(),
         title = 'Messages';
 
     if (count != 0) {
       title = Ext.util.Format.plural(count, 'Message');
+
+      // update icon to highlight new messages
+      me.getPanel().setIconCls('nx-icon-message-default-x16');
     }
+    else {
+      me.getPanel().setIconCls(undefined);
+    }
+
     me.getPanel().setTitle(title);
   },
 
