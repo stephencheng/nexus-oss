@@ -12,6 +12,9 @@
  */
 Ext.define('NX.view.dev.Permissions', {
   extend: 'Ext.grid.Panel',
+  requires: [
+    'NX.util.Permissions'
+  ],
   alias: 'widget.nx-dev-permissions',
 
   title: 'Permissions',
@@ -19,44 +22,28 @@ Ext.define('NX.view.dev.Permissions', {
   emptyText: 'No permissions',
 
   columns: [
-    { text: 'permission', dataIndex: 'id', width: 300 },
+    { text: 'permission', dataIndex: 'id', width: 300 }
+  ],
 
-    // FIXME: Refactor to avoid duplication
-    { text: 'create',
-      xtype: 'templatecolumn',
-      width: 70,
-      tpl: new Ext.XTemplate(
-          '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-          '<tpl if="value & NX.util.Permissions.CREATE">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
-          '"/>'
-      )
-    },
-    { text: 'read',
-      xtype: 'templatecolumn',
-      width: 70,
-      tpl: new Ext.XTemplate(
-          '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-          '<tpl if="value & NX.util.Permissions.CREATE">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
-          '"/>'
-      )
-    },
-    { text: 'update',
-      xtype: 'templatecolumn',
-      width: 70,
-      tpl: new Ext.XTemplate(
-          '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-          '<tpl if="value & NX.util.Permissions.CREATE">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
-          '"/>'
-      )
-    },
-    { text: 'delete',
-      xtype: 'templatecolumn',
-      width: 70,
-      tpl: new Ext.XTemplate(
-          '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-          '<tpl if="value & NX.util.Permissions.CREATE">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
-          '"/>'
-      )
-    }
-  ]
+  /**
+   * @protected
+   */
+  initComponent: function() {
+    var me = this;
+
+    // Add columns for each major permission
+    Ext.each([ 'CREATE', 'READ', 'UPDATE', 'DELETE' ], function(perm) {
+      me.columns.push(
+        { text: perm, xtype: 'templatecolumn', width: 80, align: 'center',
+          tpl: new Ext.XTemplate(
+            '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
+            '<tpl if="value & NX.util.Permissions.' + perm + '">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
+            '"/>'
+          )
+        }
+      );
+    });
+
+    me.callParent();
+  }
 });
