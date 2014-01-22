@@ -31,30 +31,30 @@ Ext.define('NX.view.Login', {
     Ext.apply(this, {
       items: {
         xtype: 'form',
+        bodyPadding: 10,
+        defaultType: 'textfield',
         defaults: {
           anchor: '100%',
-          htmlDecode: true,
-          itemCls: 'required-field',
-          allowBlank: false
+          htmlDecode: true
         },
-        fieldDefaults: {
-          labelAlign: 'right',
-          labelWidth: '80px'
-        },
-        bodyPadding: 10,
         items: [
           {
-            xtype: 'textfield',
             name: 'username',
             fieldLabel: 'Username',
-            emptyText: 'enter your username'
+            emptyText: 'enter your username',
+            allowBlank: false
           },
           {
-            xtype: 'textfield',
             name: 'password',
             fieldLabel: 'Password',
             inputType: 'password',
-            emptyText: 'enter your password'
+            emptyText: 'enter your password',
+            allowBlank: false
+          },
+          {
+            xtype:'checkbox',
+            fieldLabel: 'Remember me',
+            name: 'remember'
           }
         ],
 
