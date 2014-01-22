@@ -145,7 +145,7 @@ Ext.define('NX.controller.Main', {
 
   /**
    * Registers features.
-   * @param {NX.model.FeatureMenu/NX.model.FeatureMenu[]} features to be registered
+   * @param {Array/Object} features to be registered
    */
   registerFeature: function (features) {
     var me = this;
