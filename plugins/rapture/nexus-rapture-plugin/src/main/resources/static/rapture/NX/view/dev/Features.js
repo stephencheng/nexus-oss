@@ -19,9 +19,9 @@ Ext.define('NX.view.dev.Features', {
   emptyText: 'No features',
 
   columns: [
-    { text: 'path', dataIndex: 'path', width: 200, editor: 'textfield' },
+    { text: 'path', dataIndex: 'path', editor: 'textfield', flex: 1 },
     { text: 'bookmark', dataIndex: 'bookmark', editor: 'textfield' },
-    { text: 'weight', dataIndex: 'weight', editor: 'textfield' },
+    { text: 'weight', dataIndex: 'weight', width: 80, editor: 'textfield' },
     { text: 'view', dataIndex: 'view', width: 250, editor: 'textfield' },
     { text: 'iconCls', dataIndex: 'iconCls', width: 250, editor: 'textfield' },
     {

@@ -32,6 +32,55 @@ Ext.define('NX.controller.Developer', {
     var me = this,
         icons = me.getApplication().getIconController();
 
+    icons.addIcon({
+      name: 'permission-granted',
+      file: 'tick.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'permission-granted',
+      file: 'tick.png',
+      variant: 'x32'
+    });
+
+    icons.addIcon({
+      name: 'permission-denied',
+      file: 'cross.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'permission-denied',
+      file: 'cross.png',
+      variant: 'x32'
+    });
+
+    // FIXME: These are for testing only
+    icons.addIcon({
+      name: 'arrow_refresh',
+      file: 'arrow_refresh.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'arrow_refresh',
+      file: 'arrow_refresh.png',
+      variant: 'x32'
+    });
+
+    icons.addIcon({
+      name: 'refresh',
+      ref: 'arrow_refresh',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'refresh',
+      ref: 'arrow_refresh',
+      variant: 'x32'
+    });
+
     me.listen({
       component: {
         'nx-dev-tests button[action=testError]': {
@@ -49,30 +98,6 @@ Ext.define('NX.controller.Developer', {
           update: me.onFeatureUpdated
         }
       }
-    });
-
-    icons.addIcon({
-      name: 'arrow_refresh',
-      file: 'arrow_refresh.png',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'arrow_refresh',
-      file: 'arrow_refresh.png',
-      variant: 'x32'
-    });
-
-    icons.addIcon({
-      name: 'refresh',
-      ref: 'arrow_refresh',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'refresh',
-      ref: 'arrow_refresh',
-      variant: 'x32'
     });
   },
 

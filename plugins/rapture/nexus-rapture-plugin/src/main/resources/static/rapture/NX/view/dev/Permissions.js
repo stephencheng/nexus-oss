@@ -20,12 +20,14 @@ Ext.define('NX.view.dev.Permissions', {
 
   columns: [
     { text: 'permission', dataIndex: 'id', width: 300 },
+
+    // FIXME: Refactor to avoid duplication
     { text: 'create',
       xtype: 'templatecolumn',
       width: 70,
       tpl: new Ext.XTemplate(
           '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-          '<tpl if="value & NX.util.Permissions.CREATE">nx-icon-message-success-x16<tpl else>nx-icon-message-danger-x16</tpl>',
+          '<tpl if="value & NX.util.Permissions.CREATE">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
           '"/>'
       )
     },
@@ -34,7 +36,7 @@ Ext.define('NX.view.dev.Permissions', {
       width: 70,
       tpl: new Ext.XTemplate(
           '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-          '<tpl if="value & NX.util.Permissions.READ">nx-icon-message-success-x16<tpl else>nx-icon-message-danger-x16</tpl>',
+          '<tpl if="value & NX.util.Permissions.CREATE">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
           '"/>'
       )
     },
@@ -43,7 +45,7 @@ Ext.define('NX.view.dev.Permissions', {
       width: 70,
       tpl: new Ext.XTemplate(
           '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-          '<tpl if="value & NX.util.Permissions.UPDATE">nx-icon-message-success-x16<tpl else>nx-icon-message-danger-x16</tpl>',
+          '<tpl if="value & NX.util.Permissions.CREATE">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
           '"/>'
       )
     },
@@ -52,10 +54,9 @@ Ext.define('NX.view.dev.Permissions', {
       width: 70,
       tpl: new Ext.XTemplate(
           '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-          '<tpl if="value & NX.util.Permissions.DELETE">nx-icon-message-success-x16<tpl else>nx-icon-message-danger-x16</tpl>',
+          '<tpl if="value & NX.util.Permissions.CREATE">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
           '"/>'
       )
     }
   ]
-
 });
