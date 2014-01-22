@@ -44,7 +44,8 @@ Ext.define('NX.controller.User', {
     me.listen({
       controller: {
         '#Status': {
-          user: me.updateUser
+          user: me.updateUser,
+          commandfetchpermissions: me.fetchPermissions
         }
       },
       store: {
@@ -83,7 +84,7 @@ Ext.define('NX.controller.User', {
           userButton.show();
         }
         me.user = user;
-        me.getPermissionStore().load();
+        me.fetchPermissions();
       }
     }
     else {
@@ -158,6 +159,15 @@ Ext.define('NX.controller.User', {
         }
       }
     });
+  },
+
+  /**
+   * @private
+   */
+  fetchPermissions: function () {
+    var me = this;
+
+    me.getPermissionStore().load();
   },
 
   /**

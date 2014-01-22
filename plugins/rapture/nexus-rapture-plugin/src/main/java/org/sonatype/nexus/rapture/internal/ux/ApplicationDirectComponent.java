@@ -64,6 +64,8 @@ public class ApplicationDirectComponent
 
   private static final int CREATE = 8;
 
+  public static final String PRIVILEGES = "privileges";
+
   private final ApplicationStatusSource applicationStatusSource;
 
   private final SecuritySystem securitySystem;
@@ -82,6 +84,13 @@ public class ApplicationDirectComponent
 
     statusXO.setInfo(getInfo());
     statusXO.setUser(getUser());
+
+    List<CommandXO> commands = Lists.newArrayList();
+    statusXO.setCommands(commands);
+    CommandXO fetchPermissionsCommand = checkPermissions();
+    if (fetchPermissionsCommand != null) {
+      commands.add(fetchPermissionsCommand);
+    }
 
     return statusXO;
   }
@@ -111,7 +120,12 @@ public class ApplicationDirectComponent
   public List<PermissionXO> readPermissions() {
     Subject subject = securitySystem.getSubject();
     if (subject != null && subject.isAuthenticated()) {
-      return calculatePermissions(subject);
+      Map<String, Integer> privileges = calculatePrivileges(subject);
+      HttpSession session = WebContextManager.get().getRequest().getSession(false);
+      if (session != null) {
+        session.setAttribute(PRIVILEGES, privileges);
+      }
+      return asPermissions(privileges);
     }
     return null;
   }
@@ -144,7 +158,28 @@ public class ApplicationDirectComponent
     return userXO;
   }
 
-  private List<PermissionXO> calculatePermissions(final Subject subject) {
+  private CommandXO checkPermissions() {
+    HttpSession session = WebContextManager.get().getRequest().getSession(false);
+    if (session != null) {
+      Subject subject = securitySystem.getSubject();
+      if (subject != null && subject.isAuthenticated()) {
+        Map<String, Integer> currentPrivileges = calculatePrivileges(subject);
+        // TODO make teh diff based on a has not store the whole privileges map in session
+        Map<String, Integer> privileges = (Map<String, Integer>) session.getAttribute(PRIVILEGES);
+        if (privileges == null) {
+          privileges = Maps.newHashMap();
+        }
+        if (!Maps.difference(privileges, currentPrivileges).areEqual()) {
+          CommandXO command = new CommandXO();
+          command.setType("fetchpermissions");
+          return command;
+        }
+      }
+    }
+    return null;
+  }
+
+  private Map<String, Integer> calculatePrivileges(final Subject subject) {
     Map<String, Integer> privilegeMap = Maps.newHashMap();
 
     for (Privilege priv : securitySystem.listPrivileges()) {
@@ -205,6 +240,10 @@ public class ApplicationDirectComponent
       priv.setValue(perm);
     }
 
+    return privilegeMap;
+  }
+
+  private List<PermissionXO> asPermissions(final Map<String, Integer> privilegeMap) {
     List<PermissionXO> perms = Lists.newArrayList();
 
     for (Entry<String, Integer> entry : privilegeMap.entrySet()) {

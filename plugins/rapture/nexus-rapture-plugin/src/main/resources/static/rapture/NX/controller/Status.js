@@ -62,6 +62,11 @@ Ext.define('NX.controller.Status', {
       status = event.data.data;
       me.fireEvent('info', status.info);
       me.fireEvent('user', status.user);
+      if (status.commands) {
+        Ext.each(status.commands, function (command) {
+          me.fireEvent('command' + command.type.toLowerCase(), command.data);
+        });
+      }
     }
     else {
       if (event.code === 'xhr') {

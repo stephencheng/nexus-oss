@@ -16,16 +16,14 @@ package org.sonatype.nexus.rapture.internal.ux
 import groovy.transform.ToString
 
 /**
- * Status exchange object.
+ * Command exchange object.
  *
  * @since 2.8
  */
 @ToString(includePackage = false, includeNames = true)
-class StatusXO
+class CommandXO
 {
-  InfoXO info
+  String type
 
-  UserXO user
-
-  List<CommandXO> commands
+  Object data
 }
