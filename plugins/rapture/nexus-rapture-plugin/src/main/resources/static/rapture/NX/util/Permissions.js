@@ -14,7 +14,7 @@ Ext.define('NX.util.Permissions', {
   singleton: true,
 
   READ: 1,   // 0001
-  EDIT: 2,   // 0010
+  UPDATE: 2, // 0010
   DELETE: 4, // 0100
   CREATE: 8, // 1000
   ALL: 15,   // 1111
