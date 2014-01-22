@@ -55,7 +55,10 @@ Ext.define('NX.controller.Icon', {
     // TODO: Background-load icons?
 
     // create the style sheet
-    me.stylesheet = Ext.util.CSS.createStyleSheet(styles.join(' '), 'nx-icons');
+    me.stylesheet = Ext.util.CSS.createStyleSheet(styles.join(' '));
+
+    // NOTE: This has issues on IE 11, forced compat via X-UA-Compatible meta tag
+    // NOTE: ... but may be better off rendering this server side?
   },
 
   /**
@@ -65,26 +68,10 @@ Ext.define('NX.controller.Icon', {
    */
   buildIconStyle: function (icon) {
     var me = this,
-        style,
-        rules = {
-          background: 'url(' + icon.url + ') no-repeat !important',
-          display: 'block',
-          border: 'none',
-          'text-decoration': 'none',
-          outline: 'none'
-        };
-
-    if (icon.height) {
-      rules.height = icon.height + 'px';
-    }
-    if (icon.width) {
-      rules.width = icon.width + 'px';
-    }
+        style;
 
     style = '.' + icon.cls + ' {\n';
-    Ext.iterate(rules, function (key, value) {
-      style += key + ': ' + value + ';\n'
-    });
+    style += 'background-image: url(' + icon.url + ');\n';
     style += '}';
 
     return style;
