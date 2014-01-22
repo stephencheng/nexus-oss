@@ -30,7 +30,8 @@ Ext.define('NX.controller.Main', {
     'Feature'
   ],
   stores: [
-    'Feature'
+    'Feature',
+    'FeatureMenu'
   ],
 
   refs: [
@@ -43,8 +44,6 @@ Ext.define('NX.controller.Main', {
       selector: 'nx-feature-menu'
     }
   ],
-
-  features: [],
 
   init: function () {
     var me = this;
@@ -148,20 +147,21 @@ Ext.define('NX.controller.Main', {
       if (!Ext.isArray(features)) {
         features = [features];
       }
-      Ext.each(features, function(feature) {
+      Ext.each(features, function (feature) {
         // TODO assert feature path
-        me.features.push(feature);
+        me.getFeatureMenuStore().add(feature);
       });
     }
   },
 
   refresh: function () {
     var me = this,
-        segments, parent, child, node;
+        feature, segments, parent, child, node;
 
     me.getFeatureStore().getRootNode().removeAll();
 
-    Ext.each(me.features, function (feature) {
+    me.getFeatureMenuStore().each(function (rec) {
+      feature = rec.getData();
       if (Ext.isDefined(feature.view) && me.isFeatureVisible(feature)) {
         segments = feature.path.split('/');
         parent = me.getFeatureStore().getRootNode();
@@ -197,7 +197,8 @@ Ext.define('NX.controller.Main', {
       }
     });
 
-    Ext.each(me.features, function (feature) {
+    me.getFeatureMenuStore().each(function (rec) {
+      feature = rec.getData();
       if (!Ext.isDefined(feature.view) && me.isFeatureVisible(feature)) {
         segments = feature.path.split('/');
         parent = me.getFeatureStore().getRootNode();

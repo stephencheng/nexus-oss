@@ -10,12 +10,8 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.model.Feature', {
-  extend: 'Ext.data.TreeModel',
-  fields: [
-    { name: 'text' },
-    { name: 'weight', defaultValue: 100 },
-    { name: 'view' },
-    { name: 'bookmark' }
-  ]
+Ext.define('NX.store.FeatureMenu', {
+  extend: 'Ext.data.ArrayStore',
+  model: 'NX.model.FeatureMenu'
+
 });
