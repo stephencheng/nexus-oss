@@ -26,6 +26,4 @@ class UserXO
   String id
 
   String hash
-
-  List<PermissionXO> permissions
 }

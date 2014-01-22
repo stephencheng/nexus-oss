@@ -107,6 +107,15 @@ public class ApplicationDirectComponent
     }
   }
 
+  @DirectMethod
+  public List<PermissionXO> readPermissions() {
+    Subject subject = securitySystem.getSubject();
+    if (subject != null && subject.isAuthenticated()) {
+      return calculatePermissions(subject);
+    }
+    return null;
+  }
+
   private InfoXO getInfo() {
     InfoXO infoXO = new InfoXO();
     SystemStatus status = applicationStatusSource.getSystemStatus();
@@ -131,7 +140,6 @@ public class ApplicationDirectComponent
         userXO.setId(principal.toString());
       }
       userXO.setHash(userXO.getId());
-      userXO.setPermissions(calculatePermissions(subject));
     }
     return userXO;
   }
