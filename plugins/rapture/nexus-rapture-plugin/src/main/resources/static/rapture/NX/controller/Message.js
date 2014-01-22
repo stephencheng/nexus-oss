@@ -22,7 +22,7 @@ Ext.define('NX.controller.Message', {
   ],
 
   stores: [
-    'Message'
+    'Message',
   ],
 
   refs: [
@@ -36,7 +36,8 @@ Ext.define('NX.controller.Message', {
    * @protected
    */
   init: function () {
-    var me = this;
+    var me = this,
+        icons = me.getApplication().getIconController();
 
     me.control({
       'nx-message-panel button[action=clear]': {
@@ -45,6 +46,36 @@ Ext.define('NX.controller.Message', {
     });
 
     me.getMessageStore().on('datachanged', me.updateTitle, me);
+
+    icons.addIcon({
+      name: 'message-default',
+      file: 'bell.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'message-primary',
+      file: 'information.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'message-danger',
+      file: 'exclamation.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'message-warning',
+      file: 'warning.png',
+      variant: 'x16'
+    });
+
+    icons.addIcon({
+      name: 'message-success',
+      file: 'accept.png',
+      variant: 'x16'
+    });
   },
 
   /**
@@ -89,6 +120,7 @@ Ext.define('NX.controller.Message', {
     // show transient message notification
     me.getView('message.Notification').create({
       ui: 'message-' + message.type,
+      iconCls: 'nx-icon-message-' + message.type + '-x16',
       title: Ext.String.capitalize(message.type),
       html: message.text
     });

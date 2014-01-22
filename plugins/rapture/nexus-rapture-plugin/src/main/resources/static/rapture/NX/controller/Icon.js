@@ -46,7 +46,7 @@ Ext.define('NX.controller.Icon', {
     me.logDebug('Building stylesheet');
 
     // build styles for each icon in store
-    me.getIconStore().each(function(record) {
+    me.getIconStore().each(function (record) {
       var style = me.buildIconStyle(record.data);
       me.logDebug('Adding style: ' + style);
       styles.push(style);
@@ -63,21 +63,30 @@ Ext.define('NX.controller.Icon', {
    *
    * @private
    */
-  buildIconStyle: function(icon) {
-    var style;
+  buildIconStyle: function (icon) {
+    var me = this,
+        style,
+        rules = {
+          background: 'url(' + icon.url + ') no-repeat !important',
+          display: 'block',
+          border: 'none',
+          'text-decoration': 'none',
+          outline: 'none'
+        };
 
-    style = '.' + icon.cls + ' {';
-    style += 'background: url(' + icon.url + ') no-repeat !important;';
-
-    // add height and width if we have them
     if (icon.height) {
-      style += ' height: ' + icon.height + 'px;';
+      rules.height = icon.height + 'px';
     }
     if (icon.width) {
-      style += ' width: ' + icon.width + 'px;';
+      rules.width = icon.width + 'px';
     }
 
+    style = '.' + icon.cls + ' {\n';
+    Ext.iterate(rules, function (key, value) {
+      style += key + ': ' + value + ';\n'
+    });
     style += '}';
+
     return style;
   },
 
@@ -93,6 +102,17 @@ Ext.define('NX.controller.Icon', {
       me.resolveReference(icon);
     }
     me.configureIcon(icon);
+
+    // complain if height/width are missing as this could cause the image not to display
+    if (!icon.height) {
+      me.logWarn('Icon missing height: ' + icon.css)
+    }
+    if (!icon.width) {
+      me.logWarn('Icon missing width: ' + icon.css)
+    }
+
+    // TODO: complain if we are overwriting an icon
+
     me.getIconStore().add(icon);
   },
 
