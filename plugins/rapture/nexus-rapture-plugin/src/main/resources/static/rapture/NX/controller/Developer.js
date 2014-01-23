@@ -36,10 +36,9 @@ Ext.define('NX.controller.Developer', {
    * @protected
    */
   init: function () {
-    var me = this,
-        icons = me.getApplication().getIconController();
+    var me = this;
 
-    icons.addIcons({
+    me.getApplication().getIconController().addIcons({
       'permission-granted': {
         file: 'tick.png',
         variants: [ 'x16', 'x32' ]
@@ -48,31 +47,6 @@ Ext.define('NX.controller.Developer', {
         file: 'cross.png',
         variants: [ 'x16', 'x32' ]
       }
-    });
-
-    // FIXME: These are for testing only
-    icons.addIcon({
-      name: 'arrow_refresh',
-      file: 'arrow_refresh.png',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'arrow_refresh',
-      file: 'arrow_refresh.png',
-      variant: 'x32'
-    });
-
-    icons.addIcon({
-      name: 'refresh',
-      ref: 'arrow_refresh',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'refresh',
-      ref: 'arrow_refresh',
-      variant: 'x32'
     });
 
     me.listen({

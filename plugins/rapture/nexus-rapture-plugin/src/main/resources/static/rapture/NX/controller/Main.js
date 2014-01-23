@@ -61,6 +61,13 @@ Ext.define('NX.controller.Main', {
       me.restoreBookmark(token);
     });
 
+    me.getApplication().getIconController().addIcons({
+      'refresh': {
+        file: 'arrow_refresh.png',
+        variants: [ 'x16', 'x32' ]
+      }
+    });
+
     me.listen({
       controller: {
         '#User': {

@@ -124,9 +124,6 @@ Ext.define('NX.controller.Icon', {
       return;
     }
 
-    if (icon.ref) {
-      me.resolveReference(icon);
-    }
     me.configureIcon(icon);
 
     // complain if height/width are missing as this could cause the image not to display
@@ -140,55 +137,6 @@ Ext.define('NX.controller.Icon', {
     // TODO: complain if we are overwriting an icon
 
     me.getIconStore().add(icon);
-  },
-
-  /**
-   * Find an icon by name with optional variant.
-   *
-   * @public
-   */
-  findIcon: function (name, variant) {
-    var me = this,
-        store = me.getIconStore(),
-        recordId;
-
-    recordId = store.findBy(function (record, id) {
-      // find matching icon name
-      if (name === record.get('name')) {
-        // if icon has a variant match that too
-        if (variant) {
-          if (variant === record.get('variant')) {
-            return true; // match
-          }
-        }
-      }
-      return false; // no match
-    });
-
-    if (recordId === -1) {
-      return null;
-    }
-    return store.getAt(recordId);
-  },
-
-  /**
-   * Resolve icon references.
-   *
-   * @private
-   */
-  resolveReference: function (icon) {
-    var me = this,
-        ref;
-
-    // resolve icon references
-    me.logDebug('Resolving reference: ' + icon.ref);
-    ref = me.findIcon(icon.ref, icon.variant);
-    if (ref === null) {
-      Ext.Error.raise('Missing icon reference: ' + icon.ref);
-    }
-
-    // apply missing fields to this configuration
-    Ext.applyIf(icon, ref.data);
   },
 
   /**
@@ -225,5 +173,34 @@ Ext.define('NX.controller.Icon', {
       cls += '-' + icon.variant;
     }
     icon.cls = cls;
+  },
+
+  /**
+   * Find an icon by name with optional variant.
+   *
+   * @public
+   */
+  findIcon: function (name, variant) {
+    var me = this,
+        store = me.getIconStore(),
+        recordId;
+
+    recordId = store.findBy(function (record, id) {
+      // find matching icon name
+      if (name === record.get('name')) {
+        // if icon has a variant match that too
+        if (variant) {
+          if (variant === record.get('variant')) {
+            return true; // match
+          }
+        }
+      }
+      return false; // no match
+    });
+
+    if (recordId === -1) {
+      return null;
+    }
+    return store.getAt(recordId);
   }
 });

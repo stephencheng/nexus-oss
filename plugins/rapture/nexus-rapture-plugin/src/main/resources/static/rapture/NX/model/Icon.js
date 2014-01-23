@@ -24,7 +24,6 @@ Ext.define('NX.model.Icon', {
     { name: 'variant', type: 'string' },
     { name: 'height', type: 'int' },
     { name: 'width', type: 'int' },
-    { name: 'ref', type: 'string' },
     { name: 'url', type: 'string' }
   ]
 });
