@@ -81,7 +81,7 @@ Ext.define('NX.controller.Main', {
           afterrender: me.initBookmark
         },
         'nx-header-panel button[action=refresh]': {
-          click: me.refreshFeature
+          click: me.refresh
         }
       }
     });
@@ -157,7 +157,7 @@ Ext.define('NX.controller.Main', {
     me.restoreBookmark(token);
   },
 
-  refreshFeature: function () {
+  refresh: function () {
     var refreshables = Ext.ComponentQuery.query('panel[refreshable=true]');
 
     if (refreshables) {
