@@ -103,10 +103,14 @@ Ext.define('NX.controller.Main', {
       // create new view and replace any current view
       cmp = me.getView(view).create();
 
+      // remove the current contents
       content.removeAll();
+
+      // update title and icon
       content.setTitle(record.get('text'));
       content.setIconCls('nx-icon-' + record.get('iconName') + '-x32');
 
+      // install new feature view
       content.add(cmp);
 
       me.bookmark(record.get('bookmark'));

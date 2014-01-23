@@ -14,9 +14,8 @@ Ext.define('NX.model.Message', {
   extend: 'Ext.data.Model',
   fields: [
     { name: 'timestamp', type: 'date' },
+    // TODO: consider changing this to html?
     { name: 'text', type: 'string' },
     { name: 'type', type: 'string', defaultValue: 'default' }
-
-    // TODO: icon, etc
   ]
 });
