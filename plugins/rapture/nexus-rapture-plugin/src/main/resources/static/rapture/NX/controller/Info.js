@@ -19,7 +19,7 @@ Ext.define('NX.controller.Info', {
   refs: [
     {
       ref: 'header',
-      selector: 'nx-header'
+      selector: 'nx-header-panel'
     }
   ],
 

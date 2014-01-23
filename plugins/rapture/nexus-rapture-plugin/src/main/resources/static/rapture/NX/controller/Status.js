@@ -28,7 +28,7 @@ Ext.define('NX.controller.Status', {
   refs: [
     {
       ref: 'header',
-      selector: 'nx-header'
+      selector: 'nx-header-panel'
     }
   ],
 

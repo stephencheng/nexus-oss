@@ -18,7 +18,7 @@ Ext.define('NX.controller.Main', {
 
   views: [
     'Main',
-    'Header',
+    'header.Panel',
     'header.Logo',
     'dev.Panel',
     'feature.Menu',
@@ -70,7 +70,7 @@ Ext.define('NX.controller.Main', {
           beforerender: me.refresh,
           afterrender: me.initBookmark
         },
-        'nx-header button[action=refresh]': {
+        'nx-header-panel button[action=refresh]': {
           click: me.refreshFeature
         }
       }

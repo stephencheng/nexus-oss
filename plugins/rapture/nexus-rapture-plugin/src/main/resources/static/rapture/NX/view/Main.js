@@ -22,7 +22,7 @@ Ext.define('NX.view.Main', {
 
   items: [
     {
-      xtype: 'nx-header',
+      xtype: 'nx-header-panel',
       region: 'north',
       collapsible: false
     },

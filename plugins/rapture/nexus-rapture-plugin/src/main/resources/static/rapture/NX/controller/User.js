@@ -31,7 +31,7 @@ Ext.define('NX.controller.User', {
   refs: [
     {
       ref: 'header',
-      selector: 'nx-header'
+      selector: 'nx-header-panel'
     }
   ],
 
@@ -54,13 +54,13 @@ Ext.define('NX.controller.User', {
         }
       },
       component: {
-        'nx-header button[action=login]': {
+        'nx-header-panel button[action=login]': {
           click: me.showLoginWindow
         },
         'nx-login button[action=login]': {
           click: me.login
         },
-        'nx-header button[action=user] menuitem[action=logout]': {
+        'nx-header-panel button[action=user] menuitem[action=logout]': {
           click: me.logout
         }
       }
