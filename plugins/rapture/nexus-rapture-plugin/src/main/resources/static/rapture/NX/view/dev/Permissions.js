@@ -22,7 +22,7 @@ Ext.define('NX.view.dev.Permissions', {
   emptyText: 'No permissions',
 
   columns: [
-    { text: 'permission', dataIndex: 'id', width: 300 }
+    { text: 'permission', dataIndex: 'id', flex: 1 }
   ],
 
   /**
