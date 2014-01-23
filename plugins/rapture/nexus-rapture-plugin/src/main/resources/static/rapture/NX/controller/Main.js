@@ -71,13 +71,13 @@ Ext.define('NX.controller.Main', {
     me.listen({
       controller: {
         '#User': {
-          permissionsChanged: me.refresh
+          permissionsChanged: me.refreshMenu
         }
       },
       component: {
         'nx-feature-menu': {
           select: me.selectFeature,
-          beforerender: me.refresh,
+          beforerender: me.refreshMenu,
           afterrender: me.initBookmark
         },
         'nx-header-panel button[action=refresh]': {
@@ -191,7 +191,7 @@ Ext.define('NX.controller.Main', {
   /**
    * Refresh feature menu.
    */
-  refresh: function () {
+  refreshMenu: function () {
     var me = this,
         feature, segments, parent, child, node;
 

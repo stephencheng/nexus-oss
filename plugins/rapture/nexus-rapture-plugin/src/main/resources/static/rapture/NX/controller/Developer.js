@@ -127,6 +127,6 @@ Ext.define('NX.controller.Developer', {
   onFeatureUpdated: function () {
     var me = this;
 
-    me.getApplication().getMainController().refresh();
+    me.getApplication().getMainController().refreshMenu();
   }
 });
