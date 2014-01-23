@@ -57,11 +57,14 @@ Ext.define('NX.controller.User', {
         'nx-header-panel button[action=login]': {
           click: me.showLoginWindow
         },
+        'nx-header-panel button[action=user] menuitem[action=logout]': {
+          click: me.logout
+        },
         'nx-login button[action=login]': {
           click: me.login
         },
-        'nx-header-panel button[action=user] menuitem[action=logout]': {
-          click: me.logout
+        'nx-login form field': {
+          specialkey: me.loginIfEnterPressed
         }
       }
     });
@@ -104,6 +107,20 @@ Ext.define('NX.controller.User', {
    */
   showLoginWindow: function () {
     Ext.widget('nx-login');
+  },
+
+  /**
+   * @private
+   */
+  loginIfEnterPressed: function (field, e) {
+    var me = this,
+        form = field.up('form'),
+        loginButton = form.down('button[action=login]');
+
+    if (e.getKey() == e.ENTER && form.isValid()) {
+      me.login(loginButton);
+      e.stopEvent();
+    }
   },
 
   /**
