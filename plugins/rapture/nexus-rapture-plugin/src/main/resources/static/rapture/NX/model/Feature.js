@@ -11,12 +11,17 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.model.Feature', {
-  extend: 'Ext.data.TreeModel',
+  extend: 'Ext.data.Model',
   fields: [
-    { name: 'text' },
+    { name: 'path' },
     { name: 'weight', defaultValue: 100 },
-    { name: 'view' },
-    { name: 'bookmark' },
-    { name: 'iconName' }
+    { name: 'view', defaultValue: undefined },
+    { name: 'visible', defaultValue: true },
+    { name: 'expanded', defaultValue: true },
+    { name: 'bookmark', defaultValue: undefined },
+    { name: 'iconName', defaultValue: undefined },
+
+    // HACK: Required by tree representation, value populated when feature is added automatically from iconName
+    { name: 'iconCls', defaultValue: undefined }
   ]
 });

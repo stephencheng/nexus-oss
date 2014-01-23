@@ -11,13 +11,7 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.store.Feature', {
-  extend: 'Ext.data.TreeStore',
-  model: 'NX.model.Feature',
-
-  root: {
-    expanded: true,
-    text: 'Features',
-    children: []
-  }
+  extend: 'Ext.data.ArrayStore',
+  model: 'NX.model.Feature'
 
 });

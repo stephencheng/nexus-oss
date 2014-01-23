@@ -15,7 +15,7 @@ Ext.define('NX.view.dev.Features', {
   alias: 'widget.nx-dev-features',
 
   title: 'Features',
-  store: 'FeatureMenu',
+  store: 'Feature',
   emptyText: 'No features',
 
   columns: [

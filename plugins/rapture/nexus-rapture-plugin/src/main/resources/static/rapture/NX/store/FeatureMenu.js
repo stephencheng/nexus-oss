@@ -11,7 +11,13 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.store.FeatureMenu', {
-  extend: 'Ext.data.ArrayStore',
-  model: 'NX.model.FeatureMenu'
+  extend: 'Ext.data.TreeStore',
+  model: 'NX.model.FeatureMenu',
+
+  root: {
+    expanded: true,
+    text: 'Features',
+    children: []
+  }
 
 });

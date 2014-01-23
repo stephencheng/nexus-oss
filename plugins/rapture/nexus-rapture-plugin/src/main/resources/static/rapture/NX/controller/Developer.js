@@ -65,7 +65,7 @@ Ext.define('NX.controller.Developer', {
         }
       },
       store: {
-        '#FeatureMenu': {
+        '#Feature': {
           update: me.onFeatureUpdated
         }
       }

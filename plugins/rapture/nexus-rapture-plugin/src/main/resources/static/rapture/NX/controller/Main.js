@@ -137,7 +137,7 @@ Ext.define('NX.controller.Main', {
     var me = this,
         node;
 
-    node = me.getFeatureStore().getRootNode().findChild('bookmark', token, true);
+    node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', token, true);
     if (node) {
       me.getFeatureMenu().selectPath(node.getPath('text'), 'text');
     }
@@ -183,7 +183,7 @@ Ext.define('NX.controller.Main', {
         if (feature.iconName) {
           feature.iconCls = 'nx-icon-' + feature.iconName + '-x16';
         }
-        me.getFeatureMenuStore().add(feature);
+        me.getFeatureStore().add(feature);
       });
     }
   },
@@ -195,15 +195,15 @@ Ext.define('NX.controller.Main', {
     var me = this,
         feature, segments, parent, child, node;
 
-    me.getFeatureStore().getRootNode().removeAll();
+    me.getFeatureMenuStore().getRootNode().removeAll();
 
     // create leafs and all parent groups of those leafs
-    me.getFeatureMenuStore().each(function (rec) {
+    me.getFeatureStore().each(function (rec) {
       feature = rec.getData();
       // iterate only visible leafs
       if (Ext.isDefined(feature.view) && me.isFeatureVisible(feature)) {
         segments = feature.path.split('/');
-        parent = me.getFeatureStore().getRootNode();
+        parent = me.getFeatureMenuStore().getRootNode();
         for (var i = 1; i < segments.length; i++) {
           child = parent.findChild('text', segments[i], false);
           if (child) {
@@ -240,12 +240,12 @@ Ext.define('NX.controller.Main', {
     });
 
     // apply configuration for group entries
-    me.getFeatureMenuStore().each(function (rec) {
+    me.getFeatureStore().each(function (rec) {
       feature = rec.getData();
       // iterate only visible groups
       if (!Ext.isDefined(feature.view) && me.isFeatureVisible(feature)) {
         segments = feature.path.split('/');
-        parent = me.getFeatureStore().getRootNode();
+        parent = me.getFeatureMenuStore().getRootNode();
         for (var i = 1; i < segments.length; i++) {
           child = parent.findChild('text', segments[i], false);
           if (child && !child.data.leaf) {
@@ -258,10 +258,10 @@ Ext.define('NX.controller.Main', {
       }
     });
 
-    me.getFeatureStore().sort('weight', 'ASC');
+    me.getFeatureMenuStore().sort('weight', 'ASC');
 
     // check out if current view is still valid. if not go to dashboard
-    node = me.getFeatureStore().getRootNode().findChild('bookmark', Ext.History.getToken(), true);
+    node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', Ext.History.getToken(), true);
     if (node) {
       me.restoreBookmark(Ext.History.getToken());
     }
