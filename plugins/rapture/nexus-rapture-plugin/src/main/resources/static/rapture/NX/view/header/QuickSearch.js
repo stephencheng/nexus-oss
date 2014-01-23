@@ -10,39 +10,15 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.controller.Info', {
-  extend: 'Ext.app.Controller',
-  mixins: {
-    logAware: 'NX.LogAware'
-  },
+Ext.define('NX.view.header.QuickSearch', {
+  extend: 'Ext.form.field.Trigger',
+  alias: 'widget.nx-header-quicksearch',
 
-  refs: [
-    {
-      ref: 'version',
-      selector: 'nx-header-version'
-    }
-  ],
+  emptyText: 'quick search',
+  width: 250,
 
-  init: function () {
-    var me = this;
-
-    me.listen({
-      controller: {
-        '#Status': {
-          info: me.updateInfo
-        }
-      }
-    });
-  },
-
-  /**
-   * @private
-   */
-  updateInfo: function (info) {
-    var me = this;
-
-    // Update the header-version with details from status
-    me.getVersion().setText(info.edition + ' ' + info.version);
-  }
+  // TODO: Only show clear trigger if we have text
+  trigger1Cls: Ext.baseCSSPrefix + 'form-clear-trigger',
+  trigger2Cls: Ext.baseCSSPrefix + 'form-search-trigger'
 
 });

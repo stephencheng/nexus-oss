@@ -20,6 +20,8 @@ Ext.define('NX.controller.Main', {
     'Main',
     'header.Panel',
     'header.Logo',
+    'header.Version',
+    'header.QuickSearch',
     'dev.Panel',
     'feature.Menu',
     'feature.Content',

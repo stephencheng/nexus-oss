@@ -46,22 +46,12 @@ Ext.define('NX.view.header.Panel', {
       },
       '-',
       {
-        xtype: 'label',
-        id: 'edition',
-        text: 'Unknown',
-        style: {
-          'color': '#DDDDDD',
-          'font-size': '12px'
-        }
+        xtype: 'nx-header-version'
       },
       '->',
       {
-        xtype: 'triggerfield',
-        emptyText: 'quick search',
-        width: 250,
-        // TODO: Only show clear trigger if we have text
-        trigger1Cls: Ext.baseCSSPrefix + 'form-clear-trigger',
-        trigger2Cls: Ext.baseCSSPrefix + 'form-search-trigger'
+        xtype: 'nx-header-quicksearch',
+        width: 250
       },
       '-',
       {

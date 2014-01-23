@@ -10,39 +10,13 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.controller.Info', {
-  extend: 'Ext.app.Controller',
-  mixins: {
-    logAware: 'NX.LogAware'
-  },
+Ext.define('NX.view.header.Version', {
+  extend: 'Ext.form.Label',
+  alias: 'widget.nx-header-version',
 
-  refs: [
-    {
-      ref: 'version',
-      selector: 'nx-header-version'
-    }
-  ],
-
-  init: function () {
-    var me = this;
-
-    me.listen({
-      controller: {
-        '#Status': {
-          info: me.updateInfo
-        }
-      }
-    });
-  },
-
-  /**
-   * @private
-   */
-  updateInfo: function (info) {
-    var me = this;
-
-    // Update the header-version with details from status
-    me.getVersion().setText(info.edition + ' ' + info.version);
+  text: 'Unknown',
+  style: {
+    'color': '#DDDDDD',
+    'font-size': '12px'
   }
-
 });
