@@ -63,8 +63,8 @@ Ext.define('NX.controller.User', {
         'nx-login button[action=login]': {
           click: me.login
         },
-        'nx-login form field': {
-          specialkey: me.loginIfEnterPressed
+        'nx-login form': {
+          afterrender: me.installEnterKey
         }
       }
     });
@@ -112,15 +112,17 @@ Ext.define('NX.controller.User', {
   /**
    * @private
    */
-  loginIfEnterPressed: function (field, e) {
-    var me = this,
-        form = field.up('form'),
-        loginButton = form.down('button[action=login]');
+  installEnterKey: function (form) {
+    var me = this;
 
-    if (e.getKey() == e.ENTER && form.isValid()) {
-      me.login(loginButton);
-      e.stopEvent();
-    }
+    me.keyNav = Ext.create('Ext.util.KeyNav', form.el, {
+      enter: function () {
+        if (form.isValid()) {
+          me.login(form.down('button[action=login]'));
+        }
+      },
+      scope: this
+    });
   },
 
   /**
