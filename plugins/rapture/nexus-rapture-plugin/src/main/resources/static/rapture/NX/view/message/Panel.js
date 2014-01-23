@@ -42,7 +42,10 @@ Ext.define('NX.view.message.Panel', {
         { xtype: 'templatecolumn', tpl: '{text}: {timestamp}', flex: 1 }
       ],
       hideHeaders: true,
-      emptyText: 'No messages'
+      emptyText: 'No messages',
+      viewConfig: {
+        deferEmptyText: false
+      }
     }
   ]
 });
