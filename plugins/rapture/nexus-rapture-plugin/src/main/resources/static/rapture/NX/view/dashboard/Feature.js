@@ -14,10 +14,32 @@ Ext.define('NX.view.dashboard.Feature', {
   extend: 'Ext.Panel',
   alias: 'widget.nx-dashboard-feature',
 
-  layout: 'fit',
+  // HACK: Adding something a bit more substantial for sanity, will revisit later
 
-  items: {
-    xtype: 'label',
-    text: 'Howdy folks!'
-  }
+  layout: {
+    type: 'vbox',
+    align: 'stretch',
+    pack: 'start'
+  },
+
+  items: [
+    {
+      xtype: 'label',
+      text: 'Welcome',
+      style: {
+        'color': '#000000',
+        'font-size': '20px',
+        'font-weight': 'bold',
+        'text-align': 'center',
+        'padding': '20px'
+      }
+    },
+    {
+      xtype: 'label',
+      text: 'Something more useful to be placed here in the future',
+      style: {
+        'text-align': 'center'
+      }
+    }
+  ]
 });

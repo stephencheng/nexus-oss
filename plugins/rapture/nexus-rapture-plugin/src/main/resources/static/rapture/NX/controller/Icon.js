@@ -80,6 +80,8 @@ Ext.define('NX.controller.Icon', {
     style += 'vertical-align: middle;';  // needed to get iconCls lined up in trees when height/width is set
     style += '}';
 
+    // TODO: Consider adding *additional* plain style w/o height/width/etc on it?
+
     return style;
   },
 

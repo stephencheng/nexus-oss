@@ -23,8 +23,8 @@ Ext.define('NX.view.header.Branding', {
 
   layout: {
     type: 'hbox',
-    align : 'stretch',
-    pack  : 'start'
+    align: 'stretch',
+    pack: 'start'
   },
 
   items: [
