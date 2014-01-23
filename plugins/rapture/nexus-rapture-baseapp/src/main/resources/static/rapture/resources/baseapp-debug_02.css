@@ -2175,7 +2175,7 @@
 }
 
 /**
- * ui: 'feature-menu'.
+ * ui: 'feature-menu'
  */
 /* line 219, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-feature-menu {
@@ -2512,27 +2512,27 @@
 }
 /* line 232, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-feature-detail .x-tool-img {
-  background-color: #707070;
+  background-color: #8d8d8d;
 }
 
 /* line 245, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-feature-detail-horizontal {
-  padding: 4px;
+  padding: 4px 10px 6px 10px;
 }
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-feature-detail-horizontal-noborder {
-  padding: 5px 5px 4px 5px;
+  padding: 5px 11px 6px 11px;
 }
 
 /* line 253, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-feature-detail-vertical {
-  padding: 4px 4px 4px 4px;
+  padding: 10px 4px 10px 6px;
 }
 
 /* line 257, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-feature-detail-vertical-noborder {
-  padding: 5px 5px 5px 4px;
+  padding: 11px 5px 11px 6px;
 }
 
 /* line 273, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
@@ -2561,13 +2561,13 @@
 /* line 447, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-feature-detail {
   background-image: none;
-  background-color: #707070;
+  background-color: #8d8d8d;
 }
 
 /* line 451, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-feature-detail-vertical {
   background-image: none;
-  background-color: #707070;
+  background-color: #8d8d8d;
 }
 
 /* line 509, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
@@ -2636,8 +2636,8 @@
 }
 /* line 36, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/rotate-element.scss */
 .x-ie9m .x-panel-header-feature-detail-vertical .x-panel-header-text-container {
-  background-color: #707070;
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1), progid:DXImageTransform.Microsoft.Chroma(color=#707070);
+  background-color: #8d8d8d;
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1), progid:DXImageTransform.Microsoft.Chroma(color=#8d8d8d);
 }
 
 /* line 566, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
@@ -2655,7 +2655,7 @@
 }
 /* line 588, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-ie8m .x-panel-header-feature-detail .x-panel-header-glyph {
-  color: #b7b7b7;
+  color: #c6c6c6;
 }
 
 /* line 597, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */

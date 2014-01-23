@@ -5,12 +5,10 @@
 /**
  * ui: 'feature-content'
  */
-$panel-feature-content-header-padding: 4px 10px 5px !default;
-
 @include extjs-panel-ui(
   $ui: 'feature-content',
 
-  $ui-header-padding: $panel-feature-content-header-padding,
+  $ui-header-padding: 4px 10px 5px,
   $ui-header-color: #1f1f1f,
   $ui-header-background-color: #E0E0E0,
   $ui-header-icon-height: 32,
@@ -20,38 +18,32 @@ $panel-feature-content-header-padding: 4px 10px 5px !default;
 );
 
 /**
- * ui: 'feature-menu'.
+ * ui: 'feature-menu'
  */
-$panel-feature-menu-header-padding: 4px !default;
-
 @include extjs-panel-ui(
   $ui: 'feature-menu',
 
-  $ui-header-padding: $panel-feature-menu-header-padding
+  $ui-header-padding: 4px
 );
 
 /**
  * ui: 'feature-detail'
  */
-$panel-feature-detail-header-padding: 4px !default;
-
 @include extjs-panel-ui(
   $ui: 'feature-detail',
 
-  $ui-header-padding: $panel-feature-detail-header-padding,
+  $ui-header-padding: 4px 10px 6px,
   $ui-header-color: #FFFFFF,
-  $ui-header-background-color: #707070
+  $ui-header-background-color: #8D8D8D
 );
 
 /**
  * ui: 'messages'
  */
-$panel-message-panel-header-padding: 4px !default;
-
 @include extjs-panel-ui(
   $ui: 'messages',
 
-  $ui-header-padding: $panel-message-panel-header-padding,
+  $ui-header-padding: 4px,
   $ui-header-color: #DDDDDD,
   $ui-header-background-color: #000000
 );
@@ -59,15 +51,12 @@ $panel-message-panel-header-padding: 4px !default;
 /**
  * ui: 'developer'
  */
-$panel-developer-header-padding: 4px !default;
-$panel-developer-header-background-color: #000000 !default;
-
 @include extjs-panel-ui(
   $ui: 'developer',
 
-  $ui-header-padding: $panel-developer-header-padding,
+  $ui-header-padding: 4px,
   $ui-header-color: #BBBBBB,
-  $ui-header-background-color: $panel-developer-header-background-color
+  $ui-header-background-color: #000000
 );
 
 
