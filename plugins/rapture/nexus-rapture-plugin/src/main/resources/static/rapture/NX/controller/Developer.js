@@ -89,6 +89,8 @@ Ext.define('NX.controller.Developer', {
   },
 
   /**
+   * Attempts to call a object's method that doesn't exist to produce a low-level javascript error.
+   *
    * @private
    */
   testError: function () {
@@ -96,6 +98,8 @@ Ext.define('NX.controller.Developer', {
   },
 
   /**
+   * Raises an Ext.Error so we can see how that behaves.
+   *
    * @private
    */
   testExtError: function () {
@@ -103,6 +107,8 @@ Ext.define('NX.controller.Developer', {
   },
 
   /**
+   * Adds messages for each of the major types to view styling, etc.
+   *
    * @private
    */
   testMessages: function () {
