@@ -10,22 +10,41 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.view.header.Logo', {
-  extend: 'Ext.Img',
-  requires: [
-    'NX.util.Url'
-  ],
-  alias: 'widget.nx-header-logo',
+Ext.define('NX.view.header.Branding', {
+  extend: 'Ext.container.Container',
+  alias: 'widget.nx-header-branding',
 
-  autoEl: 'span',
-  height: 32,
-  width: 32,
+  // HACK: Adding some bogus style here to show branding panel
 
-  /**
-   * @protected
-   */
-  initComponent: function() {
-    this.setSrc(NX.util.Url.baseUrl + 'static/rapture/resources/images/nexus-32x32.png');
-    this.callParent();
-  }
+  style: {
+    backgroundColor: '#3f5c9a'
+  },
+  padding: 15,
+
+  layout: {
+    type: 'hbox',
+    align : 'stretch',
+    pack  : 'start'
+  },
+
+  items: [
+    {
+      xtype: 'label',
+      text: 'MegaCorp Repositories',
+      flex: 1,
+      style: {
+        'color': '#FFFFFF',
+        'font-size': '30px',
+        'font-variant': 'small-caps'
+      }
+    },
+    {
+      xtype: 'label',
+      html: 'Big is for babies.<br/>Go MEGA or go home!',
+      style: {
+        'color': '#CCCCCC',
+        'font-size': '15px'
+      }
+    }
+  ]
 });

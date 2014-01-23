@@ -14,86 +14,97 @@ Ext.define('NX.view.header.Panel', {
   extend: 'Ext.panel.Panel',
   alias: 'widget.nx-header-panel',
 
-  // TODO: Add branding here, but only show if configured
+  layout: {
+    type: 'vbox',
+    align : 'stretch',
+    pack  : 'start'
+  },
 
-  items: {
-    xtype: 'toolbar',
-
-    // dark background with south border highlight
-    border: '0 0 2 0',
-    style: {
-      backgroundColor: '#000000',
-      borderColor: '#4d801a'
+  items: [
+    {
+      xtype: 'nx-header-branding',
+      //hidden: true
     },
+    {
+      xtype: 'toolbar',
 
-    defaults: {
-      ui: 'header',
-      scale: 'medium'
-    },
+      // dark background with south border highlight
+      border: '0 0 2 0',
+      style: {
+        backgroundColor: '#000000',
+        borderColor: '#4d801a'
+      },
+      anchor: '100%',
 
-    items: [
-      {
-        xtype: 'nx-header-logo'
+      defaults: {
+        ui: 'header',
+        scale: 'medium'
       },
-      {
-        xtype: 'label',
-        id: 'name',
-        text: 'Sonatype Nexus',
-        style: {
-          'color': '#FFFFFF',
-          'font-size': '20px'
-        }
-      },
-      '-',
-      {
-        xtype: 'nx-header-version'
-      },
-      '->',
-      {
-        xtype: 'nx-header-quicksearch',
-        width: 250
-      },
-      '-',
-      {
-        xtype: 'button',
-        text: 'Refresh',
-        action: 'refresh'
-      },
-      {
-        xtype: 'button',
-        text: 'Help',
-        menu: [
-          // HACK: This is context help for the selected feature, should update when feature changes
-          { text: 'Repositories' },
-          '-',
-          { text: 'About' },
-          { text: 'Manual' },
-          { text: 'Support' }
-        ]
-      },
-      '-',
-      {
-        xtype: 'button',
-        text: 'Login',
-        action: 'login',
-        hidden: false
-      },
-      {
-        xtype: 'button',
-        text: 'User',
-        action: 'user',
-        hidden: true,
-        menu: [
-          {
-            text: 'Profile'
-          },
-          '-',
-          {
-            text: 'Logout',
-            action: 'logout'
+
+      items: [
+        {
+          xtype: 'nx-header-logo'
+        },
+        {
+          xtype: 'label',
+          id: 'name',
+          text: 'Sonatype Nexus',
+          style: {
+            'color': '#FFFFFF',
+            'font-size': '20px'
           }
-        ]
-      }
-    ]
-  }
+        },
+        '-',
+        {
+          xtype: 'nx-header-version'
+        },
+        '->',
+        {
+          xtype: 'nx-header-quicksearch',
+          width: 250
+        },
+        '-',
+        {
+          xtype: 'button',
+          text: 'Refresh',
+          action: 'refresh'
+        },
+        {
+          xtype: 'button',
+          text: 'Help',
+          menu: [
+            // HACK: This is context help for the selected feature, should update when feature changes
+            { text: 'Repositories' },
+            '-',
+            { text: 'About' },
+            { text: 'Manual' },
+            { text: 'Support' }
+          ]
+        },
+        '-',
+        {
+          xtype: 'button',
+          text: 'Login',
+          action: 'login',
+          hidden: false
+        },
+        {
+          xtype: 'button',
+          text: 'User',
+          action: 'user',
+          hidden: true,
+          menu: [
+            {
+              text: 'Profile'
+            },
+            '-',
+            {
+              text: 'Logout',
+              action: 'logout'
+            }
+          ]
+        }
+      ]
+    }
+  ]
 });
