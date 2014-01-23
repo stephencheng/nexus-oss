@@ -18,19 +18,12 @@ Ext.define('NX.controller.Dashboard', {
   ],
 
   init: function () {
-    var me = this,
-        icons = me.getApplication().getIconController();
+    var me = this;
 
-    icons.addIcon({
+    me.getApplication().getIconController().addIcon({
       name: 'feature-dashboard',
       file: 'dashboard.png',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'feature-dashboard',
-      file: 'dashboard.png',
-      variant: 'x32'
+      variants: [ 'x16', 'x32' ]
     });
 
     me.getApplication().getMainController().registerFeature({

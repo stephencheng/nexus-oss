@@ -34,19 +34,12 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
   ],
 
   init: function () {
-    var me = this,
-        icons = me.getApplication().getIconController();
+    var me = this;
 
-    icons.addIcon({
+    me.getApplication().getIconController().addIcon({
       name: 'feature-pluginconsole',
       file: 'plugin.png',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'feature-pluginconsole',
-      file: 'plugin.png',
-      variant: 'x32'
+      variants: [ 'x16', 'x32' ]
     });
 
     me.listen({
