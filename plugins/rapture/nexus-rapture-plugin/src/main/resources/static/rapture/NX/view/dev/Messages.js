@@ -22,14 +22,14 @@ Ext.define('NX.view.dev.Messages', {
   },
 
   columns: [
-    { text: 'type', dataIndex: 'type' },
-    { text: 'text', dataIndex: 'text', flex: 1 },
-    { text: 'timestamp', dataIndex: 'timestamp', width: 300 },
     {
       xtype: 'templatecolumn',
       text: 'icon',
       width: 48,
       tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="nx-icon-message-{type}-x16"/>'
-    }
+    },
+    { text: 'type', dataIndex: 'type' },
+    { text: 'text', dataIndex: 'text', flex: 1 },
+    { text: 'timestamp', dataIndex: 'timestamp', width: 300 }
   ]
 });
