@@ -21,6 +21,7 @@ Ext.define('NX.view.Login', {
   modal: true,
   constrain: true,
   width: 320,
+  defaultFocus: 'username',
 
   /**
    * @protected
@@ -40,6 +41,7 @@ Ext.define('NX.view.Login', {
         items: [
           {
             name: 'username',
+            itemId: 'username',
             fieldLabel: 'Username',
             emptyText: 'enter your username',
             allowBlank: false
@@ -52,7 +54,7 @@ Ext.define('NX.view.Login', {
             allowBlank: false
           },
           {
-            xtype:'checkbox',
+            xtype: 'checkbox',
             fieldLabel: 'Remember me',
             name: 'remember'
           }

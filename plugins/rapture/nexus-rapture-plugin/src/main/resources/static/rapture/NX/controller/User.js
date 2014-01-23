@@ -103,8 +103,7 @@ Ext.define('NX.controller.User', {
    * @private
    */
   showLoginWindow: function () {
-    var dialog = Ext.widget('nx-login');
-    dialog.down('field[name=username]').focus();
+    Ext.widget('nx-login');
   },
 
   /**
