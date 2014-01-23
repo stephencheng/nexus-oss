@@ -16,6 +16,7 @@ Ext.define('NX.model.Feature', {
     { name: 'text' },
     { name: 'weight', defaultValue: 100 },
     { name: 'view' },
-    { name: 'bookmark' }
+    { name: 'bookmark' },
+    { name: 'iconName' }
   ]
 });

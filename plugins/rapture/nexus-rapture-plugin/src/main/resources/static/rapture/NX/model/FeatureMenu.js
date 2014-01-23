@@ -19,6 +19,9 @@ Ext.define('NX.model.FeatureMenu', {
     { name: 'visible', defaultValue: true },
     { name: 'expanded', defaultValue: true },
     { name: 'bookmark', defaultValue: undefined },
+    { name: 'iconName', defaultValue: undefined },
+
+    // HACK: Required by tree representation, value populated when feature is added automatically from iconName
     { name: 'iconCls', defaultValue: undefined }
   ]
 });

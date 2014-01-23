@@ -29,10 +29,10 @@ Ext.define('NX.view.header.Panel', {
       xtype: 'toolbar',
 
       // dark background with south border highlight
-      border: '0 0 2 0',
+      //border: '0 0 2 0',
       style: {
         backgroundColor: '#000000',
-        borderColor: '#4d801a'
+        //borderColor: '#4d801a'
       },
       anchor: '100%',
 

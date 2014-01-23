@@ -63,7 +63,7 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
       bookmark: 'plugins',
       visible: true,
       weight: 10,
-      iconCls: 'nx-icon-feature-pluginconsole-x16'
+      iconName: 'feature-pluginconsole'
     });
   },
 

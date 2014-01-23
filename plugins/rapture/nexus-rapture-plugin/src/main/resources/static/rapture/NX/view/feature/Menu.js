@@ -16,8 +16,11 @@ Ext.define('NX.view.feature.Menu', {
 
   title: 'Menu',
   width: 200,
+  ui: 'feature-menu',
+
   stateful: true,
   stateId: 'nx-feature-menu',
+
   store: 'Feature',
   rootVisible: false,
   lines: false

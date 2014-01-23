@@ -105,7 +105,7 @@ Ext.define('NX.controller.Main', {
 
       content.removeAll();
       content.setTitle(record.get('text'));
-      content.setIconCls(record.get('iconCls'));
+      content.setIconCls('nx-icon-' + record.get('iconName') + '-x32');
 
       content.add(cmp);
 
@@ -179,7 +179,10 @@ Ext.define('NX.controller.Main', {
         features = [features];
       }
       Ext.each(features, function (feature) {
-        // TODO assert feature path
+        // HACK: Auto-set iconCls from icon name for use in tree panels
+        if (feature.iconName) {
+          feature.iconCls = 'nx-icon-' + feature.iconName + '-x16';
+        }
         me.getFeatureMenuStore().add(feature);
       });
     }

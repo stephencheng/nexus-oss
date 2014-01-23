@@ -23,13 +23,19 @@ Ext.define('NX.view.dev.Features', {
     { text: 'bookmark', dataIndex: 'bookmark', editor: 'textfield' },
     { text: 'weight', dataIndex: 'weight', width: 80, editor: 'textfield' },
     { text: 'view', dataIndex: 'view', width: 250, editor: 'textfield' },
-    { text: 'iconCls', dataIndex: 'iconCls', width: 250, editor: 'textfield' },
+    { text: 'iconName', dataIndex: 'iconName', width: 250, editor: 'textfield' },
+    {
+      xtype: 'templatecolumn',
+      text: 'menu icon',
+      width: 48,
+      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="nx-icon-{iconName}-x16"/>'
+    },
     {
       xtype: 'templatecolumn',
       text: 'icon',
-      // NOTE: img must have src value for Chrome to render it w/o a border?!
-      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="{iconCls}"/>'
-    }
+      width: 48,
+      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="nx-icon-{iconName}-x32"/>'
+    },
   ],
 
   plugins: [

@@ -101,7 +101,7 @@ Ext.define('NX.capability.controller.Capabilities', {
         var perms = NX.util.Permissions;
         return perms.check('nexus:capabilities', perms.READ);
       },
-      iconCls: 'nx-icon-feature-capability-x16'
+      iconName: 'feature-capability'
     });
   },
 

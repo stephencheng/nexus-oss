@@ -15,6 +15,9 @@ Ext.define('NX.view.message.Panel', {
   alias: 'widget.nx-message-panel',
 
   title: 'Messages',
+
+  border: false,
+  ui: 'messages',
   width: 200,
   stateful: true,
   stateId: 'nx-message-panel',

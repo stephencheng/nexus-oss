@@ -31,7 +31,7 @@ Ext.define('NX.controller.Dashboard', {
       view: 'NX.view.dashboard.Feature',
       weight: 10,
       bookmark: 'dashboard',
-      iconCls: 'nx-icon-feature-dashboard-x16'
+      iconName: 'feature-dashboard'
     });
   }
 
