@@ -23,7 +23,7 @@ Ext.define('NX.view.header.Panel', {
   items: [
     {
       xtype: 'nx-header-branding',
-      //hidden: true
+      hidden: true
     },
     {
       xtype: 'toolbar',

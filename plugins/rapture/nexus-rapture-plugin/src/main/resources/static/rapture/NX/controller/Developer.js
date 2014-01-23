@@ -25,6 +25,13 @@ Ext.define('NX.controller.Developer', {
     'dev.Permissions'
   ],
 
+  refs: [
+    {
+      ref: 'branding',
+      selector: 'nx-header-branding'
+    }
+  ],
+
   /**
    * @protected
    */
@@ -78,6 +85,9 @@ Ext.define('NX.controller.Developer', {
         },
         'nx-dev-tests button[action=testMessages]': {
           click: me.testMessages
+        },
+        'nx-dev-tests button[action=toggleBranding]': {
+          click: me.toggleBranding
         }
       },
       store: {
@@ -120,6 +130,21 @@ Ext.define('NX.controller.Developer', {
         text: 'test of ' + type
       });
     });
+  },
+
+  /**
+   * @private
+   */
+  toggleBranding: function() {
+    var me = this,
+        branding = me.getBranding();
+
+    if (branding.isVisible()) {
+      branding.hide();
+    }
+    else {
+      branding.show();
+    }
   },
 
   /**
