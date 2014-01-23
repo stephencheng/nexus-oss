@@ -96,10 +96,11 @@ public class ApplicationDirectComponent
   }
 
   @DirectMethod
-  public void login(final String base64Username, final String base64Password) throws Exception {
+  public UserXO login(final String base64Username, final String base64Password) throws Exception {
     securitySystem.login(new UsernamePasswordToken(
         Base64.decodeToString(base64Username), Base64.decodeToString(base64Password))
     );
+    return getUser();
   }
 
   @DirectMethod

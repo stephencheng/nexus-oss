@@ -127,7 +127,7 @@ Ext.define('NX.controller.User', {
       if (!NX.util.ExtDirect.showExceptionIfPresent('User could not be logged in', response, status)) {
         if (Ext.isDefined(response)) {
           if (response.success) {
-            me.getApplication().getStatusController().refresh();
+            me.updateUser(response.data);
             win.getEl().unmask();
             win.close();
           }
@@ -154,7 +154,7 @@ Ext.define('NX.controller.User', {
       if (!NX.util.ExtDirect.showExceptionIfPresent('User could not be logged out', response, status)) {
         if (Ext.isDefined(response)) {
           if (response.success) {
-            me.getApplication().getStatusController().refresh();
+            me.updateUser();
           }
         }
       }
