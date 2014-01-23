@@ -20,6 +20,7 @@ Ext.define('NX.view.dev.Panel', {
   title: 'Developer',
   stateful: true,
   stateId: 'nx-dev-panel',
+  tabPosition: 'bottom',
 
   items: [
     { xtype: 'nx-dev-tests' },
