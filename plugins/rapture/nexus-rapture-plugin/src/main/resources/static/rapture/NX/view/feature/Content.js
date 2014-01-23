@@ -19,6 +19,7 @@ Ext.define('NX.view.feature.Content', {
 
   // HACK: For testing look-n-feel
   tools: [
+    { type: 'gear' },
     { type: 'help' }
   ]
 });
