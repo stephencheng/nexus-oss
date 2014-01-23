@@ -47,12 +47,15 @@ Ext.define('NX.controller.Icon', {
 
     // build styles for each icon in store
     me.getIconStore().each(function (record) {
-      var style = me.buildIconStyle(record.data);
+      var img, style = me.buildIconStyle(record.data);
       me.logDebug('Adding style: ' + style);
       styles.push(style);
-    });
 
-    // TODO: Background-load icons?
+      // TODO: Background-load icons?  This may have issues due to web-resources being !cachable?
+      //me.logDebug('Preloading: ' + record.data.url);
+      //img = new Image();
+      //img.src = record.data.url;
+    });
 
     // create the style sheet
     me.stylesheet = Ext.util.CSS.createStyleSheet(styles.join(' '));
@@ -71,10 +74,10 @@ Ext.define('NX.controller.Icon', {
         style;
 
     style = '.' + icon.cls + ' {';
-    style += 'background-image: url(' + icon.url + ');';
-    style += 'background-position: center center;';
+    style += 'background: url(' + icon.url + ') no-repeat center center;';
     style += 'height: ' + icon.height + 'px;';
     style += 'width: ' + icon.width + 'px;';
+    style += 'vertical-align: middle;';  // needed to get iconCls lined up in trees when height/width is set
     style += '}';
 
     return style;
