@@ -81,12 +81,48 @@ Ext.define('NX.controller.Icon', {
   },
 
   /**
+   * Add new icons.
+   *
+   * @public
+   * @param icons Array or object.
+   */
+  addIcons: function(icons) {
+    var me = this;
+    if (Ext.isArray(icons)) {
+      Ext.Array.each(icons, function(icon) {
+        me.addIcon(icon);
+      });
+    }
+    else if (Ext.isObject(icons)) {
+      Ext.Object.each(icons, function(key, value) {
+        var copy = Ext.clone(value);
+        copy.name = key;
+        me.addIcon(copy);
+      });
+    }
+    else {
+      Ext.Error.raise('Expected arrary or object, found: ' + icons);
+    }
+  },
+
+  /**
    * Add a new icon.
    *
    * @public
    */
   addIcon: function (icon) {
     var me = this;
+
+    // If icon contains 'variants' field then create an icon for each variant
+    if (Ext.isArray(icon.variants)) {
+      var copy = Ext.clone(icon);
+      delete copy.variants;
+      Ext.each(icon.variants, function(variant) {
+        copy.variant = variant;
+        me.addIcon(copy);
+      });
+      return;
+    }
 
     if (icon.ref) {
       me.resolveReference(icon);

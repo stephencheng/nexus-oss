@@ -32,28 +32,15 @@ Ext.define('NX.controller.Developer', {
     var me = this,
         icons = me.getApplication().getIconController();
 
-    icons.addIcon({
-      name: 'permission-granted',
-      file: 'tick.png',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'permission-granted',
-      file: 'tick.png',
-      variant: 'x32'
-    });
-
-    icons.addIcon({
-      name: 'permission-denied',
-      file: 'cross.png',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'permission-denied',
-      file: 'cross.png',
-      variant: 'x32'
+    icons.addIcons({
+      'permission-granted': {
+        file: 'tick.png',
+        variants: [ 'x16', 'x32' ]
+      },
+      'permission-denied': {
+        file: 'cross.png',
+        variants: [ 'x16', 'x32' ]
+      }
     });
 
     // FIXME: These are for testing only
@@ -104,24 +91,24 @@ Ext.define('NX.controller.Developer', {
   /**
    * @private
    */
-  testError: function() {
+  testError: function () {
     console.log_no_such_method();
   },
 
   /**
    * @private
    */
-  testExtError: function() {
+  testExtError: function () {
     Ext.Error.raise('simulated error');
   },
 
   /**
    * @private
    */
-  testMessages: function() {
+  testMessages: function () {
     var me = this;
 
-    Ext.each(['default', 'primary', 'danger', 'warning', 'success'], function(type) {
+    Ext.each(['default', 'primary', 'danger', 'warning', 'success'], function (type) {
       me.getApplication().getMessageController().addMessage({
         type: type,
         text: 'test of ' + type
@@ -132,7 +119,7 @@ Ext.define('NX.controller.Developer', {
   /**
    * @private
    */
-  onFeatureUpdated: function() {
+  onFeatureUpdated: function () {
     var me = this;
 
     me.getApplication().getMainController().refresh();
