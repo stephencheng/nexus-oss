@@ -24,6 +24,4 @@ import groovy.transform.ToString
 class UserXO
 {
   String id
-
-  String hash
 }

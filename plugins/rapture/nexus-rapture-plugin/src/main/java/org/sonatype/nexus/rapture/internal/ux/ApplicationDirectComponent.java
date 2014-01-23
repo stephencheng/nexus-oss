@@ -154,7 +154,6 @@ public class ApplicationDirectComponent
       if (principal != null) {
         userXO.setId(principal.toString());
       }
-      userXO.setHash(userXO.getId());
     }
     return userXO;
   }

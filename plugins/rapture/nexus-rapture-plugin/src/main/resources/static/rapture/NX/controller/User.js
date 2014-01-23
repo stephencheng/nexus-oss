@@ -76,19 +76,18 @@ Ext.define('NX.controller.User', {
         userButton = me.getHeader().down('button[action=user]');
 
     if (user) {
-      if (me.user.hash != user.hash) {
-        if (me.user.id != user.id) {
-          me.getApplication().getMessageController().addMessage({text: 'User logged in: ' + user.id, type: 'success' });
-          loginButton.hide();
-          userButton.setText(user.id);
-          userButton.show();
-        }
+      if (me.user.id != user.id) {
+        me.getApplication().getMessageController().addMessage({text: 'User logged in: ' + user.id, type: 'success' });
+        loginButton.hide();
+        userButton.setText(user.id);
+        userButton.show();
+
         me.user = user;
         me.fetchPermissions();
       }
     }
     else {
-      if (me.user.hash) {
+      if (me.user.id) {
         me.getApplication().getMessageController().addMessage({text: 'User logged out', type: 'success' });
         loginButton.show();
         userButton.hide();
