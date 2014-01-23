@@ -46,8 +46,8 @@ Ext.define('NX.util.DateFormat', {
    *      var longDatetimePattern = NX.util.DateFormat.forName('datetime')['long'];
    *      var shortDatePattern = NX.util.DateFormat.forName('date')['short'];
    *
+   * @public
    * @param name
-   *
    * @return {*} Date format object.
    */
   forName: function (name) {

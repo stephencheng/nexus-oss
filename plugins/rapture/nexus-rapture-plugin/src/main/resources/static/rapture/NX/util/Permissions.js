@@ -22,6 +22,9 @@ Ext.define('NX.util.Permissions', {
 
   permissions: {},
 
+  /**
+   * @public
+   */
   setPermissions: function (permissions) {
     var me = this,
         perms = permissions;
@@ -38,6 +41,9 @@ Ext.define('NX.util.Permissions', {
     me.permissions = Ext.apply({}, perms);
   },
 
+  /**
+   * @public
+   */
   check: function (value, perm /* , perm... */) {
     var me = this,
         p = perm,

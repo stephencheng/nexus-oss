@@ -17,6 +17,9 @@ Ext.define('NX.util.ExtDirect', {
     'NX.util.Msg'
   ],
 
+  /**
+   * @public
+   */
   showExceptionIfPresent: function (title, response, status, options) {
     if (Ext.isDefined(status.serverException)) {
       NX.util.Msg.showError(

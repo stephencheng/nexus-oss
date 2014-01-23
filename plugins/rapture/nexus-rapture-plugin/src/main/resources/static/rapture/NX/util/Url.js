@@ -13,6 +13,9 @@
 Ext.define('NX.util.Url', {
   singleton: true,
 
+  /**
+   * @public
+   */
   baseUrl: window.location.protocol
       + '//'
       + window.location.host
@@ -20,6 +23,9 @@ Ext.define('NX.util.Url', {
       +
       (window.location.pathname.split('/').length > 2 ? window.location.pathname.split('/')[1] + '/' : ''),
 
+  /**
+   * @public
+   */
   urlOf: function (path) {
     var baseUrl = this.baseUrl;
 
@@ -35,6 +41,9 @@ Ext.define('NX.util.Url', {
     return this.baseUrl;
   },
 
+  /**
+   * @public
+   */
   asLink: function (url, text, target) {
     target = target || '_blank';
     if (Ext.isEmpty(text)) {

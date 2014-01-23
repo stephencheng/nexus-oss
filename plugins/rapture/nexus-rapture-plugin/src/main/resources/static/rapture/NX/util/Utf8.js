@@ -13,6 +13,9 @@
 Ext.define('NX.util.Utf8', {
   singleton: true,
 
+  /**
+   * @public
+   */
   encode: function (string) {
     var utftext = "",
         c;
@@ -39,6 +42,9 @@ Ext.define('NX.util.Utf8', {
     return utftext;
   },
 
+  /**
+   * @public
+   */
   decode: function (utftext) {
     var string = "",
         i = 0,

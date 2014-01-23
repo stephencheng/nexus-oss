@@ -18,6 +18,9 @@ Ext.define('NX.util.Base64', {
 
   keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
 
+  /**
+   * @public
+   */
   encode: function (input) {
     var output = "",
         chr1, chr2, chr3, enc1, enc2, enc3, enc4,
@@ -52,6 +55,9 @@ Ext.define('NX.util.Base64', {
     return output;
   },
 
+  /**
+   * @public
+   */
   decode: function (input) {
     var output = "";
     var chr1, chr2, chr3;

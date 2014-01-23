@@ -13,6 +13,9 @@
 Ext.define('NX.util.Msg', {
   singleton: true,
 
+  /**
+   * @public
+   */
   showError: function (title, message, options) {
     if (Ext.isDefined(message)) {
       options = options || {};
@@ -27,6 +30,9 @@ Ext.define('NX.util.Msg', {
     }
   },
 
+  /**
+   * @public
+   */
   askConfirmation: function (title, message, onYesFn, options) {
     options = options || {};
     Ext.Msg.show({
