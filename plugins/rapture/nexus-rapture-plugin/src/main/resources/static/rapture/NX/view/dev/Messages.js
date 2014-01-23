@@ -10,30 +10,26 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.view.dev.Panel', {
-  extend: 'Ext.panel.Panel',
-  requires: [
-    'NX.view.dev.Buttons'
-  ],
-  alias: 'widget.nx-dev-panel',
+Ext.define('NX.view.dev.Messages', {
+  extend: 'Ext.grid.Panel',
+  alias: 'widget.nx-dev-messages',
 
-  title: 'Developer',
-  ui: 'developer',
-  stateful: true,
-  stateId: 'nx-dev-panel',
+  title: 'Messages',
+  store: 'Message',
+  emptyText: 'No messages',
+  viewConfig: {
+    deferEmptyText: false
+  },
 
-  layout: 'fit',
-  items: {
-    xtype: 'tabpanel',
-    tabPosition: 'bottom',
-
-    items: [
-      { xtype: 'nx-dev-tests' },
-      { xtype: 'nx-dev-buttons' },
-      { xtype: 'nx-dev-icons' },
-      { xtype: 'nx-dev-features' },
-      { xtype: 'nx-dev-permissions' },
-      { xtype: 'nx-dev-messages' }
-    ]
-  }
+  columns: [
+    { text: 'type', dataIndex: 'type' },
+    { text: 'text', dataIndex: 'text', flex: 1 },
+    { text: 'timestamp', dataIndex: 'timestamp', width: 300 },
+    {
+      xtype: 'templatecolumn',
+      text: 'icon',
+      width: 48,
+      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="nx-icon-message-{type}-x16"/>'
+    }
+  ]
 });

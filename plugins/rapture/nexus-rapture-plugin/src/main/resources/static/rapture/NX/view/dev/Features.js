@@ -43,7 +43,7 @@ Ext.define('NX.view.dev.Features', {
   ],
 
   viewConfig: {
+    deferEmptyText: false,
     markDirty: false
   }
-
 });
