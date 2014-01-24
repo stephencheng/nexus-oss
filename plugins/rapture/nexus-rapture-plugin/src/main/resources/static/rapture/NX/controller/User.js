@@ -51,7 +51,8 @@ Ext.define('NX.controller.User', {
       store: {
         '#Permission': {
           load: me.firePermissionsChanged,
-          update: me.firePermissionsChanged
+          update: me.firePermissionsChanged,
+          remove: me.firePermissionsChanged
         }
       },
       component: {
