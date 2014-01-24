@@ -83,6 +83,11 @@ Ext.define('NX.controller.Main', {
         'nx-header-panel button[action=refresh]': {
           click: me.refresh
         }
+      },
+      store: {
+        '#Feature': {
+          update: me.refreshMenu
+        }
       }
     });
   },

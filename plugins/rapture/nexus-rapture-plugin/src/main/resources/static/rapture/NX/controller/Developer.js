@@ -52,11 +52,6 @@ Ext.define('NX.controller.Developer', {
         'nx-dev-tests button[action=toggleBranding]': {
           click: me.toggleBranding
         }
-      },
-      store: {
-        '#Feature': {
-          update: me.onFeatureUpdated
-        }
       }
     });
   },
@@ -108,15 +103,6 @@ Ext.define('NX.controller.Developer', {
     else {
       branding.show();
     }
-  },
-
-  /**
-   * @private
-   */
-  onFeatureUpdated: function () {
-    var me = this;
-
-    me.getApplication().getMainController().refreshMenu();
   }
 
 });
