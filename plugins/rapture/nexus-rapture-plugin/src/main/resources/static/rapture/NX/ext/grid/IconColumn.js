@@ -68,10 +68,8 @@ Ext.define('NX.ext.grid.IconColumn', {
     if (width) {
       html += ' width="' + width + '"';
     }
-
     html += '/>';
 
-    console.log('HTML: ' + html);
     return html;
   },
 
