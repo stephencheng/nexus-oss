@@ -39,7 +39,7 @@ Ext.define('NX.view.message.Panel', {
           // NOTE: img must have src value for Chrome to render it w/o a border?!
           tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="nx-icon-message-{type}-x16" height="16" width="16"/>'
         },
-        { xtype: 'templatecolumn', tpl: '{text}: {timestamp}', flex: 1 }
+        { dataIndex: 'text', flex: 1 }
       ],
       hideHeaders: true,
       emptyText: 'No messages',
