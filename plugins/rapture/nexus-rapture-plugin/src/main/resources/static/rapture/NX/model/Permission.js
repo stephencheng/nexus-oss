@@ -12,8 +12,41 @@
  */
 Ext.define('NX.model.Permission', {
   extend: 'Ext.data.Model',
+  requires: [
+    'NX.util.Permissions'
+  ],
+
   fields: [
     'id',
-    'value'
+    'value',
+    {
+      name: 'create',
+      type: 'boolean',
+      convert: function(val, row){
+        return (row.data.value & NX.util.Permissions.CREATE) == NX.util.Permissions.CREATE;
+      }
+    },
+    {
+      name: 'read',
+      type: 'boolean',
+      convert: function(val, row){
+        return (row.data.value & NX.util.Permissions.READ) == NX.util.Permissions.READ;
+      }
+    },
+    {
+      name: 'update',
+      type: 'boolean',
+      convert: function(val, row){
+        return (row.data.value & NX.util.Permissions.UPDATE) == NX.util.Permissions.UPDATE;
+      }
+    },
+    {
+      name: 'delete',
+      type: 'boolean',
+      convert: function(val, row){
+        return (row.data.value & NX.util.Permissions.DELETE) == NX.util.Permissions.DELETE;
+      }
+    }
   ]
+
 });

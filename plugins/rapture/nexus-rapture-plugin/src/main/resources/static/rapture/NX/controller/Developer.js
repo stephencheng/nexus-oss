@@ -15,6 +15,9 @@ Ext.define('NX.controller.Developer', {
   mixins: {
     logAware: 'NX.LogAware'
   },
+  requires: [
+    'NX.util.Permissions'
+  ],
 
   views: [
     'dev.Panel',
@@ -42,11 +45,11 @@ Ext.define('NX.controller.Developer', {
     me.getApplication().getIconController().addIcons({
       'permission-granted': {
         file: 'tick.png',
-        variants: [ 'x16', 'x32' ]
+        variants: ['x16', 'x32']
       },
       'permission-denied': {
         file: 'cross.png',
-        variants: [ 'x16', 'x32' ]
+        variants: ['x16', 'x32']
       }
     });
 
@@ -63,6 +66,9 @@ Ext.define('NX.controller.Developer', {
         },
         'nx-dev-tests button[action=toggleBranding]': {
           click: me.toggleBranding
+        },
+        'nx-dev-permissions': {
+          validateedit: me.updatePermissions
         }
       },
       store: {
@@ -110,7 +116,7 @@ Ext.define('NX.controller.Developer', {
   /**
    * @private
    */
-  toggleBranding: function() {
+  toggleBranding: function () {
     var me = this,
         branding = me.getBranding();
 
@@ -129,5 +135,20 @@ Ext.define('NX.controller.Developer', {
     var me = this;
 
     me.getApplication().getMainController().refreshMenu();
+  },
+
+  /**
+   * @private
+   */
+  updatePermissions: function (editor, context) {
+    var value = NX.util.Permissions.NONE;
+
+    Ext.each(['CREATE', 'READ', 'UPDATE', 'DELETE'], function (perm) {
+      if (context.newValues[perm.toLowerCase()] == true) {
+        value += NX.util.Permissions[perm];
+      }
+    });
+
+    context.record.set('value', value);
   }
 });

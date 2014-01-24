@@ -50,7 +50,8 @@ Ext.define('NX.controller.User', {
       },
       store: {
         '#Permission': {
-          load: me.onPermissionLoad
+          load: me.firePermissionsChanged,
+          update: me.firePermissionsChanged
         }
       },
       component: {
@@ -102,7 +103,7 @@ Ext.define('NX.controller.User', {
 
         me.user = {};
         me.getPermissionStore().removeAll();
-        me.onPermissionLoad();
+        me.firePermissionsChanged();
       }
     }
   },
@@ -195,7 +196,7 @@ Ext.define('NX.controller.User', {
   /**
    * @private
    */
-  onPermissionLoad: function () {
+  firePermissionsChanged: function () {
     var me = this;
 
     NX.util.Permissions.setPermissions(me.getPermissions());

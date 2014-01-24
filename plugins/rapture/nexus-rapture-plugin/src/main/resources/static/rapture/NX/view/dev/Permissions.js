@@ -22,11 +22,16 @@ Ext.define('NX.view.dev.Permissions', {
   emptyText: 'No permissions',
 
   viewConfig: {
-    deferEmptyText: false
+    deferEmptyText: false,
+    markDirty: false
   },
 
   columns: [
     { text: 'permission', dataIndex: 'id', flex: 1 }
+  ],
+
+  plugins: [
+    { ptype: 'rowediting', clicksToEdit: 1 }
   ],
 
   /**
@@ -38,10 +43,10 @@ Ext.define('NX.view.dev.Permissions', {
     // Add columns for each major permission
     Ext.each([ 'CREATE', 'READ', 'UPDATE', 'DELETE' ], function(perm) {
       me.columns.push(
-        { text: perm, xtype: 'templatecolumn', width: 80, align: 'center',
+        { text: perm, xtype: 'templatecolumn', width: 80, align: 'center', dataIndex: perm.toLowerCase(), editor: 'checkbox',
           tpl: new Ext.XTemplate(
             '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-            '<tpl if="value & NX.util.Permissions.' + perm + '">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
+            '<tpl if="' + perm.toLowerCase() + '">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
             '"/>'
           )
         }
