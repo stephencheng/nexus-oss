@@ -13,9 +13,6 @@
 Ext.define('NX.ext.grid.IconColumn', {
   extend: 'Ext.grid.column.Column',
   alias: 'widget.iconcolumn',
-  requires: [
-    'Ext.XTemplate'
-  ],
 
   /**
    * @cfg {String} iconVariant
