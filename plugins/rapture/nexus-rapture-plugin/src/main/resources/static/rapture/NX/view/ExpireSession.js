@@ -1,4 +1,4 @@
-/**
+/*
  * Sonatype Nexus (TM) Open Source Version
  * Copyright (c) 2007-2013 Sonatype, Inc.
  * All rights reserved. Includes the third-party code listed at http://links.sonatype.com/products/nexus/oss/attributions.
@@ -10,23 +10,44 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
+Ext.define('NX.view.ExpireSession', {
+  extend: 'Ext.window.Window',
+  alias: 'widget.nx-expire-session',
 
-package org.sonatype.nexus.rapture.internal.ux
+  title: 'Session',
 
-import groovy.transform.ToString
-
-/**
- * User exchange object.
- *
- * @since 2.8
- */
-@ToString(includePackage = false, includeNames = true)
-class UserXO
-{
-  String id
+  layout: 'fit',
+  autoShow: true,
+  modal: true,
+  constrain: true,
+  width: 400,
+  closable: false,
 
   /**
-   * Period of inactivity, in minutes, after which user will be automatically logged out.
+   * @protected
    */
-  int maxInactiveInterval
-}
+  initComponent: function () {
+    var me = this;
+
+    Ext.apply(this, {
+      items: [
+        {
+          xtype: 'label',
+          id: 'expire',
+          text: 'Session is about to expire',
+          style: {
+            'color': 'red',
+            'font-size': '20px',
+            'margin': '10px'
+          }
+        }
+      ],
+      buttons: [
+        { text: 'Cancel', action: 'cancel' }
+      ]
+    });
+
+    me.callParent();
+  }
+
+});

@@ -21,7 +21,8 @@ Ext.define('NX.controller.User', {
   },
 
   views: [
-    'Login'
+    'Login',
+    'ExpireSession'
   ],
 
   stores: [
@@ -39,8 +40,13 @@ Ext.define('NX.controller.User', {
     }
   ],
 
-  user: {
-  },
+  SECONDS_TO_EXPIRE: 60,
+
+  user: {},
+
+  expirationTask: undefined,
+
+  expirationTicker: undefined,
 
   init: function () {
     var me = this;
@@ -71,6 +77,12 @@ Ext.define('NX.controller.User', {
         },
         'nx-login form': {
           afterrender: me.installEnterKey
+        },
+        'nx-expire-session': {
+          afterrender: me.startTicking
+        },
+        'nx-expire-session button[action=cancel]': {
+          click: me.stopTicking
         }
       },
       direct: {
@@ -79,6 +91,13 @@ Ext.define('NX.controller.User', {
         }
       }
     });
+
+    document.body.onmousemove = function () {
+      if (me.expirationTask) {
+        // fire at one minute before expiration
+        me.expirationTask.delay(((me.user.maxInactiveInterval * 60) - me.SECONDS_TO_EXPIRE) * 1000);
+      }
+    }
   },
 
   /**
@@ -98,6 +117,11 @@ Ext.define('NX.controller.User', {
 
         me.user = user;
         me.fetchPermissions();
+
+        if (user.maxInactiveInterval) {
+          me.expirationTask = new Ext.util.DelayedTask(me.showExpirationWindow, me);
+          me.logDebug('Session expiration enabled for ' + user.maxInactiveInterval + ' minutes');
+        }
       }
     }
     else {
@@ -106,10 +130,68 @@ Ext.define('NX.controller.User', {
         loginButton.show();
         userButton.hide();
 
+        if (me.expirationTask) {
+          me.expirationTask.cancel();
+          delete me.expirationTask;
+        }
+        if (me.expirationTicker) {
+          me.expirationTicker.destroy();
+          delete me.expirationTicker;
+        }
+
         me.user = {};
         me.getPermissionStore().removeAll();
         me.firePermissionsChanged();
       }
+    }
+  },
+
+  /**
+   * @private
+   */
+  showExpirationWindow: function () {
+    var me = this;
+
+    me.getExpireSessionView().create();
+  },
+
+  /**
+   * @private
+   */
+  startTicking: function (win) {
+    var me = this;
+
+    me.expirationTicker = Ext.util.TaskManager.newTask({
+      run: function (count) {
+        win.down('label').setText('Session will expire in ' + (me.SECONDS_TO_EXPIRE - count) + ' seconds');
+        if (count == me.SECONDS_TO_EXPIRE) {
+          win.close();
+          me.getApplication().getMessageController().addMessage({
+            text: 'Session expired after being inactive for ' + me.user.maxInactiveInterval + ' minutes',
+            type: 'success'
+          });
+          me.logout();
+        }
+      },
+      interval: 1000,
+      repeat: me.SECONDS_TO_EXPIRE
+    });
+    me.expirationTicker.start();
+  },
+
+  /**
+   * @private
+   */
+  stopTicking: function (button) {
+    var me = this,
+        win = button.up('window');
+
+    if (me.expirationTicker) {
+      me.expirationTicker.destroy();
+      delete me.expirationTicker;
+    }
+    if (win) {
+      win.close();
     }
   },
 
