@@ -92,12 +92,23 @@ Ext.define('NX.controller.User', {
       }
     });
 
-    document.body.onmousemove = function () {
-      if (me.expirationTask) {
-        // fire at one minute before expiration
-        me.expirationTask.delay(((me.user.maxInactiveInterval * 60) - me.SECONDS_TO_EXPIRE) * 1000);
-      }
-    }
+    Ext.util.Observable.prototype.fireEvent = Ext.Function.createInterceptor(
+        Ext.util.Observable.prototype.fireEvent,
+        function () {
+          if (me.expirationTask) {
+            // fire at one minute before expiration
+            me.expirationTask.delay(((me.user.maxInactiveInterval * 60) - me.SECONDS_TO_EXPIRE) * 1000);
+          }
+          return true;
+        }
+    );
+
+    //document.body.onmousemove = function () {
+    //  if (me.expirationTask) {
+    //    // fire at one minute before expiration
+    //    me.expirationTask.delay(((me.user.maxInactiveInterval * 60) - me.SECONDS_TO_EXPIRE) * 1000);
+    //  }
+    //}
   },
 
   /**
