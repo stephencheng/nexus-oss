@@ -32,6 +32,10 @@ Ext.define('NX.controller.User', {
     {
       ref: 'header',
       selector: 'nx-header-panel'
+    },
+    {
+      ref: 'login',
+      selector: 'nx-login'
     }
   ],
 
@@ -113,7 +117,11 @@ Ext.define('NX.controller.User', {
    * @private
    */
   showLoginWindow: function () {
-    Ext.widget('nx-login');
+    var me = this;
+
+    if (!me.getLogin()) {
+      me.getLoginView().create();
+    }
   },
 
   /**
