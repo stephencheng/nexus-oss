@@ -66,6 +66,11 @@ Ext.define('NX.controller.User', {
         'nx-login form': {
           afterrender: me.installEnterKey
         }
+      },
+      direct: {
+        '*': {
+          beforecallback: me.checkIfAuthenticationIsRequired
+        }
       }
     });
   },
@@ -209,6 +214,26 @@ Ext.define('NX.controller.User', {
     });
 
     return perms;
+  },
+
+  /**
+   * @private
+   */
+  checkIfAuthenticationIsRequired: function (provider, transaction) {
+    var me = this,
+        result = transaction.result;
+
+    if (Ext.isDefined(result)
+        && Ext.isDefined(result.success) && result.success === false
+        && Ext.isDefined(result.authenticationRequired) && result.authenticationRequired === true) {
+      me.getApplication().getMessageController().addMessage({
+        type: 'danger',
+        text: result.message
+      });
+      me.showLoginWindow();
+      // cancel Ext.Direct callback
+      return false;
+    }
   }
 
 });
