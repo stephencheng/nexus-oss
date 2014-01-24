@@ -47,16 +47,18 @@ Ext.define('NX.view.dev.Permissions', {
 
     // Add columns for each major permission
     Ext.each(['CREATE', 'READ', 'UPDATE', 'DELETE'], function (perm) {
-      me.columns.push(
-          { text: perm, xtype: 'templatecolumn', width: 80, align: 'center', dataIndex: perm.toLowerCase(), editor: 'checkbox',
-            tpl: new Ext.XTemplate(
-                '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-                '<tpl if="' + perm.toLowerCase() +
-                    '">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
-                '"/>'
-            )
-          }
-      );
+      me.columns.push({
+        xtype: 'iconcolumn',
+        width: 80,
+        align: 'center',
+        dataIndex: perm.toLowerCase(),
+        editor: 'checkbox',
+        iconNamePrefix: 'permission-',
+        iconVariant: 'x16',
+        iconName: function (value) {
+          return 'nx-icon-' + this.iconNamePrefix + (value ? 'granted' : 'denied') + '-' + this.iconVariant;
+        }
+      });
     });
 
     me.callParent();
