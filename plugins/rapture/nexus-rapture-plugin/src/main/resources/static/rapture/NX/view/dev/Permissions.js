@@ -31,7 +31,7 @@ Ext.define('NX.view.dev.Permissions', {
   ],
 
   plugins: [
-    { pluginId: 'editor', ptype: 'rowediting', clicksToEdit: 1 }
+    { pluginId: 'editor', ptype: 'rowediting', clicksToEdit: 1, errorSummary: false }
   ],
 
   tbar: [
