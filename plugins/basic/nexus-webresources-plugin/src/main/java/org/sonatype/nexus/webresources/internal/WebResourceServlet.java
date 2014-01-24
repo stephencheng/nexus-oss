@@ -113,8 +113,6 @@ public class WebResourceServlet
     }
     assert resource != null;
 
-    webUtils.equipResponseWithStandardHeaders(response);
-
     String contentType = resource.getContentType();
     if (contentType == null) {
       contentType = WebResource.UNKNOWN_CONTENT_TYPE;
