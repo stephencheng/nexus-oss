@@ -14,7 +14,8 @@ Ext.define('NX.controller.User', {
   extend: 'Ext.app.Controller',
   requires: [
     'NX.util.Base64',
-    'NX.util.Permissions'
+    'NX.util.Permissions',
+    'Ext.ux.ActivityMonitor'
   ],
   mixins: {
     logAware: 'NX.LogAware'
@@ -44,7 +45,7 @@ Ext.define('NX.controller.User', {
 
   user: {},
 
-  expirationTask: undefined,
+  activityMonitor: undefined,
 
   expirationTicker: undefined,
 
@@ -91,24 +92,6 @@ Ext.define('NX.controller.User', {
         }
       }
     });
-
-    Ext.util.Observable.prototype.fireEvent = Ext.Function.createInterceptor(
-        Ext.util.Observable.prototype.fireEvent,
-        function () {
-          if (me.expirationTask) {
-            // fire at one minute before expiration
-            me.expirationTask.delay(((me.user.maxInactiveInterval * 60) - me.SECONDS_TO_EXPIRE) * 1000);
-          }
-          return true;
-        }
-    );
-
-    //document.body.onmousemove = function () {
-    //  if (me.expirationTask) {
-    //    // fire at one minute before expiration
-    //    me.expirationTask.delay(((me.user.maxInactiveInterval * 60) - me.SECONDS_TO_EXPIRE) * 1000);
-    //  }
-    //}
   },
 
   /**
@@ -130,7 +113,12 @@ Ext.define('NX.controller.User', {
         me.fetchPermissions();
 
         if (user.maxInactiveInterval) {
-          me.expirationTask = new Ext.util.DelayedTask(me.showExpirationWindow, me);
+          me.activityMonitor = Ext.create('Ext.ux.ActivityMonitor', {
+            interval: 1000, // check every second,
+            maxInactive: ((me.user.maxInactiveInterval * 60) - me.SECONDS_TO_EXPIRE) * 1000,
+            isInactive: me.showExpirationWindow.bind(me)
+          });
+          me.activityMonitor.start();
           me.logDebug('Session expiration enabled for ' + user.maxInactiveInterval + ' minutes');
         }
       }
@@ -141,9 +129,9 @@ Ext.define('NX.controller.User', {
         loginButton.show();
         userButton.hide();
 
-        if (me.expirationTask) {
-          me.expirationTask.cancel();
-          delete me.expirationTask;
+        if (me.activityMonitor) {
+          me.activityMonitor.stop();
+          delete me.activityMonitor;
         }
         if (me.expirationTicker) {
           me.expirationTicker.destroy();
@@ -204,6 +192,7 @@ Ext.define('NX.controller.User', {
     if (win) {
       win.close();
     }
+    me.activityMonitor.start();
   },
 
   /**
