@@ -14,6 +14,7 @@ package org.sonatype.nexus.coreui
 
 import com.softwarementors.extjs.djn.config.annotations.DirectAction
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod
+import org.apache.shiro.authz.annotation.RequiresAuthentication
 import org.apache.shiro.authz.annotation.RequiresPermissions
 import org.sonatype.nexus.extdirect.DirectComponent
 import org.sonatype.nexus.extdirect.DirectComponentSupport
@@ -78,6 +79,7 @@ class RepositoryComponent
   }
 
   @DirectMethod
+  @RequiresAuthentication
   @RequiresPermissions('nexus:repositories:delete')
   void delete(final String id) {
     repositoryRegistry.removeRepository(id)
