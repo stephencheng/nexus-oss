@@ -30,23 +30,13 @@ Ext.define('NX.ext.grid.IconColumn', {
   /**
    * @override
    */
-  initComponent: function() {
-    var me = this;
-
-    me.callParent();
-  },
-
-  /**
-   * @override
-   */
   defaultRenderer: function(value, meta, record) {
     var me = this,
         cls,
         height = me.iconHeight,
-        width = me.iconWidth,
-        html;
+        width = me.iconWidth;
 
-    cls = me.iconName(value, meta, record);
+    cls = me.iconCls(value, meta, record);
 
     if (me.iconVariant) {
       switch (me.iconVariant) {
@@ -59,34 +49,42 @@ Ext.define('NX.ext.grid.IconColumn', {
       }
     }
 
-    // img must have src value for chrome to render w/o ugly border
-    html = '<img src="' + Ext.BLANK_IMAGE_URL + '"';
-    html += ' class="' + cls + '"';
+    var spec = {
+      tag: 'img',
+      src: Ext.BLANK_IMAGE_URL,
+      cls: cls
+    };
     if (height) {
-      html += ' height="' + height + '"';
+      spec.height = height;
     }
     if (width) {
-      html += ' width="' + width + '"';
+      spec.width = width;
     }
-    html += '/>';
 
-    return html;
+    return Ext.DomHelper.markup(spec);
   },
 
   /**
    * @protected
    */
   iconName: function(value, meta, record) {
+    return value;
+  },
+
+  /**
+   * @protected
+   */
+  iconCls: function(value, meta, record) {
     var me = this,
-        name = value;
+        cls = me.iconName(value, meta, record);
 
     if (me.iconNamePrefix) {
-      name = me.iconNamePrefix + name;
+      cls = me.iconNamePrefix + cls;
     }
     if (me.iconVariant) {
-      name += '-' + me.iconVariant;
+      cls += '-' + me.iconVariant;
     }
 
-    return 'nx-icon-' + name;
+    return 'nx-icon-' + cls;
   }
 });

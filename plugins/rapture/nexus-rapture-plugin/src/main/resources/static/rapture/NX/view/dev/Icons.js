@@ -34,7 +34,7 @@ Ext.define('NX.view.dev.Icons', {
       xtype: 'iconcolumn',
       text: 'img class',
       dataIndex: 'cls',
-      iconName: function(value) {
+      iconCls: function(value) {
         return value;
       }
     }
