@@ -96,10 +96,13 @@ public class ApplicationDirectComponent
   }
 
   @DirectMethod
-  public UserXO login(final String base64Username, final String base64Password) throws Exception {
+  public UserXO login(final String base64Username,
+                      final String base64Password,
+                      final boolean rememberMe) throws Exception
+  {
     securitySystem.login(new UsernamePasswordToken(
-        Base64.decodeToString(base64Username), Base64.decodeToString(base64Password))
-    );
+        Base64.decodeToString(base64Username), Base64.decodeToString(base64Password), rememberMe
+    ));
     return getUser();
   }
 
@@ -120,7 +123,7 @@ public class ApplicationDirectComponent
   @DirectMethod
   public List<PermissionXO> readPermissions() {
     Subject subject = securitySystem.getSubject();
-    if (subject != null && subject.isAuthenticated()) {
+    if (isLoggedIn(subject)) {
       Map<String, Integer> privileges = calculatePrivileges(subject);
       HttpSession session = WebContextManager.get().getRequest().getSession(false);
       if (session != null) {
@@ -145,10 +148,8 @@ public class ApplicationDirectComponent
   private UserXO getUser() {
     UserXO userXO = null;
 
-    // TODO: only send back user if user info changed (based on hash)
-
     Subject subject = securitySystem.getSubject();
-    if (subject != null && subject.isAuthenticated()) {
+    if (isLoggedIn(subject)) {
       userXO = new UserXO();
       Object principal = subject.getPrincipal();
       if (principal != null) {
@@ -158,11 +159,15 @@ public class ApplicationDirectComponent
     return userXO;
   }
 
+  private boolean isLoggedIn(final Subject subject) {
+    return subject != null && (subject.isRemembered() || subject.isAuthenticated());
+  }
+
   private CommandXO checkPermissions() {
     HttpSession session = WebContextManager.get().getRequest().getSession(false);
     if (session != null) {
       Subject subject = securitySystem.getSubject();
-      if (subject != null && subject.isAuthenticated()) {
+      if (isLoggedIn(subject)) {
         Map<String, Integer> currentPrivileges = calculatePrivileges(subject);
         // TODO make teh diff based on a has not store the whole privileges map in session
         Map<String, Integer> privileges = (Map<String, Integer>) session.getAttribute(PRIVILEGES);
