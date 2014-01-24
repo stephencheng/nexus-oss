@@ -129,19 +129,19 @@ public class ExtDirectServlet
           return asResponse(super.invokeMethod(method, actionInstance, parameters));
         }
         catch (InvocationTargetException e) {
-          log.error("Failed to invoke action method {}", method.getFullJavaMethodName(), e.getTargetException());
-          if (e.getTargetException() instanceof InvalidConfigurationException) {
-            return asResponse(invalid((InvalidConfigurationException) e.getTargetException()));
-          }
-          return asResponse(error(e.getTargetException().getMessage()));
+          return handleException(method, e.getTargetException());
         }
         catch (Throwable e) {
-          log.error("Failed to invoke action method {}", method.getFullJavaMethodName(), e);
-          if (e instanceof InvalidConfigurationException) {
-            return asResponse(invalid((InvalidConfigurationException) e));
-          }
-          return asResponse(error(e.getMessage()));
+          return handleException(method, e);
         }
+      }
+
+      private Object handleException(final RegisteredMethod method, final Throwable e) {
+        log.error("Failed to invoke action method {}", method.getFullJavaMethodName(), e);
+        if (e instanceof InvalidConfigurationException) {
+          return asResponse(invalid((InvalidConfigurationException) e));
+        }
+        return asResponse(error(e));
       }
 
       private Response asResponse(final Object result) {

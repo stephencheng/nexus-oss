@@ -14,6 +14,7 @@
 package org.sonatype.nexus.extdirect.model;
 
 import com.google.common.collect.Lists;
+import org.apache.shiro.authz.UnauthenticatedException;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -27,8 +28,11 @@ public class ErrorResponse
 {
   private String message;
 
+  private boolean authenticationRequired;
+
   public ErrorResponse(final Throwable cause) {
     this(checkNotNull(cause).getMessage());
+    authenticationRequired = cause instanceof UnauthenticatedException;
   }
 
   public ErrorResponse(final String message) {
