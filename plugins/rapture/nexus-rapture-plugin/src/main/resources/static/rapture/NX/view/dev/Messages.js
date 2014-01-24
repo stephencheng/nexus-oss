@@ -23,10 +23,13 @@ Ext.define('NX.view.dev.Messages', {
 
   columns: [
     {
-      xtype: 'templatecolumn',
+      xtype: 'iconcolumn',
       text: 'icon',
+      dataIndex: 'type',
       width: 48,
-      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="nx-icon-message-{type}-x16"/>'
+      align: 'center',
+      iconNamePrefix: 'message-',
+      iconVariant: 'x16'
     },
     { text: 'type', dataIndex: 'type' },
     { text: 'text', dataIndex: 'text', flex: 1 },

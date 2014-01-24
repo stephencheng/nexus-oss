@@ -34,10 +34,11 @@ Ext.define('NX.view.message.Panel', {
       store: 'Message',
       columns: [
         {
-          xtype: 'templatecolumn',
+          xtype: 'iconcolumn',
+          dataIndex: 'type',
           width: 25,
-          // NOTE: img must have src value for Chrome to render it w/o a border?!
-          tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="nx-icon-message-{type}-x16" height="16" width="16"/>'
+          iconNamePrefix: 'message-',
+          iconVariant: 'x16'
         },
         { dataIndex: 'text', flex: 1 }
       ],

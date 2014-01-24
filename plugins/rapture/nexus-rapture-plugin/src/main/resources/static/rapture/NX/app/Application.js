@@ -20,7 +20,10 @@ Ext.define('NX.app.Application', {
     'Ext.state.CookieProvider',
     'Ext.state.LocalStorageProvider',
     'Ext.util.LocalStorage',
-    'NX.view.Viewport'
+    'NX.view.Viewport',
+
+    // require custom extensions so we don't need to requirement explicitly everywhere
+    'NX.ext.grid.IconColumn'
   ],
 
   mixins: {
