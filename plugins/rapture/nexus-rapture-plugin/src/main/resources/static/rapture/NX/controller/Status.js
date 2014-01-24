@@ -29,8 +29,14 @@ Ext.define('NX.controller.Status', {
     {
       ref: 'header',
       selector: 'nx-header-panel'
+    },
+    {
+      ref: 'main',
+      selector: 'nx-main'
     }
   ],
+
+  disconnectedTimes: 0,
 
   init: function () {
     var me = this;
@@ -59,6 +65,11 @@ Ext.define('NX.controller.Status', {
         status;
 
     if (event.data) {
+      if (me.disconnectedTimes > 0) {
+        me.disconnectedTimes = 0;
+        me.getMain().getEl().unmask();
+        me.getApplication().getMessageController().addMessage({text: 'Server reconnected', type: 'success' });
+      }
       status = event.data.data;
       me.fireEvent('info', status.info);
       me.fireEvent('user', status.user);
@@ -70,7 +81,13 @@ Ext.define('NX.controller.Status', {
     }
     else {
       if (event.code === 'xhr') {
-        me.getApplication().getMessageController().addMessage({text: 'Server disconnected', type: 'warning' });
+        if (me.disconnectedTimes === 0) {
+          me.getApplication().getMessageController().addMessage({text: 'Server disconnected', type: 'warning' });
+        }
+        me.disconnectedTimes++;
+        if (me.disconnectedTimes == 3) {
+          me.getMain().getEl().mask("Waiting for server to reconnect");
+        }
       }
       else if (event.type === 'exception') {
         me.getApplication().getMessageController().addMessage({text: event.message, type: 'danger' });
