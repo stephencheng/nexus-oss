@@ -49,14 +49,14 @@ Ext.define('NX.view.dev.Permissions', {
     Ext.each(['CREATE', 'READ', 'UPDATE', 'DELETE'], function (perm) {
       me.columns.push({
         xtype: 'iconcolumn',
+        text: perm,
+        dataIndex: perm.toLowerCase(),
         width: 80,
         align: 'center',
-        dataIndex: perm.toLowerCase(),
         editor: 'checkbox',
-        iconNamePrefix: 'permission-',
         iconVariant: 'x16',
         iconName: function (value) {
-          return 'nx-icon-' + this.iconNamePrefix + (value ? 'granted' : 'denied') + '-' + this.iconVariant;
+          return value ? 'permission-granted' : 'permission-denied';
         }
       });
     });
