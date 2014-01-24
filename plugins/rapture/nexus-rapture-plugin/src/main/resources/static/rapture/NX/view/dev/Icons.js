@@ -30,12 +30,13 @@ Ext.define('NX.view.dev.Icons', {
     { text: 'size', xtype: 'templatecolumn', tpl: '{height}x{width}', width: 80 },
     { text: 'url', xtype: 'templatecolumn', tpl: '<a href="{url}" target="_blank">{url}</a>', flex: 1 },
     { text: 'img src', xtype: 'templatecolumn', tpl: '<img src="{url}"/>' },
-
     {
-      xtype: 'templatecolumn',
+      xtype: 'iconcolumn',
       text: 'img class',
-      // NOTE: img must have src value for Chrome to render it w/o a border?!
-      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="{cls}"/>'
+      dataIndex: 'cls',
+      iconName: function(value) {
+        return value;
+      }
     }
   ]
 });

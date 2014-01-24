@@ -25,16 +25,16 @@ Ext.define('NX.view.dev.Features', {
     { text: 'view', dataIndex: 'view', width: 250, editor: 'textfield' },
     { text: 'iconName', dataIndex: 'iconName', width: 250, editor: 'textfield' },
     {
-      xtype: 'templatecolumn',
-      text: 'menu icon',
+      xtype: 'iconcolumn',
+      dataIndex: 'iconName',
       width: 48,
-      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="nx-icon-{iconName}-x16"/>'
+      iconVariant: 'x16'
     },
     {
-      xtype: 'templatecolumn',
-      text: 'icon',
+      xtype: 'iconcolumn',
+      dataIndex: 'iconName',
       width: 48,
-      tpl: '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="nx-icon-{iconName}-x32"/>'
+      iconVariant: 'x32'
     },
   ],
 

@@ -46,7 +46,7 @@ Ext.define('NX.ext.grid.IconColumn', {
         width = me.iconWidth,
         html;
 
-    cls = 'nx-icon-' + me.iconName(value, meta, record);
+    cls = me.iconName(value, meta, record);
 
     if (me.iconVariant) {
       switch (me.iconVariant) {
@@ -88,6 +88,7 @@ Ext.define('NX.ext.grid.IconColumn', {
     if (me.iconVariant) {
       name += '-' + me.iconVariant;
     }
-    return name;
+
+    return 'nx-icon-' + name;
   }
 });
