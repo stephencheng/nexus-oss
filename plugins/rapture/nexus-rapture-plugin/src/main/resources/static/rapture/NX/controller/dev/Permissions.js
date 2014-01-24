@@ -16,8 +16,21 @@ Ext.define('NX.controller.dev.Permissions', {
     'NX.util.Permissions'
   ],
 
+  stores: [
+    'Permission'
+  ],
+  models: [
+    'Permission'
+  ],
   views: [
     'dev.Permissions'
+  ],
+
+  refs: [
+    {
+      ref: 'grid',
+      selector: 'nx-dev-permissions'
+    }
   ],
 
   /**
@@ -40,7 +53,16 @@ Ext.define('NX.controller.dev.Permissions', {
     me.listen({
       component: {
         'nx-dev-permissions': {
-          validateedit: me.updatePermissions
+          beforeedit: me.beforeEdit,
+          canceledit: me.cancelEdit,
+          validateedit: me.update,
+          selectionchange: me.onSelectionChange
+        },
+        'nx-dev-permissions button[action=add]': {
+          click: me.add
+        },
+        'nx-dev-permissions button[action=delete]': {
+          click: me.delete
         }
       }
     });
@@ -49,7 +71,56 @@ Ext.define('NX.controller.dev.Permissions', {
   /**
    * @private
    */
-  updatePermissions: function (editor, context) {
+  add: function () {
+    var me = this,
+        grid = me.getGrid(),
+        editor = grid.getPlugin('editor'),
+        model = me.getPermissionModel().create();
+
+    editor.cancelEdit();
+    grid.getStore().insert(0, model);
+    editor.startEdit(model, 0);
+  },
+
+  /**
+   * @private
+   */
+  delete: function () {
+    var me = this,
+        grid = me.getGrid(),
+        editor = grid.getPlugin('editor');
+
+    editor.cancelEdit();
+    grid.getStore().remove(grid.getSelectionModel().getSelection());
+  },
+
+  /**
+   * @private
+   */
+  beforeEdit: function (editor, context) {
+    var idField = editor.editor.form.findField('id');
+
+    if (context.record.get('id')) {
+      idField.disable();
+    }
+    else {
+      idField.enable();
+    }
+  },
+
+  /**
+   * @private
+   */
+  cancelEdit: function (editor, context) {
+    if (!context.record.get('id')) {
+      context.store.remove(context.record);
+    }
+  },
+
+  /**
+   * @private
+   */
+  update: function (editor, context) {
     var value = NX.util.Permissions.NONE;
 
     Ext.each(['CREATE', 'READ', 'UPDATE', 'DELETE'], function (perm) {
@@ -59,5 +130,13 @@ Ext.define('NX.controller.dev.Permissions', {
     });
 
     context.record.set('value', value);
+  },
+
+  onSelectionChange: function (selectionModel, records) {
+    var me = this,
+        deleteButton = me.getGrid().down('button[action=delete]');
+
+    deleteButton.setDisabled(!records.length);
   }
+
 });

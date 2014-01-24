@@ -27,29 +27,35 @@ Ext.define('NX.view.dev.Permissions', {
   },
 
   columns: [
-    { text: 'permission', dataIndex: 'id', flex: 1 }
+    { text: 'permission', dataIndex: 'id', flex: 1, editor: { xtype: 'textfield', allowBlank: false } }
   ],
 
   plugins: [
-    { ptype: 'rowediting', clicksToEdit: 1 }
+    { pluginId: 'editor', ptype: 'rowediting', clicksToEdit: 1 }
+  ],
+
+  tbar: [
+    { xtype: 'button', text: 'Add', action: 'add' },
+    { xtype: 'button', text: 'Delete', action: 'delete', disabled: true }
   ],
 
   /**
    * @protected
    */
-  initComponent: function() {
+  initComponent: function () {
     var me = this;
 
     // Add columns for each major permission
-    Ext.each([ 'CREATE', 'READ', 'UPDATE', 'DELETE' ], function(perm) {
+    Ext.each(['CREATE', 'READ', 'UPDATE', 'DELETE'], function (perm) {
       me.columns.push(
-        { text: perm, xtype: 'templatecolumn', width: 80, align: 'center', dataIndex: perm.toLowerCase(), editor: 'checkbox',
-          tpl: new Ext.XTemplate(
-            '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
-            '<tpl if="' + perm.toLowerCase() + '">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
-            '"/>'
-          )
-        }
+          { text: perm, xtype: 'templatecolumn', width: 80, align: 'center', dataIndex: perm.toLowerCase(), editor: 'checkbox',
+            tpl: new Ext.XTemplate(
+                '<img src="{[ Ext.BLANK_IMAGE_URL ]}" class="',
+                '<tpl if="' + perm.toLowerCase() +
+                    '">nx-icon-permission-granted-x16<tpl else>nx-icon-permission-denied-x16</tpl>',
+                '"/>'
+            )
+          }
       );
     });
 
