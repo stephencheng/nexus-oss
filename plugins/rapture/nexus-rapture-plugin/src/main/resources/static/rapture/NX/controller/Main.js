@@ -213,25 +213,28 @@ Ext.define('NX.controller.Main', {
     me.getApplication().getMainController().registerFeature([
       {
         path: '/System',
-        weight: 1000,
-        iconName: 'feature-system'
+        iconName: 'feature-system',
+        weight: 1000
       },
 
       // TESTING: Adding features to fleshout target menu design
       {
         path: '/Search',
         view: 'NX.view.TODO',
-        iconName: 'feature-search'
+        iconName: 'feature-search',
+        weight: 20
       },
       {
         path: '/Feeds',
         view: 'NX.view.TODO',
-        iconName: 'feature-feeds'
+        iconName: 'feature-feeds',
+        weight: 20
       },
       // FIXME: This should provide view and drop /Repository/Repositories
       {
         path: '/Repository',
-        iconName: 'feature-repository'
+        iconName: 'feature-repository',
+        weight: 50
       },
       {
         path: '/Repository/Targets',
@@ -245,7 +248,8 @@ Ext.define('NX.controller.Main', {
       },
       {
         path: '/Staging',
-        iconName: 'feature-staging'
+        iconName: 'feature-staging',
+        weight: 60
       },
       // TODO: ^^^ should provide view instead of vvv
       //{
@@ -266,11 +270,13 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Procurement',
         view: 'NX.view.TODO',
-        iconName: 'feature-procurement'
+        iconName: 'feature-procurement',
+        weight: 60
       },
       {
         path: '/Security',
-        iconName: 'feature-security'
+        iconName: 'feature-security',
+        weight: 90
       },
       // TODO: ^^^ should provide view instead of vvv
       //{
@@ -574,7 +580,10 @@ Ext.define('NX.controller.Main', {
     });
 
     // FIXME: This needs to sort by weight, and then alpha for same weight.
-    me.getFeatureMenuStore().sort('weight', 'ASC');
+    me.getFeatureMenuStore().sort([
+        {property: 'weight', direction: 'ASC'},
+        {property: 'text', direction: 'ASC'}
+    ]);
 
     // check out if current view is still valid. if not go to dashboard
     node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', Ext.History.getToken(), true);
