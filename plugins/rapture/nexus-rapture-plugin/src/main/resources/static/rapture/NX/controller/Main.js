@@ -230,7 +230,6 @@ Ext.define('NX.controller.Main', {
       // FIXME: This should provide view and drop /Repository/Repositories
       {
         path: '/Repository',
-        view: 'NX.view.TODO',
         iconName: 'feature-repository'
       },
       {
