@@ -82,11 +82,11 @@ Ext.define('NX.controller.Main', {
         file: 'arrow_refresh.png',
         variants: [ 'x16', 'x32' ]
       },
-      'support': {
+      'help-support': {
         file: 'support.png',
         variants: [ 'x16', 'x32' ]
       },
-      'manual': {
+      'help-manual': {
         file: 'book_picture.png',
         variants: [ 'x16', 'x32' ]
       }
