@@ -17,11 +17,10 @@ Ext.define('NX.view.header.Help', {
   text: 'Help',
 
   menu: [
-    // HACK: This is context help for the selected feature, should update when feature changes
-    { text: 'Repositories' },
+    { text: 'Feature', action: 'feature' },
     '-',
-    { text: 'About' },
-    { text: 'Manual' },
-    { text: 'Support' }
+    { text: 'About', action: 'about' },
+    { text: 'Manual', action: 'manual' },
+    { text: 'Support', action: 'support' }
   ]
 });

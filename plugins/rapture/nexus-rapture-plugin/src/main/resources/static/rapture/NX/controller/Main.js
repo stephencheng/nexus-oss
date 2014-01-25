@@ -52,8 +52,8 @@ Ext.define('NX.controller.Main', {
       selector: 'nx-feature-menu'
     },
     {
-      ref: 'helpMenu',
-      selector: 'nx-header-help'
+      ref: 'featureHelp',
+      selector: 'nx-header-help menuitem[action=feature]'
     }
   ],
 
@@ -106,7 +106,7 @@ Ext.define('NX.controller.Main', {
   selectFeature: function (panel, record, index, opts) {
     var me = this,
         content = me.getFeatureContent(),
-        help = me.getHelpMenu(),
+        featureHelp = me.getFeatureHelp(),
         view,
         cmp;
 
@@ -125,7 +125,8 @@ Ext.define('NX.controller.Main', {
       content.setIconCls(NX.controller.Icon.iconCls(record.get('iconName'), 'x32'));
 
       // Update help menu content
-      help.down('menuitem[action=feature]').setText(record.get('text'));
+      featureHelp.setText(record.get('text'));
+      featureHelp.setIconCls(NX.controller.Icon.iconCls(record.get('iconName'), 'x16'));
 
       // install new feature view
       content.add(cmp);
