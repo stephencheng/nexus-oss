@@ -89,12 +89,18 @@ Ext.define('NX.controller.Main', {
       'help-manual': {
         file: 'book_picture.png',
         variants: [ 'x16', 'x32' ]
+      },
+      'feature-system': {
+        file: 'cog.png',
+        variants: [ 'x16', 'x32' ],
+        extraCls: 'x-grid-tree-node-expanded'
       }
     });
 
     me.getApplication().getMainController().registerFeature({
       path: '/System',
-      weight: 1000
+      weight: 1000,
+      iconName: 'feature-system'
     });
 
     me.listen({
@@ -264,7 +270,6 @@ Ext.define('NX.controller.Main', {
               child = parent.appendChild({
                 text: segments[i],
                 leaf: false,
-
                 // expand the menu by default
                 expanded: true
               });
