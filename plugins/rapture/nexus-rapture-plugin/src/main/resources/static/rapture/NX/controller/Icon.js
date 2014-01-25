@@ -34,6 +34,22 @@ Ext.define('NX.controller.Icon', {
    */
   stylesheet: undefined,
 
+  statics: {
+    /**
+     * Helper to get the iconCls for a named icon with optional variant.
+     *
+     * @public
+     * @static
+     */
+    iconCls: function (name, variant) {
+      var cls = 'nx-icon-' + name;
+      if (variant) {
+        cls += '-' + variant;
+      }
+      return cls;
+    }
+  },
+
   /**
    * Generate and install stylesheet for icons when the applications is launching.
    *
@@ -91,15 +107,15 @@ Ext.define('NX.controller.Icon', {
    * @public
    * @param icons Array or object.
    */
-  addIcons: function(icons) {
+  addIcons: function (icons) {
     var me = this;
     if (Ext.isArray(icons)) {
-      Ext.Array.each(icons, function(icon) {
+      Ext.Array.each(icons, function (icon) {
         me.addIcon(icon);
       });
     }
     else if (Ext.isObject(icons)) {
-      Ext.Object.each(icons, function(key, value) {
+      Ext.Object.each(icons, function (key, value) {
         var copy = Ext.clone(value);
         copy.name = key;
         me.addIcon(copy);
@@ -122,7 +138,7 @@ Ext.define('NX.controller.Icon', {
     if (Ext.isArray(icon.variants)) {
       var copy = Ext.clone(icon);
       delete copy.variants;
-      Ext.each(icon.variants, function(variant) {
+      Ext.each(icon.variants, function (variant) {
         copy.variant = variant;
         me.addIcon(copy);
       });
@@ -172,12 +188,7 @@ Ext.define('NX.controller.Icon', {
     url += icon.file;
     icon.url = url;
 
-    // calculate image css class name
-    cls = 'nx-icon-' + icon.name.replace('_', '-');
-    if (icon.variant) {
-      cls += '-' + icon.variant;
-    }
-    icon.cls = cls;
+    icon.cls = NX.controller.Icon.iconCls(icon.name, icon.variant);
   },
 
   /**

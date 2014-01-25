@@ -92,7 +92,7 @@ Ext.define('NX.controller.Message', {
       title = Ext.util.Format.plural(count, 'Message');
 
       // update icon to highlight new messages
-      me.getPanel().setIconCls('nx-icon-message-default-x16');
+      me.getPanel().setIconCls(NX.controller.Icon.iconCls('message-default', 'x16'));
     }
     else {
       me.getPanel().setIconCls(undefined);
@@ -127,7 +127,7 @@ Ext.define('NX.controller.Message', {
     // show transient message notification
     me.getView('message.Notification').create({
       ui: 'message-' + message.type,
-      iconCls: 'nx-icon-message-' + message.type + '-x16',
+      iconCls: NX.controller.Icon.iconCls('message-' + message.type, 'x16'),
       title: Ext.String.capitalize(message.type),
       html: message.text
     });

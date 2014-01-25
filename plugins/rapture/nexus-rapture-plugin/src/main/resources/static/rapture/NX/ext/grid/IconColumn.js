@@ -34,7 +34,8 @@ Ext.define('NX.ext.grid.IconColumn', {
     var me = this,
         cls,
         height = me.iconHeight,
-        width = me.iconWidth;
+        width = me.iconWidth,
+        spec;
 
     cls = me.iconCls(value, meta, record);
 
@@ -49,7 +50,7 @@ Ext.define('NX.ext.grid.IconColumn', {
       }
     }
 
-    var spec = {
+    spec = {
       tag: 'img',
       src: Ext.BLANK_IMAGE_URL,
       cls: cls
@@ -76,15 +77,12 @@ Ext.define('NX.ext.grid.IconColumn', {
    */
   iconCls: function(value, meta, record) {
     var me = this,
-        cls = me.iconName(value, meta, record);
+        name = me.iconName(value, meta, record);
 
     if (me.iconNamePrefix) {
-      cls = me.iconNamePrefix + cls;
-    }
-    if (me.iconVariant) {
-      cls += '-' + me.iconVariant;
+      name = me.iconNamePrefix + name;
     }
 
-    return 'nx-icon-' + cls;
+    return NX.controller.Icon.iconCls(name, me.iconVariant);
   }
 });
