@@ -65,21 +65,10 @@ Ext.define('NX.view.header.Panel', {
         },
         '-',
         {
-          xtype: 'button',
-          text: 'Refresh',
-          action: 'refresh'
+          xtype: 'nx-header-refresh'
         },
         {
-          xtype: 'button',
-          text: 'Help',
-          menu: [
-            // HACK: This is context help for the selected feature, should update when feature changes
-            { text: 'Repositories' },
-            '-',
-            { text: 'About' },
-            { text: 'Manual' },
-            { text: 'Support' }
-          ]
+          xtype: 'nx-header-help'
         },
         '-',
         {

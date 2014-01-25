@@ -23,6 +23,8 @@ Ext.define('NX.controller.Main', {
     'header.Logo',
     'header.Version',
     'header.QuickSearch',
+    'header.Refresh',
+    'header.Help',
     'dev.Panel',
     'feature.Menu',
     'feature.Content',
@@ -80,7 +82,7 @@ Ext.define('NX.controller.Main', {
           beforerender: me.refreshMenu,
           afterrender: me.initBookmark
         },
-        'nx-header-panel button[action=refresh]': {
+        'nx-header-refresh': {
           click: me.refresh
         }
       },
