@@ -70,12 +70,8 @@ Ext.define('NX.coreui.controller.Repositories', {
     });
 
     me.getApplication().getMainController().registerFeature([
-      //{
-      //  path: '/Foo/Bar',
-      //  weight: 1
-      //},
       {
-        path: '/Repositories',
+        path: '/Repository/Repositories',
         view: 'NX.coreui.view.Repositories',
         bookmark: 'repositories',
         iconName: 'feature-repositories',

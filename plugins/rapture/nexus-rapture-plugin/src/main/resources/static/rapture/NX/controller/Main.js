@@ -72,36 +72,138 @@ Ext.define('NX.controller.Main', {
     me.getApplication().getIconController().addIcons({
       'nexus': {
         file: 'nexus.png',
-        variants: [ 'x16', 'x32' ]
+        variants: ['x16', 'x32']
       },
       'sonatype': {
         file: 'sonatype.png',
-        variants: [ 'x16', 'x32' ]
+        variants: ['x16', 'x32']
       },
       'refresh': {
         file: 'arrow_refresh.png',
-        variants: [ 'x16', 'x32' ]
+        variants: ['x16', 'x32']
       },
       'help-support': {
         file: 'support.png',
-        variants: [ 'x16', 'x32' ]
+        variants: ['x16', 'x32']
       },
       'help-manual': {
         file: 'book_picture.png',
-        variants: [ 'x16', 'x32' ]
+        variants: ['x16', 'x32']
       },
       'feature-system': {
         file: 'cog.png',
-        variants: [ 'x16', 'x32' ],
+        variants: ['x16', 'x32'],
         extraCls: 'x-grid-tree-node-expanded'
       }
     });
 
-    me.getApplication().getMainController().registerFeature({
-      path: '/System',
-      weight: 1000,
-      iconName: 'feature-system'
-    });
+    me.getApplication().getMainController().registerFeature([
+      {
+        path: '/System',
+        weight: 1000,
+        iconName: 'feature-system'
+      },
+
+      // TESTING: Adding features to fleshout target menu design
+      {
+        path: '/Search',
+        view: 'TODO'
+      },
+      {
+        path: '/Feeds',
+        view: 'TODO'
+      },
+      {
+        path: '/Repository',
+        view: 'TODO'
+      },
+      {
+        path: '/Repository/Targets',
+        view: 'TODO',
+      },
+      {
+        path: '/Repository/Routing',
+        view: 'TODO',
+      },
+      {
+        path: '/Staging'
+      },
+      {
+        path: '/Staging/Repositories',
+        view: 'TODO'
+      },
+      {
+        path: '/Staging/Profiles',
+        view: 'TODO'
+      },
+      {
+        path: '/Staging/Rules',
+        view: 'TODO'
+      },
+      {
+        path: '/Security',
+      },
+      {
+        path: '/Security/Settings',
+        view: 'TODO'
+      },
+      {
+        path: '/Security/Users',
+        view: 'TODO'
+      },
+      {
+        path: '/Security/Roles',
+        view: 'TODO'
+      },
+      {
+        path: '/Security/Privileges',
+        view: 'TODO'
+      },
+      {
+        path: '/Security/User Token',
+        view: 'TODO'
+      },
+      {
+        path: '/Security/LDAP',
+        view: 'TODO'
+      },
+      {
+        path: '/Security/Atlassian Crowd',
+        view: 'TODO'
+      },
+      {
+        path: '/System/General',
+        view: 'TODO'
+      },
+      {
+        path: '/System/Notifications',
+        view: 'TODO'
+      },
+      {
+        path: '/System/HTTP',
+        view: 'TODO'
+      },
+      {
+        path: '/System/PGP',
+        view: 'TODO'
+      },
+      {
+        path: '/System/Logging',
+        view: 'TODO'
+      },
+      {
+        path: '/System/Tasks',
+        view: 'TODO'
+      },
+      {
+        path: '/System/Smart Proxy',
+        view: 'TODO'
+      },
+      {
+        path: '/System/Support Tools',
+        view: 'TODO'
+      },
+    ]);
 
     me.listen({
       controller: {
@@ -160,12 +262,14 @@ Ext.define('NX.controller.Main', {
 
       me.bookmark(record.get('bookmark'));
     }
-    else {
-      // if a group, automatically select first leaf
-      if (record.hasChildNodes()) {
-        me.getFeatureMenu().selectPath(record.firstChild.getPath('text'), 'text');
-      }
-    }
+
+    // FIXME: This has been disabled, as it causes unwanted side-effects on dbl click
+    //else {
+    //  // if a group, automatically select first leaf
+    //  if (record.hasChildNodes()) {
+    //    me.getFeatureMenu().selectPath(record.firstChild.getPath('text'), 'text');
+    //  }
+    //}
   },
 
   /**
