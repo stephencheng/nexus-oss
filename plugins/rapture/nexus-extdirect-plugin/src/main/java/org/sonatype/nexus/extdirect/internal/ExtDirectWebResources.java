@@ -14,6 +14,7 @@
 package org.sonatype.nexus.extdirect.internal;
 
 import java.io.File;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,26 +23,40 @@ import javax.inject.Singleton;
 import org.sonatype.nexus.configuration.application.ApplicationConfiguration;
 import org.sonatype.nexus.plugin.support.FileWebResource;
 import org.sonatype.nexus.web.WebResource;
+import org.sonatype.nexus.web.WebResourceBundle;
+
+import com.google.common.collect.ImmutableList;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.sonatype.nexus.web.WebResource.JAVASCRIPT;
 
 /**
- * Ext.Direct Prod API {@link WebResource}.
+ * Ext.Direct web-resources.
  *
  * @since 2.8
  */
 @Named
 @Singleton
-public class ExtDirectProdApiWebResource
-    extends FileWebResource
+public class ExtDirectWebResources
+    implements WebResourceBundle
 {
+  private final ApplicationConfiguration applicationConfiguration;
 
   @Inject
-  public ExtDirectProdApiWebResource(final ApplicationConfiguration applicationConfiguration) {
-    super(
-        new File(applicationConfiguration.getTemporaryDirectory(), "djn/Nexus-min.js"),
-        "/static/rapture/extdirect-prod.js",
-        JAVASCRIPT,
-        true
-    );
+  public ExtDirectWebResources(final ApplicationConfiguration applicationConfiguration) {
+    this.applicationConfiguration = checkNotNull(applicationConfiguration);
   }
 
+  private WebResource create(final String fileName, final String path) {
+    File file = new File(applicationConfiguration.getTemporaryDirectory(), fileName);
+    return new FileWebResource(file, path, JAVASCRIPT, true);
+  }
+
+  @Override
+  public List<WebResource> getResources() {
+    return ImmutableList.of(
+        create("djn/Nexus-min.js", "/static/rapture/extdirect-prod.js"),
+        create("djn/Nexus-debug.js", "/static/rapture/extdirect-debug.js")
+    );
+  }
 }
