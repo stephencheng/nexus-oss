@@ -10,6 +10,11 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
+/**
+ * Renders icon in a column.
+ *
+ * Icon must be registered first with NX.controller.Icon.
+ */
 Ext.define('NX.ext.grid.IconColumn', {
   extend: 'Ext.grid.column.Column',
   alias: 'widget.iconcolumn',
