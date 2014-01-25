@@ -164,11 +164,12 @@ Ext.define('NX.controller.Main', {
         variants: ['x16', 'x32']
       },
       'feature-ldap': {
-        file: 'server_key.png',
+        file: 'book_addresses.png',
         variants: ['x16', 'x32']
       },
       'feature-crowd': {
-        file: 'server_key.png',
+        // FIXME: Find a real crowd transparent icon in these sizes
+        file: 'book_addresses.png',
         variants: ['x16', 'x32']
       },
       'feature-http': {
