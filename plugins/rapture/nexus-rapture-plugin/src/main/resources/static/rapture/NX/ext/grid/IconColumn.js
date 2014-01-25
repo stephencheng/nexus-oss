@@ -57,6 +57,7 @@ Ext.define('NX.ext.grid.IconColumn', {
 
     spec = {
       tag: 'img',
+      // NOTE: Chrome is displaying borders around <img> w/o src
       src: Ext.BLANK_IMAGE_URL,
       cls: cls
     };

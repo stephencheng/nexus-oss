@@ -21,6 +21,7 @@ Ext.define('NX.app.Application', {
     'Ext.state.LocalStorageProvider',
     'Ext.util.LocalStorage',
     'NX.view.Viewport',
+    'NX.util.Url',
 
     // require custom extensions so we don't need to requirement explicitly everywhere
     'NX.ext.grid.IconColumn'
@@ -120,6 +121,11 @@ Ext.define('NX.app.Application', {
   },
 
   init: function (app) {
+    console.log('init');
+
+    // Configure blank image URL
+    Ext.BLANK_IMAGE_URL = NX.util.Url.baseUrl + 'static/rapture/resources/images/s.gif';
+
     app.initErrorHandler();
     app.initDirect();
     app.initState();
@@ -201,9 +207,9 @@ Ext.define('NX.app.Application', {
     }
 
     // HACK: for debugging
-    provider.on('statechange', function (provider, key, value, opts) {
-      me.logDebug('State changed: ' + key + '=' + value);
-    });
+    //provider.on('statechange', function (provider, key, value, opts) {
+    //  me.logDebug('State changed: ' + key + '=' + value);
+    //});
 
     Ext.state.Manager.setProvider(provider);
   },
@@ -212,10 +218,14 @@ Ext.define('NX.app.Application', {
    * @public
    */
   launch: function (profile) {
+    console.log('launch: profile=' + profile);
+
     Ext.create('NX.view.Viewport');
 
     // hide the loading mask after we have loaded
     var hideMask = function () {
+      console.log('hide loading mask');
+
       Ext.get('loading').remove();
       Ext.fly('loading-mask').animate({
         opacity: 0,
@@ -223,6 +233,8 @@ Ext.define('NX.app.Application', {
       });
     };
 
-    Ext.defer(hideMask, 250);
+    // FIXME: Need a better way to know when the UI is actually rendered so we can hide the mask
+    // HACK: for now increasing delay slightly to cope with longer loading times
+    Ext.defer(hideMask, 500);
   }
 });
