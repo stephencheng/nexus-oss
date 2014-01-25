@@ -90,7 +90,7 @@ Ext.define('NX.controller.Icon', {
         style;
 
     style = '.' + icon.cls + ' {';
-    style += 'background: url(' + icon.url + ') no-repeat center center;';
+    style += 'background: url(' + icon.url + ') no-repeat center center !important;';
     style += 'height: ' + icon.height + 'px;';
     style += 'width: ' + icon.width + 'px;';
     style += 'vertical-align: middle;';  // needed to get iconCls lined up in trees when height/width is set
