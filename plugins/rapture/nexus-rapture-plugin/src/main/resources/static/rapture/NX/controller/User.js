@@ -32,8 +32,12 @@ Ext.define('NX.controller.User', {
 
   refs: [
     {
-      ref: 'header',
-      selector: 'nx-header-panel'
+      ref: 'loginButton',
+      selector: 'nx-header-login'
+    },
+    {
+      ref: 'userButton',
+      selector: 'nx-header-user'
     },
     {
       ref: 'login',
@@ -67,10 +71,10 @@ Ext.define('NX.controller.User', {
         }
       },
       component: {
-        'nx-header-panel button[action=login]': {
+        'nx-header-login': {
           click: me.showLoginWindow
         },
-        'nx-header-panel button[action=user] menuitem[action=logout]': {
+        'nx-header-user menuitem[action=logout]': {
           click: me.logout
         },
         'nx-login button[action=login]': {
@@ -99,8 +103,8 @@ Ext.define('NX.controller.User', {
    */
   updateUser: function (user) {
     var me = this,
-        loginButton = me.getHeader().down('button[action=login]'),
-        userButton = me.getHeader().down('button[action=user]');
+        loginButton = me.getLoginButton(),
+        userButton = me.getUserButton();
 
     if (user) {
       if (me.user.id != user.id) {

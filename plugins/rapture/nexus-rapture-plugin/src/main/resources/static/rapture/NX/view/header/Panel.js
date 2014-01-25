@@ -21,18 +21,12 @@ Ext.define('NX.view.header.Panel', {
   },
 
   items: [
-    {
-      xtype: 'nx-header-branding',
-      hidden: true
-    },
+    { xtype: 'nx-header-branding', hidden: true },
     {
       xtype: 'toolbar',
 
-      // dark background with south border highlight
-      //border: '0 0 2 0',
       style: {
-        backgroundColor: '#000000',
-        //borderColor: '#4d801a'
+        backgroundColor: '#000000'
       },
       anchor: '100%',
 
@@ -42,12 +36,9 @@ Ext.define('NX.view.header.Panel', {
       },
 
       items: [
-        {
-          xtype: 'nx-header-logo'
-        },
+        { xtype: 'nx-header-logo' },
         {
           xtype: 'label',
-          id: 'name',
           text: 'Sonatype Nexus',
           style: {
             'color': '#FFFFFF',
@@ -55,44 +46,15 @@ Ext.define('NX.view.header.Panel', {
           }
         },
         '-',
-        {
-          xtype: 'nx-header-version'
-        },
+        { xtype: 'nx-header-version' },
         '->',
-        {
-          xtype: 'nx-header-quicksearch',
-          width: 250
-        },
+        { xtype: 'nx-header-quicksearch', width: 250 },
         '-',
-        {
-          xtype: 'nx-header-refresh'
-        },
-        {
-          xtype: 'nx-header-help'
-        },
+        { xtype: 'nx-header-refresh' },
+        { xtype: 'nx-header-help' },
         '-',
-        {
-          xtype: 'button',
-          text: 'Login',
-          action: 'login',
-          hidden: false
-        },
-        {
-          xtype: 'button',
-          text: 'User',
-          action: 'user',
-          hidden: true,
-          menu: [
-            {
-              text: 'Profile'
-            },
-            '-',
-            {
-              text: 'Logout',
-              action: 'logout'
-            }
-          ]
-        }
+        { xtype: 'nx-header-login' },
+        { xtype: 'nx-header-user', hidden: true }
       ]
     }
   ]

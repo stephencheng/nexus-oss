@@ -25,6 +25,8 @@ Ext.define('NX.controller.Main', {
     'header.QuickSearch',
     'header.Refresh',
     'header.Help',
+    'header.Login',
+    'header.User',
     'dev.Panel',
     'feature.Menu',
     'feature.Content',
