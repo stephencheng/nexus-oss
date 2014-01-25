@@ -171,7 +171,7 @@ Ext.define('NX.controller.Main', {
         variants: ['x16', 'x32']
       },
       'feature-http': {
-        file: 'server_connect.png',
+        file: 'transmit.png',
         variants: ['x16', 'x32']
       },
       'feature-security': {
@@ -188,6 +188,10 @@ Ext.define('NX.controller.Main', {
       },
       'feature-procurement': {
         file: 'database_blue.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-analytics': {
+        file: 'system_monitor.png',
         variants: ['x16', 'x32']
       }
     });
@@ -334,6 +338,11 @@ Ext.define('NX.controller.Main', {
         path: '/System/Support Tools',
         view: 'TODO',
         iconName: 'feature-supporttools'
+      },
+      {
+        path: '/System/Analytics',
+        view: 'TODO',
+        iconName: 'feature-analytics'
       },
     ]);
 
