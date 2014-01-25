@@ -22,7 +22,7 @@ Ext.define('NX.controller.Message', {
   ],
 
   stores: [
-    'Message',
+    'Message'
   ],
 
   refs: [
