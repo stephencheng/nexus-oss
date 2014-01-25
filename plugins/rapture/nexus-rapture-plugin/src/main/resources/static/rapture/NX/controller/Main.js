@@ -199,8 +199,8 @@ Ext.define('NX.controller.Main', {
         file: 'support.png',
         variants: ['x16', 'x32']
       },
-      'feature-sysinfo': {
-        file: 'server_information.png',
+      'feature-overview': {
+        file: 'information.png',
         variants: ['x16', 'x32']
       },
       'feature-supportzip': {
@@ -346,9 +346,9 @@ Ext.define('NX.controller.Main', {
         iconName: 'feature-support'
       },
       {
-        path: '/Support/System Information',
+        path: '/Support/Overview',
         view: 'NX.view.TODO',
-        iconName: 'feature-sysinfo'
+        iconName: 'feature-overview'
       },
       {
         path: '/Support/Logging',
