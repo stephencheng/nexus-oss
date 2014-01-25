@@ -204,7 +204,7 @@ Ext.define('NX.controller.Main', {
         variants: ['x16', 'x32']
       },
       'feature-supportzip': {
-        file: 'server_compress.png',
+        file: 'file_extension_zip.png',
         variants: ['x16', 'x32']
       }
     });
