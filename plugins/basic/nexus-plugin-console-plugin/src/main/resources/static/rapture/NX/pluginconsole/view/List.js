@@ -17,6 +17,13 @@ Ext.define('NX.pluginconsole.view.List', {
   store: 'PluginInfo',
 
   columns: [
+    {
+      xtype: 'iconcolumn',
+      width: 36,
+      iconVariant: 'x16',
+      // HACK: For now simply use the same icon for every plugin record
+      iconName: function() { return 'feature-pluginconsole'; }
+    },
     {header: 'Name', dataIndex: 'name', flex: 1},
     {header: 'Version', dataIndex: 'version', flex: 1},
     {header: 'Description', dataIndex: 'description', flex: 1}
