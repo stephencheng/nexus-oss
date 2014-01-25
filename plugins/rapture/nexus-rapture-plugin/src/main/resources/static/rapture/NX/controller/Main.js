@@ -193,6 +193,18 @@ Ext.define('NX.controller.Main', {
       'feature-analytics': {
         file: 'system_monitor.png',
         variants: ['x16', 'x32']
+      },
+      'feature-support': {
+        file: 'support.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-sysinfo': {
+        file: 'server_information.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-supportzip': {
+        file: 'server_compress.png',
+        variants: ['x16', 'x32']
       }
     });
 
@@ -315,11 +327,6 @@ Ext.define('NX.controller.Main', {
         iconName: 'feature-pgp'
       },
       {
-        path: '/System/Logging',
-        view: 'TODO',
-        iconName: 'feature-logging'
-      },
-      {
         path: '/System/Tasks',
         view: 'TODO',
         iconName: 'feature-tasks'
@@ -335,15 +342,29 @@ Ext.define('NX.controller.Main', {
         iconName: 'feature-ssl'
       },
       {
-        path: '/System/Support Tools',
-        view: 'TODO',
-        iconName: 'feature-supporttools'
+        path: '/Support',
+        iconName: 'feature-support'
       },
       {
-        path: '/System/Analytics',
+        path: '/Support/System Information',
+        view: 'TODO',
+        iconName: 'feature-sysinfo'
+      },
+      {
+        path: '/Support/Logging',
+        view: 'TODO',
+        iconName: 'feature-logging'
+      },
+      {
+        path: '/Support/Support ZIP',
+        view: 'TODO',
+        iconName: 'feature-supportzip'
+      },
+      {
+        path: '/Support/Analytics',
         view: 'TODO',
         iconName: 'feature-analytics'
-      },
+      }
     ]);
 
     me.listen({
