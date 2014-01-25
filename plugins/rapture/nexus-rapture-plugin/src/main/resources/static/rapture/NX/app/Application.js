@@ -62,6 +62,8 @@ Ext.define('NX.app.Application', {
   constructor: function (config) {
     var me = this, custom, keys;
 
+    me.logDebug('create');
+
     // only these customizations will be allowed
     custom = {
       namespaces: me.namespaces,
@@ -121,7 +123,7 @@ Ext.define('NX.app.Application', {
   },
 
   init: function (app) {
-    console.log('init');
+    app.logDebug('init');
 
     // Configure blank image URL
     Ext.BLANK_IMAGE_URL = NX.util.Url.baseUrl + 'static/rapture/resources/images/s.gif';
@@ -218,13 +220,14 @@ Ext.define('NX.app.Application', {
    * @public
    */
   launch: function (profile) {
-    console.log('launch: profile=' + profile);
+    var me = this;
+    me.logDebug('launch: profile=' + profile);
 
     Ext.create('NX.view.Viewport');
 
     // hide the loading mask after we have loaded
     var hideMask = function () {
-      console.log('hide loading mask');
+      me.logDebug('hide loading mask');
 
       Ext.get('loading').remove();
       Ext.fly('loading-mask').animate({
