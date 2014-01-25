@@ -156,7 +156,7 @@ Ext.define('NX.controller.Main', {
         variants: ['x16', 'x32']
       },
       'feature-smartproxy': {
-        file: 'download_cloud.png',
+        file: 'servers_network.png',
         variants: ['x16', 'x32']
       },
       'feature-profiles': {
