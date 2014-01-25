@@ -92,8 +92,87 @@ Ext.define('NX.controller.Main', {
       },
       'feature-system': {
         file: 'cog.png',
-        variants: ['x16', 'x32'],
-        extraCls: 'x-grid-tree-node-expanded'
+        variants: ['x16', 'x32']
+      },
+      'feature-staging': {
+        file: 'database_green.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-targets': {
+        file: 'target.png',
+        variants: ['x16'] // FIXME: missing x32 here
+      },
+      'feature-routing': {
+        file: 'arrow_branch.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-rules': {
+        file: 'measure.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-users': {
+        file: 'group.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-notifications': {
+        file: 'emails.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-tasks': {
+        file: 'time.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-logging': {
+        file: 'book.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-feeds': {
+        file: 'feed.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-search': {
+        file: 'magnifier.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-roles': {
+        file: 'user_policeman.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-privileges': {
+        file: 'medal_gold_1.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-usertoken': {
+        file: 'key.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-pgp': {
+        file: 'gnupg_keys.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-supporttools': {
+        file: 'globe_place.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-smartproxy': {
+        file: 'download_cloud.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-profiles': {
+        file: 'palette.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-ldap': {
+        file: 'server_key.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-crowd': {
+        file: 'server_key.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-http': {
+        file: 'server_connect.png',
+        variants: ['x16', 'x32']
       }
     });
 
@@ -107,11 +186,13 @@ Ext.define('NX.controller.Main', {
       // TESTING: Adding features to fleshout target menu design
       {
         path: '/Search',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-search'
       },
       {
         path: '/Feeds',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-feeds'
       },
       {
         path: '/Repository',
@@ -120,88 +201,108 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Repository/Targets',
         view: 'TODO',
+        iconName: 'feature-targets'
       },
       {
         path: '/Repository/Routing',
         view: 'TODO',
+        iconName: 'feature-routing'
       },
       {
         path: '/Staging'
       },
       {
         path: '/Staging/Repositories',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-staging'
       },
       {
         path: '/Staging/Profiles',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-profiles'
       },
       {
         path: '/Staging/Rules',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-rules'
       },
       {
-        path: '/Security',
+        path: '/Security'
       },
-      {
-        path: '/Security/Settings',
-        view: 'TODO'
-      },
+      // TODO: ^^^ should provide view instead of vvv
+      //{
+      //  path: '/Security/Settings',
+      //  view: 'TODO'
+      //},
       {
         path: '/Security/Users',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-users'
       },
       {
         path: '/Security/Roles',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-roles'
       },
       {
         path: '/Security/Privileges',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-privileges'
       },
       {
         path: '/Security/User Token',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-usertoken'
       },
       {
         path: '/Security/LDAP',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-ldap'
       },
       {
         path: '/Security/Atlassian Crowd',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-crowd'
       },
-      {
-        path: '/System/General',
-        view: 'TODO'
-      },
+      // TODO: /System should provide view instead of vvv
+      //{
+      //  path: '/System/General',
+      //  view: 'TODO'
+      //},
       {
         path: '/System/Notifications',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-notifications'
       },
       {
         path: '/System/HTTP',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-http'
       },
       {
         path: '/System/PGP',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-pgp'
       },
       {
         path: '/System/Logging',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-logging'
       },
       {
         path: '/System/Tasks',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-tasks'
       },
       {
         path: '/System/Smart Proxy',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-smartproxy'
       },
       {
         path: '/System/Support Tools',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-supporttools'
       },
     ]);
 
