@@ -70,8 +70,24 @@ Ext.define('NX.controller.Main', {
     });
 
     me.getApplication().getIconController().addIcons({
+      'nexus': {
+        file: 'nexus.png',
+        variants: [ 'x16', 'x32' ]
+      },
+      'sonatype': {
+        file: 'sonatype.png',
+        variants: [ 'x16', 'x32' ]
+      },
       'refresh': {
         file: 'arrow_refresh.png',
+        variants: [ 'x16', 'x32' ]
+      },
+      'support': {
+        file: 'support.png',
+        variants: [ 'x16', 'x32' ]
+      },
+      'manual': {
+        file: 'book_picture.png',
         variants: [ 'x16', 'x32' ]
       }
     });

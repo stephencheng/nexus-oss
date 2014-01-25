@@ -19,8 +19,8 @@ Ext.define('NX.view.header.Help', {
   menu: [
     { text: 'Feature', action: 'feature' },
     '-',
-    { text: 'About', action: 'about' },
-    { text: 'Manual', action: 'manual' },
-    { text: 'Support', action: 'support' }
+    { text: 'About', iconCls: 'nx-icon-nexus-x16', action: 'about' },
+    { text: 'Manual',iconCls: 'nx-icon-manual-x16',  action: 'manual' },
+    { text: 'Support', iconCls: 'nx-icon-support-x16', action: 'support' }
   ]
 });
