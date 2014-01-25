@@ -55,6 +55,8 @@ Ext.define('NX.controller.Icon', {
    */
   onLaunch: function() {
     var me = this;
+
+    // install stylesheet after all other controllers have had a chance to init & add icons.
     me.installStylesheet();
   },
 
