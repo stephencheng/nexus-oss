@@ -36,8 +36,30 @@ Ext.define('NX.controller.Message', {
    * @protected
    */
   init: function () {
-    var me = this,
-        icons = me.getApplication().getIconController();
+    var me = this;
+
+    me.getApplication().getIconController().addIcons({
+      'message-default': {
+        file: 'bell.png',
+        variants: ['x16', 'x32']
+      },
+      'message-primary': {
+        file: 'information.png',
+        variants: ['x16', 'x32']
+      },
+      'message-danger': {
+        file: 'exclamation.png',
+        variants: ['x16', 'x32']
+      },
+      'message-warning': {
+        file: 'warning.png',
+        variants: ['x16', 'x32']
+      },
+      'message-success': {
+        file: 'accept.png',
+        variants: ['x16', 'x32']
+      }
+    });
 
     me.control({
       'nx-message-panel button[action=clear]': {
@@ -46,36 +68,6 @@ Ext.define('NX.controller.Message', {
     });
 
     me.getMessageStore().on('datachanged', me.updateHeader, me);
-
-    icons.addIcon({
-      name: 'message-default',
-      file: 'bell.png',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'message-primary',
-      file: 'information.png',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'message-danger',
-      file: 'exclamation.png',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'message-warning',
-      file: 'warning.png',
-      variant: 'x16'
-    });
-
-    icons.addIcon({
-      name: 'message-success',
-      file: 'accept.png',
-      variant: 'x16'
-    });
   },
 
   /**
@@ -83,7 +75,7 @@ Ext.define('NX.controller.Message', {
    *
    * @private
    */
-  updateHeader: function() {
+  updateHeader: function () {
     var me = this,
         count = me.getMessageStore().getCount(),
         title = 'Messages';
@@ -111,7 +103,7 @@ Ext.define('NX.controller.Message', {
   /**
    * @public
    */
-  addMessage: function(message) {
+  addMessage: function (message) {
     var me = this,
         store = me.getMessageStore();
 
