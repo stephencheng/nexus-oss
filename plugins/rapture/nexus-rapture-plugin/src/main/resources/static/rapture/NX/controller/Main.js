@@ -32,7 +32,8 @@ Ext.define('NX.controller.Main', {
     'feature.Content',
     'message.Panel',
     'info.Entry',
-    'info.Panel'
+    'info.Panel',
+    'TODO'
   ],
   models: [
     'Feature'
@@ -218,28 +219,28 @@ Ext.define('NX.controller.Main', {
       // TESTING: Adding features to fleshout target menu design
       {
         path: '/Search',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-search'
       },
       {
         path: '/Feeds',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-feeds'
       },
       // FIXME: This should provide view and drop /Repository/Repositories
       {
         path: '/Repository',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-repository'
       },
       {
         path: '/Repository/Targets',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-targets'
       },
       {
         path: '/Repository/Routing',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-routing'
       },
       {
@@ -249,22 +250,22 @@ Ext.define('NX.controller.Main', {
       // TODO: ^^^ should provide view instead of vvv
       //{
       //  path: '/Staging/Repositories',
-      //  view: 'TODO',
+      //  view: 'NX.view.TODO',
       //  iconName: 'feature-staging'
       //},
       {
         path: '/Staging/Profiles',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-profiles'
       },
       {
         path: '/Staging/Rules',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-rules'
       },
       {
         path: '/Procurement',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-procurement'
       },
       {
@@ -278,32 +279,32 @@ Ext.define('NX.controller.Main', {
       //},
       {
         path: '/Security/Users',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-users'
       },
       {
         path: '/Security/Roles',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-roles'
       },
       {
         path: '/Security/Privileges',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-privileges'
       },
       {
         path: '/Security/User Token',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-usertoken'
       },
       {
         path: '/Security/LDAP',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-ldap'
       },
       {
         path: '/Security/Atlassian Crowd',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-crowd'
       },
       // TODO: /System should provide view instead of vvv
@@ -313,32 +314,32 @@ Ext.define('NX.controller.Main', {
       //},
       {
         path: '/System/Notifications',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-notifications'
       },
       {
         path: '/System/HTTP',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-http'
       },
       {
         path: '/System/PGP',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-pgp'
       },
       {
         path: '/System/Tasks',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-tasks'
       },
       {
         path: '/System/Smart Proxy',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-smartproxy'
       },
       {
         path: '/System/SSL',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-ssl'
       },
       {
@@ -347,22 +348,22 @@ Ext.define('NX.controller.Main', {
       },
       {
         path: '/Support/System Information',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-sysinfo'
       },
       {
         path: '/Support/Logging',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-logging'
       },
       {
         path: '/Support/Support ZIP',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-supportzip'
       },
       {
         path: '/Support/Analytics',
-        view: 'TODO',
+        view: 'NX.view.TODO',
         iconName: 'feature-analytics'
       }
     ]);
