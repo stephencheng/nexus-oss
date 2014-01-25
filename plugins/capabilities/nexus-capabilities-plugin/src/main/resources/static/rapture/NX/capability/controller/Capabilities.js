@@ -93,10 +93,9 @@ Ext.define('NX.capability.controller.Capabilities', {
     });
 
     me.getApplication().getMainController().registerFeature({
-      path: '/Foo/Capabilities',
+      path: '/System/Capabilities',
       view: 'NX.capability.view.Feature',
       bookmark: 'capabilities',
-      weight: 5,
       visible: function () {
         var perms = NX.util.Permissions;
         return perms.check('nexus:capabilities', perms.READ);

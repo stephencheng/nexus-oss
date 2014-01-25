@@ -92,6 +92,11 @@ Ext.define('NX.controller.Main', {
       }
     });
 
+    me.getApplication().getMainController().registerFeature({
+      path: '/System',
+      weight: 1000
+    });
+
     me.listen({
       controller: {
         '#User': {
@@ -296,6 +301,7 @@ Ext.define('NX.controller.Main', {
       }
     });
 
+    // FIXME: This needs to sort by weight, and then alpha for same weight.
     me.getFeatureMenuStore().sort('weight', 'ASC');
 
     // check out if current view is still valid. if not go to dashboard

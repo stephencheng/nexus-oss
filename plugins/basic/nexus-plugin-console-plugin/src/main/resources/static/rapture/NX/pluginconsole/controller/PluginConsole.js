@@ -36,10 +36,11 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
   init: function () {
     var me = this;
 
-    me.getApplication().getIconController().addIcon({
-      name: 'feature-pluginconsole',
-      file: 'plugin.png',
-      variants: [ 'x16', 'x32' ]
+    me.getApplication().getIconController().addIcons({
+      'feature-pluginconsole': {
+        file: 'plugin.png',
+        variants: ['x16', 'x32']
+      }
     });
 
     me.listen({
@@ -58,11 +59,10 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
     });
 
     me.getApplication().getMainController().registerFeature({
-      path: '/Foo/Plugins',
+      path: '/System/Plugins',
       view: 'NX.pluginconsole.view.Feature',
       bookmark: 'plugins',
       visible: true,
-      weight: 10,
       iconName: 'feature-pluginconsole'
     });
   },

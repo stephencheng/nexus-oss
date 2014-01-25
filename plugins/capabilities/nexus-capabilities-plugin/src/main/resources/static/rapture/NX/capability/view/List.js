@@ -17,6 +17,12 @@ Ext.define('NX.capability.view.List', {
   store: 'CapabilityStatus',
 
   columns: [
+    {
+      xtype: 'iconcolumn',
+      width: 36,
+      iconVariant: 'x16',
+      iconName: function() { return 'feature-capability'; }
+    },
     { header: 'Type', dataIndex: 'typeName', flex: 1 },
     { header: 'Description', dataIndex: 'description', flex: 1 },
     { header: 'Notes', dataIndex: 'notes', flex: 1 }

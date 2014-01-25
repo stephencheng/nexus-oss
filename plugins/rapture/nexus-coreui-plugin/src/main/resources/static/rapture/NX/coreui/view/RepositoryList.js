@@ -17,6 +17,14 @@ Ext.define('NX.coreui.view.RepositoryList', {
   store: 'Repository',
 
   columns: [
+    {
+      xtype: 'iconcolumn',
+      width: 36,
+      iconVariant: 'x16',
+      iconName: function () {
+        return 'feature-repositories';
+      }
+    },
     {header: 'Name', dataIndex: 'name', flex: 1},
     {header: 'Type', dataIndex: 'type', flex: 1},
     {header: 'Format', dataIndex: 'format', flex: 1}

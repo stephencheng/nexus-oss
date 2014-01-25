@@ -38,6 +38,13 @@ Ext.define('NX.coreui.controller.Repositories', {
   init: function () {
     var me = this;
 
+    me.getApplication().getIconController().addIcons({
+      'feature-repositories': {
+        file: 'database.png',
+        variants: ['x16', 'x32']
+      }
+    });
+
     me.listen({
       controller: {
         '#User': {
@@ -63,14 +70,15 @@ Ext.define('NX.coreui.controller.Repositories', {
     });
 
     me.getApplication().getMainController().registerFeature([
+      //{
+      //  path: '/Foo/Bar',
+      //  weight: 1
+      //},
       {
-        path: '/Foo/Bar',
-        weight: 1
-      },
-      {
-        path: '/Foo/Bar/Repositories',
+        path: '/Repositories',
         view: 'NX.coreui.view.Repositories',
         bookmark: 'repositories',
+        iconName: 'feature-repositories',
         visible: function () {
           var perms = NX.util.Permissions;
           return perms.check('nexus:repositories', perms.READ);
