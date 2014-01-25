@@ -51,20 +51,28 @@ Ext.define('NX.controller.Icon', {
   },
 
   /**
-   * Generate and install stylesheet for icons when the applications is launching.
-   *
    * @override
    */
-  onLaunch: function () {
+  onLaunch: function() {
+    var me = this;
+    me.installStylesheet();
+  },
+
+  /**
+   * Generate and install stylesheet for icons when the applications is launching.
+   *
+   * @private
+   */
+  installStylesheet: function () {
     var me = this,
         styles = [];
 
-    me.logDebug('Building stylesheet');
+    me.logDebug('Installing stylesheet');
 
     // build styles for each icon in store
     me.getIconStore().each(function (record) {
       var img, style = me.buildIconStyle(record.data);
-      me.logDebug('Adding style: ' + style);
+      //me.logDebug('Adding style: ' + style);
       styles.push(style);
 
       // TODO: Background-load icons?  This may have issues due to web-resources being !cachable?
@@ -74,10 +82,10 @@ Ext.define('NX.controller.Icon', {
     });
 
     // create the style sheet
-    me.stylesheet = Ext.util.CSS.createStyleSheet(styles.join(' '));
-
     // NOTE: This has issues on IE 11, forced compat via X-UA-Compatible meta tag
     // NOTE: ... but may be better off rendering this server side?
+    me.stylesheet = Ext.util.CSS.createStyleSheet(styles.join(' '), 'nx-icons');
+    me.logDebug('Stylesheet installed with ' + me.stylesheet.cssRules.length + ' rules');
   },
 
   /**
