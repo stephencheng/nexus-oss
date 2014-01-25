@@ -173,6 +173,22 @@ Ext.define('NX.controller.Main', {
       'feature-http': {
         file: 'server_connect.png',
         variants: ['x16', 'x32']
+      },
+      'feature-security': {
+        file: 'shield.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-ssl': {
+        file: 'ssl_certificates.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-repository': {
+        file: 'database.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-procurement': {
+        file: 'database_blue.png',
+        variants: ['x16', 'x32']
       }
     });
 
@@ -194,9 +210,11 @@ Ext.define('NX.controller.Main', {
         view: 'TODO',
         iconName: 'feature-feeds'
       },
+      // FIXME: This should provide view and drop /Repository/Repositories
       {
         path: '/Repository',
-        view: 'TODO'
+        view: 'TODO',
+        iconName: 'feature-repository'
       },
       {
         path: '/Repository/Targets',
@@ -209,13 +227,15 @@ Ext.define('NX.controller.Main', {
         iconName: 'feature-routing'
       },
       {
-        path: '/Staging'
-      },
-      {
-        path: '/Staging/Repositories',
-        view: 'TODO',
+        path: '/Staging',
         iconName: 'feature-staging'
       },
+      // TODO: ^^^ should provide view instead of vvv
+      //{
+      //  path: '/Staging/Repositories',
+      //  view: 'TODO',
+      //  iconName: 'feature-staging'
+      //},
       {
         path: '/Staging/Profiles',
         view: 'TODO',
@@ -227,7 +247,13 @@ Ext.define('NX.controller.Main', {
         iconName: 'feature-rules'
       },
       {
-        path: '/Security'
+        path: '/Procurement',
+        view: 'TODO',
+        iconName: 'feature-procurement'
+      },
+      {
+        path: '/Security',
+        iconName: 'feature-security'
       },
       // TODO: ^^^ should provide view instead of vvv
       //{
@@ -298,6 +324,11 @@ Ext.define('NX.controller.Main', {
         path: '/System/Smart Proxy',
         view: 'TODO',
         iconName: 'feature-smartproxy'
+      },
+      {
+        path: '/System/SSL',
+        view: 'TODO',
+        iconName: 'feature-ssl'
       },
       {
         path: '/System/Support Tools',
