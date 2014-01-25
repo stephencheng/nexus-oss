@@ -78,9 +78,11 @@ Ext.define('NX.controller.Icon', {
       styles.push(style);
 
       // TODO: Background-load icons?  This may have issues due to web-resources being !cachable?
-      //me.logDebug('Preloading: ' + record.data.url);
-      //img = new Image();
-      //img.src = record.data.url;
+      if (record.data.preload) {
+        me.logDebug('Preloading: ' + record.data.url);
+        img = new Image();
+        img.src = record.data.url;
+      }
     });
 
     // create the style sheet
