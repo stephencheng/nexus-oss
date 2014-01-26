@@ -23,6 +23,7 @@ import org.sonatype.nexus.capability.support.CapabilityDescriptorSupport;
 import org.sonatype.nexus.formfields.CheckboxFormField;
 import org.sonatype.nexus.formfields.FormField;
 import org.sonatype.nexus.formfields.NumberTextFormField;
+import org.sonatype.nexus.plugins.capabilities.CapabilityIdentity;
 import org.sonatype.nexus.plugins.capabilities.CapabilityType;
 import org.sonatype.nexus.plugins.capabilities.Tag;
 import org.sonatype.nexus.plugins.capabilities.Taggable;
@@ -114,7 +115,15 @@ public class RaptureSettingsCapabilityDescriptor
   @Override
   public Validator validator() {
     // Allow only one capability of this type
-    return validators().capability().uniquePer(RaptureSettingsCapabilityDescriptor.TYPE);
+    return validators().logical().and(
+        validators().capability().uniquePer(TYPE),
+        validators().value().isAPositiveInteger(TYPE, RaptureSettingsCapabilityConfiguration.SESSION_TIMEOUT)
+    );
+  }
+
+  @Override
+  public Validator validator(final CapabilityIdentity id) {
+    return validators().value().isAPositiveInteger(TYPE, RaptureSettingsCapabilityConfiguration.SESSION_TIMEOUT);
   }
 
   @Override
