@@ -340,6 +340,7 @@ Ext.define('NX.controller.User', {
       // cancel Ext.Direct callback
       return false;
     }
+    return true;
   }
 
 });
