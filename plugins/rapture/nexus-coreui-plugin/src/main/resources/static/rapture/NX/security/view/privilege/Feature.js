@@ -12,16 +12,9 @@
  */
 Ext.define('NX.security.view.privilege.Feature', {
   extend: 'NX.view.masterdetail.Panel',
-  require: [
-    'NX.view.Info',
-    'NX.view.InfoPanel'
-  ],
 
   modelName: 'privilege',
   list: 'nx-privilege-list',
-  iconName: 'feature-privileges',
+  iconName: 'feature-privileges'
 
-  tabs: {
-    xtype: 'nx-info-panel'
-  }
 });

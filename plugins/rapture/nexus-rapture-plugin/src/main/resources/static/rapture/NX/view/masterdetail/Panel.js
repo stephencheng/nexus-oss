@@ -14,7 +14,16 @@ Ext.define('NX.view.masterdetail.Panel', {
   extend: 'Ext.panel.Panel',
   alias: 'widget.nx-masterdetail-panel',
 
+  require: [
+    'NX.view.Info',
+    'NX.view.InfoPanel'
+  ],
+
   layout: 'border',
+
+  tabs: {
+    xtype: 'nx-info-panel'
+  },
 
   initComponent: function () {
     var me = this;

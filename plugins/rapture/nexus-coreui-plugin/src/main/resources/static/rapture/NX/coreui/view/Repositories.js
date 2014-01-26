@@ -13,16 +13,9 @@
 
 Ext.define('NX.coreui.view.Repositories', {
   extend: 'NX.view.masterdetail.Panel',
-  require: [
-    'NX.view.Info',
-    'NX.view.InfoPanel'
-  ],
 
   modelName: 'repository',
   list: 'nx-repository-list',
-  iconName: 'feature-repositories',
+  iconName: 'feature-repositories'
 
-  tabs: {
-    xtype: 'nx-info-panel'
-  }
 });

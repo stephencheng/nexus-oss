@@ -12,16 +12,9 @@
  */
 Ext.define('NX.security.view.user.Feature', {
   extend: 'NX.view.masterdetail.Panel',
-  require: [
-    'NX.view.Info',
-    'NX.view.InfoPanel'
-  ],
 
   modelName: 'user',
   list: 'nx-user-list',
-  iconName: 'feature-users',
+  iconName: 'feature-users'
 
-  tabs: {
-    xtype: 'nx-info-panel'
-  }
 });

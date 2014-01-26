@@ -12,16 +12,9 @@
  */
 Ext.define('NX.pluginconsole.view.Feature', {
   extend: 'NX.view.masterdetail.Panel',
-  require: [
-    'NX.view.Info',
-    'NX.view.InfoPanel'
-  ],
 
   modelName: 'plugin',
   list: 'nx-pluginconsole-list',
-  iconName: 'feature-pluginconsole',
+  iconName: 'feature-pluginconsole'
 
-  tabs: {
-    xtype: 'nx-info-panel'
-  }
 });

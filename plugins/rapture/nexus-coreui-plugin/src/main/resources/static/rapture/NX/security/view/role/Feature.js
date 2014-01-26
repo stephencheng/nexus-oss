@@ -12,16 +12,9 @@
  */
 Ext.define('NX.security.view.role.Feature', {
   extend: 'NX.view.masterdetail.Panel',
-  require: [
-    'NX.view.Info',
-    'NX.view.InfoPanel'
-  ],
 
   modelName: 'role',
   list: 'nx-role-list',
-  iconName: 'feature-roles',
+  iconName: 'feature-roles'
 
-  tabs: {
-    xtype: 'nx-info-panel'
-  }
 });
