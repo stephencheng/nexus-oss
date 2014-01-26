@@ -150,6 +150,8 @@ Ext.define('NX.controller.User', {
   },
 
   /**
+   * Returns true if there is a logged in user.
+   *
    * @public
    * @return {boolean}
    */
