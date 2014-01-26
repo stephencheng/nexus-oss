@@ -510,10 +510,16 @@ Ext.define('NX.controller.Main', {
         features = [features];
       }
       Ext.each(features, function (feature) {
+        // TODO: Should validate the required fields, for now bitch about some
+        if (!feature.bookmark) {
+          me.logWarn('Feature missing bookmark; path=' + feature.path);
+        }
+
         // HACK: Auto-set iconCls from icon name for use in tree panels
         if (feature.iconName) {
           feature.iconCls = NX.controller.Icon.iconCls(feature.iconName, 'x16');
         }
+
         me.getFeatureStore().add(feature);
       });
     }

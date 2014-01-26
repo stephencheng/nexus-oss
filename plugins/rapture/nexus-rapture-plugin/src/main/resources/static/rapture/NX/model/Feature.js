@@ -12,6 +12,8 @@
  */
 Ext.define('NX.model.Feature', {
   extend: 'Ext.data.Model',
+
+  idProperty: 'path',
   fields: [
     { name: 'path' },
     { name: 'weight', defaultValue: 100 },
