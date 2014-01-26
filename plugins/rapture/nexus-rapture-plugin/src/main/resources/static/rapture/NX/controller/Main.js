@@ -210,6 +210,11 @@ Ext.define('NX.controller.Main', {
       }
     });
 
+    // HACK: Show some items only if user is logged in for testing
+    var visibleIfLoggedIn = function() {
+      return me.getApplication().getUserController().hasUser();
+    };
+
     me.getApplication().getMainController().registerFeature([
       {
         path: '/System',
@@ -239,17 +244,20 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Repository/Targets',
         view: 'NX.view.TODO',
-        iconName: 'feature-targets'
+        iconName: 'feature-targets',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Repository/Routing',
         view: 'NX.view.TODO',
-        iconName: 'feature-routing'
+        iconName: 'feature-routing',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Staging',
         iconName: 'feature-staging',
-        weight: 60
+        weight: 60,
+        visible: visibleIfLoggedIn
       },
       // TODO: ^^^ should provide view instead of vvv
       //{
@@ -260,23 +268,27 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Staging/Profiles',
         view: 'NX.view.TODO',
-        iconName: 'feature-profiles'
+        iconName: 'feature-profiles',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Staging/Rules',
         view: 'NX.view.TODO',
-        iconName: 'feature-rules'
+        iconName: 'feature-rules',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Procurement',
         view: 'NX.view.TODO',
         iconName: 'feature-procurement',
-        weight: 60
+        weight: 60,
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Security',
         iconName: 'feature-security',
-        weight: 90
+        weight: 90,
+        visible: visibleIfLoggedIn
       },
       // TODO: ^^^ should provide view instead of vvv
       //{
@@ -286,32 +298,38 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Security/Users',
         view: 'NX.view.TODO',
-        iconName: 'feature-users'
+        iconName: 'feature-users',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Security/Roles',
         view: 'NX.view.TODO',
-        iconName: 'feature-roles'
+        iconName: 'feature-roles',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Security/Privileges',
         view: 'NX.view.TODO',
-        iconName: 'feature-privileges'
+        iconName: 'feature-privileges',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Security/User Token',
         view: 'NX.view.TODO',
-        iconName: 'feature-usertoken'
+        iconName: 'feature-usertoken',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Security/LDAP',
         view: 'NX.view.TODO',
-        iconName: 'feature-ldap'
+        iconName: 'feature-ldap',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Security/Atlassian Crowd',
         view: 'NX.view.TODO',
-        iconName: 'feature-crowd'
+        iconName: 'feature-crowd',
+        visible: visibleIfLoggedIn
       },
       // TODO: /System should provide view instead of vvv
       //{
@@ -321,56 +339,67 @@ Ext.define('NX.controller.Main', {
       {
         path: '/System/Notifications',
         view: 'NX.view.TODO',
-        iconName: 'feature-notifications'
+        iconName: 'feature-notifications',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/System/HTTP',
         view: 'NX.view.TODO',
-        iconName: 'feature-http'
+        iconName: 'feature-http',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/System/PGP',
         view: 'NX.view.TODO',
-        iconName: 'feature-pgp'
+        iconName: 'feature-pgp',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/System/Tasks',
         view: 'NX.view.TODO',
-        iconName: 'feature-tasks'
+        iconName: 'feature-tasks',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/System/Smart Proxy',
         view: 'NX.view.TODO',
-        iconName: 'feature-smartproxy'
+        iconName: 'feature-smartproxy',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/System/SSL',
         view: 'NX.view.TODO',
-        iconName: 'feature-ssl'
+        iconName: 'feature-ssl',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Support',
-        iconName: 'feature-support'
+        iconName: 'feature-support',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Overview',
         view: 'NX.view.TODO',
-        iconName: 'feature-overview'
+        iconName: 'feature-overview',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Logging',
         view: 'NX.view.TODO',
-        iconName: 'feature-logging'
+        iconName: 'feature-logging',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Support ZIP',
         view: 'NX.view.TODO',
-        iconName: 'feature-supportzip'
+        iconName: 'feature-supportzip',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Analytics',
         view: 'NX.view.TODO',
-        iconName: 'feature-analytics'
+        iconName: 'feature-analytics',
+        visible: visibleIfLoggedIn
       }
     ]);
 
