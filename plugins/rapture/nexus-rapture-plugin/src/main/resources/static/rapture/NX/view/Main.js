@@ -59,7 +59,7 @@ Ext.define('NX.view.Main', {
       resizeHandles: 'n',
 
       // keep initial constraints to prevent huge panels
-      height: 200,
+      height: 300,
 
       // default to hidden, only show if debug enabled
       hidden: true
