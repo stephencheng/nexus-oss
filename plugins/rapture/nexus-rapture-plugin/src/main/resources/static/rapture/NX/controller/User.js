@@ -108,7 +108,7 @@ Ext.define('NX.controller.User', {
 
     if (user) {
       if (!Ext.isDefined(me.user) || (me.user.id != user.id)) {
-        me.getApplication().getMessageController().addMessage({text: 'User logged in: ' + user.id, type: 'success' });
+        me.getApplication().getMessageController().addMessage({text: 'User logged in: ' + user.id, type: 'default' });
         loginButton.hide();
         userButton.setText(user.id);
         userButton.show();
@@ -129,7 +129,7 @@ Ext.define('NX.controller.User', {
     }
     else {
       if (me.user) {
-        me.getApplication().getMessageController().addMessage({text: 'User logged out', type: 'success' });
+        me.getApplication().getMessageController().addMessage({text: 'User logged out', type: 'default' });
         loginButton.show();
         userButton.hide();
 
@@ -165,6 +165,7 @@ Ext.define('NX.controller.User', {
   showExpirationWindow: function () {
     var me = this;
 
+    me.getApplication().getMessageController().addMessage({text: 'Session is about to expire', type: 'warning' });
     me.getExpireSessionView().create();
   },
 
@@ -181,7 +182,7 @@ Ext.define('NX.controller.User', {
           win.close();
           me.getApplication().getMessageController().addMessage({
             text: 'Session expired after being inactive for ' + me.user.maxInactiveInterval + ' minutes',
-            type: 'success'
+            type: 'warning'
           });
           me.logout();
         }
