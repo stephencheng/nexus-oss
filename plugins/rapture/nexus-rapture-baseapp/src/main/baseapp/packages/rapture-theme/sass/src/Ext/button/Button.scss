@@ -165,17 +165,17 @@
 @include extjs-button-toolbar-medium-ui(
   $ui: 'header',
 
-  $border-color: $button-header-toolbar-border-color,
+  $border-color: transparent,
   $border-color-over: $button-header-toolbar-border-color-over,
   $border-color-focus: $button-header-toolbar-border-color-focus,
   $border-color-pressed: $button-header-toolbar-border-color-pressed,
-  $border-color-disabled: $button-header-toolbar-border-color-disabled,
+  $border-color-disabled: transparent,
 
-  $background-color: $button-header-toolbar-background-color,
+  $background-color: transparent,
   $background-color-over: $button-header-toolbar-background-color-over,
   $background-color-focus: $button-header-toolbar-background-color-focus,
   $background-color-pressed: $button-header-toolbar-background-color-pressed,
-  $background-color-disabled: $button-header-toolbar-background-color-disabled,
+  $background-color-disabled: transparent,
 
   $color: $button-header-toolbar-color,
   $color-over: $button-header-toolbar-color-over,
@@ -199,5 +199,8 @@
   $font-family-over: $button-medium-font-family-over,
   $font-family-focus: $button-medium-font-family-focus,
   $font-family-pressed: $button-medium-font-family-pressed,
-  $font-family-disabled: $button-medium-font-family-disabled
+  $font-family-disabled: $button-medium-font-family-disabled,
+
+  $glyph-color: #FFFFFF,
+  $glyph-opacity: 0.5
 );
