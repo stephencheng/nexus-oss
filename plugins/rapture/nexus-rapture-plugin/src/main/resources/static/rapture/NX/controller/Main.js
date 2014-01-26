@@ -489,13 +489,16 @@ Ext.define('NX.controller.Main', {
   },
 
   refresh: function () {
-    var refreshables = Ext.ComponentQuery.query('panel[refreshable=true]');
+    var me = this,
+        refreshables = Ext.ComponentQuery.query('panel[refreshable=true]');
 
     if (refreshables) {
       Ext.each(refreshables, function (refreshable) {
         refreshable.fireEvent('refresh', refreshable);
       });
     }
+
+    me.getApplication().getMessageController().addMessage({ text: 'Refreshed', type: 'default'});
   },
 
   /**
