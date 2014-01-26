@@ -24,9 +24,4 @@ import groovy.transform.ToString
 class UserXO
 {
   String id
-
-  /**
-   * Period of inactivity, in minutes, after which user will be automatically logged out.
-   */
-  int maxInactiveInterval
 }
