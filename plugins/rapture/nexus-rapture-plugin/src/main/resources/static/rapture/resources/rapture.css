@@ -10,9 +10,11 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-/*
-FIXME: Sort out how to use sass for ratpure and plugins
-*/
+
+/**
+ * TODO: Sort out how to integrate this into baseapp with scss.
+ */
+@import url('fonts/font-awesome-4.0.3/css/font-awesome.css');
 
 .nx-info-entry td {
   padding-bottom: 4px;
