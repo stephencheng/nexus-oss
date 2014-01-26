@@ -85,7 +85,7 @@ public class RaptureSettingsCapabilityDescriptor
             RaptureSettingsCapabilityConfiguration.DEBUG_ENABLED,
             messages.debugEnabledLabel(),
             messages.debugEnabledHelp(),
-            FormField.MANDATORY
+            FormField.OPTIONAL
         ).withInitialValue(RaptureSettings.DEFAULT_DEBUG_ENABLED),
         new NumberTextFormField(
             RaptureSettingsCapabilityConfiguration.SESSION_TIMEOUT,
