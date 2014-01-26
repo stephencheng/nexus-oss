@@ -150,6 +150,14 @@ Ext.define('NX.controller.User', {
   },
 
   /**
+   * @public
+   * @return {boolean}
+   */
+  hasUser: function() {
+    return this.user.id != undefined;
+  },
+
+  /**
    * @private
    */
   showExpirationWindow: function () {
