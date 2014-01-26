@@ -229,7 +229,7 @@ Ext.define('NX.capability.controller.Capabilities', {
         if (Ext.isDefined(response)) {
           if (response.success) {
             me.getCapabilityStatusStore().on('load', function (store) {
-              me.getList().getSelectionModel().select(store.getById(response.id));
+              me.getList().getSelectionModel().select(store.getById(response.data));
             }, me, {single: true});
             me.loadStores();
             win.close();
