@@ -15,7 +15,6 @@ Ext.define('NX.view.header.QuickSearch', {
   alias: 'widget.nx-header-quicksearch',
 
   emptyText: 'quick search',
-  width: 250,
 
   // TODO: Only show clear trigger if we have text
   trigger1Cls: Ext.baseCSSPrefix + 'form-clear-trigger',
