@@ -64,8 +64,7 @@ Ext.define('NX.security.controller.Privileges', {
       weight: 10,
       iconName: 'feature-privileges',
       visible: function () {
-        var perms = NX.util.Permissions;
-        return perms.check('security:privileges', perms.READ);
+        return NX.util.Permissions.check('security:privileges', 'read');
       }
     });
   },

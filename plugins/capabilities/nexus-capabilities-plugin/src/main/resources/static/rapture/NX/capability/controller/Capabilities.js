@@ -97,8 +97,7 @@ Ext.define('NX.capability.controller.Capabilities', {
       view: 'NX.capability.view.Feature',
       bookmark: 'capabilities',
       visible: function () {
-        var perms = NX.util.Permissions;
-        return perms.check('nexus:capabilities', perms.READ);
+        return NX.util.Permissions.check('nexus:capabilities', 'read');
       },
       iconName: 'feature-capability'
     });

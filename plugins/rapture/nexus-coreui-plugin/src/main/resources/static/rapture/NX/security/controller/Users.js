@@ -64,8 +64,7 @@ Ext.define('NX.security.controller.Users', {
       weight: 30,
       iconName: 'feature-users',
       visible: function () {
-        var perms = NX.util.Permissions;
-        return perms.check('security:users', perms.READ);
+        return NX.util.Permissions.check('security:users', 'read');
       }
     });
   },

@@ -64,8 +64,7 @@ Ext.define('NX.security.controller.Roles', {
       weight: 20,
       iconName: 'feature-roles',
       visible: function () {
-        var perms = NX.util.Permissions;
-        return perms.check('security:roles', perms.READ);
+        return NX.util.Permissions.check('security:roles', 'read');
       }
     });
   },

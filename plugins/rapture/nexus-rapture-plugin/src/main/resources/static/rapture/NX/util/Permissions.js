@@ -46,18 +46,29 @@ Ext.define('NX.util.Permissions', {
    */
   check: function (value, perm /* , perm... */) {
     var me = this,
-        p = perm,
+        p = me.asPermission(perm),
         pVal = me.permissions[value] | me.NONE,
         perms;
 
     if (arguments.length > 2) {
       perms = [].slice.call(arguments, 2);
       Ext.each(perms, function (entry) {
-        p = p | entry;
+        p = p | me.asPermission(entry);
       });
     }
 
     return ((p & pVal) == p);
+  },
+
+  /**
+   * @private
+   */
+  asPermission: function (value) {
+    var me = this;
+    if (!Ext.isDefined(value)) {
+      return me.ALL;
+    }
+    return Ext.isNumber(value) ? value : me[value.toUpperCase()]
   }
 
 });
