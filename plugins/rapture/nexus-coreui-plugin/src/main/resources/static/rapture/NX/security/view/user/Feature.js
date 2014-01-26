@@ -14,7 +14,6 @@ Ext.define('NX.security.view.user.Feature', {
   extend: 'NX.view.masterdetail.Panel',
 
   modelName: 'user',
-  list: 'nx-user-list',
   iconName: 'feature-users'
 
 });

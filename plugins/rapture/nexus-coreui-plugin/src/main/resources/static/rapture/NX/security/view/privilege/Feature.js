@@ -14,7 +14,6 @@ Ext.define('NX.security.view.privilege.Feature', {
   extend: 'NX.view.masterdetail.Panel',
 
   modelName: 'privilege',
-  list: 'nx-privilege-list',
   iconName: 'feature-privileges'
 
 });

@@ -15,7 +15,6 @@ Ext.define('NX.coreui.view.Repositories', {
   extend: 'NX.view.masterdetail.Panel',
 
   modelName: 'repository',
-  list: 'nx-repository-list',
   iconName: 'feature-repositories'
 
 });

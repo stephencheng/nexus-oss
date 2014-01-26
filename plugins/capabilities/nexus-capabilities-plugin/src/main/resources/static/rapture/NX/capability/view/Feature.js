@@ -12,13 +12,8 @@
  */
 Ext.define('NX.capability.view.Feature', {
   extend: 'NX.view.masterdetail.Panel',
-  require: [
-    'NX.view.Info',
-    'NX.view.InfoPanel'
-  ],
 
   modelName: 'capability',
-  list: 'nx-capability-list',
   iconName: 'feature-capability',
 
   tabs: [

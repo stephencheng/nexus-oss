@@ -28,6 +28,10 @@ Ext.define('NX.view.masterdetail.Panel', {
   initComponent: function () {
     var me = this;
 
+    if (!Ext.isDefined(me.list)) {
+      me.list = 'nx-' + me.modelName + '-list';
+    }
+
     me.items = [
       {
         xtype: me.list,
@@ -48,7 +52,7 @@ Ext.define('NX.view.masterdetail.Panel', {
 
     me.down(me.list).on('selectionchange', this.selectionChange, this);
 
-    if(Ext.isDefined(me.iconName)){
+    if (Ext.isDefined(me.iconName)) {
       me.setDescriptionIconName(me.iconName);
     }
   },
