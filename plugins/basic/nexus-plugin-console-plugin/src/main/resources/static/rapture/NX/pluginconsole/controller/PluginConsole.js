@@ -63,7 +63,10 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
       view: 'NX.pluginconsole.view.Feature',
       bookmark: 'plugins',
       visible: true,
-      iconName: 'feature-pluginconsole'
+      iconName: 'feature-pluginconsole',
+      visible: function () {
+        return NX.util.Permissions.check('nexus:pluginconsoleplugininfos', 'read');
+      }
     });
   },
 
