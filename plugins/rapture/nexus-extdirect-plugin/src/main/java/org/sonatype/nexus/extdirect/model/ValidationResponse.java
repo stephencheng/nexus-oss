@@ -14,10 +14,12 @@
 package org.sonatype.nexus.extdirect.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.sonatype.configuration.validation.ValidationMessage;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * Ext.Direct validation response.
@@ -27,10 +29,15 @@ import com.google.common.collect.Lists;
 public class ValidationResponse
     extends Response<Object>
 {
-  private List<ValidationMessage> validationMessages;
+  private Map<String, String> errors;
 
   public ValidationResponse(List<ValidationMessage> validationMessages) {
     super(false, Lists.newArrayList());
-    this.validationMessages = validationMessages;
+    if (validationMessages != null) {
+      errors = Maps.newHashMap();
+      for (ValidationMessage validationMessage : validationMessages) {
+        errors.put(validationMessage.getKey(), validationMessage.getMessage());
+      }
+    }
   }
 }

@@ -235,8 +235,8 @@ Ext.define('NX.capability.controller.Capabilities', {
             win.close();
           }
           else {
-            if (Ext.isDefined(response.validationMessages)) {
-              NX.util.Msg.showError('Capability could not be created', form.markInvalid(response.validationMessages));
+            if (Ext.isDefined(response.errors)) {
+              NX.util.Msg.showError('Capability could not be created', form.markInvalid(response.errors));
             }
             else {
               NX.util.Msg.showError('Capability could not be created', response.message);
@@ -262,8 +262,8 @@ Ext.define('NX.capability.controller.Capabilities', {
             me.loadStores();
           }
           else {
-            if (Ext.isDefined(response.validationMessages)) {
-              NX.util.Msg.showError('Capability could not be saved', form.markInvalid(response.validationMessages));
+            if (Ext.isDefined(response.errors)) {
+              NX.util.Msg.showError('Capability could not be saved', form.markInvalid(response.errors));
             }
             else {
               NX.util.Msg.showError('Capability could not be saved', response.message);

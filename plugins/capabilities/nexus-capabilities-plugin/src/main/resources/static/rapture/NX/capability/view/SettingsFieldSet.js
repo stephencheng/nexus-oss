@@ -173,27 +173,30 @@ Ext.define('NX.capability.view.SettingsFieldSet', {
     form.setValues(data);
   },
 
-  markInvalid: function (form, validationMessages) {
-    var remainingMessages = [];
+  markInvalid: function (form, errors) {
+    var remainingMessages = [],
+        key, marked, field;
 
-    Ext.each(validationMessages, function (error) {
-      var marked = false,
-          field;
-
-      if (form) {
-        field = form.findField('property.' + error.key);
-        if (!field) {
-          field = form.findField(error.key);
-        }
-        if (field) {
-          marked = true;
-          field.markInvalid(error.message);
+    if (Ext.isDefined(errors)) {
+      for (key in errors) {
+        if (errors.hasOwnProperty(key)) {
+          marked = false;
+          if (form) {
+            field = form.findField('property.' + key);
+            if (!field) {
+              field = form.findField(key);
+            }
+            if (field) {
+              marked = true;
+              field.markInvalid(errors[key]);
+            }
+          }
+          if (!marked) {
+            remainingMessages.push(errors[key]);
+          }
         }
       }
-      if (!marked) {
-        remainingMessages.push(error.message);
-      }
-    });
+    }
 
     if (remainingMessages.length > 0) {
       return remainingMessages.join('\n');

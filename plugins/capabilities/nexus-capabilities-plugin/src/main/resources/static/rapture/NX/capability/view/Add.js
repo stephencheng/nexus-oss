@@ -79,8 +79,8 @@ Ext.define('NX.capability.view.Add', {
         return me.down('nx-capability-settings-fieldset').exportCapability(this.getForm())
       },
 
-      markInvalid: function (validationMessages) {
-        return me.down('nx-capability-settings-fieldset').markInvalid(this.getForm(), validationMessages)
+      markInvalid: function (errors) {
+        return me.down('nx-capability-settings-fieldset').markInvalid(this.getForm(), errors)
       }
 
     };
