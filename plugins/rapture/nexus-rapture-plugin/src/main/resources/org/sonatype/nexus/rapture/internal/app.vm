@@ -22,5 +22,9 @@ NX.app.pluginConfigClassNames = [${pluginConfigClassNames}];
 Ext.each(NX.app.pluginConfigClassNames, function(className) {
   Ext.require(className);
 });
+NX.app.settings = {
+  debugEnabled: ${settings.debugEnabled},
+  sessionTimeout: ${settings.sessionTimeout}
+}
 
 Ext.application('NX.app.Application');

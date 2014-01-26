@@ -10,6 +10,7 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
+
 package org.sonatype.nexus.rapture.internal;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ import javax.inject.Named;
 import javax.inject.Provider;
 import javax.inject.Singleton;
 
+import org.sonatype.nexus.rapture.Rapture;
 import org.sonatype.nexus.webresources.WebResourceService;
 import org.sonatype.sisu.goodies.template.TemplateParameters;
 
@@ -43,10 +45,15 @@ public class AppJsWebResource
 
   private static final String PLUGIN_CONFIG_SUFFIX = "/app/PluginConfig.js";
 
+  private final Rapture rapture;
+
   private final Provider<WebResourceService> webResourceServiceProvider; // avoid circular dep
 
   @Inject
-  public AppJsWebResource(final Provider<WebResourceService> webResourceServiceProvider) {
+  public AppJsWebResource(final Rapture rapture,
+                          final Provider<WebResourceService> webResourceServiceProvider)
+  {
+    this.rapture = checkNotNull(rapture, "rapture");
     this.webResourceServiceProvider = checkNotNull(webResourceServiceProvider);
   }
 
@@ -72,6 +79,7 @@ public class AppJsWebResource
 
     return render("app.vm", new TemplateParameters()
         .set("pluginConfigClassNames", join(classNames))
+        .set("settings", rapture.getSettings())
     );
   }
 
