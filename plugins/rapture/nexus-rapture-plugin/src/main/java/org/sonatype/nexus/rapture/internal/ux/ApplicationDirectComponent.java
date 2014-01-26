@@ -155,10 +155,6 @@ public class ApplicationDirectComponent
       if (principal != null) {
         userXO.setId(principal.toString());
       }
-      // TODO get the value from user
-      if ("deployment".equals(userXO.getId())) {
-        userXO.setMaxInactiveInterval(2);
-      }
     }
     return userXO;
   }
