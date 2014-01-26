@@ -31,7 +31,7 @@ public class Rapture
     extends ComponentSupport
 {
 
-  private RaptureSettings settings;
+  private RaptureSettings settings = new RaptureSettings();
 
 
   public RaptureSettings getSettings() {
