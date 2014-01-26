@@ -18,8 +18,8 @@ Ext.define('NX.view.header.User', {
   glyph: 'xf007@FontAwesome', // fa-user
 
   menu: [
-    { text: 'Profile' },
+    { text: 'Settings', action: 'settings', iconCls: 'nx-icon-user-settings-x16' },
     '-',
-    { text: 'Logout', action: 'logout' }
+    { text: 'Logout', action: 'logout', iconCls: 'nx-icon-user-logout-x16' }
   ]
 });

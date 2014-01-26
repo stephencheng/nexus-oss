@@ -91,6 +91,16 @@ Ext.define('NX.controller.Main', {
         file: 'book_picture.png',
         variants: ['x16', 'x32']
       },
+      'user-settings': {
+        file: 'setting_tools.png',
+        variants: ['x16', 'x32']
+      },
+      'user-logout': {
+        file: 'door_out.png',
+            variants: ['x16', 'x32']
+      },
+
+      // FIXME: These should be moved elsewhere once we have feature implemented
       'feature-system': {
         file: 'cog.png',
         variants: ['x16', 'x32']
