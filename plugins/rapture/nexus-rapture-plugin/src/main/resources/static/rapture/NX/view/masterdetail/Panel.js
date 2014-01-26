@@ -17,25 +17,31 @@ Ext.define('NX.view.masterdetail.Panel', {
   layout: 'border',
 
   initComponent: function () {
-    this.items = [
+    var me = this;
+
+    me.items = [
       {
-        xtype: this.list,
+        xtype: me.list,
         region: 'center',
         flex: 0.5
       },
       {
         xtype: 'nx-masterdetail-tabs',
-        modelName: this.modelName,
-        emptyText: this.emptyText,
-        items: this.tabs
+        modelName: me.modelName,
+        emptyText: me.emptyText,
+        items: me.tabs
       }
     ];
 
-    this.callParent(arguments);
+    me.callParent(arguments);
 
-    this.addEvents('selectionchange');
+    me.addEvents('selectionchange');
 
-    this.down(this.list).on('selectionchange', this.selectionChange, this);
+    me.down(me.list).on('selectionchange', this.selectionChange, this);
+
+    if(Ext.isDefined(me.iconName)){
+      me.setDescriptionIconName(me.iconName);
+    }
   },
 
   selectionChange: function (selectionModel, selectedModels) {
@@ -49,6 +55,10 @@ Ext.define('NX.view.masterdetail.Panel', {
 
   setDescription: function (description) {
     this.down('nx-masterdetail-tabs').setDescription(description);
+  },
+
+  setDescriptionIconName: function (iconName) {
+    this.down('nx-masterdetail-tabs').setIconCls(NX.controller.Icon.iconCls(iconName, 'x16'));
   },
 
   showWarning: function (message) {

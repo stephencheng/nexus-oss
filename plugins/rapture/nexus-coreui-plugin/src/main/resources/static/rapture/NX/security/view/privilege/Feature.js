@@ -17,8 +17,10 @@ Ext.define('NX.security.view.privilege.Feature', {
     'NX.view.InfoPanel'
   ],
 
-  emptyText: 'Please select a privilege to view details',
+  modelName: 'privilege',
   list: 'nx-privilege-list',
+  iconName: 'feature-privileges',
+
   tabs: {
     xtype: 'nx-info-panel'
   }

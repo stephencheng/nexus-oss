@@ -17,7 +17,10 @@ Ext.define('NX.capability.view.Feature', {
     'NX.view.InfoPanel'
   ],
 
+  modelName: 'capability',
   list: 'nx-capability-list',
+  iconName: 'feature-capability',
+
   tabs: [
     { xtype: 'nx-capability-summary' },
     { xtype: 'nx-capability-settings' },

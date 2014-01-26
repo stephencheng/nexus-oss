@@ -17,8 +17,10 @@ Ext.define('NX.security.view.role.Feature', {
     'NX.view.InfoPanel'
   ],
 
-  emptyText: 'Please select a role to view details',
+  modelName: 'role',
   list: 'nx-role-list',
+  iconName: 'feature-roles',
+
   tabs: {
     xtype: 'nx-info-panel'
   }

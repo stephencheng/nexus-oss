@@ -20,6 +20,7 @@ Ext.define('NX.coreui.view.Repositories', {
 
   modelName: 'repository',
   list: 'nx-repository-list',
+  iconName: 'feature-repositories',
 
   tabs: {
     xtype: 'nx-info-panel'

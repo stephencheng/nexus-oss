@@ -17,8 +17,10 @@ Ext.define('NX.security.view.user.Feature', {
     'NX.view.InfoPanel'
   ],
 
-  emptyText: 'Please select a user to view details',
+  modelName: 'user',
   list: 'nx-user-list',
+  iconName: 'feature-users',
+
   tabs: {
     xtype: 'nx-info-panel'
   }
