@@ -17,17 +17,18 @@ Ext.define('NX.util.Msg', {
    * @public
    */
   showError: function (title, message, options) {
-    if (Ext.isDefined(message)) {
-      options = options || {};
-      Ext.Msg.show({
-        title: title || 'Operation failed',
-        msg: message,
-        buttons: Ext.Msg.OK,
-        icon: Ext.MessageBox.ERROR,
-        closeable: false,
-        animEl: options.animEl
-      });
-    }
+    options = options || {};
+
+    // set default configuration
+    Ext.applyIf(options, {
+      title: title || 'Error',
+      msg: message || 'Operation failed',
+      buttons: Ext.Msg.OK,
+      icon: Ext.MessageBox.ERROR,
+      closable: false
+    });
+
+    Ext.Msg.show(options);
   },
 
   /**
