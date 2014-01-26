@@ -204,6 +204,9 @@ Ext.define('NX.app.Application', {
       this.logDebug('Using state provider: local');
     }
     else {
+      // FIXME: We may want to either not support state, or implement remoting to used
+      // FIXME: The remote session of the user to store state
+      // FIXME: Cookie impl will create too many cookies and could cause lots of weird things to break
       provider = Ext.create('Ext.state.CookieProvider');
       this.logDebug('Using state provider: cookie');
     }
