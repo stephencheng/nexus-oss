@@ -134,7 +134,7 @@ Ext.define('NX.capability.view.SettingsFieldSet', {
     if (me.capabilityType && me.capabilityType.get('formFields')) {
       Ext.each(me.capabilityType.get('formFields'), function (formField) {
         value = values['property.' + formField.id];
-        if (value) {
+        if (Ext.isDefined(value)) {
           capability.properties[capability.properties.length] = {
             key: formField.id,
             value: String(value)
