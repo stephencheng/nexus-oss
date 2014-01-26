@@ -79,6 +79,7 @@ Ext.define('NX.controller.Icon', {
 
       // Optionally pre-load icon
       if (record.data.preload) {
+        // FIXME: This still does not seem to be doing the trick :-(
         me.logDebug('Preloading: ' + record.data.url);
         img = new Image();
         img.src = record.data.url;

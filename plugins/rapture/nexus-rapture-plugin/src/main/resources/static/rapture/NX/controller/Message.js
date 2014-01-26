@@ -41,23 +41,28 @@ Ext.define('NX.controller.Message', {
     me.getApplication().getIconController().addIcons({
       'message-default': {
         file: 'bell.png',
-        variants: ['x16', 'x32']
+        variants: ['x16', 'x32'],
+        preload: true
       },
       'message-primary': {
         file: 'information.png',
-        variants: ['x16', 'x32']
+        variants: ['x16', 'x32'],
+        preload: true
       },
       'message-danger': {
         file: 'exclamation.png',
-        variants: ['x16', 'x32']
+        variants: ['x16', 'x32'],
+        preload: true
       },
       'message-warning': {
         file: 'warning.png',
-        variants: ['x16', 'x32']
+        variants: ['x16', 'x32'],
+        preload: true
       },
       'message-success': {
         file: 'accept.png',
-        variants: ['x16', 'x32']
+        variants: ['x16', 'x32'],
+        preload: true
       }
     });
 
