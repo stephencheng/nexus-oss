@@ -12,32 +12,25 @@
  */
 Ext.define('NX.controller.Status', {
   extend: 'Ext.app.Controller',
-  requires: [
-    'NX.util.Url',
-    'NX.util.Base64',
-    'NX.util.Permissions'
-  ],
   mixins: {
     logAware: 'NX.LogAware'
   },
 
-  views: [
-    'Login'
-  ],
-
-  refs: [
-    {
-      ref: 'header',
-      selector: 'nx-header-panel'
-    },
-    {
-      ref: 'main',
-      selector: 'nx-main'
-    }
-  ],
-
+  /**
+   * @private
+   */
   disconnectedTimes: 0,
 
+  /**
+   * Max number of times to show a warning, before disabling the UI.
+   *
+   * @private
+   */
+  maxDisconnectWarnings: 3,
+
+  /**
+   * @override
+   */
   init: function () {
     var me = this;
 
@@ -58,40 +51,88 @@ Ext.define('NX.controller.Status', {
   },
 
   /**
+   * Called when there is new data from status callback.
+   *
    * @private
    */
   onData: function (provider, event) {
-    var me = this,
-        status;
-
+    var me = this;
     if (event.data) {
-      if (me.disconnectedTimes > 0) {
-        me.disconnectedTimes = 0;
-        me.getMain().getEl().unmask();
-        me.getApplication().getMessageController().addMessage({text: 'Server reconnected', type: 'success' });
-      }
-      status = event.data.data;
-      me.fireEvent('info', status.info);
-      me.fireEvent('user', status.user);
-      if (status.commands) {
-        Ext.each(status.commands, function (command) {
-          me.fireEvent('command' + command.type.toLowerCase(), command.data);
-        });
-      }
+      me.onSuccess(event);
     }
     else {
-      if (event.code === 'xhr') {
-        if (me.disconnectedTimes === 0) {
-          me.getApplication().getMessageController().addMessage({text: 'Server disconnected', type: 'warning' });
-        }
-        me.disconnectedTimes++;
-        if (me.disconnectedTimes == 3) {
-          me.getMain().getEl().mask("Waiting for server to reconnect");
-        }
+      me.onError(event);
+    }
+  },
+
+  /**
+   * Called when status event data request was successfull.
+   *
+   * @private
+   */
+  onSuccess: function(event) {
+    var me = this, status;
+
+    // re-enable the UI we are now connected again
+    if (me.disconnectedTimes > 0) {
+      me.disconnectedTimes = 0;
+      me.getApplication().getMessageController().addMessage({text: 'Server reconnected', type: 'success' });
+    }
+
+    // propagate event data
+    status = event.data.data;
+    me.fireEvent('info', status.info);
+    me.fireEvent('user', status.user);
+
+    // fire commands if there are any
+    if (status.commands) {
+      Ext.each(status.commands, function (command) {
+        me.fireEvent('command' + command.type.toLowerCase(), command.data);
+      });
+    }
+  },
+
+  /**
+   * Called when status event data request failed.
+   *
+   * @private
+   */
+  onError: function(event) {
+    var me = this,
+        messages = me.getApplication().getMessageController();
+
+    if (event.code === 'xhr') {
+      // we appear to have lost the server connection
+      me.disconnectedTimes++;
+      if (me.disconnectedTimes <= me.maxDisconnectWarnings) {
+        messages.addMessage({text: 'Server disconnected', type: 'warning' });
       }
-      else if (event.type === 'exception') {
-        me.getApplication().getMessageController().addMessage({text: event.message, type: 'danger' });
+
+      // Give up after a few attempts and disable the UI
+      if (me.disconnectedTimes > me.maxDisconnectWarnings) {
+        messages.addMessage({text: 'Server disconnected', type: 'danger' });
+
+        // Stop polling
+        me.statusProvider.disconnect();
+
+        // Show the UI with a modal dialog error
+        NX.util.Msg.showError(
+            'Server disconnected',
+            'There is a problem communicating with the server',
+            {
+              fn: function() {
+                // retry after the dialog is dismissed
+                me.statusProvider.connect();
+              }
+
+              // FIXME: Show "Retry" as button text
+              // FIXME: Get icon to show up ... stupid icons
+            }
+        );
       }
+    }
+    else if (event.type === 'exception') {
+      messages.addMessage({text: event.message, type: 'danger' });
     }
   },
 
