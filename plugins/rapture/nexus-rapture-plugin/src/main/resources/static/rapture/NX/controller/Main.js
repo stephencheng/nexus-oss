@@ -111,10 +111,6 @@ Ext.define('NX.controller.Main', {
         file: 'measure.png',
         variants: ['x16', 'x32']
       },
-      'feature-users': {
-        file: 'group.png',
-        variants: ['x16', 'x32']
-      },
       'feature-notifications': {
         file: 'emails.png',
         variants: ['x16', 'x32']
@@ -133,14 +129,6 @@ Ext.define('NX.controller.Main', {
       },
       'feature-search': {
         file: 'magnifier.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-roles': {
-        file: 'user_policeman.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-privileges': {
-        file: 'medal_gold_1.png',
         variants: ['x16', 'x32']
       },
       'feature-usertoken': {
@@ -295,24 +283,6 @@ Ext.define('NX.controller.Main', {
       //  path: '/Security/Settings',
       //  view: 'TODO'
       //},
-      {
-        path: '/Security/Users',
-        view: 'NX.view.TODO',
-        iconName: 'feature-users',
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/Security/Roles',
-        view: 'NX.view.TODO',
-        iconName: 'feature-roles',
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/Security/Privileges',
-        view: 'NX.view.TODO',
-        iconName: 'feature-privileges',
-        visible: visibleIfLoggedIn
-      },
       {
         path: '/Security/User Token',
         view: 'NX.view.TODO',
