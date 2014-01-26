@@ -70,12 +70,14 @@ Ext.define('NX.controller.Status', {
   },
 
   /**
-   * Called when status event data request was successfull.
+   * Called when status event data request was successful.
    *
    * @private
    */
   onSuccess: function(event) {
     var me = this, status;
+
+    // TODO: determine if the server has been restarted and force reload of the UI
 
     // re-enable the UI we are now connected again
     if (me.disconnectedTimes > 0) {
@@ -94,6 +96,8 @@ Ext.define('NX.controller.Status', {
         me.fireEvent('command' + command.type.toLowerCase(), command.data);
       });
     }
+
+    // TODO: Fire global refresh event
   },
 
   /**
@@ -109,7 +113,7 @@ Ext.define('NX.controller.Status', {
       // we appear to have lost the server connection
       me.disconnectedTimes++;
       if (me.disconnectedTimes <= me.maxDisconnectWarnings) {
-        messages.addMessage({text: 'Server disconnected', type: 'warning' });
+        messages.addMessage({ text: 'Server disconnected', type: 'warning' });
       }
 
       // Give up after a few attempts and disable the UI
