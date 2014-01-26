@@ -73,7 +73,7 @@ Ext.define('NX.view.Main', {
     this.callParent();
 
     // if debug enabled, show developer tools
-    if (window.location.search === '?debug') {
+    if (NX.app.settings.debugEnabled && window.location.search === '?debug') {
       this.down('nx-dev-panel').show();
     }
   }
