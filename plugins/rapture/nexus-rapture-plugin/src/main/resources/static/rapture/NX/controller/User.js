@@ -47,7 +47,7 @@ Ext.define('NX.controller.User', {
 
   SECONDS_TO_EXPIRE: 60,
 
-  user: {},
+  user: undefined,
 
   activityMonitor: undefined,
 
@@ -107,7 +107,7 @@ Ext.define('NX.controller.User', {
         userButton = me.getUserButton();
 
     if (user) {
-      if (me.user.id != user.id) {
+      if (!Ext.isDefined(me.user) || (me.user.id != user.id)) {
         me.getApplication().getMessageController().addMessage({text: 'User logged in: ' + user.id, type: 'success' });
         loginButton.hide();
         userButton.setText(user.id);
@@ -116,19 +116,19 @@ Ext.define('NX.controller.User', {
         me.user = user;
         me.fetchPermissions();
 
-        if (user.maxInactiveInterval) {
+        if (NX.app.settings.sessionTimeout > 0) {
           me.activityMonitor = Ext.create('Ext.ux.ActivityMonitor', {
             interval: 1000, // check every second,
-            maxInactive: ((me.user.maxInactiveInterval * 60) - me.SECONDS_TO_EXPIRE) * 1000,
+            maxInactive: ((NX.app.settings.sessionTimeout * 60) - me.SECONDS_TO_EXPIRE) * 1000,
             isInactive: me.showExpirationWindow.bind(me)
           });
           me.activityMonitor.start();
-          me.logDebug('Session expiration enabled for ' + user.maxInactiveInterval + ' minutes');
+          me.logDebug('Session expiration enabled for ' + NX.app.settings.sessionTimeout + ' minutes');
         }
       }
     }
     else {
-      if (me.user.id) {
+      if (me.user) {
         me.getApplication().getMessageController().addMessage({text: 'User logged out', type: 'success' });
         loginButton.show();
         userButton.hide();
@@ -142,7 +142,7 @@ Ext.define('NX.controller.User', {
           delete me.expirationTicker;
         }
 
-        me.user = {};
+        delete me.user;
         me.getPermissionStore().removeAll();
         me.firePermissionsChanged();
       }
@@ -155,8 +155,8 @@ Ext.define('NX.controller.User', {
    * @public
    * @return {boolean}
    */
-  hasUser: function() {
-    return this.user.id != undefined;
+  hasUser: function () {
+    return Ext.isDefined(this.user);
   },
 
   /**
