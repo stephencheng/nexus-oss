@@ -11,12 +11,13 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.pluginconsole.controller.PluginConsole', {
-  extend: 'Ext.app.Controller',
-
+  extend: 'NX.controller.MasterDetail',
   requires: [
     'NX.util.Url',
     'NX.util.Permissions'
   ],
+
+  list: 'nx-pluginconsole-list',
 
   stores: [
     'PluginInfo'
@@ -25,92 +26,59 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
     'Feature',
     'List'
   ],
-
   refs: [
     {
       ref: 'list',
       selector: 'nx-pluginconsole-list'
+    },
+    {
+      ref: 'info',
+      selector: 'nx-pluginconsole-feature nx-info-panel'
     }
   ],
-
-  init: function () {
-    var me = this;
-
-    me.getApplication().getIconController().addIcons({
-      'feature-pluginconsole': {
-        file: 'plugin.png',
-        variants: ['x16', 'x32']
-      }
-    });
-
-    me.listen({
-      component: {
-        'nx-pluginconsole-list': {
-          beforerender: this.loadStores,
-          selectionchange: this.onSelectionChange,
-          refresh: me.loadStores
-        }
-      },
-      store: {
-        '#PluginInfo': {
-          load: me.onPluginInfoStoreLoad
-        }
-      }
-    });
-
-    me.getApplication().getMainController().registerFeature({
-      path: '/System/Plugins',
-      view: 'NX.pluginconsole.view.Feature',
-      bookmark: 'plugins',
-      visible: true,
-      iconName: 'feature-pluginconsole',
-      visible: function () {
-        return NX.util.Permissions.check('nexus:pluginconsoleplugininfos', 'read');
-      }
-    });
+  icons: {
+    'feature-pluginconsole': {
+      file: 'plugin.png',
+      variants: ['x16', 'x32']
+    }
   },
-
-  loadStores: function () {
-    this.getPluginInfoStore().load();
-  },
-
-  onPluginInfoStoreLoad: function (store) {
-    var selectedModels = this.getList().getSelectionModel().getSelection();
-    if (selectedModels.length > 0) {
-      this.showDetails(store.getById(selectedModels[0].getId()));
+  features: {
+    path: '/System/Plugins',
+    view: 'NX.pluginconsole.view.Feature',
+    bookmark: 'plugins',
+    visible: true,
+    iconName: 'feature-pluginconsole',
+    visible: function () {
+      return NX.util.Permissions.check('nexus:pluginconsoleplugininfos', 'read');
     }
   },
 
-  onSelectionChange: function (selectionModel, selectedModels) {
-    if (selectedModels.length > 0) {
-      this.showDetails(selectedModels[0]);
-    }
+  getDescription: function (model) {
+    return model.get('name');
   },
 
-  showDetails: function (pluginInfoModel) {
+  onSelection: function (list, model) {
     var me = this,
-        masterdetail = me.getList().up('nx-masterdetail-panel'),
         info;
 
-    if (Ext.isDefined(pluginInfoModel)) {
-      masterdetail.setDescription(pluginInfoModel.get('name'));
+    if (Ext.isDefined(model)) {
       info = {
-        'Name': pluginInfoModel.get('name'),
-        'Version': pluginInfoModel.get('version'),
-        'Status': pluginInfoModel.get('status'),
-        'Description': pluginInfoModel.get('description'),
-        'SCM Version': pluginInfoModel.get('scmVersion'),
-        'SCM Timestamp': pluginInfoModel.get('scmTimestamp'),
-        'Site': NX.util.Url.asLink(pluginInfoModel.get('site'))
+        'Name': model.get('name'),
+        'Version': model.get('version'),
+        'Status': model.get('status'),
+        'Description': model.get('description'),
+        'SCM Version': model.get('scmVersion'),
+        'SCM Timestamp': model.get('scmTimestamp'),
+        'Site': NX.util.Url.asLink(model.get('site'))
       };
-      if (Ext.isDefined(pluginInfoModel.get('documentation'))) {
-        Ext.each(pluginInfoModel.get('documentation'), function (doc) {
+      if (Ext.isDefined(model.get('documentation'))) {
+        Ext.each(model.get('documentation'), function (doc) {
           if (!Ext.isEmpty(doc.url)) {
             info['Documentation'] = NX.util.Url.asLink(doc.url, doc.label);
           }
         });
       }
-      masterdetail.down("nx-info-panel").showInfo(info);
+      me.getInfo().showInfo(info);
     }
   }
 

@@ -12,6 +12,7 @@
  */
 Ext.define('NX.pluginconsole.view.Feature', {
   extend: 'NX.view.masterdetail.Panel',
+  alias: 'widget.nx-pluginconsole-feature',
 
   list: 'nx-pluginconsole-list',
   emptyText: 'Please select a plugin',
