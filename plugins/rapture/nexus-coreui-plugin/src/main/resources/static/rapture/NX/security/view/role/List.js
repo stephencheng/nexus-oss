@@ -30,5 +30,10 @@ Ext.define('NX.security.view.role.List', {
     {header: 'Description', dataIndex: 'description', flex: 1}
   ],
 
+  tbar: [
+    { xtype: 'button', text: 'New', action: 'new', disabled: true },
+    { xtype: 'button', text: 'Delete', action: 'delete', disabled: true }
+  ],
+
   refreshable: true
 });

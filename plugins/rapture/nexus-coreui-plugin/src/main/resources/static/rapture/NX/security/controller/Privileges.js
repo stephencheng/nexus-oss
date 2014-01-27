@@ -48,6 +48,7 @@ Ext.define('NX.security.controller.Privileges', {
       return NX.util.Permissions.check('security:privileges', 'read');
     }
   },
+  permission: 'security:privileges',
 
   getDescription: function (model) {
     return model.get('name');

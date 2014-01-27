@@ -33,5 +33,10 @@ Ext.define('NX.security.view.user.List', {
     {header: 'Status', dataIndex: 'status'}
   ],
 
+  tbar: [
+    { xtype: 'button', text: 'New', action: 'new', disabled: true },
+    { xtype: 'button', text: 'Delete', action: 'delete', disabled: true }
+  ],
+
   refreshable: true
 });
