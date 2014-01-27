@@ -162,8 +162,7 @@ Ext.define('NX.controller.Main', {
         variants: ['x16', 'x32']
       },
       'feature-crowd': {
-        // FIXME: Find a real crowd transparent icon in these sizes
-        file: 'book_addresses.png',
+        file: 'crowd.png',
         variants: ['x16', 'x32']
       },
       'feature-http': {
@@ -216,7 +215,7 @@ Ext.define('NX.controller.Main', {
         weight: 1000
       },
 
-      // TESTING: Adding features to fleshout target menu design
+      // TESTING: Adding features to flesh-out target menu design
       {
         path: '/Search',
         view: 'NX.view.TODO',
@@ -229,7 +228,6 @@ Ext.define('NX.controller.Main', {
         iconName: 'feature-feeds',
         weight: 20
       },
-      // FIXME: This should provide view and drop /Repository/Repositories
       {
         path: '/Repository',
         iconName: 'feature-repository',
@@ -248,12 +246,11 @@ Ext.define('NX.controller.Main', {
         weight: 60,
         visible: visibleIfLoggedIn
       },
-      // TODO: ^^^ should provide view instead of vvv
-      //{
-      //  path: '/Staging/Repositories',
-      //  view: 'NX.view.TODO',
-      //  iconName: 'feature-staging'
-      //},
+      {
+        path: '/Staging/Repositories',
+        view: 'NX.view.TODO',
+        iconName: 'feature-staging'
+      },
       {
         path: '/Staging/Profiles',
         view: 'NX.view.TODO',
@@ -279,11 +276,11 @@ Ext.define('NX.controller.Main', {
         weight: 90,
         visible: visibleIfLoggedIn
       },
-      // TODO: ^^^ should provide view instead of vvv
-      //{
-      //  path: '/Security/Settings',
-      //  view: 'TODO'
-      //},
+      {
+        path: '/Security/Settings',
+        view: 'NX.view.TODO',
+        visible: visibleIfLoggedIn
+      },
       {
         path: '/Security/User Token',
         view: 'NX.view.TODO',
@@ -302,11 +299,11 @@ Ext.define('NX.controller.Main', {
         iconName: 'feature-crowd',
         visible: visibleIfLoggedIn
       },
-      // TODO: /System should provide view instead of vvv
-      //{
-      //  path: '/System/General',
-      //  view: 'TODO'
-      //},
+      {
+        path: '/System/General',
+        view: 'TODO',
+        visible: visibleIfLoggedIn
+      },
       {
         path: '/System/Notifications',
         view: 'NX.view.TODO',
