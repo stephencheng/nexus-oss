@@ -22,7 +22,7 @@ Ext.define('NX.coreui.view.user.List', {
       width: 36,
       iconVariant: 'x16',
       iconName: function () {
-        return 'feature-users';
+        return 'user';
       }
     },
     {header: 'User Id', dataIndex: 'id'},

@@ -17,6 +17,6 @@ Ext.define('NX.coreui.view.user.Feature', {
   list: 'nx-user-list',
   emptyText: 'Please select a user or create a new user',
 
-  iconName: 'feature-users'
-
+  // FIXME: This seems strange to configure icon name here for the detail panel
+  iconName: 'user'
 });

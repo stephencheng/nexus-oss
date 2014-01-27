@@ -36,6 +36,10 @@ Ext.define('NX.coreui.controller.Users', {
     'feature-users': {
       file: 'group.png',
       variants: ['x16', 'x32']
+    },
+    'user': {
+      file: 'user.png',
+      variants: ['x16', 'x32']
     }
   },
   features: {
