@@ -45,9 +45,10 @@ Ext.define('NX.capability.controller.Capabilities', {
     { ref: 'about', selector: 'nx-capability-about' }
   ],
   icons: {
-    name: 'feature-capability',
-    file: 'brick.png',
-    variants: ['x16', 'x32']
+    'feature-capability': {
+      file: 'brick.png',
+      variants: ['x16', 'x32']
+    }
   },
   features: {
     path: '/System/Capabilities',
