@@ -20,6 +20,8 @@ Ext.define('NX.controller.MasterDetail', {
     logAware: 'NX.LogAware'
   },
 
+  permission: undefined,
+
   init: function () {
     var me = this,
         store = me.stores[0],
@@ -108,7 +110,62 @@ Ext.define('NX.controller.MasterDetail', {
     var me = this;
 
     if (me.isListRendered()) {
+      me.enableNewButton();
+      me.enableDeleteButton();
       me.onPermissionsChanged();
+    }
+  },
+
+  shouldEnableNewButton: function () {
+    var me = this;
+    if (me.permission) {
+      return NX.util.Permissions.check(me.permission, 'create')
+    }
+    return true;
+  },
+
+  enableNewButton: function () {
+    var me = this,
+        list = me.getList(),
+        button;
+
+    if (Ext.isDefined(list)) {
+      button = list.down('button[action=new]');
+      if (Ext.isDefined(button)) {
+        if (me.shouldEnableNewButton()) {
+          button.enable();
+        }
+        else {
+          button.disable();
+        }
+      }
+    }
+  },
+
+  shouldEnableDeleteButton: function () {
+    var me = this;
+    if (me.permission) {
+      return NX.util.Permissions.check(me.permission, 'delete')
+    }
+    return true;
+  },
+
+  enableDeleteButton: function () {
+    var me = this,
+        list = me.getList(),
+        selectedModels, button;
+
+    if (Ext.isDefined(list)) {
+      selectedModels = list.getSelectionModel().getSelection();
+      button = list.down('button[action=delete]');
+      if (Ext.isDefined(button)) {
+        if (selectedModels.length > 0 && me.shouldEnableDeleteButton()) {
+          button.enable();
+        }
+        else {
+          button.disable();
+        }
+      }
     }
   }
 

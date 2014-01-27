@@ -58,6 +58,7 @@ Ext.define('NX.capability.controller.Capabilities', {
     },
     iconName: 'feature-capability'
   },
+  permission: 'nexus:capabilities',
 
   init: function () {
     var me = this;
@@ -262,40 +263,6 @@ Ext.define('NX.capability.controller.Capabilities', {
           }
         });
       }, {scope: me});
-    }
-  },
-
-  onPermissionsChanged: function () {
-    var me = this;
-
-    me.enableNewButton();
-    me.enableDeleteButton();
-  },
-
-  enableNewButton: function () {
-    var me = this,
-        list = me.getList(),
-        button = list.down('button[action=new]');
-
-    if (NX.util.Permissions.check('nexus:capabilities', 'create')) {
-      button.enable();
-    }
-    else {
-      button.disable();
-    }
-  },
-
-  enableDeleteButton: function () {
-    var me = this,
-        list = me.getList(),
-        selectedModels = list.getSelectionModel().getSelection(),
-        button = list.down('button[action=delete]');
-
-    if (selectedModels.length > 0 && NX.util.Permissions.check('nexus:capabilities', 'delete')) {
-      button.enable();
-    }
-    else {
-      button.disable();
     }
   }
 

@@ -52,6 +52,7 @@ Ext.define('NX.coreui.controller.Repositories', {
       return NX.util.Permissions.check('nexus:repositories', 'read');
     }
   },
+  permission: 'nexus:repositories',
 
   init: function () {
     var me = this;
@@ -151,26 +152,6 @@ Ext.define('NX.coreui.controller.Repositories', {
       return 'Unavailable' + (remoteStatusReason ? ' due to ' + remoteStatusReason : '');
     }
     return remoteStatus;
-  },
-
-  onPermissionsChanged: function () {
-    var me = this;
-
-    me.enableDeleteButton();
-  },
-
-  enableDeleteButton: function () {
-    var me = this,
-        list = me.getList(),
-        selectedModels = list.getSelectionModel().getSelection(),
-        button = me.getList().down('button[action=delete]');
-
-    if (selectedModels.length > 0 && NX.util.Permissions.check('nexus:repositories', 'delete')) {
-      button.enable();
-    }
-    else {
-      button.disable();
-    }
   }
 
 });
