@@ -35,10 +35,6 @@ import org.sonatype.sisu.goodies.i18n.MessageBundle;
 import com.google.common.collect.Lists;
 import org.jetbrains.annotations.NonNls;
 
-import static org.sonatype.nexus.plugins.capabilities.CapabilityType.capabilityType;
-import static org.sonatype.nexus.plugins.capabilities.Tag.categoryTag;
-import static org.sonatype.nexus.plugins.capabilities.Tag.tags;
-
 /**
  * {@link RaptureSettingsCapability} descriptor.
  *
@@ -61,11 +57,11 @@ public class RaptureSettingsCapabilityDescriptor
     @DefaultMessage("Rapture Settings")
     String name();
 
-    @DefaultMessage("Debug enabled")
-    String debugEnabledLabel();
+    @DefaultMessage("Debug allowed")
+    String debugAllowedLabel();
 
-    @DefaultMessage("Enable developer debugging")
-    String debugEnabledHelp();
+    @DefaultMessage("Allow developer debugging")
+    String debugAllowedHelp();
 
     @DefaultMessage("Session timeout")
     String sessionTimeoutLabel();
@@ -83,11 +79,11 @@ public class RaptureSettingsCapabilityDescriptor
   public RaptureSettingsCapabilityDescriptor() {
     formFields = Lists.<FormField>newArrayList(
         new CheckboxFormField(
-            RaptureSettingsCapabilityConfiguration.DEBUG_ENABLED,
-            messages.debugEnabledLabel(),
-            messages.debugEnabledHelp(),
+            RaptureSettingsCapabilityConfiguration.DEBUG_ALLOWED,
+            messages.debugAllowedLabel(),
+            messages.debugAllowedHelp(),
             FormField.OPTIONAL
-        ).withInitialValue(RaptureSettings.DEFAULT_DEBUG_ENABLED),
+        ).withInitialValue(RaptureSettings.DEFAULT_DEBUG_ALLOWED),
         new NumberTextFormField(
             RaptureSettingsCapabilityConfiguration.SESSION_TIMEOUT,
             messages.sessionTimeoutLabel(),

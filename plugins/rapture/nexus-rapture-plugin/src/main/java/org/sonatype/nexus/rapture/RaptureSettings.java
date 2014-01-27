@@ -24,21 +24,21 @@ public class RaptureSettings
     extends ComponentSupport
 {
 
-  public static final boolean DEFAULT_DEBUG_ENABLED = true;
+  public static final boolean DEFAULT_DEBUG_ALLOWED = true;
 
   public static final int DEFAULT_SESSION_TIMEOUT = 30;
 
-  private boolean debugEnabled = DEFAULT_DEBUG_ENABLED;
+  private boolean debugAllowed = DEFAULT_DEBUG_ALLOWED;
 
   private int sessionTimeout = DEFAULT_SESSION_TIMEOUT;
 
 
-  public boolean isDebugEnabled() {
-    return debugEnabled;
+  public boolean isDebugAllowed() {
+    return debugAllowed;
   }
 
-  public void setDebugEnabled(final boolean debugEnabled) {
-    this.debugEnabled = debugEnabled;
+  public void setDebugAllowed(final boolean debugAllowed) {
+    this.debugAllowed = debugAllowed;
   }
 
   public int getSessionTimeout() {
