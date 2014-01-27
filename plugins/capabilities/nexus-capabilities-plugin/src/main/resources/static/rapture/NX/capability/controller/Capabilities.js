@@ -193,11 +193,8 @@ Ext.define('NX.capability.controller.Capabilities', {
       if (!NX.util.ExtDirect.showExceptionIfPresent('Capability could not be created', response, status)) {
         if (Ext.isDefined(response)) {
           if (response.success) {
-            me.getCapabilityStatusStore().on('load', function (store) {
-              me.getList().getSelectionModel().select(store.getById(response.data));
-            }, me, {single: true});
-            me.loadStores();
             win.close();
+            me.loadStoresAndSelect(response.data);
           }
           else {
             if (Ext.isDefined(response.errors)) {
