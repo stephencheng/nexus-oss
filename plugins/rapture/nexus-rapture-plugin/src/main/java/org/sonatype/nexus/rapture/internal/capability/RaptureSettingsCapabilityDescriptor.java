@@ -11,7 +11,7 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 
-package org.sonatype.nexus.coreui.internal.capability;
+package org.sonatype.nexus.rapture.internal.capability;
 
 import java.util.List;
 import java.util.Set;
@@ -53,7 +53,7 @@ public class RaptureSettingsCapabilityDescriptor
   @NonNls
   public static final String TYPE_ID = "rapture.settings";
 
-  public static final CapabilityType TYPE = capabilityType(TYPE_ID);
+  public static final CapabilityType TYPE = CapabilityType.capabilityType(TYPE_ID);
 
   private static interface Messages
       extends MessageBundle
@@ -133,7 +133,7 @@ public class RaptureSettingsCapabilityDescriptor
 
   @Override
   public Set<Tag> getTags() {
-    return tags(categoryTag("Security"));
+    return Tag.tags(Tag.categoryTag("Security"));
   }
 
 }

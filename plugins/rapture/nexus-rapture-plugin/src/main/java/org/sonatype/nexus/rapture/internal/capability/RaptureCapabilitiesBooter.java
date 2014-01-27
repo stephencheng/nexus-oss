@@ -11,7 +11,7 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 
-package org.sonatype.nexus.coreui.internal.capability;
+package org.sonatype.nexus.rapture.internal.capability;
 
 import javax.inject.Named;
 
