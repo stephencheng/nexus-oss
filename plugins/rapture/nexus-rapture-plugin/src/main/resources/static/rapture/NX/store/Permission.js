@@ -19,7 +19,7 @@ Ext.define('NX.store.Permission', {
     paramsAsHash: false,
 
     api: {
-      read: 'NX.direct.Application.readPermissions'
+      read: 'NX.direct.rapture_Application.readPermissions'
     },
 
     reader: {

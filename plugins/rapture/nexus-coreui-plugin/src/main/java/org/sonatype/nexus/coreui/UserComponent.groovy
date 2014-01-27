@@ -32,7 +32,7 @@ import javax.inject.Singleton
  */
 @Named
 @Singleton
-@DirectAction(action = 'User')
+@DirectAction(action = 'coreui_User')
 class UserComponent
 extends DirectComponentSupport
 {

@@ -40,7 +40,7 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
  */
 @Named
 @Singleton
-@DirectAction(action = "CapabilityType")
+@DirectAction(action = "capability_CapabilityType")
 public class CapabilityTypeDirectComponent
     extends DirectComponentSupport
 {

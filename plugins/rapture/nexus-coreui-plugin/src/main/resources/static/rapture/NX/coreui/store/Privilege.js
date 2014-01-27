@@ -19,7 +19,7 @@ Ext.define('NX.coreui.store.Privilege', {
     paramsAsHash: false,
 
     api: {
-      read: 'NX.direct.Privilege.read'
+      read: 'NX.direct.coreui_Privilege.read'
     },
 
     reader: {

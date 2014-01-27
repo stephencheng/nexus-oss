@@ -38,7 +38,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 @Named
 @Singleton
-@DirectAction(action = "Log")
+@DirectAction(action = "logging_Log")
 public class LogDirectComponent
     extends DirectComponentSupport
 {

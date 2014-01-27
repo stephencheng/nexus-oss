@@ -30,7 +30,7 @@ Ext.define('NX.coreui.view.repositorytarget.Add', {
       items: {
         xtype: 'form',
         api: {
-          submit: NX.direct.RepositoryTarget.create
+          submit: NX.direct.coreui_RepositoryTarget.create
         },
         bodyPadding: 10,
         defaults: {

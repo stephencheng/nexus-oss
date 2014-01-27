@@ -31,7 +31,7 @@ import javax.inject.Singleton
  */
 @Named
 @Singleton
-@DirectAction(action = 'ContentClass')
+@DirectAction(action = 'coreui_ContentClass')
 class ContentClassComponent
 extends DirectComponentSupport
 {

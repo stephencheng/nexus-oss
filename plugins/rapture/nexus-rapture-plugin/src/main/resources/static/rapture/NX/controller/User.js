@@ -252,7 +252,7 @@ Ext.define('NX.controller.User', {
 
     me.logDebug('Login...');
 
-    NX.direct.Application.login(userName, userPass, values.remember === 'on', function (response, status) {
+    NX.direct.rapture_Application.login(userName, userPass, values.remember === 'on', function (response, status) {
       if (!NX.util.ExtDirect.showExceptionIfPresent('User could not be logged in', response, status)) {
         if (Ext.isDefined(response)) {
           if (response.success) {
@@ -279,7 +279,7 @@ Ext.define('NX.controller.User', {
 
     me.logDebug('Logout...');
 
-    NX.direct.Application.logout(function (response, status) {
+    NX.direct.rapture_Application.logout(function (response, status) {
       if (!NX.util.ExtDirect.showExceptionIfPresent('User could not be logged out', response, status)) {
         if (Ext.isDefined(response)) {
           if (response.success) {

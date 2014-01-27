@@ -291,7 +291,7 @@ NX.define('Nexus.logging.controller.Logging', {
       icon: icons.get('loggers_reset').variant('x32').cls,
       fn: function (btn) {
         if (btn === 'ok') {
-          NX.direct.Loggers.reset(function (response, status) {
+          NX.direct.logging_Loggers.reset(function (response, status) {
             if (!Nexus.util.ExtDirect.showExceptionIfPresent('Loggers', response, status)) {
               store.load();
               if (response.success) {
@@ -328,7 +328,7 @@ NX.define('Nexus.logging.controller.Logging', {
 
     win.close();
 
-    NX.direct.Log.mark(values, function (response, status) {
+    NX.direct.logging_Log.mark(values, function (response, status) {
       if (!Nexus.util.ExtDirect.showExceptionIfPresent('Logging', response, status)) {
         if (response.success) {
           Nexus.messages.show('Logging', 'Log has been marked with: ' + values.message);

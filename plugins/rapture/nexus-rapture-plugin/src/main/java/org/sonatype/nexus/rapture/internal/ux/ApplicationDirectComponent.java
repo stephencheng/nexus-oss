@@ -49,7 +49,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 @Named
 @Singleton
-@DirectAction(action = "Application")
+@DirectAction(action = "rapture_Application")
 public class ApplicationDirectComponent
     extends DirectComponentSupport
 {

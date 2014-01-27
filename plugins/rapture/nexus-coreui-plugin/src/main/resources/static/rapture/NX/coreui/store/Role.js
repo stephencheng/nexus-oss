@@ -19,7 +19,7 @@ Ext.define('NX.coreui.store.Role', {
     paramsAsHash: false,
 
     api: {
-      read: 'NX.direct.Role.read'
+      read: 'NX.direct.coreui_Role.read'
     },
 
     reader: {

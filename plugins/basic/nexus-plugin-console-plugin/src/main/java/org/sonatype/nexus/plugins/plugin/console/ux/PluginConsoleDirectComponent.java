@@ -33,7 +33,7 @@ import com.softwarementors.extjs.djn.config.annotations.DirectMethod;
  */
 @Named
 @Singleton
-@DirectAction(action = "PluginConsole")
+@DirectAction(action = "pluginconsole_PluginConsole")
 public class PluginConsoleDirectComponent
     extends DirectComponentSupport
 {

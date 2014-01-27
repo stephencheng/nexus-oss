@@ -19,7 +19,7 @@ Ext.define('NX.coreui.store.User', {
     paramsAsHash: false,
 
     api: {
-      read: 'NX.direct.User.read'
+      read: 'NX.direct.coreui_User.read'
     },
 
     reader: {

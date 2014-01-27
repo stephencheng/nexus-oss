@@ -60,7 +60,7 @@ import static org.sonatype.nexus.plugins.capabilities.CapabilityType.capabilityT
  */
 @Named
 @Singleton
-@DirectAction(action = "Capability")
+@DirectAction(action = "capability_Capability")
 public class CapabilityDirectComponent
     extends DirectComponentSupport
 {

@@ -31,7 +31,7 @@ import javax.inject.Singleton
  */
 @Named
 @Singleton
-@DirectAction(action = 'Role')
+@DirectAction(action = 'coreui_Role')
 class RoleComponent
 extends DirectComponentSupport
 {

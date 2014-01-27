@@ -31,7 +31,7 @@ import javax.inject.Singleton
  */
 @Named
 @Singleton
-@DirectAction(action = 'Privilege')
+@DirectAction(action = 'coreui_Privilege')
 class PrivilegeComponent
 extends DirectComponentSupport
 {

@@ -113,7 +113,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
 
     if (selection.length) {
       NX.util.Msg.askConfirmation('Confirm deletion?', me.getDescription(selection[0]), function () {
-        NX.direct.RepositoryTarget.delete(selection[0].getId(), function (response, status) {
+        NX.direct.coreui_RepositoryTarget.delete(selection[0].getId(), function (response, status) {
           if (!NX.util.ExtDirect.showExceptionIfPresent('Target could not be deleted', response, status)) {
             if (Ext.isDefined(response)) {
               me.loadStores();

@@ -41,7 +41,7 @@ import javax.inject.Singleton
  */
 @Named
 @Singleton
-@DirectAction(action = 'RepositoryTarget')
+@DirectAction(action = 'coreui_RepositoryTarget')
 class RepositoryTargetComponent
 extends DirectComponentSupport
 {

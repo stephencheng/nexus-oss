@@ -19,7 +19,7 @@ Ext.define('NX.coreui.store.ContentClass', {
     paramsAsHash: false,
 
     api: {
-      read: 'NX.direct.ContentClass.read'
+      read: 'NX.direct.coreui_ContentClass.read'
     },
 
     reader: {
