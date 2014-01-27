@@ -37,7 +37,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   icons: {
     'feature-targets': {
       file: 'target.png',
-      variants: ['x16'] // FIXME: missing x32 here
+      variants: ['x16', 'x32']
     }
   },
   features: {
