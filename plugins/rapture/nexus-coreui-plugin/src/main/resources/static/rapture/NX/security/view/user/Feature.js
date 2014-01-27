@@ -14,7 +14,9 @@ Ext.define('NX.security.view.user.Feature', {
   extend: 'NX.view.masterdetail.Panel',
   alias: 'widget.nx-user-feature',
 
-  modelName: 'user',
+  list: 'nx-user-list',
+  emptyText: 'Please select a user or create a new user',
+
   iconName: 'feature-users'
 
 });

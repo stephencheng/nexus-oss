@@ -28,10 +28,6 @@ Ext.define('NX.view.masterdetail.Panel', {
   initComponent: function () {
     var me = this;
 
-    if (!Ext.isDefined(me.list)) {
-      me.list = 'nx-' + me.modelName + '-list';
-    }
-
     me.items = [
       {
         xtype: me.list,
@@ -40,7 +36,6 @@ Ext.define('NX.view.masterdetail.Panel', {
       },
       {
         xtype: 'nx-masterdetail-tabs',
-        modelName: me.modelName,
         emptyText: me.emptyText,
         tabs: me.tabs
       }

@@ -15,7 +15,9 @@ Ext.define('NX.coreui.view.Repositories', {
   extend: 'NX.view.masterdetail.Panel',
   alias: 'widget.nx-repository-feature',
 
-  modelName: 'repository',
+  list: 'nx-repository-list',
+  emptyText: 'Please select a repository or create a new repository',
+
   iconName: 'feature-repositories'
 
 });

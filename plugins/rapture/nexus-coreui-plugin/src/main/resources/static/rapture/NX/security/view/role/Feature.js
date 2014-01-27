@@ -14,7 +14,9 @@ Ext.define('NX.security.view.role.Feature', {
   extend: 'NX.view.masterdetail.Panel',
   alias: 'widget.nx-role-feature',
 
-  modelName: 'role',
+  list: 'nx-role-list',
+  emptyText: 'Please select a role or create a new role',
+
   iconName: 'feature-roles'
 
 });

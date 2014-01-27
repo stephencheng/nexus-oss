@@ -14,7 +14,9 @@ Ext.define('NX.capability.view.Feature', {
   extend: 'NX.view.masterdetail.Panel',
   alias: 'widget.nx-capability-feature',
 
-  modelName: 'capability',
+  list: 'nx-capability-list',
+  emptyText: 'Please select a capability or create a new capability',
+
   iconName: 'feature-capability',
 
   tabs: [

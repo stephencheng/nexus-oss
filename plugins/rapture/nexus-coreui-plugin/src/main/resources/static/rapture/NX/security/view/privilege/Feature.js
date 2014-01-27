@@ -14,7 +14,9 @@ Ext.define('NX.security.view.privilege.Feature', {
   extend: 'NX.view.masterdetail.Panel',
   alias: 'widget.nx-privilege-feature',
 
-  modelName: 'privilege',
+  list: 'nx-privilege-list',
+  emptyText: 'Please select a privilege or create a new privilege',
+
   iconName: 'feature-privileges'
 
 });

@@ -41,7 +41,7 @@ Ext.define('NX.view.masterdetail.Tabs', {
         content = me.tabs;
 
     if (!text) {
-      text = 'Please select a ' + me.modelName + ' or create a new ' + this.modelName;
+      text = 'Please select a record';
     }
 
     if (Ext.isArray(content)) {
