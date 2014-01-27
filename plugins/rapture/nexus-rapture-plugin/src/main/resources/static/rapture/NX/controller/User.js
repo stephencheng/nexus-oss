@@ -45,7 +45,7 @@ Ext.define('NX.controller.User', {
     }
   ],
 
-  SECONDS_TO_EXPIRE: 60,
+  SECONDS_TO_EXPIRE: 30,
 
   user: undefined,
 
