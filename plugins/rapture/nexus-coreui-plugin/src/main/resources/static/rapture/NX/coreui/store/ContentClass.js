@@ -10,30 +10,26 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.view.repositorytarget.List', {
-  extend: 'Ext.grid.Panel',
-  alias: 'widget.nx-repositorytarget-list',
+Ext.define('NX.coreui.store.ContentClass', {
+  extend: 'Ext.data.Store',
+  model: 'NX.coreui.model.ContentClass',
 
-  store: 'RepositoryTarget',
+  proxy: {
+    type: 'direct',
+    paramsAsHash: false,
 
-  columns: [
-    {
-      xtype: 'iconcolumn',
-      width: 36,
-      iconVariant: 'x16',
-      iconName: function () {
-        return 'feature-targets';
-      }
+    api: {
+      read: 'NX.direct.ContentClass.read'
     },
-    { header: 'Name', dataIndex: 'name', flex: 1 },
-    { header: 'Repository Type', dataIndex: 'contentClassId' },
-    { header: 'Patterns', dataIndex: 'patterns', flex: 1 }
-  ],
 
-  tbar: [
-    { xtype: 'button', text: 'New', action: 'new', disabled: true },
-    { xtype: 'button', text: 'Delete', action: 'delete', disabled: true }
-  ],
+    reader: {
+      type: 'json',
+      root: 'data',
+      idProperty: 'id',
+      successProperty: 'success'
+    }
+  },
 
-  refreshable: true
+  sortOnLoad: true,
+  sorters: { property: 'name', direction: 'ASC' }
 });

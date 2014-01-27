@@ -16,9 +16,11 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   list: 'nx-repositorytarget-list',
 
   stores: [
-    'RepositoryTarget'
+    'RepositoryTarget',
+    'ContentClass'
   ],
   views: [
+    'repositorytarget.Add',
     'repositorytarget.Feature',
     'repositorytarget.List'
   ],
@@ -57,8 +59,14 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
 
     me.listen({
       component: {
+        'nx-repositorytarget-list button[action=new]': {
+          click: me.showAddWindow
+        },
         'nx-repositorytarget-list button[action=delete]': {
           click: me.delete
+        },
+        'nx-repositorytarget-add button[action=add]': {
+          click: me.create
         }
       }
     });
@@ -75,10 +83,28 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
       me.getInfo().showInfo({
         'Id': model.get('id'),
         'Name': model.get('name'),
-        'Repository Type': model.get('repositoryTypeId'),
+        'Repository Type': model.get('contentClassId'),
         'Patterns': model.get('patterns').join(',')
       });
     }
+  },
+
+  showAddWindow: function () {
+    Ext.widget('nx-repositorytarget-add');
+  },
+
+  create: function (button) {
+    var me = this,
+        win = button.up('window'),
+        form = button.up('form');
+
+    form.submit({
+      success: function (form, action) {
+        me.getApplication().getMessageController().addMessage({text: 'Target created', type: 'success' });
+        win.close();
+        me.loadStores();
+      }
+    });
   },
 
   delete: function () {
@@ -99,6 +125,6 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
         });
       }, {scope: me});
     }
-  },
+  }
 
 });

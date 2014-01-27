@@ -14,13 +14,20 @@
 package org.sonatype.nexus.coreui
 
 import com.softwarementors.extjs.djn.config.annotations.DirectAction
+import com.softwarementors.extjs.djn.config.annotations.DirectFormPostMethod
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod
+import org.apache.commons.fileupload.FileItem
+import org.apache.commons.lang.StringUtils
 import org.apache.shiro.authz.annotation.RequiresAuthentication
 import org.apache.shiro.authz.annotation.RequiresPermissions
+import org.sonatype.configuration.validation.InvalidConfigurationException
+import org.sonatype.configuration.validation.ValidationMessage
+import org.sonatype.configuration.validation.ValidationResponse
 import org.sonatype.nexus.configuration.application.NexusConfiguration
 import org.sonatype.nexus.extdirect.DirectComponent
 import org.sonatype.nexus.extdirect.DirectComponentSupport
 import org.sonatype.nexus.proxy.registry.RepositoryTypeRegistry
+import org.sonatype.nexus.proxy.targets.Target
 import org.sonatype.nexus.proxy.targets.TargetRegistry
 
 import javax.inject.Inject
@@ -57,11 +64,24 @@ extends DirectComponentSupport
       def result = new RepositoryTargetXO(
           id: input.id,
           name: input.name,
-          repositoryTypeId: input.contentClass.id,
+          contentClassId: input.contentClass.id,
           patterns: input.patternTexts
       )
       return result
     }
+  }
+
+  @DirectFormPostMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:targets:create')
+  String create(final Map<String, String> form,
+                final Map<String, FileItem> fileFields)
+  {
+    def target = validate(form),
+        contentClass = repositoryTypeRegistry.contentClasses[target.contentClassId]
+    targetRegistry.addRepositoryTarget(new Target(target.id, target.name, contentClass, target.patterns))
+    nexusConfiguration.saveConfiguration();
+    return target.id
   }
 
   @DirectMethod
@@ -70,6 +90,40 @@ extends DirectComponentSupport
   void delete(final String id) {
     targetRegistry.removeRepositoryTarget(id)
     nexusConfiguration.saveConfiguration();
+  }
+
+  private RepositoryTargetXO validate(Map<String, String> form) {
+    def validations = new ValidationResponse()
+
+    def name = form['name'];
+    if (StringUtils.isBlank(name)) {
+      validations.addValidationError(new ValidationMessage('name', 'Name cannot be empty'))
+    }
+    def contentClassId = form['contentClassId'];
+    if (StringUtils.isBlank(contentClassId)) {
+      validations.addValidationError(new ValidationMessage('contentClassId', 'Repository type cannot be empty'))
+    }
+    else {
+      def contentClass = repositoryTypeRegistry.contentClasses[contentClassId]
+      if (!contentClass) {
+        validations.addValidationError(new ValidationMessage('contentClassId', 'Repository type does not exist'))
+      }
+    }
+    // TODO check that patterns is not empty
+    //if (!target.patterns || target.patterns.empty) {
+    //  validations.addValidationError(new ValidationMessage('patterns', 'The target should have at least one pattern'))
+    //}
+
+    if (!validations.valid) {
+      throw new InvalidConfigurationException(validations);
+    }
+
+    return new RepositoryTargetXO(
+        id: Long.toHexString(System.nanoTime()),
+        name: name,
+        contentClassId: contentClassId,
+        patterns: ['.*']
+    )
   }
 
 }

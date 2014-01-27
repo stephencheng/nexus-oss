@@ -27,7 +27,7 @@ class RepositoryTargetXO
 
   String name
 
-  String repositoryTypeId
+  String contentClassId
 
   Set<String> patterns
 }
