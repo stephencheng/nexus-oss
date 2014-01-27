@@ -13,7 +13,7 @@
 Ext.define('NX.security.controller.Roles', {
   extend: 'NX.controller.MasterDetail',
 
-  name: 'role',
+  list: 'nx-role-list',
 
   stores: [
     'Role'

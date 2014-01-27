@@ -13,7 +13,7 @@
 Ext.define('NX.security.controller.Users', {
   extend: 'NX.controller.MasterDetail',
 
-  name: 'user',
+  list: 'nx-user-list',
 
   stores: [
     'User'

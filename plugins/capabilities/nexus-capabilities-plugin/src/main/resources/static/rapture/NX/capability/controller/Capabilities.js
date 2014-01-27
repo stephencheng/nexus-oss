@@ -17,7 +17,7 @@ Ext.define('NX.capability.controller.Capabilities', {
     'NX.util.ExtDirect'
   ],
 
-  name: 'capability',
+  list: 'nx-capability-list',
 
   stores: [
     'CapabilityStatus',

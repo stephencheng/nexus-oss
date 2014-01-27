@@ -18,7 +18,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     'NX.util.ExtDirect'
   ],
 
-  name: 'repository',
+  list: 'nx-repository-list',
 
   stores: [
     'Repository'

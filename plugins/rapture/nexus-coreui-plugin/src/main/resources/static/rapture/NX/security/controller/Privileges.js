@@ -13,7 +13,7 @@
 Ext.define('NX.security.controller.Privileges', {
   extend: 'NX.controller.MasterDetail',
 
-  name: 'privilege',
+  list: 'ne-privilege-list',
 
   stores: [
     'Privilege'

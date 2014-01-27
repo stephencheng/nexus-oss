@@ -22,12 +22,11 @@ Ext.define('NX.controller.MasterDetail', {
 
   init: function () {
     var me = this,
-        list = 'nx-' + me.name + '-list',
         store = me.stores[0],
         componentListener = {},
         storeListener = {};
 
-    componentListener[list] = {
+    componentListener[me.list] = {
       beforerender: me.loadStores,
       selectionchange: me.onSelectionChange,
       refresh: me.loadStores,
