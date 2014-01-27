@@ -30,6 +30,7 @@ Ext.define('NX.controller.MasterDetail', {
 
     componentListener[me.list] = {
       beforerender: me.loadStores,
+      afterrender: me.applyPermissions,
       selectionchange: me.onSelectionChange,
       refresh: me.loadStores,
       selection: me.onSelection
@@ -102,6 +103,8 @@ Ext.define('NX.controller.MasterDetail', {
       tabs.setTitle('Empty selection');
       tabs.getLayout().setActiveItem(0);
     }
+
+    me.enableDeleteButton();
 
     me.getList().fireEvent('selection', me.getList(), model);
   },
