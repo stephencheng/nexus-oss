@@ -45,7 +45,7 @@ Ext.define('NX.controller.Status', {
 
     me.statusProvider = Ext.Direct.addProvider({
       type: 'polling',
-      url: NX.direct.api.POLLING_URLS.status,
+      url: NX.direct.api.POLLING_URLS.rapture_Application_status,
       interval: 5000,
       listeners: {
         data: me.onData,

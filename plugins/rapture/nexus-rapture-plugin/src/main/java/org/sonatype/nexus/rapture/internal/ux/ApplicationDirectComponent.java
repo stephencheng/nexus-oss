@@ -78,7 +78,7 @@ public class ApplicationDirectComponent
     this.securitySystem = checkNotNull(securitySystem);
   }
 
-  @DirectPollMethod
+  @DirectPollMethod(event = "rapture_Application_status")
   public StatusXO status(final Map<String, String> parameters) {
     StatusXO statusXO = new StatusXO();
 
