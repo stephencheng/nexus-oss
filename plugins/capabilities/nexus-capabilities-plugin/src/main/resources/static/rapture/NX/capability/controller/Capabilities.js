@@ -274,7 +274,8 @@ Ext.define('NX.capability.controller.Capabilities', {
 
   enableNewButton: function () {
     var me = this,
-        button = me.getList().down('button[action=new]');
+        list = me.getList(),
+        button = list.down('button[action=new]');
 
     if (NX.util.Permissions.check('nexus:capabilities', 'create')) {
       button.enable();
@@ -288,7 +289,7 @@ Ext.define('NX.capability.controller.Capabilities', {
     var me = this,
         list = me.getList(),
         selectedModels = list.getSelectionModel().getSelection(),
-        button = me.getList().down('button[action=delete]');
+        button = list.down('button[action=delete]');
 
     if (selectedModels.length > 0 && NX.util.Permissions.check('nexus:capabilities', 'delete')) {
       button.enable();
