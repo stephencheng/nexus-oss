@@ -1,4 +1,4 @@
-/*
+/**
  * Sonatype Nexus (TM) Open Source Version
  * Copyright (c) 2007-2013 Sonatype, Inc.
  * All rights reserved. Includes the third-party code listed at http://links.sonatype.com/products/nexus/oss/attributions.
@@ -10,19 +10,24 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.app.PluginConfig', {
 
-  namespaces: [
-    'NX.coreui'
-  ],
+package org.sonatype.nexus.coreui
 
-  controllers: [
-    'NX.coreui.controller.Repositories',
-    // TODO remove this bellow as is just an example on how to add an extra tab to a master detail
-    'NX.coreui.controller.RepositoriesExtraTab',
-    'NX.coreui.controller.RepositoryTargets',
-    'NX.coreui.controller.Privileges',
-    'NX.coreui.controller.Roles',
-    'NX.coreui.controller.Users'
-  ]
-});
+import groovy.transform.ToString
+
+/**
+ * Repository Target exchange object.
+ *
+ * @since 2.8
+ */
+@ToString(includePackage = false, includeNames = true)
+class RepositoryTargetXO
+{
+  String id
+
+  String name
+
+  String repositoryTypeId
+
+  Set<String> patterns
+}

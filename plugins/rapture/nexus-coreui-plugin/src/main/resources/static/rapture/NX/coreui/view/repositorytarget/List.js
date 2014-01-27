@@ -10,19 +10,30 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.app.PluginConfig', {
+Ext.define('NX.coreui.view.repositorytarget.List', {
+  extend: 'Ext.grid.Panel',
+  alias: 'widget.nx-repositorytarget-list',
 
-  namespaces: [
-    'NX.coreui'
+  store: 'RepositoryTarget',
+
+  columns: [
+    {
+      xtype: 'iconcolumn',
+      width: 36,
+      iconVariant: 'x16',
+      iconName: function () {
+        return 'feature-targets';
+      }
+    },
+    { header: 'Name', dataIndex: 'name', flex: 1 },
+    { header: 'Repository Type', dataIndex: 'repositoryTypeId' },
+    { header: 'Patterns', dataIndex: 'patterns', flex: 1 }
   ],
 
-  controllers: [
-    'NX.coreui.controller.Repositories',
-    // TODO remove this bellow as is just an example on how to add an extra tab to a master detail
-    'NX.coreui.controller.RepositoriesExtraTab',
-    'NX.coreui.controller.RepositoryTargets',
-    'NX.coreui.controller.Privileges',
-    'NX.coreui.controller.Roles',
-    'NX.coreui.controller.Users'
-  ]
+  tbar: [
+    { xtype: 'button', text: 'New', action: 'new', disabled: true },
+    { xtype: 'button', text: 'Delete', action: 'delete', disabled: true }
+  ],
+
+  refreshable: true
 });

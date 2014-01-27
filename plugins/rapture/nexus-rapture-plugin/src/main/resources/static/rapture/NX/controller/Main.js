@@ -109,10 +109,6 @@ Ext.define('NX.controller.Main', {
         file: 'database_green.png',
         variants: ['x16', 'x32']
       },
-      'feature-targets': {
-        file: 'target.png',
-        variants: ['x16'] // FIXME: missing x32 here
-      },
       'feature-routing': {
         file: 'arrow_branch.png',
         variants: ['x16', 'x32']
@@ -240,16 +236,11 @@ Ext.define('NX.controller.Main', {
         weight: 50
       },
       {
-        path: '/Repository/Targets',
-        view: 'NX.view.TODO',
-        iconName: 'feature-targets',
-        visible: visibleIfLoggedIn
-      },
-      {
         path: '/Repository/Routing',
         view: 'NX.view.TODO',
         iconName: 'feature-routing',
-        visible: visibleIfLoggedIn
+        visible: visibleIfLoggedIn,
+        weight: 20
       },
       {
         path: '/Staging',
