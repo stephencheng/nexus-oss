@@ -12,6 +12,7 @@
  */
 Ext.define('NX.capability.view.Feature', {
   extend: 'NX.view.masterdetail.Panel',
+  alias: 'widget.nx-capability-feature',
 
   modelName: 'capability',
   iconName: 'feature-capability',

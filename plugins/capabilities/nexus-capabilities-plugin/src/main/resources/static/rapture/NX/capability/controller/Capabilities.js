@@ -11,17 +11,17 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.capability.controller.Capabilities', {
-  extend: 'Ext.app.Controller',
-
+  extend: 'NX.controller.MasterDetail',
   requires: [
     'NX.util.Msg',
-    'NX.util.ExtDirect',
-    'NX.util.Permissions'
+    'NX.util.ExtDirect'
   ],
 
+  name: 'capability',
+
   stores: [
-    'Capability',
     'CapabilityStatus',
+    'Capability',
     'CapabilityType'
   ],
   models: [
@@ -37,7 +37,6 @@ Ext.define('NX.capability.controller.Capabilities', {
     'About',
     'SettingsFieldSet'
   ],
-
   refs: [
     { ref: 'list', selector: 'nx-capability-list' },
     { ref: 'summary', selector: 'nx-capability-summary' },
@@ -45,136 +44,104 @@ Ext.define('NX.capability.controller.Capabilities', {
     { ref: 'status', selector: 'nx-capability-status' },
     { ref: 'about', selector: 'nx-capability-about' }
   ],
+  icons: {
+    name: 'feature-capability',
+    file: 'brick.png',
+    variants: ['x16', 'x32']
+  },
+  features: {
+    path: '/System/Capabilities',
+    view: 'NX.capability.view.Feature',
+    bookmark: 'capabilities',
+    visible: function () {
+      return NX.util.Permissions.check('nexus:capabilities', 'read');
+    },
+    iconName: 'feature-capability'
+  },
 
   init: function () {
     var me = this;
 
-    me.getApplication().getIconController().addIcon({
-      name: 'feature-capability',
-      file: 'brick.png',
-      variants: [ 'x16', 'x32' ]
-    });
+    me.callParent();
 
     me.listen({
       component: {
-        'nx-capability-list': {
-          beforerender: this.loadStores,
-          selectionchange: this.onSelectionChange
-        },
         'nx-capability-list button[action=new]': {
-          click: this.showAddWindow
+          click: me.showAddWindow
         },
         'nx-capability-list button[action=delete]': {
-          click: this.deleteCapability
+          click: me.deleteCapability
         },
         'nx-capability-summary button[action=save]': {
-          click: this.updateCapability
+          click: me.updateCapability
         },
         'nx-capability-settings button[action=save]': {
-          click: this.updateCapability
+          click: me.updateCapability
         },
         'nx-capability-add combo[name=typeId]': {
-          select: this.changeCapabilityType
+          select: me.changeCapabilityType
         },
         'nx-capability-add button[action=add]': {
-          click: this.createCapability
+          click: me.createCapability
         }
       },
       store: {
-        '#CapabilityStatus': {
-          load: me.onCapabilityStatusStoreLoad,
-          beforeload: me.onCapabilityStatusStoreBeforeLoad
-        },
         '#CapabilityType': {
-          load: me.onCapabilityTypeStoreLoad,
-          beforeload: me.onCapabilityTypeStoreBeforeLoad
+          load: me.enableNewButton
         }
       }
     });
-
-    me.getApplication().getMainController().registerFeature({
-      path: '/System/Capabilities',
-      view: 'NX.capability.view.Feature',
-      bookmark: 'capabilities',
-      visible: function () {
-        return NX.util.Permissions.check('nexus:capabilities', 'read');
-      },
-      iconName: 'feature-capability'
-    });
   },
 
-  loadStores: function () {
-    this.getCapabilityStore().load();
-    this.getCapabilityStatusStore().load();
-    this.getCapabilityTypeStore().load();
-  },
-
-  onCapabilityTypeStoreBeforeLoad: function () {
-    this.getList().down('button[action=new]').disable();
-  },
-
-  onCapabilityTypeStoreLoad: function (store, records) {
-    if (records.length > 0) {
-      this.getList().down('button[action=new]').enable();
+  /**
+   * Returns a description of capability suitable to be displayed.
+   */
+  getDescription: function (model) {
+    var description = model.get('typeName');
+    if (model.get('description')) {
+      description += ' - ' + model.get('description');
     }
+    return description;
   },
 
-  onCapabilityStatusStoreBeforeLoad: function () {
-    this.getList().down('button[action=delete]').disable();
-  },
-
-  onCapabilityStatusStoreLoad: function (store) {
-    var selectedModels = this.getList().getSelectionModel().getSelection();
-    if (selectedModels.length > 0) {
-      this.getList().down('button[action=delete]').enable();
-      this.showDetails(store.getById(selectedModels[0].getId()));
-    }
-  },
-
-  onSelectionChange: function (selectionModel, selectedModels) {
-    if (selectedModels.length > 0) {
-      this.getList().down('button[action=delete]').enable();
-      this.showDetails(selectedModels[0]);
-    }
-  },
-
-  showDetails: function (capabilityStatusModel) {
+  onSelection: function (list, model) {
     var me = this,
         capabilityModel, capabilityTypeModel;
 
-    if (Ext.isDefined(capabilityStatusModel)) {
-      capabilityModel = me.getCapabilityStore().getById(capabilityStatusModel.get('id'));
-      capabilityTypeModel = me.getCapabilityTypeStore().getById(capabilityStatusModel.get('typeId'));
+    if (Ext.isDefined(model)) {
+      capabilityModel = me.getCapabilityStore().getById(model.get('id'));
+      capabilityTypeModel = me.getCapabilityTypeStore().getById(model.get('typeId'));
 
-      me.showTitle(capabilityStatusModel);
-      me.showSummary(capabilityStatusModel, capabilityModel);
+      me.showTitle(model);
+      me.showSummary(model, capabilityModel);
       me.showSettings(capabilityModel, capabilityTypeModel);
       me.showAbout(capabilityTypeModel);
-      me.showStatus(capabilityStatusModel);
+      me.showStatus(model);
     }
+
+    me.enableDeleteButton();
   },
 
-  showTitle: function (capabilityStatusModel) {
+  showTitle: function (model) {
     var masterdetail = this.getList().up('nx-masterdetail-panel');
 
-    masterdetail.setDescription(this.describeCapability(capabilityStatusModel));
-    if (capabilityStatusModel.get('enabled') && !capabilityStatusModel.get('active')) {
-      masterdetail.showWarning(capabilityStatusModel.get('stateDescription'));
+    if (model.get('enabled') && !model.get('active')) {
+      masterdetail.showWarning(model.get('stateDescription'));
     }
     else {
       masterdetail.clearWarning();
     }
   },
 
-  showSummary: function (capabilityStatusModel, capabilityModel) {
+  showSummary: function (model, capabilityModel) {
     var summary = this.getSummary(),
         info = {
-          'Type': capabilityStatusModel.get('typeName'),
-          'Description': capabilityStatusModel.get('description')
+          'Type': model.get('typeName'),
+          'Description': model.get('description')
         };
 
-    if (Ext.isDefined(capabilityStatusModel.get('tags'))) {
-      Ext.each(capabilityStatusModel.get('tags'), function (tag) {
+    if (Ext.isDefined(model.get('tags'))) {
+      Ext.each(model.get('tags'), function (tag) {
         info[tag.key] = tag.value;
       });
     }
@@ -191,12 +158,12 @@ Ext.define('NX.capability.controller.Capabilities', {
     settingsFieldSet.importCapability(settings.getForm(), capabilityModel, capabilityTypeModel);
   },
 
-  showStatus: function (capabilityStatusModel) {
-    this.getStatus().showStatus(capabilityStatusModel.get('status'));
+  showStatus: function (model) {
+    this.getStatus().showStatus(model.get('status'));
   },
 
-  showAbout: function (capabilityTypeModel) {
-    this.getAbout().showAbout(capabilityTypeModel.get('about'));
+  showAbout: function (model) {
+    this.getAbout().showAbout(model.get('about'));
   },
 
   showAddWindow: function () {
@@ -278,7 +245,7 @@ Ext.define('NX.capability.controller.Capabilities', {
         selection = me.getList().getSelectionModel().getSelection();
 
     if (Ext.isDefined(selection) && selection.length > 0) {
-      NX.util.Msg.askConfirmation('Confirm deletion?', me.describeCapability(selection[0]), function () {
+      NX.util.Msg.askConfirmation('Confirm deletion?', me.getDescription(selection[0]), function () {
         NX.direct.Capability.delete(selection[0].getId(), function (response, status) {
           if (!NX.util.ExtDirect.showExceptionIfPresent('Capability could not be deleted', response, status)) {
             if (Ext.isDefined(response)) {
@@ -298,15 +265,37 @@ Ext.define('NX.capability.controller.Capabilities', {
     }
   },
 
-  /**
-   * Returns a description of capability suitable to be displayed.
-   */
-  describeCapability: function (capabilityStatusModel) {
-    var description = capabilityStatusModel.get('typeName');
-    if (capabilityStatusModel.get('description')) {
-      description += ' - ' + capabilityStatusModel.get('description');
+  onPermissionsChanged: function () {
+    var me = this;
+
+    me.enableNewButton();
+    me.enableDeleteButton();
+  },
+
+  enableNewButton: function () {
+    var me = this,
+        button = me.getList().down('button[action=new]');
+
+    if (NX.util.Permissions.check('nexus:capabilities', 'create')) {
+      button.enable();
     }
-    return description;
+    else {
+      button.disable();
+    }
+  },
+
+  enableDeleteButton: function () {
+    var me = this,
+        list = me.getList(),
+        selectedModels = list.getSelectionModel().getSelection(),
+        button = me.getList().down('button[action=delete]');
+
+    if (selectedModels.length > 0 && NX.util.Permissions.check('nexus:capabilities', 'delete')) {
+      button.enable();
+    }
+    else {
+      button.disable();
+    }
   }
 
 });

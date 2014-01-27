@@ -12,28 +12,104 @@
  */
 Ext.define('NX.controller.MasterDetail', {
   extend: 'Ext.app.Controller',
-
-  views: [
-    'masterdetail.Panel',
-    'masterdetail.Tabs'
+  requires: [
+    'NX.util.Permissions'
   ],
 
+  mixins: {
+    logAware: 'NX.LogAware'
+  },
+
   init: function () {
-    this.control({
-      'nx-masterdetail-panel': {
-        selectionchange: this.showDetails
+    var me = this,
+        list = 'nx-' + me.name + '-list',
+        store = me.stores[0],
+        componentListener = {},
+        storeListener = {};
+
+    componentListener[list] = {
+      beforerender: me.loadStores,
+      selectionchange: me.onSelectionChange,
+      refresh: me.loadStores,
+      selection: me.onSelection
+    };
+    storeListener['#' + store] = {
+      load: me.onStoreLoad
+    };
+
+    me.listen({
+      component: componentListener,
+      store: storeListener
+    });
+    me.listen({
+      controller: {
+        '#User': {
+          permissionsChanged: me.applyPermissions
+        }
       }
+    });
+
+    if (Ext.isDefined(me.icons)) {
+      me.getApplication().getIconController().addIcons(me.icons);
+    }
+    if (Ext.isDefined(me.features)) {
+      me.getApplication().getMainController().registerFeature(me.features);
+    }
+  },
+
+  onSelection: Ext.emptyFn,
+
+  onPermissionsChanged: Ext.emptyFn,
+
+  getDescription: Ext.emptyFn,
+
+  isListRendered: function () {
+    var me = this;
+
+    return Ext.isDefined(me.getList());
+  },
+
+  loadStores: function () {
+    var me = this;
+
+    Ext.each(me.stores, function (store) {
+      me.getApplication().getStore(store).load();
     });
   },
 
-  showDetails: function (masterDetail, selectedModels) {
-    var detail = masterDetail.down('nx-masterdetail-tabs');
-    if (Ext.isDefined(selectedModels) && selectedModels.length > 0) {
-      detail.getLayout().setActiveItem(1);
+  onStoreLoad: function () {
+    var me = this,
+        sm;
+
+    if (me.isListRendered()) {
+      sm = me.getList().getSelectionModel();
+      me.onSelectionChange(sm, sm.getSelection());
+    }
+  },
+
+  onSelectionChange: function (selectionModel, selected) {
+    var me = this,
+        tabs = me.getList().up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
+        model;
+
+    if (Ext.isDefined(selected) && selected.length > 0) {
+      model = selected[0];
+      tabs.getLayout().setActiveItem(1);
+      tabs.setDescription(me.getDescription(model));
     }
     else {
-      detail.setTitle('Empty selection');
-      detail.getLayout().setActiveItem(0);
+      tabs.setTitle('Empty selection');
+      tabs.getLayout().setActiveItem(0);
+    }
+
+    me.getList().fireEvent('selection', me.getList(), model);
+  },
+
+  applyPermissions: function () {
+    var me = this;
+
+    if (me.isListRendered()) {
+      me.onPermissionsChanged();
     }
   }
 

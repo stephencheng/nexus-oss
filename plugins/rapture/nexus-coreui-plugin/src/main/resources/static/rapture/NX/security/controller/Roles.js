@@ -11,11 +11,9 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.security.controller.Roles', {
-  extend: 'Ext.app.Controller',
+  extend: 'NX.controller.MasterDetail',
 
-  requires: [
-    'NX.util.Permissions'
-  ],
+  name: 'role',
 
   stores: [
     'Role'
@@ -24,82 +22,47 @@ Ext.define('NX.security.controller.Roles', {
     'role.Feature',
     'role.List'
   ],
-
   refs: [
     {
       ref: 'list',
       selector: 'nx-role-list'
+    },
+    {
+      ref: 'info',
+      selector: 'nx-role-feature nx-info-panel'
     }
   ],
+  icons: {
+    'feature-roles': {
+      file: 'user_policeman.png',
+      variants: ['x16', 'x32']
+    }
+  },
+  features: {
+    path: '/Security/Roles',
+    view: 'NX.security.view.role.Feature',
+    bookmark: 'roles',
+    weight: 20,
+    iconName: 'feature-roles',
+    visible: function () {
+      return NX.util.Permissions.check('security:roles', 'read');
+    }
+  },
 
-  init: function () {
+  getDescription: function (model) {
+    return model.get('name');
+  },
+
+  onSelection: function (list, model) {
     var me = this;
 
-    me.getApplication().getIconController().addIcons({
-      'feature-roles': {
-        file: 'user_policeman.png',
-        variants: ['x16', 'x32']
-      }
-    });
-
-    me.listen({
-      component: {
-        'nx-role-list': {
-          beforerender: this.loadStores,
-          selectionchange: this.onSelectionChange,
-          refresh: me.loadStores
-        }
-      },
-      store: {
-        '#Role': {
-          load: me.onRoleStoreLoad
-        }
-      }
-    });
-
-    me.getApplication().getMainController().registerFeature({
-      path: '/Security/Roles',
-      view: 'NX.security.view.role.Feature',
-      bookmark: 'roles',
-      weight: 20,
-      iconName: 'feature-roles',
-      visible: function () {
-        return NX.util.Permissions.check('security:roles', 'read');
-      }
-    });
-  },
-
-  loadStores: function () {
-    this.getRoleStore().load();
-  },
-
-  onRoleStoreLoad: function (store) {
-    var selectedModels = this.getList().getSelectionModel().getSelection();
-    if (selectedModels.length > 0) {
-      this.showDetails(store.getById(selectedModels[0].getId()));
-    }
-  },
-
-  onSelectionChange: function (selectionModel, selectedModels) {
-    if (selectedModels.length > 0) {
-      this.showDetails(selectedModels[0]);
-    }
-  },
-
-  showDetails: function (model) {
-    var me = this,
-        masterdetail = me.getList().up('nx-masterdetail-panel'),
-        info;
-
     if (Ext.isDefined(model)) {
-      masterdetail.setDescription(model.get('name'));
-      info = {
+      me.getInfo().showInfo({
         'Id': model.get('id'),
         'Realm': model.get('realm'),
         'Name': model.get('name'),
         'Description': model.get('description')
-      };
-      masterdetail.down("nx-info-panel").showInfo(info);
+      });
     }
   }
 

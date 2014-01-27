@@ -46,7 +46,6 @@ Ext.define('NX.app.Application', {
     'Icon',
     'Info',
     'Main',
-    'MasterDetail',
     'Message',
     'Status',
     'User'
@@ -56,6 +55,10 @@ Ext.define('NX.app.Application', {
   ],
   stores: [
     'Message'
+  ],
+  views: [
+    'masterdetail.Panel',
+    'masterdetail.Tabs'
   ],
   refs: [],
 
@@ -136,20 +139,20 @@ Ext.define('NX.app.Application', {
   /**
    * @private
    */
-  initErrorHandler: function() {
+  initErrorHandler: function () {
     var me = this,
         originalOnerror = window.onerror;
 
     // FIXME: This needs further refinement, seems like javascript errors are lost in Firefox (but show up fine in Chrome)
 
     // pass unhandled errors to application error handler
-    Ext.Error.handle = function(err) {
+    Ext.Error.handle = function (err) {
       me.errorHandler(err);
     };
 
     // FIXME: This will catch more errors, but duplicates messages for ext errors
     // FIXME: Without this however some javascript errors will go unhandled
-    window.onerror = function(msg, url, line) {
+    window.onerror = function (msg, url, line) {
       me.errorHandler({ msg: msg + ' (' + url + ':' + line + ')' });
 
       // maybe delegate to original window.onerror handler
@@ -166,7 +169,7 @@ Ext.define('NX.app.Application', {
    *
    * @private
    */
-  errorAsString: function(error) {
+  errorAsString: function (error) {
     var className = error.sourceClass ? error.sourceClass : '',
         methodName = error.sourceMethod ? '.' + error.sourceMethod + '(): ' : '',
         msg = error.msg || '(No description provided)';
@@ -176,7 +179,7 @@ Ext.define('NX.app.Application', {
   /**
    * @private
    */
-  errorHandler: function(error) {
+  errorHandler: function (error) {
     var me = this;
     me.getMessageController().addMessage({
       type: 'danger',

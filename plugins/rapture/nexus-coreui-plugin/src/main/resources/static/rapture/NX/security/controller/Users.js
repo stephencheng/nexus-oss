@@ -11,11 +11,9 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.security.controller.Users', {
-  extend: 'Ext.app.Controller',
+  extend: 'NX.controller.MasterDetail',
 
-  requires: [
-    'NX.util.Permissions'
-  ],
+  name: 'user',
 
   stores: [
     'User'
@@ -24,84 +22,49 @@ Ext.define('NX.security.controller.Users', {
     'user.Feature',
     'user.List'
   ],
-
   refs: [
     {
       ref: 'list',
       selector: 'nx-user-list'
+    },
+    {
+      ref: 'info',
+      selector: 'nx-user-feature nx-info-panel'
     }
   ],
+  icons: {
+    'feature-users': {
+      file: 'group.png',
+      variants: ['x16', 'x32']
+    }
+  },
+  features: {
+    path: '/Security/Users',
+    view: 'NX.security.view.user.Feature',
+    bookmark: 'users',
+    weight: 30,
+    iconName: 'feature-users',
+    visible: function () {
+      return NX.util.Permissions.check('security:users', 'read');
+    }
+  },
 
-  init: function () {
+  getDescription: function (model) {
+    return model.get('firstName') + ' ' + model.get('lastName');
+  },
+
+  onSelection: function (list, model) {
     var me = this;
 
-    me.getApplication().getIconController().addIcons({
-      'feature-users': {
-        file: 'group.png',
-        variants: ['x16', 'x32']
-      }
-    });
-
-    me.listen({
-      component: {
-        'nx-user-list': {
-          beforerender: this.loadStores,
-          selectionchange: this.onSelectionChange,
-          refresh: me.loadStores
-        }
-      },
-      store: {
-        '#User': {
-          load: me.onUserStoreLoad
-        }
-      }
-    });
-
-    me.getApplication().getMainController().registerFeature({
-      path: '/Security/Users',
-      view: 'NX.security.view.user.Feature',
-      bookmark: 'users',
-      weight: 30,
-      iconName: 'feature-users',
-      visible: function () {
-        return NX.util.Permissions.check('security:users', 'read');
-      }
-    });
-  },
-
-  loadStores: function () {
-    this.getUserStore().load();
-  },
-
-  onUserStoreLoad: function (store) {
-    var selectedModels = this.getList().getSelectionModel().getSelection();
-    if (selectedModels.length > 0) {
-      this.showDetails(store.getById(selectedModels[0].getId()));
-    }
-  },
-
-  onSelectionChange: function (selectionModel, selectedModels) {
-    if (selectedModels.length > 0) {
-      this.showDetails(selectedModels[0]);
-    }
-  },
-
-  showDetails: function (model) {
-    var me = this,
-        masterdetail = me.getList().up('nx-masterdetail-panel'),
-        info;
-
     if (Ext.isDefined(model)) {
-      masterdetail.setDescription(model.get('firstName') + ' ' + model.get('lastName'));
-      info = {
+      me.getInfo().showInfo({
         'Id': model.get('id'),
         'Realm': model.get('realm'),
         'First Name': model.get('firstName'),
         'Last Name': model.get('lastName'),
         'Email': model.get('email'),
         'Status': model.get('status')
-      };
-      masterdetail.down("nx-info-panel").showInfo(info);
+      });
     }
   }
 

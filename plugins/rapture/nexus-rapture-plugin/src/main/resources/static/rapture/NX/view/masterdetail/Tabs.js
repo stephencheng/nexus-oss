@@ -36,33 +36,43 @@ Ext.define('NX.view.masterdetail.Tabs', {
   ),
 
   initComponent: function () {
-    var text = this.emptyText,
-        content = this.items;
+    var me = this,
+        text = me.emptyText,
+        content = me.tabs;
 
     if (!text) {
-      text = 'Please select a ' + this.modelName + ' or create a new ' + this.modelName;
+      text = 'Please select a ' + me.modelName + ' or create a new ' + this.modelName;
     }
 
-    if (Ext.isArray(this.items) && this.items.length > 1) {
-      content = {
-        xtype: 'tabpanel',
-        activeTab: 0,
-        layoutOnTabChange: true,
-        items: this.items
-      }
+    if (Ext.isArray(content)) {
+      content = me.getTabsConfig(content);
+    }
+    else {
+      content = Ext.apply({}, content, {title: undefined});
     }
 
-    this.items = [
-      {
-        xtype: 'panel',
-        html: '<span class="nx-masterdetail-emptyselection-text">' + text + '</span>'
-      },
-      content
-    ];
+    Ext.apply(me, {
+      items: [
+        {
+          xtype: 'panel',
+          html: '<span class="nx-masterdetail-emptyselection-text">' + text + '</span>'
+        },
+        content
+      ]
+    });
 
-    this.description = this.title;
+    me.description = me.title;
 
-    this.callParent(arguments);
+    me.callParent(arguments);
+  },
+
+  getTabsConfig: function (items) {
+    return {
+      xtype: 'tabpanel',
+      activeTab: 0,
+      layoutOnTabChange: true,
+      items: items
+    };
   },
 
   setDescription: function (description) {
@@ -89,6 +99,21 @@ Ext.define('NX.view.masterdetail.Tabs', {
       });
     }
     this.setTitle(title);
+  },
+
+  addTab: function (tab) {
+    var me = this,
+        content = me.items.get(1);
+
+    if (content.isXType('tabpanel')) {
+      me.tabs.push(tab);
+      content.add(tab);
+    }
+    else {
+      me.tabs = [me.tabs, tab];
+      me.remove(content);
+      me.add(me.getTabsConfig(me.tabs));
+    }
   }
 
 });

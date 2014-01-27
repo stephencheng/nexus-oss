@@ -12,6 +12,7 @@
  */
 Ext.define('NX.security.view.role.Feature', {
   extend: 'NX.view.masterdetail.Panel',
+  alias: 'widget.nx-role-feature',
 
   modelName: 'role',
   iconName: 'feature-roles'

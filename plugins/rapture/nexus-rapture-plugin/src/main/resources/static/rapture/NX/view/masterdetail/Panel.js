@@ -42,28 +42,15 @@ Ext.define('NX.view.masterdetail.Panel', {
         xtype: 'nx-masterdetail-tabs',
         modelName: me.modelName,
         emptyText: me.emptyText,
-        items: me.tabs
+        tabs: me.tabs
       }
     ];
 
     me.callParent(arguments);
 
-    me.addEvents('selectionchange');
-
-    me.down(me.list).on('selectionchange', this.selectionChange, this);
-
     if (Ext.isDefined(me.iconName)) {
       me.setDescriptionIconName(me.iconName);
     }
-  },
-
-  selectionChange: function (selectionModel, selectedModels) {
-    this.fireEvent('selectionchange', this, selectedModels);
-  },
-
-  destroy: function () {
-    this.down(this.list).un('selectionchange', this.selectionChange);
-    this.callParent();
   },
 
   setDescription: function (description) {
@@ -80,6 +67,10 @@ Ext.define('NX.view.masterdetail.Panel', {
 
   clearWarning: function () {
     this.down('nx-masterdetail-tabs').clearWarning();
+  },
+
+  addTab: function (tab) {
+    this.down('nx-masterdetail-tabs').addTab(tab);
   }
 
 });

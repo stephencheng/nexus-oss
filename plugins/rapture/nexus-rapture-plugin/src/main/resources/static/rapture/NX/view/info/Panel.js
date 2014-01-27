@@ -14,6 +14,8 @@ Ext.define('NX.view.info.Panel', {
   extend: 'Ext.panel.Panel',
   alias: 'widget.nx-info-panel',
 
+  title: 'Summary',
+
   items: {
     xtype: 'nx-info'
   },

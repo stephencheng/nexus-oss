@@ -13,6 +13,7 @@
 
 Ext.define('NX.coreui.view.Repositories', {
   extend: 'NX.view.masterdetail.Panel',
+  alias: 'widget.nx-repository-feature',
 
   modelName: 'repository',
   iconName: 'feature-repositories'

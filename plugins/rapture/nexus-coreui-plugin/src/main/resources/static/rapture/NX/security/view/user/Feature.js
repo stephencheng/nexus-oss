@@ -12,6 +12,7 @@
  */
 Ext.define('NX.security.view.user.Feature', {
   extend: 'NX.view.masterdetail.Panel',
+  alias: 'widget.nx-user-feature',
 
   modelName: 'user',
   iconName: 'feature-users'

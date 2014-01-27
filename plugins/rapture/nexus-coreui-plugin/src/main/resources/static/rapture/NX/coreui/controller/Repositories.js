@@ -11,14 +11,14 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.coreui.controller.Repositories', {
-  extend: 'Ext.app.Controller',
-
+  extend: 'NX.controller.MasterDetail',
   requires: [
     'NX.util.Url',
     'NX.util.Msg',
-    'NX.util.ExtDirect',
-    'NX.util.Permissions'
+    'NX.util.ExtDirect'
   ],
+
+  name: 'repository',
 
   stores: [
     'Repository'
@@ -27,114 +27,67 @@ Ext.define('NX.coreui.controller.Repositories', {
     'Repositories',
     'RepositoryList'
   ],
-
   refs: [
     {
       ref: 'list',
       selector: 'nx-repository-list'
+    },
+    {
+      ref: 'info',
+      selector: 'nx-repository-feature nx-info-panel'
     }
   ],
+  icons: {
+    'feature-repositories': {
+      file: 'database.png',
+      variants: ['x16', 'x32']
+    }
+  },
+  features: {
+    path: '/Repository/Repositories',
+    view: 'NX.coreui.view.Repositories',
+    bookmark: 'repositories',
+    iconName: 'feature-repositories',
+    visible: function () {
+      return NX.util.Permissions.check('nexus:repositories', 'read');
+    }
+  },
 
   init: function () {
     var me = this;
 
-    me.getApplication().getIconController().addIcons({
-      'feature-repositories': {
-        file: 'database.png',
-        variants: ['x16', 'x32']
-      }
-    });
+    me.callParent();
 
     me.listen({
-      controller: {
-        '#User': {
-          permissionsChanged: me.applyPermissions
-        }
-      },
-      store: {
-        '#Repository': {
-          load: me.onRepositoryStoreLoad,
-          beforeload: me.onRepositoryStoreBeforeLoad
-        }
-      },
       component: {
-        'nx-repository-list': {
-          beforerender: me.onListRendered,
-          selectionchange: me.onSelectionChange,
-          refresh: me.loadStores
-        },
         'nx-repository-list button[action=delete]': {
           click: me.deleteRepository
         }
       }
     });
-
-    me.getApplication().getMainController().registerFeature([
-      {
-        path: '/Repository/Repositories',
-        view: 'NX.coreui.view.Repositories',
-        bookmark: 'repositories',
-        iconName: 'feature-repositories',
-        visible: function () {
-          return NX.util.Permissions.check('nexus:repositories', 'read');
-        }
-      }
-    ]);
   },
 
-  onListRendered: function () {
+  getDescription: function (model) {
+    return model.get('name');
+  },
+
+  onSelection: function (list, model) {
     var me = this;
 
-    me.loadStores();
-    me.applyPermissions();
-  },
-
-  loadStores: function () {
-    this.getRepositoryStore().load();
-  },
-
-  onRepositoryStoreBeforeLoad: function () {
-    this.getList().down('button[action=delete]').disable();
-  },
-
-  onRepositoryStoreLoad: function (store) {
-    var me = this,
-        selectedModels = me.getList().getSelectionModel().getSelection();
-
-    if (selectedModels.length > 0) {
-      me.applyPermissions();
-      me.showDetails(store.getById(selectedModels[0].getId()));
+    if (Ext.isDefined(model)) {
+      me.getInfo().showInfo({
+        'Id': model.get('id'),
+        'Name': model.get('name'),
+        'type': model.get('type'),
+        'Format': model.get('format'),
+        'Local status': me.getLocalStatus(model),
+        'Proxy mode': me.getProxyMode(model),
+        'Remote status': me.getRemoteStatus(model),
+        'Url': NX.util.Url.asLink(model.get('url'))
+      });
     }
-  },
 
-  onSelectionChange: function (selectionModel, selectedModels) {
-    var me = this;
-
-    if (selectedModels.length > 0) {
-      me.applyPermissions();
-      me.showDetails(selectedModels[0]);
-    }
-  },
-
-  showDetails: function (repositoryModel) {
-    var me = this,
-        masterdetail = me.getList().up('nx-masterdetail-panel'),
-        info;
-
-    if (Ext.isDefined(repositoryModel)) {
-      masterdetail.setDescription(repositoryModel.get('name'));
-      info = {
-        'Id': repositoryModel.get('id'),
-        'Name': repositoryModel.get('name'),
-        'type': repositoryModel.get('type'),
-        'Format': repositoryModel.get('format'),
-        'Local status': me.getLocalStatus(repositoryModel),
-        'Proxy mode': me.getProxyMode(repositoryModel),
-        'Remote status': me.getRemoteStatus(repositoryModel),
-        'Url': NX.util.Url.asLink(repositoryModel.get('url'))
-      };
-      masterdetail.down('nx-info-panel').showInfo(info);
-    }
+    me.enableDeleteButton();
   },
 
   deleteRepository: function () {
@@ -142,7 +95,7 @@ Ext.define('NX.coreui.controller.Repositories', {
         selection = me.getList().getSelectionModel().getSelection();
 
     if (Ext.isDefined(selection) && selection.length > 0) {
-      NX.util.Msg.askConfirmation('Confirm deletion?', me.describeRepository(selection[0]), function () {
+      NX.util.Msg.askConfirmation('Confirm deletion?', me.getDescription(selection[0]), function () {
         NX.direct.Repository.delete(selection[0].getId(), function (response, status) {
           if (!NX.util.ExtDirect.showExceptionIfPresent('Repository could not be deleted', response, status)) {
             if (Ext.isDefined(response)) {
@@ -157,12 +110,8 @@ Ext.define('NX.coreui.controller.Repositories', {
     }
   },
 
-  describeRepository: function (repositoryModel) {
-    return repositoryModel.get('name');
-  },
-
-  getLocalStatus: function (repositoryModel) {
-    var localStatus = repositoryModel.get('localStatus');
+  getLocalStatus: function (model) {
+    var localStatus = model.get('localStatus');
 
     if (localStatus === 'IN_SERVICE') {
       return 'In Service';
@@ -173,8 +122,8 @@ Ext.define('NX.coreui.controller.Repositories', {
     return localStatus;
   },
 
-  getProxyMode: function (repositoryModel) {
-    var proxyMode = repositoryModel.get('proxyMode');
+  getProxyMode: function (model) {
+    var proxyMode = model.get('proxyMode');
 
     if (proxyMode === 'ALLOW') {
       return 'Allowed';
@@ -188,9 +137,9 @@ Ext.define('NX.coreui.controller.Repositories', {
     return proxyMode;
   },
 
-  getRemoteStatus: function (repositoryModel) {
-    var remoteStatus = repositoryModel.get('remoteStatus'),
-        remoteStatusReason = repositoryModel.get('remoteStatusReason');
+  getRemoteStatus: function (model) {
+    var remoteStatus = model.get('remoteStatus'),
+        remoteStatusReason = model.get('remoteStatusReason');
 
     if (remoteStatus === 'UNKNOWN') {
       return 'Unknown';
@@ -204,22 +153,23 @@ Ext.define('NX.coreui.controller.Repositories', {
     return remoteStatus;
   },
 
-  applyPermissions: function () {
+  onPermissionsChanged: function () {
+    var me = this;
+
+    me.enableDeleteButton();
+  },
+
+  enableDeleteButton: function () {
     var me = this,
-        perms = NX.util.Permissions,
         list = me.getList(),
-        selectedModels, deleteButton;
+        selectedModels = list.getSelectionModel().getSelection(),
+        button = me.getList().down('button[action=delete]');
 
-    if (list) {
-      selectedModels = me.getList().getSelectionModel().getSelection();
-      deleteButton = me.getList().down('button[action=delete]');
-
-      if (selectedModels.length > 0 && perms.check('nexus:repositories', 'delete')) {
-        deleteButton.enable();
-      }
-      else {
-        deleteButton.disable();
-      }
+    if (selectedModels.length > 0 && NX.util.Permissions.check('nexus:repositories', 'delete')) {
+      button.enable();
+    }
+    else {
+      button.disable();
     }
   }
 
