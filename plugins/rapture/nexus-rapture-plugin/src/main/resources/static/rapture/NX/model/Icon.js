@@ -12,9 +12,6 @@
  */
 Ext.define('NX.model.Icon', {
   extend: 'Ext.data.Model',
-  requires: [
-    'NX.util.Url'
-  ],
 
   idProperty: 'cls',
   fields: [

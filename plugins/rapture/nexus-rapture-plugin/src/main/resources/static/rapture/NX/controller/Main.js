@@ -91,6 +91,16 @@ Ext.define('NX.controller.Main', {
         file: 'book_picture.png',
         variants: ['x16', 'x32']
       },
+      'user-settings': {
+        file: 'setting_tools.png',
+        variants: ['x16', 'x32']
+      },
+      'user-logout': {
+        file: 'door_out.png',
+            variants: ['x16', 'x32']
+      },
+
+      // FIXME: These should be moved elsewhere once we have feature implemented
       'feature-system': {
         file: 'cog.png',
         variants: ['x16', 'x32']
@@ -479,13 +489,16 @@ Ext.define('NX.controller.Main', {
   },
 
   refresh: function () {
-    var refreshables = Ext.ComponentQuery.query('panel[refreshable=true]');
+    var me = this,
+        refreshables = Ext.ComponentQuery.query('panel[refreshable=true]');
 
     if (refreshables) {
       Ext.each(refreshables, function (refreshable) {
         refreshable.fireEvent('refresh', refreshable);
       });
     }
+
+    me.getApplication().getMessageController().addMessage({ text: 'Refreshed', type: 'default'});
   },
 
   /**
@@ -500,10 +513,16 @@ Ext.define('NX.controller.Main', {
         features = [features];
       }
       Ext.each(features, function (feature) {
+        // TODO: Should validate the required fields, for now bitch about some
+        if (!feature.bookmark) {
+          me.logWarn('Feature missing bookmark; path=' + feature.path);
+        }
+
         // HACK: Auto-set iconCls from icon name for use in tree panels
         if (feature.iconName) {
           feature.iconCls = NX.controller.Icon.iconCls(feature.iconName, 'x16');
         }
+
         me.getFeatureStore().add(feature);
       });
     }
