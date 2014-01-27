@@ -10,7 +10,7 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.security.controller.Privileges', {
+Ext.define('NX.coreui.controller.Privileges', {
   extend: 'NX.controller.MasterDetail',
 
   list: 'nx-privilege-list',

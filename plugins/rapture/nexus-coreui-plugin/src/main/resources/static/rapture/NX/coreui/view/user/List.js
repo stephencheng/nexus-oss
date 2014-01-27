@@ -10,11 +10,11 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.security.view.role.List', {
+Ext.define('NX.coreui.view.user.List', {
   extend: 'Ext.grid.Panel',
-  alias: 'widget.nx-role-list',
+  alias: 'widget.nx-user-list',
 
-  store: 'Role',
+  store: 'User',
 
   columns: [
     {
@@ -22,12 +22,15 @@ Ext.define('NX.security.view.role.List', {
       width: 36,
       iconVariant: 'x16',
       iconName: function () {
-        return 'feature-roles';
+        return 'feature-users';
       }
     },
-    {header: 'Name', dataIndex: 'name', flex: 1},
+    {header: 'User Id', dataIndex: 'id'},
     {header: 'Realm', dataIndex: 'realm'},
-    {header: 'Description', dataIndex: 'description', flex: 1}
+    {header: 'First name', dataIndex: 'firstName'},
+    {header: 'Last name', dataIndex: 'lastName', width: 300},
+    {header: 'Email', dataIndex: 'email', width: 250},
+    {header: 'Status', dataIndex: 'status'}
   ],
 
   tbar: [

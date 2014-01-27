@@ -19,6 +19,9 @@ Ext.define('NX.coreui.app.PluginConfig', {
   controllers: [
     'NX.coreui.controller.Repositories',
     // TODO remove this bellow as is just an example on how to add an extra tab to a master detail
-    'NX.coreui.controller.RepositoriesExtraTab'
+    'NX.coreui.controller.RepositoriesExtraTab',
+    'NX.coreui.controller.Privileges',
+    'NX.coreui.controller.Roles',
+    'NX.coreui.controller.Users'
   ]
 });

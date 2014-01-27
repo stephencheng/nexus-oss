@@ -10,14 +10,13 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.security.model.User', {
-  extend: 'Ext.data.Model',
-  fields: [
-    'id',
-    'realm',
-    'firstName',
-    'lastName',
-    'email',
-    'status'
-  ]
+Ext.define('NX.coreui.view.privilege.Feature', {
+  extend: 'NX.view.masterdetail.Panel',
+  alias: 'widget.nx-privilege-feature',
+
+  list: 'nx-privilege-list',
+  emptyText: 'Please select a privilege or create a new privilege',
+
+  iconName: 'feature-privileges'
+
 });

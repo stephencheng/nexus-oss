@@ -181,7 +181,7 @@ Ext.define('NX.controller.User', {
         if (count == me.SECONDS_TO_EXPIRE) {
           win.close();
           me.getApplication().getMessageController().addMessage({
-            text: 'Session expired after being inactive for ' + me.user.maxInactiveInterval + ' minutes',
+            text: 'Session expired after being inactive for ' + NX.app.settings.sessionTimeout + ' minutes',
             type: 'warning'
           });
           me.logout();
