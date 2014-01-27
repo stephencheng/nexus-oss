@@ -97,7 +97,7 @@ Ext.define('NX.controller.Main', {
       },
       'user-logout': {
         file: 'door_out.png',
-            variants: ['x16', 'x32']
+        variants: ['x16', 'x32']
       },
 
       // FIXME: These should be moved elsewhere once we have feature implemented
@@ -209,7 +209,7 @@ Ext.define('NX.controller.Main', {
     });
 
     // HACK: Show some items only if user is logged in for testing
-    var visibleIfLoggedIn = function() {
+    var visibleIfLoggedIn = function () {
       return me.getApplication().getUserController().hasUser();
     };
 
@@ -422,7 +422,12 @@ Ext.define('NX.controller.Main', {
       me.logDebug('Selecting feature view: ' + view);
 
       // create new view and replace any current view
-      cmp = me.getView(view).create();
+      if (Ext.isString(view)) {
+        cmp = me.getView(view).create();
+      }
+      else {
+        cmp = Ext.widget(view);
+      }
 
       // remove the current contents
       content.removeAll();
@@ -599,8 +604,8 @@ Ext.define('NX.controller.Main', {
 
     // FIXME: This needs to sort by weight, and then alpha for same weight.
     me.getFeatureMenuStore().sort([
-        {property: 'weight', direction: 'ASC'},
-        {property: 'text', direction: 'ASC'}
+      {property: 'weight', direction: 'ASC'},
+      {property: 'text', direction: 'ASC'}
     ]);
 
     // check out if current view is still valid. if not go to dashboard

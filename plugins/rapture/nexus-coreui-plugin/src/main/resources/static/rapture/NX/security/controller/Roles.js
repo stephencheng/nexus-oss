@@ -40,7 +40,7 @@ Ext.define('NX.security.controller.Roles', {
   },
   features: {
     path: '/Security/Roles',
-    view: 'NX.security.view.role.Feature',
+    view: { xtype: 'nx-role-feature' },
     bookmark: 'roles',
     weight: 20,
     iconName: 'feature-roles',

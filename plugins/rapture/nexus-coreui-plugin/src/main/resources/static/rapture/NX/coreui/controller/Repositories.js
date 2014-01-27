@@ -45,7 +45,7 @@ Ext.define('NX.coreui.controller.Repositories', {
   },
   features: {
     path: '/Repository/Repositories',
-    view: 'NX.coreui.view.Repositories',
+    view: { xtype: 'nx-repository-feature' },
     bookmark: 'repositories',
     iconName: 'feature-repositories',
     visible: function () {

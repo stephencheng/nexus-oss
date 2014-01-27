@@ -40,7 +40,7 @@ Ext.define('NX.security.controller.Users', {
   },
   features: {
     path: '/Security/Users',
-    view: 'NX.security.view.user.Feature',
+    view: { xtype: 'nx-user-feature' },
     bookmark: 'users',
     weight: 30,
     iconName: 'feature-users',

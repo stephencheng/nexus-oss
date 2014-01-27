@@ -40,7 +40,7 @@ Ext.define('NX.security.controller.Privileges', {
   },
   features: {
     path: '/Security/Privileges',
-    view: 'NX.security.view.privilege.Feature',
+    view: { xtype: 'nx-privilege-feature' },
     bookmark: 'privileges',
     weight: 10,
     iconName: 'feature-privileges',

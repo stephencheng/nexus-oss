@@ -51,7 +51,7 @@ Ext.define('NX.capability.controller.Capabilities', {
   },
   features: {
     path: '/System/Capabilities',
-    view: 'NX.capability.view.Feature',
+    view: { xtype: 'nx-capability-feature' },
     bookmark: 'capabilities',
     visible: function () {
       return NX.util.Permissions.check('nexus:capabilities', 'read');
