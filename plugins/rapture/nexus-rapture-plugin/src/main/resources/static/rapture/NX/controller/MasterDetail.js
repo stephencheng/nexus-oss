@@ -73,6 +73,20 @@ Ext.define('NX.controller.MasterDetail', {
     });
   },
 
+  loadStoresAndSelect: function (id) {
+    var me = this,
+        list = me.getList(),
+        store = list.getStore();
+
+    if (id) {
+      store.on('load', function (store) {
+        list.getSelectionModel().select(store.getById(id));
+      }, me, { single: true });
+    }
+
+    me.loadStores();
+  },
+
   onStoreLoad: function () {
     var me = this,
         list = me.getList(),

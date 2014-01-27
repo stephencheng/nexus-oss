@@ -102,7 +102,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
       success: function (form, action) {
         me.getApplication().getMessageController().addMessage({text: 'Target created', type: 'success' });
         win.close();
-        me.loadStores();
+        me.loadStoresAndSelect(action.result.data);
       }
     });
   },
