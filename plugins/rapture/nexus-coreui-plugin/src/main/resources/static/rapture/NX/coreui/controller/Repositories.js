@@ -87,8 +87,6 @@ Ext.define('NX.coreui.controller.Repositories', {
         'Url': NX.util.Url.asLink(model.get('url'))
       });
     }
-
-    me.enableDeleteButton();
   },
 
   deleteRepository: function () {

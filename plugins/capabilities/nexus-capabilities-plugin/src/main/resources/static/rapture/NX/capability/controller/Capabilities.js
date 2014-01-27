@@ -119,8 +119,6 @@ Ext.define('NX.capability.controller.Capabilities', {
       me.showAbout(capabilityTypeModel);
       me.showStatus(model);
     }
-
-    me.enableDeleteButton();
   },
 
   showTitle: function (model) {
