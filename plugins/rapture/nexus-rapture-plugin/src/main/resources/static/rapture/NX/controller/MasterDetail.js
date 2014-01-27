@@ -51,10 +51,10 @@ Ext.define('NX.controller.MasterDetail', {
       }
     });
 
-    if (Ext.isDefined(me.icons)) {
+    if (me.icons) {
       me.getApplication().getIconController().addIcons(me.icons);
     }
-    if (Ext.isDefined(me.features)) {
+    if (me.features) {
       me.getApplication().getMainController().registerFeature(me.features);
     }
   },
@@ -64,12 +64,6 @@ Ext.define('NX.controller.MasterDetail', {
   onPermissionsChanged: Ext.emptyFn,
 
   getDescription: Ext.emptyFn,
-
-  isListRendered: function () {
-    var me = this;
-
-    return Ext.isDefined(me.getList());
-  },
 
   loadStores: function () {
     var me = this;
@@ -81,10 +75,11 @@ Ext.define('NX.controller.MasterDetail', {
 
   onStoreLoad: function () {
     var me = this,
+        list = me.getList(),
         sm;
 
-    if (me.isListRendered()) {
-      sm = me.getList().getSelectionModel();
+    if (list) {
+      sm = list.getSelectionModel();
       me.onSelectionChange(sm, sm.getSelection());
     }
   },
@@ -94,7 +89,7 @@ Ext.define('NX.controller.MasterDetail', {
         tabs = me.getList().up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
         model;
 
-    if (Ext.isDefined(selected) && selected.length > 0) {
+    if (selected.length) {
       model = selected[0];
       tabs.getLayout().setActiveItem(1);
       tabs.setDescription(me.getDescription(model));
@@ -110,9 +105,10 @@ Ext.define('NX.controller.MasterDetail', {
   },
 
   applyPermissions: function () {
-    var me = this;
+    var me = this,
+        list = me.getList();
 
-    if (me.isListRendered()) {
+    if (list) {
       me.enableNewButton();
       me.enableDeleteButton();
       me.onPermissionsChanged();
@@ -132,9 +128,9 @@ Ext.define('NX.controller.MasterDetail', {
         list = me.getList(),
         button;
 
-    if (Ext.isDefined(list)) {
+    if (list) {
       button = list.down('button[action=new]');
-      if (Ext.isDefined(button)) {
+      if (button) {
         if (me.shouldEnableNewButton()) {
           button.enable();
         }
@@ -158,10 +154,10 @@ Ext.define('NX.controller.MasterDetail', {
         list = me.getList(),
         selectedModels, button;
 
-    if (Ext.isDefined(list)) {
+    if (list) {
       selectedModels = list.getSelectionModel().getSelection();
       button = list.down('button[action=delete]');
-      if (Ext.isDefined(button)) {
+      if (button) {
         if (selectedModels.length > 0 && me.shouldEnableDeleteButton()) {
           button.enable();
         }
