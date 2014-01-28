@@ -324,6 +324,9 @@
 
 /*</if slicer>*/
 /* */
+/**
+ * ui: 'warning'
+ */
 /* line 255, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
 .x-btn-warning-small {
   border-color: #c56213;
@@ -832,6 +835,9 @@
 
 /*</if slicer>*/
 /* */
+/**
+ * ui: 'success'
+ */
 /* line 255, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
 .x-btn-success-small {
   border-color: #04642a;
@@ -1340,6 +1346,9 @@
 
 /*</if slicer>*/
 /* */
+/**
+ * ui: 'header'
+ */
 /* line 255, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
 .x-btn-header-toolbar-medium {
   border-color: transparent;
@@ -3453,7 +3462,7 @@
  */
 /* line 189, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-message-default {
-  border-color: #606060;
+  border-color: #1f1f1f;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -3468,8 +3477,8 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  padding: 0px 0px 0px 0px;
-  border-width: 5px;
+  padding: 4px 4px 4px 4px;
+  border-width: 2px;
   border-style: solid;
   background-color: white;
 }
@@ -3493,27 +3502,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-0-0-0-0;
+  font-family: dh-4-4-4-4-2-2-2-2-4-4-4-4;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3533,31 +3542,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-tr,
 .x-window-message-default-br,
 .x-window-message-default-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-tl,
 .x-window-message-default-bl,
 .x-window-message-default-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3583,7 +3592,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-default-mc {
-  padding: 0px 0px 0px 0px;
+  padding: 2px 2px 2px 2px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3617,13 +3626,13 @@
 /* line 224, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-header-message-default {
   font-size: 13px;
-  border-color: #606060;
+  border-color: #1f1f1f;
   zoom: 1;
-  background-color: #606060;
+  background-color: #444444;
 }
 /* line 230, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-header-message-default .x-tool-img {
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 241, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
@@ -3639,8 +3648,8 @@
 }
 /* line 36, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/rotate-element.scss */
 .x-ie9m .x-window-header-message-default-vertical .x-window-header-text-container {
-  background-color: #606060;
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1), progid:DXImageTransform.Microsoft.Chroma(color=#606060);
+  background-color: #444444;
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1), progid:DXImageTransform.Microsoft.Chroma(color=#444444);
 }
 
 /* line 251, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
@@ -3668,15 +3677,15 @@
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 5px 3px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 187, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-mc {
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 234, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3693,27 +3702,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-frameInfo {
-  font-family: dh-4-4-0-0-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-0-0-2-2-2-2-5-5-3-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3733,31 +3742,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-tr,
 .x-window-header-message-default-top-br,
 .x-window-header-message-default-top-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-tl,
 .x-window-header-message-default-top-bl,
 .x-window-header-message-default-top-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-bc {
-  height: 5px;
+  height: 2px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3783,7 +3792,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-top-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3816,15 +3825,15 @@
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 3px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 187, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-mc {
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 234, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3841,27 +3850,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-frameInfo {
-  font-family: dh-0-4-4-0-5-5-5-5-5-5-5-5;
+  font-family: dh-0-4-4-0-2-2-2-2-5-5-5-3;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3881,31 +3890,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-tr,
 .x-window-header-message-default-right-br,
 .x-window-header-message-default-right-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-tl,
 .x-window-header-message-default-right-bl,
 .x-window-header-message-default-right-ml {
-  padding-left: 5px;
+  padding-left: 2px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3931,7 +3940,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-right-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3964,15 +3973,15 @@
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 3px 5px 5px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 187, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-mc {
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 234, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -3989,27 +3998,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-frameInfo {
-  font-family: dh-0-0-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-0-0-4-4-2-2-2-2-3-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4029,31 +4038,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-tr,
 .x-window-header-message-default-bottom-br,
 .x-window-header-message-default-bottom-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-tl,
 .x-window-header-message-default-bottom-bl,
 .x-window-header-message-default-bottom-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-tc {
-  height: 5px;
+  height: 2px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4079,7 +4088,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-bottom-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4112,15 +4121,15 @@
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 3px 5px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 187, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-mc {
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 234, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4137,27 +4146,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-frameInfo {
-  font-family: dh-4-0-0-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-0-0-4-2-2-2-2-5-3-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4177,31 +4186,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-tr,
 .x-window-header-message-default-left-br,
 .x-window-header-message-default-left-mr {
-  padding-right: 5px;
+  padding-right: 2px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-tl,
 .x-window-header-message-default-left-bl,
 .x-window-header-message-default-left-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4227,7 +4236,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-left-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4254,14 +4263,14 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 187, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-mc {
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 234, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4278,27 +4287,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4318,31 +4327,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-tr,
 .x-window-header-message-default-collapsed-top-br,
 .x-window-header-message-default-collapsed-top-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-tl,
 .x-window-header-message-default-collapsed-top-bl,
 .x-window-header-message-default-collapsed-top-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4368,7 +4377,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-top-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4395,14 +4404,14 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 187, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-mc {
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 234, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4419,27 +4428,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4459,31 +4468,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-tr,
 .x-window-header-message-default-collapsed-right-br,
 .x-window-header-message-default-collapsed-right-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-tl,
 .x-window-header-message-default-collapsed-right-bl,
 .x-window-header-message-default-collapsed-right-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4509,7 +4518,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-right-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4536,14 +4545,14 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 187, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-mc {
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 234, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4560,27 +4569,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4600,31 +4609,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-tr,
 .x-window-header-message-default-collapsed-bottom-br,
 .x-window-header-message-default-collapsed-bottom-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-tl,
 .x-window-header-message-default-collapsed-bottom-bl,
 .x-window-header-message-default-collapsed-bottom-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4650,7 +4659,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-bottom-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4677,14 +4686,14 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 187, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-mc {
-  background-color: #606060;
+  background-color: #444444;
 }
 
 /* line 234, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4701,27 +4710,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4741,31 +4750,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-tr,
 .x-window-header-message-default-collapsed-left-br,
 .x-window-header-message-default-collapsed-left-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-tl,
 .x-window-header-message-default-collapsed-left-bl,
 .x-window-header-message-default-collapsed-left-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4791,7 +4800,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-default-collapsed-left-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -4828,7 +4837,7 @@
 }
 /* line 399, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-ie8m .x-window-header-message-default .x-window-header-glyph {
-  color: #afafaf;
+  color: #a1a1a1;
 }
 
 /* line 408, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
@@ -4869,53 +4878,12 @@
 
 /* line 499, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-header-message-default {
-  border-width: 5px !important;
+  border-width: 2px !important;
 }
 
 /* line 509, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-nbr .x-window-message-default-collapsed .x-window-header {
   border-width: 0 !important;
-}
-
-/* line 520, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-default-resizable {
-  overflow: visible;
-}
-/* line 525, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-default-resizable .x-window-handle-north-br {
-  top: -5px;
-}
-/* line 528, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-default-resizable .x-window-handle-south-br {
-  bottom: -5px;
-}
-/* line 531, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-default-resizable .x-window-handle-east-br {
-  right: -5px;
-}
-/* line 534, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-default-resizable .x-window-handle-west-br {
-  left: -5px;
-}
-/* line 537, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-default-resizable .x-window-handle-northwest-br {
-  left: -5px;
-  top: -5px;
-}
-/* line 541, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-default-resizable .x-window-handle-northeast-br {
-  right: -5px;
-  top: -5px;
-}
-/* line 545, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-default-resizable .x-window-handle-southeast-br {
-  right: -5px;
-  bottom: -5px;
-}
-/* line 549, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-default-resizable .x-window-handle-southwest-br {
-  left: -5px;
-  bottom: -5px;
 }
 
 /* line 2, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/border-management.scss */
@@ -5053,8 +5021,8 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  padding: 0px 0px 0px 0px;
-  border-width: 5px;
+  padding: 4px 4px 4px 4px;
+  border-width: 2px;
   border-style: solid;
   background-color: white;
 }
@@ -5078,27 +5046,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-0-0-0-0;
+  font-family: dh-4-4-4-4-2-2-2-2-4-4-4-4;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5118,31 +5086,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-tr,
 .x-window-message-primary-br,
 .x-window-message-primary-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-tl,
 .x-window-message-primary-bl,
 .x-window-message-primary-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5168,7 +5136,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-primary-mc {
-  padding: 0px 0px 0px 0px;
+  padding: 2px 2px 2px 2px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5189,11 +5157,11 @@
 /* */
 /* line 210, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-body-message-primary {
-  border-color: #1c5e9b;
+  border-color: #606060;
   border-width: 1px;
   border-style: solid;
-  background: #2476c3;
-  color: white;
+  background: white;
+  color: black;
   font-size: 13px;
   font-weight: normal;
   font-family: arial, tahoma, verdana, helvetica, sans-serif;
@@ -5253,8 +5221,8 @@
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 5px 3px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #2476c3;
 }
@@ -5278,27 +5246,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-frameInfo {
-  font-family: dh-4-4-0-0-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-0-0-2-2-2-2-5-5-3-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5318,31 +5286,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-tr,
 .x-window-header-message-primary-top-br,
 .x-window-header-message-primary-top-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-tl,
 .x-window-header-message-primary-top-bl,
 .x-window-header-message-primary-top-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-bc {
-  height: 5px;
+  height: 2px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5368,7 +5336,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-top-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5401,8 +5369,8 @@
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 3px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #2476c3;
 }
@@ -5426,27 +5394,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-frameInfo {
-  font-family: dh-0-4-4-0-5-5-5-5-5-5-5-5;
+  font-family: dh-0-4-4-0-2-2-2-2-5-5-5-3;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5466,31 +5434,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-tr,
 .x-window-header-message-primary-right-br,
 .x-window-header-message-primary-right-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-tl,
 .x-window-header-message-primary-right-bl,
 .x-window-header-message-primary-right-ml {
-  padding-left: 5px;
+  padding-left: 2px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5516,7 +5484,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-right-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5549,8 +5517,8 @@
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 3px 5px 5px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #2476c3;
 }
@@ -5574,27 +5542,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-frameInfo {
-  font-family: dh-0-0-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-0-0-4-4-2-2-2-2-3-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5614,31 +5582,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-tr,
 .x-window-header-message-primary-bottom-br,
 .x-window-header-message-primary-bottom-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-tl,
 .x-window-header-message-primary-bottom-bl,
 .x-window-header-message-primary-bottom-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-tc {
-  height: 5px;
+  height: 2px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5664,7 +5632,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-bottom-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5697,8 +5665,8 @@
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 3px 5px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #2476c3;
 }
@@ -5722,27 +5690,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-frameInfo {
-  font-family: dh-4-0-0-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-0-0-4-2-2-2-2-5-3-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5762,31 +5730,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-tr,
 .x-window-header-message-primary-left-br,
 .x-window-header-message-primary-left-mr {
-  padding-right: 5px;
+  padding-right: 2px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-tl,
 .x-window-header-message-primary-left-bl,
 .x-window-header-message-primary-left-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5812,7 +5780,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-left-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5839,7 +5807,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #2476c3;
 }
@@ -5863,27 +5831,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5903,31 +5871,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-tr,
 .x-window-header-message-primary-collapsed-top-br,
 .x-window-header-message-primary-collapsed-top-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-tl,
 .x-window-header-message-primary-collapsed-top-bl,
 .x-window-header-message-primary-collapsed-top-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5953,7 +5921,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-top-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -5980,7 +5948,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #2476c3;
 }
@@ -6004,27 +5972,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6044,31 +6012,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-tr,
 .x-window-header-message-primary-collapsed-right-br,
 .x-window-header-message-primary-collapsed-right-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-tl,
 .x-window-header-message-primary-collapsed-right-bl,
 .x-window-header-message-primary-collapsed-right-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6094,7 +6062,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-right-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6121,7 +6089,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #2476c3;
 }
@@ -6145,27 +6113,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6185,31 +6153,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-tr,
 .x-window-header-message-primary-collapsed-bottom-br,
 .x-window-header-message-primary-collapsed-bottom-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-tl,
 .x-window-header-message-primary-collapsed-bottom-bl,
 .x-window-header-message-primary-collapsed-bottom-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6235,7 +6203,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-bottom-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6262,7 +6230,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #2476c3;
 }
@@ -6286,27 +6254,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6326,31 +6294,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-tr,
 .x-window-header-message-primary-collapsed-left-br,
 .x-window-header-message-primary-collapsed-left-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-tl,
 .x-window-header-message-primary-collapsed-left-bl,
 .x-window-header-message-primary-collapsed-left-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6376,7 +6344,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-primary-collapsed-left-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6454,53 +6422,12 @@
 
 /* line 499, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-header-message-primary {
-  border-width: 5px !important;
+  border-width: 2px !important;
 }
 
 /* line 509, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-nbr .x-window-message-primary-collapsed .x-window-header {
   border-width: 0 !important;
-}
-
-/* line 520, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-primary-resizable {
-  overflow: visible;
-}
-/* line 525, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-primary-resizable .x-window-handle-north-br {
-  top: -5px;
-}
-/* line 528, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-primary-resizable .x-window-handle-south-br {
-  bottom: -5px;
-}
-/* line 531, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-primary-resizable .x-window-handle-east-br {
-  right: -5px;
-}
-/* line 534, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-primary-resizable .x-window-handle-west-br {
-  left: -5px;
-}
-/* line 537, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-primary-resizable .x-window-handle-northwest-br {
-  left: -5px;
-  top: -5px;
-}
-/* line 541, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-primary-resizable .x-window-handle-northeast-br {
-  right: -5px;
-  top: -5px;
-}
-/* line 545, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-primary-resizable .x-window-handle-southeast-br {
-  right: -5px;
-  bottom: -5px;
-}
-/* line 549, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-primary-resizable .x-window-handle-southwest-br {
-  left: -5px;
-  bottom: -5px;
 }
 
 /* line 2, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/border-management.scss */
@@ -6638,8 +6565,8 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  padding: 0px 0px 0px 0px;
-  border-width: 5px;
+  padding: 4px 4px 4px 4px;
+  border-width: 2px;
   border-style: solid;
   background-color: white;
 }
@@ -6663,27 +6590,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-0-0-0-0;
+  font-family: dh-4-4-4-4-2-2-2-2-4-4-4-4;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6703,31 +6630,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-tr,
 .x-window-message-danger-br,
 .x-window-message-danger-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-tl,
 .x-window-message-danger-bl,
 .x-window-message-danger-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6753,7 +6680,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-danger-mc {
-  padding: 0px 0px 0px 0px;
+  padding: 2px 2px 2px 2px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6774,11 +6701,11 @@
 /* */
 /* line 210, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-body-message-danger {
-  border-color: #802420;
+  border-color: #606060;
   border-width: 1px;
   border-style: solid;
-  background: #d64b46;
-  color: white;
+  background: white;
+  color: black;
   font-size: 13px;
   font-weight: normal;
   font-family: arial, tahoma, verdana, helvetica, sans-serif;
@@ -6838,8 +6765,8 @@
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 5px 3px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #d64b46;
 }
@@ -6863,27 +6790,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-frameInfo {
-  font-family: dh-4-4-0-0-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-0-0-2-2-2-2-5-5-3-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6903,31 +6830,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-tr,
 .x-window-header-message-danger-top-br,
 .x-window-header-message-danger-top-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-tl,
 .x-window-header-message-danger-top-bl,
 .x-window-header-message-danger-top-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-bc {
-  height: 5px;
+  height: 2px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6953,7 +6880,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-top-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -6986,8 +6913,8 @@
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 3px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #d64b46;
 }
@@ -7011,27 +6938,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-frameInfo {
-  font-family: dh-0-4-4-0-5-5-5-5-5-5-5-5;
+  font-family: dh-0-4-4-0-2-2-2-2-5-5-5-3;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7051,31 +6978,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-tr,
 .x-window-header-message-danger-right-br,
 .x-window-header-message-danger-right-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-tl,
 .x-window-header-message-danger-right-bl,
 .x-window-header-message-danger-right-ml {
-  padding-left: 5px;
+  padding-left: 2px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7101,7 +7028,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-right-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7134,8 +7061,8 @@
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 3px 5px 5px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #d64b46;
 }
@@ -7159,27 +7086,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-frameInfo {
-  font-family: dh-0-0-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-0-0-4-4-2-2-2-2-3-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7199,31 +7126,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-tr,
 .x-window-header-message-danger-bottom-br,
 .x-window-header-message-danger-bottom-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-tl,
 .x-window-header-message-danger-bottom-bl,
 .x-window-header-message-danger-bottom-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-tc {
-  height: 5px;
+  height: 2px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7249,7 +7176,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-bottom-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7282,8 +7209,8 @@
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 3px 5px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #d64b46;
 }
@@ -7307,27 +7234,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-frameInfo {
-  font-family: dh-4-0-0-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-0-0-4-2-2-2-2-5-3-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7347,31 +7274,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-tr,
 .x-window-header-message-danger-left-br,
 .x-window-header-message-danger-left-mr {
-  padding-right: 5px;
+  padding-right: 2px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-tl,
 .x-window-header-message-danger-left-bl,
 .x-window-header-message-danger-left-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7397,7 +7324,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-left-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7424,7 +7351,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #d64b46;
 }
@@ -7448,27 +7375,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7488,31 +7415,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-tr,
 .x-window-header-message-danger-collapsed-top-br,
 .x-window-header-message-danger-collapsed-top-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-tl,
 .x-window-header-message-danger-collapsed-top-bl,
 .x-window-header-message-danger-collapsed-top-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7538,7 +7465,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-top-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7565,7 +7492,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #d64b46;
 }
@@ -7589,27 +7516,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7629,31 +7556,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-tr,
 .x-window-header-message-danger-collapsed-right-br,
 .x-window-header-message-danger-collapsed-right-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-tl,
 .x-window-header-message-danger-collapsed-right-bl,
 .x-window-header-message-danger-collapsed-right-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7679,7 +7606,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-right-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7706,7 +7633,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #d64b46;
 }
@@ -7730,27 +7657,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7770,31 +7697,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-tr,
 .x-window-header-message-danger-collapsed-bottom-br,
 .x-window-header-message-danger-collapsed-bottom-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-tl,
 .x-window-header-message-danger-collapsed-bottom-bl,
 .x-window-header-message-danger-collapsed-bottom-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7820,7 +7747,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-bottom-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7847,7 +7774,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #d64b46;
 }
@@ -7871,27 +7798,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7911,31 +7838,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-tr,
 .x-window-header-message-danger-collapsed-left-br,
 .x-window-header-message-danger-collapsed-left-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-tl,
 .x-window-header-message-danger-collapsed-left-bl,
 .x-window-header-message-danger-collapsed-left-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -7961,7 +7888,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-danger-collapsed-left-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8039,53 +7966,12 @@
 
 /* line 499, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-header-message-danger {
-  border-width: 5px !important;
+  border-width: 2px !important;
 }
 
 /* line 509, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-nbr .x-window-message-danger-collapsed .x-window-header {
   border-width: 0 !important;
-}
-
-/* line 520, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-danger-resizable {
-  overflow: visible;
-}
-/* line 525, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-danger-resizable .x-window-handle-north-br {
-  top: -5px;
-}
-/* line 528, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-danger-resizable .x-window-handle-south-br {
-  bottom: -5px;
-}
-/* line 531, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-danger-resizable .x-window-handle-east-br {
-  right: -5px;
-}
-/* line 534, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-danger-resizable .x-window-handle-west-br {
-  left: -5px;
-}
-/* line 537, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-danger-resizable .x-window-handle-northwest-br {
-  left: -5px;
-  top: -5px;
-}
-/* line 541, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-danger-resizable .x-window-handle-northeast-br {
-  right: -5px;
-  top: -5px;
-}
-/* line 545, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-danger-resizable .x-window-handle-southeast-br {
-  right: -5px;
-  bottom: -5px;
-}
-/* line 549, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-danger-resizable .x-window-handle-southwest-br {
-  left: -5px;
-  bottom: -5px;
 }
 
 /* line 2, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/border-management.scss */
@@ -8223,8 +8109,8 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  padding: 0px 0px 0px 0px;
-  border-width: 5px;
+  padding: 4px 4px 4px 4px;
+  border-width: 2px;
   border-style: solid;
   background-color: white;
 }
@@ -8248,27 +8134,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-0-0-0-0;
+  font-family: dh-4-4-4-4-2-2-2-2-4-4-4-4;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8288,31 +8174,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-tr,
 .x-window-message-warning-br,
 .x-window-message-warning-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-tl,
 .x-window-message-warning-bl,
 .x-window-message-warning-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8338,7 +8224,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-warning-mc {
-  padding: 0px 0px 0px 0px;
+  padding: 2px 2px 2px 2px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8359,11 +8245,11 @@
 /* */
 /* line 210, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-body-message-warning {
-  border-color: #c06a25;
+  border-color: #606060;
   border-width: 1px;
   border-style: solid;
-  background: #f69e40;
-  color: white;
+  background: white;
+  color: black;
   font-size: 13px;
   font-weight: normal;
   font-family: arial, tahoma, verdana, helvetica, sans-serif;
@@ -8423,8 +8309,8 @@
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 5px 3px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #f69e40;
 }
@@ -8448,27 +8334,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-frameInfo {
-  font-family: dh-4-4-0-0-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-0-0-2-2-2-2-5-5-3-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8488,31 +8374,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-tr,
 .x-window-header-message-warning-top-br,
 .x-window-header-message-warning-top-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-tl,
 .x-window-header-message-warning-top-bl,
 .x-window-header-message-warning-top-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-bc {
-  height: 5px;
+  height: 2px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8538,7 +8424,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-top-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8571,8 +8457,8 @@
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 3px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #f69e40;
 }
@@ -8596,27 +8482,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-frameInfo {
-  font-family: dh-0-4-4-0-5-5-5-5-5-5-5-5;
+  font-family: dh-0-4-4-0-2-2-2-2-5-5-5-3;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8636,31 +8522,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-tr,
 .x-window-header-message-warning-right-br,
 .x-window-header-message-warning-right-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-tl,
 .x-window-header-message-warning-right-bl,
 .x-window-header-message-warning-right-ml {
-  padding-left: 5px;
+  padding-left: 2px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8686,7 +8572,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-right-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8719,8 +8605,8 @@
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 3px 5px 5px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #f69e40;
 }
@@ -8744,27 +8630,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-frameInfo {
-  font-family: dh-0-0-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-0-0-4-4-2-2-2-2-3-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8784,31 +8670,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-tr,
 .x-window-header-message-warning-bottom-br,
 .x-window-header-message-warning-bottom-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-tl,
 .x-window-header-message-warning-bottom-bl,
 .x-window-header-message-warning-bottom-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-tc {
-  height: 5px;
+  height: 2px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8834,7 +8720,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-bottom-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8867,8 +8753,8 @@
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 3px 5px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #f69e40;
 }
@@ -8892,27 +8778,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-frameInfo {
-  font-family: dh-4-0-0-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-0-0-4-2-2-2-2-5-3-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8932,31 +8818,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-tr,
 .x-window-header-message-warning-left-br,
 .x-window-header-message-warning-left-mr {
-  padding-right: 5px;
+  padding-right: 2px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-tl,
 .x-window-header-message-warning-left-bl,
 .x-window-header-message-warning-left-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -8982,7 +8868,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-left-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9009,7 +8895,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #f69e40;
 }
@@ -9033,27 +8919,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9073,31 +8959,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-tr,
 .x-window-header-message-warning-collapsed-top-br,
 .x-window-header-message-warning-collapsed-top-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-tl,
 .x-window-header-message-warning-collapsed-top-bl,
 .x-window-header-message-warning-collapsed-top-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9123,7 +9009,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-top-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9150,7 +9036,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #f69e40;
 }
@@ -9174,27 +9060,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9214,31 +9100,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-tr,
 .x-window-header-message-warning-collapsed-right-br,
 .x-window-header-message-warning-collapsed-right-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-tl,
 .x-window-header-message-warning-collapsed-right-bl,
 .x-window-header-message-warning-collapsed-right-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9264,7 +9150,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-right-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9291,7 +9177,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #f69e40;
 }
@@ -9315,27 +9201,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9355,31 +9241,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-tr,
 .x-window-header-message-warning-collapsed-bottom-br,
 .x-window-header-message-warning-collapsed-bottom-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-tl,
 .x-window-header-message-warning-collapsed-bottom-bl,
 .x-window-header-message-warning-collapsed-bottom-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9405,7 +9291,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-bottom-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9432,7 +9318,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #f69e40;
 }
@@ -9456,27 +9342,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9496,31 +9382,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-tr,
 .x-window-header-message-warning-collapsed-left-br,
 .x-window-header-message-warning-collapsed-left-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-tl,
 .x-window-header-message-warning-collapsed-left-bl,
 .x-window-header-message-warning-collapsed-left-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9546,7 +9432,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-warning-collapsed-left-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9624,53 +9510,12 @@
 
 /* line 499, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-header-message-warning {
-  border-width: 5px !important;
+  border-width: 2px !important;
 }
 
 /* line 509, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-nbr .x-window-message-warning-collapsed .x-window-header {
   border-width: 0 !important;
-}
-
-/* line 520, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-warning-resizable {
-  overflow: visible;
-}
-/* line 525, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-warning-resizable .x-window-handle-north-br {
-  top: -5px;
-}
-/* line 528, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-warning-resizable .x-window-handle-south-br {
-  bottom: -5px;
-}
-/* line 531, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-warning-resizable .x-window-handle-east-br {
-  right: -5px;
-}
-/* line 534, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-warning-resizable .x-window-handle-west-br {
-  left: -5px;
-}
-/* line 537, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-warning-resizable .x-window-handle-northwest-br {
-  left: -5px;
-  top: -5px;
-}
-/* line 541, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-warning-resizable .x-window-handle-northeast-br {
-  right: -5px;
-  top: -5px;
-}
-/* line 545, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-warning-resizable .x-window-handle-southeast-br {
-  right: -5px;
-  bottom: -5px;
-}
-/* line 549, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-warning-resizable .x-window-handle-southwest-br {
-  left: -5px;
-  bottom: -5px;
 }
 
 /* line 2, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/border-management.scss */
@@ -9808,8 +9653,8 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  padding: 0px 0px 0px 0px;
-  border-width: 5px;
+  padding: 4px 4px 4px 4px;
+  border-width: 2px;
   border-style: solid;
   background-color: white;
 }
@@ -9833,27 +9678,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-0-0-0-0;
+  font-family: dh-4-4-4-4-2-2-2-2-4-4-4-4;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9873,31 +9718,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-tr,
 .x-window-message-success-br,
 .x-window-message-success-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-tl,
 .x-window-message-success-bl,
 .x-window-message-success-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9923,7 +9768,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-message-success-mc {
-  padding: 0px 0px 0px 0px;
+  padding: 2px 2px 2px 2px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -9944,11 +9789,11 @@
 /* */
 /* line 210, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-body-message-success {
-  border-color: #408140;
+  border-color: #606060;
   border-width: 1px;
   border-style: solid;
-  background: #5ab45a;
-  color: white;
+  background: white;
+  color: black;
   font-size: 13px;
   font-weight: normal;
   font-family: arial, tahoma, verdana, helvetica, sans-serif;
@@ -10008,8 +9853,8 @@
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 5px 3px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #5ab45a;
 }
@@ -10033,27 +9878,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-frameInfo {
-  font-family: dh-4-4-0-0-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-0-0-2-2-2-2-5-5-3-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10073,31 +9918,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-tr,
 .x-window-header-message-success-top-br,
 .x-window-header-message-success-top-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-tl,
 .x-window-header-message-success-top-bl,
 .x-window-header-message-success-top-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-bc {
-  height: 5px;
+  height: 2px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10123,7 +9968,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-top-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10156,8 +10001,8 @@
   -moz-border-radius-bottomleft: 0;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 3px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #5ab45a;
 }
@@ -10181,27 +10026,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-frameInfo {
-  font-family: dh-0-4-4-0-5-5-5-5-5-5-5-5;
+  font-family: dh-0-4-4-0-2-2-2-2-5-5-5-3;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10221,31 +10066,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-tr,
 .x-window-header-message-success-right-br,
 .x-window-header-message-success-right-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-tl,
 .x-window-header-message-success-right-bl,
 .x-window-header-message-success-right-ml {
-  padding-left: 5px;
+  padding-left: 2px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10271,7 +10116,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-right-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10304,8 +10149,8 @@
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 3px 5px 5px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #5ab45a;
 }
@@ -10329,27 +10174,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-frameInfo {
-  font-family: dh-0-0-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-0-0-4-4-2-2-2-2-3-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10369,31 +10214,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-tr,
 .x-window-header-message-success-bottom-br,
 .x-window-header-message-success-bottom-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-tl,
 .x-window-header-message-success-bottom-bl,
 .x-window-header-message-success-bottom-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-tc {
-  height: 5px;
+  height: 2px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10419,7 +10264,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-bottom-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10452,8 +10297,8 @@
   -moz-border-radius-bottomleft: 4px;
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  padding: 5px 5px 5px 5px;
-  border-width: 5px 5px 5px 5px;
+  padding: 5px 3px 5px 5px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   background-color: #5ab45a;
 }
@@ -10477,27 +10322,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-frameInfo {
-  font-family: dh-4-0-0-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-0-0-4-2-2-2-2-5-3-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10517,31 +10362,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-tr,
 .x-window-header-message-success-left-br,
 .x-window-header-message-success-left-mr {
-  padding-right: 5px;
+  padding-right: 2px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-tl,
 .x-window-header-message-success-left-bl,
 .x-window-header-message-success-left-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10567,7 +10412,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-left-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10594,7 +10439,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #5ab45a;
 }
@@ -10618,27 +10463,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10658,31 +10503,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-tr,
 .x-window-header-message-success-collapsed-top-br,
 .x-window-header-message-success-collapsed-top-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-tl,
 .x-window-header-message-success-collapsed-top-bl,
 .x-window-header-message-success-collapsed-top-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10708,7 +10553,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-top-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10735,7 +10580,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #5ab45a;
 }
@@ -10759,27 +10604,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10799,31 +10644,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-tr,
 .x-window-header-message-success-collapsed-right-br,
 .x-window-header-message-success-collapsed-right-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-tl,
 .x-window-header-message-success-collapsed-right-bl,
 .x-window-header-message-success-collapsed-right-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10849,7 +10694,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-right-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10876,7 +10721,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #5ab45a;
 }
@@ -10900,27 +10745,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10940,31 +10785,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-tr,
 .x-window-header-message-success-collapsed-bottom-br,
 .x-window-header-message-success-collapsed-bottom-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-tl,
 .x-window-header-message-success-collapsed-bottom-bl,
 .x-window-header-message-success-collapsed-bottom-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -10990,7 +10835,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-bottom-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -11017,7 +10862,7 @@
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 5px 5px 5px 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   background-color: #5ab45a;
 }
@@ -11041,27 +10886,27 @@
 
 /* line 249, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-frameInfo {
-  font-family: dh-4-4-4-4-5-5-5-5-5-5-5-5;
+  font-family: dh-4-4-4-4-2-2-2-2-5-5-5-5;
 }
 
 /* line 315, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-tl {
-  background-position: 0 -10px;
+  background-position: 0 -8px;
 }
 
 /* line 319, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-tr {
-  background-position: right -15px;
+  background-position: right -12px;
 }
 
 /* line 323, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-bl {
-  background-position: 0 -20px;
+  background-position: 0 -16px;
 }
 
 /* line 327, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-br {
-  background-position: right -25px;
+  background-position: right -20px;
 }
 
 /* line 331, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -11081,31 +10926,31 @@
 
 /* line 343, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-bc {
-  background-position: 0 -5px;
+  background-position: 0 -4px;
 }
 
 /* line 350, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-tr,
 .x-window-header-message-success-collapsed-left-br,
 .x-window-header-message-success-collapsed-left-mr {
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 /* line 356, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-tl,
 .x-window-header-message-success-collapsed-left-bl,
 .x-window-header-message-success-collapsed-left-ml {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 /* line 360, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-tc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 363, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-bc {
-  height: 5px;
+  height: 4px;
 }
 
 /* line 374, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -11131,7 +10976,7 @@
 
 /* line 430, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-window-header-message-success-collapsed-left-mc {
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
 }
 
 /* line 439, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -11209,53 +11054,12 @@
 
 /* line 499, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-window-header-message-success {
-  border-width: 5px !important;
+  border-width: 2px !important;
 }
 
 /* line 509, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
 .x-nbr .x-window-message-success-collapsed .x-window-header {
   border-width: 0 !important;
-}
-
-/* line 520, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-success-resizable {
-  overflow: visible;
-}
-/* line 525, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-success-resizable .x-window-handle-north-br {
-  top: -5px;
-}
-/* line 528, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-success-resizable .x-window-handle-south-br {
-  bottom: -5px;
-}
-/* line 531, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-success-resizable .x-window-handle-east-br {
-  right: -5px;
-}
-/* line 534, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-success-resizable .x-window-handle-west-br {
-  left: -5px;
-}
-/* line 537, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-success-resizable .x-window-handle-northwest-br {
-  left: -5px;
-  top: -5px;
-}
-/* line 541, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-success-resizable .x-window-handle-northeast-br {
-  right: -5px;
-  top: -5px;
-}
-/* line 545, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-success-resizable .x-window-handle-southeast-br {
-  right: -5px;
-  bottom: -5px;
-}
-/* line 549, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/window/Window.scss */
-.x-window-message-success-resizable .x-window-handle-southwest-br {
-  left: -5px;
-  bottom: -5px;
 }
 
 /* line 2, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/border-management.scss */

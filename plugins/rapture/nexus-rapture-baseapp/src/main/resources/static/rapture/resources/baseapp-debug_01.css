@@ -67,24 +67,6 @@
 /**
  * @class Ext.Component
  */
-/**
- * @class Ext.button.Button
- */
-/**
- * 'primary' button UI.
- */
-/**
- * 'danger' button UI.
- */
-/**
- * 'warning' button UI.
- */
-/**
- * 'success' button UI.
- */
-/**
- * 'header' toolbar button UI.
- */
 /* including package ext-theme-neptune */
 /** @class Global_CSS */
 /** @class Ext.LoadMask */
@@ -23760,6 +23742,9 @@ a.x-color-picker-item:hover {
 /**
  * @class Ext.button.Button
  */
+/**
+ * ui: 'primary'
+ */
 /* line 255, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
 .x-btn-primary-small {
   border-color: #17558e;
@@ -24268,6 +24253,9 @@ a.x-color-picker-item:hover {
 
 /*</if slicer>*/
 /* */
+/**
+ * ui: 'danger'
+ */
 /* line 255, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
 .x-btn-danger-small {
   border-color: #bd362f;
