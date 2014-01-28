@@ -231,148 +231,120 @@ Ext.define('NX.controller.Main', {
     me.getApplication().getMainController().registerFeature([
       {
         path: '/System',
-        view: 'NX.view.TODO',
         weight: 1000
       },
 
       // TESTING: Adding features to flesh-out target menu design
       {
         path: '/Search',
-        view: 'NX.view.TODO',
         weight: 20
       },
       {
         path: '/Feeds',
-        view: 'NX.view.TODO',
         weight: 20
       },
       {
         path: '/Repository',
-        view: 'NX.view.TODO',
         weight: 50
       },
       {
         path: '/Repository/Routing',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn,
         weight: 20
       },
       {
         path: '/Staging',
-        view: 'NX.view.TODO',
         weight: 60,
         visible: visibleIfLoggedIn
       },
       {
         path: '/Staging/Repositories',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Staging/Profiles',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Staging/Rules',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Procurement',
-        view: 'NX.view.TODO',
         weight: 60,
         visible: visibleIfLoggedIn
       },
       {
         path: '/Procurement/Repositories',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Security',
-        view: 'NX.view.TODO',
         weight: 90,
         visible: visibleIfLoggedIn
       },
       {
         path: '/Security/Settings',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Security/User Token',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Security/LDAP',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Security/Atlassian Crowd',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/General',
-        view: 'TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/Notifications',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/HTTP',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/PGP',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/Tasks',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/Smart Proxy',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/SSL',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Support',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Overview',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Logging',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Support ZIP',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Analytics',
-        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       }
     ]);
@@ -504,6 +476,11 @@ Ext.define('NX.controller.Main', {
       Ext.each(features, function (feature) {
         if (!feature.path) {
           throw Ext.Error.raise('Feature missing path');
+        }
+
+        if (!feature.view) {
+          me.logWarn('Using default view for feature at path: ' + feature.path);
+          feature.view = 'NX.view.TODO';
         }
 
         // normalize path, strip off leading '/'
