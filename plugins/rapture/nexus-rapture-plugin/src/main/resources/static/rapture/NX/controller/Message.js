@@ -85,17 +85,19 @@ Ext.define('NX.controller.Message', {
         count = me.getMessageStore().getCount(),
         title = 'Messages';
 
-    if (count != 0) {
-      title = Ext.util.Format.plural(count, 'Message');
+    if (me.getPanel()) {
+      if (count != 0) {
+        title = Ext.util.Format.plural(count, 'Message');
 
-      // update icon to highlight new messages
-      me.getPanel().setIconCls(NX.controller.Icon.iconCls('message-default', 'x16'));
-    }
-    else {
-      me.getPanel().setIconCls(undefined);
-    }
+        // update icon to highlight new messages
+        me.getPanel().setIconCls(NX.controller.Icon.iconCls('message-default', 'x16'));
+      }
+      else {
+        me.getPanel().setIconCls(undefined);
+      }
 
-    me.getPanel().setTitle(title);
+      me.getPanel().setTitle(title);
+    }
   },
 
   /**
