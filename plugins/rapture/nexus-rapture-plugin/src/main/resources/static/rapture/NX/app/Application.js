@@ -24,7 +24,8 @@ Ext.define('NX.app.Application', {
     'NX.util.Url',
 
     // require custom extensions so we don't need to requirement explicitly everywhere
-    'NX.ext.grid.IconColumn'
+    'NX.ext.grid.IconColumn',
+    'NX.ext.grid.plugin.Filtering'
   ],
 
   mixins: {
@@ -48,7 +49,8 @@ Ext.define('NX.app.Application', {
     'Main',
     'Message',
     'Status',
-    'User'
+    'User',
+    'HeaderQuickSearch'
   ],
   models: [
     'Message'
