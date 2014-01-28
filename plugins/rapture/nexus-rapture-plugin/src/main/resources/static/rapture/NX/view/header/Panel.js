@@ -48,7 +48,7 @@ Ext.define('NX.view.header.Panel', {
         '-',
         { xtype: 'nx-header-version' },
         '->',
-        { xtype: 'nx-quicksearch' },
+        { xtype: 'nx-quicksearch', emptyText: 'quick search' },
         ' ',
         { xtype: 'nx-header-refresh' },
         { xtype: 'nx-header-help' },

@@ -17,7 +17,7 @@ Ext.define('NX.ext.QuickSearch', {
   extend: 'Ext.form.field.Trigger',
   alias: 'widget.nx-quicksearch',
 
-  emptyText: 'quick search',
+  emptyText: 'search',
 
   /**
    * @cfg {int} number of milliseconds to trigger searching (defaults to 200)
