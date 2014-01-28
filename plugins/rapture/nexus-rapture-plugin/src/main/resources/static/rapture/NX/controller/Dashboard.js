@@ -29,9 +29,7 @@ Ext.define('NX.controller.Dashboard', {
     me.getApplication().getMainController().registerFeature({
       path: '/Dashboard',
       view: 'NX.view.dashboard.Feature',
-      weight: 10,
-      bookmark: 'dashboard',
-      iconName: 'feature-dashboard'
+      weight: 10
     });
   }
 

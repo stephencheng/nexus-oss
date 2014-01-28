@@ -261,8 +261,7 @@ Ext.define('NX.controller.Main', {
       },
       {
         path: '/Repository/Routing',
-        visible: visibleIfLoggedIn,
-        weight: 20
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Staging',
