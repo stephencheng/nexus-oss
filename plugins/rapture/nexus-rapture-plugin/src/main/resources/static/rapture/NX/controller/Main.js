@@ -177,6 +177,10 @@ Ext.define('NX.controller.Main', {
         file: 'shield.png',
         variants: ['x16', 'x32']
       },
+      'feature-security-settings': {
+        file: 'wrench_orange.png',
+        variants: ['x16', 'x32']
+      },
       'feature-ssl': {
         file: 'ssl_certificates.png',
         variants: ['x16', 'x32']
@@ -283,6 +287,7 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Security/Settings',
         view: 'NX.view.TODO',
+        iconName: 'feature-security-settings',
         visible: visibleIfLoggedIn
       },
       {
