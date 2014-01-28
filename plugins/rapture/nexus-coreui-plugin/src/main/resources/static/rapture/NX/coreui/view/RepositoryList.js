@@ -31,7 +31,8 @@ Ext.define('NX.coreui.view.RepositoryList', {
   ],
 
   tbar: [
-    { xtype: 'button', text: 'Delete', action: 'delete', disabled: true }
+    { xtype: 'button', text: 'New', glyph: 'xf055@FontAwesome' /* fa-plus-circle */, action: 'new', disabled: true },
+    { xtype: 'button', text: 'Delete', glyph: 'xf056@FontAwesome' /* fa-minus-circle */, action: 'delete', disabled: true }
   ],
 
   refreshable: true
