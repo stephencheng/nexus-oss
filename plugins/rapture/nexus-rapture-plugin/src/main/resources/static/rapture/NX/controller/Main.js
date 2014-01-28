@@ -43,6 +43,10 @@ Ext.define('NX.controller.Main', {
 
   refs: [
     {
+      ref: 'headerVersion',
+      selector: 'nx-header-version'
+    },
+    {
       ref: 'featureContent',
       selector: 'nx-feature-content'
     },
@@ -106,6 +110,9 @@ Ext.define('NX.controller.Main', {
       controller: {
         '#User': {
           permissionsChanged: me.refreshMenu
+        },
+        '#Status': {
+          info: me.updateHeaderVersion
         }
       },
       component: {
@@ -124,6 +131,18 @@ Ext.define('NX.controller.Main', {
         }
       }
     });
+  },
+
+  /**
+   * @private
+   */
+  updateHeaderVersion: function (info) {
+    var me = this;
+
+    // FIXME: This can probably be replaced by NX.app.* preloaded data
+
+    // Update the header-version with details from status
+    me.getHeaderVersion().setText(info.edition + ' ' + info.version);
   },
 
   /**

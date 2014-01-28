@@ -50,7 +50,6 @@ Ext.define('NX.app.Application', {
     'Developer',
     'dev.Permissions',
     'Icon',
-    'Info',
     'Main',
     'Message',
     'Status',
