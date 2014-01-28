@@ -81,7 +81,7 @@ Ext.define('NX.coreui.controller.Repositories', {
       me.getInfo().showInfo({
         'Id': model.get('id'),
         'Name': model.get('name'),
-        'type': model.get('type'),
+        'Type': model.get('type'),
         'Format': model.get('format'),
         'Local status': me.getLocalStatus(model),
         'Proxy mode': me.getProxyMode(model),
