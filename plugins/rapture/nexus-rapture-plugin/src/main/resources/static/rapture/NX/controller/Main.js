@@ -105,6 +105,10 @@ Ext.define('NX.controller.Main', {
         file: 'cog.png',
         variants: ['x16', 'x32']
       },
+      'feature-system-general': {
+        file: 'wrench.png',
+        variants: ['x16', 'x32']
+      },
       'feature-staging': {
         file: 'database_green.png',
         variants: ['x16', 'x32']
@@ -302,6 +306,7 @@ Ext.define('NX.controller.Main', {
       {
         path: '/System/General',
         view: 'TODO',
+        iconName: 'feature-system-general',
         visible: visibleIfLoggedIn
       },
       {
