@@ -15,7 +15,7 @@
  */
 Ext.define('NX.ext.grid.plugin.FilterBox', {
   extend: 'Ext.ux.grid.Search',
-  alias: 'plugin.filterbox',
+  alias: 'plugin.gridfilterbox',
 
   /**
    * @override
