@@ -314,7 +314,6 @@ Ext.define('NX.controller.Main', {
       }
     });
 
-    // FIXME: This needs to sort by weight, and then alpha for same weight.
     me.getFeatureMenuStore().sort([
       {property: 'weight', direction: 'ASC'},
       {property: 'text', direction: 'ASC'}
