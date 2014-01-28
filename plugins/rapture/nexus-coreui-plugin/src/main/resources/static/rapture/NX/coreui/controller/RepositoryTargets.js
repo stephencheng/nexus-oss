@@ -110,16 +110,23 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
 
   delete: function () {
     var me = this,
-        selection = me.getList().getSelectionModel().getSelection();
+        selection = me.getList().getSelectionModel().getSelection(),
+        description;
 
     if (selection.length) {
-      NX.util.Msg.askConfirmation('Confirm deletion?', me.getDescription(selection[0]), function () {
+      description = me.getDescription(selection[0]);
+      NX.util.Msg.askConfirmation('Confirm deletion?', description, function () {
         NX.direct.coreui_RepositoryTarget.delete(selection[0].getId(), function (response, status) {
           if (!NX.util.ExtDirect.showExceptionIfPresent('Target could not be deleted', response, status)) {
             if (Ext.isDefined(response)) {
               me.loadStores();
-              if (!response.success) {
-                NX.util.Msg.showError('Target could not be deleted', response.message);
+              if (response.success) {
+                me.getApplication().getMessageController().addMessage({
+                  text: 'Target deleted: ' + description, type: 'success'
+                });
+              }
+              else {
+                me.getApplication().getMessageController().addMessage({ text: response.message, type: 'warning' });
               }
             }
           }

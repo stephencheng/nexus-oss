@@ -198,13 +198,18 @@ Ext.define('NX.capability.controller.Capabilities', {
           if (response.success) {
             win.close();
             me.loadStoresAndSelect(response.data);
+            me.getApplication().getMessageController().addMessage({
+              text: 'Capability created: ' + me.getDescription(capabilityModel), type: 'success'
+            });
           }
           else {
             if (Ext.isDefined(response.errors)) {
-              NX.util.Msg.showError('Capability could not be created', form.markInvalid(response.errors));
+              me.getApplication().getMessageController().addMessage({
+                text: form.markInvalid(response.errors), type: 'warning'
+              });
             }
             else {
-              NX.util.Msg.showError('Capability could not be created', response.message);
+              me.getApplication().getMessageController().addMessage({ text: response.message, type: 'warning' });
             }
           }
         }
@@ -225,13 +230,18 @@ Ext.define('NX.capability.controller.Capabilities', {
         if (Ext.isDefined(response)) {
           if (response.success) {
             me.loadStores();
+            me.getApplication().getMessageController().addMessage({
+              text: 'Capability updated: ' + me.getDescription(capabilityModel), type: 'success'
+            });
           }
           else {
             if (Ext.isDefined(response.errors)) {
-              NX.util.Msg.showError('Capability could not be saved', form.markInvalid(response.errors));
+              me.getApplication().getMessageController().addMessage({
+                text: form.markInvalid(response.errors), type: 'warning'
+              });
             }
             else {
-              NX.util.Msg.showError('Capability could not be saved', response.message);
+              me.getApplication().getMessageController().addMessage({ text: response.message, type: 'warning' });
             }
           }
         }
@@ -241,21 +251,23 @@ Ext.define('NX.capability.controller.Capabilities', {
 
   deleteCapability: function (button) {
     var me = this,
-        selection = me.getList().getSelectionModel().getSelection();
+        selection = me.getList().getSelectionModel().getSelection(),
+        description;
 
     if (Ext.isDefined(selection) && selection.length > 0) {
-      NX.util.Msg.askConfirmation('Confirm deletion?', me.getDescription(selection[0]), function () {
+      description = me.getDescription(selection[0]);
+      NX.util.Msg.askConfirmation('Confirm deletion?', description, function () {
         NX.direct.capability_Capability.delete(selection[0].getId(), function (response, status) {
           if (!NX.util.ExtDirect.showExceptionIfPresent('Capability could not be deleted', response, status)) {
             if (Ext.isDefined(response)) {
+              me.loadStores();
               if (response.success) {
-                me.loadStores();
+                me.getApplication().getMessageController().addMessage({
+                  text: 'Capability deleted: ' + description, type: 'success'
+                });
               }
               else {
-                NX.util.Msg.showError(
-                    'Capability could not be deleted',
-                    response.message
-                );
+                me.getApplication().getMessageController().addMessage({ text: response.message, type: 'warning' });
               }
             }
           }

@@ -101,8 +101,13 @@ Ext.define('NX.coreui.controller.Repositories', {
           if (!NX.util.ExtDirect.showExceptionIfPresent('Repository could not be deleted', response, status)) {
             if (Ext.isDefined(response)) {
               me.loadStores();
-              if (!response.success) {
-                NX.util.Msg.showError('Repository could not be deleted', response.message);
+              if (response.success) {
+                me.getApplication().getMessageController().addMessage({
+                  text: 'Repository deleted: ' + description, type: 'success'
+                });
+              }
+              else {
+                me.getApplication().getMessageController().addMessage({ text: response.message, type: 'warning' });
               }
             }
           }
