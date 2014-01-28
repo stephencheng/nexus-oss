@@ -101,14 +101,16 @@ Ext.define('NX.controller.Main', {
       },
 
       // FIXME: These should be moved elsewhere once we have feature implemented
-      'feature-system': {
-        file: 'cog.png',
+      'feature-feeds': {
+        file: 'feed.png',
         variants: ['x16', 'x32']
       },
-      'feature-system-general': {
-        file: 'wrench.png',
+      'feature-search': {
+        file: 'magnifier.png',
         variants: ['x16', 'x32']
       },
+
+      // staging
       'feature-staging': {
         file: 'database_green.png',
         variants: ['x16', 'x32']
@@ -117,12 +119,46 @@ Ext.define('NX.controller.Main', {
         file: 'database_green.png',
         variants: ['x16', 'x32']
       },
+      'feature-staging-rules': {
+        file: 'measure.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-staging-profiles': {
+        file: 'palette.png',
+        variants: ['x16', 'x32']
+      },
+
+      // repository
+      'feature-repository': {
+        file: 'database.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-repository-repositories': {
+        file: 'database.png',
+        variants: ['x16', 'x32']
+      },
       'feature-repository-routing': {
         file: 'arrow_branch.png',
         variants: ['x16', 'x32']
       },
-      'feature-staging-rules': {
-        file: 'measure.png',
+
+      // procurement
+      'feature-procurement': {
+        file: 'database_blue.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-procurement-repositories': {
+        file: 'database_blue.png',
+        variants: ['x16', 'x32']
+      },
+
+      // system
+      'feature-system': {
+        file: 'cog.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-system-general': {
+        file: 'wrench.png',
         variants: ['x16', 'x32']
       },
       'feature-system-notifications': {
@@ -133,82 +169,24 @@ Ext.define('NX.controller.Main', {
         file: 'time.png',
         variants: ['x16', 'x32']
       },
-      'feature-support-logging': {
-        file: 'book.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-feeds': {
-        file: 'feed.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-search': {
-        file: 'magnifier.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-security-usertoken': {
-        file: 'key.png',
-        variants: ['x16', 'x32']
-      },
       'feature-system-pgp': {
         file: 'gnupg_keys.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-support-supporttools': {
-        file: 'globe_place.png',
         variants: ['x16', 'x32']
       },
       'feature-system-smartproxy': {
         file: 'servers_network.png',
         variants: ['x16', 'x32']
       },
-      'feature-staging-profiles': {
-        file: 'palette.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-security-ldap': {
-        file: 'book_addresses.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-security-atlassiancrowd': {
-        file: 'crowd.png',
-        variants: ['x16', 'x32']
-      },
       'feature-system-http': {
         file: 'transmit.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-security': {
-        file: 'shield.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-security-settings': {
-        file: 'wrench_orange.png',
         variants: ['x16', 'x32']
       },
       'feature-system-ssl': {
         file: 'ssl_certificates.png',
         variants: ['x16', 'x32']
       },
-      'feature-repository': {
-        file: 'database.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-repository-repositories': {
-        file: 'database.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-procurement': {
-        file: 'database_blue.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-procurement-repositories': {
-        file: 'database_blue.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-support-analytics': {
-        file: 'system_monitor.png',
-        variants: ['x16', 'x32']
-      },
+
+      // support
       'feature-support': {
         file: 'support.png',
         variants: ['x16', 'x32']
@@ -219,6 +197,40 @@ Ext.define('NX.controller.Main', {
       },
       'feature-support-supportzip': {
         file: 'file_extension_zip.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-support-logging': {
+        file: 'book.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-support-supporttools': {
+        file: 'globe_place.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-support-analytics': {
+        file: 'system_monitor.png',
+        variants: ['x16', 'x32']
+      },
+
+      // security
+      'feature-security': {
+        file: 'shield.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-security-settings': {
+        file: 'wrench_orange.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-security-usertoken': {
+        file: 'key.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-security-ldap': {
+        file: 'book_addresses.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-security-atlassiancrowd': {
+        file: 'crowd.png',
         variants: ['x16', 'x32']
       }
     });
