@@ -45,7 +45,6 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
   features: {
     path: '/System/Plugins',
     view: { xtype: 'nx-pluginconsole-feature' },
-    bookmark: 'plugins',
     iconName: 'feature-pluginconsole',
     visible: function () {
       return NX.util.Permissions.check('nexus:pluginconsoleplugininfos', 'read');

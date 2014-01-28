@@ -45,8 +45,6 @@ Ext.define('NX.coreui.controller.Users', {
   features: {
     path: '/Security/Users',
     view: { xtype: 'nx-user-feature' },
-    bookmark: 'users',
-    weight: 30,
     iconName: 'feature-users',
     visible: function () {
       return NX.util.Permissions.check('security:users', 'read');

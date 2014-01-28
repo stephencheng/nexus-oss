@@ -41,8 +41,6 @@ Ext.define('NX.coreui.controller.Roles', {
   features: {
     path: '/Security/Roles',
     view: { xtype: 'nx-role-feature' },
-    bookmark: 'roles',
-    weight: 20,
     iconName: 'feature-roles',
     visible: function () {
       return NX.util.Permissions.check('security:roles', 'read');

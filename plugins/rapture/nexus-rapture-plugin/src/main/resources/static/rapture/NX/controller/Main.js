@@ -219,6 +219,7 @@ Ext.define('NX.controller.Main', {
     me.getApplication().getMainController().registerFeature([
       {
         path: '/System',
+        view: 'NX.view.TODO',
         iconName: 'feature-system',
         weight: 1000
       },
@@ -239,6 +240,7 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Repository',
         iconName: 'feature-repository',
+        view: 'NX.view.TODO',
         weight: 50
       },
       {
@@ -251,13 +253,15 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Staging',
         iconName: 'feature-staging',
+        view: 'NX.view.TODO',
         weight: 60,
         visible: visibleIfLoggedIn
       },
       {
         path: '/Staging/Repositories',
         view: 'NX.view.TODO',
-        iconName: 'feature-staging'
+        iconName: 'feature-staging',
+        visible: visibleIfLoggedIn
       },
       {
         path: '/Staging/Profiles',
@@ -279,8 +283,15 @@ Ext.define('NX.controller.Main', {
         visible: visibleIfLoggedIn
       },
       {
+        path: '/Procurement/Repositories',
+        view: 'NX.view.TODO',
+        iconName: 'feature-procurement',
+        visible: visibleIfLoggedIn
+      },
+      {
         path: '/Security',
         iconName: 'feature-security',
+        view: 'NX.view.TODO',
         weight: 90,
         visible: visibleIfLoggedIn
       },
@@ -353,6 +364,7 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Support',
         iconName: 'feature-support',
+        view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
@@ -415,42 +427,32 @@ Ext.define('NX.controller.Main', {
         view,
         cmp;
 
-    if (record.isLeaf()) {
-      view = record.get('view');
-      me.logDebug('Selecting feature view: ' + view);
+    view = record.get('view');
+    me.logDebug('Selecting feature view: ' + view);
 
-      // create new view and replace any current view
-      if (Ext.isString(view)) {
-        cmp = me.getView(view).create();
-      }
-      else {
-        cmp = Ext.widget(view);
-      }
-
-      // remove the current contents
-      content.removeAll();
-
-      // update title and icon
-      content.setTitle(record.get('text'));
-      content.setIconCls(NX.controller.Icon.iconCls(record.get('iconName'), 'x32'));
-
-      // Update help menu content
-      featureHelp.setText(record.get('text'));
-      featureHelp.setIconCls(NX.controller.Icon.iconCls(record.get('iconName'), 'x16'));
-
-      // install new feature view
-      content.add(cmp);
-
-      me.bookmark(record.get('bookmark'));
+    // create new view and replace any current view
+    if (Ext.isString(view)) {
+      cmp = me.getView(view).create();
+    }
+    else {
+      cmp = Ext.widget(view);
     }
 
-    // FIXME: This has been disabled, as it causes unwanted side-effects on dbl click
-    //else {
-    //  // if a group, automatically select first leaf
-    //  if (record.hasChildNodes()) {
-    //    me.getFeatureMenu().selectPath(record.firstChild.getPath('text'), 'text');
-    //  }
-    //}
+    // remove the current contents
+    content.removeAll();
+
+    // update title and icon
+    content.setTitle(record.get('text'));
+    content.setIconCls(NX.controller.Icon.iconCls(record.get('iconName'), 'x32'));
+
+    // Update help menu content
+    featureHelp.setText(record.get('text'));
+    featureHelp.setIconCls(NX.controller.Icon.iconCls(record.get('iconName'), 'x16'));
+
+    // install new feature view
+    content.add(cmp);
+
+    me.bookmark(record.get('bookmark'));
   },
 
   /**
@@ -516,12 +518,20 @@ Ext.define('NX.controller.Main', {
         features = [features];
       }
       Ext.each(features, function (feature) {
-        // TODO: Should validate the required fields, for now bitch about some
-        if (!feature.bookmark) {
-          me.logWarn('Feature missing bookmark; path=' + feature.path);
+        if (!feature.path) {
+          throw Ext.Error.raise('Feature missing path');
         }
 
-        // HACK: Auto-set iconCls from icon name for use in tree panels
+        // auto-set bookmark to path normalized
+        if (!feature.bookmark) {
+          var path = feature.path;
+          if (path.charAt(0) === '/') {
+            path = path.substr(1, path.length);
+          }
+          feature.bookmark = path.toLowerCase().replace(' ', '');
+        }
+
+        // auto-set iconCls for rendering in tree
         if (feature.iconName) {
           feature.iconCls = NX.controller.Icon.iconCls(feature.iconName, 'x16');
         }

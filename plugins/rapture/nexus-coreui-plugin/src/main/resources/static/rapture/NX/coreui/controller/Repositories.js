@@ -46,8 +46,6 @@ Ext.define('NX.coreui.controller.Repositories', {
   features: {
     path: '/Repository/Repositories',
     view: { xtype: 'nx-repository-feature' },
-    bookmark: 'repositories',
-    weight: 10,
     iconName: 'feature-repositories',
     visible: function () {
       return NX.util.Permissions.check('nexus:repositories', 'read');

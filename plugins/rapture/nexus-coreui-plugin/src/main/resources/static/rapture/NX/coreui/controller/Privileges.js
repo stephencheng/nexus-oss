@@ -41,8 +41,6 @@ Ext.define('NX.coreui.controller.Privileges', {
   features: {
     path: '/Security/Privileges',
     view: { xtype: 'nx-privilege-feature' },
-    bookmark: 'privileges',
-    weight: 10,
     iconName: 'feature-privileges',
     visible: function () {
       return NX.util.Permissions.check('security:privileges', 'read');

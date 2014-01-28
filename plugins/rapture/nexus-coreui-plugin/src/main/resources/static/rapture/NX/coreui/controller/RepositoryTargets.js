@@ -43,8 +43,6 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   features: {
     path: '/Repository/Targets',
     view: { xtype: 'nx-repositorytarget-feature' },
-    bookmark: 'repositorytargets',
-    weight: 30,
     iconName: 'feature-targets',
     visible: function () {
       return NX.util.Permissions.check('nexus:targets', 'read');
