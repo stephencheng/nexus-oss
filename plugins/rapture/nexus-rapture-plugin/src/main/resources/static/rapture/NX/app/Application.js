@@ -55,7 +55,10 @@ Ext.define('NX.app.Application', {
     'Message',
     'Status',
     'User',
-    'ExtDirect'
+    'ExtDirect',
+
+    // HACK: Temporary controller for random stuff while we are building out the framework
+    'Temp'
   ],
   models: [
     'Message'
