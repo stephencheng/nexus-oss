@@ -11,26 +11,54 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 /**
- * An Ext.ux.grid.Search pre-configured with defaults.
+ * Filter plugin for grids.
  */
 Ext.define('NX.ext.grid.plugin.FilterBox', {
-  extend: 'Ext.ux.grid.Search',
+  extend: 'NX.ext.grid.plugin.Filtering',
   alias: 'plugin.gridfilterbox',
 
   /**
    * @override
    */
   init: function (grid) {
-    var me = this;
-
-    Ext.apply(me, {
-      mode: 'local',
-      position: 'top',
-      align: 'right',
-      width: 200
-    });
+    var me = this,
+        tbar = grid.getDockedItems('toolbar[dock="top"]')[0];
 
     me.callParent(arguments);
+
+    if (tbar) {
+      tbar.add([
+        '->',
+        {
+          xtype: 'nx-searchbox',
+          listeners: {
+            search: me.onSearch,
+            searchcleared: me.onSearchCleared,
+            scope: me
+          }
+        }
+      ]);
+    }
+  },
+
+  /**
+   * @private
+   * Filter grid.
+   */
+  onSearch: function (searchbox, value) {
+    var me = this;
+
+    me.filter(value);
+  },
+
+  /**
+   * @private
+   * Clear filtering on grid.
+   */
+  onSearchCleared: function () {
+    var me = this;
+
+    me.clearFilter();
   }
 
 });

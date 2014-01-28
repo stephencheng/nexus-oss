@@ -35,13 +35,12 @@ Ext.define('NX.ext.SearchBox', {
     var me = this;
 
     Ext.apply(me, {
-      checkChangeBuffer: me.searchDelay,
-      listeners: {
-        change: me.onValueChange
-      }
+      checkChangeBuffer: me.searchDelay
     });
 
     me.callParent(arguments);
+
+    me.on('change', me.onValueChange, me);
 
     me.addEvents(
         /**
@@ -110,6 +109,9 @@ Ext.define('NX.ext.SearchBox', {
     if (value) {
       me.search(value);
     }
+    else {
+      me.clearSearch()
+    }
   },
 
   /**
@@ -135,7 +137,9 @@ Ext.define('NX.ext.SearchBox', {
   clearSearch: function () {
     var me = this;
 
-    me.setValue(undefined);
+    if (me.getValue()) {
+      me.setValue(undefined);
+    }
     me.fireEvent('searchcleared', me);
   }
 
