@@ -418,6 +418,7 @@ Ext.define('NX.controller.Main', {
 
     // install new feature view
     content.add(cmp);
+    me.fireEvent('featureselected', cmp);
 
     me.bookmark(record.get('bookmark'));
   },
@@ -538,7 +539,7 @@ Ext.define('NX.controller.Main', {
           child = parent.findChild('text', segments[i], false);
           if (child) {
             if (i < segments.length - 1) {
-              child.data = Ext.apply(child.data,  {
+              child.data = Ext.apply(child.data, {
                 leaf: false
               });
             }

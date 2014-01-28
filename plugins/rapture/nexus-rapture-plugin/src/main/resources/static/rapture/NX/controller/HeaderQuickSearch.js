@@ -21,6 +21,13 @@ Ext.define('NX.controller.HeaderQuickSearch', {
     logAware: 'NX.LogAware'
   },
 
+  refs: [
+    {
+      ref: 'quickSearch',
+      selector: 'nx-header-panel nx-quicksearch'
+    }
+  ],
+
   /**
    * @override
    */
@@ -28,6 +35,11 @@ Ext.define('NX.controller.HeaderQuickSearch', {
     var me = this;
 
     me.listen({
+      controller: {
+        '#Main': {
+          featureselected: me.onFeatureSelected
+        }
+      },
       component: {
         'nx-header-panel nx-quicksearch': {
           search: me.filter,
@@ -79,6 +91,16 @@ Ext.define('NX.controller.HeaderQuickSearch', {
    */
   getFilterables: function () {
     return Ext.ComponentQuery.query('grid[filterable=true]');
+  },
+
+  /**
+   * @private
+   * Clears header search box when a feature is selected.
+   */
+  onFeatureSelected: function () {
+    var me = this;
+
+    me.getQuickSearch().clearSearch();
   }
 
 });
