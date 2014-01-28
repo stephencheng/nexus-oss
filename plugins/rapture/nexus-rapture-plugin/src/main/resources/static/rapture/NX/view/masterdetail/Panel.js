@@ -32,7 +32,8 @@ Ext.define('NX.view.masterdetail.Panel', {
       {
         xtype: me.list,
         region: 'center',
-        flex: 0.5
+        flex: 0.5,
+        allowDeselect: true
       },
       {
         xtype: 'nx-masterdetail-tabs',
