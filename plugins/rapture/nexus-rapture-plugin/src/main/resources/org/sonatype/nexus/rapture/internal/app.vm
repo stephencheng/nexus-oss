@@ -18,13 +18,29 @@ Ext.Loader.setConfig({
 });
 
 Ext.ns('NX.app');
+
+## Configure application plugin muck
 NX.app.pluginConfigClassNames = [${pluginConfigClassNames}];
 Ext.each(NX.app.pluginConfigClassNames, function(className) {
   Ext.require(className);
 });
+
+## configure default UI settings
 NX.app.settings = {
   debugAllowed: ${settings.debugAllowed},
   sessionTimeout: ${settings.sessionTimeout}
+}
+
+## Set the debug flag if allowed
+NX.app.debug = false;
+if (window.location.search === '?debug') {
+  if (NX.app.settings.debugAllowed) {
+    console.log('Debug mode enabled');
+    NX.app.debug = true;
+  }
+  else {
+    console.warn('Debug mode disallowed');
+  }
 }
 
 Ext.application('NX.app.Application');
