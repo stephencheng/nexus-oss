@@ -31,6 +31,7 @@ Ext.define('NX.ext.grid.plugin.FilterBox', {
         '->',
         {
           xtype: 'nx-searchbox',
+          emptyText: 'filter',
           listeners: {
             search: me.onSearch,
             searchcleared: me.onSearchCleared,
