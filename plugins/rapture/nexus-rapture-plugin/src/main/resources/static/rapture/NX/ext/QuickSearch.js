@@ -13,7 +13,7 @@
 /**
  * A search box.
  */
-Ext.define('NX.view.header.QuickSearch', {
+Ext.define('NX.ext.QuickSearch', {
   extend: 'Ext.form.field.Trigger',
   alias: 'widget.nx-quicksearch',
 
