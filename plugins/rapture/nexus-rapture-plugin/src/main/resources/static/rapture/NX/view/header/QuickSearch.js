@@ -10,14 +10,133 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
+/**
+ * A search box.
+ */
 Ext.define('NX.view.header.QuickSearch', {
   extend: 'Ext.form.field.Trigger',
-  alias: 'widget.nx-header-quicksearch',
+  alias: 'widget.nx-quicksearch',
 
   emptyText: 'quick search',
 
+  /**
+   * @cfg {int} number of milliseconds to trigger searching (defaults to 200)
+   */
+  searchDelay: 200,
+
   // TODO: Only show clear trigger if we have text
   trigger1Cls: Ext.baseCSSPrefix + 'form-clear-trigger',
-  trigger2Cls: Ext.baseCSSPrefix + 'form-search-trigger'
+  trigger2Cls: Ext.baseCSSPrefix + 'form-search-trigger',
+
+  /**
+   * @override
+   */
+  initComponent: function () {
+    var me = this;
+
+    Ext.apply(me, {
+      checkChangeBuffer: me.searchDelay,
+      listeners: {
+        change: me.onValueChange
+      }
+    });
+
+    me.callParent(arguments);
+
+    me.addEvents(
+        /**
+         * @event search
+         * Fires when a search values was typed. Fires with a delay of **{@link #searchDelay}**.
+         * @param {NX.view.header.QuickSearch} this QuickSearch
+         * @param {String} width search value
+         */
+        'search',
+
+        /**
+         * @event searchcleared
+         * Fires when a search value had been cleared.
+         * @param {NX.view.header.QuickSearch} this QuickSearch
+         */
+        'searchcleared'
+    );
+  },
+
+  /**
+   * @override
+   */
+  initEvents: function () {
+    var me = this;
+
+    me.callParent();
+
+    me.keyNav = new Ext.util.KeyNav(me.inputEl, {
+      esc: {
+        handler: me.clearSearch,
+        scope: me,
+        defaultEventAction: false
+      },
+      scope: me,
+      forceKeyDown: true
+    });
+  },
+
+  /**
+   * @private
+   * Clear search.
+   */
+  onTrigger1Click: function () {
+    var me = this;
+
+    me.clearSearch();
+  },
+
+  /**
+   * @private
+   * Trigger search.
+   */
+  onTrigger2Click: function () {
+    var me = this;
+
+    me.search(me.getValue());
+  },
+
+  /**
+   * @private
+   * Trigger search.
+   */
+  onValueChange: function (trigger, value) {
+    var me = this;
+
+    if (value) {
+      me.search(value);
+    }
+  },
+
+  /**
+   * @public
+   * Search for value and fires a 'search' event.
+   * @param value to search for
+   */
+  search: function (value) {
+    var me = this;
+
+    if (value != me.getValue()) {
+      me.setValue(value);
+    }
+    else {
+      me.fireEvent('search', me, value);
+    }
+  },
+
+  /**
+   * @public
+   * Clears the search and fires a 'searchcleared' event.
+   */
+  clearSearch: function () {
+    var me = this;
+
+    me.setValue(undefined);
+    me.fireEvent('searchcleared', me);
+  }
 
 });
