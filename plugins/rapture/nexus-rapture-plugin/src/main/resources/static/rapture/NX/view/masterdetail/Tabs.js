@@ -16,12 +16,11 @@ Ext.define('NX.view.masterdetail.Tabs', {
 
   title: 'Empty Selection',
 
-  layout: 'card',
   region: 'south',
   split: true,
   collapsible: true,
   flex: 0.5,
-  activeItem: 0,
+  hidden: true,
 
   // HACK: For now make all detail panels light themed while we sort out the overall look of rapture
   ui: 'feature-detail',
@@ -37,12 +36,7 @@ Ext.define('NX.view.masterdetail.Tabs', {
 
   initComponent: function () {
     var me = this,
-        text = me.emptyText,
         content = me.tabs;
-
-    if (!text) {
-      text = 'Please select a record';
-    }
 
     if (Ext.isArray(content)) {
       content = me.getTabsConfig(content);
@@ -52,13 +46,7 @@ Ext.define('NX.view.masterdetail.Tabs', {
     }
 
     Ext.apply(me, {
-      items: [
-        {
-          xtype: 'panel',
-          html: '<span class="nx-masterdetail-emptyselection-text">' + text + '</span>'
-        },
-        content
-      ]
+      items: content
     });
 
     me.description = me.title;
@@ -103,7 +91,7 @@ Ext.define('NX.view.masterdetail.Tabs', {
 
   addTab: function (tab) {
     var me = this,
-        content = me.items.get(1);
+        content = me.items.get(0);
 
     if (content.isXType('tabpanel')) {
       me.tabs.push(tab);

@@ -15,7 +15,6 @@ Ext.define('NX.coreui.view.repositorytarget.Feature', {
   alias: 'widget.nx-repositorytarget-feature',
 
   list: 'nx-repositorytarget-list',
-  emptyText: 'Please select a target or create a new target',
 
   iconName: 'target-default'
 

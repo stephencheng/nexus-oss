@@ -105,12 +105,12 @@ Ext.define('NX.controller.MasterDetail', {
 
     if (selected.length) {
       model = selected[0];
-      tabs.getLayout().setActiveItem(1);
+      tabs.show();
       tabs.setDescription(me.getDescription(model));
     }
     else {
-      tabs.setTitle('Empty selection');
-      tabs.getLayout().setActiveItem(0);
+      tabs.hide();
+      tabs.setDescription('Empty selection');
     }
 
     me.enableDeleteButton();

@@ -15,7 +15,6 @@ Ext.define('NX.coreui.view.privilege.Feature', {
   alias: 'widget.nx-privilege-feature',
 
   list: 'nx-privilege-list',
-  emptyText: 'Please select a privilege or create a new privilege',
 
   iconName: 'privilege-default'
 

@@ -15,7 +15,6 @@ Ext.define('NX.pluginconsole.view.Feature', {
   alias: 'widget.nx-pluginconsole-feature',
 
   list: 'nx-pluginconsole-list',
-  emptyText: 'Please select a plugin',
 
   iconName: 'plugin-default'
 

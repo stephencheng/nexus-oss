@@ -15,7 +15,6 @@ Ext.define('NX.capability.view.Feature', {
   alias: 'widget.nx-capability-feature',
 
   list: 'nx-capability-list',
-  emptyText: 'Please select a capability or create a new capability',
 
   iconName: 'capability-default',
 
