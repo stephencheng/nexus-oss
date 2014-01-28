@@ -24258,7 +24258,7 @@ a.x-color-picker-item:hover {
  */
 /* line 255, ../../../../src/main/baseapp/ext/packages/ext-theme-neutral/sass/src/button/Button.scss */
 .x-btn-danger-small {
-  border-color: #bd362f;
+  border-color: #802420;
 }
 
 /* line 137, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
@@ -24272,20 +24272,20 @@ a.x-color-picker-item:hover {
   border-width: 1px;
   border-style: solid;
   background-image: none;
-  background-color: #da4f49;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dd605b), color-stop(50%, #da4f49), color-stop(51%, #cf4b45), color-stop(100%, #da4f49));
-  background-image: -webkit-linear-gradient(top, #dd605b, #da4f49 50%, #cf4b45 51%, #da4f49);
-  background-image: -moz-linear-gradient(top, #dd605b, #da4f49 50%, #cf4b45 51%, #da4f49);
-  background-image: -o-linear-gradient(top, #dd605b, #da4f49 50%, #cf4b45 51%, #da4f49);
-  background-image: -ms-linear-gradient(top, #dd605b, #da4f49 50%, #cf4b45 51%, #da4f49);
-  background-image: linear-gradient(top, #dd605b, #da4f49 50%, #cf4b45 51%, #da4f49);
+  background-color: #d64b46;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #da5d58), color-stop(50%, #d64b46), color-stop(51%, #cb4742), color-stop(100%, #d64b46));
+  background-image: -webkit-linear-gradient(top, #da5d58, #d64b46 50%, #cb4742 51%, #d64b46);
+  background-image: -moz-linear-gradient(top, #da5d58, #d64b46 50%, #cb4742 51%, #d64b46);
+  background-image: -o-linear-gradient(top, #da5d58, #d64b46 50%, #cb4742 51%, #d64b46);
+  background-image: -ms-linear-gradient(top, #da5d58, #d64b46 50%, #cb4742 51%, #d64b46);
+  background-image: linear-gradient(top, #da5d58, #d64b46 50%, #cb4742 51%, #d64b46);
 }
 
 /* line 187, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-btn-danger-small-mc {
   background-image: url(images/btn/btn-danger-small-fbg.gif);
   background-position: 0 top;
-  background-color: #da4f49;
+  background-color: #d64b46;
 }
 
 /* line 212, ../../../../src/main/baseapp/ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
