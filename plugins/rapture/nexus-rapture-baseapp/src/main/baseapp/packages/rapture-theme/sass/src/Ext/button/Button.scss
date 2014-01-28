@@ -83,13 +83,13 @@ $button-primary-glyph-opacity: .5 !default;
  * ui: 'danger'
  */
 
-$button-danger-base-color: #da4f49 !default;
+$button-danger-base-color: #d64b46 !default;
 $button-danger-base-color-over: button-default-background-color-over($button-danger-base-color) !default;
 $button-danger-base-color-focus: button-default-background-color-focus($button-danger-base-color) !default;
 $button-danger-base-color-pressed: button-default-background-color-pressed($button-danger-base-color) !default;
 $button-danger-base-color-disabled: button-default-background-color-disabled($button-danger-base-color) !default;
 
-$button-danger-border-color: #bd362f !default;
+$button-danger-border-color: #802420 !default;
 $button-danger-border-color-over: button-default-border-color-over($button-danger-border-color) !default;
 $button-danger-border-color-focus: button-default-border-color-focus($button-danger-border-color) !default;
 $button-danger-border-color-pressed: button-default-border-color-pressed($button-danger-border-color) !default;
