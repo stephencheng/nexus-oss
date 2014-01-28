@@ -100,12 +100,14 @@ Ext.define('NX.controller.MasterDetail', {
 
   onSelectionChange: function (selectionModel, selected) {
     var me = this,
-        tabs = me.getList().up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
+        list = me.getList(),
+        tabs = list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
         model;
 
     if (selected.length) {
       model = selected[0];
       tabs.show();
+      list.getView().focusRow(model);
       tabs.setDescription(me.getDescription(model));
     }
     else {
