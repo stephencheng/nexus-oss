@@ -25,7 +25,11 @@ Ext.define('NX.app.Application', {
 
     // require custom extensions so we don't need to requirement explicitly everywhere
     'NX.ext.grid.IconColumn',
-    'NX.ext.SearchBox',
+    'NX.ext.SearchBox'
+  ],
+
+  uses: [
+    'NX.ext.grid.plugin.FilterBox',
     'NX.ext.grid.plugin.Filtering'
   ],
 
@@ -51,7 +55,6 @@ Ext.define('NX.app.Application', {
     'Message',
     'Status',
     'User',
-    'HeaderQuickSearch',
     'ExtDirect'
   ],
   models: [
