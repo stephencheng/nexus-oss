@@ -45,7 +45,11 @@ Ext.define('NX.capability.controller.Capabilities', {
     { ref: 'about', selector: 'nx-capability-about' }
   ],
   icons: {
-    'feature-capability': {
+    'feature-system-capabilities': {
+      file: 'brick.png',
+      variants: ['x16', 'x32']
+    },
+    'capability-default': {
       file: 'brick.png',
       variants: ['x16', 'x32']
     }
@@ -55,8 +59,7 @@ Ext.define('NX.capability.controller.Capabilities', {
     view: { xtype: 'nx-capability-feature' },
     visible: function () {
       return NX.util.Permissions.check('nexus:capabilities', 'read');
-    },
-    iconName: 'feature-capability'
+    }
   },
   permission: 'nexus:capabilities',
 

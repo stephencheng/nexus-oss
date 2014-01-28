@@ -38,7 +38,11 @@ Ext.define('NX.coreui.controller.Repositories', {
     }
   ],
   icons: {
-    'feature-repositories': {
+    'feature-repository-repositories': {
+      file: 'database.png',
+      variants: ['x16', 'x32']
+    },
+    'repository-default': {
       file: 'database.png',
       variants: ['x16', 'x32']
     }
@@ -46,7 +50,6 @@ Ext.define('NX.coreui.controller.Repositories', {
   features: {
     path: '/Repository/Repositories',
     view: { xtype: 'nx-repository-feature' },
-    iconName: 'feature-repositories',
     visible: function () {
       return NX.util.Permissions.check('nexus:repositories', 'read');
     }

@@ -33,11 +33,11 @@ Ext.define('NX.coreui.controller.Users', {
     }
   ],
   icons: {
-    'feature-users': {
+    'feature-security-users': {
       file: 'group.png',
       variants: ['x16', 'x32']
     },
-    'user': {
+    'user-default': {
       file: 'user.png',
       variants: ['x16', 'x32']
     }
@@ -45,7 +45,6 @@ Ext.define('NX.coreui.controller.Users', {
   features: {
     path: '/Security/Users',
     view: { xtype: 'nx-user-feature' },
-    iconName: 'feature-users',
     visible: function () {
       return NX.util.Permissions.check('security:users', 'read');
     }

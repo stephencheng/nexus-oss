@@ -37,7 +37,11 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
     }
   ],
   icons: {
-    'feature-pluginconsole': {
+    'feature-system-plugins': {
+      file: 'plugin.png',
+      variants: ['x16', 'x32']
+    },
+    'plugin-default': {
       file: 'plugin.png',
       variants: ['x16', 'x32']
     }
@@ -45,7 +49,6 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
   features: {
     path: '/System/Plugins',
     view: { xtype: 'nx-pluginconsole-feature' },
-    iconName: 'feature-pluginconsole',
     visible: function () {
       return NX.util.Permissions.check('nexus:pluginconsoleplugininfos', 'read');
     }

@@ -21,7 +21,7 @@ Ext.define('NX.capability.view.List', {
       xtype: 'iconcolumn',
       width: 36,
       iconVariant: 'x16',
-      iconName: function() { return 'feature-capability'; }
+      iconName: function() { return 'capability-default'; }
     },
     { header: 'Type', dataIndex: 'typeName', flex: 1 },
     { header: 'Description', dataIndex: 'description', flex: 1 },

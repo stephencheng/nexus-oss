@@ -21,7 +21,7 @@ Ext.define('NX.pluginconsole.view.List', {
       xtype: 'iconcolumn',
       width: 36,
       iconVariant: 'x16',
-      iconName: function() { return 'feature-pluginconsole'; }
+      iconName: function() { return 'plugin-default'; }
     },
     {header: 'Name', dataIndex: 'name', flex: 1},
     {header: 'Version', dataIndex: 'version', flex: 1},

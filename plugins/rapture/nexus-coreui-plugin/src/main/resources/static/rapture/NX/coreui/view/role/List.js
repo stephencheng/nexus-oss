@@ -22,7 +22,7 @@ Ext.define('NX.coreui.view.role.List', {
       width: 36,
       iconVariant: 'x16',
       iconName: function () {
-        return 'feature-roles';
+        return 'role-default';
       }
     },
     {header: 'Name', dataIndex: 'name', flex: 1},

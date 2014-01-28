@@ -22,7 +22,7 @@ Ext.define('NX.coreui.view.privilege.List', {
       width: 36,
       iconVariant: 'x16',
       iconName: function () {
-        return 'feature-privileges';
+        return 'privilege-default';
       }
     },
     {header: 'Name', dataIndex: 'name', flex: 1},

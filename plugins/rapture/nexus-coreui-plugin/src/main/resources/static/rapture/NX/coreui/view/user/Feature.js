@@ -18,5 +18,5 @@ Ext.define('NX.coreui.view.user.Feature', {
   emptyText: 'Please select a user or create a new user',
 
   // FIXME: This seems strange to configure icon name here for the detail panel
-  iconName: 'user'
+  iconName: 'user-default'
 });

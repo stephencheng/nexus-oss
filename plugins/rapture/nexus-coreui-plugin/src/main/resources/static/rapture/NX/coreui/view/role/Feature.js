@@ -17,6 +17,6 @@ Ext.define('NX.coreui.view.role.Feature', {
   list: 'nx-role-list',
   emptyText: 'Please select a role or create a new role',
 
-  iconName: 'feature-roles'
+  iconName: 'role-default'
 
 });

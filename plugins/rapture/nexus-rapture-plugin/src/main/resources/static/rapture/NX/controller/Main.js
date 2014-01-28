@@ -113,23 +113,27 @@ Ext.define('NX.controller.Main', {
         file: 'database_green.png',
         variants: ['x16', 'x32']
       },
-      'feature-routing': {
+      'feature-staging-repositories': {
+        file: 'database_green.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-repository-routing': {
         file: 'arrow_branch.png',
         variants: ['x16', 'x32']
       },
-      'feature-rules': {
+      'feature-staging-rules': {
         file: 'measure.png',
         variants: ['x16', 'x32']
       },
-      'feature-notifications': {
+      'feature-system-notifications': {
         file: 'emails.png',
         variants: ['x16', 'x32']
       },
-      'feature-tasks': {
+      'feature-system-tasks': {
         file: 'time.png',
         variants: ['x16', 'x32']
       },
-      'feature-logging': {
+      'feature-support-logging': {
         file: 'book.png',
         variants: ['x16', 'x32']
       },
@@ -141,35 +145,35 @@ Ext.define('NX.controller.Main', {
         file: 'magnifier.png',
         variants: ['x16', 'x32']
       },
-      'feature-usertoken': {
+      'feature-security-usertoken': {
         file: 'key.png',
         variants: ['x16', 'x32']
       },
-      'feature-pgp': {
+      'feature-system-pgp': {
         file: 'gnupg_keys.png',
         variants: ['x16', 'x32']
       },
-      'feature-supporttools': {
+      'feature-support-supporttools': {
         file: 'globe_place.png',
         variants: ['x16', 'x32']
       },
-      'feature-smartproxy': {
+      'feature-system-smartproxy': {
         file: 'servers_network.png',
         variants: ['x16', 'x32']
       },
-      'feature-profiles': {
+      'feature-staging-profiles': {
         file: 'palette.png',
         variants: ['x16', 'x32']
       },
-      'feature-ldap': {
+      'feature-security-ldap': {
         file: 'book_addresses.png',
         variants: ['x16', 'x32']
       },
-      'feature-crowd': {
+      'feature-security-atlassiancrowd': {
         file: 'crowd.png',
         variants: ['x16', 'x32']
       },
-      'feature-http': {
+      'feature-system-http': {
         file: 'transmit.png',
         variants: ['x16', 'x32']
       },
@@ -181,7 +185,7 @@ Ext.define('NX.controller.Main', {
         file: 'wrench_orange.png',
         variants: ['x16', 'x32']
       },
-      'feature-ssl': {
+      'feature-system-ssl': {
         file: 'ssl_certificates.png',
         variants: ['x16', 'x32']
       },
@@ -189,11 +193,19 @@ Ext.define('NX.controller.Main', {
         file: 'database.png',
         variants: ['x16', 'x32']
       },
+      'feature-repository-repositories': {
+        file: 'database.png',
+        variants: ['x16', 'x32']
+      },
       'feature-procurement': {
         file: 'database_blue.png',
         variants: ['x16', 'x32']
       },
-      'feature-analytics': {
+      'feature-procurement-repositories': {
+        file: 'database_blue.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-support-analytics': {
         file: 'system_monitor.png',
         variants: ['x16', 'x32']
       },
@@ -201,11 +213,11 @@ Ext.define('NX.controller.Main', {
         file: 'support.png',
         variants: ['x16', 'x32']
       },
-      'feature-overview': {
+      'feature-support-overview': {
         file: 'information.png',
         variants: ['x16', 'x32']
       },
-      'feature-supportzip': {
+      'feature-support-supportzip': {
         file: 'file_extension_zip.png',
         variants: ['x16', 'x32']
       }
@@ -220,7 +232,6 @@ Ext.define('NX.controller.Main', {
       {
         path: '/System',
         view: 'NX.view.TODO',
-        iconName: 'feature-system',
         weight: 1000
       },
 
@@ -228,31 +239,26 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Search',
         view: 'NX.view.TODO',
-        iconName: 'feature-search',
         weight: 20
       },
       {
         path: '/Feeds',
         view: 'NX.view.TODO',
-        iconName: 'feature-feeds',
         weight: 20
       },
       {
         path: '/Repository',
-        iconName: 'feature-repository',
         view: 'NX.view.TODO',
         weight: 50
       },
       {
         path: '/Repository/Routing',
         view: 'NX.view.TODO',
-        iconName: 'feature-routing',
         visible: visibleIfLoggedIn,
         weight: 20
       },
       {
         path: '/Staging',
-        iconName: 'feature-staging',
         view: 'NX.view.TODO',
         weight: 60,
         visible: visibleIfLoggedIn
@@ -260,37 +266,31 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Staging/Repositories',
         view: 'NX.view.TODO',
-        iconName: 'feature-staging',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Staging/Profiles',
         view: 'NX.view.TODO',
-        iconName: 'feature-profiles',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Staging/Rules',
         view: 'NX.view.TODO',
-        iconName: 'feature-rules',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Procurement',
         view: 'NX.view.TODO',
-        iconName: 'feature-procurement',
         weight: 60,
         visible: visibleIfLoggedIn
       },
       {
         path: '/Procurement/Repositories',
         view: 'NX.view.TODO',
-        iconName: 'feature-procurement',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Security',
-        iconName: 'feature-security',
         view: 'NX.view.TODO',
         weight: 90,
         visible: visibleIfLoggedIn
@@ -298,97 +298,81 @@ Ext.define('NX.controller.Main', {
       {
         path: '/Security/Settings',
         view: 'NX.view.TODO',
-        iconName: 'feature-security-settings',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Security/User Token',
         view: 'NX.view.TODO',
-        iconName: 'feature-usertoken',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Security/LDAP',
         view: 'NX.view.TODO',
-        iconName: 'feature-ldap',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Security/Atlassian Crowd',
         view: 'NX.view.TODO',
-        iconName: 'feature-crowd',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/General',
         view: 'TODO',
-        iconName: 'feature-system-general',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/Notifications',
         view: 'NX.view.TODO',
-        iconName: 'feature-notifications',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/HTTP',
         view: 'NX.view.TODO',
-        iconName: 'feature-http',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/PGP',
         view: 'NX.view.TODO',
-        iconName: 'feature-pgp',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/Tasks',
         view: 'NX.view.TODO',
-        iconName: 'feature-tasks',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/Smart Proxy',
         view: 'NX.view.TODO',
-        iconName: 'feature-smartproxy',
         visible: visibleIfLoggedIn
       },
       {
         path: '/System/SSL',
         view: 'NX.view.TODO',
-        iconName: 'feature-ssl',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Support',
-        iconName: 'feature-support',
         view: 'NX.view.TODO',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Overview',
         view: 'NX.view.TODO',
-        iconName: 'feature-overview',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Logging',
         view: 'NX.view.TODO',
-        iconName: 'feature-logging',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Support ZIP',
         view: 'NX.view.TODO',
-        iconName: 'feature-supportzip',
         visible: visibleIfLoggedIn
       },
       {
         path: '/Support/Analytics',
         view: 'NX.view.TODO',
-        iconName: 'feature-analytics',
         visible: visibleIfLoggedIn
       }
     ]);
@@ -522,19 +506,24 @@ Ext.define('NX.controller.Main', {
           throw Ext.Error.raise('Feature missing path');
         }
 
-        // auto-set bookmark to path normalized
+        // normalize path, strip off leading '/'
+        var path = feature.path;
+        if (path.charAt(0) === '/') {
+          path = path.substr(1, path.length);
+        }
+
+        // auto-set bookmark
         if (!feature.bookmark) {
-          var path = feature.path;
-          if (path.charAt(0) === '/') {
-            path = path.substr(1, path.length);
-          }
           feature.bookmark = path.toLowerCase().replace(' ', '');
         }
 
-        // auto-set iconCls for rendering in tree
-        if (feature.iconName) {
-          feature.iconCls = NX.controller.Icon.iconCls(feature.iconName, 'x16');
+        // auto-set iconName
+        if (!feature.iconName) {
+          feature.iconName = 'feature-' + path.toLowerCase().replace('/', '-').replace(' ', '');
         }
+
+        // auto-set iconCls for rendering in tree
+        feature.iconCls = NX.controller.Icon.iconCls(feature.iconName, 'x16');
 
         me.getFeatureStore().add(feature);
       });

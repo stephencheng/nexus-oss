@@ -33,7 +33,11 @@ Ext.define('NX.coreui.controller.Privileges', {
     }
   ],
   icons: {
-    'feature-privileges': {
+    'feature-security-privileges': {
+      file: 'medal_gold_1.png',
+      variants: ['x16', 'x32']
+    },
+    'privilege-default': {
       file: 'medal_gold_1.png',
       variants: ['x16', 'x32']
     }
@@ -41,7 +45,6 @@ Ext.define('NX.coreui.controller.Privileges', {
   features: {
     path: '/Security/Privileges',
     view: { xtype: 'nx-privilege-feature' },
-    iconName: 'feature-privileges',
     visible: function () {
       return NX.util.Permissions.check('security:privileges', 'read');
     }

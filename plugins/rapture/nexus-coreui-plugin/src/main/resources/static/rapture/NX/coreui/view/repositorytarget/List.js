@@ -22,7 +22,7 @@ Ext.define('NX.coreui.view.repositorytarget.List', {
       width: 36,
       iconVariant: 'x16',
       iconName: function () {
-        return 'feature-targets';
+        return 'target-default';
       }
     },
     { header: 'Name', dataIndex: 'name', flex: 1 },
