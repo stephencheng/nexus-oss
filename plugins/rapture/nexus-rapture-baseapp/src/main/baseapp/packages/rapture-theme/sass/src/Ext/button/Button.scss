@@ -344,8 +344,6 @@ $button-header-toolbar-glyph-opacity: .5 !default;
 @include extjs-button-toolbar-medium-ui(
   $ui: 'header',
 
-  // FIXME: Need to update the colors used here so they better match the product logo
-
   $border-color: transparent,
   $border-color-over: $button-header-toolbar-border-color-over,
   $border-color-focus: $button-header-toolbar-border-color-focus,
