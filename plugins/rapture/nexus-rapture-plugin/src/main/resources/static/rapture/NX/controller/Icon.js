@@ -58,6 +58,23 @@ Ext.define('NX.controller.Icon', {
 
     // install stylesheet after all other controllers have had a chance to init & add icons.
     me.installStylesheet();
+
+    // HACK: preload some additional image resources
+    me.preloadImage(NX.util.Url.baseUrl + 'static/rapture/resources/images/shared/icon-error.png');
+    me.preloadImage(NX.util.Url.baseUrl + 'static/rapture/resources/images/shared/icon-info.png');
+    me.preloadImage(NX.util.Url.baseUrl + 'static/rapture/resources/images/shared/icon-question.png');
+    me.preloadImage(NX.util.Url.baseUrl + 'static/rapture/resources/images/shared/icon-warning.png');
+  },
+
+  /**
+   * @private
+   * @param url
+   */
+  preloadImage: function(url) {
+    var me = this;
+    me.logDebug('Preloading: ' + url);
+    img = new Image();
+    img.src = url;
   },
 
   /**
@@ -79,10 +96,7 @@ Ext.define('NX.controller.Icon', {
 
       // Optionally pre-load icon
       if (record.data.preload) {
-        // FIXME: This still does not seem to be doing the trick :-(
-        me.logDebug('Preloading: ' + record.data.url);
-        img = new Image();
-        img.src = record.data.url;
+        me.preloadImage(record.data.url);
       }
     });
 
