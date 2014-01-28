@@ -13,9 +13,9 @@
 /**
  * A search box.
  */
-Ext.define('NX.ext.QuickSearch', {
+Ext.define('NX.ext.SearchBox', {
   extend: 'Ext.form.field.Trigger',
-  alias: 'widget.nx-quicksearch',
+  alias: 'widget.nx-searchbox',
 
   emptyText: 'search',
 
@@ -47,7 +47,7 @@ Ext.define('NX.ext.QuickSearch', {
         /**
          * @event search
          * Fires when a search values was typed. Fires with a delay of **{@link #searchDelay}**.
-         * @param {NX.view.header.QuickSearch} this QuickSearch
+         * @param {NX.view.header.SearchBox} this search box
          * @param {String} width search value
          */
         'search',
@@ -55,7 +55,7 @@ Ext.define('NX.ext.QuickSearch', {
         /**
          * @event searchcleared
          * Fires when a search value had been cleared.
-         * @param {NX.view.header.QuickSearch} this QuickSearch
+         * @param {NX.view.header.SearchBox} this search box
          */
         'searchcleared'
     );

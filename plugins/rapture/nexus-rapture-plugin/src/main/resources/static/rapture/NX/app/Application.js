@@ -25,7 +25,7 @@ Ext.define('NX.app.Application', {
 
     // require custom extensions so we don't need to requirement explicitly everywhere
     'NX.ext.grid.IconColumn',
-    'NX.ext.QuickSearch',
+    'NX.ext.SearchBox',
     'NX.ext.grid.plugin.Filtering'
   ],
 

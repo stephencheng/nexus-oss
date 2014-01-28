@@ -11,8 +11,8 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 /**
- * Header QuickSearch controller.
- * Reacts to QuickSearch events and triggers filtering on all active filterable grids
+ * Header SearchBox controller.
+ * Reacts to SearchBox events and triggers filtering on all active filterable grids
  * (grids that have a "gridfiltering" plugin).
  */
 Ext.define('NX.controller.HeaderQuickSearch', {
@@ -23,8 +23,8 @@ Ext.define('NX.controller.HeaderQuickSearch', {
 
   refs: [
     {
-      ref: 'quickSearch',
-      selector: 'nx-header-panel nx-quicksearch'
+      ref: 'searchBox',
+      selector: 'nx-header-panel nx-searchbox'
     }
   ],
 
@@ -41,7 +41,7 @@ Ext.define('NX.controller.HeaderQuickSearch', {
         }
       },
       component: {
-        'nx-header-panel nx-quicksearch': {
+        'nx-header-panel nx-searchbox': {
           search: me.filter,
           searchcleared: me.clearFilter
         }
@@ -52,10 +52,10 @@ Ext.define('NX.controller.HeaderQuickSearch', {
   /**
    * @private
    * Triggers filter on all active filterable grids.
-   * @param quicksearch header QuickSearch
+   * @param searchbox header search box
    * @param value filter value
    */
-  filter: function (quicksearch, value) {
+  filter: function (searchbox, value) {
     var me = this,
         filterables = this.getFilterables();
 
@@ -100,7 +100,7 @@ Ext.define('NX.controller.HeaderQuickSearch', {
   onFeatureSelected: function () {
     var me = this;
 
-    me.getQuickSearch().clearSearch();
+    me.getSearchBox().clearSearch();
   }
 
 });
