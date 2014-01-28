@@ -407,7 +407,7 @@ Ext.define('Ext.ux.grid.Search', {
                             if(!item.checked || retval) { return; }
                             var rv = r.get(item.dataIndex);
                             rv = rv instanceof Date ? rv.format(this.dateFormat || r.fields.get(item.dataIndex).dateFormat) : rv;
-                            var re = new RegExp(RegExp.escape(val), 'gi');
+                            var re = new RegExp(val, 'gi');
                             retval = re.test(rv);
                         }, this);
                         if(retval) { return true; }
