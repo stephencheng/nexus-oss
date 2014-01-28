@@ -89,11 +89,6 @@ Ext.define('NX.controller.User', {
         'nx-expire-session button[action=cancel]': {
           click: me.stopTicking
         }
-      },
-      direct: {
-        '*': {
-          beforecallback: me.checkIfAuthenticationIsRequired
-        }
       }
     });
   },
@@ -211,7 +206,8 @@ Ext.define('NX.controller.User', {
   },
 
   /**
-   * @private
+   * @public
+   * Shows login window.
    */
   showLoginWindow: function () {
     var me = this;
@@ -252,21 +248,11 @@ Ext.define('NX.controller.User', {
 
     me.logDebug('Login...');
 
-    NX.direct.rapture_Application.login(userName, userPass, values.remember === 'on', function (response, status) {
-      if (!NX.util.ExtDirect.showExceptionIfPresent('User could not be logged in', response, status)) {
-        if (Ext.isDefined(response)) {
-          if (response.success) {
-            me.updateUser(response.data);
-            win.getEl().unmask();
-            win.close();
-          }
-          else {
-            win.getEl().unmask();
-          }
-        }
-      }
-      else {
-        win.getEl().unmask();
+    NX.direct.rapture_Application.login(userName, userPass, values.remember === 'on', function (response) {
+      win.getEl().unmask();
+      if (Ext.isDefined(response) && response.success) {
+        me.updateUser(response.data);
+        win.close();
       }
     });
   },
@@ -279,13 +265,9 @@ Ext.define('NX.controller.User', {
 
     me.logDebug('Logout...');
 
-    NX.direct.rapture_Application.logout(function (response, status) {
-      if (!NX.util.ExtDirect.showExceptionIfPresent('User could not be logged out', response, status)) {
-        if (Ext.isDefined(response)) {
-          if (response.success) {
-            me.updateUser();
-          }
-        }
+    NX.direct.rapture_Application.logout(function (response) {
+      if (Ext.isDefined(response) && response.success) {
+        me.updateUser();
       }
     });
   },
@@ -321,27 +303,6 @@ Ext.define('NX.controller.User', {
     });
 
     return perms;
-  },
-
-  /**
-   * @private
-   */
-  checkIfAuthenticationIsRequired: function (provider, transaction) {
-    var me = this,
-        result = transaction.result;
-
-    if (Ext.isDefined(result)
-        && Ext.isDefined(result.success) && result.success === false
-        && Ext.isDefined(result.authenticationRequired) && result.authenticationRequired === true) {
-      me.getApplication().getMessageController().addMessage({
-        type: 'danger',
-        text: result.message
-      });
-      me.showLoginWindow();
-      // cancel Ext.Direct callback
-      return false;
-    }
-    return true;
   }
 
 });

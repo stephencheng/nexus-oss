@@ -14,8 +14,7 @@ Ext.define('NX.coreui.controller.Repositories', {
   extend: 'NX.controller.MasterDetail',
   requires: [
     'NX.util.Url',
-    'NX.util.Msg',
-    'NX.util.ExtDirect'
+    'NX.util.Msg'
   ],
 
   list: 'nx-repository-list',
@@ -93,23 +92,18 @@ Ext.define('NX.coreui.controller.Repositories', {
 
   deleteRepository: function () {
     var me = this,
-        selection = me.getList().getSelectionModel().getSelection();
+        selection = me.getList().getSelectionModel().getSelection(),
+        description;
 
     if (Ext.isDefined(selection) && selection.length > 0) {
-      NX.util.Msg.askConfirmation('Confirm deletion?', me.getDescription(selection[0]), function () {
+      description = me.getDescription(selection[0]);
+      NX.util.Msg.askConfirmation('Confirm deletion?', description, function () {
         NX.direct.coreui_Repository.delete(selection[0].getId(), function (response, status) {
-          if (!NX.util.ExtDirect.showExceptionIfPresent('Repository could not be deleted', response, status)) {
-            if (Ext.isDefined(response)) {
-              me.loadStores();
-              if (response.success) {
-                me.getApplication().getMessageController().addMessage({
-                  text: 'Repository deleted: ' + description, type: 'success'
-                });
-              }
-              else {
-                me.getApplication().getMessageController().addMessage({ text: response.message, type: 'warning' });
-              }
-            }
+          me.loadStores();
+          if (Ext.isDefined(response) && response.success) {
+            me.getApplication().getMessageController().addMessage({
+              text: 'Repository deleted: ' + description, type: 'success'
+            });
           }
         });
       }, {scope: me});

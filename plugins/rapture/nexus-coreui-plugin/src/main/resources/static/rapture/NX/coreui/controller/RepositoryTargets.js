@@ -12,6 +12,9 @@
  */
 Ext.define('NX.coreui.controller.RepositoryTargets', {
   extend: 'NX.controller.MasterDetail',
+  requires: [
+    'NX.util.Msg',
+  ],
 
   list: 'nx-repositorytarget-list',
 
@@ -116,19 +119,12 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     if (selection.length) {
       description = me.getDescription(selection[0]);
       NX.util.Msg.askConfirmation('Confirm deletion?', description, function () {
-        NX.direct.coreui_RepositoryTarget.delete(selection[0].getId(), function (response, status) {
-          if (!NX.util.ExtDirect.showExceptionIfPresent('Target could not be deleted', response, status)) {
-            if (Ext.isDefined(response)) {
-              me.loadStores();
-              if (response.success) {
-                me.getApplication().getMessageController().addMessage({
-                  text: 'Target deleted: ' + description, type: 'success'
-                });
-              }
-              else {
-                me.getApplication().getMessageController().addMessage({ text: response.message, type: 'warning' });
-              }
-            }
+        NX.direct.coreui_RepositoryTarget.delete(selection[0].getId(), function (response) {
+          me.loadStores();
+          if (Ext.isDefined(response) && response.success) {
+            me.getApplication().getMessageController().addMessage({
+              text: 'Target deleted: ' + description, type: 'success'
+            });
           }
         });
       }, {scope: me});

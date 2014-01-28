@@ -51,7 +51,8 @@ Ext.define('NX.app.Application', {
     'Message',
     'Status',
     'User',
-    'HeaderQuickSearch'
+    'HeaderQuickSearch',
+    'ExtDirect'
   ],
   models: [
     'Message'
