@@ -531,16 +531,19 @@ Ext.define('NX.controller.Main', {
     me.getFeatureStore().each(function (rec) {
       feature = rec.getData();
       // iterate only visible leafs
-      if (Ext.isDefined(feature.view) && me.isFeatureVisible(feature)) {
+      if (me.isFeatureVisible(feature)) {
         segments = feature.path.split('/');
         parent = me.getFeatureMenuStore().getRootNode();
         for (var i = 1; i < segments.length; i++) {
           child = parent.findChild('text', segments[i], false);
           if (child) {
-            // if leaf was already created (leaf configured more times), merge the definitions
-            if (i == segments.length - 1) {
+            if (i < segments.length - 1) {
+              child.data = Ext.apply(child.data,  {
+                leaf: false
+              });
+            }
+            else {
               child.data = Ext.apply(child.data, Ext.apply(feature, {
-                text: segments[i],
                 leaf: true
               }));
             }
@@ -561,25 +564,6 @@ Ext.define('NX.controller.Main', {
                 text: segments[i],
                 leaf: true
               }));
-            }
-          }
-          parent = child;
-        }
-      }
-    });
-
-    // apply configuration for group entries
-    me.getFeatureStore().each(function (rec) {
-      feature = rec.getData();
-      // iterate only visible groups
-      if (!Ext.isDefined(feature.view) && me.isFeatureVisible(feature)) {
-        segments = feature.path.split('/');
-        parent = me.getFeatureMenuStore().getRootNode();
-        for (var i = 1; i < segments.length; i++) {
-          child = parent.findChild('text', segments[i], false);
-          if (child && !child.data.leaf) {
-            if (i == segments.length - 1) {
-              child.data = Ext.apply(child.data, feature);
             }
           }
           parent = child;
