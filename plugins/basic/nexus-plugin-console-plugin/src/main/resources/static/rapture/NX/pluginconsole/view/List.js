@@ -28,5 +28,7 @@ Ext.define('NX.pluginconsole.view.List', {
     {header: 'Description', dataIndex: 'description', flex: 1}
   ],
 
+  plugins: ['gridfiltering'],
+
   refreshable: true
 });
