@@ -199,11 +199,6 @@ Ext.define('NX.controller.Menu', {
                 leaf: false
               });
             }
-            else {
-              child.data = Ext.apply(child.data, Ext.apply(feature, {
-                leaf: true
-              }));
-            }
           }
           else {
             if (i < segments.length - 1) {
