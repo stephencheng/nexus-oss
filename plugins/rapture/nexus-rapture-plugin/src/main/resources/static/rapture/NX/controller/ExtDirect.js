@@ -47,7 +47,7 @@ Ext.define('NX.controller.ExtDirect', {
         return false;
       }
       if (!Ext.isDefined(result.errors)) {
-        NX.Messages.add({ text: response.message, type: 'warning' });
+        NX.Messages.add({ text: result.message, type: 'warning' });
       }
     }
 
