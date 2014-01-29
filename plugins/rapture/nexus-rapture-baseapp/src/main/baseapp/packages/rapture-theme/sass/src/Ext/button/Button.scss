@@ -383,3 +383,77 @@ $button-header-toolbar-glyph-opacity: .5 !default;
   $glyph-color: #FFFFFF,
   $glyph-opacity: 0.5
 );
+
+/**
+ * ui: 'headermode'
+ */
+
+$button-headermode-toolbar-border-color: #17558E !default;
+$button-headermode-toolbar-border-color-over: button-toolbar-border-color-over($button-headermode-toolbar-border-color) !default;
+$button-headermode-toolbar-border-color-focus: button-toolbar-border-color-focus($button-headermode-toolbar-border-color) !default;
+$button-headermode-toolbar-border-color-pressed: button-toolbar-border-color-pressed($button-headermode-toolbar-border-color) !default;
+$button-headermode-toolbar-border-color-disabled: button-toolbar-border-color-disabled($button-headermode-toolbar-border-color) !default;
+
+$button-headermode-toolbar-background-color: #2476C3 !default;
+$button-headermode-toolbar-background-color-over: button-toolbar-background-color-over($button-headermode-toolbar-background-color) !default;
+$button-headermode-toolbar-background-color-focus: button-toolbar-background-color-focus($button-headermode-toolbar-background-color) !default;
+$button-headermode-toolbar-background-color-pressed: button-toolbar-background-color-pressed($button-headermode-toolbar-background-color) !default;
+$button-headermode-toolbar-background-color-disabled: button-toolbar-background-color-disabled($button-headermode-toolbar-background-color) !default;
+
+$button-headermode-toolbar-background-gradient: 'glossy-button' !default;
+$button-headermode-toolbar-background-gradient-over: 'glossy-button-over' !default;
+$button-headermode-toolbar-background-gradient-focus: $button-headermode-toolbar-background-gradient-over !default;
+$button-headermode-toolbar-background-gradient-pressed: 'glossy-button-pressed' !default;
+$button-headermode-toolbar-background-gradient-disabled: 'glossy-button-disabled' !default;
+
+$button-headermode-toolbar-color: #FFFFFF !default;
+$button-headermode-toolbar-color-over: button-toolbar-color-over($button-headermode-toolbar-color) !default;
+$button-headermode-toolbar-color-focus: button-toolbar-color-focus($button-headermode-toolbar-color) !default;
+$button-headermode-toolbar-color-pressed: button-toolbar-color-pressed($button-headermode-toolbar-color) !default;
+$button-headermode-toolbar-color-disabled: button-toolbar-color-disabled($button-headermode-toolbar-color) !default;
+
+$button-headermode-toolbar-glyph-color: $button-headermode-toolbar-color !default;
+$button-headermode-toolbar-glyph-opacity: .5 !default;
+
+@include extjs-button-toolbar-medium-ui(
+  $ui: 'headermode',
+
+  $border-color: transparent,
+  $border-color-over: $button-headermode-toolbar-border-color-over,
+  $border-color-focus: $button-headermode-toolbar-border-color-focus,
+  $border-color-pressed: $button-headermode-toolbar-border-color-pressed,
+  $border-color-disabled: transparent,
+
+  $background-color: transparent,
+  $background-color-over: $button-headermode-toolbar-background-color-over,
+  $background-color-focus: $button-headermode-toolbar-background-color-focus,
+  $background-color-pressed: $button-headermode-toolbar-background-color-pressed,
+  $background-color-disabled: transparent,
+
+  $color: $button-headermode-toolbar-color,
+  $color-over: $button-headermode-toolbar-color-over,
+  $color-focus: $button-headermode-toolbar-color-focus,
+  $color-pressed: $button-headermode-toolbar-color-pressed,
+  $color-disabled: $button-headermode-toolbar-color-disabled,
+
+  $font-size: $button-medium-font-size,
+  $font-size-over: $button-medium-font-size-over,
+  $font-size-focus: $button-medium-font-size-focus,
+  $font-size-pressed: $button-medium-font-size-pressed,
+  $font-size-disabled: $button-medium-font-size-disabled,
+
+  $font-weight: $button-medium-font-weight,
+  $font-weight-over: $button-medium-font-weight-over,
+  $font-weight-focus: $button-medium-font-weight-focus,
+  $font-weight-pressed: $button-medium-font-weight-pressed,
+  $font-weight-disabled: $button-medium-font-weight-disabled,
+
+  $font-family: $button-medium-font-family,
+  $font-family-over: $button-medium-font-family-over,
+  $font-family-focus: $button-medium-font-family-focus,
+  $font-family-pressed: $button-medium-font-family-pressed,
+  $font-family-disabled: $button-medium-font-family-disabled,
+
+  $glyph-color: #FFFFFF,
+  $glyph-opacity: 0.5
+);
