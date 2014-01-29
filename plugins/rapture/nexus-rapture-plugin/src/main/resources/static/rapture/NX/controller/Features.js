@@ -29,7 +29,8 @@ Ext.define('NX.controller.Features', {
    * @param {Array/Object} features to be registered
    */
   registerFeature: function (features) {
-    var me = this;
+    var me = this,
+        segments;
 
     if (features) {
       if (!Ext.isArray(features)) {

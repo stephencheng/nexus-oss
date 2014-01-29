@@ -16,6 +16,13 @@ Ext.define('NX.model.Feature', {
   idProperty: 'path',
   fields: [
     { name: 'path' },
+    {
+      name: 'text',
+      convert: function (val, row) {
+        var segments = row.data.path.split('/');
+        return segments[segments.length - 1];
+      }
+    },
     { name: 'weight', defaultValue: 100 },
     { name: 'view', defaultValue: undefined },
     { name: 'visible', defaultValue: true },

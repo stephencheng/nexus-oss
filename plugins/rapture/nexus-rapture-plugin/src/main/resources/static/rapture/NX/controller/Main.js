@@ -23,7 +23,6 @@ Ext.define('NX.controller.Main', {
     'header.Logo',
     'header.Version',
     'header.Refresh',
-    'header.Help',
     'header.Login',
     'header.User',
     'dev.Panel',

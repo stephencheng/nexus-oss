@@ -41,10 +41,6 @@ Ext.define('NX.controller.Menu', {
     {
       ref: 'featureMenu',
       selector: 'nx-feature-menu'
-    },
-    {
-      ref: 'featureHelp',
-      selector: 'nx-header-help menuitem[action=feature]'
     }
   ],
 
@@ -112,7 +108,6 @@ Ext.define('NX.controller.Menu', {
   selectFeature: function (panel, record) {
     var me = this,
         content = me.getFeatureContent(),
-        featureHelp = me.getFeatureHelp(),
         view = record.get('view'),
         cmp;
 
@@ -132,10 +127,6 @@ Ext.define('NX.controller.Menu', {
     // update title and icon
     content.setTitle(record.get('text'));
     content.setIconCls(NX.Icons.cls(record.get('iconName'), 'x32'));
-
-    // Update help menu content
-    featureHelp.setText(record.get('text'));
-    featureHelp.setIconCls(NX.Icons.cls(record.get('iconName'), 'x16'));
 
     // install new feature view
     content.add(cmp);
@@ -219,7 +210,6 @@ Ext.define('NX.controller.Menu', {
             else {
               // create the leaf
               child = parent.appendChild(Ext.apply(feature, {
-                text: segments[i],
                 leaf: true,
                 iconCls: NX.Icons.cls(feature.iconName, 'x16')
               }));
