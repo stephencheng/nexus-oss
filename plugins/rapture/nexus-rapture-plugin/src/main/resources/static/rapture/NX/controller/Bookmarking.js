@@ -22,6 +22,11 @@ Ext.define('NX.controller.Bookmarking', {
   },
 
   /**
+   * If this controller had been launched. Becomes true after onLaunch() method is called by ExtJS.
+   */
+  launched: false,
+
+  /**
    * @override
    */
   init: function () {
@@ -61,6 +66,10 @@ Ext.define('NX.controller.Bookmarking', {
     var me = this,
         oldValue = me.getBookmark().getToken();
 
+    if (!me.launched) {
+      return;
+    }
+
     if (newBookmark && oldValue != newBookmark.getToken()) {
       // unbind first to avoid navigation callback
       Ext.History.bookmark = newBookmark.getToken();
@@ -76,6 +85,10 @@ Ext.define('NX.controller.Bookmarking', {
   navigate: function (bookmark) {
     var me = this;
 
+    if (!me.launched) {
+      return;
+    }
+
     if (bookmark) {
       me.logDebug('Navigate to: ' + bookmark.getToken());
       me.bookmark(bookmark);
@@ -89,6 +102,8 @@ Ext.define('NX.controller.Bookmarking', {
    */
   onLaunch: function () {
     var me = this;
+
+    me.launched = true;
 
     me.navigate(me.getBookmark());
   },
