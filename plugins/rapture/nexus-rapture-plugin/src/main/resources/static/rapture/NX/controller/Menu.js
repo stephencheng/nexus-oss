@@ -151,7 +151,7 @@ Ext.define('NX.controller.Menu', {
       node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark.getSegment(0), true);
     }
     if (!node) {
-      me.logDebug('Bookmarked feature "' + bookmark.getSegment(0) +'" not found. Selecting first available feature');
+      me.logDebug('Bookmarked feature "' + bookmark.getSegment(0) + '" not found. Selecting first available feature');
       node = me.getFeatureMenuStore().getRootNode().firstChild;
     }
     if (node) {
@@ -247,7 +247,7 @@ Ext.define('NX.controller.Menu', {
       if (Ext.isBoolean(feature.visible)) {
         visible = feature.visible;
       }
-      else if (typeof feature.visible === 'function') {
+      else if (Ext.isFunction(feature.visible)) {
         visible = feature.visible.call();
       }
       else {
