@@ -49,7 +49,7 @@ Ext.define('NX.controller.MasterDetail', {
     me.listen({
       controller: {
         '#User': {
-          permissionsChanged: me.applyPermissions
+          permissionschanged: me.applyPermissions
         },
         '#Menu': {
           navigate: me.onNavigate

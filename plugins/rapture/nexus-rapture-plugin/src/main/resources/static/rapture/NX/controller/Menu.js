@@ -57,7 +57,7 @@ Ext.define('NX.controller.Menu', {
     me.listen({
       controller: {
         '#User': {
-          permissionsChanged: me.refreshMenu
+          permissionschanged: me.refreshMenu
         },
         '#Bookmarking': {
           navigate: me.onNavigate
