@@ -82,7 +82,13 @@ Ext.define('NX.controller.Menu', {
          * Fires when user navigates to a new bookmark.
          * @param {String} bookmark value
          */
-        'navigate'
+        'navigate',
+        /**
+         * @event featureselected
+         * Fires when a feature is selected.
+         * @param {NX.model.Feature} selected feature
+         */
+        'featureselected'
     );
   },
 
@@ -107,11 +113,10 @@ Ext.define('NX.controller.Menu', {
     var me = this,
         content = me.getFeatureContent(),
         featureHelp = me.getFeatureHelp(),
-        view,
+        view = record.get('view'),
         cmp;
 
-    view = record.get('view');
-    me.logDebug('Selecting feature view: ' + view);
+    me.logDebug('Selected feature: ' + record.get('path'));
 
     // create new view and replace any current view
     if (Ext.isString(view)) {
@@ -134,7 +139,8 @@ Ext.define('NX.controller.Menu', {
 
     // install new feature view
     content.add(cmp);
-    me.fireEvent('featureselected', cmp);
+
+    me.fireEvent('featureselected', me.getFeatureStore().getById(record.get('path')));
 
     me.bookmark(record);
   },
