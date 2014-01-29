@@ -58,9 +58,6 @@ Ext.define('NX.controller.Features', {
           feature.iconName = 'feature-' + path.toLowerCase().replace('/', '-').replace(' ', '');
         }
 
-        // auto-set iconCls for rendering in tree
-        feature.iconCls = NX.Icons.cls(feature.iconName, 'x16');
-
         me.getFeatureStore().add(feature);
       });
     }

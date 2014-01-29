@@ -219,7 +219,8 @@ Ext.define('NX.controller.Menu', {
               // create the leaf
               child = parent.appendChild(Ext.apply(feature, {
                 text: segments[i],
-                leaf: true
+                leaf: true,
+                iconCls: NX.Icons.cls(feature.iconName, 'x16')
               }));
             }
           }
