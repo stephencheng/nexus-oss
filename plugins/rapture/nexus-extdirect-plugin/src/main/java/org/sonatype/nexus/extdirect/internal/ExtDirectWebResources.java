@@ -52,6 +52,9 @@ public class ExtDirectWebResources
     return new FileWebResource(file, path, JAVASCRIPT, true);
   }
 
+  // FIXME: Would like to replace the generation here instead of relying on file which could be changed, etc
+  // FIXME: Also we need a bit more control over the generation of this content so we can set the baseUrl etc
+
   @Override
   public List<WebResource> getResources() {
     return ImmutableList.of(
