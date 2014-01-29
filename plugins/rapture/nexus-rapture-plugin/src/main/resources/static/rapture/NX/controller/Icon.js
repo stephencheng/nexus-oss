@@ -144,7 +144,7 @@ Ext.define('NX.controller.Icon', {
       });
     }
     else {
-      Ext.Error.raise('Expected arrary or object, found: ' + icons);
+      Ext.Error.raise('Expected array or object, found: ' + icons);
     }
   },
 
