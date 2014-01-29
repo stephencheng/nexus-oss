@@ -51,22 +51,6 @@ Ext.define('NX.controller.Main', {
       'sonatype': {
         file: 'sonatype.png',
         variants: ['x16', 'x32']
-      },
-      'help-support': {
-        file: 'support.png',
-        variants: ['x16', 'x32']
-      },
-      'help-manual': {
-        file: 'book_picture.png',
-        variants: ['x16', 'x32']
-      },
-      'user-settings': {
-        file: 'setting_tools.png',
-        variants: ['x16', 'x32']
-      },
-      'user-logout': {
-        file: 'door_out.png',
-        variants: ['x16', 'x32']
       }
     });
   }

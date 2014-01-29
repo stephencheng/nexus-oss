@@ -56,6 +56,17 @@ Ext.define('NX.controller.User', {
   init: function () {
     var me = this;
 
+    me.getApplication().getIconController().addIcons({
+      'user-settings': {
+        file: 'setting_tools.png',
+        variants: ['x16', 'x32']
+      },
+      'user-logout': {
+        file: 'door_out.png',
+        variants: ['x16', 'x32']
+      }
+    });
+
     me.listen({
       controller: {
         '#Status': {

@@ -38,6 +38,17 @@ Ext.define('NX.controller.Help', {
   init: function () {
     var me = this;
 
+    me.getApplication().getIconController().addIcons({
+      'help-support': {
+        file: 'support.png',
+        variants: ['x16', 'x32']
+      },
+      'help-manual': {
+        file: 'book_picture.png',
+        variants: ['x16', 'x32']
+      }
+    });
+
     me.listen({
       controller: {
         '#Menu': {
