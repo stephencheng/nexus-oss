@@ -38,7 +38,5 @@ Ext.define('NX.coreui.view.user.List', {
     { xtype: 'button', text: 'Delete', glyph: 'xf056@FontAwesome' /* fa-minus-circle */, action: 'delete', disabled: true }
   ],
 
-  plugins: [ 'gridfilterbox' ],
-
-  refreshable: true
+  plugins: [ 'gridfilterbox' ]
 });

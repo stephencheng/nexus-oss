@@ -10,31 +10,19 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.controller.Main', {
+/**
+ * Refresh controller.
+ *
+ * @since 2.8
+ */
+Ext.define('NX.controller.Refresh', {
   extend: 'Ext.app.Controller',
   mixins: {
     logAware: 'NX.LogAware'
   },
 
   views: [
-    'Main',
-    'header.Panel',
-    'header.Branding',
-    'header.Logo',
-    'header.Version',
-    'header.Login',
-    'header.User',
-    'dev.Panel',
-    'message.Panel',
-    'info.Entry',
-    'info.Panel'
-  ],
-
-  refs: [
-    {
-      ref: 'headerVersion',
-      selector: 'nx-header-version'
-    }
+    'header.Refresh'
   ],
 
   /**
@@ -44,31 +32,39 @@ Ext.define('NX.controller.Main', {
     var me = this;
 
     me.getApplication().getIconController().addIcons({
-      'nexus': {
-        file: 'nexus.png',
-        variants: ['x16', 'x32']
-      },
-      'sonatype': {
-        file: 'sonatype.png',
-        variants: ['x16', 'x32']
-      },
-      'help-support': {
-        file: 'support.png',
-        variants: ['x16', 'x32']
-      },
-      'help-manual': {
-        file: 'book_picture.png',
-        variants: ['x16', 'x32']
-      },
-      'user-settings': {
-        file: 'setting_tools.png',
-        variants: ['x16', 'x32']
-      },
-      'user-logout': {
-        file: 'door_out.png',
+      'refresh': {
+        file: 'arrow_refresh.png',
         variants: ['x16', 'x32']
       }
     });
+
+    me.listen({
+      component: {
+        'nx-header-refresh': {
+          click: me.refresh
+        }
+      }
+    });
+
+    me.addEvents(
+        /**
+         * @event refresh
+         * Fires when refresh should be performed.
+         */
+        'refresh'
+    );
+  },
+
+  /**
+   * @public
+   * Fire refresh event.
+   */
+  refresh: function () {
+    var me = this;
+
+    me.fireEvent('refresh');
+
+    NX.Messages.add({ text: 'Refreshed', type: 'default'});
   }
 
 });

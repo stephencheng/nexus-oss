@@ -32,7 +32,6 @@ Ext.define('NX.controller.MasterDetail', {
       beforerender: me.loadStores,
       afterrender: me.applyPermissions,
       selectionchange: me.onSelectionChange,
-      refresh: me.loadStores,
       selection: me.onSelection
     };
     componentListener[me.list + ' ^ nx-masterdetail-panel nx-masterdetail-tabs > tabpanel'] = {
@@ -53,6 +52,9 @@ Ext.define('NX.controller.MasterDetail', {
         },
         '#Menu': {
           navigate: me.onNavigate
+        },
+        '#Refresh': {
+          refresh: me.loadStores
         }
       }
     });
@@ -72,11 +74,14 @@ Ext.define('NX.controller.MasterDetail', {
   getDescription: Ext.emptyFn,
 
   loadStores: function () {
-    var me = this;
+    var me = this,
+        list = me.getList();
 
-    Ext.each(me.stores, function (store) {
-      me.getApplication().getStore(store).load();
-    });
+    if (list) {
+      Ext.each(me.stores, function (store) {
+        me.getApplication().getStore(store).load();
+      });
+    }
   },
 
   loadStoresAndSelect: function (id) {
