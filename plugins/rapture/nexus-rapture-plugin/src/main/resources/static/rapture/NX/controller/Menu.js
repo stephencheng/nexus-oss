@@ -139,9 +139,7 @@ Ext.define('NX.controller.Menu', {
    */
   bookmark: function (node) {
     var me = this;
-    me.getApplication().getBookmarkingController().bookmark(
-        NX.Bookmark.fromToken(node.get('bookmark'))
-    );
+    me.getApplication().getBookmarkingController().bookmark(NX.Bookmark.fromToken(node.get('bookmark')), me);
   },
 
   /**

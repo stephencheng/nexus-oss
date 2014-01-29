@@ -61,8 +61,9 @@ Ext.define('NX.controller.Bookmarking', {
    * @public
    * Sets bookmark to a specified value.
    * @param {NX.Bookmark} newBookmark new bookmark
+   * @param {Object} [caller] whom is asking to bookmark
    */
-  bookmark: function (newBookmark) {
+  bookmark: function (newBookmark, caller) {
     var me = this,
         oldValue = me.getBookmark().getToken();
 
@@ -71,7 +72,7 @@ Ext.define('NX.controller.Bookmarking', {
     }
 
     if (newBookmark && oldValue != newBookmark.getToken()) {
-      me.logDebug('Bookmark: ' + newBookmark.getToken());
+      me.logDebug('Bookmark: ' + newBookmark.getToken() + (caller ? ' (' + caller.self.getName() + ')' : ''));
       Ext.History.bookmark = newBookmark.getToken();
       Ext.History.add(newBookmark.getToken());
     }
@@ -81,8 +82,9 @@ Ext.define('NX.controller.Bookmarking', {
    * @public
    * Sets bookmark to a specified value and navigates to it.
    * @param {NX.Bookmark} bookmark to navigate to
+   * @param {Object} [caller] whom is asking to navigate
    */
-  navigate: function (bookmark) {
+  navigate: function (bookmark, caller) {
     var me = this;
 
     if (!me.launched) {
@@ -90,8 +92,8 @@ Ext.define('NX.controller.Bookmarking', {
     }
 
     if (bookmark) {
-      me.logDebug('Navigate to: ' + bookmark.getToken());
-      me.bookmark(bookmark);
+      me.logDebug('Navigate to: ' + bookmark.getToken() + (caller ? ' (' + caller.self.getName() + ')' : ''));
+      me.bookmark(bookmark, caller);
       me.fireEvent('navigate', bookmark);
     }
   },
@@ -105,7 +107,7 @@ Ext.define('NX.controller.Bookmarking', {
 
     me.launched = true;
 
-    me.navigate(me.getBookmark());
+    me.navigate(me.getBookmark(), me);
   },
 
   /**
@@ -118,7 +120,7 @@ Ext.define('NX.controller.Bookmarking', {
 
     if (token != Ext.History.bookmark) {
       delete Ext.History.bookmark;
-      me.navigate(NX.Bookmark.fromToken(token));
+      me.navigate(NX.Bookmark.fromToken(token), me);
     }
   },
 

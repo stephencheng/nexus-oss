@@ -212,10 +212,10 @@ Ext.define('NX.controller.MasterDetail', {
       if (selectedTabBookmark) {
         segments.push(selectedTabBookmark);
       }
-      bookmarking.bookmark(bookmark.appendSegments(segments));
+      bookmarking.bookmark(bookmark.appendSegments(segments), me);
     }
     else {
-      bookmarking.bookmark(bookmark);
+      bookmarking.bookmark(bookmark, me);
     }
   },
 
