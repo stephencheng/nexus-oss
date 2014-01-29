@@ -90,7 +90,7 @@ public class ExtDirectServlet
           }
         })
     );
-    File apiFile = new File(applicationConfiguration.getTemporaryDirectory(), "djn/Nexus.js");
+    File apiFile = new File(applicationConfiguration.getTemporaryDirectory(), "extdirect/api.js");
     return Lists.newArrayList(
         new ApiConfiguration(
             "nexus",

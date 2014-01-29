@@ -55,8 +55,8 @@ public class ExtDirectWebResources
   @Override
   public List<WebResource> getResources() {
     return ImmutableList.of(
-        create("djn/Nexus-min.js", "/static/rapture/extdirect-prod.js"),
-        create("djn/Nexus-debug.js", "/static/rapture/extdirect-debug.js")
+        create("extdirect/api-min.js", "/static/rapture/extdirect-prod.js"),
+        create("extdirect/api-debug.js", "/static/rapture/extdirect-debug.js")
     );
   }
 }
