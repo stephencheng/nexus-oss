@@ -60,37 +60,6 @@ Ext.define('NX.controller.Menu', {
       me.restoreBookmark(token);
     });
 
-    me.getApplication().getIconController().addIcons({
-      'nexus': {
-        file: 'nexus.png',
-        variants: ['x16', 'x32']
-      },
-      'sonatype': {
-        file: 'sonatype.png',
-        variants: ['x16', 'x32']
-      },
-      'refresh': {
-        file: 'arrow_refresh.png',
-        variants: ['x16', 'x32']
-      },
-      'help-support': {
-        file: 'support.png',
-        variants: ['x16', 'x32']
-      },
-      'help-manual': {
-        file: 'book_picture.png',
-        variants: ['x16', 'x32']
-      },
-      'user-settings': {
-        file: 'setting_tools.png',
-        variants: ['x16', 'x32']
-      },
-      'user-logout': {
-        file: 'door_out.png',
-        variants: ['x16', 'x32']
-      }
-    });
-
     me.listen({
       controller: {
         '#User': {
