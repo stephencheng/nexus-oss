@@ -104,7 +104,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
 
     form.submit({
       success: function (form, action) {
-        me.getApplication().getMessageController().addMessage({text: 'Target created', type: 'success' });
+        NX.Messages.add({text: 'Target created', type: 'success' });
         win.close();
         me.loadStoresAndSelect(action.result.data);
       }
@@ -122,7 +122,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
         NX.direct.coreui_RepositoryTarget.delete(selection[0].getId(), function (response) {
           me.loadStores();
           if (Ext.isDefined(response) && response.success) {
-            me.getApplication().getMessageController().addMessage({
+            NX.Messages.add({
               text: 'Target deleted: ' + description, type: 'success'
             });
           }

@@ -101,7 +101,7 @@ Ext.define('NX.coreui.controller.Repositories', {
         NX.direct.coreui_Repository.delete(selection[0].getId(), function (response, status) {
           me.loadStores();
           if (Ext.isDefined(response) && response.success) {
-            me.getApplication().getMessageController().addMessage({
+            NX.Messages.add({
               text: 'Repository deleted: ' + description, type: 'success'
             });
           }

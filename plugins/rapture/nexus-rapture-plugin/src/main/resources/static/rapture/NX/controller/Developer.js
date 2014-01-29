@@ -83,7 +83,7 @@ Ext.define('NX.controller.Developer', {
     var me = this;
 
     Ext.each(['default', 'primary', 'danger', 'warning', 'success'], function (type) {
-      me.getApplication().getMessageController().addMessage({
+      NX.Messages.add({
         type: type,
         text: 'test of ' + type
       });

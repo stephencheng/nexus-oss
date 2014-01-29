@@ -12,6 +12,10 @@
  */
 Ext.define('NX.controller.Message', {
   extend: 'Ext.app.Controller',
+  requires: [
+    'NX.Messages'
+  ],
+
   mixins: {
     logAware: 'NX.LogAware'
   },
@@ -73,6 +77,9 @@ Ext.define('NX.controller.Message', {
     });
 
     me.getMessageStore().on('datachanged', me.updateHeader, me);
+
+    // Attach to helper
+    NX.Messages.install(me);
   },
 
   /**

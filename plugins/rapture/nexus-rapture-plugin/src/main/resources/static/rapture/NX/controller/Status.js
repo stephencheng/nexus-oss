@@ -82,7 +82,7 @@ Ext.define('NX.controller.Status', {
     // re-enable the UI we are now connected again
     if (me.disconnectedTimes > 0) {
       me.disconnectedTimes = 0;
-      me.getApplication().getMessageController().addMessage({text: 'Server reconnected', type: 'success' });
+      NX.Messages.add({text: 'Server reconnected', type: 'success' });
     }
 
     // propagate event data

@@ -41,13 +41,13 @@ Ext.define('NX.controller.ExtDirect', {
         && Ext.isDefined(result.success) && result.success === false) {
 
       if (Ext.isDefined(result.authenticationRequired) && result.authenticationRequired === true) {
-        me.getApplication().getMessageController().addMessage({text: result.message, type: 'warning'});
+        NX.Messages.add({text: result.message, type: 'warning'});
         me.getApplication().getUserController().showLoginWindow();
         // cancel Ext.Direct callback
         return false;
       }
       if (!Ext.isDefined(result.errors)) {
-        me.getApplication().getMessageController().addMessage({ text: response.message, type: 'warning' });
+        NX.Messages.add({ text: response.message, type: 'warning' });
       }
     }
 

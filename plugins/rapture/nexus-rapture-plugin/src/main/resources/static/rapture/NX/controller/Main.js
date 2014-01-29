@@ -112,7 +112,7 @@ Ext.define('NX.controller.Main', {
       });
     }
 
-    me.getApplication().getMessageController().addMessage({ text: 'Refreshed', type: 'default'});
+    NX.Messages.add({ text: 'Refreshed', type: 'default'});
   }
 
 });
