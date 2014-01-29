@@ -51,7 +51,7 @@ Ext.define('NX.controller.Search', {
     me.listen({
       component: {
         'nx-search': {
-          afterRender: me.afterRender
+          afterrender: me.afterRender
         },
         'nx-header-panel #quicksearch': {
           search: me.search,
@@ -61,7 +61,7 @@ Ext.define('NX.controller.Search', {
     });
   },
 
-  afterRender: function (searchbox, value) {
+  afterRender: function () {
     var me = this,
         quickSearch = me.getQuickSearch(),
         value = quickSearch.getValue();
