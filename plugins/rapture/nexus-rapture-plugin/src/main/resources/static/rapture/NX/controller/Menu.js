@@ -138,8 +138,13 @@ Ext.define('NX.controller.Menu', {
    * @private
    */
   bookmark: function (node) {
-    var me = this;
-    me.getApplication().getBookmarkingController().bookmark(NX.Bookmark.fromToken(node.get('bookmark')), me);
+    var me = this,
+        bookmark = node.get('bookmark'),
+        bookmarking = me.getApplication().getBookmarkingController();
+
+    if (!(bookmarking.getBookmark().getSegment(0) === bookmark)) {
+      bookmarking.bookmark(NX.Bookmark.fromToken(bookmark), me);
+    }
   },
 
   /**
