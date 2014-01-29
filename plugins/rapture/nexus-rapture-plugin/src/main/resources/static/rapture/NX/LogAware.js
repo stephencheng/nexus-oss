@@ -31,28 +31,28 @@ Ext.define('NX.LogAware', {
   },
 
   /**
-   * @protected
+   * @public
    */
   logDebug: function () {
     this.log('debug', Array.prototype.slice.call(arguments));
   },
 
   /**
-   * @protected
+   * @public
    */
   logInfo: function () {
     this.log('info', Array.prototype.slice.call(arguments));
   },
 
   /**
-   * @protected
+   * @public
    */
   logWarn: function () {
     this.log('warn', Array.prototype.slice.call(arguments));
   },
 
   /**
-   * @protected
+   * @public
    */
   logError: function () {
     this.log('error', Array.prototype.slice.call(arguments));
