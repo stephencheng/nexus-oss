@@ -47,7 +47,7 @@ Ext.define('NX.app.Application', {
   namespaces: [],
   controllers: [
     'Dashboard',
-    'Developer',
+    'dev.Developer',
     'dev.Permissions',
     'Features',
     'Icon',
