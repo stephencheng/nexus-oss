@@ -65,7 +65,8 @@ Ext.define('NX.controller.Menu', {
       },
       component: {
         'nx-feature-menu': {
-          select: me.selectFeature
+          select: me.selectFeature,
+          afterrender: me.refreshMenu
         }
       },
       store: {
