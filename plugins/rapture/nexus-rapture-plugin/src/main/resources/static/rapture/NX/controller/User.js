@@ -22,6 +22,9 @@ Ext.define('NX.controller.User', {
   },
 
   views: [
+    'header.Login',
+    'header.Logout',
+    'header.User',
     'Login',
     'ExpireSession'
   ],
@@ -34,6 +37,10 @@ Ext.define('NX.controller.User', {
     {
       ref: 'loginButton',
       selector: 'nx-header-login'
+    },
+    {
+      ref: 'logoutButton',
+      selector: 'nx-header-logout'
     },
     {
       ref: 'userButton',
@@ -57,12 +64,20 @@ Ext.define('NX.controller.User', {
     var me = this;
 
     me.getApplication().getIconController().addIcons({
-      'user-settings': {
-        file: 'setting_tools.png',
+      'feature-account': {
+        file: 'user.png',
         variants: ['x16', 'x32']
       },
-      'user-logout': {
-        file: 'door_out.png',
+      'feature-notifications': {
+        file: 'bell.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-usertoken': {
+        file: 'key.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-clientsettings': {
+        file: 'setting_tools.png',
         variants: ['x16', 'x32']
       }
     });
@@ -85,7 +100,7 @@ Ext.define('NX.controller.User', {
         'nx-header-login': {
           click: me.showLoginWindow
         },
-        'nx-header-user menuitem[action=logout]': {
+        'nx-header-logout': {
           click: me.logout
         },
         'nx-login button[action=login]': {
@@ -110,6 +125,7 @@ Ext.define('NX.controller.User', {
   updateUser: function (user) {
     var me = this,
         loginButton = me.getLoginButton(),
+        logoutButton = me.getLogoutButton(),
         userButton = me.getUserButton();
 
     if (user) {
@@ -118,6 +134,7 @@ Ext.define('NX.controller.User', {
         loginButton.hide();
         userButton.setText(user.id);
         userButton.show();
+        logoutButton.show();
 
         me.user = user;
         me.fetchPermissions();
@@ -138,6 +155,7 @@ Ext.define('NX.controller.User', {
         NX.Messages.add({text: 'User logged out', type: 'default' });
         loginButton.show();
         userButton.hide();
+        logoutButton.hide();
 
         if (me.activityMonitor) {
           me.activityMonitor.stop();

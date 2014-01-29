@@ -21,7 +21,7 @@ Ext.define('NX.controller.Features', {
      * @public
      * Supported modes.
      */
-    MODES: ['dashboard', 'search', 'browse', 'admin'],
+    MODES: ['dashboard', 'search', 'browse', 'admin', 'user'],
     /**
      * @public
      * Check if a mode is supported.
@@ -85,7 +85,7 @@ Ext.define('NX.controller.Features', {
         // auto-set iconName
         if (!feature.iconName) {
           feature.iconName = 'feature-'
-              + path.substring(mode.length+1,path.length).toLowerCase().replace('/', '-').replace(' ', '');
+              + path.substring(mode.length + 1, path.length).toLowerCase().replace('/', '-').replace(' ', '');
         }
 
         me.getFeatureStore().addSorted(me.getFeatureModel().create(feature));

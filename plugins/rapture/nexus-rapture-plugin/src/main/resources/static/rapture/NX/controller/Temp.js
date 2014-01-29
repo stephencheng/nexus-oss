@@ -290,6 +290,32 @@ Ext.define('NX.controller.Temp', {
       {
         path: '/browse/Repository',
         weight: 10
+      },
+      // user mode
+      {
+        path: '/user/Account',
+        visible: visibleIfLoggedIn
+      },
+      {
+        path: '/user/User Token',
+        visible: visibleIfLoggedIn
+      },
+      {
+        path: '/user/Notifications',
+        visible: visibleIfLoggedIn
+      },
+      {
+        path: '/user/Client Settings',
+        weight: 200,
+        visible: visibleIfLoggedIn
+      },
+      {
+        path: '/user/Client Settings/Maven',
+        visible: visibleIfLoggedIn
+      },
+      {
+        path: '/user/Client Settings/Ivy',
+        visible: visibleIfLoggedIn
       }
     ]);
   }
