@@ -23,6 +23,7 @@ Ext.define('NX.model.Feature', {
         return segments[segments.length - 1];
       }
     },
+    { name: 'mode' },
     { name: 'weight', defaultValue: 100 },
     { name: 'view', defaultValue: undefined },
     { name: 'visible', defaultValue: true },

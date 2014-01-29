@@ -16,8 +16,8 @@ Ext.define('NX.view.header.Panel', {
 
   layout: {
     type: 'vbox',
-    align : 'stretch',
-    pack  : 'start'
+    align: 'stretch',
+    pack: 'start'
   },
 
   items: [
@@ -47,6 +47,11 @@ Ext.define('NX.view.header.Panel', {
         },
         '-',
         { xtype: 'nx-header-version' },
+        '->',
+        { xtype: 'button', toggleGroup: 'mode', mode: 'dashboard', glyph: 'xf0e4@FontAwesome' /* fa-dashboard */},
+        { xtype: 'button', toggleGroup: 'mode', mode: 'search', glyph: 'xf002@FontAwesome' /* fa-search */},
+        { xtype: 'button', toggleGroup: 'mode', mode: 'browse', glyph: 'xf0e8@FontAwesome' /* fa-sitemap */},
+        { xtype: 'button', toggleGroup: 'mode', mode: 'admin', glyph: 'xf013@FontAwesome' /* fa-gear */},
         '->',
         { xtype: 'nx-searchbox', emptyText: 'quick search' },
         ' ',

@@ -36,8 +36,17 @@ Ext.define('NX.controller.Menu', {
     {
       ref: 'featureMenu',
       selector: 'nx-feature-menu'
+    },
+    {
+      ref: 'headerPanel',
+      selector: 'nx-header-panel'
     }
   ],
+
+  /**
+   * @private current mode
+   */
+  mode: undefined,
 
   /**
    * @override
@@ -58,6 +67,9 @@ Ext.define('NX.controller.Menu', {
         'nx-feature-menu': {
           select: me.selectFeature,
           afterrender: me.refreshMenu
+        },
+        'nx-header-panel button[mode]': {
+          click: me.onModeChanged
         }
       },
       store: {
@@ -91,10 +103,7 @@ Ext.define('NX.controller.Menu', {
     var me = this,
         selection = me.getFeatureMenu().getSelectionModel().getSelection();
 
-    if (selection) {
-      return NX.Bookmark.fromToken(selection[0].get('bookmark'));
-    }
-    return NX.Bookmark.fromToken();
+    return NX.Bookmark.fromToken(selection ? selection[0].get('bookmark') : me.mode);
   },
 
   /**
@@ -115,10 +124,16 @@ Ext.define('NX.controller.Menu', {
    */
   onNavigate: function (bookmark) {
     var me = this,
-        node;
+        node, mode;
 
     if (bookmark) {
       me.logDebug('Navigate to: ' + bookmark.getSegment(0));
+      mode = me.getMode(bookmark);
+      if (me.mode != mode) {
+        me.mode = mode;
+        me.refreshModeButtons();
+        me.refreshTree();
+      }
       node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark.getSegment(0), true);
     }
     if (!node) {
@@ -148,24 +163,102 @@ Ext.define('NX.controller.Menu', {
   },
 
   /**
-   * Refresh feature menu.
+   * @public
+   * Refresh modes & feature menu.
    */
   refreshMenu: function () {
     var me = this,
+        bookmark = me.getApplication().getBookmarkingController().getBookmark();
+
+    me.logDebug('Refreshing menu (mode ' + me.mode + ')');
+
+    me.refreshVisibleModes();
+    me.refreshTree();
+
+    me.onNavigate(me.mode === me.getMode(bookmark) ? bookmark : NX.Bookmark.fromToken(me.mode));
+  },
+
+  /**
+   * @private
+   * Refreshes modes buttons based on the fact that there are features visible for that mode or not.
+   * In case that current mode is no longer visible, auto selects a new one.
+   */
+  refreshVisibleModes: function () {
+    var me = this,
+        visibleModes = [],
+        headerPanel = me.getHeaderPanel(),
+        feature, modeButton;
+
+    me.getFeatureStore().each(function (rec) {
+      feature = rec.getData();
+      if (me.isFeatureVisible(feature) && visibleModes.indexOf(feature.mode) === -1) {
+        visibleModes.push(feature.mode);
+      }
+    });
+
+    me.logDebug('Visible modes: ' + visibleModes);
+
+    Ext.each(NX.controller.Features.MODES, function (mode) {
+      modeButton = headerPanel.down('button[mode=' + mode + ']');
+      modeButton.toggle(false, true);
+      if (visibleModes.indexOf(mode) > -1) {
+        modeButton.show();
+      }
+      else {
+        modeButton.hide();
+      }
+    });
+
+    me.refreshModeButtons();
+  },
+
+  refreshModeButtons: function () {
+    var me = this,
+        headerPanel = me.getHeaderPanel(),
+        modeButton;
+
+    Ext.each(NX.controller.Features.MODES, function (mode) {
+      modeButton = headerPanel.down('button[mode=' + mode + ']');
+      modeButton.toggle(false, true);
+    });
+
+    if (me.mode) {
+      modeButton = headerPanel.down('button[mode=' + me.mode + ']');
+      if (modeButton.isHidden()) {
+        delete me.mode;
+      }
+    }
+    if (!me.mode) {
+      Ext.each(NX.controller.Features.MODES, function (mode) {
+        modeButton = headerPanel.down('button[mode=' + mode + ']');
+        if (!modeButton.isHidden()) {
+          me.mode = mode;
+          return false;
+        }
+        return true;
+      });
+      me.logDebug('Auto selecting mode: ' + me.mode);
+    }
+    modeButton = headerPanel.down('button[mode=' + me.mode + ']');
+    modeButton.toggle(true, true);
+  },
+
+  refreshTree: function () {
+    var me = this,
         feature, segments, parent, child;
 
-    me.logDebug('Refreshing menu');
+    me.logDebug('Refreshing tree (mode ' + me.mode + ')');
 
     me.getFeatureMenuStore().getRootNode().removeAll();
 
     // create leafs and all parent groups of those leafs
     me.getFeatureStore().each(function (rec) {
       feature = rec.getData();
-      // iterate only visible leafs
-      if (me.isFeatureVisible(feature)) {
+      // iterate only visible features
+      if ((!me.mode || (me.mode == feature.mode)) && me.isFeatureVisible(feature)) {
         segments = feature.path.split('/');
         parent = me.getFeatureMenuStore().getRootNode();
-        for (var i = 1; i < segments.length; i++) {
+        for (var i = 2; i < segments.length; i++) {
           child = parent.findChild('text', segments[i], false);
           if (child) {
             if (i < segments.length - 1) {
@@ -198,12 +291,9 @@ Ext.define('NX.controller.Menu', {
     });
 
     me.getFeatureMenuStore().sort([
-      {property: 'weight', direction: 'ASC'},
-      {property: 'text', direction: 'ASC'}
+      { property: 'weight', direction: 'ASC' },
+      { property: 'text', direction: 'ASC' }
     ]);
-
-    // reselect bookmarked node
-    me.onNavigate(me.getApplication().getBookmarkingController().getBookmark());
   },
 
   /**
@@ -212,6 +302,7 @@ Ext.define('NX.controller.Menu', {
    */
   isFeatureVisible: function (feature) {
     var visible = true;
+
     if (feature.visible) {
       if (Ext.isBoolean(feature.visible)) {
         visible = feature.visible;
@@ -224,6 +315,34 @@ Ext.define('NX.controller.Menu', {
       }
     }
     return visible;
+  },
+
+  getMode: function (bookmark) {
+    return bookmark.getSegment(0).split('/')[0];
+  },
+
+  /**
+   * @private
+   */
+  onModeChanged: function (button) {
+    var me = this,
+        mode = button.mode;
+
+    me.changeMode(mode);
+  },
+
+  /**
+   * @public
+   * Change mode.
+   * @param {String} mode to change to
+   */
+  changeMode: function (mode) {
+    var me = this;
+
+    me.mode = mode;
+
+    me.logDebug('Mode changed: ' + mode);
+    me.refreshMenu();
   }
 
 });

@@ -175,7 +175,7 @@ Ext.define('NX.controller.Temp', {
 
       // TESTING: Adding features to flesh-out target menu design
       {
-        path: '/Search',
+        path: '/search/Search',
         weight: 20
       },
       {
@@ -285,6 +285,11 @@ Ext.define('NX.controller.Temp', {
       {
         path: '/Support/Analytics',
         visible: visibleIfLoggedIn
+      },
+      // browse mode
+      {
+        path: '/browse/Repository',
+        weight: 10
       }
     ]);
   }

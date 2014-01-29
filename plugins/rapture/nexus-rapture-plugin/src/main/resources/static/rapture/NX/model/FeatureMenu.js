@@ -14,6 +14,7 @@ Ext.define('NX.model.FeatureMenu', {
   extend: 'Ext.data.TreeModel',
   fields: [
     { name: 'path' },
+    { name: 'mode' },
     { name: 'text' },
     { name: 'weight', defaultValue: 100 },
     { name: 'view' },
