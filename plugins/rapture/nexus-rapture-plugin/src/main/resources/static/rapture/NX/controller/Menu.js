@@ -20,8 +20,7 @@ Ext.define('NX.controller.Menu', {
   },
 
   views: [
-    'feature.Menu',
-    'feature.Content'
+    'feature.Menu'
   ],
 
   stores: [
@@ -33,10 +32,6 @@ Ext.define('NX.controller.Menu', {
     {
       ref: 'headerVersion',
       selector: 'nx-header-version'
-    },
-    {
-      ref: 'featureContent',
-      selector: 'nx-feature-content'
     },
     {
       ref: 'featureMenu',
@@ -106,30 +101,9 @@ Ext.define('NX.controller.Menu', {
    * @private
    */
   selectFeature: function (panel, record) {
-    var me = this,
-        content = me.getFeatureContent(),
-        view = record.get('view'),
-        cmp;
+    var me = this;
 
     me.logDebug('Selected feature: ' + record.get('path'));
-
-    // create new view and replace any current view
-    if (Ext.isString(view)) {
-      cmp = me.getView(view).create();
-    }
-    else {
-      cmp = Ext.widget(view);
-    }
-
-    // remove the current contents
-    content.removeAll();
-
-    // update title and icon
-    content.setTitle(record.get('text'));
-    content.setIconCls(NX.Icons.cls(record.get('iconName'), 'x32'));
-
-    // install new feature view
-    content.add(cmp);
 
     me.fireEvent('featureselected', me.getFeatureStore().getById(record.get('path')));
 
