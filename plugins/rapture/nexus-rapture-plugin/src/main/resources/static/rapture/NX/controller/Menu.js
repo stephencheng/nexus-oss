@@ -65,8 +65,7 @@ Ext.define('NX.controller.Menu', {
       },
       component: {
         'nx-feature-menu': {
-          select: me.selectFeature,
-          beforerender: me.refreshMenu
+          select: me.selectFeature
         }
       },
       store: {
@@ -177,7 +176,9 @@ Ext.define('NX.controller.Menu', {
    */
   refreshMenu: function () {
     var me = this,
-        feature, segments, parent, child, node;
+        feature, segments, parent, child;
+
+    me.logDebug('Refreshing menu');
 
     me.getFeatureMenuStore().getRootNode().removeAll();
 
