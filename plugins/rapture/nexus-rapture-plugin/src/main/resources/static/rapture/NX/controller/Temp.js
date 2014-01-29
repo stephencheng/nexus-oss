@@ -31,10 +31,6 @@ Ext.define('NX.controller.Temp', {
         file: 'feed.png',
         variants: ['x16', 'x32']
       },
-      'feature-search': {
-        file: 'magnifier.png',
-        variants: ['x16', 'x32']
-      },
 
       // staging
       'feature-staging': {
@@ -174,10 +170,6 @@ Ext.define('NX.controller.Temp', {
       },
 
       // TESTING: Adding features to flesh-out target menu design
-      {
-        path: '/search/Search',
-        weight: 20
-      },
       {
         path: '/Feeds',
         weight: 20

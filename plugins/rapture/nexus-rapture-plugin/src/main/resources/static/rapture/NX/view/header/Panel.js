@@ -53,7 +53,7 @@ Ext.define('NX.view.header.Panel', {
         { xtype: 'button', toggleGroup: 'mode', mode: 'browse', glyph: 'xf0e8@FontAwesome' /* fa-sitemap */},
         { xtype: 'button', toggleGroup: 'mode', mode: 'admin', glyph: 'xf013@FontAwesome' /* fa-gear */},
         '->',
-        { xtype: 'nx-searchbox', emptyText: 'quick search' },
+        { xtype: 'nx-searchbox', itemId: 'quicksearch', emptyText: 'quick search' },
         ' ',
         { xtype: 'nx-header-refresh' },
         { xtype: 'nx-header-help' },

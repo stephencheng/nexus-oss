@@ -59,6 +59,7 @@ Ext.define('NX.app.Application', {
     'Menu',
     'Message',
     'Refresh',
+    'Search',
     'Status',
     'User',
     'ExtDirect',
