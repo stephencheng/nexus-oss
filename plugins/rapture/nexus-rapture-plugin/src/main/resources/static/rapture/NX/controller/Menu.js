@@ -151,6 +151,7 @@ Ext.define('NX.controller.Menu', {
       node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark.getSegment(0), true);
     }
     if (!node) {
+      me.logDebug('Feature with bookmark "' + bookmark.getSegment(0) + '". Selecting first available feature');
       node = me.getFeatureMenuStore().getRootNode().firstChild;
     }
     if (node) {

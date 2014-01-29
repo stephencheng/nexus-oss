@@ -71,7 +71,7 @@ Ext.define('NX.controller.Bookmarking', {
     }
 
     if (newBookmark && oldValue != newBookmark.getToken()) {
-      // unbind first to avoid navigation callback
+      me.logDebug('Bookmark: ' + newBookmark.getToken());
       Ext.History.bookmark = newBookmark.getToken();
       Ext.History.add(newBookmark.getToken());
     }
