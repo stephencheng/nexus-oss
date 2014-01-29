@@ -27,6 +27,7 @@ Ext.define('NX.Messages', {
    * Reference to the messages controller, set when it initializes.
    *
    * @private
+   * @type {NX.controller.Message}
    */
   controller: undefined,
 
@@ -34,7 +35,7 @@ Ext.define('NX.Messages', {
    * Install the controller reference.
    *
    * @public
-   * @param controller
+   * @param {NX.controller.Message} controller
    */
   install: function(controller) {
     this.controller = controller;
