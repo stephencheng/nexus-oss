@@ -192,7 +192,7 @@ Ext.define('NX.app.Application', {
    */
   errorHandler: function (error) {
     var me = this;
-    me.getMessageController().addMessage({
+    NX.Messages.add({
       type: 'danger',
       text: me.errorAsString(error)
     });
