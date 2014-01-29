@@ -16,6 +16,9 @@ Ext.define('NX.controller.Features', {
     logAware: 'NX.LogAware'
   },
 
+  models: [
+    'Feature'
+  ],
   stores: [
     'Feature',
     'FeatureMenu'
@@ -58,7 +61,7 @@ Ext.define('NX.controller.Features', {
           feature.iconName = 'feature-' + path.toLowerCase().replace('/', '-').replace(' ', '');
         }
 
-        me.getFeatureStore().add(feature);
+        me.getFeatureStore().addSorted(me.getFeatureModel().create(feature));
       });
     }
   }

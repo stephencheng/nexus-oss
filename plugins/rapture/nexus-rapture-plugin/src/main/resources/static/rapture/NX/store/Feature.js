@@ -12,6 +12,7 @@
  */
 Ext.define('NX.store.Feature', {
   extend: 'Ext.data.ArrayStore',
-  model: 'NX.model.Feature'
+  model: 'NX.model.Feature',
 
+  sorters: { property: 'path', direction: 'ASC' }
 });
