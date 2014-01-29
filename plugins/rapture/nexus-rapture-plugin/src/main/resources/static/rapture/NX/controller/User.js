@@ -288,6 +288,7 @@ Ext.define('NX.controller.User', {
     var me = this;
 
     NX.Permissions.setPermissions(me.getPermissions());
+    me.logDebug('Permissions changed. Firing event');
     me.fireEvent('permissionschanged', NX.Permissions);
   },
 
