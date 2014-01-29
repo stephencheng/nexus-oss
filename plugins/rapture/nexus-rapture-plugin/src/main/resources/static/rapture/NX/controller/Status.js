@@ -14,7 +14,7 @@ Ext.define('NX.controller.Status', {
   extend: 'Ext.app.Controller',
   requires: [
     'Ext.Direct',
-    'NX.util.Msg'
+    'NX.Dialogs'
   ],
   mixins: {
     logAware: 'NX.LogAware'
@@ -124,7 +124,7 @@ Ext.define('NX.controller.Status', {
         me.statusProvider.disconnect();
 
         // Show the UI with a modal dialog error
-        NX.util.Msg.showError(
+        NX.Dialogs.showError(
             'Server disconnected',
             'There is a problem communicating with the server',
             {

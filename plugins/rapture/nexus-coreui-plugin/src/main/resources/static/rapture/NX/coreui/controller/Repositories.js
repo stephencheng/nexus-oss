@@ -14,7 +14,7 @@ Ext.define('NX.coreui.controller.Repositories', {
   extend: 'NX.controller.MasterDetail',
   requires: [
     'NX.util.Url',
-    'NX.util.Msg'
+    'NX.Dialogs'
   ],
 
   list: 'nx-repository-list',
@@ -97,7 +97,7 @@ Ext.define('NX.coreui.controller.Repositories', {
 
     if (Ext.isDefined(selection) && selection.length > 0) {
       description = me.getDescription(selection[0]);
-      NX.util.Msg.askConfirmation('Confirm deletion?', description, function () {
+      NX.Dialogs.askConfirmation('Confirm deletion?', description, function () {
         NX.direct.coreui_Repository.delete(selection[0].getId(), function (response, status) {
           me.loadStores();
           if (Ext.isDefined(response) && response.success) {

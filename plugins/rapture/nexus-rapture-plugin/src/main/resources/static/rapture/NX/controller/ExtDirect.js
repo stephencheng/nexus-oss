@@ -53,7 +53,7 @@ Ext.define('NX.controller.ExtDirect', {
 
     // TODO handle addition cases as bellow. Find a way to generated teh bellow cases to be able to test
     //if (Ext.isDefined(status.serverException)) {
-    //  NX.util.Msg.showError(
+    //  NX.Dialogs.showError(
     //      Ext.isDefined(response) && Ext.isDefined(response.exceptionMessage)
     //          ? response.exceptionMessage
     //          : status.serverException.exception.message,

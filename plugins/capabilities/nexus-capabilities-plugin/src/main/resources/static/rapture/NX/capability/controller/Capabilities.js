@@ -13,7 +13,7 @@
 Ext.define('NX.capability.controller.Capabilities', {
   extend: 'NX.controller.MasterDetail',
   requires: [
-    'NX.util.Msg',
+    'NX.Dialogs',
   ],
 
   list: 'nx-capability-list',
@@ -241,7 +241,7 @@ Ext.define('NX.capability.controller.Capabilities', {
 
     if (Ext.isDefined(selection) && selection.length > 0) {
       description = me.getDescription(selection[0]);
-      NX.util.Msg.askConfirmation('Confirm deletion?', description, function () {
+      NX.Dialogs.askConfirmation('Confirm deletion?', description, function () {
         NX.direct.capability_Capability.delete(selection[0].getId(), function (response) {
           me.loadStores();
           if (Ext.isDefined(response) && response.success) {

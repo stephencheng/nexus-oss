@@ -13,7 +13,7 @@
 Ext.define('NX.coreui.controller.RepositoryTargets', {
   extend: 'NX.controller.MasterDetail',
   requires: [
-    'NX.util.Msg',
+    'NX.Dialogs',
   ],
 
   list: 'nx-repositorytarget-list',
@@ -118,7 +118,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
 
     if (selection.length) {
       description = me.getDescription(selection[0]);
-      NX.util.Msg.askConfirmation('Confirm deletion?', description, function () {
+      NX.Dialogs.askConfirmation('Confirm deletion?', description, function () {
         NX.direct.coreui_RepositoryTarget.delete(selection[0].getId(), function (response) {
           me.loadStores();
           if (Ext.isDefined(response) && response.success) {
