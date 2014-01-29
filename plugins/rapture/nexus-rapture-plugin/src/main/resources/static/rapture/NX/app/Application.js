@@ -215,14 +215,14 @@ Ext.define('NX.app.Application', {
     // prefer local storage if its supported
     if (Ext.util.LocalStorage.supported) {
       provider = Ext.create('Ext.state.LocalStorageProvider');
-      this.logDebug('Using state provider: local');
+      me.logDebug('Using state provider: local');
     }
     else {
       // FIXME: We may want to either not support state, or implement remoting to used
       // FIXME: The remote session of the user to store state
       // FIXME: Cookie impl will create too many cookies and could cause lots of weird things to break
       provider = Ext.create('Ext.state.CookieProvider');
-      this.logDebug('Using state provider: cookie');
+      me.logDebug('Using state provider: cookie');
     }
 
     // HACK: for debugging
