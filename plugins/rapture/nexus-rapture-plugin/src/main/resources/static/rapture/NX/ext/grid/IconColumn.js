@@ -89,6 +89,6 @@ Ext.define('NX.ext.grid.IconColumn', {
       name = me.iconNamePrefix + name;
     }
 
-    return NX.controller.Icon.iconCls(name, me.iconVariant);
+    return NX.Icons.cls(name, me.iconVariant);
   }
 });

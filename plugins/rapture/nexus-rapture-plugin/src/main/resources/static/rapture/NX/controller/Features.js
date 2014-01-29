@@ -59,7 +59,7 @@ Ext.define('NX.controller.Features', {
         }
 
         // auto-set iconCls for rendering in tree
-        feature.iconCls = NX.controller.Icon.iconCls(feature.iconName, 'x16');
+        feature.iconCls = NX.Icons.cls(feature.iconName, 'x16');
 
         me.getFeatureStore().add(feature);
       });

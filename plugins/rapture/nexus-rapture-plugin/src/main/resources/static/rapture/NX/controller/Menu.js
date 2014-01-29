@@ -107,11 +107,11 @@ Ext.define('NX.controller.Menu', {
 
     // update title and icon
     content.setTitle(record.get('text'));
-    content.setIconCls(NX.controller.Icon.iconCls(record.get('iconName'), 'x32'));
+    content.setIconCls(NX.Icons.cls(record.get('iconName'), 'x32'));
 
     // Update help menu content
     featureHelp.setText(record.get('text'));
-    featureHelp.setIconCls(NX.controller.Icon.iconCls(record.get('iconName'), 'x16'));
+    featureHelp.setIconCls(NX.Icons.cls(record.get('iconName'), 'x16'));
 
     // install new feature view
     content.add(cmp);

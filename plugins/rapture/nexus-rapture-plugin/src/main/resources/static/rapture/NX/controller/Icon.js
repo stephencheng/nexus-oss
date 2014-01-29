@@ -15,7 +15,8 @@ Ext.define('NX.controller.Icon', {
   requires: [
     'Ext.Error',
     'Ext.util.CSS',
-    'NX.util.Url'
+    'NX.util.Url',
+    'NX.Icons',
   ],
   mixins: {
     logAware: 'NX.LogAware'
@@ -34,20 +35,14 @@ Ext.define('NX.controller.Icon', {
    */
   stylesheet: undefined,
 
-  statics: {
-    /**
-     * Helper to get the iconCls for a named icon with optional variant.
-     *
-     * @public
-     * @static
-     */
-    iconCls: function (name, variant) {
-      var cls = 'nx-icon-' + name;
-      if (variant) {
-        cls += '-' + variant;
-      }
-      return cls;
-    }
+  /**
+   * @override
+   */
+  init: function() {
+    var me = this;
+
+    // Attach to helper
+    NX.Icons.install(me);
   },
 
   /**
@@ -215,7 +210,7 @@ Ext.define('NX.controller.Icon', {
     url += icon.file;
     icon.url = url;
 
-    icon.cls = NX.controller.Icon.iconCls(icon.name, icon.variant);
+    icon.cls = NX.Icons.cls(icon.name, icon.variant);
   },
 
   /**
