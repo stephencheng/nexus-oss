@@ -26,6 +26,9 @@ Ext.define('NX.Permissions', {
   ALL: 15,   // 1111
   NONE: 0,   // 0000
 
+  /**
+   * @private
+   */
   permissions: {},
 
   /**
