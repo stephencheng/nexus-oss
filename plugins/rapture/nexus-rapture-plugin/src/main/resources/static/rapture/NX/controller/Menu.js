@@ -51,26 +51,19 @@ Ext.define('NX.controller.Menu', {
   init: function () {
     var me = this;
 
-    // The only requirement for this to work is that you must have a hidden field and
-    // an iframe available in the page with ids corresponding to Ext.History.fieldId
-    // and Ext.History.iframeId.  See history.html for an example.
-    Ext.History.init();
-
-    Ext.History.on('change', function (token) {
-      me.restoreBookmark(token);
-    });
-
     me.listen({
       controller: {
         '#User': {
           permissionsChanged: me.refreshMenu
+        },
+        '#Bookmarking': {
+          navigate: me.onNavigate
         }
       },
       component: {
         'nx-feature-menu': {
           select: me.selectFeature,
-          beforerender: me.refreshMenu,
-          afterrender: me.initBookmark
+          beforerender: me.refreshMenu
         }
       },
       store: {
@@ -84,7 +77,7 @@ Ext.define('NX.controller.Menu', {
   /**
    * @private
    */
-  selectFeature: function (panel, record, index, opts) {
+  selectFeature: function (panel, record) {
     var me = this,
         content = me.getFeatureContent(),
         featureHelp = me.getFeatureHelp(),
@@ -117,29 +110,26 @@ Ext.define('NX.controller.Menu', {
     content.add(cmp);
     me.fireEvent('featureselected', cmp);
 
-    me.bookmark(record.get('bookmark'));
+    me.bookmark(record);
   },
 
   /**
    * @private
    */
-  bookmark: function (newToken) {
-    var oldToken = Ext.History.getToken();
-
-    if (newToken && oldToken === null || oldToken.search(newToken) === -1) {
-      Ext.History.add(newToken);
-    }
-  },
-
-  /**
-   * @private
-   */
-  restoreBookmark: function (token) {
+  onNavigate: function (bookmark) {
     var me = this,
         node;
 
-    node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', token, true);
+    if (bookmark) {
+      node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark, true);
+    }
+    if (!node) {
+      node = me.getFeatureMenuStore().getRootNode().firstChild;
+    }
     if (node) {
+      if (node.get('bookmark') != bookmark) {
+        me.bookmark(node);
+      }
       me.getFeatureMenu().selectPath(node.getPath('text'), 'text');
     }
   },
@@ -147,15 +137,9 @@ Ext.define('NX.controller.Menu', {
   /**
    * @private
    */
-  initBookmark: function () {
-    var me = this,
-        token = Ext.History.getToken();
-
-    // default to the dashboard feature
-    if (!token) {
-      token = 'dashboard';
-    }
-    me.restoreBookmark(token);
+  bookmark: function (node) {
+    var me = this;
+    me.getApplication().getBookmarkingController().bookmark(node.get('bookmark'));
   },
 
   /**
@@ -216,14 +200,8 @@ Ext.define('NX.controller.Menu', {
       {property: 'text', direction: 'ASC'}
     ]);
 
-    // check out if current view is still valid. if not go to dashboard
-    node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', Ext.History.getToken(), true);
-    if (node) {
-      me.restoreBookmark(Ext.History.getToken());
-    }
-    else {
-      me.restoreBookmark('dashboard');
-    }
+    // reselect bookmarked node
+    me.onNavigate(me.getApplication().getBookmarkingController().getBookmark());
   },
 
   /**
