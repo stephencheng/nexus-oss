@@ -72,6 +72,29 @@ Ext.define('NX.controller.Menu', {
         }
       }
     });
+
+    me.addEvents(
+        /**
+         * @event navigate
+         * Fires when user navigates to a new bookmark.
+         * @param {String} bookmark value
+         */
+        'navigate'
+    );
+  },
+
+  /**
+   * @public
+   * @returns {NX.Bookmark} a bookmark for current selected feature (if any)
+   */
+  getBookmark: function () {
+    var me = this,
+        selection = me.getFeatureMenu().getSelectionModel().getSelection();
+
+    if (selection) {
+      return NX.Bookmark.fromToken(selection[0].get('bookmark'));
+    }
+    return NX.Bookmark.fromToken();
   },
 
   /**
@@ -121,6 +144,7 @@ Ext.define('NX.controller.Menu', {
         node;
 
     if (bookmark) {
+      me.logDebug('Navigate to: ' + bookmark.getSegment(0));
       node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark.getSegment(0), true);
     }
     if (!node) {
@@ -131,6 +155,7 @@ Ext.define('NX.controller.Menu', {
         me.bookmark(node);
       }
       me.getFeatureMenu().selectPath(node.getPath('text'), 'text');
+      me.fireEvent('navigate', bookmark);
     }
   },
 

@@ -21,7 +21,7 @@ Ext.define('NX.Bookmark', {
     /**
      * @public
      * Creates a new bookmark.
-     * @param {String} token bookmark token
+     * @param [{String}] token bookmark token
      * @returns {NX.Bookmark} created bookmark
      */
     fromToken: function (token) {
@@ -85,6 +85,32 @@ Ext.define('NX.Bookmark', {
     var me = this;
 
     return me.segments[index];
+  },
+
+  /**
+   * Appends a segment to current segment.
+   * @param {String/String[]} segments to append
+   * @returns {NX.Bookmark} itself
+   */
+  appendSegments: function (segments) {
+    var me = this;
+
+    if (!segments) {
+      throw Ext.Error.raise('Invalid segment: ' + segment);
+    }
+    if (!Ext.isArray(segments)) {
+      segments = [segments];
+    }
+    Ext.each(segments, function (segment) {
+      if (!segment || !Ext.isString(segment)) {
+        throw Ext.Error.raise('Invalid segment: ' + segment);
+      }
+      me.segments.push(segment);
+    });
+
+    me.setToken(me.segments.join(':'));
+
+    return me;
   }
 
 });

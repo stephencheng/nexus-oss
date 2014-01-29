@@ -47,6 +47,9 @@ Ext.define('NX.controller.MasterDetail', {
       controller: {
         '#User': {
           permissionsChanged: me.applyPermissions
+        },
+        '#Menu': {
+          navigate: me.onNavigate
         }
       }
     });
@@ -102,6 +105,8 @@ Ext.define('NX.controller.MasterDetail', {
     var me = this,
         list = me.getList(),
         tabs = list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
+        bookmark = me.getApplication().getMenuController().getBookmark(),
+        bookmarking = me.getApplication().getBookmarkingController(),
         model;
 
     if (selected.length) {
@@ -109,10 +114,12 @@ Ext.define('NX.controller.MasterDetail', {
       tabs.show();
       list.getView().focusRow(model);
       tabs.setDescription(me.getDescription(model));
+      bookmarking.bookmark(bookmark.appendSegments(model.getId()));
     }
     else {
       tabs.hide();
       tabs.setDescription('Empty selection');
+      bookmarking.bookmark(bookmark);
     }
 
     me.enableDeleteButton();
@@ -180,6 +187,30 @@ Ext.define('NX.controller.MasterDetail', {
         else {
           button.disable();
         }
+      }
+    }
+  },
+
+  /**
+   * @private
+   * @param {NX.Bookmark} bookmark to navigate to
+   */
+  onNavigate: function (bookmark) {
+    var me = this,
+        list = me.getList(),
+        store, modelId, model;
+
+    if (list && bookmark) {
+      modelId = bookmark.getSegment(1);
+      me.logDebug('Navigate to: ' + modelId);
+      if (modelId) {
+        store = list.getStore();
+        model = store.getById(modelId);
+        list.getSelectionModel().select(model);
+        list.getView().focusRow(model);
+      }
+      else {
+        list.getSelectionModel().deselectAll();
       }
     }
   }

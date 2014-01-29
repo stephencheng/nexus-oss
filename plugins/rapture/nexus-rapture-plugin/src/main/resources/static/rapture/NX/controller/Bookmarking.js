@@ -39,7 +39,7 @@ Ext.define('NX.controller.Bookmarking', {
 
     me.addEvents(
         /**
-         * @event search
+         * @event navigate
          * Fires when user navigates to a new bookmark.
          * @param {String} bookmark value
          */
@@ -64,11 +64,10 @@ Ext.define('NX.controller.Bookmarking', {
     var me = this,
         oldValue = me.getBookmark().getToken();
 
-    if (newBookmark && newBookmark.getToken() && oldValue != newBookmark.getToken()) {
+    if (newBookmark && oldValue != newBookmark.getToken()) {
       // unbind first to avoid navigation callback
-      me.unbindFromHistory();
+      Ext.History.bookmark = newBookmark.getToken();
       Ext.History.add(newBookmark.getToken());
-      me.bindToHistory();
     }
   },
 
@@ -80,7 +79,7 @@ Ext.define('NX.controller.Bookmarking', {
   navigate: function (bookmark) {
     var me = this;
 
-    if (bookmark && bookmark.getToken()) {
+    if (bookmark) {
       me.logDebug('Navigate to: ' + bookmark.getToken());
       me.bookmark(bookmark);
       me.fireEvent('navigate', bookmark);
@@ -105,7 +104,10 @@ Ext.define('NX.controller.Bookmarking', {
   onNavigate: function (token) {
     var me = this;
 
-    me.navigate(NX.Bookmark.fromToken(token));
+    if (token != Ext.History.bookmark) {
+      delete Ext.History.bookmark;
+      me.navigate(NX.Bookmark.fromToken(token));
+    }
   },
 
   /**
@@ -116,16 +118,6 @@ Ext.define('NX.controller.Bookmarking', {
     var me = this;
 
     Ext.History.on('change', me.onNavigate, me);
-  },
-
-  /**
-   * @private
-   * Stop listening to **{@link Ext.History}** change events.
-   */
-  unbindFromHistory: function () {
-    var me = this;
-
-    Ext.History.un('change', me.onNavigate, me);
   }
 
 });
