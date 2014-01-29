@@ -77,29 +77,12 @@ Ext.define('NX.controller.Main', {
     });
 
     me.listen({
-      controller: {
-        '#Status': {
-          info: me.updateHeaderVersion
-        }
-      },
       component: {
         'nx-header-refresh': {
           click: me.refresh
         }
       }
     });
-  },
-
-  /**
-   * @private
-   */
-  updateHeaderVersion: function (info) {
-    var me = this;
-
-    // FIXME: This can probably be replaced by NX.app.* preloaded data
-
-    // Update the header-version with details from status
-    me.getHeaderVersion().setText(info.edition + ' ' + info.version);
   },
 
   refresh: function () {

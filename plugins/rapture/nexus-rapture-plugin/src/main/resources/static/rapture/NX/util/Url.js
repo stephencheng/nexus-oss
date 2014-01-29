@@ -14,14 +14,11 @@ Ext.define('NX.util.Url', {
   singleton: true,
 
   /**
+   * Returns the base URL of the Nexus server.  URL never ends with '/'.
+   *
    * @public
    */
-  baseUrl: window.location.protocol
-      + '//'
-      + window.location.host
-      + '/'
-      +
-      (window.location.pathname.split('/').length > 2 ? window.location.pathname.split('/')[1] + '/' : ''),
+  baseUrl: NX.app.baseUrl,
 
   /**
    * @public

@@ -14,7 +14,7 @@ Ext.define('NX.view.header.Version', {
   extend: 'Ext.form.Label',
   alias: 'widget.nx-header-version',
 
-  text: 'Unknown',
+  text: NX.app.status.edition + ' ' + NX.app.status.version,
   style: {
     'color': '#DDDDDD',
     'font-size': '12px'

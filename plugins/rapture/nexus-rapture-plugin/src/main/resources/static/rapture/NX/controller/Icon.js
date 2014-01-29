@@ -55,10 +55,10 @@ Ext.define('NX.controller.Icon', {
     me.installStylesheet();
 
     // HACK: preload some additional image resources
-    me.preloadImage(NX.util.Url.baseUrl + 'static/rapture/resources/images/shared/icon-error.png');
-    me.preloadImage(NX.util.Url.baseUrl + 'static/rapture/resources/images/shared/icon-info.png');
-    me.preloadImage(NX.util.Url.baseUrl + 'static/rapture/resources/images/shared/icon-question.png');
-    me.preloadImage(NX.util.Url.baseUrl + 'static/rapture/resources/images/shared/icon-warning.png');
+    me.preloadImage(NX.util.Url.baseUrl + '/static/rapture/resources/images/shared/icon-error.png');
+    me.preloadImage(NX.util.Url.baseUrl + '/static/rapture/resources/images/shared/icon-info.png');
+    me.preloadImage(NX.util.Url.baseUrl + '/static/rapture/resources/images/shared/icon-question.png');
+    me.preloadImage(NX.util.Url.baseUrl + '/static/rapture/resources/images/shared/icon-warning.png');
   },
 
   /**
@@ -203,7 +203,7 @@ Ext.define('NX.controller.Icon', {
     }
 
     // calculate image URL
-    url = NX.util.Url.baseUrl + 'static/rapture/resources/icons/';
+    url = NX.util.Url.baseUrl + '/static/rapture/resources/icons/';
     if (icon.variant) {
       url += icon.variant + '/';
     }

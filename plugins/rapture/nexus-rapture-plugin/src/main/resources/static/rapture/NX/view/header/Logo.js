@@ -25,7 +25,7 @@ Ext.define('NX.view.header.Logo', {
    * @protected
    */
   initComponent: function() {
-    this.setSrc(NX.util.Url.baseUrl + 'static/rapture/resources/images/nexus-32x32.png');
+    this.setSrc(NX.util.Url.baseUrl + '/static/rapture/resources/images/nexus-32x32.png');
     this.callParent();
   }
 });

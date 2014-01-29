@@ -20,16 +20,25 @@ Ext.Loader.setConfig({
 Ext.ns('NX.app');
 
 ## Configure application plugin muck
-NX.app.pluginConfigClassNames = [${pluginConfigClassNames}];
+NX.app.pluginConfigClassNames = [$pluginConfigClassNames];
 Ext.each(NX.app.pluginConfigClassNames, function(className) {
   Ext.require(className);
 });
 
-## configure default UI settings
+## configure basics
+NX.app.baseUrl = '$baseUrl';
+
+## configure status
+NX.app.status = {
+  version: "$status.version",
+  edition: "$status.editionShort"
+};
+
+## configure settings
 NX.app.settings = {
-  debugAllowed: ${settings.debugAllowed},
-  sessionTimeout: ${settings.sessionTimeout}
-}
+  debugAllowed: $settings.debugAllowed,
+  sessionTimeout: $settings.sessionTimeout
+};
 
 ## Set the debug flag if allowed
 NX.app.debug = false;
