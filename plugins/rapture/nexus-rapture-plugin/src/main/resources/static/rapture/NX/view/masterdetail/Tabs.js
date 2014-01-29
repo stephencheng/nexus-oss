@@ -52,6 +52,8 @@ Ext.define('NX.view.masterdetail.Tabs', {
     me.description = me.title;
 
     me.callParent(arguments);
+
+    me.on('afterrender', me.calculateBookmarks, me);
   },
 
   getTabsConfig: function (items) {
@@ -101,6 +103,59 @@ Ext.define('NX.view.masterdetail.Tabs', {
       me.tabs = [me.tabs, tab];
       me.remove(content);
       me.add(me.getTabsConfig(me.tabs));
+    }
+    me.calculateBookmarks();
+  },
+
+  /**
+   * @public
+   * @returns {String} bookmark token of selected tab
+   */
+  getBookmarkOfSelectedTab: function () {
+    var me = this,
+        content = me.items.get(0),
+        selectedItem = content;
+
+    if (content.isXType('tabpanel')) {
+      selectedItem = content.getActiveTab();
+    }
+    return selectedItem.bookmark;
+  },
+
+  /**
+   * @public
+   * Finds a tab by bookmark & sets it active (if found).
+   * @param {String} bookmark of tab to be activated
+   */
+  setActiveTabByBookmark: function (bookmark) {
+    var me = this,
+        tabpanel = me.down('> tabpanel'),
+        tab = me.down('> tabpanel > panel[bookmark=' + bookmark + ']');
+
+    if (tabpanel && tab) {
+      tabpanel.setActiveTab(tab);
+    }
+  },
+
+  /**
+   * @private
+   * Calculates bookmarks of all tabs based on tab title.
+   */
+  calculateBookmarks: function () {
+    var me = this,
+        content = me.items.get(0);
+
+    if (content.isXType('tabpanel')) {
+      content.items.each(function (tab) {
+        if (tab.title) {
+          tab.bookmark = NX.Bookmark.encode(tab.title);
+        }
+      });
+    }
+    else {
+      if (content.title) {
+        content.bookmark = NX.Bookmark.encode(content.title);
+      }
     }
   }
 

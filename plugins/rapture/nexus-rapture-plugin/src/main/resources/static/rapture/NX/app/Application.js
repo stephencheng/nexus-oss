@@ -22,6 +22,7 @@ Ext.define('NX.app.Application', {
     'Ext.util.LocalStorage',
     'NX.view.Viewport',
     'NX.util.Url',
+    'NX.Bookmark',
 
     // require custom extensions so we don't need to requirement explicitly everywhere
     'NX.ext.grid.IconColumn',

@@ -20,9 +20,6 @@ Ext.define('NX.controller.Bookmarking', {
   mixins: {
     logAware: 'NX.LogAware'
   },
-  requires: [
-    'NX.Bookmark'
-  ],
 
   /**
    * @override

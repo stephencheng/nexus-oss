@@ -12,6 +12,9 @@
  */
 Ext.define('NX.controller.Menu', {
   extend: 'Ext.app.Controller',
+  requires: [
+    'NX.Bookmark'
+  ],
   mixins: {
     logAware: 'NX.LogAware'
   },

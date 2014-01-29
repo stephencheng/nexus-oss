@@ -50,7 +50,7 @@ Ext.define('NX.controller.Features', {
 
         // auto-set bookmark
         if (!feature.bookmark) {
-          feature.bookmark = path.toLowerCase().replace(' ', '');
+          feature.bookmark = NX.Bookmark.encode(path);
         }
 
         // auto-set iconName

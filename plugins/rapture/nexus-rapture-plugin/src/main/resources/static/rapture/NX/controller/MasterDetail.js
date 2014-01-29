@@ -35,6 +35,9 @@ Ext.define('NX.controller.MasterDetail', {
       refresh: me.loadStores,
       selection: me.onSelection
     };
+    componentListener[me.list + ' ^ nx-masterdetail-panel nx-masterdetail-tabs > tabpanel'] = {
+      tabchange: me.bookmark
+    };
     storeListener['#' + store] = {
       load: me.onStoreLoad
     };
@@ -105,8 +108,6 @@ Ext.define('NX.controller.MasterDetail', {
     var me = this,
         list = me.getList(),
         tabs = list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
-        bookmark = me.getApplication().getMenuController().getBookmark(),
-        bookmarking = me.getApplication().getBookmarkingController(),
         model;
 
     if (selected.length) {
@@ -114,17 +115,17 @@ Ext.define('NX.controller.MasterDetail', {
       tabs.show();
       list.getView().focusRow(model);
       tabs.setDescription(me.getDescription(model));
-      bookmarking.bookmark(bookmark.appendSegments(model.getId()));
     }
     else {
       tabs.hide();
       tabs.setDescription('Empty selection');
-      bookmarking.bookmark(bookmark);
     }
 
     me.enableDeleteButton();
 
     me.getList().fireEvent('selection', me.getList(), model);
+
+    me.bookmark();
   },
 
   applyPermissions: function () {
@@ -192,22 +193,53 @@ Ext.define('NX.controller.MasterDetail', {
   },
 
   /**
+   * Bookmark current selected model / selected tab.
+   */
+  bookmark: function () {
+    var me = this,
+        list = me.getList(),
+        selected = list.getSelectionModel().getSelection(),
+        tabs = list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
+        bookmark = me.getApplication().getMenuController().getBookmark(),
+        bookmarking = me.getApplication().getBookmarkingController(),
+        segments = [],
+        model, selectedTabBookmark;
+
+    if (selected.length) {
+      model = selected[0];
+      segments.push(model.getId());
+      selectedTabBookmark = tabs.getBookmarkOfSelectedTab();
+      if (selectedTabBookmark) {
+        segments.push(selectedTabBookmark);
+      }
+      bookmarking.bookmark(bookmark.appendSegments(segments));
+    }
+    else {
+      bookmarking.bookmark(bookmark);
+    }
+  },
+
+  /**
    * @private
    * @param {NX.Bookmark} bookmark to navigate to
    */
   onNavigate: function (bookmark) {
     var me = this,
         list = me.getList(),
-        store, modelId, model;
+        store, modelId, tabBookmark, model, tabs, tab;
 
     if (list && bookmark) {
       modelId = bookmark.getSegment(1);
-      me.logDebug('Navigate to: ' + modelId);
+      tabBookmark = bookmark.getSegment(2);
       if (modelId) {
+        me.logDebug('Navigate to: ' + modelId + (tabBookmark ? ":" + tabBookmark : ''));
         store = list.getStore();
         model = store.getById(modelId);
         list.getSelectionModel().select(model);
         list.getView().focusRow(model);
+        if (tabBookmark) {
+          list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs').setActiveTabByBookmark(tabBookmark);
+        }
       }
       else {
         list.getSelectionModel().deselectAll();

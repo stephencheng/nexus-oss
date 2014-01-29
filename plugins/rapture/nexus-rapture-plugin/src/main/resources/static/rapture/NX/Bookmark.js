@@ -41,6 +41,18 @@ Ext.define('NX.Bookmark', {
         segments = [segments];
       }
       return Ext.create('NX.Bookmark', { token: segments.join(':') });
+    },
+    /**
+     * Encodes the value suitable to be used as a bookmark token.
+     * (eliminate spaces and lower case)
+     * @param value to be encoded
+     * @returns {String} encoded value
+     */
+    encode: function (value) {
+      if (!Ext.isString(value)) {
+        throw Ext.Error.raise('Value to be encoded must be a String');
+      }
+      return value.toLowerCase().replace(' ', '');
     }
   },
 
