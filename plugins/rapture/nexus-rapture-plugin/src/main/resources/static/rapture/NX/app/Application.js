@@ -136,8 +136,13 @@ Ext.define('NX.app.Application', {
     me.callParent(arguments);
   },
 
+  /**
+   * @override
+   *
+   * @param app
+   */
   init: function (app) {
-    app.logDebug('init');
+    NX.Log.debug('init');
 
     // Configure blank image URL
     Ext.BLANK_IMAGE_URL = NX.util.Url.baseUrl + 'static/rapture/resources/images/s.gif';
