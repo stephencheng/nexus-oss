@@ -50,7 +50,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     path: '/Repository/Repositories',
     view: { xtype: 'nx-repository-feature' },
     visible: function () {
-      return NX.util.Permissions.check('nexus:repositories', 'read');
+      return NX.Permissions.check('nexus:repositories', 'read');
     }
   },
   permission: 'nexus:repositories',

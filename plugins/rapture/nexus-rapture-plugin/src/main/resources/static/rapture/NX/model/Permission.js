@@ -13,7 +13,7 @@
 Ext.define('NX.model.Permission', {
   extend: 'Ext.data.Model',
   requires: [
-    'NX.util.Permissions'
+    'NX.Permissions'
   ],
 
   fields: [
@@ -23,28 +23,28 @@ Ext.define('NX.model.Permission', {
       name: 'create',
       type: 'boolean',
       convert: function(val, row){
-        return (row.data.value & NX.util.Permissions.CREATE) == NX.util.Permissions.CREATE;
+        return (row.data.value & NX.Permissions.CREATE) == NX.Permissions.CREATE;
       }
     },
     {
       name: 'read',
       type: 'boolean',
       convert: function(val, row){
-        return (row.data.value & NX.util.Permissions.READ) == NX.util.Permissions.READ;
+        return (row.data.value & NX.Permissions.READ) == NX.Permissions.READ;
       }
     },
     {
       name: 'update',
       type: 'boolean',
       convert: function(val, row){
-        return (row.data.value & NX.util.Permissions.UPDATE) == NX.util.Permissions.UPDATE;
+        return (row.data.value & NX.Permissions.UPDATE) == NX.Permissions.UPDATE;
       }
     },
     {
       name: 'delete',
       type: 'boolean',
       convert: function(val, row){
-        return (row.data.value & NX.util.Permissions.DELETE) == NX.util.Permissions.DELETE;
+        return (row.data.value & NX.Permissions.DELETE) == NX.Permissions.DELETE;
       }
     }
   ]

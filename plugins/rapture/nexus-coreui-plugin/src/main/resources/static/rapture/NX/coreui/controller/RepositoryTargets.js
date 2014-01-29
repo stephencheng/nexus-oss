@@ -51,7 +51,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     path: '/Repository/Targets',
     view: { xtype: 'nx-repositorytarget-feature' },
     visible: function () {
-      return NX.util.Permissions.check('nexus:targets', 'read');
+      return NX.Permissions.check('nexus:targets', 'read');
     }
   },
   permission: 'nexus:targets',

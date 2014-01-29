@@ -57,7 +57,7 @@ Ext.define('NX.capability.controller.Capabilities', {
     path: '/System/Capabilities',
     view: { xtype: 'nx-capability-feature' },
     visible: function () {
-      return NX.util.Permissions.check('nexus:capabilities', 'read');
+      return NX.Permissions.check('nexus:capabilities', 'read');
     }
   },
   permission: 'nexus:capabilities',

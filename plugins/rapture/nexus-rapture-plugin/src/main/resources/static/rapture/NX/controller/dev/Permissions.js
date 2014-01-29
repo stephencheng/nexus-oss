@@ -13,7 +13,7 @@
 Ext.define('NX.controller.dev.Permissions', {
   extend: 'Ext.app.Controller',
   requires: [
-    'NX.util.Permissions'
+    'NX.Permissions'
   ],
 
   stores: [
@@ -121,11 +121,11 @@ Ext.define('NX.controller.dev.Permissions', {
    * @private
    */
   update: function (editor, context) {
-    var value = NX.util.Permissions.NONE;
+    var value = NX.Permissions.NONE;
 
     Ext.each(['CREATE', 'READ', 'UPDATE', 'DELETE'], function (perm) {
       if (context.newValues[perm.toLowerCase()] == true) {
-        value += NX.util.Permissions[perm];
+        value += NX.Permissions[perm];
       }
     });
 

@@ -14,7 +14,7 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
   extend: 'NX.controller.MasterDetail',
   requires: [
     'NX.util.Url',
-    'NX.util.Permissions'
+    'NX.Permissions'
   ],
 
   list: 'nx-pluginconsole-list',
@@ -50,7 +50,7 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
     path: '/System/Plugins',
     view: { xtype: 'nx-pluginconsole-feature' },
     visible: function () {
-      return NX.util.Permissions.check('nexus:pluginconsoleplugininfos', 'read');
+      return NX.Permissions.check('nexus:pluginconsoleplugininfos', 'read');
     }
   },
 

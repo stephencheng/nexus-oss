@@ -13,7 +13,7 @@
 Ext.define('NX.view.dev.Permissions', {
   extend: 'Ext.grid.Panel',
   requires: [
-    'NX.util.Permissions'
+    'NX.Permissions'
   ],
   alias: 'widget.nx-dev-permissions',
 

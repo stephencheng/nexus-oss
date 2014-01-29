@@ -14,7 +14,7 @@ Ext.define('NX.controller.User', {
   extend: 'Ext.app.Controller',
   requires: [
     'NX.util.Base64',
-    'NX.util.Permissions',
+    'NX.Permissions',
     'Ext.ux.ActivityMonitor'
   ],
   mixins: {
@@ -287,8 +287,8 @@ Ext.define('NX.controller.User', {
   firePermissionsChanged: function () {
     var me = this;
 
-    NX.util.Permissions.setPermissions(me.getPermissions());
-    me.fireEvent('permissionsChanged', NX.util.Permissions);
+    NX.Permissions.setPermissions(me.getPermissions());
+    me.fireEvent('permissionsChanged', NX.Permissions);
   },
 
   /**

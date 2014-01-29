@@ -13,7 +13,7 @@
 Ext.define('NX.controller.MasterDetail', {
   extend: 'Ext.app.Controller',
   requires: [
-    'NX.util.Permissions'
+    'NX.Permissions'
   ],
 
   mixins: {
@@ -134,7 +134,7 @@ Ext.define('NX.controller.MasterDetail', {
   shouldEnableNewButton: function () {
     var me = this;
     if (me.permission) {
-      return NX.util.Permissions.check(me.permission, 'create')
+      return NX.Permissions.check(me.permission, 'create')
     }
     return true;
   },
@@ -160,7 +160,7 @@ Ext.define('NX.controller.MasterDetail', {
   shouldEnableDeleteButton: function () {
     var me = this;
     if (me.permission) {
-      return NX.util.Permissions.check(me.permission, 'delete')
+      return NX.Permissions.check(me.permission, 'delete')
     }
     return true;
   },

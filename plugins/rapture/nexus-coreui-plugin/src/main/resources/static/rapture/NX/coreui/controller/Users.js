@@ -46,7 +46,7 @@ Ext.define('NX.coreui.controller.Users', {
     path: '/Security/Users',
     view: { xtype: 'nx-user-feature' },
     visible: function () {
-      return NX.util.Permissions.check('security:users', 'read');
+      return NX.Permissions.check('security:users', 'read');
     }
   },
   permission: 'security:users',
