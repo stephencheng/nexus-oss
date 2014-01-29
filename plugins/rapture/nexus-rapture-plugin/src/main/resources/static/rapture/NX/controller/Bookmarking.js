@@ -12,12 +12,17 @@
  */
 /**
  * Controls bookmarking.
+ *
+ * @since 2.8
  */
 Ext.define('NX.controller.Bookmarking', {
   extend: 'Ext.app.Controller',
   mixins: {
     logAware: 'NX.LogAware'
   },
+  requires: [
+    'NX.Bookmark'
+  ],
 
   /**
    * @override
@@ -44,25 +49,25 @@ Ext.define('NX.controller.Bookmarking', {
 
   /**
    * @public
-   * @returns current bookmark
+   * @returns {NX.Bookmark} current bookmark
    */
   getBookmark: function () {
-    return Ext.History.getToken();
+    return NX.Bookmark.fromToken(Ext.History.getToken());
   },
 
   /**
    * @public
    * Sets bookmark to a specified value.
-   * @param newBookmark new bookmark
+   * @param {NX.Bookmark} newBookmark new bookmark
    */
   bookmark: function (newBookmark) {
     var me = this,
-        oldBookmark = me.getBookmark();
+        oldValue = me.getBookmark().getToken();
 
-    if (newBookmark && oldBookmark != newBookmark) {
+    if (newBookmark && newBookmark.getToken() && oldValue != newBookmark.getToken()) {
       // unbind first to avoid navigation callback
       me.unbindFromHistory();
-      Ext.History.add(newBookmark);
+      Ext.History.add(newBookmark.getToken());
       me.bindToHistory();
     }
   },
@@ -70,13 +75,13 @@ Ext.define('NX.controller.Bookmarking', {
   /**
    * @public
    * Sets bookmark to a specified value and navigates to it.
-   * @param bookmark to navigate to
+   * @param {NX.Bookmark} bookmark to navigate to
    */
   navigate: function (bookmark) {
     var me = this;
 
-    if (bookmark) {
-      me.logDebug('Navigate to: ' + bookmark)
+    if (bookmark && bookmark.getToken()) {
+      me.logDebug('Navigate to: ' + bookmark.getToken());
       me.bookmark(bookmark);
       me.fireEvent('navigate', bookmark);
     }
@@ -94,12 +99,23 @@ Ext.define('NX.controller.Bookmarking', {
 
   /**
    * @private
+   * Sets bookmark to a specified value and navigates to it.
+   * @param {String} token to navigate to
+   */
+  onNavigate: function (token) {
+    var me = this;
+
+    me.navigate(NX.Bookmark.fromToken(token));
+  },
+
+  /**
+   * @private
    * Start listening to **{@link Ext.History}** change events.
    */
   bindToHistory: function () {
     var me = this;
 
-    Ext.History.on('change', me.navigate, me);
+    Ext.History.on('change', me.onNavigate, me);
   },
 
   /**
@@ -109,7 +125,7 @@ Ext.define('NX.controller.Bookmarking', {
   unbindFromHistory: function () {
     var me = this;
 
-    Ext.History.un('change', me.navigate, me);
+    Ext.History.un('change', me.onNavigate, me);
   }
 
 });

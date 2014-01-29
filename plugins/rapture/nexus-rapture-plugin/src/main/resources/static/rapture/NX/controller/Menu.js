@@ -121,13 +121,13 @@ Ext.define('NX.controller.Menu', {
         node;
 
     if (bookmark) {
-      node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark, true);
+      node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark.getSegment(0), true);
     }
     if (!node) {
       node = me.getFeatureMenuStore().getRootNode().firstChild;
     }
     if (node) {
-      if (node.get('bookmark') != bookmark) {
+      if (node.get('bookmark') != bookmark.getSegment(0)) {
         me.bookmark(node);
       }
       me.getFeatureMenu().selectPath(node.getPath('text'), 'text');
@@ -139,7 +139,9 @@ Ext.define('NX.controller.Menu', {
    */
   bookmark: function (node) {
     var me = this;
-    me.getApplication().getBookmarkingController().bookmark(node.get('bookmark'));
+    me.getApplication().getBookmarkingController().bookmark(
+        NX.Bookmark.fromToken(node.get('bookmark'))
+    );
   },
 
   /**
