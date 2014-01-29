@@ -196,12 +196,12 @@ Ext.define('NX.capability.controller.Capabilities', {
         if (response.success) {
           win.close();
           me.loadStoresAndSelect(response.data);
-          me.getApplication().getMessageController().addMessage({
+          NX.Messages.add({
             text: 'Capability created: ' + me.getDescription(capabilityModel), type: 'success'
           });
         }
         else if (Ext.isDefined(response.errors)) {
-          me.getApplication().getMessageController().addMessage({
+          NX.Messages.add({
             text: form.markInvalid(response.errors), type: 'warning'
           });
         }
@@ -221,12 +221,12 @@ Ext.define('NX.capability.controller.Capabilities', {
       if (Ext.isDefined(response)) {
         if (response.success) {
           me.loadStores();
-          me.getApplication().getMessageController().addMessage({
+          NX.Messages.add({
             text: 'Capability updated: ' + me.getDescription(capabilityModel), type: 'success'
           });
         }
         else if (Ext.isDefined(response.errors)) {
-          me.getApplication().getMessageController().addMessage({
+          NX.Messages.add({
             text: form.markInvalid(response.errors), type: 'warning'
           });
         }
@@ -245,7 +245,7 @@ Ext.define('NX.capability.controller.Capabilities', {
         NX.direct.capability_Capability.delete(selection[0].getId(), function (response) {
           me.loadStores();
           if (Ext.isDefined(response) && response.success) {
-            me.getApplication().getMessageController().addMessage({
+            NX.Messages.add({
               text: 'Capability deleted: ' + description, type: 'success'
             });
           }
