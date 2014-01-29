@@ -26,7 +26,7 @@ Ext.define('NX.controller.Dashboard', {
       variants: [ 'x16', 'x32' ]
     });
 
-    me.getApplication().getMainController().registerFeature({
+    me.getApplication().getFeaturesController().registerFeature({
       path: '/Dashboard',
       view: 'NX.view.dashboard.Feature',
       weight: 10

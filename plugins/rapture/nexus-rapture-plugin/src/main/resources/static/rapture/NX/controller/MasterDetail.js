@@ -55,7 +55,7 @@ Ext.define('NX.controller.MasterDetail', {
       me.getApplication().getIconController().addIcons(me.icons);
     }
     if (me.features) {
-      me.getApplication().getMainController().registerFeature(me.features);
+      me.getApplication().getFeaturesController().registerFeature(me.features);
     }
   },
 

@@ -166,7 +166,7 @@ Ext.define('NX.controller.Temp', {
       return me.getApplication().getUserController().hasUser();
     };
 
-    me.getApplication().getMainController().registerFeature([
+    me.getApplication().getFeaturesController().registerFeature([
       {
         path: '/System',
         weight: 1000,
