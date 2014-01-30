@@ -21,8 +21,6 @@ Ext.define('NX.controller.Main', {
     'header.Panel',
     'header.Branding',
     'header.Logo',
-    'dev.Panel',
-    'message.Panel',
     'info.Entry',
     'info.Panel'
   ],
