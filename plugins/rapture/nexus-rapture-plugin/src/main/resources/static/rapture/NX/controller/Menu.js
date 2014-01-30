@@ -48,9 +48,16 @@ Ext.define('NX.controller.Menu', {
   ],
 
   /**
-   * @private current mode
+   * @private
+   * Current mode.
    */
   mode: undefined,
+
+  /**
+   * @private
+   * Modes discovered by searching all buttons with a mode property.
+   */
+  availableModes: [],
 
   /**
    * @override
@@ -74,6 +81,10 @@ Ext.define('NX.controller.Menu', {
         },
         'nx-header-panel button[mode]': {
           click: me.onModeChanged
+        },
+        'button[mode]': {
+          afterrender: me.registerModeButton,
+          destroy: me.unregisterModeButton
         }
       },
       store: {
@@ -190,8 +201,7 @@ Ext.define('NX.controller.Menu', {
   refreshVisibleModes: function () {
     var me = this,
         visibleModes = [],
-        headerPanel = me.getHeaderPanel(),
-        feature, modeButton;
+        feature;
 
     me.getFeatureStore().each(function (rec) {
       feature = rec.getData();
@@ -202,14 +212,13 @@ Ext.define('NX.controller.Menu', {
 
     me.logDebug('Visible modes: ' + visibleModes);
 
-    Ext.each(NX.controller.Features.MODES, function (mode) {
-      modeButton = headerPanel.down('button[mode=' + mode + ']');
-      modeButton.toggle(false, true);
-      if (visibleModes.indexOf(mode) > -1) {
-        modeButton.show();
+    Ext.each(me.availableModes, function (button) {
+      button.toggle(false, true);
+      if (visibleModes.indexOf(button.mode) > -1) {
+        button.show();
       }
       else {
-        modeButton.hide();
+        button.hide();
       }
     });
 
@@ -221,9 +230,8 @@ Ext.define('NX.controller.Menu', {
         headerPanel = me.getHeaderPanel(),
         modeButton;
 
-    Ext.each(NX.controller.Features.MODES, function (mode) {
-      modeButton = headerPanel.down('button[mode=' + mode + ']');
-      modeButton.toggle(false, true);
+    Ext.each(me.availableModes, function (button) {
+      button.toggle(false, true);
     });
 
     if (me.mode) {
@@ -233,10 +241,9 @@ Ext.define('NX.controller.Menu', {
       }
     }
     if (!me.mode) {
-      Ext.each(NX.controller.Features.MODES, function (mode) {
-        modeButton = headerPanel.down('button[mode=' + mode + ']');
-        if (!modeButton.isHidden()) {
-          me.mode = mode;
+      Ext.each(me.availableModes, function (button) {
+        if (!button.isHidden()) {
+          me.mode = button.mode;
           return false;
         }
         return true;
@@ -347,6 +354,26 @@ Ext.define('NX.controller.Menu', {
 
     me.logDebug('Mode changed: ' + mode);
     me.refreshMenu();
+  },
+
+  /**
+   * @private
+   * Register a mode button.
+   */
+  registerModeButton: function (button) {
+    var me = this;
+
+    me.availableModes.push(button);
+  },
+
+  /**
+   * @private
+   * Unregister a mode button.
+   */
+  unregisterModeButton: function (button) {
+    var me = this;
+
+    me.availableModes.remove(button);
   }
 
 });
