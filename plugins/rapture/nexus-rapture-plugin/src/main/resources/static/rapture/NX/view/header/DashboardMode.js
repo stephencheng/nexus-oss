@@ -10,15 +10,14 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.view.header.User', {
+Ext.define('NX.view.header.DashboardMode', {
   extend: 'Ext.button.Button',
-  alias: 'widget.nx-header-user',
+  alias: 'widget.nx-header-dashboard-mode',
 
-  text: 'User',
-  tooltip: 'User',
+  tooltip: 'Dashboard',
   ui: 'headermode',
   toggleGroup: 'mode',
-  mode: 'user',
-  glyph: 'xf007@FontAwesome' // fa-user
+  mode: 'dashboard',
+  glyph: 'xf0e4@FontAwesome' /* fa-dashboard */
 
 });

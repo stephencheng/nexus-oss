@@ -48,10 +48,10 @@ Ext.define('NX.view.header.Panel', {
         '-',
         { xtype: 'nx-header-version' },
         '->',
-        { xtype: 'button', tooltip: 'Dashboard', ui: 'headermode', toggleGroup: 'mode', mode: 'dashboard', glyph: 'xf0e4@FontAwesome' /* fa-dashboard */},
-        { xtype: 'button', tooltip: 'Search', ui: 'headermode', toggleGroup: 'mode', mode: 'search', glyph: 'xf002@FontAwesome' /* fa-search */},
-        { xtype: 'button', tooltip: 'Browse', ui: 'headermode', toggleGroup: 'mode', mode: 'browse', glyph: 'xf0e8@FontAwesome' /* fa-sitemap */},
-        { xtype: 'button', tooltip: 'Administration', ui: 'headermode', toggleGroup: 'mode', mode: 'admin', glyph: 'xf013@FontAwesome' /* fa-gear */},
+        { xtype: 'nx-header-dashboard-mode' },
+        { xtype: 'nx-header-search-mode' },
+        { xtype: 'nx-header-browse-mode' },
+        { xtype: 'nx-header-admin-mode' },
         '->',
         { xtype: 'nx-searchbox', itemId: 'quicksearch', emptyText: 'quick search' },
         ' ',
@@ -59,7 +59,7 @@ Ext.define('NX.view.header.Panel', {
         { xtype: 'nx-header-help' },
         '-',
         { xtype: 'nx-header-login' },
-        { xtype: 'nx-header-user', ui: 'headermode', hidden: true },
+        { xtype: 'nx-header-user', hidden: true },
         { xtype: 'nx-header-logout' }
       ]
     }

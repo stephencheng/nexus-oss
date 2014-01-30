@@ -20,7 +20,11 @@ Ext.define('NX.controller.Menu', {
   },
 
   views: [
-    'feature.Menu'
+    'feature.Menu',
+    'header.DashboardMode',
+    'header.SearchMode',
+    'header.BrowseMode',
+    'header.AdminMode',
   ],
 
   stores: [
