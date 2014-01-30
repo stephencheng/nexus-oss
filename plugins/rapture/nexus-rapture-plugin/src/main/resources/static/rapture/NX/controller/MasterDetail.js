@@ -50,8 +50,8 @@ Ext.define('NX.controller.MasterDetail', {
         '#User': {
           permissionschanged: me.applyPermissions
         },
-        '#Menu': {
-          navigate: me.onNavigate
+        '#Bookmarking': {
+          navigate: me.navigateTo
         },
         '#Refresh': {
           refresh: me.loadStores
@@ -100,23 +100,26 @@ Ext.define('NX.controller.MasterDetail', {
 
   onStoreLoad: function () {
     var me = this,
-        list = me.getList(),
-        sm;
+        list = me.getList();
 
     if (list) {
-      sm = list.getSelectionModel();
-      me.onSelectionChange(sm, sm.getSelection());
+      me.navigateTo(me.getApplication().getBookmarkingController().getBookmark());
     }
   },
 
   onSelectionChange: function (selectionModel, selected) {
+    var me = this;
+
+    me.onModelChanged(selected[0]);
+    me.bookmark();
+  },
+
+  onModelChanged: function (model) {
     var me = this,
         list = me.getList(),
-        tabs = list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
-        model;
+        tabs = list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs');
 
-    if (selected.length) {
-      model = selected[0];
+    if (model) {
       tabs.show();
       list.getView().focusRow(model);
       tabs.setDescription(me.getDescription(model));
@@ -127,10 +130,6 @@ Ext.define('NX.controller.MasterDetail', {
     }
 
     me.enableDeleteButton();
-
-    me.getList().fireEvent('selection', me.getList(), model);
-
-    me.bookmark();
   },
 
   applyPermissions: function () {
@@ -225,13 +224,13 @@ Ext.define('NX.controller.MasterDetail', {
   },
 
   /**
-   * @private
+   * @public
    * @param {NX.Bookmark} bookmark to navigate to
    */
-  onNavigate: function (bookmark) {
+  navigateTo: function (bookmark) {
     var me = this,
         list = me.getList(),
-        store, modelId, tabBookmark, model, tabs, tab;
+        store, modelId, tabBookmark, model, tabs;
 
     if (list && bookmark) {
       modelId = bookmark.getSegment(1);
@@ -240,8 +239,11 @@ Ext.define('NX.controller.MasterDetail', {
         me.logDebug('Navigate to: ' + modelId + (tabBookmark ? ":" + tabBookmark : ''));
         store = list.getStore();
         model = store.getById(modelId);
-        list.getSelectionModel().select(model);
-        list.getView().focusRow(model);
+        if (model) {
+          list.getSelectionModel().select(model, false, true);
+          list.getView().focusRow(model);
+        }
+        me.onModelChanged(model);
         if (tabBookmark) {
           list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs').setActiveTabByBookmark(tabBookmark);
         }

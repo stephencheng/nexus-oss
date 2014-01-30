@@ -59,6 +59,8 @@ Ext.define('NX.controller.Menu', {
    */
   availableModes: [],
 
+  bookmarkingEnabled: true,
+
   /**
    * @override
    */
@@ -68,15 +70,15 @@ Ext.define('NX.controller.Menu', {
     me.listen({
       controller: {
         '#User': {
-          permissionschanged: me.refreshMenu
+          permissionschanged: me.onPermissionsChange
         },
         '#Bookmarking': {
-          navigate: me.onNavigate
+          navigate: me.navigateTo
         }
       },
       component: {
         'nx-feature-menu': {
-          select: me.selectFeature,
+          select: me.onSelection,
           afterrender: me.refreshMenu
         },
         'nx-header-panel button[mode]': {
@@ -95,12 +97,6 @@ Ext.define('NX.controller.Menu', {
     });
 
     me.addEvents(
-        /**
-         * @event navigate
-         * Fires when user navigates to a new bookmark.
-         * @param {String} bookmark value
-         */
-        'navigate',
         /**
          * @event featureselected
          * Fires when a feature is selected.
@@ -124,20 +120,30 @@ Ext.define('NX.controller.Menu', {
   /**
    * @private
    */
-  selectFeature: function (panel, record) {
+  onPermissionsChange: function () {
     var me = this;
 
-    me.logDebug('Selected feature: ' + record.get('path'));
-
-    me.fireEvent('featureselected', me.getFeatureStore().getById(record.get('path')));
-
-    me.bookmark(record);
+    me.refreshMenu();
+    me.navigateTo(me.getApplication().getBookmarkingController().getBookmark());
   },
 
   /**
    * @private
    */
-  onNavigate: function (bookmark) {
+  onSelection: function (panel, record) {
+    var me = this;
+
+    me.logDebug('Selected feature: ' + record.get('path'));
+    me.fireEvent('featureselected', me.getFeatureStore().getById(record.get('path')));
+    if (me.bookmarkingEnabled) {
+      me.bookmark(record);
+    }
+  },
+
+  /**
+   * @private
+   */
+  navigateTo: function (bookmark) {
     var me = this,
         node, mode;
 
@@ -153,15 +159,14 @@ Ext.define('NX.controller.Menu', {
       node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark.getSegment(0), true);
     }
     if (!node) {
-      me.logDebug('Bookmarked feature "' + bookmark.getSegment(0) + '" not found. Selecting first available feature');
+      me.logDebug('Feature "' + bookmark.getSegment(0) + '" not found. Selecting first available feature');
       node = me.getFeatureMenuStore().getRootNode().firstChild;
     }
     if (node) {
-      if (node.get('bookmark') != bookmark.getSegment(0)) {
-        me.bookmark(node);
-      }
-      me.getFeatureMenu().selectPath(node.getPath('text'), 'text');
-      me.fireEvent('navigate', bookmark);
+      me.bookmarkingEnabled = false;
+      me.getFeatureMenu().selectPath(node.getPath('text'), 'text', undefined, function () {
+        me.bookmarkingEnabled = true;
+      });
     }
   },
 
@@ -183,16 +188,13 @@ Ext.define('NX.controller.Menu', {
    * Refresh modes & feature menu.
    */
   refreshMenu: function () {
-    var me = this,
-        bookmark = me.getApplication().getBookmarkingController().getBookmark();
+    var me = this;
 
     me.logDebug('Refreshing menu (mode ' + me.mode + ')');
 
     me.refreshVisibleModes();
     me.refreshTree();
     me.toggleMenu();
-
-    me.onNavigate(me.mode === me.getMode(bookmark) ? bookmark : NX.Bookmark.fromToken(me.mode));
   },
 
   /**
@@ -383,10 +385,9 @@ Ext.define('NX.controller.Menu', {
   changeMode: function (mode) {
     var me = this;
 
-    me.mode = mode;
-
     me.logDebug('Mode changed: ' + mode);
-    me.refreshMenu();
+    me.navigateTo(NX.Bookmark.fromToken(mode));
+    me.getApplication().getBookmarkingController().bookmark(me.getBookmark());
   },
 
   /**
