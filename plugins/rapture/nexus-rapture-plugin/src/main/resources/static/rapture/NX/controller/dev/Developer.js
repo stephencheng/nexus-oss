@@ -22,7 +22,8 @@ Ext.define('NX.controller.dev.Developer', {
     'dev.Buttons',
     'dev.Icons',
     'dev.Messages',
-    'dev.Features'
+    'dev.Features',
+    'dev.Stores'
   ],
 
   refs: [
