@@ -31,7 +31,7 @@ Ext.define('NX.view.dev.Stores', {
       items: {
         xtype: 'panel',
         layout: 'hbox',
-        items:[
+        tbar:[
           {
             xtype: 'combo',
             name: 'storeId',
@@ -39,7 +39,6 @@ Ext.define('NX.view.dev.Stores', {
             queryMode: 'local',
             displayField: 'id',
             valueField: 'id',
-            width: 500,
             trigger2Cls: 'x-form-search-trigger',
             onTrigger2Click: function () {
               this.getStore().load();
@@ -76,7 +75,7 @@ Ext.define('NX.view.dev.Stores', {
       }
     });
 
-    me.callSuper(arguments);
+    me.callParent();
   }
 
 });
