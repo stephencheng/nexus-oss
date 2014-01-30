@@ -44,7 +44,8 @@ Ext.define('NX.controller.Search', {
       }
     });
     me.getApplication().getFeaturesController().registerFeature({
-      path: '/search/Search',
+      path: '/Search',
+      mode: 'search',
       view: { xtype: 'nx-search' }
     });
 

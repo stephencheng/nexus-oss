@@ -283,62 +283,76 @@ Ext.define('NX.controller.Temp', {
 
       // browse mode
       {
-        path: '/browse/Feeds'
+        path: '/Feeds',
+        mode: 'browse'
       },
       {
-        path: '/browse/Repository'
+        path: '/Repository',
+        mode: 'browse'
       },
       {
-        path: '/browse/Repository/Repositories',
+        path: '/Repository/Repositories',
+        mode: 'browse',
         weight: 10
       },
       {
-        path: '/browse/Repository/Staging',
-        iconName: 'feature-staging-repositories'
+        path: '/Repository/Staging',
+        iconName: 'feature-staging-repositories',
+        mode: 'browse'
       },
       {
-        path: '/browse/Repository/Procurement',
-        iconName: 'feature-procurement-repositories'
+        path: '/Repository/Procurement',
+        iconName: 'feature-procurement-repositories',
+        mode: 'browse'
       },
       {
-        path: '/browse/Repository/Managed',
+        path: '/Repository/Managed',
+        mode: 'browse',
         iconName: 'feature-repository-managed',
         weight: 300
       },
       {
-        path: '/browse/Repository/Trash',
+        path: '/Repository/Trash',
+        mode: 'browse',
         iconName: 'feature-repository-trash',
         weight: 500
       },
 
       // user mode
       {
-        path: '/user/Account',
+        path: '/Account',
+        mode: 'user',
         visible: visibleIfLoggedIn
       },
       {
-        path: '/user/User Token',
+        path: '/User Token',
+        mode: 'user',
         visible: visibleIfLoggedIn
       },
       {
-        path: '/user/Notifications',
+        path: '/Notifications',
+        mode: 'user',
         visible: visibleIfLoggedIn
       },
       {
-        path: '/user/Client Settings',
+        path: '/Client Settings',
+        mode: 'user',
         weight: 200,
         visible: visibleIfLoggedIn
       },
       {
-        path: '/user/Client Settings/Maven',
+        path: '/Client Settings/Maven',
+        mode: 'user',
         visible: visibleIfLoggedIn
       },
       {
-        path: '/user/Client Settings/Ivy',
+        path: '/Client Settings/Ivy',
+        mode: 'user',
         visible: visibleIfLoggedIn
       },
       {
-        path: '/user/Logout',
+        path: '/Logout',
+        mode: 'user',
         weight: 500,
         visible: visibleIfLoggedIn
       }

@@ -16,23 +16,6 @@ Ext.define('NX.controller.Features', {
     logAware: 'NX.LogAware'
   },
 
-  statics: {
-    /**
-     * @public
-     * Supported modes.
-     */
-    MODES: ['dashboard', 'search', 'browse', 'admin', 'user'],
-    /**
-     * @public
-     * Check if a mode is supported.
-     * @param mode to check
-     * @returns {boolean} true, if mode is supported
-     */
-    isSupported: function (mode) {
-      return NX.controller.Features.MODES.indexOf(mode) > -1;
-    }
-  },
-
   models: [
     'Feature'
   ],
@@ -47,7 +30,7 @@ Ext.define('NX.controller.Features', {
    */
   registerFeature: function (features) {
     var me = this,
-        segments, mode, path;
+        mode, path;
 
     if (features) {
       if (!Ext.isArray(features)) {
@@ -58,34 +41,31 @@ Ext.define('NX.controller.Features', {
           throw Ext.Error.raise('Feature missing path');
         }
 
-        path = feature.path;
-        if (path.charAt(0) === '/') {
-          path = path.substr(1, path.length);
+        if (!feature.mode) {
+          feature.mode = 'admin';
         }
-        segments = path.split('/');
-        mode = segments[0];
-        if (!NX.controller.Features.isSupported(mode)) {
-          me.logWarn('Using mode "admin" for feature at path: ' + feature.path);
-          mode = 'admin';
-          path = mode + '/' + path;
-        }
-        feature.mode = mode;
-        feature.path = '/' + path;
 
         if (!feature.view) {
           me.logWarn('Using default view for feature at path: ' + feature.path);
           feature.view = 'NX.view.TODO';
         }
 
-        // auto-set bookmark
-        if (!feature.bookmark) {
-          feature.bookmark = NX.Bookmark.encode(path);
+        path = feature.path;
+        if (path.charAt(0) === '/') {
+          path = path.substr(1, path.length);
         }
 
         // auto-set iconName
         if (!feature.iconName) {
-          feature.iconName = 'feature-'
-              + path.substring(mode.length + 1, path.length).toLowerCase().replace('/', '-').replace(' ', '');
+          feature.iconName = 'feature-' + path.toLowerCase().replace('/', '-').replace(' ', '');
+        }
+
+        path = feature.mode + '/' + path;
+        feature.path = '/' + path;
+
+        // auto-set bookmark
+        if (!feature.bookmark) {
+          feature.bookmark = NX.Bookmark.encode(path);
         }
 
         me.getFeatureStore().addSorted(me.getFeatureModel().create(feature));
