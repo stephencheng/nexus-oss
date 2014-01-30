@@ -278,11 +278,12 @@ Ext.define('NX.controller.Menu', {
       });
     }
 
+    // expand/collapse w/o animation to avoid problems with undefined panel placeholder.el
     if (menuCollapsed) {
-      menu.hide();
+      menu.collapse(undefined, false);
     }
     else {
-      menu.show();
+      menu.expand(false);
     }
   },
 
