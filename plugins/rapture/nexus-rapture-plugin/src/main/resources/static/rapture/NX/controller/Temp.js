@@ -31,6 +31,10 @@ Ext.define('NX.controller.Temp', {
         file: 'feed.png',
         variants: ['x16', 'x32']
       },
+      'feature-components': {
+        file: 'box.png',
+        variants: ['x16', 'x32']
+      },
 
       // staging
       'feature-staging': {
@@ -286,6 +290,11 @@ Ext.define('NX.controller.Temp', {
         mode: 'browse',
         path: '/Feeds',
         description: 'System event feeds'
+      },
+      {
+        mode: 'browse',
+        path: '/Components',
+        description: 'Browse components'
       },
       {
         mode: 'browse',
