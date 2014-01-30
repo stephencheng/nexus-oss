@@ -130,6 +130,8 @@ Ext.define('NX.controller.MasterDetail', {
     }
 
     me.enableDeleteButton();
+
+    me.getList().fireEvent('selection', me.getList(), model);
   },
 
   applyPermissions: function () {
@@ -242,8 +244,8 @@ Ext.define('NX.controller.MasterDetail', {
         if (model) {
           list.getSelectionModel().select(model, false, true);
           list.getView().focusRow(model);
+          me.onModelChanged(model);
         }
-        me.onModelChanged(model);
         if (tabBookmark) {
           list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs').setActiveTabByBookmark(tabBookmark);
         }
