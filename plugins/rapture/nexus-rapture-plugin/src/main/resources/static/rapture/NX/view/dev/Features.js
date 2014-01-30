@@ -23,8 +23,9 @@ Ext.define('NX.view.dev.Features', {
     { text: 'path', dataIndex: 'path', editor: 'textfield', flex: 1 },
     { text: 'bookmark', dataIndex: 'bookmark', editor: 'textfield' },
     { text: 'weight', dataIndex: 'weight', width: 80, editor: 'textfield' },
-    { text: 'view', dataIndex: 'view', width: 250, editor: 'textfield' },
-    { text: 'iconName', dataIndex: 'iconName', width: 250, editor: 'textfield' },
+    { text: 'view', dataIndex: 'view', editor: 'textfield' },
+    { text: 'iconName', dataIndex: 'iconName', editor: 'textfield' },
+    { text: 'description', dataIndex: 'description', editor: 'textfield' },
     {
       xtype: 'iconcolumn',
       dataIndex: 'iconName',
