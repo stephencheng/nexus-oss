@@ -63,6 +63,14 @@ Ext.define('NX.controller.Temp', {
         file: 'arrow_branch.png',
         variants: ['x16', 'x32']
       },
+      'feature-repository-managed': {
+        file: 'database_yellow.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-repository-trash': {
+        file: 'bin.png',
+        variants: ['x16', 'x32']
+      },
 
       // procurement
       'feature-procurement': {
@@ -168,12 +176,6 @@ Ext.define('NX.controller.Temp', {
         weight: 1000,
         visible: visibleIfLoggedIn
       },
-
-      // TESTING: Adding features to flesh-out target menu design
-      {
-        path: '/Feeds',
-        weight: 20
-      },
       {
         path: '/Repository',
         weight: 50,
@@ -278,11 +280,37 @@ Ext.define('NX.controller.Temp', {
         path: '/Support/Analytics',
         visible: visibleIfLoggedIn
       },
+
       // browse mode
       {
-        path: '/browse/Repository',
+        path: '/browse/Feeds'
+      },
+      {
+        path: '/browse/Repository'
+      },
+      {
+        path: '/browse/Repository/Repositories',
         weight: 10
       },
+      {
+        path: '/browse/Repository/Staging',
+        iconName: 'feature-staging-repositories'
+      },
+      {
+        path: '/browse/Repository/Procurement',
+        iconName: 'feature-procurement-repositories'
+      },
+      {
+        path: '/browse/Repository/Managed',
+        iconName: 'feature-repository-managed',
+        weight: 300
+      },
+      {
+        path: '/browse/Repository/Trash',
+        iconName: 'feature-repository-trash',
+        weight: 500
+      },
+
       // user mode
       {
         path: '/user/Account',
@@ -307,6 +335,11 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/user/Client Settings/Ivy',
+        visible: visibleIfLoggedIn
+      },
+      {
+        path: '/user/Logout',
+        weight: 500,
         visible: visibleIfLoggedIn
       }
     ]);
