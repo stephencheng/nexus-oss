@@ -10,14 +10,17 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
+/**
+ * "user" mode button.
+ *
+ * @since 2.8
+ */
 Ext.define('NX.view.header.User', {
-  extend: 'Ext.button.Button',
+  extend: 'NX.view.header.Mode',
   alias: 'widget.nx-header-user',
 
   text: 'User',
   tooltip: 'User',
-  ui: 'headermode',
-  toggleGroup: 'mode',
   mode: 'user',
   glyph: 'xf007@FontAwesome' // fa-user
 

@@ -11,16 +11,14 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 /**
- * "admin" mode button.
+ * Base class for mode buttons.
  *
  * @since 2.8
  */
-Ext.define('NX.view.header.AdminMode', {
-  extend: 'NX.view.header.Mode',
-  alias: 'widget.nx-header-admin-mode',
+Ext.define('NX.view.header.Mode', {
+  extend: 'Ext.button.Button',
 
-  tooltip: 'Administration',
-  mode: 'admin',
-  glyph: 'xf013@FontAwesome' /* fa-gear */
+  ui: 'headermode',
+  toggleGroup: 'mode'
 
 });
