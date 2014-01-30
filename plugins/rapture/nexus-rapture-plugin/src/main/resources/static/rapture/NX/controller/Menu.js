@@ -290,6 +290,7 @@ Ext.define('NX.controller.Menu', {
 
     me.logDebug('Refreshing tree (mode ' + me.mode + ')');
 
+    Ext.suspendLayouts();
     me.getFeatureMenuStore().getRootNode().removeAll();
 
     // create leafs and all parent groups of those leafs
@@ -335,6 +336,8 @@ Ext.define('NX.controller.Menu', {
       { property: 'weight', direction: 'ASC' },
       { property: 'text', direction: 'ASC' }
     ]);
+
+    Ext.resumeLayouts(true);
   },
 
   /**
