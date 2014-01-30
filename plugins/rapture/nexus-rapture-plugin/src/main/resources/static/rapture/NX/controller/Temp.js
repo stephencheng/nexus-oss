@@ -302,27 +302,31 @@ Ext.define('NX.controller.Temp', {
       },
       {
         mode: 'browse',
-        path: '/Repository/Repositories',
+        path: '/Repository/Standard',
         description: 'Browse standard repositories',
+        iconName: 'feature-repository',
         weight: 10
       },
       {
         mode: 'browse',
         path: '/Repository/Staging',
         description: 'Browse staging repositories',
-        iconName: 'feature-staging-repositories'
+        iconName: 'feature-staging-repositories',
+        visible: visibleIfLoggedIn
       },
       {
         mode: 'browse',
         path: '/Repository/Procurement',
         description: 'Browse procurement repositories',
-        iconName: 'feature-procurement-repositories'
+        iconName: 'feature-procurement-repositories',
+        visible: visibleIfLoggedIn
       },
       {
         mode: 'browse',
         path: '/Repository/Managed',
         description: 'Browse managed repositories',
         iconName: 'feature-repository-managed',
+        visible: visibleIfLoggedIn,
         weight: 300
       },
       {
@@ -330,6 +334,7 @@ Ext.define('NX.controller.Temp', {
         path: '/Repository/Trash',
         description: 'Browse repository trash',
         iconName: 'feature-repository-trash',
+        visible: visibleIfLoggedIn,
         weight: 500
       },
 
