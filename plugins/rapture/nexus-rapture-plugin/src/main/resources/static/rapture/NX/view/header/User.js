@@ -15,6 +15,7 @@ Ext.define('NX.view.header.User', {
   alias: 'widget.nx-header-user',
 
   text: 'User',
+  tooltip: 'User',
   toggleGroup: 'mode',
   mode: 'user',
   glyph: 'xf007@FontAwesome' // fa-user
