@@ -40,9 +40,9 @@ Ext.define('NX.view.header.Mode', {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, { ui: 'headermode' });
+    me.ui = 'headermode';
 
-    me.callSuper(arguments);
+    me.callParent(arguments);
   }
 
 });
