@@ -326,39 +326,41 @@ Ext.define('NX.controller.Temp', {
 
       // user mode
       {
+        mode: 'user',
         path: '/Account',
-        mode: 'user',
         visible: visibleIfLoggedIn
       },
       {
+        mode: 'user',
         path: '/User Token',
-        mode: 'user',
         visible: visibleIfLoggedIn
       },
       {
+        mode: 'user',
         path: '/Notifications',
-        mode: 'user',
         visible: visibleIfLoggedIn
       },
       {
-        path: '/Client Settings',
         mode: 'user',
+        path: '/Client Settings',
         weight: 200,
         visible: visibleIfLoggedIn
       },
       {
+        mode: 'user',
         path: '/Client Settings/Apache Maven',
-        mode: 'user',
+        description: 'Settings for use with Apache Maven',
         visible: visibleIfLoggedIn
       },
       {
+        mode: 'user',
         path: '/Client Settings/Apache Ivy',
-        mode: 'user',
+        description: 'Settings for use with Apache Ivy',
         visible: visibleIfLoggedIn
       },
       {
-        path: '/Logout',
         mode: 'user',
+        path: '/Logout',
         weight: 500,
         visible: visibleIfLoggedIn
       }
