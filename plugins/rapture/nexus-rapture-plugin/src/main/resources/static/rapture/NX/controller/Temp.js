@@ -283,38 +283,43 @@ Ext.define('NX.controller.Temp', {
 
       // browse mode
       {
-        path: '/Feeds',
-        description: 'System event feeds',
-        mode: 'browse'
-      },
-      {
-        path: '/Repository',
-        mode: 'browse'
-      },
-      {
-        path: '/Repository/Repositories',
         mode: 'browse',
+        path: '/Feeds',
+        description: 'System event feeds'
+      },
+      {
+        mode: 'browse',
+        path: '/Repository'
+      },
+      {
+        mode: 'browse',
+        path: '/Repository/Repositories',
+        description: 'Browse standard repositories',
         weight: 10
       },
       {
-        path: '/Repository/Staging',
-        iconName: 'feature-staging-repositories',
-        mode: 'browse'
-      },
-      {
-        path: '/Repository/Procurement',
-        iconName: 'feature-procurement-repositories',
-        mode: 'browse'
-      },
-      {
-        path: '/Repository/Managed',
         mode: 'browse',
+        path: '/Repository/Staging',
+        description: 'Browse staging repositories',
+        iconName: 'feature-staging-repositories'
+      },
+      {
+        mode: 'browse',
+        path: '/Repository/Procurement',
+        description: 'Browse procurement repositories',
+        iconName: 'feature-procurement-repositories'
+      },
+      {
+        mode: 'browse',
+        path: '/Repository/Managed',
+        description: 'Browse managed repositories',
         iconName: 'feature-repository-managed',
         weight: 300
       },
       {
-        path: '/Repository/Trash',
         mode: 'browse',
+        path: '/Repository/Trash',
+        description: 'Browse repository trash',
         iconName: 'feature-repository-trash',
         weight: 500
       },
