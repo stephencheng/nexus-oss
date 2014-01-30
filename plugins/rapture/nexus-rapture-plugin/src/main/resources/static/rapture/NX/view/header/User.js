@@ -22,6 +22,9 @@ Ext.define('NX.view.header.User', {
   text: 'User',
   tooltip: 'User',
   mode: 'user',
-  glyph: 'xf007@FontAwesome' // fa-user
+  glyph: 'xf007@FontAwesome', // fa-user
+
+  autoHide: false,
+  collapseMenu: false
 
 });

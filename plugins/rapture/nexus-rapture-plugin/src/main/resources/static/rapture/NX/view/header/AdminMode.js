@@ -21,6 +21,8 @@ Ext.define('NX.view.header.AdminMode', {
 
   tooltip: 'Administration',
   mode: 'admin',
-  glyph: 'xf013@FontAwesome' /* fa-gear */
+  glyph: 'xf013@FontAwesome', /* fa-gear */
+
+  collapseMenu: false
 
 });

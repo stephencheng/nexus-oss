@@ -19,6 +19,20 @@ Ext.define('NX.view.header.Mode', {
   extend: 'Ext.button.Button',
 
   ui: 'headermode',
-  toggleGroup: 'mode'
+  toggleGroup: 'mode',
+
+  /**
+   * @cfg mode Mode name
+   */
+
+  /**
+   * @cfg autoHide If button should auto hide when no features are available for selected mode (default true)
+   */
+  autoHide: true,
+
+  /**
+   * @cfg collapseMenu If menu should be collapsed automatically when mode is selected (default true)
+   */
+  collapseMenu: true
 
 });

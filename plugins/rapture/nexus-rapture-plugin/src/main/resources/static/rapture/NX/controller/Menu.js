@@ -148,6 +148,7 @@ Ext.define('NX.controller.Menu', {
         me.mode = mode;
         me.refreshModeButtons();
         me.refreshTree();
+        me.toggleMenu();
       }
       node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark.getSegment(0), true);
     }
@@ -189,6 +190,7 @@ Ext.define('NX.controller.Menu', {
 
     me.refreshVisibleModes();
     me.refreshTree();
+    me.toggleMenu();
 
     me.onNavigate(me.mode === me.getMode(bookmark) ? bookmark : NX.Bookmark.fromToken(me.mode));
   },
@@ -214,11 +216,13 @@ Ext.define('NX.controller.Menu', {
 
     Ext.each(me.availableModes, function (button) {
       button.toggle(false, true);
-      if (visibleModes.indexOf(button.mode) > -1) {
-        button.show();
-      }
-      else {
-        button.hide();
+      if (button.autoHide) {
+        if (visibleModes.indexOf(button.mode) > -1) {
+          button.show();
+        }
+        else {
+          button.hide();
+        }
       }
     });
 
@@ -252,6 +256,32 @@ Ext.define('NX.controller.Menu', {
     }
     modeButton = headerPanel.down('button[mode=' + me.mode + ']');
     modeButton.toggle(true, true);
+  },
+
+  /**
+   * @private
+   * Automatically expand/collapse menu if there is only one feature to display and button is configured to do so.
+   */
+  toggleMenu: function () {
+    var me = this,
+        menu = me.getFeatureMenu(),
+        menuCollapsed = false,
+        numberOfFeatures = me.getFeatureMenuStore().getRootNode().childNodes.length;
+
+    if (numberOfFeatures <= 1) {
+      Ext.each(me.availableModes, function (button) {
+        if ((me.mode === button.mode) && (button.collapseMenu === true)) {
+          menuCollapsed = true;
+        }
+      });
+    }
+
+    if (menuCollapsed) {
+      menu.hide();
+    }
+    else {
+      menu.show();
+    }
   },
 
   refreshTree: function () {
