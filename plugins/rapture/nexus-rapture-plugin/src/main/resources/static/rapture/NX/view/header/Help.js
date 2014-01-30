@@ -20,8 +20,12 @@ Ext.define('NX.view.header.Help', {
   menu: [
     { text: 'Feature', action: 'feature' },
     '-',
-    { text: 'About', iconCls: 'nx-icon-nexus-x16', action: 'about' },
-    { text: 'Manual',iconCls: 'nx-icon-help-manual-x16',  action: 'manual' },
-    { text: 'Support', iconCls: 'nx-icon-help-support-x16', action: 'support' }
+    {
+      text: 'About Sonatype Nexus ' + NX.app.status.edition + ' ' + NX.app.status.version,
+      iconCls: 'nx-icon-nexus-x16',
+      action: 'about'
+    },
+    { text: 'Product Manual',iconCls: 'nx-icon-help-manual-x16',  action: 'manual' },
+    { text: 'Product Support', iconCls: 'nx-icon-help-support-x16', action: 'support' }
   ]
 });

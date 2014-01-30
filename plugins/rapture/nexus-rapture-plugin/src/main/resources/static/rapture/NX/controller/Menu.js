@@ -34,10 +34,6 @@ Ext.define('NX.controller.Menu', {
 
   refs: [
     {
-      ref: 'headerVersion',
-      selector: 'nx-header-version'
-    },
-    {
       ref: 'featureMenu',
       selector: 'nx-feature-menu'
     },

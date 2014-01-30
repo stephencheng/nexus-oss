@@ -65,10 +65,12 @@ Ext.define('NX.controller.Help', {
    */
   onFeatureSelected: function (feature) {
     var me = this,
+        text = feature.get('text'),
+        iconName = feature.get('iconName'),
         featureHelp = me.getFeatureHelp();
 
-    featureHelp.setText(feature.get('text'));
-    featureHelp.setIconCls(NX.Icons.cls(feature.get('iconName'), 'x16'));
+    featureHelp.setText('Help for: ' + text);
+    featureHelp.setIconCls(NX.Icons.cls(iconName, 'x16'));
   }
 
 });

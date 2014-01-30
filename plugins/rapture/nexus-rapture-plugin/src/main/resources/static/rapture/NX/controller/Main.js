@@ -21,18 +21,10 @@ Ext.define('NX.controller.Main', {
     'header.Panel',
     'header.Branding',
     'header.Logo',
-    'header.Version',
     'dev.Panel',
     'message.Panel',
     'info.Entry',
     'info.Panel'
-  ],
-
-  refs: [
-    {
-      ref: 'headerVersion',
-      selector: 'nx-header-version'
-    }
   ],
 
   /**
