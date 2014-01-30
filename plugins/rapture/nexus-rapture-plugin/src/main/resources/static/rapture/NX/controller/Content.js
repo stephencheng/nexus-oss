@@ -51,6 +51,9 @@ Ext.define('NX.controller.Content', {
     var me = this,
         content = me.getFeatureContent(),
         view = feature.get('view'),
+        text = feature.get('text'),
+        iconName = feature.get('iconName'),
+        description = feature.get('description'),
         cmp;
 
     // create new view and replace any current view
@@ -65,13 +68,19 @@ Ext.define('NX.controller.Content', {
     content.removeAll();
 
     // update title and icon
-    content.setTitle(feature.get('text'));
-    content.setIconCls(NX.Icons.cls(feature.get('iconName'), 'x32'));
+    content.setTitle(text);
+    content.setIconCls(NX.Icons.cls(iconName, 'x32'));
+
+    // update description
+    if (description === undefined) {
+      description = '';
+    }
+    content.setDescription(description);
 
     // install new feature view
     content.add(cmp);
 
-    me.logDebug('Content changed to: ' + feature.get('text') + ' (' + cmp.self.getName() + ')');
+    me.logDebug('Content changed to: ' + text + ' (' + cmp.self.getName() + ')');
   }
 
 });

@@ -29,6 +29,7 @@ Ext.define('NX.model.Feature', {
     { name: 'visible', defaultValue: true },
     { name: 'expanded', defaultValue: true },
     { name: 'bookmark', defaultValue: undefined },
-    { name: 'iconName', defaultValue: undefined }
+    { name: 'iconName', defaultValue: undefined },
+    { name: 'description', defaultValue: undefined }
   ]
 });

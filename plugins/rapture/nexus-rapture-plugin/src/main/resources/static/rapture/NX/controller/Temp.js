@@ -284,6 +284,7 @@ Ext.define('NX.controller.Temp', {
       // browse mode
       {
         path: '/Feeds',
+        description: 'System event feeds',
         mode: 'browse'
       },
       {

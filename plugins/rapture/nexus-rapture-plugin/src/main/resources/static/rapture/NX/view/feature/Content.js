@@ -17,9 +17,94 @@ Ext.define('NX.view.feature.Content', {
   ui: 'feature-content',
   layout: 'fit',
 
-  // HACK: For testing look-n-feel
-  tools: [
-    { type: 'gear' },
-    { type: 'help' }
-  ]
+  header: {
+    xtype: 'toolbar',
+    height: 50,
+    items: [
+      ' ',
+      {
+        xtype: 'image',
+        itemId: 'icon',
+        height: 32,
+        width: 32
+      },
+      {
+        xtype: 'label',
+        itemId: 'title',
+        style: {
+          'color': '#000000',
+          'font-size': '16px',
+          'font-weight': 'bold'
+        }
+      },
+      '-',
+      {
+        xtype: 'label',
+        itemId: 'description',
+        style: {
+          'color': '#000000',
+          'font-size': '12px'
+        }
+      },
+
+      // HACK: Testing what tool-like buttons look like in custom header
+      '->',
+      { xtype: 'button', ui: 'plain', scale: 'medium', glyph: 'xf013@FontAwesome' /* fa-gear */},
+      { xtype: 'button', ui: 'plain', scale: 'medium', glyph: 'xf059@FontAwesome' /* fa-question-circle */}
+    ]
+  },
+
+  /**
+   * Custom handling for title since we are using custom header component.
+   *
+   * @override
+   * @param text
+   */
+  setTitle: function(text) {
+    var me = this,
+        label = me.down('label[itemId=title]');
+
+    me.callParent(arguments);
+
+    label.setText(text);
+  },
+
+  /**
+   * Set description text.
+   *
+   * @public
+   * @param text
+   */
+  setDescription: function(text) {
+    var me = this,
+        label = me.down('label[itemId=description]');
+
+    label.setText(text);
+  },
+
+  /**
+   * The currently set iconCls, so we can remove it when changed.
+   *
+   * @private
+   */
+  currentIconCls: undefined,
+
+  /**
+   * Custom handling for iconCls since we are using custom header component.
+   *
+   * @override
+   * @param cls
+   */
+  setIconCls: function(cls) {
+    var me = this,
+        icon = me.down('image[itemId=icon]');
+
+    me.callParent(arguments);
+
+    if (me.currentIconCls) {
+      icon.removeCls(me.currentIconCls);
+    }
+    icon.addCls(cls);
+    me.currentIconCls = cls;
+  }
 });
