@@ -14,6 +14,7 @@ Ext.define('NX.view.header.Help', {
   extend: 'Ext.button.Button',
   alias: 'widget.nx-header-help',
 
+  tooltip: 'Help',
   glyph: 'xf059@FontAwesome', // fa-question-circle
 
   menu: [
