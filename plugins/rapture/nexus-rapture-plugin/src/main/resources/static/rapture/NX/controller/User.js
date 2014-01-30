@@ -79,6 +79,18 @@ Ext.define('NX.controller.User', {
       'feature-clientsettings': {
         file: 'setting_tools.png',
         variants: ['x16', 'x32']
+      },
+      'feature-clientsettings-ivy': {
+        file: 'apache_handlers.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-clientsettings-maven': {
+        file: 'apache_handlers.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-logout': {
+        file: 'door_out.png',
+        variants: ['x16', 'x32']
       }
     });
 
