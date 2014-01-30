@@ -347,12 +347,12 @@ Ext.define('NX.controller.Temp', {
         visible: visibleIfLoggedIn
       },
       {
-        path: '/Client Settings/Maven',
+        path: '/Client Settings/Apache Maven',
         mode: 'user',
         visible: visibleIfLoggedIn
       },
       {
-        path: '/Client Settings/Ivy',
+        path: '/Client Settings/Apache Ivy',
         mode: 'user',
         visible: visibleIfLoggedIn
       },

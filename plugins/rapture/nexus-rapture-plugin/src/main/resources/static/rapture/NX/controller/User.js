@@ -80,11 +80,11 @@ Ext.define('NX.controller.User', {
         file: 'setting_tools.png',
         variants: ['x16', 'x32']
       },
-      'feature-clientsettings-ivy': {
+      'feature-clientsettings-apacheivy': {
         file: 'apache_handlers.png',
         variants: ['x16', 'x32']
       },
-      'feature-clientsettings-maven': {
+      'feature-clientsettings-apachemaven': {
         file: 'apache_handlers.png',
         variants: ['x16', 'x32']
       },

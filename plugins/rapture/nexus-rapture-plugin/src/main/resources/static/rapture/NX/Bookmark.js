@@ -52,7 +52,7 @@ Ext.define('NX.Bookmark', {
       if (!Ext.isString(value)) {
         throw Ext.Error.raise('Value to be encoded must be a String');
       }
-      return value.toLowerCase().replace(' ', '');
+      return value.toLowerCase().replace(/\s/g, '');
     }
   },
 

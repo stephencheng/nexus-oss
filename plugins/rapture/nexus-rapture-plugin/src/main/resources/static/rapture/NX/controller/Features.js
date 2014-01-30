@@ -57,7 +57,9 @@ Ext.define('NX.controller.Features', {
 
         // auto-set iconName
         if (!feature.iconName) {
-          feature.iconName = 'feature-' + path.toLowerCase().replace('/', '-').replace(' ', '');
+          feature.iconName = 'feature-' + path.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
+
+          console.log(feature.iconName);
         }
 
         path = feature.mode + '/' + path;
