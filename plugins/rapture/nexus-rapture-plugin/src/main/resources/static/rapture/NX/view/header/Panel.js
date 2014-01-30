@@ -48,17 +48,17 @@ Ext.define('NX.view.header.Panel', {
         '-',
         { xtype: 'nx-header-version' },
         '->',
-        { xtype: 'button', toggleGroup: 'mode', mode: 'dashboard', glyph: 'xf0e4@FontAwesome' /* fa-dashboard */},
-        { xtype: 'button', toggleGroup: 'mode', mode: 'search', glyph: 'xf002@FontAwesome' /* fa-search */},
-        { xtype: 'button', toggleGroup: 'mode', mode: 'browse', glyph: 'xf0e8@FontAwesome' /* fa-sitemap */},
-        { xtype: 'button', toggleGroup: 'mode', mode: 'admin', glyph: 'xf013@FontAwesome' /* fa-gear */},
+        { xtype: 'button', ui: 'headermode', toggleGroup: 'mode', mode: 'dashboard', glyph: 'xf0e4@FontAwesome' /* fa-dashboard */},
+        { xtype: 'button', ui: 'headermode', toggleGroup: 'mode', mode: 'search', glyph: 'xf002@FontAwesome' /* fa-search */},
+        { xtype: 'button', ui: 'headermode', toggleGroup: 'mode', mode: 'browse', glyph: 'xf0e8@FontAwesome' /* fa-sitemap */},
+        { xtype: 'button', ui: 'headermode', toggleGroup: 'mode', mode: 'admin', glyph: 'xf013@FontAwesome' /* fa-gear */},
         '->',
         { xtype: 'nx-searchbox', itemId: 'quicksearch', emptyText: 'quick search' },
         ' ',
         { xtype: 'nx-header-refresh' },
         { xtype: 'nx-header-help' },
         { xtype: 'nx-header-login' },
-        { xtype: 'nx-header-user', hidden: true },
+        { xtype: 'nx-header-user', ui: 'headermode', hidden: true },
         { xtype: 'nx-header-logout' }
       ]
     }
