@@ -16,10 +16,6 @@ Ext.define('NX.view.Main', {
 
   layout: 'border',
 
-  defaults: {
-    border: true
-  },
-
   items: [
     {
       xtype: 'nx-header-panel',
@@ -30,6 +26,7 @@ Ext.define('NX.view.Main', {
     {
       xtype: 'nx-feature-menu',
       region: 'west',
+      border: true,
       collapsible: true,
       collapsed: false,
       resizable: true,
@@ -38,7 +35,8 @@ Ext.define('NX.view.Main', {
 
     {
       xtype: 'nx-feature-content',
-      region: 'center'
+      region: 'center',
+      border: true
     },
 
     {
