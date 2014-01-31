@@ -89,9 +89,12 @@ Ext.define('NX.capability.controller.Capabilities', {
         }
       },
       store: {
+        '#Capability': {
+          load: me.reselect
+        },
         '#CapabilityType': {
-          load: me.enableNewButton,
-          clear: me.enableNewButton
+          load: me.onCapabilityTypeLoad,
+          datachanged: me.onCapabilityTypeLoad
         }
       }
     });
@@ -164,8 +167,8 @@ Ext.define('NX.capability.controller.Capabilities', {
     this.getStatus().showStatus(model.get('status'));
   },
 
-  showAbout: function (model) {
-    this.getAbout().showAbout(model.get('about'));
+  showAbout: function (capabilityTypeModel) {
+    this.getAbout().showAbout(capabilityTypeModel?capabilityTypeModel.get('about'):undefined);
   },
 
   showAddWindow: function () {
@@ -190,6 +193,13 @@ Ext.define('NX.capability.controller.Capabilities', {
   shouldEnableNewButton: function () {
     var me = this;
     return me.getCapabilityTypeStore().getCount() > 0 && me.callParent()
+  },
+
+  onCapabilityTypeLoad: function () {
+    var me = this;
+
+    me.reselect();
+    me.enableNewButton();
   },
 
   createCapability: function (button) {
