@@ -42,7 +42,7 @@ Ext.define('NX.controller.ExtDirect', {
 
       if (Ext.isDefined(result.authenticationRequired) && result.authenticationRequired === true) {
         NX.Messages.add({text: result.message, type: 'warning'});
-        me.getApplication().getUserController().showLoginWindow();
+        me.getApplication().getUserController().showAuthenticateWindow();
         // cancel Ext.Direct callback
         return false;
       }

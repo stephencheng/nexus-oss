@@ -25,6 +25,7 @@ Ext.define('NX.controller.User', {
     'header.Login',
     'header.Logout',
     'header.User',
+    'Authenticate',
     'Login',
     'ExpireSession'
   ],
@@ -49,6 +50,10 @@ Ext.define('NX.controller.User', {
     {
       ref: 'login',
       selector: 'nx-login'
+    },
+    {
+      ref: 'authenticate',
+      selector: 'nx-authenticate'
     }
   ],
 
@@ -97,6 +102,10 @@ Ext.define('NX.controller.User', {
       'feature-logout': {
         file: 'door_out.png',
         variants: ['x16', 'x32']
+      },
+      'authenticate': {
+        file: 'lock.png',
+        variants: ['x16', 'x32']
       }
     });
 
@@ -124,7 +133,13 @@ Ext.define('NX.controller.User', {
         'nx-login button[action=login]': {
           click: me.login
         },
+        'nx-authenticate button[action=authenticate]': {
+          click: me.authenticate
+        },
         'nx-login form': {
+          afterrender: me.installEnterKey
+        },
+        'nx-authenticate form': {
           afterrender: me.installEnterKey
         },
         'nx-expire-session': {
@@ -191,6 +206,7 @@ Ext.define('NX.controller.User', {
           me.logDebug('Session expiration enabled for ' + NX.app.settings.sessionTimeout + ' minutes');
         }
       }
+      me.user = Ext.apply(me.user, user);
     }
     else {
       if (me.user) {
@@ -288,16 +304,32 @@ Ext.define('NX.controller.User', {
    * Shows login window.
    */
   showLoginWindow: function () {
-    var me = this,
-        login, userName;
+    var me = this;
 
     if (!me.getLogin()) {
-      login = me.getLoginView().create();
-      if (me.hasUser()) {
-        login.down('form').getForm().setValues({ username: me.user.id, remember: me.user.authenticated === false});
-        login.down('#username').disable();
-        login.down('#password').focus();
+      me.getLoginView().create();
+    }
+  },
+
+  /**
+   * @public
+   * Shows authenticate window.
+   */
+  showAuthenticateWindow: function () {
+    var me = this,
+        win;
+
+    if (me.hasUser()) {
+      if (!me.getAuthenticate()) {
+        win = me.getAuthenticateView().create();
+        if (me.hasUser()) {
+          win.down('form').getForm().setValues({ username: me.user.id, remember: me.user.authenticated === false});
+          win.down('#password').focus();
+        }
       }
+    }
+    else {
+      me.showLoginWindow();
     }
   },
 
@@ -321,6 +353,24 @@ Ext.define('NX.controller.User', {
    * @private
    */
   login: function (button) {
+    var me = this;
+
+    me.doLogin(button, "Logging you in...")
+  },
+
+  /**
+   * @private
+   */
+  authenticate: function (button) {
+    var me = this;
+
+    me.doLogin(button, "Authenticate...")
+  },
+
+  /**
+   * @private
+   */
+  doLogin: function (button, action) {
     var me = this,
         win = button.up('window'),
         form = button.up('form'),
@@ -328,9 +378,9 @@ Ext.define('NX.controller.User', {
         userName = NX.util.Base64.encode(values.username),
         userPass = NX.util.Base64.encode(values.password);
 
-    win.getEl().mask("Logging you in...");
+    win.getEl().mask(action);
 
-    me.logDebug('Login...');
+    me.logDebug(action);
 
     NX.direct.rapture_Application.login(userName, userPass, values.remember === 'on', function (response) {
       win.getEl().unmask();
