@@ -90,7 +90,8 @@ Ext.define('NX.capability.controller.Capabilities', {
       },
       store: {
         '#CapabilityType': {
-          load: me.enableNewButton
+          load: me.enableNewButton,
+          clear: me.enableNewButton
         }
       }
     });
@@ -180,6 +181,15 @@ Ext.define('NX.capability.controller.Capabilities', {
     capabilityTypeModel = this.getCapabilityTypeStore().getById(combo.value);
     win.down('nx-capability-about').showAbout(capabilityTypeModel.get('about'));
     win.down('nx-capability-settings-fieldset').setCapabilityType(capabilityTypeModel);
+  },
+
+  /**
+   * @override
+   * Enable only when there are capabilities types.
+   */
+  shouldEnableNewButton: function () {
+    var me = this;
+    return me.getCapabilityTypeStore().getCount() > 0 && me.callParent()
   },
 
   createCapability: function (button) {
