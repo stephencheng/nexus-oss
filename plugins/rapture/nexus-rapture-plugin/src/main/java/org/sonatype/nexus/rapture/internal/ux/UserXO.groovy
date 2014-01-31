@@ -24,4 +24,6 @@ import groovy.transform.ToString
 class UserXO
 {
   String id
+
+  boolean authenticated
 }

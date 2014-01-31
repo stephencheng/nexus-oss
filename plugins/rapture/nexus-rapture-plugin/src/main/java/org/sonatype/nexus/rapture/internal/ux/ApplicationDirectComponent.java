@@ -155,6 +155,7 @@ public class ApplicationDirectComponent
       if (principal != null) {
         userXO.setId(principal.toString());
       }
+      userXO.setAuthenticated(subject.isAuthenticated());
     }
     return userXO;
   }
