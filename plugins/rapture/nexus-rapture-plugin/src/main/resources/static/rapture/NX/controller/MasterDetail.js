@@ -58,7 +58,7 @@ Ext.define('NX.controller.MasterDetail', {
           navigate: me.navigateTo
         },
         '#Refresh': {
-          refresh: me.loadStores
+          refresh: me.onRefresh
         }
       }
     });
@@ -77,15 +77,21 @@ Ext.define('NX.controller.MasterDetail', {
 
   getDescription: Ext.emptyFn,
 
-  loadStores: function () {
+  onRefresh: function () {
     var me = this,
         list = me.getList();
 
     if (list) {
-      Ext.each(me.stores, function (store) {
-        me.getApplication().getStore(store).load();
-      });
+      me.loadStores();
     }
+  },
+
+  loadStores: function () {
+    var me = this;
+
+    Ext.each(me.stores, function (store) {
+      me.getApplication().getStore(store).load();
+    });
   },
 
   loadStoresAndSelect: function (id) {
