@@ -301,6 +301,22 @@ Ext.define('NX.controller.User', {
 
   /**
    * @public
+   * Shows login or authentication window based on the fact that we have an user or not.
+   * @param {String} [message] optional message to be shown (a default message will be shown if not provided)
+   */
+  askToAuthenticate: function (message) {
+    var me = this;
+
+    if (me.hasUser()) {
+      me.showAuthenticateWindow(message);
+    }
+    else {
+      me.showLoginWindow();
+    }
+  },
+
+  /**
+   * @private
    * Shows login window.
    */
   showLoginWindow: function () {
@@ -312,24 +328,20 @@ Ext.define('NX.controller.User', {
   },
 
   /**
-   * @public
+   * @private
    * Shows authenticate window.
+   * @param {String} [message] optional message to be shown (a default message will be shown if not provided)
    */
-  showAuthenticateWindow: function () {
+  showAuthenticateWindow: function (message) {
     var me = this,
         win;
 
-    if (me.hasUser()) {
-      if (!me.getAuthenticate()) {
-        win = me.getAuthenticateView().create();
-        if (me.hasUser()) {
-          win.down('form').getForm().setValues({ username: me.user.id, remember: me.user.authenticated === false});
-          win.down('#password').focus();
-        }
+    if (!me.getAuthenticate()) {
+      win = me.getAuthenticateView().create({ message: message });
+      if (me.hasUser()) {
+        win.down('form').getForm().setValues({ username: me.user.id, remember: me.user.authenticated === false});
+        win.down('#password').focus();
       }
-    }
-    else {
-      me.showLoginWindow();
     }
   },
 
