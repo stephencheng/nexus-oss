@@ -13,7 +13,11 @@
 Ext.define('NX.controller.MasterDetail', {
   extend: 'Ext.app.Controller',
   requires: [
-    'NX.Permissions'
+    'NX.Permissions',
+
+    // many impls use this
+    'NX.view.info.Panel',
+    'NX.view.info.Entry'
   ],
 
   mixins: {
