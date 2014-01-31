@@ -84,7 +84,7 @@ Ext.define('NX.controller.Bookmarking', {
    * @param {NX.Bookmark} bookmark to navigate to
    * @param {Object} [caller] whom is asking to navigate
    */
-  navigate: function (bookmark, caller) {
+  navigateTo: function (bookmark, caller) {
     var me = this;
 
     if (!me.launched) {
@@ -107,7 +107,7 @@ Ext.define('NX.controller.Bookmarking', {
 
     me.launched = true;
 
-    me.navigate(me.getBookmark(), me);
+    me.navigateTo(me.getBookmark(), me);
   },
 
   /**
@@ -120,7 +120,7 @@ Ext.define('NX.controller.Bookmarking', {
 
     if (token != Ext.History.bookmark) {
       delete Ext.History.bookmark;
-      me.navigate(NX.Bookmark.fromToken(token), me);
+      me.navigateTo(NX.Bookmark.fromToken(token), me);
     }
   },
 

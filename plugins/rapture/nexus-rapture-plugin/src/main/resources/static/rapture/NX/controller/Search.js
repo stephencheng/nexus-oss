@@ -83,7 +83,7 @@ Ext.define('NX.controller.Search', {
       );
     }
     else {
-      me.getApplication().getBookmarkingController().navigate(
+      me.getApplication().getBookmarkingController().navigateTo(
           NX.Bookmark.fromToken('search/search')
       );
     }
