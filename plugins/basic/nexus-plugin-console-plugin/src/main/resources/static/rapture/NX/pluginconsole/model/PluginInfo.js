@@ -12,6 +12,7 @@
  */
 Ext.define('NX.pluginconsole.model.PluginInfo', {
   extend: 'Ext.data.Model',
+  idProperty: 'name',
   fields: [
     'name',
     'version',
