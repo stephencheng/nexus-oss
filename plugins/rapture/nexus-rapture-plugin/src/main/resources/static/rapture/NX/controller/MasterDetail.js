@@ -266,6 +266,14 @@ Ext.define('NX.controller.MasterDetail', {
         me.logDebug('Navigate to: ' + modelId + (tabBookmark ? ":" + tabBookmark : ''));
         store = list.getStore();
         model = store.getById(modelId);
+        // lets try to see if we can find the record by encoded value
+        // TODO review this as it can be a performance penalty
+        // Maybe we should ass a marker that the bookmark was encoded and only search in that case
+        if (!model) {
+          model = store.getAt(store.findBy(function(model){
+             return NX.Bookmarks.encode(model.getId()) === modelId;
+          }));
+        }
         if (model) {
           list.getSelectionModel().select(model, false, true);
           list.getView().focusRow(model);
