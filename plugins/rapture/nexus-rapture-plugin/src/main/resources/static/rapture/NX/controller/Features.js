@@ -67,7 +67,7 @@ Ext.define('NX.controller.Features', {
 
         // auto-set bookmark
         if (!feature.bookmark) {
-          feature.bookmark = NX.Bookmarks.encode(path);
+          feature.bookmark = NX.Bookmarks.encode(path).toLowerCase();
         }
 
         me.getFeatureStore().addSorted(me.getFeatureModel().create(feature));
