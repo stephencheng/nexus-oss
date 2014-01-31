@@ -56,6 +56,12 @@ Ext.define('NX.controller.User', {
 
   user: undefined,
 
+  /**
+   * @private
+   * True after first call to update user.
+   */
+  ready: false,
+
   activityMonitor: undefined,
 
   expirationTicker: undefined,
@@ -210,7 +216,11 @@ Ext.define('NX.controller.User', {
         me.getPermissionStore().removeAll();
         me.firePermissionsChanged();
       }
+      else if (!me.started) {
+        me.firePermissionsChanged();
+      }
     }
+    me.started = true;
   },
 
   /**
