@@ -129,6 +129,26 @@ Ext.define('NX.controller.User', {
         }
       }
     });
+
+    me.addEvents(
+        /**
+         * @event login
+         * Fires when a user had been successfully logged in.
+         * @param {Object} user
+         */
+        'login',
+        /**
+         * @event logout
+         * Fires when a user had been successfully logged out.
+         */
+        'logout',
+        /**
+         * @event permissionschanged
+         * Fires when permissions change.
+         * @param {NX.Permissions}
+         */
+        'permissionschanged'
+    );
   },
 
   /**
@@ -143,12 +163,16 @@ Ext.define('NX.controller.User', {
     if (user) {
       if (!Ext.isDefined(me.user) || (me.user.id != user.id)) {
         NX.Messages.add({text: 'User logged in: ' + user.id, type: 'default' });
+
         loginButton.hide();
         userButton.setText(user.id);
         userButton.show();
         logoutButton.show();
 
         me.user = user;
+
+        me.fireEvent('login', user);
+
         me.fetchPermissions();
 
         if (NX.app.settings.sessionTimeout > 0) {
@@ -165,6 +189,7 @@ Ext.define('NX.controller.User', {
     else {
       if (me.user) {
         NX.Messages.add({text: 'User logged out', type: 'default' });
+
         loginButton.show();
         userButton.hide();
         logoutButton.hide();
@@ -179,6 +204,9 @@ Ext.define('NX.controller.User', {
         }
 
         delete me.user;
+
+        me.fireEvent('logout');
+
         me.getPermissionStore().removeAll();
         me.firePermissionsChanged();
       }
