@@ -16,10 +16,6 @@ Ext.define('NX.controller.Temp', {
     logAware: 'NX.LogAware'
   },
 
-  views: [
-    'TODO'
-  ],
-
   /**
    * @override
    */

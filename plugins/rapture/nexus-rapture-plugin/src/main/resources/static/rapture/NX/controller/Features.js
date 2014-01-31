@@ -47,7 +47,7 @@ Ext.define('NX.controller.Features', {
 
         if (!feature.view) {
           me.logWarn('Using default view for feature at path: ' + feature.path);
-          feature.view = 'NX.view.TODO';
+          feature.view = 'NX.view.feature.TODO';
         }
 
         path = feature.path;

@@ -22,6 +22,7 @@ Ext.define('NX.controller.Menu', {
   views: [
     'feature.Menu',
     'feature.Group',
+    'feature.TODO',
     'header.DashboardMode',
     'header.SearchMode',
     'header.BrowseMode',
