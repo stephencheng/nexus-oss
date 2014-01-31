@@ -177,7 +177,7 @@ Ext.define('NX.controller.Menu', {
 
     if (records.length > 0) {
       feature = records[0];
-      me.getApplication().getBookmarkingController().navigateTo(NX.Bookmark.fromToken(feature.get('bookmark')));
+      me.getApplication().getBookmarkingController().navigateTo(NX.Bookmark.fromToken(feature.get('bookmark')), me);
     }
   },
 
