@@ -172,16 +172,13 @@ Ext.define('NX.controller.Menu', {
    * @param {Feature[]} records
    */
   groupItemSelected: function (view, records) {
-    var me = this;
+    var me = this,
+        feature;
 
-    // only support single selection
-    if (records.length !== 1) {
-      return;
+    if (records.length > 0) {
+      feature = records[0];
+      me.getApplication().getBookmarkingController().navigate(NX.Bookmark.fromToken(feature.get('bookmark')));
     }
-
-    var feature = records[0];
-    // FIXME: How to change the selected feature?
-    me.logDebug('TODO: selection changed: ' + feature.get('path'));
   },
 
   /**
