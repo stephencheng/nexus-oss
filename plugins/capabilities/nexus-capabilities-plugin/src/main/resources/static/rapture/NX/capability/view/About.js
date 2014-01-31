@@ -22,7 +22,7 @@ Ext.define('NX.capability.view.About', {
   showAbout: function (about) {
     this.html = about;
     if (this.body) {
-      this.body.update(about);
+      this.update(about);
     }
   }
 
