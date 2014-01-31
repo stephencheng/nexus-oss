@@ -213,11 +213,10 @@ Ext.define('NX.controller.User', {
 
         me.fireEvent('logout');
 
-        me.getPermissionStore().removeAll();
-        me.firePermissionsChanged();
+        me.fetchPermissions();
       }
       else if (!me.started) {
-        me.firePermissionsChanged();
+        me.fetchPermissions();
       }
     }
     me.started = true;
