@@ -165,7 +165,9 @@ Ext.define('NX.controller.Menu', {
    */
   navigateTo: function (bookmark) {
     var me = this,
-        node, mode;
+        checkIfUserRequired = false,
+        userController = me.getApplication().getUserController(),
+        node, mode, feature;
 
     if (bookmark) {
       me.logDebug('Navigate to: ' + bookmark.getSegment(0));
@@ -177,6 +179,7 @@ Ext.define('NX.controller.Menu', {
         me.toggleMenu();
       }
       node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark.getSegment(0), true);
+      checkIfUserRequired = !node;
     }
     if (!node) {
       me.logDebug('Feature "' + bookmark.getSegment(0) + '" not found. Selecting first available feature');
@@ -187,6 +190,12 @@ Ext.define('NX.controller.Menu', {
       me.getFeatureMenu().selectPath(node.getPath('text'), 'text', undefined, function () {
         me.bookmarkingEnabled = true;
       });
+    }
+    if (checkIfUserRequired) {
+      feature = me.getFeatureStore().findRecord('bookmark', bookmark.getSegment(0));
+      if (feature && feature.get('authenticationRequired') && NX.Permissions.available() && !userController.hasUser()) {
+        userController.showLoginWindow();
+      }
     }
   },
 

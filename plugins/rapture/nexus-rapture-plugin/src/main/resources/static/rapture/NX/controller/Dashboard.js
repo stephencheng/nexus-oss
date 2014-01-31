@@ -23,14 +23,15 @@ Ext.define('NX.controller.Dashboard', {
     me.getApplication().getIconController().addIcon({
       name: 'feature-dashboard',
       file: 'dashboard.png',
-      variants: [ 'x16', 'x32' ]
+      variants: ['x16', 'x32']
     });
 
     me.getApplication().getFeaturesController().registerFeature({
       path: '/Dashboard',
       mode: 'dashboard',
       view: 'NX.view.dashboard.Feature',
-      weight: 10
+      weight: 10,
+      authenticationRequired: false
     });
   }
 

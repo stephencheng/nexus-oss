@@ -296,19 +296,22 @@ Ext.define('NX.controller.Temp', {
       {
         mode: 'browse',
         path: '/Components',
-        description: 'Browse components'
+        description: 'Browse components',
+        authenticationRequired: false
       },
       {
         mode: 'browse',
         path: '/Repository',
-        view: 'NX.view.feature.Group'
+        view: 'NX.view.feature.Group',
+        authenticationRequired: false
       },
       {
         mode: 'browse',
         path: '/Repository/Standard',
         description: 'Browse standard repositories',
         iconName: 'feature-repository',
-        weight: 10
+        weight: 10,
+        authenticationRequired: false
       },
       {
         mode: 'browse',

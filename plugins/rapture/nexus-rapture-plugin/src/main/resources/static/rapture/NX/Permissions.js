@@ -28,8 +28,18 @@ Ext.define('NX.Permissions', {
 
   /**
    * @private
+   * Map between permissions id and value.
    */
-  permissions: {},
+  permissions: undefined,
+
+  /**
+   * @public
+   * @returns {boolean} If permissions had been set (loaded from server)
+   */
+  available: function () {
+    var me = this;
+    return Ext.isDefined(me.permissions);
+  },
 
   /**
    * @public
@@ -56,8 +66,14 @@ Ext.define('NX.Permissions', {
   check: function (value, perm /* , perm... */) {
     var me = this,
         p = me.asPermission(perm),
-        pVal = me.permissions[value] | me.NONE,
+        pVal,
         perms;
+
+    if (!me.available()) {
+      return false;
+    }
+
+    pVal = me.permissions[value] | me.NONE;
 
     if (arguments.length > 2) {
       perms = [].slice.call(arguments, 2);
