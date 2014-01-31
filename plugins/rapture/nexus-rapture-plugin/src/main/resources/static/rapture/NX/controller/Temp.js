@@ -304,7 +304,8 @@ Ext.define('NX.controller.Temp', {
       },
       {
         mode: 'browse',
-        path: '/Repository'
+        path: '/Repository',
+        view: 'NX.view.feature.Group'
       },
       {
         mode: 'browse',
@@ -363,6 +364,7 @@ Ext.define('NX.controller.Temp', {
       {
         mode: 'user',
         path: '/Client Settings',
+        view: 'NX.view.feature.Group',
         weight: 200,
         visible: visibleIfLoggedIn
       },
