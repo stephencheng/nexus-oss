@@ -30,7 +30,6 @@ Ext.define('NX.view.dev.Stores', {
     Ext.apply(me, {
       items: {
         xtype: 'panel',
-        layout: 'hbox',
         tbar:[
           {
             xtype: 'combo',
@@ -63,7 +62,8 @@ Ext.define('NX.view.dev.Stores', {
                     return me.readRecords(stores);
                   }
                 }
-              }
+              },
+              sorters: { property: 'id', direction: 'ASC' }
             })
           },
           {
