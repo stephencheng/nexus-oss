@@ -26,13 +26,17 @@ Ext.define('NX.view.Authenticate', {
   /**
    * @cfg message Message to be shown
    */
-  message: 'You have requested an operation which requires validation of your credentials.',
+  message: undefined,
 
   /**
    * @protected
    */
   initComponent: function () {
     var me = this;
+
+    if (!me.message) {
+      me.message = 'You have requested an operation which requires validation of your credentials.';
+    }
 
     Ext.apply(this, {
       items: {
