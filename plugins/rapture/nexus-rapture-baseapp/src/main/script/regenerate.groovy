@@ -18,6 +18,19 @@ println ''
 println 'Prepare:'
 
 File basedir = project.basedir
+println "Base directory: $basedir"
+
+File outdir = new File(basedir, 'src/main/resources/static/rapture').canonicalFile
+println "Output directory: $outdir"
+
+// Start out clean
+ant.delete() {
+  fileset(dir: outdir) {
+    include(name: '**')
+  }
+}
+
+ant.mkdir(dir: outdir)
 
 // ensure we can execute Sencha CMD
 ant.exec(executable: 'sencha', failonerror: true) {
@@ -37,31 +50,14 @@ ant.exec(executable: 'sencha', failonerror: true) {
 }
 
 println ''
-println 'Installing:'
+println 'Cleaning up:'
 
-def outdir = new File(basedir, 'src/main/resources/static/rapture').canonicalFile
-println "Output directory: $outdir"
-
-// rebuild/clean output structure
-ant.mkdir(dir: outdir)
-ant.delete(dir: outdir)
-ant.mkdir(dir: "$outdir/resources")
-ant.mkdir(dir: "$outdir/resources/images")
-
-// install prod/debug js + css content
-[ prod: 'production', debug: 'testing'].each { name, flavor ->
-  ant.copy(file: "$basedir/target/$flavor/BaseApp/app.js", tofile: "$outdir/baseapp-${name}.js")
-  ant.copy(todir: "$outdir/resources") {
-    fileset(dir: "$basedir/target/$flavor/BaseApp/resources") {
-      include(name: "baseapp-${name}*")
-    }
-  }
-}
-
-// install prod image content
-ant.copy(todir: "$outdir/resources/images", overwrite: true) {
-  fileset(dir: "$basedir/target/production/BaseApp/resources/images") {
-    include(name: '**')
+// remove some cruft that sencha cmd generates
+ant.delete() {
+  fileset(dir: outdir) {
+    include(name: 'config.rb')
+    include(name: 'index.html')
+    include(name: 'resources/Readme.md')
   }
 }
 
