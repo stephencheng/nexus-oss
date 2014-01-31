@@ -70,9 +70,16 @@ Ext.define('NX.controller.Message', {
       }
     });
 
-    me.control({
-      'nx-message-panel button[action=clear]': {
-        click: me.clearMessages
+    me.listen({
+      controller: {
+        '#User': {
+          logout: me.clearMessages
+        }
+      },
+      component: {
+        'nx-message-panel button[action=clear]': {
+          click: me.clearMessages
+        }
       }
     });
 
@@ -110,7 +117,7 @@ Ext.define('NX.controller.Message', {
   /**
    * @private
    */
-  clearMessages: function (button) {
+  clearMessages: function () {
     this.getMessageStore().removeAll();
   },
 
