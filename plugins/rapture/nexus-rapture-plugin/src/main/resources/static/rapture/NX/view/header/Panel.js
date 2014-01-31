@@ -55,7 +55,7 @@ Ext.define('NX.view.header.Panel', {
         ' ',
         { xtype: 'nx-header-refresh' },
         { xtype: 'nx-header-help' },
-        '-',
+        ' ',
         { xtype: 'nx-header-login' },
         { xtype: 'nx-header-user', hidden: true },
         { xtype: 'nx-header-logout' }
