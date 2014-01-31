@@ -32,11 +32,11 @@ Ext.define('NX.controller.Main', {
     me.getApplication().getIconController().addIcons({
       'nexus': {
         file: 'nexus.png',
-        variants: ['x16', 'x32']
+        variants: ['x16', 'x24', 'x32', 'x48', 'x100']
       },
       'sonatype': {
         file: 'sonatype.png',
-        variants: ['x16', 'x32']
+        variants: ['x16', 'x24', 'x32', 'x48', 'x100']
       }
     });
   }

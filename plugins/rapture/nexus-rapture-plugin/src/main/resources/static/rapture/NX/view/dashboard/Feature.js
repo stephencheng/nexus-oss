@@ -35,10 +35,15 @@ Ext.define('NX.view.dashboard.Feature', {
       }
     },
     {
+      xtype: 'image',
+      cls: 'nx-icon-nexus-x100'
+    },
+    {
       xtype: 'label',
       text: 'Something more useful to be placed here in the future',
       style: {
-        'text-align': 'center'
+        'text-align': 'center',
+        'padding': '20px'
       }
     }
   ]

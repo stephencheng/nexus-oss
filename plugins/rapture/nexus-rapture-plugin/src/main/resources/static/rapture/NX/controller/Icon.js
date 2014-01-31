@@ -192,13 +192,24 @@ Ext.define('NX.controller.Icon', {
         cls,
         url;
 
+    // FIXME: Make this smarter to understand x<size> format
+
     // automatically set size for known variants
     switch (icon.variant) {
       case 'x16':
         icon.height = icon.width = 16;
         break;
+      case 'x24':
+        icon.height = icon.width = 24;
+        break;
       case 'x32':
         icon.height = icon.width = 32;
+        break;
+      case 'x48':
+        icon.height = icon.width = 48;
+        break;
+      case 'x100':
+        icon.height = icon.width = 100;
         break;
     }
 
