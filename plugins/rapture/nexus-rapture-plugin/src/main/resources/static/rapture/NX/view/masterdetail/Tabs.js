@@ -148,13 +148,13 @@ Ext.define('NX.view.masterdetail.Tabs', {
     if (content.isXType('tabpanel')) {
       content.items.each(function (tab) {
         if (tab.title) {
-          tab.bookmark = NX.Bookmarks.encode(tab.title);
+          tab.bookmark = NX.Bookmarks.encode(tab.title).toLowerCase();
         }
       });
     }
     else {
       if (content.title) {
-        content.bookmark = NX.Bookmarks.encode(content.title);
+        content.bookmark = NX.Bookmarks.encode(content.title).toLowerCase();
       }
     }
   }
