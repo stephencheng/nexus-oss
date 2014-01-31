@@ -63,8 +63,11 @@ Ext.define('NX.Icons', {
    * @static
    */
   img: function(name, variant) {
-    var cls = this.cls(name, variant);
-    return '<img src="' + Ext.BLANK_IMAGE_URL + '" class="' + cls + '"/>';
+    return Ext.DomHelper.createHtml({
+      tag: 'img',
+      src: Ext.BLANK_IMAGE_URL,
+      cls: this.cls(name, variant)
+    });
   }
 
 });
