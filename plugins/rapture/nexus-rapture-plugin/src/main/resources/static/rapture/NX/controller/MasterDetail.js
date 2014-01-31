@@ -228,12 +228,16 @@ Ext.define('NX.controller.MasterDetail', {
         tabs = list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
         bookmark = me.getApplication().getMenuController().getBookmark(),
         segments = [],
-        model, selectedTabBookmark;
+        model, idBookmark, selectedTabBookmark;
 
     if (selected.length) {
       model = selected[0];
-      if (model.getId()) {
-        segments.push(model.getId());
+      idBookmark = model.getId();
+      if (idBookmark) {
+        if (NX.Bookmarks.encode(idBookmark) != idBookmark.toLowerCase()) {
+          idBookmark = NX.Bookmarks.encode(idBookmark);
+        }
+        segments.push(idBookmark);
         selectedTabBookmark = tabs.getBookmarkOfSelectedTab();
         if (selectedTabBookmark) {
           segments.push(selectedTabBookmark);
