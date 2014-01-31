@@ -21,7 +21,6 @@ Ext.define('NX.controller.Menu', {
 
   views: [
     'feature.Menu',
-    'feature.Group',
     'feature.TODO',
     'header.DashboardMode',
     'header.SearchMode',
@@ -86,9 +85,6 @@ Ext.define('NX.controller.Menu', {
         'button[mode]': {
           afterrender: me.registerModeButton,
           destroy: me.unregisterModeButton
-        },
-        'nx-feature-group dataview': {
-          selectionchange: me.groupItemSelected
         }
       },
       store: {
@@ -147,38 +143,21 @@ Ext.define('NX.controller.Menu', {
   },
 
   /**
-   * Updates the FeatureGroup store with children of selected feature.
+   * Updates the **{@link NX.store.FeatureGroup} store with children of selected feature.
    *
    * @private
-   * @param {FeatureMenu} record
+   * @param {NX.model.FeatureMenu} record
    */
-  populateFeatureGroupStore: function(record) {
+  populateFeatureGroupStore: function (record) {
     var me = this,
         features = [],
         featureStore = me.getFeatureStore();
 
-    record.eachChild(function(node) {
+    record.eachChild(function (node) {
       features.push(featureStore.getById(node.get('path')));
     });
 
     me.getFeatureGroupStore().loadData(features);
-  },
-
-  /**
-   * Invoked when NX.view.feature.Group item is selected.
-   *
-   * @private
-   * @param {NX.view.feature.Group} view
-   * @param {Feature[]} records
-   */
-  groupItemSelected: function (view, records) {
-    var me = this,
-        feature;
-
-    if (records.length > 0) {
-      feature = records[0];
-      me.getApplication().getBookmarkingController().navigateTo(NX.Bookmark.fromToken(feature.get('bookmark')), me);
-    }
   },
 
   /**

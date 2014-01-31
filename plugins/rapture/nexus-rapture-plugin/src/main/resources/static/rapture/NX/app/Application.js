@@ -58,6 +58,7 @@ Ext.define('NX.app.Application', {
     'Icon',
     'Main',
     'Menu',
+    'MenuGroup',
     'Message',
     'Refresh',
     'Search',
