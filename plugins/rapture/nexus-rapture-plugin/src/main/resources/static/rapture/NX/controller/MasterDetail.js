@@ -232,12 +232,14 @@ Ext.define('NX.controller.MasterDetail', {
 
     if (selected.length) {
       model = selected[0];
-      segments.push(model.getId());
-      selectedTabBookmark = tabs.getBookmarkOfSelectedTab();
-      if (selectedTabBookmark) {
-        segments.push(selectedTabBookmark);
+      if (model.getId()) {
+        segments.push(model.getId());
+        selectedTabBookmark = tabs.getBookmarkOfSelectedTab();
+        if (selectedTabBookmark) {
+          segments.push(selectedTabBookmark);
+        }
+        NX.Bookmarks.bookmark(bookmark.appendSegments(segments), me);
       }
-      NX.Bookmarks.bookmark(bookmark.appendSegments(segments), me);
     }
     else {
       NX.Bookmarks.bookmark(bookmark, me);
