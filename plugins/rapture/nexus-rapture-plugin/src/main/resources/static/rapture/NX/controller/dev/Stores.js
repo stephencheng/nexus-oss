@@ -38,6 +38,9 @@ Ext.define('NX.controller.dev.Stores', {
         },
         'nx-dev-stores button[action=load]': {
           click: me.loadStore
+        },
+        'nx-dev-stores button[action=clear]': {
+          click: me.clearStore
         }
       }
     });
@@ -81,6 +84,19 @@ Ext.define('NX.controller.dev.Stores', {
 
     if (grid) {
       grid.getStore().load();
+    }
+  },
+
+  /**
+   * @private
+   */
+  clearStore: function () {
+    var me = this,
+        panel = me.getStores(),
+        grid = panel.down('grid');
+
+    if (grid) {
+      grid.getStore().removeAll();
     }
   }
 

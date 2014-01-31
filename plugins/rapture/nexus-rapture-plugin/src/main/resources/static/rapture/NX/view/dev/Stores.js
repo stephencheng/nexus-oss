@@ -70,6 +70,11 @@ Ext.define('NX.view.dev.Stores', {
             xtype: 'button',
             text: 'Load store',
             action: 'load'
+          },
+          {
+            xtype: 'button',
+            text: 'Clear store',
+            action: 'clear'
           }
         ]
       }
