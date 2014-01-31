@@ -207,7 +207,8 @@ Ext.define('NX.capability.controller.Capabilities', {
         win = button.up('window'),
         form = button.up('form'),
         capabilityModel = me.getCapabilityModel().create(),
-        values = form.getValues();
+        values = form.getValues(),
+        remainingErrors;
 
     capabilityModel.set(values);
 
@@ -221,9 +222,10 @@ Ext.define('NX.capability.controller.Capabilities', {
           });
         }
         else if (Ext.isDefined(response.errors)) {
-          NX.Messages.add({
-            text: form.markInvalid(response.errors), type: 'warning'
-          });
+          remainingErrors = form.markInvalid(response.errors);
+          if (remainingErrors) {
+            NX.Messages.add({ text:remainingErrors, type: 'warning' });
+          }
         }
       }
     });
@@ -233,7 +235,8 @@ Ext.define('NX.capability.controller.Capabilities', {
     var me = this,
         form = button.up('form'),
         capabilityModel = form.getRecord(),
-        values = form.getValues();
+        values = form.getValues(),
+        remainingErrors;
 
     capabilityModel.set(values);
 
@@ -246,9 +249,10 @@ Ext.define('NX.capability.controller.Capabilities', {
           });
         }
         else if (Ext.isDefined(response.errors)) {
-          NX.Messages.add({
-            text: form.markInvalid(response.errors), type: 'warning'
-          });
+          remainingErrors = form.markInvalid(response.errors);
+          if (remainingErrors) {
+            NX.Messages.add({ text:remainingErrors, type: 'warning' });
+          }
         }
       }
     });
