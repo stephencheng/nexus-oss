@@ -21,6 +21,7 @@ Ext.define('NX.controller.Menu', {
 
   views: [
     'feature.Menu',
+    'feature.Group',
     'header.DashboardMode',
     'header.SearchMode',
     'header.BrowseMode',
@@ -29,7 +30,8 @@ Ext.define('NX.controller.Menu', {
 
   stores: [
     'Feature',
-    'FeatureMenu'
+    'FeatureMenu',
+    'FeatureGroup'
   ],
 
   refs: [
@@ -83,6 +85,9 @@ Ext.define('NX.controller.Menu', {
         'button[mode]': {
           afterrender: me.registerModeButton,
           destroy: me.unregisterModeButton
+        },
+        'nx-feature-group dataview': {
+          selectionchange: me.groupItemSelected
         }
       },
       store: {
@@ -127,13 +132,55 @@ Ext.define('NX.controller.Menu', {
    * @private
    */
   onSelection: function (panel, record) {
-    var me = this;
+    var me = this,
+        path = record.get('path');
 
-    me.logDebug('Selected feature: ' + record.get('path'));
-    me.fireEvent('featureselected', me.getFeatureStore().getById(record.get('path')));
+    me.logDebug('Selected feature: ' + path);
+
+    me.populateFeatureGroupStore(record);
+
+    me.fireEvent('featureselected', me.getFeatureStore().getById(path));
     if (me.bookmarkingEnabled) {
       me.bookmark(record);
     }
+  },
+
+  /**
+   * Updates the FeatureGroup store with children of selected feature.
+   *
+   * @private
+   * @param {FeatureMenu} record
+   */
+  populateFeatureGroupStore: function(record) {
+    var me = this,
+        features = [],
+        featureStore = me.getFeatureStore();
+
+    record.eachChild(function(node) {
+      features.push(featureStore.getById(node.get('path')));
+    });
+
+    me.getFeatureGroupStore().loadData(features);
+  },
+
+  /**
+   * Invoked when NX.view.feature.Group item is selected.
+   *
+   * @private
+   * @param {NX.view.feature.Group} view
+   * @param {Feature[]} records
+   */
+  groupItemSelected: function (view, records) {
+    var me = this;
+
+    // only support single selection
+    if (records.length !== 1) {
+      return;
+    }
+
+    var feature = records[0];
+    // FIXME: How to change the selected feature?
+    me.logDebug('TODO: selection changed: ' + feature.get('path'));
   },
 
   /**

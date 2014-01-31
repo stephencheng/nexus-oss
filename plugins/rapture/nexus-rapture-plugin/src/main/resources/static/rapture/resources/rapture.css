@@ -10,7 +10,6 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-
 /**
  * TODO: Sort out how to integrate this into baseapp with scss.
  */
@@ -29,7 +28,7 @@
 }
 
 .nx-red-marker td {
-  color:  #D04437;
+  color: #D04437;
 }
 
 .nx-masterdetail-warning {
@@ -49,4 +48,41 @@
   border: solid 1px #D04437;
   border-radius: 5px;
   -moz-border-radius: 5px;
+}
+
+/**
+ * @class NX.view.feature.Group
+ */
+
+.nx-feature-group {
+  margin-top: 16px;
+  margin-left: 16px;
+}
+
+.nx-feature-group .x-item-over {
+  border: 1px solid #C1C1C1;
+  background: #E8E8E8;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+.nx-feature-group .x-item-selected {
+  border: 1px solid #909090;
+  background: #C6C6C6;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+.nx-feature-group .item-wrap {
+  float: left;
+  width: 200px;
+  height: 42px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.nx-feature-group img {
+  height: 32px;
+  width: 32px;
+  margin-right: 5px;
 }

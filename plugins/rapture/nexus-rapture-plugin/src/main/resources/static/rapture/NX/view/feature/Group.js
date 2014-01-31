@@ -10,18 +10,38 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.model.FeatureMenu', {
-  extend: 'Ext.data.TreeModel',
 
-  // FIXME: Set ID for module... unsure what this should be in a tree though
+/**
+ * Shows an icon display of features in the {@link FeatureGroup} store.
+ *
+ * @since 2.8
+ */
+Ext.define('NX.view.feature.Group', {
+  extend: 'Ext.panel.Panel',
+  alias: 'widget.nx-feature-group',
 
-  fields: [
-    { name: 'path' },
-    { name: 'mode' },
-    { name: 'text' },
-    { name: 'weight', defaultValue: 100 },
-    { name: 'view' },
-    { name: 'bookmark' },
-    { name: 'iconName' }
+  autoScroll: true,
+
+  items: [
+    {
+      xtype: 'dataview',
+      cls: 'nx-feature-group',
+
+      store: 'FeatureGroup',
+      tpl: [
+        '<tpl for=".">',
+        '<div class="item-wrap">',
+        '{[ NX.Icons.img(values.iconName, "x32") ]}',
+        '<span>{text}</span>',
+        '</div>',
+        '</tpl>'
+      ],
+
+      itemSelector: 'div.item-wrap',
+      trackOver: true,
+      overItemCls: 'x-item-over',
+      selectedItemCls: 'x-item-selected'
+    }
   ]
+
 });

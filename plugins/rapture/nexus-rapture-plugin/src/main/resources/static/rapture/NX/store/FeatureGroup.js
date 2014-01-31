@@ -10,18 +10,15 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.model.FeatureMenu', {
-  extend: 'Ext.data.TreeModel',
 
-  // FIXME: Set ID for module... unsure what this should be in a tree though
+/**
+ * Store containing {@link Feature} records for selected feature group (children of feature node).
+ *
+ * @since 2.8
+ */
+Ext.define('NX.store.FeatureGroup', {
+  extend: 'Ext.data.ArrayStore',
+  model: 'NX.model.Feature',
 
-  fields: [
-    { name: 'path' },
-    { name: 'mode' },
-    { name: 'text' },
-    { name: 'weight', defaultValue: 100 },
-    { name: 'view' },
-    { name: 'bookmark' },
-    { name: 'iconName' }
-  ]
+  sorters: { property: 'path', direction: 'ASC' }
 });

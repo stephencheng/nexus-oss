@@ -177,11 +177,13 @@ Ext.define('NX.controller.Temp', {
     me.getApplication().getFeaturesController().registerFeature([
       {
         path: '/System',
+        view: 'NX.view.feature.Group',
         weight: 1000,
         visible: visibleIfLoggedIn
       },
       {
         path: '/Repository',
+        view: 'NX.view.feature.Group',
         weight: 50,
         visible: visibleIfLoggedIn
       },
@@ -191,6 +193,7 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/Staging',
+        view: 'NX.view.feature.Group',
         weight: 60,
         visible: visibleIfLoggedIn
       },
@@ -208,6 +211,7 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/Procurement',
+        view: 'NX.view.feature.Group',
         weight: 60,
         visible: visibleIfLoggedIn
       },
@@ -217,6 +221,7 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/Security',
+        view: 'NX.view.feature.Group',
         weight: 90,
         visible: visibleIfLoggedIn
       },
@@ -266,6 +271,7 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/Support',
+        view: 'NX.view.feature.Group',
         visible: visibleIfLoggedIn
       },
       {

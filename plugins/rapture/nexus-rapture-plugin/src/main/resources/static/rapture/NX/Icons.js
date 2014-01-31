@@ -35,6 +35,7 @@ Ext.define('NX.Icons', {
    * Install the controller reference.
    *
    * @public
+   * @static
    * @param {NX.controller.Icons} controller
    */
   install: function(controller) {
@@ -53,6 +54,17 @@ Ext.define('NX.Icons', {
       cls += '-' + variant;
     }
     return cls;
+  },
+
+  /**
+   * Helper to get html text for a named icon with variant.
+   *
+   * @public
+   * @static
+   */
+  img: function(name, variant) {
+    var cls = this.cls(name, variant);
+    return '<img src="' + Ext.BLANK_IMAGE_URL + '" class="' + cls + '"/>';
   }
 
 });
