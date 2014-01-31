@@ -13,7 +13,7 @@
 Ext.define('NX.capability.controller.Capabilities', {
   extend: 'NX.controller.MasterDetail',
   requires: [
-    'NX.Dialogs',
+    'NX.Dialogs'
   ],
 
   list: 'nx-capability-list',
