@@ -288,10 +288,16 @@ Ext.define('NX.controller.User', {
    * Shows login window.
    */
   showLoginWindow: function () {
-    var me = this;
+    var me = this,
+        login, userName;
 
     if (!me.getLogin()) {
-      me.getLoginView().create();
+      login = me.getLoginView().create();
+      if (me.hasUser()) {
+        login.down('form').getForm().setValues({ username: me.user.id, remember: me.user.authenticated === false});
+        login.down('#username').disable();
+        login.down('#password').focus();
+      }
     }
   },
 
@@ -318,7 +324,7 @@ Ext.define('NX.controller.User', {
     var me = this,
         win = button.up('window'),
         form = button.up('form'),
-        values = form.getValues(),
+        values = Ext.applyIf(form.getValues(), { username: me.user ? me.user.id : undefined }),
         userName = NX.util.Base64.encode(values.username),
         userPass = NX.util.Base64.encode(values.password);
 

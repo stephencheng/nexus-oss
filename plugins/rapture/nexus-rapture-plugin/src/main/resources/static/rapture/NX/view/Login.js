@@ -48,6 +48,7 @@ Ext.define('NX.view.Login', {
           },
           {
             name: 'password',
+            itemId: 'password',
             fieldLabel: 'Password',
             inputType: 'password',
             emptyText: 'enter your password',
