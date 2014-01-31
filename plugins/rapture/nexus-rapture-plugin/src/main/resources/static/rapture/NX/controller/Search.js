@@ -12,6 +12,9 @@
  */
 Ext.define('NX.controller.Search', {
   extend: 'Ext.app.Controller',
+  requires: [
+    'NX.Bookmarks'
+  ],
   mixins: {
     logAware: 'NX.LogAware'
   },
@@ -83,7 +86,7 @@ Ext.define('NX.controller.Search', {
       );
     }
     else {
-      me.getApplication().getBookmarkingController().navigateTo(NX.Bookmark.fromToken('search/search'), me);
+      NX.Bookmarks.navigateTo(NX.Bookmarks.fromToken('search/search'), me);
     }
   },
 

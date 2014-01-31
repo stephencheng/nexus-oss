@@ -13,7 +13,7 @@
 Ext.define('NX.controller.Menu', {
   extend: 'Ext.app.Controller',
   requires: [
-    'NX.Bookmark'
+    'NX.Bookmarks'
   ],
   mixins: {
     logAware: 'NX.LogAware'
@@ -112,7 +112,7 @@ Ext.define('NX.controller.Menu', {
     var me = this,
         selection = me.getFeatureMenu().getSelectionModel().getSelection();
 
-    return NX.Bookmark.fromToken(selection ? selection[0].get('bookmark') : me.mode);
+    return NX.Bookmarks.fromToken(selection ? selection[0].get('bookmark') : me.mode);
   },
 
   /**
@@ -122,7 +122,7 @@ Ext.define('NX.controller.Menu', {
     var me = this;
 
     me.refreshMenu();
-    me.navigateTo(me.getApplication().getBookmarkingController().getBookmark());
+    me.navigateTo(NX.Bookmarks.getBookmark());
   },
 
   /**
@@ -195,11 +195,10 @@ Ext.define('NX.controller.Menu', {
    */
   bookmark: function (node) {
     var me = this,
-        bookmark = node.get('bookmark'),
-        bookmarking = me.getApplication().getBookmarkingController();
+        bookmark = node.get('bookmark');
 
-    if (!(bookmarking.getBookmark().getSegment(0) === bookmark)) {
-      bookmarking.bookmark(NX.Bookmark.fromToken(bookmark), me);
+    if (!(NX.Bookmarks.getBookmark().getSegment(0) === bookmark)) {
+      NX.Bookmarks.bookmark(NX.Bookmarks.fromToken(bookmark), me);
     }
   },
 
@@ -407,8 +406,8 @@ Ext.define('NX.controller.Menu', {
     var me = this;
 
     me.logDebug('Mode changed: ' + mode);
-    me.navigateTo(NX.Bookmark.fromToken(mode));
-    me.getApplication().getBookmarkingController().bookmark(me.getBookmark());
+    me.navigateTo(NX.Bookmarks.fromToken(mode));
+    NX.Bookmarks.bookmark(me.getBookmark());
   },
 
   /**

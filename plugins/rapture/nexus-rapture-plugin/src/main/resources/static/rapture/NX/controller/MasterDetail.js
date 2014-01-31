@@ -107,7 +107,7 @@ Ext.define('NX.controller.MasterDetail', {
         list = me.getList();
 
     if (list) {
-      me.navigateTo(me.getApplication().getBookmarkingController().getBookmark());
+      me.navigateTo(NX.Bookmarks.getBookmark());
     }
   },
 
@@ -211,7 +211,6 @@ Ext.define('NX.controller.MasterDetail', {
         selected = list.getSelectionModel().getSelection(),
         tabs = list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
         bookmark = me.getApplication().getMenuController().getBookmark(),
-        bookmarking = me.getApplication().getBookmarkingController(),
         segments = [],
         model, selectedTabBookmark;
 
@@ -222,10 +221,10 @@ Ext.define('NX.controller.MasterDetail', {
       if (selectedTabBookmark) {
         segments.push(selectedTabBookmark);
       }
-      bookmarking.bookmark(bookmark.appendSegments(segments), me);
+      NX.Bookmarks.bookmark(bookmark.appendSegments(segments), me);
     }
     else {
-      bookmarking.bookmark(bookmark, me);
+      NX.Bookmarks.bookmark(bookmark, me);
     }
   },
 

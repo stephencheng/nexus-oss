@@ -17,46 +17,12 @@
  */
 Ext.define('NX.Bookmark', {
 
-  statics: {
-    /**
-     * @public
-     * Creates a new bookmark.
-     * @param [{String}] token bookmark token
-     * @returns {NX.Bookmark} created bookmark
-     */
-    fromToken: function (token) {
-      return Ext.create('NX.Bookmark', { token: token });
-    },
-    /**
-     * @public
-     * Creates a new bookmark from provided segments.
-     * @param {String[]} segments bookmark segments
-     * @returns {NX.Bookmark} created bookmark
-     */
-    fromSegments: function (segments) {
-      if (!Ext.isDefined(segments)) {
-        throw Ext.Error.raise('Bookmarks segments cannot be undefined');
-      }
-      if (!Ext.isArray(segments)) {
-        segments = [segments];
-      }
-      return Ext.create('NX.Bookmark', { token: segments.join(':') });
-    },
-    /**
-     * Encodes the value suitable to be used as a bookmark token.
-     * (eliminate spaces and lower case)
-     * @param value to be encoded
-     * @returns {String} encoded value
-     */
-    encode: function (value) {
-      if (!Ext.isString(value)) {
-        throw Ext.Error.raise('Value to be encoded must be a String');
-      }
-      return value.toLowerCase().replace(/\s/g, '');
-    }
-  },
-
   config: {
+    /**
+     * @public
+     * Bookmark token.
+     * @type {String}
+     */
     token: undefined
   },
 

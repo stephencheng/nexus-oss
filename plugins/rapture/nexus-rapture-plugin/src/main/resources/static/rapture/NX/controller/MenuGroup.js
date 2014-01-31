@@ -13,7 +13,7 @@
 Ext.define('NX.controller.MenuGroup', {
   extend: 'Ext.app.Controller',
   requires: [
-    'NX.Bookmark'
+    'NX.Bookmarks'
   ],
   mixins: {
     logAware: 'NX.LogAware'
@@ -51,7 +51,7 @@ Ext.define('NX.controller.MenuGroup', {
 
     if (records.length > 0) {
       feature = records[0];
-      me.getApplication().getBookmarkingController().navigateTo(NX.Bookmark.fromToken(feature.get('bookmark')), me);
+      NX.Bookmarks.navigateTo(NX.Bookmarks.fromToken(feature.get('bookmark')), me);
     }
   }
 
