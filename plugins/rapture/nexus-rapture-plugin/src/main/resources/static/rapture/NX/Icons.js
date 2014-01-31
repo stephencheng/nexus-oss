@@ -68,6 +68,29 @@ Ext.define('NX.Icons', {
       src: Ext.BLANK_IMAGE_URL,
       cls: this.cls(name, variant)
     });
+  },
+
+  /**
+   * Helper to URL for an icon.
+   *
+   * NOTE: This does not use the icon store, simply goes by layout heuristics.
+   *
+   * @param name
+   * @param [variant]
+   * @param [ext] The file extension to use, png if not set.
+   * @returns {string}
+   */
+  url: function(name, variant, ext) {
+    var url = NX.util.Url.baseUrl + '/static/rapture/resources/icons/';
+    if (variant) {
+      url += variant + '/';
+    }
+    url += name;
+    if (ext == undefined) {
+      ext = 'png';
+    }
+    url += '.' + ext;
+    return url;
   }
 
 });
