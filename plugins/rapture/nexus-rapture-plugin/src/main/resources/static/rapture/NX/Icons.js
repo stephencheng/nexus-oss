@@ -71,9 +71,7 @@ Ext.define('NX.Icons', {
   },
 
   /**
-   * Helper to URL for an icon.
-   *
-   * NOTE: This does not use the icon store, simply goes by layout heuristics.
+   * Helper to URL for an icon name + variant + optional extension.
    *
    * @param name
    * @param [variant]
@@ -81,15 +79,30 @@ Ext.define('NX.Icons', {
    * @returns {string}
    */
   url: function(name, variant, ext) {
+    var me = this,
+        file = name;
+
+    if (ext == undefined) {
+      ext = 'png';
+    }
+    file += '.' + ext;
+
+    return me.url2(file, variant);
+  },
+
+  /**
+   * Helper to get a URL for an icon file + optional variant.
+   *
+   * @param file
+   * @param [variant]
+   * @returns {string}
+   */
+  url2: function(file, variant) {
     var url = NX.util.Url.baseUrl + '/static/rapture/resources/icons/';
     if (variant) {
       url += variant + '/';
     }
-    url += name;
-    if (ext == undefined) {
-      ext = 'png';
-    }
-    url += '.' + ext;
+    url += file;
     return url;
   }
 

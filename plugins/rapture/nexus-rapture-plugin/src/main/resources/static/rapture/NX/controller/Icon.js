@@ -66,7 +66,9 @@ Ext.define('NX.controller.Icon', {
    * @param url
    */
   preloadImage: function(url) {
-    var me = this;
+    var me = this,
+        img;
+
     me.logDebug('Preloading: ' + url);
     img = new Image();
     img.src = url;
@@ -189,38 +191,20 @@ Ext.define('NX.controller.Icon', {
    */
   configureIcon: function (icon) {
     var me = this,
-        cls,
-        url;
+        variant = icon.variant;
 
-    // FIXME: Make this smarter to understand x<size> format
-
-    // automatically set size for known variants
-    switch (icon.variant) {
-      case 'x16':
-        icon.height = icon.width = 16;
-        break;
-      case 'x24':
-        icon.height = icon.width = 24;
-        break;
-      case 'x32':
-        icon.height = icon.width = 32;
-        break;
-      case 'x48':
-        icon.height = icon.width = 48;
-        break;
-      case 'x100':
-        icon.height = icon.width = 100;
-        break;
+    // automatically apply 'x<size>'
+    if (Ext.isString(variant)) {
+      if (variant.charAt(0) === 'x' && variant.length > 1) {
+        var size = Ext.Number.from(variant.substring(1), -1);
+        if (size === -1) {
+          throw Ext.Error.raise('Invalid variant format: ' + variant);
+        }
+        icon.height = icon.width = size;
+      }
     }
 
-    // calculate image URL
-    url = NX.util.Url.baseUrl + '/static/rapture/resources/icons/';
-    if (icon.variant) {
-      url += icon.variant + '/';
-    }
-    url += icon.file;
-    icon.url = url;
-
+    icon.url = NX.Icons.url2(icon.file, icon.variant);
     icon.cls = NX.Icons.cls(icon.name, icon.variant);
   },
 
