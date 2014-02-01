@@ -30,11 +30,15 @@ Ext.define('NX.view.dev.Buttons', {
    * @protected
    */
   initComponent: function () {
-    var me = this;
+    var me = this, i = 0;
 
     // Add a panel for each button theme and render some example button states
     me.items = [];
-    Ext.each(['default', 'primary', 'danger', 'warning', 'success'], function (ui) {
+    Ext.each(['default', 'primary', 'danger', 'warning', 'success', 'plain'], function (ui) {
+      // pick a different glyph for each style of button
+      var glyph = 'xf00' + i + '@FontAwesome';
+      i++;
+
       me.items.push({
         xtype: 'container',
         layout: {
@@ -43,15 +47,16 @@ Ext.define('NX.view.dev.Buttons', {
           defaultMargins: {top: 0, right: 4, bottom: 0, left: 0}
         },
         defaults: {
-          width: 80
+          width: 100
         },
         items: [
           { xtype: 'label', text: 'ui: \'' + ui + '\''},
-          { xtype: 'button', text: 'normal', ui: ui },
-          { xtype: 'button', text: 'disabled', ui: ui, disabled: true },
+          { xtype: 'button', text: 'normal', glyph: glyph, ui: ui },
+          { xtype: 'button', text: 'disabled', glyph: glyph,  ui: ui, disabled: true },
           {
             xtype: 'button',
             text: 'menu',
+            glyph: glyph,
             ui: ui,
             menu: [
               { text: 'Hello' },

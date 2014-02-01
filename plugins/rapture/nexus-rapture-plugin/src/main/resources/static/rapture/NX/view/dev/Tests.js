@@ -28,6 +28,7 @@ Ext.define('NX.view.dev.Tests', {
     { xtype: 'button', text: 'message types', action: 'testMessages' },
     { xtype: 'button', text: 'button icon', iconCls: 'nx-icon-refresh-x16' },
     { xtype: 'button', text: 'button glyph', glyph: 'xf130@FontAwesome' },
+    { xtype: 'button', text: 'button glyph plain', glyph: 'xf0a6@FontAwesome', ui: 'plain' },
     { xtype: 'button', text: 'toggle branding', action: 'toggleBranding' }
   ]
 });

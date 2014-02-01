@@ -311,6 +311,53 @@ $button-success-glyph-opacity: .5 !default;
 );
 
 /**
+ * ui: 'plain'
+ */
+
+@include extjs-button-small-ui(
+  $ui: 'plain',
+
+  $border-color: transparent,
+  $border-color-over: $button-default-border-color-over,
+  $border-color-focus: $button-default-border-color-focus,
+  $border-color-pressed: $button-default-border-color-pressed,
+  $border-color-disabled: transparent,
+
+  $background-color: transparent,
+  $background-color-over: $button-default-background-color-over,
+  $background-color-focus: $button-default-background-color-focus,
+  $background-color-pressed: $button-default-background-color-pressed,
+  $background-color-disabled: transparent,
+
+  $color: #1f1f1f,
+  $color-over: #E8E8E8,
+  $color-focus: #E8E8E8,
+  $color-pressed: #E8E8E8,
+  $color-disabled: #C6C6C6,
+
+  $font-size: $button-small-font-size,
+  $font-size-over: $button-small-font-size-over,
+  $font-size-focus: $button-small-font-size-focus,
+  $font-size-pressed: $button-small-font-size-pressed,
+  $font-size-disabled: $button-small-font-size-disabled,
+
+  $font-weight: $button-small-font-weight,
+  $font-weight-over: $button-small-font-weight-over,
+  $font-weight-focus: $button-small-font-weight-focus,
+  $font-weight-pressed: $button-small-font-weight-pressed,
+  $font-weight-disabled: $button-small-font-weight-disabled,
+
+  $font-family: $button-small-font-family,
+  $font-family-over: $button-small-font-family-over,
+  $font-family-focus: $button-small-font-family-focus,
+  $font-family-pressed: $button-small-font-family-pressed,
+  $font-family-disabled: $button-small-font-family-disabled,
+
+  $glyph-color: #C6C6C6,
+  $glyph-opacity: 1
+);
+
+/**
  * ui: 'header'
  */
 
