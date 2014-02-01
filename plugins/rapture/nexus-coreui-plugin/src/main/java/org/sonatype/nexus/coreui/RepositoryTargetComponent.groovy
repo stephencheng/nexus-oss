@@ -84,6 +84,20 @@ extends DirectComponentSupport
 
   @DirectMethod
   @RequiresAuthentication
+  @RequiresPermissions('nexus:targets:update')
+  void update(final RepositoryTargetXO target) {
+    validate(target);
+    // TODO validate id and that id exists
+    if (target.id) {
+      targetRegistry.addRepositoryTarget(new Target(
+          target.id, target.name, repositoryTypeRegistry.contentClasses[target.contentClassId], target.patterns
+      ))
+      nexusConfiguration.saveConfiguration();
+    }
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
   @RequiresPermissions('nexus:targets:delete')
   void delete(final String id) {
     targetRegistry.removeRepositoryTarget(id)

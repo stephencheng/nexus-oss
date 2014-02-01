@@ -79,6 +79,9 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
         },
         'nx-repositorytarget-add button[action=add]': {
           click: me.create
+        },
+        'nx-repositorytarget-settings button[action=save]': {
+          click: me.update
         }
       }
     });
@@ -122,6 +125,29 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
           me.loadStoresAndSelect(response.data);
           NX.Messages.add({
             text: 'Target created: ' + me.getDescription(model), type: 'success'
+          });
+        }
+        else if (Ext.isDefined(response.errors)) {
+          form.getForm().markInvalid(response.errors);
+        }
+      }
+    });
+  },
+
+  update: function (button) {
+    var me = this,
+        form = button.up('form'),
+        model = form.getRecord(),
+        values = form.getValues();
+
+    model.set(values);
+
+    NX.direct.coreui_RepositoryTarget.update(model.data, function (response) {
+      if (Ext.isDefined(response)) {
+        if (response.success) {
+          me.loadStores();
+          NX.Messages.add({
+            text: 'Target updated: ' + me.getDescription(model), type: 'success'
           });
         }
         else if (Ext.isDefined(response.errors)) {
