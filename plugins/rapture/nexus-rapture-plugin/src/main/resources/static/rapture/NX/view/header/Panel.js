@@ -31,7 +31,6 @@ Ext.define('NX.view.header.Panel', {
       anchor: '100%',
 
       defaults: {
-        ui: 'header',
         scale: 'medium'
       },
 
@@ -53,11 +52,11 @@ Ext.define('NX.view.header.Panel', {
         '->',
         { xtype: 'nx-searchbox', itemId: 'quicksearch', emptyText: 'quick search' },
         '->',
-        { xtype: 'nx-header-refresh' },
-        { xtype: 'nx-header-help' },
-        { xtype: 'nx-header-login' },
+        { xtype: 'nx-header-refresh', ui: 'header' },
+        { xtype: 'nx-header-help', ui: 'header' },
+        { xtype: 'nx-header-login', ui: 'header' },
         { xtype: 'nx-header-user', hidden: true },
-        { xtype: 'nx-header-logout' }
+        { xtype: 'nx-header-logout', ui: 'header' }
       ]
     }
   ]

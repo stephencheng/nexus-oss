@@ -18,6 +18,7 @@
 Ext.define('NX.view.header.Mode', {
   extend: 'Ext.button.Button',
 
+  ui: 'headermode',
   toggleGroup: 'mode',
 
   /**
@@ -32,17 +33,6 @@ Ext.define('NX.view.header.Mode', {
   /**
    * @cfg collapseMenu If menu should be collapsed automatically when mode is selected (default true)
    */
-  collapseMenu: true,
-
-  /**
-   * @override
-   */
-  initComponent: function () {
-    var me = this;
-
-    me.ui = 'headermode';
-
-    me.callParent(arguments);
-  }
+  collapseMenu: true
 
 });
