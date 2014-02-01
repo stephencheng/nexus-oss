@@ -16,6 +16,11 @@ Ext.define('NX.coreui.view.repositorytarget.Feature', {
 
   list: 'nx-repositorytarget-list',
 
-  iconName: 'target-default'
+  iconName: 'target-default',
+
+  tabs: [
+    { xtype: 'nx-info-panel' },
+    { xtype: 'nx-repositorytarget-settings', title: 'Settings' }
+  ]
 
 });

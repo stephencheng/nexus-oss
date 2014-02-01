@@ -18,6 +18,9 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
 
   list: 'nx-repositorytarget-list',
 
+  models: [
+    'RepositoryTarget'
+  ],
   stores: [
     'RepositoryTarget',
     'ContentClass'
@@ -25,7 +28,8 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   views: [
     'repositorytarget.Add',
     'repositorytarget.Feature',
-    'repositorytarget.List'
+    'repositorytarget.List',
+    'repositorytarget.Settings'
   ],
   refs: [
     {
@@ -35,6 +39,10 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     {
       ref: 'info',
       selector: 'nx-repositorytarget-feature nx-info-panel'
+    },
+    {
+      ref: 'settings',
+      selector: 'nx-repositorytarget-feature nx-repositorytarget-settings'
     }
   ],
   icons: {
@@ -90,6 +98,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
         'Repository Type': model.get('contentClassId'),
         'Patterns': model.get('patterns').join(',')
       });
+      me.getSettings().loadRecord(model);
     }
   },
 
@@ -100,13 +109,24 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   create: function (button) {
     var me = this,
         win = button.up('window'),
-        form = button.up('form');
+        form = button.up('form'),
+        model = me.getRepositoryTargetModel().create(),
+        values = form.getValues();
 
-    form.submit({
-      success: function (form, action) {
-        NX.Messages.add({text: 'Target created', type: 'success' });
-        win.close();
-        me.loadStoresAndSelect(action.result.data);
+    model.set(values);
+
+    NX.direct.coreui_RepositoryTarget.create(model.data, function (response) {
+      if (Ext.isDefined(response)) {
+        if (response.success) {
+          win.close();
+          me.loadStoresAndSelect(response.data);
+          NX.Messages.add({
+            text: 'Target created: ' + me.getDescription(model), type: 'success'
+          });
+        }
+        else if (Ext.isDefined(response.errors)) {
+          form.getForm().markInvalid(response.errors);
+        }
       }
     });
   },
