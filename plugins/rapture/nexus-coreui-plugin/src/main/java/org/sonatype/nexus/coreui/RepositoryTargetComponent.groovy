@@ -14,9 +14,7 @@
 package org.sonatype.nexus.coreui
 
 import com.softwarementors.extjs.djn.config.annotations.DirectAction
-import com.softwarementors.extjs.djn.config.annotations.DirectFormPostMethod
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod
-import org.apache.commons.fileupload.FileItem
 import org.apache.commons.lang.StringUtils
 import org.apache.shiro.authz.annotation.RequiresAuthentication
 import org.apache.shiro.authz.annotation.RequiresPermissions
@@ -65,7 +63,7 @@ extends DirectComponentSupport
           id: input.id,
           name: input.name,
           contentClassId: input.contentClass.id,
-          patterns: input.patternTexts
+          patterns: input.patternTexts.toList().sort()
       )
       return result
     }
@@ -74,8 +72,7 @@ extends DirectComponentSupport
   @DirectMethod
   @RequiresAuthentication
   @RequiresPermissions('nexus:targets:create')
-  String create(final RepositoryTargetXO target)
-  {
+  String create(final RepositoryTargetXO target) {
     validate(target);
     target.id = Long.toHexString(System.nanoTime());
     targetRegistry.addRepositoryTarget(new Target(
