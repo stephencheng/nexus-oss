@@ -17,6 +17,9 @@ Ext.define('NX.view.header.Help', {
   tooltip: 'Help',
   glyph: 'xf059@FontAwesome', // fa-question-circle
 
+  // hide the menu button arrow
+  arrowCls: '',
+
   menu: [
     { text: 'Feature', action: 'feature' },
     '-',
