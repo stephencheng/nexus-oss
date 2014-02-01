@@ -71,15 +71,16 @@ extends DirectComponentSupport
     }
   }
 
-  @DirectFormPostMethod
+  @DirectMethod
   @RequiresAuthentication
   @RequiresPermissions('nexus:targets:create')
-  String create(final Map<String, String> form,
-                final Map<String, FileItem> fileFields)
+  String create(final RepositoryTargetXO target)
   {
-    def target = validate(form),
-        contentClass = repositoryTypeRegistry.contentClasses[target.contentClassId]
-    targetRegistry.addRepositoryTarget(new Target(target.id, target.name, contentClass, target.patterns))
+    validate(target);
+    target.id = Long.toHexString(System.nanoTime());
+    targetRegistry.addRepositoryTarget(new Target(
+        target.id, target.name, repositoryTypeRegistry.contentClasses[target.contentClassId], target.patterns
+    ))
     nexusConfiguration.saveConfiguration();
     return target.id
   }
@@ -92,38 +93,28 @@ extends DirectComponentSupport
     nexusConfiguration.saveConfiguration();
   }
 
-  private RepositoryTargetXO validate(Map<String, String> form) {
+  private void validate(final RepositoryTargetXO target) {
     def validations = new ValidationResponse()
 
-    def name = form['name'];
-    if (StringUtils.isBlank(name)) {
+    if (StringUtils.isBlank(target.name)) {
       validations.addValidationError(new ValidationMessage('name', 'Name cannot be empty'))
     }
-    def contentClassId = form['contentClassId'];
-    if (StringUtils.isBlank(contentClassId)) {
+    if (StringUtils.isBlank(target.contentClassId)) {
       validations.addValidationError(new ValidationMessage('contentClassId', 'Repository type cannot be empty'))
     }
     else {
-      def contentClass = repositoryTypeRegistry.contentClasses[contentClassId]
+      def contentClass = repositoryTypeRegistry.contentClasses[target.contentClassId]
       if (!contentClass) {
         validations.addValidationError(new ValidationMessage('contentClassId', 'Repository type does not exist'))
       }
     }
-    // TODO check that patterns is not empty
-    //if (!target.patterns || target.patterns.empty) {
-    //  validations.addValidationError(new ValidationMessage('patterns', 'The target should have at least one pattern'))
-    //}
+    if (!target.patterns || target.patterns.empty) {
+      validations.addValidationError(new ValidationMessage('patterns', 'The target should have at least one pattern'))
+    }
 
     if (!validations.valid) {
       throw new InvalidConfigurationException(validations);
     }
-
-    return new RepositoryTargetXO(
-        id: Long.toHexString(System.nanoTime()),
-        name: name,
-        contentClassId: contentClassId,
-        patterns: ['.*']
-    )
   }
 
 }
