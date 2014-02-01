@@ -52,7 +52,7 @@ Ext.define('NX.view.header.Panel', {
         { xtype: 'nx-header-admin-mode' },
         '->',
         { xtype: 'nx-searchbox', itemId: 'quicksearch', emptyText: 'quick search' },
-        ' ',
+        '->',
         { xtype: 'nx-header-refresh' },
         { xtype: 'nx-header-help' },
         { xtype: 'nx-header-login' },
