@@ -43,8 +43,7 @@ ant.exec(executable: 'sencha', failonerror: true) {
   println "Generating: $flavor"
 
   // run 'app build' for each flavor
-  ant.mkdir(dir: "target/$flavor")
-  ant.exec(executable: 'sencha', dir: "$basedir/src/main/baseapp", failonerror: true, output: "target/$flavor/build.log") {
+  ant.exec(executable: 'sencha', dir: "$basedir/src/main/baseapp", failonerror: true) {
     arg(line: "app build $flavor")
   }
 }
