@@ -25,6 +25,7 @@
 
 .nx-info-entry-name {
   font-weight: bold;
+  text-align: right;
 }
 
 .nx-info-entry-value {
