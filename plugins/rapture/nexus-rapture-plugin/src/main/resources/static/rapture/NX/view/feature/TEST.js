@@ -20,6 +20,8 @@ Ext.define('NX.view.feature.TEST', {
     pack: 'start'
   },
 
+  maxWidth: 1024,
+
   style: {
     margin: '20px'
   },
@@ -42,7 +44,7 @@ Ext.define('NX.view.feature.TEST', {
         {
           xtype: 'textfield',
           fieldLabel: 'Base URL',
-          width: 400,
+          width: 500,
           emptyText: NX.util.Url.baseUrl
         },
         {
