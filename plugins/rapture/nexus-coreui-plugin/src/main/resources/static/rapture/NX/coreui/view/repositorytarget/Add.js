@@ -28,37 +28,7 @@ Ext.define('NX.coreui.view.repositorytarget.Add', {
 
     Ext.apply(me, {
       items: {
-        xtype: 'form',
-        api: {
-          submit: NX.direct.coreui_RepositoryTarget.create
-        },
-        bodyPadding: 10,
-        defaults: {
-          anchor: '100%',
-          htmlDecode: true
-        },
-        items: [
-          {
-            xtype: 'textfield',
-            name: 'name',
-            itemId: 'name',
-            fieldLabel: 'Name',
-            //emptyText: 'enter a target name',
-            //allowBlank: false
-          },
-          {
-            xtype: 'combo',
-            name: 'contentClassId',
-            fieldLabel: 'Repository Type',
-            //emptyText: 'select a repository type',
-            //allowBlank: false,
-            store: 'ContentClass',
-            queryMode: 'local',
-            displayField: 'name',
-            valueField: 'id'
-          }
-        ],
-
+        xtype: 'nx-repositorytarget-settings',
         buttons: [
           { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
           { text: 'Cancel', handler: me.close, scope: me }
