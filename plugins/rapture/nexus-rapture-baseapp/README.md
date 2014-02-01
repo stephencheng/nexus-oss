@@ -31,3 +31,7 @@ If the content has changed, then the result needs to be committed:
 
     git commit . -m "regenerated baseapp"
 
+## Watching
+
+  mvn clean install -Pwatch
+
