@@ -16,6 +16,10 @@ Ext.define('NX.controller.Temp', {
     logAware: 'NX.LogAware'
   },
 
+  views: [
+    'feature.TEST'
+  ],
+
   /**
    * @override
    */
@@ -239,6 +243,7 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/System/General',
+        view: 'NX.view.feature.TEST',
         visible: visibleIfLoggedIn
       },
       {
