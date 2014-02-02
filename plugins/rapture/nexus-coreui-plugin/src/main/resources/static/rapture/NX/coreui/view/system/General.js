@@ -48,7 +48,7 @@ Ext.define('NX.coreui.view.system.General', {
         },
         {
           xtype: 'checkbox',
-          fieldLabel: 'Force base URL'
+          boxLabel: 'Force base URL'
         },
         {
           xtype: 'label',
@@ -56,7 +56,7 @@ Ext.define('NX.coreui.view.system.General', {
         },
         {
           xtype: 'checkbox',
-          fieldLabel: 'Check for new version updates'
+          boxLabel: 'Check for new version updates'
         }
       ],
 
