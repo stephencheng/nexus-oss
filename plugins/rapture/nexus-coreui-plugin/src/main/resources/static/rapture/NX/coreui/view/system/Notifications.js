@@ -46,7 +46,7 @@ Ext.define('NX.coreui.view.system.Notifications', {
         },
         {
           xtype: 'checkbox',
-          fieldLabel: 'Enable E-mail notifications'
+          boxLabel: 'Enable E-mail notifications'
         },
 
         // TODO: additional notification addresses and role configuration
