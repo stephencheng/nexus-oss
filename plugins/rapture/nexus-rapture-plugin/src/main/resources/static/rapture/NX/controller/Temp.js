@@ -91,14 +91,6 @@ Ext.define('NX.controller.Temp', {
         file: 'cog.png',
         variants: ['x16', 'x32']
       },
-      'feature-system-general': {
-        file: 'wrench.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-system-notifications': {
-        file: 'emails.png',
-        variants: ['x16', 'x32']
-      },
       'feature-system-tasks': {
         file: 'time.png',
         variants: ['x16', 'x32']
@@ -109,10 +101,6 @@ Ext.define('NX.controller.Temp', {
       },
       'feature-system-smartproxy': {
         file: 'servers_network.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-system-http': {
-        file: 'transmit.png',
         variants: ['x16', 'x32']
       },
       'feature-system-ssl': {
@@ -239,19 +227,6 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/Security/Atlassian Crowd',
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/System/General',
-        view: 'NX.view.feature.TEST',
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/System/Notifications',
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/System/HTTP',
         visible: visibleIfLoggedIn
       },
       {
