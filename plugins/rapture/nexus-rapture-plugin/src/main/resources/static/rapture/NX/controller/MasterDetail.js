@@ -99,10 +99,13 @@ Ext.define('NX.controller.MasterDetail', {
   reselect: function () {
     var me = this,
         list = me.getList(),
-        selected = list.getSelectionModel().getSelection();
+        selected;
 
-    if (selected.length) {
-      me.onModelChanged(selected[0]);
+    if (list) {
+      selected = list.getSelectionModel().getSelection();
+      if (selected.length) {
+        me.onModelChanged(selected[0]);
+      }
     }
   },
 
