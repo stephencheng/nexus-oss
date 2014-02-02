@@ -94,15 +94,11 @@ Ext.define('NX.controller.MasterDetail', {
     });
   },
 
-  loadStoresAndSelect: function (id) {
-    var me = this,
-        list = me.getList(),
-        store = list.getStore();
+  loadStoresAndSelect: function (modelId) {
+    var me = this;
 
-    if (id) {
-      store.on('load', function (store) {
-        list.getSelectionModel().select(store.getById(id));
-      }, me, { single: true });
+    if (modelId) {
+      me.bookmarkAt(modelId)
     }
 
     me.loadStores();
@@ -223,17 +219,28 @@ Ext.define('NX.controller.MasterDetail', {
    */
   bookmark: function () {
     var me = this,
+        selected = me.getList().getSelectionModel().getSelection(),
+        modelId;
+
+    if (selected.length) {
+      modelId = selected[0].getId();
+    }
+    me.bookmarkAt(modelId)
+  },
+
+  /**
+   * Bookmark specified model / selected tab.
+   */
+  bookmarkAt: function (modelId) {
+    var me = this,
         list = me.getList(),
-        selected = list.getSelectionModel().getSelection(),
         tabs = list.up('nx-masterdetail-panel').down('nx-masterdetail-tabs'),
         bookmark = me.getApplication().getMenuController().getBookmark(),
         segments = [],
-        model, idBookmark, selectedTabBookmark;
+        idBookmark, selectedTabBookmark;
 
-    if (selected.length) {
-      model = selected[0];
-      idBookmark = model.getId();
-      if (idBookmark) {
+    if (modelId) {
+      idBookmark = modelId;
         if (NX.Bookmarks.encode(idBookmark) != idBookmark) {
           idBookmark = NX.Bookmarks.encode(idBookmark);
         }
@@ -243,10 +250,6 @@ Ext.define('NX.controller.MasterDetail', {
           segments.push(selectedTabBookmark);
         }
         NX.Bookmarks.bookmark(bookmark.appendSegments(segments), me);
-      }
-    }
-    else {
-      NX.Bookmarks.bookmark(bookmark, me);
     }
   },
 
