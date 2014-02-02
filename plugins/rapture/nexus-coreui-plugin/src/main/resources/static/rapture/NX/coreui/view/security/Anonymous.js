@@ -57,12 +57,14 @@ Ext.define('NX.coreui.view.security.Anonymous', {
             },
             {
               xtype: 'textfield',
-              fieldLabel: 'Username'
+              fieldLabel: 'Username',
+              emptyText: 'anonymous'
             },
             {
               xtype: 'textfield',
               fieldLabel: 'Password',
-              inputType: 'password'
+              inputType: 'password',
+              emptyText: 'password'
             }
           ]
         },
