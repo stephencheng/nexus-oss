@@ -206,7 +206,6 @@ Ext.define('NX.capability.controller.Capabilities', {
   onCapabilityStatusBeforeLoad: function () {
     var me = this;
 
-    me.getCapabilityTypeStore().load();
     me.getCapabilityStore().load();
   },
 
