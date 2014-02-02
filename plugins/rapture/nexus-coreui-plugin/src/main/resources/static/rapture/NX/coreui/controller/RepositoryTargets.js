@@ -70,6 +70,14 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     me.callParent();
 
     me.listen({
+      store: {
+        '#RepositoryTarget': {
+          beforeload: me.onRepositoryTargetBeforeLoad
+        },
+        '#ContentClass': {
+          load: me.reselect
+        }
+      },
       component: {
         'nx-repositorytarget-list button[action=new]': {
           click: me.showAddWindow
@@ -105,6 +113,12 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     }
   },
 
+  onRepositoryTargetBeforeLoad: function () {
+    var me = this;
+
+    me.getContentClassStore().load();
+  },
+
   showAddWindow: function () {
     Ext.widget('nx-repositorytarget-add');
   },
@@ -126,7 +140,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
             text: 'Target created: ' + me.getDescription(me.getRepositoryTargetModel().create(response.data)),
             type: 'success'
           });
-          me.loadStoresAndSelect(response.data.id);
+          me.loadStoreAndSelect(response.data.id);
         }
         else if (Ext.isDefined(response.errors)) {
           form.getForm().markInvalid(response.errors);
@@ -150,7 +164,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
             text: 'Target updated: ' + me.getDescription(me.getRepositoryTargetModel().create(response.data)),
             type: 'success'
           });
-          me.loadStores();
+          me.loadStore();
         }
         else if (Ext.isDefined(response.errors)) {
           form.getForm().markInvalid(response.errors);
@@ -168,7 +182,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
       description = me.getDescription(selection[0]);
       NX.Dialogs.askConfirmation('Confirm deletion?', description, function () {
         NX.direct.coreui_RepositoryTarget.delete(selection[0].getId(), function (response) {
-          me.loadStores();
+          me.loadStore();
           if (Ext.isDefined(response) && response.success) {
             NX.Messages.add({
               text: 'Target deleted: ' + description, type: 'success'

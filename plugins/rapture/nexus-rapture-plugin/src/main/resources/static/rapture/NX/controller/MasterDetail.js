@@ -28,28 +28,19 @@ Ext.define('NX.controller.MasterDetail', {
 
   init: function () {
     var me = this,
-        store = me.stores[0],
-        componentListener = {},
-        storeListener = {};
+        componentListener = {};
 
     componentListener[me.list] = {
-      beforerender: me.loadStores,
-      afterrender: me.applyPermissions,
+      afterrender: me.onAfterRender,
       selectionchange: me.onSelectionChange,
       selection: me.onSelection
     };
     componentListener[me.list + ' ^ nx-masterdetail-panel nx-masterdetail-tabs > tabpanel'] = {
       tabchange: me.bookmark
     };
-    storeListener['#' + store] = {
-      load: me.onStoreLoad
-    };
 
     me.listen({
       component: componentListener,
-      store: storeListener
-    });
-    me.listen({
       controller: {
         '#User': {
           permissionschanged: me.applyPermissions
@@ -58,7 +49,7 @@ Ext.define('NX.controller.MasterDetail', {
           navigate: me.navigateTo
         },
         '#Refresh': {
-          refresh: me.onRefresh
+          refresh: me.loadStore
         }
       }
     });
@@ -77,31 +68,23 @@ Ext.define('NX.controller.MasterDetail', {
 
   getDescription: Ext.emptyFn,
 
-  onRefresh: function () {
+  loadStore: function () {
     var me = this,
         list = me.getList();
 
     if (list) {
-      me.loadStores();
+      list.getStore().load();
     }
   },
 
-  loadStores: function () {
-    var me = this;
-
-    Ext.each(me.stores, function (store) {
-      me.getApplication().getStore(store).load();
-    });
-  },
-
-  loadStoresAndSelect: function (modelId) {
+  loadStoreAndSelect: function (modelId) {
     var me = this;
 
     if (modelId) {
       me.bookmarkAt(modelId)
     }
 
-    me.loadStores();
+    me.loadStore();
   },
 
   onStoreLoad: function () {
@@ -121,6 +104,15 @@ Ext.define('NX.controller.MasterDetail', {
     if (selected.length) {
       me.onModelChanged(selected[0]);
     }
+  },
+
+  onAfterRender: function () {
+    var me = this,
+        list = me.getList();
+
+    list.mon(list.getStore(), 'load', me.onStoreLoad, me);
+    me.loadStore();
+    me.applyPermissions();
   },
 
   onSelectionChange: function (selectionModel, selected) {
@@ -241,16 +233,17 @@ Ext.define('NX.controller.MasterDetail', {
 
     if (modelId) {
       idBookmark = modelId;
-        if (NX.Bookmarks.encode(idBookmark) != idBookmark) {
-          idBookmark = NX.Bookmarks.encode(idBookmark);
-        }
-        segments.push(idBookmark);
-        selectedTabBookmark = tabs.getBookmarkOfSelectedTab();
-        if (selectedTabBookmark) {
-          segments.push(selectedTabBookmark);
-        }
-        NX.Bookmarks.bookmark(bookmark.appendSegments(segments), me);
+      if (NX.Bookmarks.encode(idBookmark) != idBookmark) {
+        idBookmark = NX.Bookmarks.encode(idBookmark);
+      }
+      segments.push(idBookmark);
+      selectedTabBookmark = tabs.getBookmarkOfSelectedTab();
+      if (selectedTabBookmark) {
+        segments.push(selectedTabBookmark);
+      }
+      bookmark.appendSegments(segments);
     }
+    NX.Bookmarks.bookmark(bookmark, me);
   },
 
   /**

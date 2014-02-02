@@ -90,6 +90,9 @@ Ext.define('NX.capability.controller.Capabilities', {
         }
       },
       store: {
+        '#CapabilityStatus': {
+          beforeload: me.onCapabilityStatusBeforeLoad
+        },
         '#Capability': {
           load: me.reselect
         },
@@ -200,6 +203,13 @@ Ext.define('NX.capability.controller.Capabilities', {
     return me.getCapabilityTypeStore().getCount() > 0 && me.callParent()
   },
 
+  onCapabilityStatusBeforeLoad: function () {
+    var me = this;
+
+    me.getCapabilityTypeStore().load();
+    me.getCapabilityStore().load();
+  },
+
   onCapabilityTypeLoad: function () {
     var me = this;
 
@@ -225,7 +235,7 @@ Ext.define('NX.capability.controller.Capabilities', {
             text: 'Capability created: ' + me.getDescription(me.getCapabilityStatusModel().create(response.data)),
             type: 'success'
           });
-          me.loadStoresAndSelect(response.data.id);
+          me.loadStoreAndSelect(response.data.id);
         }
         else if (Ext.isDefined(response.errors)) {
           remainingErrors = form.markInvalid(response.errors);
@@ -253,7 +263,7 @@ Ext.define('NX.capability.controller.Capabilities', {
             text: 'Capability updated: ' + me.getDescription(me.getCapabilityStatusModel().create(response.data)),
             type: 'success'
           });
-          me.loadStores();
+          me.loadStore();
         }
         else if (Ext.isDefined(response.errors)) {
           remainingErrors = form.markInvalid(response.errors);
@@ -274,7 +284,7 @@ Ext.define('NX.capability.controller.Capabilities', {
       description = me.getDescription(selection[0]);
       NX.Dialogs.askConfirmation('Confirm deletion?', description, function () {
         NX.direct.capability_Capability.delete(selection[0].getId(), function (response) {
-          me.loadStores();
+          me.loadStore();
           if (Ext.isDefined(response) && response.success) {
             NX.Messages.add({
               text: 'Capability deleted: ' + description, type: 'success'
