@@ -34,7 +34,7 @@ Ext.define('NX.coreui.controller.Plugin', {
     me.getApplication().getIconController().addIcons({
       // security
       'feature-security': {
-        file: 'shield.png',
+        file: 'security.png',
         variants: ['x16', 'x32']
       },
       'feature-security-anonymous': {
@@ -42,7 +42,7 @@ Ext.define('NX.coreui.controller.Plugin', {
         variants: ['x16', 'x32']
       },
       'feature-security-realms': {
-        file: 'server_components.png', // FIXME: Need better icon
+        file: 'shield.png',
         variants: ['x16', 'x32']
       },
       'feature-security-usertoken': {
