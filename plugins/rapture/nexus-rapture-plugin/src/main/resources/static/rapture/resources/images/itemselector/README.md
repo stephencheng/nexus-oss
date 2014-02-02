@@ -1,1 +1,0 @@
-Remove these images once imageselector can use glyph icons

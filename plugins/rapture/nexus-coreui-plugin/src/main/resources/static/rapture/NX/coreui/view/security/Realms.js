@@ -14,7 +14,7 @@ Ext.define('NX.coreui.view.security.Realms', {
   extend: 'Ext.Panel',
   alias: 'widget.nx-coreui-security-realms',
   requires: [
-    'Ext.ux.form.ItemSelector'
+    'NX.ext.form.field.ItemSelector'
   ],
 
   layout: {
@@ -45,7 +45,8 @@ Ext.define('NX.coreui.view.security.Realms', {
           html: '<p>Security realm settings.</p>'
         },
         {
-          xtype: 'itemselector',
+          xtype: 'nx-itemselector',
+          buttons: [ 'up', 'add', 'remove', 'down' ],
           fromTitle: 'Available',
           toTitle: 'Selected',
           store: Ext.create('Ext.data.ArrayStore', {
