@@ -41,13 +41,17 @@ Ext.define('NX.coreui.view.security.UserToken', {
           xtype: 'label',
           html: '<p>User token settings.</p>'
         },
+
+        // HACK: Using boxLabel to render label to right of checkbox as example
         {
           xtype: 'checkbox',
-          fieldLabel: 'Enable user tokens'
+          boxLabel: 'Enable user tokens'
+          //fieldLabel: 'Enable user tokens'
         },
         {
           xtype: 'checkbox',
-          fieldLabel: 'Require user tokens for content access'
+          boxLabel: 'Require user tokens for content access'
+          //fieldLabel: 'Require user tokens for content access'
         },
       ],
 
