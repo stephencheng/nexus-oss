@@ -71,9 +71,6 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
 
     me.listen({
       store: {
-        '#RepositoryTarget': {
-          beforeload: me.onRepositoryTargetBeforeLoad
-        },
         '#ContentClass': {
           load: me.reselect
         }
@@ -111,12 +108,6 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
       });
       me.getSettings().loadRecord(model);
     }
-  },
-
-  onRepositoryTargetBeforeLoad: function () {
-    var me = this;
-
-    me.getContentClassStore().load();
   },
 
   showAddWindow: function () {

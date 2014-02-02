@@ -30,6 +30,8 @@ Ext.define('NX.coreui.store.ContentClass', {
     }
   },
 
+  autoLoad: true,
+
   sortOnLoad: true,
   sorters: { property: 'name', direction: 'ASC' }
 });
