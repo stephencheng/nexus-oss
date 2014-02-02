@@ -10,30 +10,30 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.pluginconsole.controller.PluginConsole', {
+Ext.define('NX.coreui.controller.PluginConsole', {
   extend: 'NX.controller.MasterDetail',
   requires: [
     'NX.util.Url',
     'NX.Permissions'
   ],
 
-  list: 'nx-pluginconsole-list',
+  list: 'nx-coreui-system-pluginlist',
 
   stores: [
     'PluginInfo'
   ],
   views: [
-    'Feature',
-    'List'
+    'system.Plugins',
+    'system.PluginList'
   ],
   refs: [
     {
       ref: 'list',
-      selector: 'nx-pluginconsole-list'
+      selector: 'nx-coreui-system-pluginlist'
     },
     {
       ref: 'info',
-      selector: 'nx-pluginconsole-feature nx-info-panel'
+      selector: 'nx-coreui-system-plugins nx-info-panel'
     }
   ],
   icons: {
@@ -48,7 +48,7 @@ Ext.define('NX.pluginconsole.controller.PluginConsole', {
   },
   features: {
     path: '/System/Plugins',
-    view: { xtype: 'nx-pluginconsole-feature' },
+    view: 'NX.coreui.view.system.Plugins',
     visible: function () {
       return NX.Permissions.check('nexus:pluginconsoleplugininfos', 'read');
     }
