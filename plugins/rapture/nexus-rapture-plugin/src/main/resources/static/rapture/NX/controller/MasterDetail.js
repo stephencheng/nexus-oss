@@ -234,7 +234,7 @@ Ext.define('NX.controller.MasterDetail', {
       model = selected[0];
       idBookmark = model.getId();
       if (idBookmark) {
-        if (NX.Bookmarks.encode(idBookmark) != idBookmark.toLowerCase()) {
+        if (NX.Bookmarks.encode(idBookmark) != idBookmark) {
           idBookmark = NX.Bookmarks.encode(idBookmark);
         }
         segments.push(idBookmark);
@@ -270,8 +270,8 @@ Ext.define('NX.controller.MasterDetail', {
         // TODO review this as it can be a performance penalty
         // Maybe we should ass a marker that the bookmark was encoded and only search in that case
         if (!model) {
-          model = store.getAt(store.findBy(function(model){
-             return NX.Bookmarks.encode(model.getId()) === modelId;
+          model = store.getAt(store.findBy(function (model) {
+            return NX.Bookmarks.encode(model.getId()) === modelId;
           }));
         }
         if (model) {
