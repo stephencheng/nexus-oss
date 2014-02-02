@@ -35,52 +35,17 @@
 
   #style("$raptureUrl/resources/baseapp-${baseappMode}.css")
   #style("$raptureUrl/resources/rapture.css")
-
-  <style type="text/css">
-    #loading-mask {
-      background-color: black;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      z-index: 20000;
-    }
-
-    #loading {
-      height: auto;
-      position: absolute;
-      top:50%;
-      left:50%;
-      padding: 2px;
-      margin:-180px 0 0 -320px;
-      z-index: 20001;
-    }
-
-    #loading .loading-indicator {
-      background: black;
-      color: #444;
-      font: bold 12px arial, tahoma, verdana, helvetica, sans-serif;
-      height: auto;
-      margin: 0;
-      padding: 10px;
-    }
-
-    #loading-msg {
-      font-size: 18px;
-      font-weight: normal;
-    }
-  </style>
+  #style("$raptureUrl/resources/loading.css")
 </head>
 <body class="x-border-box">
 
 <div id="loading-mask"></div>
 <div id="loading">
   <div class="loading-indicator">
-    <img id="welcome-image" src="$raptureUrl/resources/images/welcome.jpg"/>
+    <img id="loading-image" src="$raptureUrl/resources/images/loading.jpg"/>
     <br/>
     <div style="text-align: center;">
-      <img id="loading-spinner" src="$raptureUrl/resources/images/welcome-loader.gif"/>
+      <img id="loading-spinner" src="$raptureUrl/resources/images/loading-spinner.gif"/>
       <span id="loading-msg">Loading...</span>
     </div>
   </div>
