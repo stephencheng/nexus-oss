@@ -10,9 +10,9 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.view.system.General', {
+Ext.define('NX.coreui.view.security.Realms', {
   extend: 'Ext.Panel',
-  alias: 'widget.nx-coreui-system-general',
+  alias: 'widget.nx-coreui-security-realms',
 
   layout: {
     type: 'vbox',
@@ -33,30 +33,17 @@ Ext.define('NX.coreui.view.system.General', {
   },
 
   items: [
+    // basic settings
     {
       xtype: 'form',
       items: [
         {
           xtype: 'label',
-          html: '<p>Set the base URL for the server.</p>'
-        },
-        {
-          xtype: 'textfield',
-          fieldLabel: 'Base URL',
-          width: 500,
-          emptyText: NX.util.Url.baseUrl
+          html: '<p>Security realm settings.</p>'
         },
         {
           xtype: 'checkbox',
-          fieldLabel: 'Force base URL'
-        },
-        {
-          xtype: 'label',
-          html: '<p>Version updates.</p>'
-        },
-        {
-          xtype: 'checkbox',
-          fieldLabel: 'Check for new version updates'
+          fieldLabel: 'TODO'
         }
       ],
 

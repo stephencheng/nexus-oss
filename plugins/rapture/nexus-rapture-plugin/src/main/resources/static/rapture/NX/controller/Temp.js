@@ -87,10 +87,6 @@ Ext.define('NX.controller.Temp', {
       },
 
       // system
-      'feature-system': {
-        file: 'cog.png',
-        variants: ['x16', 'x32']
-      },
       'feature-system-tasks': {
         file: 'time.png',
         variants: ['x16', 'x32']
@@ -135,14 +131,6 @@ Ext.define('NX.controller.Temp', {
       },
 
       // security
-      'feature-security': {
-        file: 'shield.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-security-settings': {
-        file: 'wrench_orange.png',
-        variants: ['x16', 'x32']
-      },
       'feature-security-ldap': {
         file: 'book_addresses.png',
         variants: ['x16', 'x32']
@@ -159,12 +147,6 @@ Ext.define('NX.controller.Temp', {
     };
 
     me.getApplication().getFeaturesController().registerFeature([
-      {
-        path: '/System',
-        view: 'NX.view.feature.Group',
-        weight: 1000,
-        visible: visibleIfLoggedIn
-      },
       {
         path: '/Repository',
         view: 'NX.view.feature.Group',
@@ -209,10 +191,7 @@ Ext.define('NX.controller.Temp', {
         weight: 90,
         visible: visibleIfLoggedIn
       },
-      {
-        path: '/Security/Settings',
-        visible: visibleIfLoggedIn
-      },
+
       {
         path: '/Security/LDAP',
         visible: visibleIfLoggedIn

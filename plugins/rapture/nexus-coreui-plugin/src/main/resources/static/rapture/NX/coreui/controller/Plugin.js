@@ -17,6 +17,8 @@ Ext.define('NX.coreui.controller.Plugin', {
   },
 
   views: [
+    'security.Anonymous',
+    'security.Realms',
     'security.UserToken',
     'system.General',
     'system.Http',
@@ -30,8 +32,27 @@ Ext.define('NX.coreui.controller.Plugin', {
     var me = this;
 
     me.getApplication().getIconController().addIcons({
+      // security
+      'feature-security': {
+        file: 'shield.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-security-anonymous': {
+        file: 'user_silhouette.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-security-realms': {
+        file: 'server_components.png', // FIXME: Need better icon
+        variants: ['x16', 'x32']
+      },
       'feature-security-usertoken': {
         file: 'key.png',
+        variants: ['x16', 'x32']
+      },
+
+      // system
+      'feature-system': {
+        file: 'cog.png',
         variants: ['x16', 'x32']
       },
       'feature-system-general': {
@@ -56,12 +77,32 @@ Ext.define('NX.coreui.controller.Plugin', {
     me.getApplication().getFeaturesController().registerFeature([
       // security
       {
+        mode: 'admin',
+        path: '/Security/Anonymous',
+        view: 'NX.coreui.view.security.Anonymous',
+        visible: visibleIfLoggedIn
+      },
+      {
+        mode: 'admin',
+        path: '/Security/Realms',
+        view: 'NX.coreui.view.security.Realms',
+        visible: visibleIfLoggedIn
+      },
+      {
+        mode: 'admin',
         path: '/Security/User Token',
         view: 'NX.coreui.view.security.UserToken',
         visible: visibleIfLoggedIn
       },
 
       // system
+      {
+        mode: 'admin',
+        path: '/System',
+        view: 'NX.view.feature.Group',
+        weight: 1000,
+        visible: visibleIfLoggedIn
+      },
       {
         mode: 'admin',
         path: '/System/General',
