@@ -93,13 +93,13 @@
     #end
 
     ## Load core application first
-    #message("Loading baseapp...");
-    #script("$raptureUrl/baseapp-${baseappMode}.js");
+    #message("Loading baseapp...")
+    #script("$raptureUrl/baseapp-${baseappMode}.js")
 
     ## Then load extensions and the main application
-    #message("Initializing...");
-    #script("$raptureUrl/extdirect-${baseappMode}.js");
-    #script("$raptureUrl/app.js");
+    #message("Initializing...")
+    #script("$raptureUrl/extdirect-${baseappMode}.js")
+    #script("$raptureUrl/app.js")
   </div>
 </div>
 
