@@ -28,7 +28,7 @@ Ext.require([
   'Ext.toolbar.*',
   'Ext.tree.*',
   'Ext.util.*',
-  //'Ext.ux.*',
+  'Ext.ux.*',
   'Ext.view.*',
   'Ext.window.*',
   'Ext.Action',
