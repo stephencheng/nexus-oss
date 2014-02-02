@@ -44,7 +44,28 @@ Ext.define('NX.coreui.view.security.Anonymous', {
         {
           xtype: 'checkbox',
           fieldLabel: 'Allow anonymous'
-        }
+        },
+        {
+          xtype: 'fieldset',
+          title: 'Anonymous user',
+          checkboxToggle: true,
+          collapsed: true,
+          items: [
+            {
+              xtype: 'label',
+              html: '<p>Override the default anonymous user.</p>'
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'Username'
+            },
+            {
+              xtype: 'textfield',
+              fieldLabel: 'Password',
+              inputType: 'password'
+            }
+          ]
+        },
       ],
 
       buttonAlign: 'left',
