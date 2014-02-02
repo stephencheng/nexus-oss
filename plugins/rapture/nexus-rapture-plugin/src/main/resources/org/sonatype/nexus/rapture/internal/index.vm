@@ -29,8 +29,12 @@
   <link rel="SHORTCUT ICON" href="$raptureUrl/resources/favicon.ico"/>
   <![endif]-->
 
-  <link rel="stylesheet" type="text/css" href="$raptureUrl/resources/baseapp-${baseappMode}.css">
-  <link rel="stylesheet" type="text/css" href="$raptureUrl/resources/rapture.css">
+  #macro(style $src)
+    <link rel="stylesheet" type="text/css" href="$src">
+  #end
+
+  #style("$raptureUrl/resources/baseapp-${baseappMode}.css")
+  #style("$raptureUrl/resources/rapture.css")
 
   <style type="text/css">
     #loading-mask {

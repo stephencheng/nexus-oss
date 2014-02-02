@@ -10,10 +10,15 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
+
 /**
- * TODO: Sort out how to integrate this into baseapp with scss.
+ * Font-awesome
  */
 @import url('fonts/font-awesome-4.0.3/css/font-awesome.css');
+
+/**
+ * @namespace NX.view.info
+ */
 
 .nx-info {
   margin: 10px;
@@ -35,6 +40,10 @@
 .nx-red-marker td {
   color: #D04437;
 }
+
+/**
+ * @namespace NX.view.masterdetail
+ */
 
 .nx-masterdetail-warning {
   padding-top: 10px;
