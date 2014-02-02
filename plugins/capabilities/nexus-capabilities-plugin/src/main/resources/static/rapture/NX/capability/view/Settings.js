@@ -21,12 +21,12 @@ Ext.define('NX.capability.view.Settings', {
   },
 
   buttons: [
-    {
-      text: 'Save',
-      action: 'save'
-    },
-    {
-      text: 'Cancel'
+    { text: 'Save', action: 'save', ui: 'primary' },
+    { text: 'Discard',
+      handler: function () {
+        var form = this.up('form');
+        form.loadRecord(form.getRecord());
+      }
     }
   ],
 

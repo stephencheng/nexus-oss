@@ -60,13 +60,14 @@ Ext.define('NX.coreui.view.repositorytarget.Settings', {
 
     if (!me.buttons) {
       me.buttons = [
-        { text: 'Save', action: 'save', formBind: true, ui: 'primary' },
-        { text: 'Reset',
+        { text: 'Save', action: 'save', ui: 'primary' },
+        { text: 'Discard',
           handler: function () {
-            me.loadRecord(me.getRecord());
+            var form = this.up('form');
+            form.loadRecord(form.getRecord());
           }
         }
-      ]
+      ];
     }
 
     me.callParent(arguments);

@@ -48,14 +48,12 @@ Ext.define('NX.capability.view.Summary', {
         }
       },
       buttons: [
-        {
-          text: 'Save',
-          action: 'save'
-        },
-        {
-          text: 'Cancel',
-          scope: this,
-          handler: this.close
+        { text: 'Save', action: 'save', ui: 'primary' },
+        { text: 'Discard',
+          handler: function () {
+            var form = this.up('form');
+            form.loadRecord(form.getRecord());
+          }
         }
       ]
     }
