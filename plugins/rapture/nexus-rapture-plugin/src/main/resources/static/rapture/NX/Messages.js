@@ -24,36 +24,12 @@ Ext.define('NX.Messages', {
   },
 
   /**
-   * Reference to the messages controller, set when it initializes.
-   *
-   * @private
-   * @type {NX.controller.Message}
-   */
-  controller: undefined,
-
-  /**
-   * Install the controller reference.
-   *
-   * @public
-   * @param {NX.controller.Message} controller
-   */
-  install: function(controller) {
-    this.controller = controller;
-  },
-
-  /**
    * @public
    * @param message
    */
   add: function(message) {
     var me = this;
-
-    if (me.controller === undefined) {
-      me.logWarn('Controller not installed; can not add message: ' + message);
-    }
-    else {
-      me.controller.addMessage(message);
-    }
+    NX.getApplication().getMessageController().addMessage(message);
   }
 
 });

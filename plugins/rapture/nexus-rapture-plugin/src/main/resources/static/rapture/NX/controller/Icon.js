@@ -38,16 +38,6 @@ Ext.define('NX.controller.Icon', {
   /**
    * @override
    */
-  init: function() {
-    var me = this;
-
-    // Attach to helper
-    NX.Icons.install(me);
-  },
-
-  /**
-   * @override
-   */
   onLaunch: function() {
     var me = this;
 

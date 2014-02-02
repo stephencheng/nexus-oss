@@ -84,9 +84,6 @@ Ext.define('NX.controller.Message', {
     });
 
     me.getMessageStore().on('datachanged', me.updateHeader, me);
-
-    // Attach to helper
-    NX.Messages.install(me);
   },
 
   /**

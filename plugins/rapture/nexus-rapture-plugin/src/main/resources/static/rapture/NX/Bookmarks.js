@@ -23,42 +23,32 @@ Ext.define('NX.Bookmarks', {
   ],
 
   /**
-   * Reference to the **{@link NX.controller.Bookmarking}** controller, set when it initializes.
-   *
    * @private
-   * @type {NX.controller.Bookmarking}
+   * @returns {NX.controller.Bookmarking}
    */
-  controller: undefined,
-
-  /**
-   * Install the controller reference.
-   *
-   * @public
-   * @param {NX.controller.Bookmarking} controller
-   */
-  install: function (controller) {
-    this.controller = controller;
+  controller: function() {
+    return NX.getApplication().getBookmarkingController();
   },
 
   /**
    * @see {@link NX.controller.Bookmarking#getBookmark}
    */
   getBookmark: function () {
-    return this.controller.getBookmark();
+    return this.controller().getBookmark();
   },
 
   /**
    * @see {@link NX.controller.Bookmarking#bookmark}
    */
   bookmark: function (bookmark, caller) {
-    return this.controller.bookmark(bookmark, caller);
+    return this.controller().bookmark(bookmark, caller);
   },
 
   /**
    * @see {@link NX.controller.Bookmarking#navigateTo}
    */
   navigateTo: function (bookmark, caller) {
-    return this.controller.navigateTo(bookmark, caller);
+    return this.controller().navigateTo(bookmark, caller);
   },
 
   /**

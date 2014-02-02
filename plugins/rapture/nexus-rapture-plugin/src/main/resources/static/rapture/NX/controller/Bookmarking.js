@@ -51,9 +51,6 @@ Ext.define('NX.controller.Bookmarking', {
          */
         'navigate'
     );
-
-    // Attach to helper
-    NX.Bookmarks.install(me);
   },
 
   /**

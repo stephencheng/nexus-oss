@@ -24,25 +24,6 @@ Ext.define('NX.Icons', {
   },
 
   /**
-   * Reference to the controller, set when it initializes.
-   *
-   * @private
-   * @type {NX.controller.Icons}
-   */
-  controller: undefined,
-
-  /**
-   * Install the controller reference.
-   *
-   * @public
-   * @static
-   * @param {NX.controller.Icons} controller
-   */
-  install: function(controller) {
-    this.controller = controller;
-  },
-
-  /**
    * Helper to get the CSS class for a named icon with optional variant.
    *
    * @public
