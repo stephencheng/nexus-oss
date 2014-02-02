@@ -24,7 +24,8 @@ Ext.define('NX.capability.controller.Capabilities', {
     'CapabilityType'
   ],
   models: [
-    'Capability'
+    'Capability',
+    'CapabilityStatus'
   ],
   views: [
     'Feature',
@@ -152,15 +153,19 @@ Ext.define('NX.capability.controller.Capabilities', {
     }
 
     summary.showInfo(info);
-    summary.down('form').loadRecord(capabilityModel);
+    if (capabilityModel) {
+      summary.down('form').loadRecord(capabilityModel);
+    }
   },
 
   showSettings: function (capabilityModel, capabilityTypeModel) {
     var settings = this.getSettings(),
         settingsFieldSet = settings.down('nx-capability-settings-fieldset');
 
-    settings.loadRecord(capabilityModel);
-    settingsFieldSet.importCapability(settings.getForm(), capabilityModel, capabilityTypeModel);
+    if (capabilityModel) {
+      settings.loadRecord(capabilityModel);
+      settingsFieldSet.importCapability(settings.getForm(), capabilityModel, capabilityTypeModel);
+    }
   },
 
   showStatus: function (model) {
@@ -216,10 +221,11 @@ Ext.define('NX.capability.controller.Capabilities', {
       if (Ext.isDefined(response)) {
         if (response.success) {
           win.close();
-          me.loadStoresAndSelect(response.data);
           NX.Messages.add({
-            text: 'Capability created: ' + me.getDescription(capabilityModel), type: 'success'
+            text: 'Capability created: ' + me.getDescription(me.getCapabilityStatusModel().create(response.data)),
+            type: 'success'
           });
+          me.loadStoresAndSelect(response.data.id);
         }
         else if (Ext.isDefined(response.errors)) {
           remainingErrors = form.markInvalid(response.errors);
@@ -243,10 +249,11 @@ Ext.define('NX.capability.controller.Capabilities', {
     NX.direct.capability_Capability.update(capabilityModel.data, function (response) {
       if (Ext.isDefined(response)) {
         if (response.success) {
-          me.loadStores();
           NX.Messages.add({
-            text: 'Capability updated: ' + me.getDescription(capabilityModel), type: 'success'
+            text: 'Capability updated: ' + me.getDescription(me.getCapabilityStatusModel().create(response.data)),
+            type: 'success'
           });
+          me.loadStores();
         }
         else if (Ext.isDefined(response.errors)) {
           remainingErrors = form.markInvalid(response.errors);

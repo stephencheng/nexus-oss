@@ -120,26 +120,26 @@ public class CapabilityDirectComponent
    * Add a new capability.
    */
   @DirectMethod
-  public String create(final CapabilityUX capability) throws IOException, InvalidConfigurationException {
-    return capabilityRegistry.add(
+  public CapabilityStatusUX create(final CapabilityUX capability) throws IOException, InvalidConfigurationException {
+    return asCapabilityStatus(capabilityRegistry.add(
         capabilityType(capability.getTypeId()),
         capability.isEnabled(),
         capability.getNotes(),
         asMap(capability.getProperties())
-    ).context().id().toString();
+    ));
   }
 
   /**
    * Update the configuration of an existing capability.
    */
   @DirectMethod
-  public String update(final CapabilityUX capability) throws IOException, InvalidConfigurationException {
-    return capabilityRegistry.update(
+  public CapabilityStatusUX update(final CapabilityUX capability) throws IOException, InvalidConfigurationException {
+    return asCapabilityStatus(capabilityRegistry.update(
         capabilityIdentity(capability.getId()),
         capability.isEnabled(),
         capability.getNotes(),
         asMap(capability.getProperties())
-    ).context().id().toString();
+    ));
   }
 
   /**

@@ -59,41 +59,40 @@ extends DirectComponentSupport
   @RequiresPermissions('nexus:targets:read')
   List<RepositoryTargetXO> read() {
     return targetRegistry.repositoryTargets.collect { input ->
-      def result = new RepositoryTargetXO(
-          id: input.id,
-          name: input.name,
-          contentClassId: input.contentClass.id,
-          patterns: input.patternTexts.toList().sort()
-      )
-      return result
+      return asRepositoryTarget(input)
     }
   }
 
   @DirectMethod
   @RequiresAuthentication
   @RequiresPermissions('nexus:targets:create')
-  String create(final RepositoryTargetXO target) {
+  RepositoryTargetXO create(final RepositoryTargetXO target) {
     validate(target);
     target.id = Long.toHexString(System.nanoTime());
-    targetRegistry.addRepositoryTarget(new Target(
+    def result = new Target(
         target.id, target.name, repositoryTypeRegistry.contentClasses[target.contentClassId], target.patterns
-    ))
+    )
+    targetRegistry.addRepositoryTarget(result)
     nexusConfiguration.saveConfiguration();
-    return target.id
+    return asRepositoryTarget(result)
   }
 
   @DirectMethod
   @RequiresAuthentication
   @RequiresPermissions('nexus:targets:update')
-  void update(final RepositoryTargetXO target) {
+  RepositoryTargetXO update(final RepositoryTargetXO target) {
     validate(target);
     // TODO validate id and that id exists
     if (target.id) {
-      targetRegistry.addRepositoryTarget(new Target(
+      def result = new Target(
           target.id, target.name, repositoryTypeRegistry.contentClasses[target.contentClassId], target.patterns
-      ))
+      )
+      targetRegistry.addRepositoryTarget(result)
       nexusConfiguration.saveConfiguration();
+      return asRepositoryTarget(result)
     }
+    // TODO throw exception
+    return null
   }
 
   @DirectMethod
@@ -102,6 +101,15 @@ extends DirectComponentSupport
   void delete(final String id) {
     targetRegistry.removeRepositoryTarget(id)
     nexusConfiguration.saveConfiguration();
+  }
+
+  private static RepositoryTargetXO asRepositoryTarget(Target input) {
+    return new RepositoryTargetXO(
+        id: input.id,
+        name: input.name,
+        contentClassId: input.contentClass.id,
+        patterns: input.patternTexts.toList().sort()
+    )
   }
 
   private void validate(final RepositoryTargetXO target) {

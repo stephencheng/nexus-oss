@@ -122,10 +122,11 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
       if (Ext.isDefined(response)) {
         if (response.success) {
           win.close();
-          me.loadStoresAndSelect(response.data);
           NX.Messages.add({
-            text: 'Target created: ' + me.getDescription(model), type: 'success'
+            text: 'Target created: ' + me.getDescription(me.getRepositoryTargetModel().create(response.data)),
+            type: 'success'
           });
+          me.loadStoresAndSelect(response.data.id);
         }
         else if (Ext.isDefined(response.errors)) {
           form.getForm().markInvalid(response.errors);
@@ -145,10 +146,11 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     NX.direct.coreui_RepositoryTarget.update(model.data, function (response) {
       if (Ext.isDefined(response)) {
         if (response.success) {
-          me.loadStores();
           NX.Messages.add({
-            text: 'Target updated: ' + me.getDescription(model), type: 'success'
+            text: 'Target updated: ' + me.getDescription(me.getRepositoryTargetModel().create(response.data)),
+            type: 'success'
           });
+          me.loadStores();
         }
         else if (Ext.isDefined(response.errors)) {
           form.getForm().markInvalid(response.errors);
