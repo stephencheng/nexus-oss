@@ -17,6 +17,7 @@ Ext.define('NX.coreui.controller.Plugin', {
   },
 
   views: [
+    'security.UserToken',
     'system.General',
     'system.Http',
     'system.Notifications'
@@ -29,6 +30,10 @@ Ext.define('NX.coreui.controller.Plugin', {
     var me = this;
 
     me.getApplication().getIconController().addIcons({
+      'feature-security-usertoken': {
+        file: 'key.png',
+        variants: ['x16', 'x32']
+      },
       'feature-system-general': {
         file: 'wrench.png',
         variants: ['x16', 'x32']
@@ -49,6 +54,14 @@ Ext.define('NX.coreui.controller.Plugin', {
     };
 
     me.getApplication().getFeaturesController().registerFeature([
+      // security
+      {
+        path: '/Security/User Token',
+        view: 'NX.coreui.view.security.UserToken',
+        visible: visibleIfLoggedIn
+      },
+
+      // system
       {
         mode: 'admin',
         path: '/System/General',

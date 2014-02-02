@@ -143,10 +143,6 @@ Ext.define('NX.controller.Temp', {
         file: 'wrench_orange.png',
         variants: ['x16', 'x32']
       },
-      'feature-security-usertoken': {
-        file: 'key.png',
-        variants: ['x16', 'x32']
-      },
       'feature-security-ldap': {
         file: 'book_addresses.png',
         variants: ['x16', 'x32']
@@ -215,10 +211,6 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/Security/Settings',
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/Security/User Token',
         visible: visibleIfLoggedIn
       },
       {
