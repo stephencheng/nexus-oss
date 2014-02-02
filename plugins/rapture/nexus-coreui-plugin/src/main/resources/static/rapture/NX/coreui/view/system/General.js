@@ -33,13 +33,12 @@ Ext.define('NX.coreui.view.system.General', {
   },
 
   items: [
-    // default form
     {
       xtype: 'form',
       items: [
         {
           xtype: 'label',
-          html: '<p>The quick brown fox jumps over the lazy dog.</p>'
+          html: '<p>Set the base URL for this server.</p>'
         },
         {
           xtype: 'textfield',
@@ -65,30 +64,6 @@ Ext.define('NX.coreui.view.system.General', {
       buttons: [
         { text: 'Save', ui: 'primary' },
         { text: 'Discard' }
-      ]
-    },
-
-    // TODO: another form for testing framed style
-    {
-      xtype: 'form',
-      title: 'Base Encryption Key Hash',
-      frame: true,
-
-      bodyStyle: {
-        padding: '10px'
-      },
-
-      items: [
-        {
-          xtype: 'label',
-          html: '<p>Recompute base encryption key hash will require all users passwords to need manual resetting in person.</p>' +
-              '<p>You probably do not want to do this... you have been warned!</p>'
-        }
-      ],
-
-      buttonAlign: 'left',
-      buttons: [
-        { text: 'Recompute base encryption key hash', ui: 'danger' }
       ]
     }
   ]
