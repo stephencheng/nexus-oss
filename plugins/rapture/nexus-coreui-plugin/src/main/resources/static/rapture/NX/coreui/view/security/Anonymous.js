@@ -43,11 +43,11 @@ Ext.define('NX.coreui.view.security.Anonymous', {
         },
         {
           xtype: 'checkbox',
-          fieldLabel: 'Allow anonymous'
+          boxLabel: 'Allow anonymous users to access the server'
         },
         {
           xtype: 'fieldset',
-          title: 'Anonymous user',
+          title: 'Use custom anonymous user',
           checkboxToggle: true,
           collapsed: true,
           items: [
