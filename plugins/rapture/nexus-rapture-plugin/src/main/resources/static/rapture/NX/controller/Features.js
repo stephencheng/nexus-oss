@@ -55,12 +55,7 @@ Ext.define('NX.controller.Features', {
           path = path.substr(1, path.length);
         }
 
-        // auto-set iconName
-        if (!feature.iconName) {
-          feature.iconName = 'feature-' + path.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
-
-          console.log(feature.iconName);
-        }
+        me.configureIcon(path, feature);
 
         path = feature.mode + '/' + path;
         feature.path = '/' + path;
@@ -72,6 +67,33 @@ Ext.define('NX.controller.Features', {
 
         me.getFeatureStore().addSorted(me.getFeatureModel().create(feature));
       });
+    }
+  },
+
+  /**
+   * @private
+   * @param feature
+   */
+  configureIcon: function(path, feature) {
+    var me = this,
+        defaultIconName = 'feature-' + path.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
+
+    // inline icon registration for feature
+    if (feature.iconConfig) {
+      var icon = feature.iconConfig;
+      delete feature.iconConfig;
+      if (icon.name) {
+        feature.iconName = icon.name;
+      }
+      else {
+        icon.name = defaultIconName;
+      }
+      me.getApplication().getIconController().addIcon(icon);
+    }
+
+    // default icon name if not set
+    if (!feature.iconName) {
+      feature.iconName = defaultIconName;
     }
   }
 

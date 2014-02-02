@@ -31,44 +31,6 @@ Ext.define('NX.coreui.controller.Plugin', {
   init: function () {
     var me = this;
 
-    me.getApplication().getIconController().addIcons({
-      // security
-      'feature-security': {
-        file: 'security.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-security-anonymous': {
-        file: 'user_silhouette.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-security-realms': {
-        file: 'shield.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-security-usertoken': {
-        file: 'key.png',
-        variants: ['x16', 'x32']
-      },
-
-      // system
-      'feature-system': {
-        file: 'cog.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-system-general': {
-        file: 'wrench.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-system-http': {
-        file: 'transmit.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-system-notifications': {
-        file: 'emails.png',
-        variants: ['x16', 'x32']
-      }
-    });
-
     // HACK: Show some items only if user is logged in for testing
     var visibleIfLoggedIn = function () {
       return me.getApplication().getUserController().hasUser();
@@ -78,20 +40,43 @@ Ext.define('NX.coreui.controller.Plugin', {
       // security
       {
         mode: 'admin',
+        path: '/Security',
+        view: 'NX.view.feature.Group',
+        iconConfig: {
+          file: 'security.png',
+          variants: ['x16', 'x32']
+        },
+        weight: 90,
+        visible: visibleIfLoggedIn
+      },
+      {
+        mode: 'admin',
         path: '/Security/Anonymous',
         view: 'NX.coreui.view.security.Anonymous',
+        iconConfig: {
+          file: 'user_silhouette.png',
+          variants: ['x16', 'x32']
+        },
         visible: visibleIfLoggedIn
       },
       {
         mode: 'admin',
         path: '/Security/Realms',
         view: 'NX.coreui.view.security.Realms',
+        iconConfig: {
+          file: 'shield.png',
+          variants: ['x16', 'x32']
+        },
         visible: visibleIfLoggedIn
       },
       {
         mode: 'admin',
         path: '/Security/User Token',
         view: 'NX.coreui.view.security.UserToken',
+        iconConfig: {
+          file: 'key.png',
+          variants: ['x16', 'x32']
+        },
         visible: visibleIfLoggedIn
       },
 
@@ -100,6 +85,10 @@ Ext.define('NX.coreui.controller.Plugin', {
         mode: 'admin',
         path: '/System',
         view: 'NX.view.feature.Group',
+        iconConfig: {
+          file: 'cog.png',
+          variants: ['x16', 'x32']
+        },
         weight: 1000,
         visible: visibleIfLoggedIn
       },
@@ -107,18 +96,30 @@ Ext.define('NX.coreui.controller.Plugin', {
         mode: 'admin',
         path: '/System/General',
         view: 'NX.coreui.view.system.General',
+        iconConfig: {
+          file: 'wrench.png',
+          variants: ['x16', 'x32']
+        },
         visible: visibleIfLoggedIn
       },
       {
         mode: 'admin',
         path: '/System/HTTP',
         view: 'NX.coreui.view.system.Http',
+        iconConfig: {
+          file: 'transmit.png',
+          variants: ['x16', 'x32']
+        },
         visible: visibleIfLoggedIn
       },
       {
         mode: 'admin',
         path: '/System/Notifications',
         view: 'NX.coreui.view.system.Notifications',
+        iconConfig: {
+          file: 'emails.png',
+          variants: ['x16', 'x32']
+        },
         visible: visibleIfLoggedIn
       },
     ]);

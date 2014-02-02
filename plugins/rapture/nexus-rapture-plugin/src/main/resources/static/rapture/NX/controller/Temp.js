@@ -181,12 +181,6 @@ Ext.define('NX.controller.Temp', {
         path: '/Procurement/Repositories',
         visible: visibleIfLoggedIn
       },
-      {
-        path: '/Security',
-        view: 'NX.view.feature.Group',
-        weight: 90,
-        visible: visibleIfLoggedIn
-      },
 
       {
         path: '/Security/LDAP',
