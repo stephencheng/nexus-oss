@@ -35,6 +35,10 @@ Ext.define('NX.coreui.view.system.General', {
   items: [
     {
       xtype: 'form',
+      api: {
+        load: 'NX.direct.coreui_SystemGeneral.read',
+        update: 'NX.direct.coreui_SystemGeneral.update'
+      },
       items: [
         {
           xtype: 'label',
@@ -42,12 +46,14 @@ Ext.define('NX.coreui.view.system.General', {
         },
         {
           xtype: 'textfield',
+          name: 'baseUrl',
           fieldLabel: 'Base URL',
           width: 500,
           emptyText: NX.util.Url.baseUrl
         },
         {
           xtype: 'checkbox',
+          name: 'forceBaseUrl',
           boxLabel: 'Force base URL'
         },
         {
@@ -56,15 +62,35 @@ Ext.define('NX.coreui.view.system.General', {
         },
         {
           xtype: 'checkbox',
+          name: 'checkForUpdates',
           boxLabel: 'Check for new version updates'
         }
       ],
 
       buttonAlign: 'left',
       buttons: [
-        { text: 'Save', ui: 'primary' },
-        { text: 'Discard' }
-      ]
+        { text: 'Save', formBind: true, ui: 'primary',
+          handler: function (button) {
+            button.up('form').getForm().doAction('directupdate', {
+              success: function () {
+                NX.Messages.add({ text: 'General system settings updated', type: 'success' });
+                button.up('form').load();
+              }
+            });
+          }
+        },
+        { text: 'Discard',
+          handler: function (button) {
+            button.up('form').load();
+          }
+        }
+      ],
+
+      listeners: {
+        beforerender: function (form) {
+          form.load();
+        }
+      }
     }
   ]
 
