@@ -14,8 +14,6 @@ Ext.define('NX.view.message.Panel', {
   extend: 'Ext.Panel',
   alias: 'widget.nx-message-panel',
 
-  title: 'Messages',
-
   border: false,
   ui: 'messages',
   width: 200,
