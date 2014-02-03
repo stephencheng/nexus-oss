@@ -36,21 +36,23 @@ Ext.define('NX.coreui.controller.PluginConsole', {
       selector: 'nx-coreui-system-plugins nx-info-panel'
     }
   ],
-  icons: {
-    'feature-system-plugins': {
-      file: 'plugin.png',
-      variants: ['x16', 'x32']
-    },
-    'plugin-default': {
-      file: 'plugin.png',
-      variants: ['x16', 'x32']
-    }
-  },
+
   features: {
     path: '/System/Plugins',
     view: 'NX.coreui.view.system.Plugins',
+    iconConfig: {
+      file: 'plugin.png',
+      variants: ['x16', 'x32']
+    },
     visible: function () {
       return NX.Permissions.check('nexus:pluginconsoleplugininfos', 'read');
+    }
+  },
+
+  icons: {
+    'plugin-default': {
+      file: 'plugin.png',
+      variants: ['x16', 'x32']
     }
   },
 
