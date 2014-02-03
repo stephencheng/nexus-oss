@@ -11,7 +11,7 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.view.header.Panel', {
-  extend: 'Ext.panel.Panel',
+  extend: 'Ext.container.Container',
   alias: 'widget.nx-header-panel',
 
   layout: {
