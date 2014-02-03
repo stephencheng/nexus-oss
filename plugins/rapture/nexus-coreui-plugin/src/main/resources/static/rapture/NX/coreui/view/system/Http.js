@@ -35,6 +35,10 @@ Ext.define('NX.coreui.view.system.Http', {
   items: [
     {
       xtype: 'form',
+      api: {
+        load: 'NX.direct.coreui_SystemHttp.read',
+        update: 'NX.direct.coreui_SystemHttp.update'
+      },
       items: [
         // request settings
         {
@@ -43,20 +47,24 @@ Ext.define('NX.coreui.view.system.Http', {
         },
         {
           xtype: 'textfield',
+          name: 'userAgentCustomisation',
           fieldLabel: 'User-agent customization',
           width: 400
         },
         {
           xtype: 'textfield',
+          name: 'urlParameters',
           fieldLabel: 'URL parameters',
           width: 400
         },
         {
           xtype: 'numberfield',
+          name: 'timeout',
           fieldLabel: 'Timeout seconds'
         },
         {
           xtype: 'numberfield',
+          name: 'retries',
           fieldLabel: 'Retry attempts'
         },
 
@@ -64,7 +72,7 @@ Ext.define('NX.coreui.view.system.Http', {
           xtype: 'fieldset',
           title: 'HTTP Proxy',
           checkboxToggle: true,
-          collapsed: true,
+          checkboxName: 'httpEnabled',
           items: [
             {
               xtype: 'label',
@@ -72,25 +80,51 @@ Ext.define('NX.coreui.view.system.Http', {
             },
             {
               xtype: 'textfield',
+              name: 'httpHost',
               fieldLabel: 'Host'
             },
             {
-              xtype: 'textfield',
+              xtype: 'numberfield',
+              name: 'httpPort',
               fieldLabel: 'Port'
             },
             {
-              xtype: 'textfield',
-              fieldLabel: 'Username'
+              xtype: 'fieldset',
+              title: 'Authentication (optional)',
+              checkboxToggle: true,
+              checkboxName: 'httpAuthEnabled',
+              collapsed: true,
+              items: [
+                {
+                  xtype: 'textfield',
+                  name: 'httpAuthUsername',
+                  fieldLabel: 'Username'
+                },
+                {
+                  xtype: 'textfield',
+                  name: 'httpAuthPassword',
+                  fieldLabel: 'Password',
+                  inputType: 'password'
+                },
+                {
+                  xtype: 'textfield',
+                  name: 'httpAuthNtlmHost',
+                  fieldLabel: 'NT LAN Host'
+                },
+                {
+                  xtype: 'textfield',
+                  name: 'httpAuthNtlmDomain',
+                  fieldLabel: 'NT LAN Manager Domain'
+                }
+              ]
             },
             {
-              xtype: 'textfield',
-              fieldLabel: 'Password',
-              inputType: 'password'
-            },
-            {
-              xtype: 'textfield',
-              fieldLabel: 'Non-proxy hosts',
-              width: 400
+              xtype: 'nx-valueset',
+              name: 'nonProxyHosts',
+              fieldLabel: 'Non Proxy Hosts',
+              emptyText: 'enter a hostname',
+              width: 400,
+              sorted: true
             }
           ]
         },
@@ -99,6 +133,7 @@ Ext.define('NX.coreui.view.system.Http', {
           xtype: 'fieldset',
           title: 'HTTPS Proxy',
           checkboxToggle: true,
+          checkboxName: 'httpsEnabled',
           collapsed: true,
           items: [
             {
@@ -107,25 +142,43 @@ Ext.define('NX.coreui.view.system.Http', {
             },
             {
               xtype: 'textfield',
+              name: 'httpsHost',
               fieldLabel: 'Host'
             },
             {
-              xtype: 'textfield',
+              xtype: 'numberfield',
+              name: 'httpsPort',
               fieldLabel: 'Port'
             },
             {
-              xtype: 'textfield',
-              fieldLabel: 'Username'
-            },
-            {
-              xtype: 'textfield',
-              fieldLabel: 'Password',
-              inputType: 'password'
-            },
-            {
-              xtype: 'textfield',
-              fieldLabel: 'Non-proxy hosts',
-              width: 400
+              xtype: 'fieldset',
+              title: 'Authentication (optional)',
+              checkboxToggle: true,
+              checkboxName: 'httpsAuthEnabled',
+              collapsed: true,
+              items: [
+                {
+                  xtype: 'textfield',
+                  name: 'httpsAuthUsername',
+                  fieldLabel: 'Username'
+                },
+                {
+                  xtype: 'textfield',
+                  name: 'httpsAuthPassword',
+                  fieldLabel: 'Password',
+                  inputType: 'password'
+                },
+                {
+                  xtype: 'textfield',
+                  name: 'httpsAuthNtlmHost',
+                  fieldLabel: 'NT LAN Host'
+                },
+                {
+                  xtype: 'textfield',
+                  name: 'httpsAuthNtlmDomain',
+                  fieldLabel: 'NT LAN Manager Domain'
+                }
+              ]
             }
           ]
         }
@@ -133,9 +186,28 @@ Ext.define('NX.coreui.view.system.Http', {
 
       buttonAlign: 'left',
       buttons: [
-        { text: 'Save', ui: 'primary' },
-        { text: 'Discard' }
-      ]
+        { text: 'Save', formBind: true, ui: 'primary',
+          handler: function (button) {
+            button.up('form').getForm().doAction('directupdate', {
+              success: function () {
+                NX.Messages.add({ text: 'HTTP settings updated', type: 'success' });
+                button.up('form').load();
+              }
+            });
+          }
+        },
+        { text: 'Discard',
+          handler: function (button) {
+            button.up('form').load();
+          }
+        }
+      ],
+
+      listeners: {
+        beforerender: function (form) {
+          form.load();
+        }
+      }
     }
   ]
 
