@@ -86,7 +86,10 @@ Ext.define('NX.coreui.view.system.Http', {
             {
               xtype: 'numberfield',
               name: 'httpPort',
-              fieldLabel: 'Port'
+              fieldLabel: 'Port',
+              minValue: 1,
+              maxValue: 65535,
+              allowDecimals: false
             },
             {
               xtype: 'fieldset',
@@ -148,7 +151,10 @@ Ext.define('NX.coreui.view.system.Http', {
             {
               xtype: 'numberfield',
               name: 'httpsPort',
-              fieldLabel: 'Port'
+              fieldLabel: 'Port',
+              minValue: 1,
+              maxValue: 65535,
+              allowDecimals: false
             },
             {
               xtype: 'fieldset',
