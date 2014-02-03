@@ -21,6 +21,7 @@ Ext.define('NX.controller.Message', {
   },
 
   views: [
+    'header.Messages',
     'message.Panel',
     'message.Notification'
   ],
@@ -30,6 +31,10 @@ Ext.define('NX.controller.Message', {
   ],
 
   refs: [
+    {
+      ref: 'button',
+      selector: 'nx-header-messages'
+    },
     {
       ref: 'panel',
       selector: 'nx-message-panel'
@@ -77,6 +82,9 @@ Ext.define('NX.controller.Message', {
         }
       },
       component: {
+        'nx-header-messages': {
+          click: me.toggleMessages
+        },
         'nx-message-panel button[action=clear]': {
           click: me.clearMessages
         }
@@ -93,21 +101,32 @@ Ext.define('NX.controller.Message', {
    */
   updateHeader: function () {
     var me = this,
-        count = me.getMessageStore().getCount(),
-        title = 'Messages';
+        button = me.getButton(),
+        count = me.getMessageStore().getCount();
 
-    if (me.getPanel()) {
-      if (count != 0) {
-        title = Ext.util.Format.plural(count, 'Message');
-
-        // update icon to highlight new messages
-        me.getPanel().setIconCls(NX.Icons.cls('message-default', 'x16'));
+    if (button) {
+      if (count) {
+        button.setText(count);
       }
       else {
-        me.getPanel().setIconCls(undefined);
+        button.setText('');
       }
+    }
+  },
 
-      me.getPanel().setTitle(title);
+  /**
+   * @private
+   * @param button
+   */
+  toggleMessages: function(button) {
+    var me = this,
+        panel = me.getPanel();
+
+    if (panel.isVisible()) {
+      panel.hide();
+    }
+    else {
+      panel.show();
     }
   },
 

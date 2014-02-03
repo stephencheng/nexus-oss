@@ -43,10 +43,11 @@ Ext.define('NX.view.Main', {
       xtype: 'nx-message-panel',
       region: 'east',
       border: true,
-      collapsible: true,
-      collapsed: true,
       resizable: true,
-      resizeHandles: 'w'
+      resizeHandles: 'w',
+
+      // default to hidden, header button toggles
+      hidden: true
     },
 
     {

@@ -52,6 +52,7 @@ Ext.define('NX.view.header.Panel', {
         '->',
         { xtype: 'nx-searchbox', itemId: 'quicksearch', emptyText: 'quick search' },
         '->',
+        { xtype: 'nx-header-messages', ui: 'header' },
         { xtype: 'nx-header-refresh', ui: 'header' },
         { xtype: 'nx-header-help', ui: 'header' },
         { xtype: 'nx-header-login', ui: 'header' },
