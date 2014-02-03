@@ -311,7 +311,7 @@ Ext.define('NX.controller.User', {
     if (!me.getAuthenticate()) {
       win = me.getAuthenticateView().create({ message: message });
       if (me.hasUser()) {
-        win.down('form').getForm().setValues({ username: me.user.id, remember: me.user.authenticated === false});
+        win.down('form').getForm().setValues({ username: me.user.id });
         win.down('#password').focus();
       }
     }
