@@ -17,7 +17,7 @@ Ext.define('NX.view.dev.Panel', {
   ],
   alias: 'widget.nx-dev-panel',
 
-  title: 'Developer',
+  title: 'Developer - NX ' + NX.app.status.edition + ' ' + NX.app.status.version,
   ui: 'developer',
   stateful: true,
   stateId: 'nx-dev-panel',
