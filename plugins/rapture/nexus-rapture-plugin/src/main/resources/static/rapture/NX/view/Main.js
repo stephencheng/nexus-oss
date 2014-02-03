@@ -80,7 +80,6 @@ Ext.define('NX.view.Main', {
 
     // if debug enabled, show developer tools
     if (NX.app.debug) {
-      this.down('nx-footer').hide();
       this.down('nx-dev-panel').show();
     }
   }
