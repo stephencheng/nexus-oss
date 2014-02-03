@@ -16,15 +16,15 @@ startTest(function (t) {
 
   t.requireOk(
       [
-        'NX.capability.model.CapabilityStatus',
-        'NX.capability.view.List'
+        'NX.model.CapabilityStatus',
+        'NX.coreui.view.capability.List'
       ],
       function () {
-        var grid = Ext.create('NX.capability.view.List', {
+        var grid = Ext.create('NX.coreui.view.capability.List', {
           renderTo: Ext.getBody(),
           store: Ext.create('Ext.data.Store', {
             autoLoad: true,
-            model: 'NX.capability.model.CapabilityStatus',
+            model: 'NX.model.CapabilityStatus',
             data: [
               {
                 enabled: true,

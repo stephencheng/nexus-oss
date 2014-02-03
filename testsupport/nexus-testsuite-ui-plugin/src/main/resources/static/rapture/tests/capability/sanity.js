@@ -15,20 +15,19 @@ startTest(function (t) {
 
   Ext.Direct.addProvider(NX.direct.api.REMOTING_API);
 
-  t.requireOk('NX.capability.app.PluginConfig');
-  t.requireOk('NX.capability.controller.Capabilities');
-  t.requireOk('NX.capability.model.Capability');
-  t.requireOk('NX.capability.model.CapabilityStatus');
-  t.requireOk('NX.capability.model.CapabilityType');
-  t.requireOk('NX.capability.store.Capability');
-  t.requireOk('NX.capability.store.CapabilityStatus');
-  t.requireOk('NX.capability.store.CapabilityType');
-  t.requireOk('NX.capability.view.About');
-  t.requireOk('NX.capability.view.Add');
-  t.requireOk('NX.capability.view.List');
-  t.requireOk('NX.capability.view.Settings');
-  t.requireOk('NX.capability.view.SettingsFieldSet');
-  t.requireOk('NX.capability.view.Status');
-  t.requireOk('NX.capability.view.Summary');
+  t.requireOk('NX.controller.Capabilities');
+  t.requireOk('NX.model.Capability');
+  t.requireOk('NX.model.CapabilityStatus');
+  t.requireOk('NX.model.CapabilityType');
+  t.requireOk('NX.store.Capability');
+  t.requireOk('NX.store.CapabilityStatus');
+  t.requireOk('NX.store.CapabilityType');
+  t.requireOk('NX.coreui.view.capability.About');
+  t.requireOk('NX.coreui.view.capability.Add');
+  t.requireOk('NX.coreui.view.capability.List');
+  t.requireOk('NX.coreui.view.capability.Settings');
+  t.requireOk('NX.coreui.view.capability.SettingsFieldSet');
+  t.requireOk('NX.coreui.view.capability.Status');
+  t.requireOk('NX.coreui.view.capability.Summary');
 
 });

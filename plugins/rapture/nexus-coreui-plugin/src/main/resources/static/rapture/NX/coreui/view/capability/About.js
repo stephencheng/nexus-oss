@@ -10,22 +10,20 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.app.PluginConfig', {
+Ext.define('NX.coreui.view.capability.About', {
+  extend: 'Ext.panel.Panel',
+  alias: 'widget.nx-coreui-capability-about',
 
-  namespaces: [
-    'NX.coreui'
-  ],
+  title: 'About',
 
-  controllers: [
-    'NX.coreui.controller.Capabilities',
-    'NX.coreui.controller.Plugin',
-    'NX.coreui.controller.PluginConsole',
-    'NX.coreui.controller.Repositories',
-    // TODO remove this bellow as is just an example on how to add an extra tab to a master detail
-    'NX.coreui.controller.RepositoriesExtraTab',
-    'NX.coreui.controller.RepositoryTargets',
-    'NX.coreui.controller.Privileges',
-    'NX.coreui.controller.Roles',
-    'NX.coreui.controller.Users'
-  ]
+  autoScroll: true,
+  html: '',
+
+  showAbout: function (about) {
+    this.html = about;
+    if (this.body) {
+      this.update(about);
+    }
+  }
+
 });

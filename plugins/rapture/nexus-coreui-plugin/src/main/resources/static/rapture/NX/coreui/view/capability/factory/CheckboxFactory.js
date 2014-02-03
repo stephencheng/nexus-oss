@@ -10,22 +10,34 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.app.PluginConfig', {
+/*global NX*/
 
-  namespaces: [
-    'NX.coreui'
-  ],
+/**
+ * 'checkbox' factory.
+ *
+ * @since 2.7
+ */
+Ext.define('NX.coreui.view.capability.factory.CheckboxFactory', {
 
-  controllers: [
-    'NX.coreui.controller.Capabilities',
-    'NX.coreui.controller.Plugin',
-    'NX.coreui.controller.PluginConsole',
-    'NX.coreui.controller.Repositories',
-    // TODO remove this bellow as is just an example on how to add an extra tab to a master detail
-    'NX.coreui.controller.RepositoriesExtraTab',
-    'NX.coreui.controller.RepositoryTargets',
-    'NX.coreui.controller.Privileges',
-    'NX.coreui.controller.Roles',
-    'NX.coreui.controller.Users'
-  ]
+  singleton: true,
+
+  supports: ['checkbox'],
+
+  /**
+   * Creates a checkbox.
+   * @param formField capability type form field to create checkbox for
+   * @returns {*} created checkbox (never null)
+   */
+  create: function (formField) {
+    var item = {
+      xtype: 'checkbox',
+      fieldLabel: formField.label,
+      helpText: formField.helpText
+    };
+    if (formField.initialValue) {
+      item.checked = Boolean('true' === formField.initialValue);
+    }
+    return item;
+  }
+
 });
