@@ -322,6 +322,9 @@ Ext.define('NX.controller.Menu', {
     me.logDebug('Refreshing tree (mode ' + me.mode + ')');
 
     Ext.suspendLayouts();
+
+    me.getFeatureMenu().setTitle(me.mode);
+
     me.getFeatureMenuStore().getRootNode().removeAll();
 
     // create leafs and all parent groups of those leafs
