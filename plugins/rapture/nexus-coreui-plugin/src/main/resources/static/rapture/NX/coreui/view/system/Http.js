@@ -12,7 +12,7 @@
  */
 Ext.define('NX.coreui.view.system.Http', {
   extend: 'Ext.Panel',
-  alias: 'widget.nx-coreui-system-Http',
+  alias: 'widget.nx-coreui-system-http',
 
   layout: {
     type: 'vbox',
