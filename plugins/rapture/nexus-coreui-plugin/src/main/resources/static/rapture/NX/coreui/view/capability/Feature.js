@@ -12,16 +12,16 @@
  */
 Ext.define('NX.coreui.view.capability.Feature', {
   extend: 'NX.view.masterdetail.Panel',
-  alias: 'widget.nx-capability-feature',
+  alias: 'widget.nx-coreui-capability-feature',
 
-  list: 'nx-capability-list',
+  list: 'nx-coreui-capability-list',
 
   iconName: 'capability-default',
 
   tabs: [
-    { xtype: 'nx-capability-summary' },
-    { xtype: 'nx-capability-settings' },
-    { xtype: 'nx-capability-status' },
-    { xtype: 'nx-capability-about' }
+    { xtype: 'nx-coreui-capability-summary' },
+    { xtype: 'nx-coreui-capability-settings' },
+    { xtype: 'nx-coreui-capability-status' },
+    { xtype: 'nx-coreui-capability-about' }
   ]
 });

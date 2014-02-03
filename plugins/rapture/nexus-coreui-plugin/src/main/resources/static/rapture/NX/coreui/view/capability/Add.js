@@ -12,7 +12,7 @@
  */
 Ext.define('NX.coreui.view.capability.Add', {
   extend: 'Ext.window.Window',
-  alias: 'widget.nx-capability-add',
+  alias: 'widget.nx-coreui-capability-add',
 
   title: 'Create new capability',
 
@@ -60,12 +60,12 @@ Ext.define('NX.coreui.view.capability.Add', {
           collapsible: true,
           collapsed: false,
           items: {
-            xtype: 'nx-capability-about',
+            xtype: 'nx-coreui-capability-about',
             title: undefined
           }
         },
         {
-          xtype: 'nx-capability-settings-fieldset',
+          xtype: 'nx-coreui-capability-settings-fieldset',
           title: 'Settings'
         }
       ],
@@ -76,11 +76,11 @@ Ext.define('NX.coreui.view.capability.Add', {
       ],
 
       getValues: function () {
-        return me.down('nx-capability-settings-fieldset').exportCapability(this.getForm())
+        return me.down('nx-coreui-capability-settings-fieldset').exportCapability(this.getForm())
       },
 
       markInvalid: function (errors) {
-        return me.down('nx-capability-settings-fieldset').markInvalid(this.getForm(), errors)
+        return me.down('nx-coreui-capability-settings-fieldset').markInvalid(this.getForm(), errors)
       }
 
     };

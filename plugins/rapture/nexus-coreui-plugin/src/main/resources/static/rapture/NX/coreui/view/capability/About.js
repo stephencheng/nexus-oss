@@ -12,7 +12,7 @@
  */
 Ext.define('NX.coreui.view.capability.About', {
   extend: 'Ext.panel.Panel',
-  alias: 'widget.nx-capability-about',
+  alias: 'widget.nx-coreui-capability-about',
 
   title: 'About',
 

@@ -12,7 +12,7 @@
  */
 Ext.define('NX.coreui.view.capability.Status', {
   extend: 'Ext.panel.Panel',
-  alias: 'widget.nx-capability-status',
+  alias: 'widget.nx-coreui-capability-status',
 
   title: 'Status',
 

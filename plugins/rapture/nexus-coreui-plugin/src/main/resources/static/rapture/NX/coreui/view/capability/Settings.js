@@ -12,12 +12,12 @@
  */
 Ext.define('NX.coreui.view.capability.Settings', {
   extend: 'Ext.form.Panel',
-  alias: 'widget.nx-capability-settings',
+  alias: 'widget.nx-coreui-capability-settings',
 
   title: 'Settings',
 
   items: {
-    xtype: 'nx-capability-settings-fieldset'
+    xtype: 'nx-coreui-capability-settings-fieldset'
   },
 
   buttons: [
@@ -31,11 +31,11 @@ Ext.define('NX.coreui.view.capability.Settings', {
   ],
 
   getValues: function () {
-    return this.down('nx-capability-settings-fieldset').exportCapability(this.getForm())
+    return this.down('nx-coreui-capability-settings-fieldset').exportCapability(this.getForm())
   },
 
   markInvalid: function (errors) {
-    return this.down('nx-capability-settings-fieldset').markInvalid(this.getForm(), errors)
+    return this.down('nx-coreui-capability-settings-fieldset').markInvalid(this.getForm(), errors)
   }
 
 });

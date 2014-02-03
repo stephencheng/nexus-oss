@@ -16,7 +16,7 @@ Ext.define('NX.coreui.controller.Capabilities', {
     'NX.Dialogs'
   ],
 
-  list: 'nx-capability-list',
+  list: 'nx-coreui-capability-list',
 
   stores: [
     'CapabilityStatus',
@@ -38,11 +38,11 @@ Ext.define('NX.coreui.controller.Capabilities', {
     'capability.SettingsFieldSet'
   ],
   refs: [
-    { ref: 'list', selector: 'nx-capability-list' },
-    { ref: 'summary', selector: 'nx-capability-summary' },
-    { ref: 'settings', selector: 'nx-capability-settings' },
-    { ref: 'status', selector: 'nx-capability-status' },
-    { ref: 'about', selector: 'nx-capability-about' }
+    { ref: 'list', selector: 'nx-coreui-capability-list' },
+    { ref: 'summary', selector: 'nx-coreui-capability-summary' },
+    { ref: 'settings', selector: 'nx-coreui-capability-settings' },
+    { ref: 'status', selector: 'nx-coreui-capability-status' },
+    { ref: 'about', selector: 'nx-coreui-capability-about' }
   ],
   icons: {
     'feature-system-capabilities': {
@@ -56,7 +56,7 @@ Ext.define('NX.coreui.controller.Capabilities', {
   },
   features: {
     path: '/System/Capabilities',
-    view: { xtype: 'nx-capability-feature' },
+    view: { xtype: 'nx-coreui-capability-feature' },
     visible: function () {
       return NX.Permissions.check('nexus:capabilities', 'read');
     }
@@ -70,22 +70,22 @@ Ext.define('NX.coreui.controller.Capabilities', {
 
     me.listen({
       component: {
-        'nx-capability-list button[action=new]': {
+        'nx-coreui-capability-list button[action=new]': {
           click: me.showAddWindow
         },
-        'nx-capability-list button[action=delete]': {
+        'nx-coreui-capability-list button[action=delete]': {
           click: me.deleteCapability
         },
-        'nx-capability-summary button[action=save]': {
+        'nx-coreui-capability-summary button[action=save]': {
           click: me.updateCapability
         },
-        'nx-capability-settings button[action=save]': {
+        'nx-coreui-capability-settings button[action=save]': {
           click: me.updateCapability
         },
-        'nx-capability-add combo[name=typeId]': {
+        'nx-coreui-capability-add combo[name=typeId]': {
           select: me.changeCapabilityType
         },
-        'nx-capability-add button[action=add]': {
+        'nx-coreui-capability-add button[action=add]': {
           click: me.createCapability
         }
       },
@@ -163,7 +163,7 @@ Ext.define('NX.coreui.controller.Capabilities', {
 
   showSettings: function (capabilityModel, capabilityTypeModel) {
     var settings = this.getSettings(),
-        settingsFieldSet = settings.down('nx-capability-settings-fieldset');
+        settingsFieldSet = settings.down('nx-coreui-capability-settings-fieldset');
 
     if (capabilityModel) {
       settings.loadRecord(capabilityModel);
@@ -180,7 +180,7 @@ Ext.define('NX.coreui.controller.Capabilities', {
   },
 
   showAddWindow: function () {
-    Ext.widget('nx-capability-add', {
+    Ext.widget('nx-coreui-capability-add', {
       capabilityTypeStore: this.getCapabilityTypeStore()
     });
   },
@@ -190,8 +190,8 @@ Ext.define('NX.coreui.controller.Capabilities', {
         capabilityTypeModel;
 
     capabilityTypeModel = this.getCapabilityTypeStore().getById(combo.value);
-    win.down('nx-capability-about').showAbout(capabilityTypeModel.get('about'));
-    win.down('nx-capability-settings-fieldset').setCapabilityType(capabilityTypeModel);
+    win.down('nx-coreui-capability-about').showAbout(capabilityTypeModel.get('about'));
+    win.down('nx-coreui-capability-settings-fieldset').setCapabilityType(capabilityTypeModel);
   },
 
   /**
