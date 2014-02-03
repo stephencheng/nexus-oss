@@ -17,7 +17,7 @@
  *
  * @since 2.7
  */
-Ext.define('NX.capability.view.factory.TextFieldFactory', {
+Ext.define('NX.coreui.view.capability.factory.TextFieldFactory', {
 
   singleton: true,
 

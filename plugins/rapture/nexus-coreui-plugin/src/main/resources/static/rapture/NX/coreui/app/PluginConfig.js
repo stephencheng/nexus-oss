@@ -17,6 +17,7 @@ Ext.define('NX.coreui.app.PluginConfig', {
   ],
 
   controllers: [
+    'NX.coreui.controller.Capabilities',
     'NX.coreui.controller.Plugin',
     'NX.coreui.controller.PluginConsole',
     'NX.coreui.controller.Repositories',

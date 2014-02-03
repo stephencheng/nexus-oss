@@ -10,7 +10,7 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.capability.controller.Capabilities', {
+Ext.define('NX.coreui.controller.Capabilities', {
   extend: 'NX.controller.MasterDetail',
   requires: [
     'NX.Dialogs'
@@ -28,14 +28,14 @@ Ext.define('NX.capability.controller.Capabilities', {
     'CapabilityStatus'
   ],
   views: [
-    'Feature',
-    'Add',
-    'List',
-    'Summary',
-    'Settings',
-    'Status',
-    'About',
-    'SettingsFieldSet'
+    'capability.Feature',
+    'capability.Add',
+    'capability.List',
+    'capability.Summary',
+    'capability.Settings',
+    'capability.Status',
+    'capability.About',
+    'capability.SettingsFieldSet'
   ],
   refs: [
     { ref: 'list', selector: 'nx-capability-list' },

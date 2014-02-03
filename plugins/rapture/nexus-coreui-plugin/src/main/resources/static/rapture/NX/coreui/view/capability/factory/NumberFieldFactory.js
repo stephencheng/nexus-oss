@@ -13,29 +13,33 @@
 /*global NX*/
 
 /**
- * 'checkbox' factory.
+ * 'numberfield' factory.
  *
  * @since 2.7
  */
-Ext.define('NX.capability.view.factory.CheckboxFactory', {
+Ext.define('NX.coreui.view.capability.factory.NumberFieldFactory', {
 
   singleton: true,
 
-  supports: ['checkbox'],
+  supports: ['numberfield', 'number'],
 
   /**
-   * Creates a checkbox.
-   * @param formField capability type form field to create checkbox for
-   * @returns {*} created checkbox (never null)
+   * Creates a numberfield.
+   * @param formField capability type form field to create numberfield for
+   * @returns {*} created numberfield (never null)
    */
   create: function (formField) {
     var item = {
-      xtype: 'checkbox',
+      xtype: 'numberfield',
       fieldLabel: formField.label,
-      helpText: formField.helpText
+      itemCls: formField.required ? 'required-field' : '',
+      helpText: formField.helpText,
+      allowBlank: formField.required ? false : true,
+      regex: formField.regexValidation ? new RegExp(formField.regexValidation) : null,
+      anchor: '96%'
     };
     if (formField.initialValue) {
-      item.checked = Boolean('true' === formField.initialValue);
+      item.value = Number(formField.initialValue);
     }
     return item;
   }

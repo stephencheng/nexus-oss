@@ -10,26 +10,17 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.capability.store.CapabilityStatus', {
-  extend: 'Ext.data.Store',
-  model: 'NX.capability.model.CapabilityStatus',
-
-  proxy: {
-    type: 'direct',
-    paramsAsHash: false,
-    api: {
-      read: 'NX.direct.capability_Capability.readStatus',
-    },
-
-    reader: {
-      type: 'json',
-      root: 'data',
-      idProperty: 'id',
-      successProperty: 'success'
-    }
-  },
-
-  sortOnLoad: true,
-  sorters: { property: 'typeName', direction: 'ASC' }
-
+Ext.define('NX.coreui.model.CapabilityStatus', {
+  extend: 'Ext.data.Model',
+  fields: [
+    'enabled',
+    'active',
+    'typeId',
+    'typeName',
+    'description',
+    'status',
+    'stateDescription',
+    'notes',
+    'tags'
+  ]
 });

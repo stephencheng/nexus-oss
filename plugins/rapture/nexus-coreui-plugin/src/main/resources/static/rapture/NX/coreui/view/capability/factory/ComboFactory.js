@@ -17,7 +17,7 @@
  *
  * @since 2.7
  */
-Ext.define('NX.capability.view.factory.ComboFactory', {
+Ext.define('NX.coreui.view.capability.factory.ComboFactory', {
 
   singleton: true,
 

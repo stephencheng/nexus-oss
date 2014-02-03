@@ -10,20 +10,13 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.capability.view.Status', {
-  extend: 'Ext.panel.Panel',
-  alias: 'widget.nx-capability-status',
-
-  title: 'Status',
-
-  autoScroll: true,
-  html: '',
-
-  showStatus: function (status) {
-    this.html = status;
-    if (this.body) {
-      this.body.update(status);
-    }
-  }
-
+Ext.define('NX.coreui.model.Capability', {
+  extend: 'Ext.data.Model',
+  fields: [
+    'id',
+    'enabled',
+    'description',
+    'notes',
+    'properties'
+  ]
 });
