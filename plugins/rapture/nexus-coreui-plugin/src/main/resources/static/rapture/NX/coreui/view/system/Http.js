@@ -69,7 +69,7 @@ Ext.define('NX.coreui.view.system.Http', {
         },
 
         {
-          xtype: 'fieldset',
+          xtype: 'nx-optionalfieldset',
           title: 'HTTP Proxy',
           checkboxToggle: true,
           checkboxName: 'httpEnabled',
@@ -81,7 +81,8 @@ Ext.define('NX.coreui.view.system.Http', {
             {
               xtype: 'textfield',
               name: 'httpHost',
-              fieldLabel: 'Host'
+              fieldLabel: 'Host',
+              allowBlank: false
             },
             {
               xtype: 'numberfield',
@@ -92,8 +93,8 @@ Ext.define('NX.coreui.view.system.Http', {
               allowDecimals: false
             },
             {
-              xtype: 'fieldset',
-              title: 'Authentication (optional)',
+              xtype: 'nx-optionalfieldset',
+              title: 'Authentication',
               checkboxToggle: true,
               checkboxName: 'httpAuthEnabled',
               collapsed: true,
@@ -101,7 +102,8 @@ Ext.define('NX.coreui.view.system.Http', {
                 {
                   xtype: 'textfield',
                   name: 'httpAuthUsername',
-                  fieldLabel: 'Username'
+                  fieldLabel: 'Username',
+                  allowBlank: false
                 },
                 {
                   xtype: 'textfield',
@@ -133,7 +135,7 @@ Ext.define('NX.coreui.view.system.Http', {
         },
 
         {
-          xtype: 'fieldset',
+          xtype: 'nx-optionalfieldset',
           title: 'HTTPS Proxy',
           checkboxToggle: true,
           checkboxName: 'httpsEnabled',
@@ -157,8 +159,8 @@ Ext.define('NX.coreui.view.system.Http', {
               allowDecimals: false
             },
             {
-              xtype: 'fieldset',
-              title: 'Authentication (optional)',
+              xtype: 'nx-optionalfieldset',
+              title: 'Authentication',
               checkboxToggle: true,
               checkboxName: 'httpsAuthEnabled',
               collapsed: true,
@@ -166,7 +168,8 @@ Ext.define('NX.coreui.view.system.Http', {
                 {
                   xtype: 'textfield',
                   name: 'httpsAuthUsername',
-                  fieldLabel: 'Username'
+                  fieldLabel: 'Username',
+                  allowBlank: false
                 },
                 {
                   xtype: 'textfield',
