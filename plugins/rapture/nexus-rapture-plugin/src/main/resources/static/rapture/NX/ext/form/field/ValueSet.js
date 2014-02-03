@@ -116,9 +116,9 @@ Ext.define('NX.ext.form.field.ValueSet', {
     }
     Ext.apply(me.input, {
       valueFieldId: valueFieldId,
-      allowBlank: false,
       submitValue: false,
       isFormField: false,
+      preventMark: true,
       flex: 1
     });
     if (me.emptyText) {
@@ -192,9 +192,11 @@ Ext.define('NX.ext.form.field.ValueSet', {
     me.on('afterrender', function () {
       me.valueField = me.down('component[valueFieldId=' + valueFieldId + ']');
       me.mon(me.valueField, 'blur', function (input) {
+        input.preventMark = false;
         input.clearInvalid();
       });
       me.mon(me.valueField, 'focus', function (input) {
+        input.preventMark = false;
         input.validate();
       });
       Ext.create('Ext.util.KeyNav', me.valueField.el, {

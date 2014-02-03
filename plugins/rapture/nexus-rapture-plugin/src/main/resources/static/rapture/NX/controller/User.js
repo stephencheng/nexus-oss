@@ -75,34 +75,6 @@ Ext.define('NX.controller.User', {
     var me = this;
 
     me.getApplication().getIconController().addIcons({
-      'feature-account': {
-        file: 'user.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-notifications': {
-        file: 'bell.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-usertoken': {
-        file: 'key.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-clientsettings': {
-        file: 'setting_tools.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-clientsettings-apacheivy': {
-        file: 'apache_handlers.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-clientsettings-apachemaven': {
-        file: 'apache_handlers.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-logout': {
-        file: 'door_out.png',
-        variants: ['x16', 'x32']
-      },
       'authenticate': {
         file: 'lock.png',
         variants: ['x16', 'x32']
@@ -137,10 +109,10 @@ Ext.define('NX.controller.User', {
           click: me.authenticate
         },
         'nx-login form': {
-          afterrender: me.installEnterKey
+          afterrender: me.installLoginEnterKey
         },
         'nx-authenticate form': {
-          afterrender: me.installEnterKey
+          afterrender: me.installAuthenticateEnterKey
         },
         'nx-expire-session': {
           afterrender: me.startTicking
@@ -339,7 +311,7 @@ Ext.define('NX.controller.User', {
     if (!me.getAuthenticate()) {
       win = me.getAuthenticateView().create({ message: message });
       if (me.hasUser()) {
-        win.down('form').getForm().setValues({ username: me.user.id, remember: me.user.authenticated === false});
+        win.down('form').getForm().setValues({ username: me.user.id });
         win.down('#password').focus();
       }
     }
@@ -348,13 +320,29 @@ Ext.define('NX.controller.User', {
   /**
    * @private
    */
-  installEnterKey: function (form) {
+  installLoginEnterKey: function (form) {
     var me = this;
 
     me.keyNav = Ext.create('Ext.util.KeyNav', form.el, {
       enter: function () {
         if (form.isValid()) {
           me.login(form.down('button[action=login]'));
+        }
+      },
+      scope: this
+    });
+  },
+
+  /**
+   * @private
+   */
+  installAuthenticateEnterKey: function (form) {
+    var me = this;
+
+    me.keyNav = Ext.create('Ext.util.KeyNav', form.el, {
+      enter: function () {
+        if (form.isValid()) {
+          me.authenticate(form.down('button[action=authenticate]'));
         }
       },
       scope: this

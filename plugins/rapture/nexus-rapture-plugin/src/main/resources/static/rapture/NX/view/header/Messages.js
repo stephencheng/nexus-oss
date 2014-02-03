@@ -10,36 +10,10 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.controller.Main', {
-  extend: 'Ext.app.Controller',
-  mixins: {
-    logAware: 'NX.LogAware'
-  },
+Ext.define('NX.view.header.Messages', {
+  extend: 'Ext.button.Button',
+  alias: 'widget.nx-header-messages',
 
-  views: [
-    'Main',
-    'header.Panel',
-    'header.Branding',
-    'header.Logo',
-    'Footer'
-  ],
-
-  /**
-   * @override
-   */
-  init: function () {
-    var me = this;
-
-    me.getApplication().getIconController().addIcons({
-      'nexus': {
-        file: 'nexus.png',
-        variants: ['x16', 'x24', 'x32', 'x48', 'x100']
-      },
-      'sonatype': {
-        file: 'sonatype.png',
-        variants: ['x16', 'x24', 'x32', 'x48', 'x100']
-      }
-    });
-  }
-
+  glyph: 'xf0f3@FontAwesome',
+  tooltip: 'Toggle messages'
 });

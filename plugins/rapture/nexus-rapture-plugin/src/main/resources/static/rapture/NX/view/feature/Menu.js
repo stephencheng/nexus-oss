@@ -14,7 +14,6 @@ Ext.define('NX.view.feature.Menu', {
   extend: 'Ext.tree.Panel',
   alias: 'widget.nx-feature-menu',
 
-  title: 'Menu',
   width: 200,
   ui: 'feature-menu',
 

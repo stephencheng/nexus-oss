@@ -31,7 +31,9 @@ Ext.define('NX.app.Application', {
   uses: [
     'NX.ext.grid.plugin.FilterBox',
     'NX.ext.grid.plugin.Filtering',
-    'NX.ext.form.field.ValueSet'
+    'NX.ext.form.OptionalFieldSet',
+    'NX.ext.form.field.ValueSet',
+    'NX.ext.form.action.DirectUpdate'
   ],
 
   mixins: {

@@ -134,6 +134,40 @@ Ext.define('NX.controller.Temp', {
       'feature-security-atlassiancrowd': {
         file: 'crowd.png',
         variants: ['x16', 'x32']
+      },
+
+      // user
+      'feature-account': {
+        file: 'user.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-notifications': {
+        file: 'emails.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-usertoken': {
+        file: 'key.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-clientsettings': {
+        file: 'setting_tools.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-clientsettings-apacheivy': {
+        file: 'apache_handlers.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-clientsettings-apachemaven': {
+        file: 'apache_handlers.png',
+        variants: ['x16', 'x32']
+      },
+      'feature-logout': {
+        file: 'door_out.png',
+        variants: ['x16', 'x32']
+      },
+      'authenticate': {
+        file: 'lock.png',
+        variants: ['x16', 'x32']
       }
     });
 
@@ -318,12 +352,6 @@ Ext.define('NX.controller.Temp', {
         mode: 'user',
         path: '/Client Settings/Apache Ivy',
         description: 'Settings for use with Apache Ivy',
-        visible: visibleIfLoggedIn
-      },
-      {
-        mode: 'user',
-        path: '/Logout',
-        weight: 500,
         visible: visibleIfLoggedIn
       }
     ]);

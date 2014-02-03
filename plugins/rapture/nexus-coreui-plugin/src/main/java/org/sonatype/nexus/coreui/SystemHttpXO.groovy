@@ -1,4 +1,4 @@
-/*
+/**
  * Sonatype Nexus (TM) Open Source Version
  * Copyright (c) 2007-2013 Sonatype, Inc.
  * All rights reserved. Includes the third-party code listed at http://links.sonatype.com/products/nexus/oss/attributions.
@@ -10,36 +10,60 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.controller.Main', {
-  extend: 'Ext.app.Controller',
-  mixins: {
-    logAware: 'NX.LogAware'
-  },
 
-  views: [
-    'Main',
-    'header.Panel',
-    'header.Branding',
-    'header.Logo',
-    'Footer'
-  ],
+package org.sonatype.nexus.coreui
 
-  /**
-   * @override
-   */
-  init: function () {
-    var me = this;
+import groovy.transform.ToString
 
-    me.getApplication().getIconController().addIcons({
-      'nexus': {
-        file: 'nexus.png',
-        variants: ['x16', 'x24', 'x32', 'x48', 'x100']
-      },
-      'sonatype': {
-        file: 'sonatype.png',
-        variants: ['x16', 'x24', 'x32', 'x48', 'x100']
-      }
-    });
-  }
+/**
+ * HTTP System Settings exchange object.
+ *
+ * @since 2.8
+ */
+@ToString(includePackage = false, includeNames = true)
+class SystemHttpXO
+{
 
-});
+  String userAgentCustomisation
+
+  String urlParameters
+
+  Integer timeout
+
+  Integer retries
+
+  boolean httpEnabled
+
+  String httpHost
+
+  Integer httpPort
+
+  boolean httpAuthEnabled
+
+  String httpAuthUsername
+
+  String httpAuthPassword
+
+  String httpAuthNtlmHost
+
+  String httpAuthNtlmDomain
+
+  boolean httpsEnabled
+
+  String httpsHost
+
+  Integer httpsPort
+
+  boolean httpsAuthEnabled
+
+  String httpsAuthUsername
+
+  String httpsAuthPassword
+
+  String httpsAuthNtlmHost
+
+  String httpsAuthNtlmDomain
+
+  Set<String> nonProxyHosts
+
+}

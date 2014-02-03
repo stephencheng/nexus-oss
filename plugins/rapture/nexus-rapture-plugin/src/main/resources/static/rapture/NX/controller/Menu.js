@@ -317,11 +317,19 @@ Ext.define('NX.controller.Menu', {
 
   refreshTree: function () {
     var me = this,
-        feature, segments, parent, child;
+        menuTitle = me.mode,
+        feature, segments, parent, child, modeButton;
 
     me.logDebug('Refreshing tree (mode ' + me.mode + ')');
 
     Ext.suspendLayouts();
+
+    modeButton = me.getHeaderPanel().down('button[mode=' + me.mode + ']');
+    if(modeButton && modeButton.tooltip){
+      menuTitle = modeButton.tooltip;
+    }
+    me.getFeatureMenu().setTitle(menuTitle);
+
     me.getFeatureMenuStore().getRootNode().removeAll();
 
     // create leafs and all parent groups of those leafs

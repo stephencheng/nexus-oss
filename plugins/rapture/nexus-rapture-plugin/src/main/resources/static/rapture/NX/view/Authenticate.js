@@ -74,11 +74,6 @@ Ext.define('NX.view.Authenticate', {
             inputType: 'password',
             emptyText: 'enter your password',
             allowBlank: false
-          },
-          {
-            xtype: 'checkbox',
-            fieldLabel: 'Remember me',
-            name: 'remember'
           }
         ],
 

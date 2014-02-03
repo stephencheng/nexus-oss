@@ -55,7 +55,11 @@ Ext.define('NX.coreui.view.security.Realms', {
             ],
             data: [
               [ 'default', 'Default Realm' ],
-              [ 'fancy', 'Fancy Pants Realm' ]
+              [ 'fancy', 'Fancy Pants Realm' ],
+              [ 'foo', 'Foo Realm' ],
+              [ 'bar', 'Bar Realm' ],
+              [ 'baz', 'Baz Realm' ],
+              [ 'qux', 'Qux Realm' ]
             ]
           }),
           displayField: 'text'
