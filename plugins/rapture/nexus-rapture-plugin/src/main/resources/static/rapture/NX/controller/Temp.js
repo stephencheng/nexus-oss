@@ -319,12 +319,6 @@ Ext.define('NX.controller.Temp', {
         path: '/Client Settings/Apache Ivy',
         description: 'Settings for use with Apache Ivy',
         visible: visibleIfLoggedIn
-      },
-      {
-        mode: 'user',
-        path: '/Logout',
-        weight: 500,
-        visible: visibleIfLoggedIn
       }
     ]);
   }
