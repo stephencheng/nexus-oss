@@ -153,7 +153,9 @@ Ext.define('NX.app.Application', {
    * @param app
    */
   init: function (app) {
-    NX.Log.debug('init');
+    var me = this;
+
+    me.logDebug('init');
 
     // Configure blank image URL
     Ext.BLANK_IMAGE_URL = NX.util.Url.baseUrl + '/static/rapture/resources/images/s.gif';
