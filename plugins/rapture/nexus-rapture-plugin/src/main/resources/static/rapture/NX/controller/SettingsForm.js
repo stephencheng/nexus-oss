@@ -55,6 +55,9 @@ Ext.define('NX.controller.SettingsForm', {
     if (forms) {
       Ext.each(forms, function (form) {
         form.fireEvent('directload', form);
+        if (form.settingsFormTitle) {
+          NX.Messages.add({ text: form.settingsFormTitle + ' refreshed', type: 'default'});
+        }
       });
     }
   },

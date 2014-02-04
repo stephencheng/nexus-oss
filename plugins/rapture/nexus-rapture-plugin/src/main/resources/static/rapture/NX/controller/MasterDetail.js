@@ -49,7 +49,7 @@ Ext.define('NX.controller.MasterDetail', {
           navigate: me.navigateTo
         },
         '#Refresh': {
-          refresh: me.loadStore
+          refresh: me.onRefresh
         }
       }
     });
@@ -106,6 +106,20 @@ Ext.define('NX.controller.MasterDetail', {
       if (selected.length) {
         me.onModelChanged(selected[0]);
       }
+    }
+  },
+
+  onRefresh: function () {
+    var me = this,
+        list = me.getList(),
+        contentPanel;
+
+    if (list) {
+      contentPanel = list.up('nx-feature-content');
+      if (contentPanel && contentPanel.title) {
+        NX.Messages.add({ text: contentPanel.title + ' refreshed', type: 'default'});
+      }
+      me.loadStore();
     }
   },
 

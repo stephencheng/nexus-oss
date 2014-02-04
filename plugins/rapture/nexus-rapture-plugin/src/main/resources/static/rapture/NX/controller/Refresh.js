@@ -63,8 +63,6 @@ Ext.define('NX.controller.Refresh', {
     var me = this;
 
     me.fireEvent('refresh');
-
-    NX.Messages.add({ text: 'Refreshed', type: 'default'});
   }
 
 });
