@@ -34,8 +34,9 @@ Ext.define('NX.coreui.view.system.General', {
 
   items: [
     {
-      xtype: 'nx-settings-form',
-      description: 'General system settings',
+      xtype: 'form',
+      settingsForm: true,
+      settingsFormTitle: 'General system settings',
       api: {
         load: 'NX.direct.coreui_SystemGeneral.read',
         update: 'NX.direct.coreui_SystemGeneral.update'
@@ -66,6 +67,12 @@ Ext.define('NX.coreui.view.system.General', {
           name: 'checkForUpdates',
           boxLabel: 'Check for new version updates'
         }
+      ],
+
+      buttonAlign: 'left',
+      buttons: [
+        { text: 'Save', action: 'savesettings', ui: 'primary', formBind: true },
+        { text: 'Discard', action: 'discardsettings' }
       ]
     }
   ]
