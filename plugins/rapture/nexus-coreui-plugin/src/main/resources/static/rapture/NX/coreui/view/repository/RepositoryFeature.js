@@ -11,7 +11,7 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 
-Ext.define('NX.coreui.view.Repositories', {
+Ext.define('NX.coreui.view.repository.RepositoryFeature', {
   extend: 'NX.view.masterdetail.Panel',
   alias: 'widget.nx-coreui-repository-feature',
 

@@ -23,8 +23,8 @@ Ext.define('NX.coreui.controller.Repositories', {
     'Repository'
   ],
   views: [
-    'Repositories',
-    'RepositoryList'
+    'repository.RepositoryFeature',
+    'repository.RepositoryList'
   ],
   refs: [
     {
