@@ -13,7 +13,7 @@
 Ext.define('NX.coreui.controller.Roles', {
   extend: 'NX.controller.MasterDetail',
 
-  list: 'nx-role-list',
+  list: 'nx-coreui-role-list',
 
   stores: [
     'Role'
@@ -25,11 +25,11 @@ Ext.define('NX.coreui.controller.Roles', {
   refs: [
     {
       ref: 'list',
-      selector: 'nx-role-list'
+      selector: 'nx-coreui-role-list'
     },
     {
       ref: 'info',
-      selector: 'nx-role-feature nx-info-panel'
+      selector: 'nx-coreui-role-feature nx-info-panel'
     }
   ],
   icons: {
@@ -44,7 +44,7 @@ Ext.define('NX.coreui.controller.Roles', {
   },
   features: {
     path: '/Security/Roles',
-    view: { xtype: 'nx-role-feature' },
+    view: { xtype: 'nx-coreui-role-feature' },
     visible: function () {
       return NX.Permissions.check('security:roles', 'read');
     }

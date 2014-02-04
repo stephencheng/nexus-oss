@@ -13,7 +13,7 @@
 Ext.define('NX.coreui.controller.Privileges', {
   extend: 'NX.controller.MasterDetail',
 
-  list: 'nx-privilege-list',
+  list: 'nx-coreui-privilege-list',
 
   stores: [
     'Privilege'
@@ -25,11 +25,11 @@ Ext.define('NX.coreui.controller.Privileges', {
   refs: [
     {
       ref: 'list',
-      selector: 'nx-privilege-list'
+      selector: 'nx-coreui-privilege-list'
     },
     {
       ref: 'info',
-      selector: 'nx-privilege-feature nx-info-panel'
+      selector: 'nx-coreui-privilege-feature nx-info-panel'
     }
   ],
   icons: {
@@ -44,7 +44,7 @@ Ext.define('NX.coreui.controller.Privileges', {
   },
   features: {
     path: '/Security/Privileges',
-    view: { xtype: 'nx-privilege-feature' },
+    view: { xtype: 'nx-coreui-privilege-feature' },
     visible: function () {
       return NX.Permissions.check('security:privileges', 'read');
     }

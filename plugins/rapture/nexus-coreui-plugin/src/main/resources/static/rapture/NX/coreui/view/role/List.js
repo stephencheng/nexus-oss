@@ -12,7 +12,7 @@
  */
 Ext.define('NX.coreui.view.role.List', {
   extend: 'Ext.grid.Panel',
-  alias: 'widget.nx-role-list',
+  alias: 'widget.nx-coreui-role-list',
 
   store: 'Role',
 

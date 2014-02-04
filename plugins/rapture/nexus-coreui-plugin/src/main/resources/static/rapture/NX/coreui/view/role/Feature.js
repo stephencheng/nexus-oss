@@ -12,9 +12,9 @@
  */
 Ext.define('NX.coreui.view.role.Feature', {
   extend: 'NX.view.masterdetail.Panel',
-  alias: 'widget.nx-role-feature',
+  alias: 'widget.nx-coreui-role-feature',
 
-  list: 'nx-role-list',
+  list: 'nx-coreui-role-list',
 
   iconName: 'role-default'
 

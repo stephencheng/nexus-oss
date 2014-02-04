@@ -12,7 +12,7 @@
  */
 Ext.define('NX.coreui.view.repositorytarget.Settings', {
   extend: 'Ext.form.Panel',
-  alias: 'widget.nx-repositorytarget-settings',
+  alias: 'widget.nx-coreui-repositorytarget-settings',
 
   bodyPadding: 10,
   defaultType: 'textfield',

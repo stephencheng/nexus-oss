@@ -12,9 +12,9 @@
  */
 Ext.define('NX.coreui.view.user.Feature', {
   extend: 'NX.view.masterdetail.Panel',
-  alias: 'widget.nx-user-feature',
+  alias: 'widget.nx-coreui-user-feature',
 
-  list: 'nx-user-list',
+  list: 'nx-coreui-user-list',
 
   // FIXME: This seems strange to configure icon name here for the detail panel
   iconName: 'user-default'

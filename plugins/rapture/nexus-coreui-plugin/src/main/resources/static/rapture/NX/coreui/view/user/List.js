@@ -12,7 +12,7 @@
  */
 Ext.define('NX.coreui.view.user.List', {
   extend: 'Ext.grid.Panel',
-  alias: 'widget.nx-user-list',
+  alias: 'widget.nx-coreui-user-list',
 
   store: 'User',
 

@@ -12,15 +12,15 @@
  */
 Ext.define('NX.coreui.view.repositorytarget.Feature', {
   extend: 'NX.view.masterdetail.Panel',
-  alias: 'widget.nx-repositorytarget-feature',
+  alias: 'widget.nx-coreui-repositorytarget-feature',
 
-  list: 'nx-repositorytarget-list',
+  list: 'nx-coreui-repositorytarget-list',
 
   iconName: 'target-default',
 
   tabs: [
     { xtype: 'nx-info-panel' },
-    { xtype: 'nx-repositorytarget-settings', title: 'Settings' }
+    { xtype: 'nx-coreui-repositorytarget-settings', title: 'Settings' }
   ]
 
 });

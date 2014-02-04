@@ -13,7 +13,7 @@
 Ext.define('NX.coreui.controller.Users', {
   extend: 'NX.controller.MasterDetail',
 
-  list: 'nx-user-list',
+  list: 'nx-coreui-user-list',
 
   stores: [
     'User'
@@ -25,11 +25,11 @@ Ext.define('NX.coreui.controller.Users', {
   refs: [
     {
       ref: 'list',
-      selector: 'nx-user-list'
+      selector: 'nx-coreui-user-list'
     },
     {
       ref: 'info',
-      selector: 'nx-user-feature nx-info-panel'
+      selector: 'nx-coreui-user-feature nx-info-panel'
     }
   ],
   icons: {
@@ -44,7 +44,7 @@ Ext.define('NX.coreui.controller.Users', {
   },
   features: {
     path: '/Security/Users',
-    view: { xtype: 'nx-user-feature' },
+    view: { xtype: 'nx-coreui-user-feature' },
     visible: function () {
       return NX.Permissions.check('security:users', 'read');
     }

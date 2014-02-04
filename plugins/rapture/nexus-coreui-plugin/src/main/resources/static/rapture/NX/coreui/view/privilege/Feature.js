@@ -12,9 +12,9 @@
  */
 Ext.define('NX.coreui.view.privilege.Feature', {
   extend: 'NX.view.masterdetail.Panel',
-  alias: 'widget.nx-privilege-feature',
+  alias: 'widget.nx-coreui-privilege-feature',
 
-  list: 'nx-privilege-list',
+  list: 'nx-coreui-privilege-list',
 
   iconName: 'privilege-default'
 

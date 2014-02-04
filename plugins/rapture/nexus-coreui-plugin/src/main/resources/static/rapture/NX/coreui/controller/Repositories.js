@@ -17,7 +17,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     'NX.Dialogs'
   ],
 
-  list: 'nx-repository-list',
+  list: 'nx-coreui-repository-list',
 
   stores: [
     'Repository'
@@ -29,11 +29,11 @@ Ext.define('NX.coreui.controller.Repositories', {
   refs: [
     {
       ref: 'list',
-      selector: 'nx-repository-list'
+      selector: 'nx-coreui-repository-list'
     },
     {
       ref: 'info',
-      selector: 'nx-repository-feature nx-info-panel'
+      selector: 'nx-coreui-repository-feature nx-info-panel'
     }
   ],
   icons: {
@@ -48,7 +48,7 @@ Ext.define('NX.coreui.controller.Repositories', {
   },
   features: {
     path: '/Repository/Repositories',
-    view: { xtype: 'nx-repository-feature' },
+    view: { xtype: 'nx-coreui-repository-feature' },
     visible: function () {
       return NX.Permissions.check('nexus:repositories', 'read');
     }
@@ -62,7 +62,7 @@ Ext.define('NX.coreui.controller.Repositories', {
 
     me.listen({
       component: {
-        'nx-repository-list button[action=delete]': {
+        'nx-coreui-repository-list button[action=delete]': {
           click: me.deleteRepository
         }
       }

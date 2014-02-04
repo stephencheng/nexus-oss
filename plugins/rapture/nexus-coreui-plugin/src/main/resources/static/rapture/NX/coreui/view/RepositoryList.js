@@ -12,7 +12,7 @@
  */
 Ext.define('NX.coreui.view.RepositoryList', {
   extend: 'Ext.grid.Panel',
-  alias: 'widget.nx-repository-list',
+  alias: 'widget.nx-coreui-repository-list',
 
   store: 'Repository',
 

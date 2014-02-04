@@ -18,7 +18,7 @@ Ext.define('NX.coreui.controller.RepositoriesExtraTab', {
   refs: [
     {
       ref: 'foo',
-      selector: 'nx-repository-feature #foo'
+      selector: 'nx-coreui-repository-feature #foo'
     }
   ],
 
@@ -27,10 +27,10 @@ Ext.define('NX.coreui.controller.RepositoriesExtraTab', {
 
     me.listen({
       component: {
-        'nx-repository-feature': {
+        'nx-coreui-repository-feature': {
           beforerender: me.addExtraTab
         },
-        'nx-repository-list': {
+        'nx-coreui-repository-list': {
           selection: me.onSelection
         }
       }

@@ -16,7 +16,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     'NX.Dialogs',
   ],
 
-  list: 'nx-repositorytarget-list',
+  list: 'nx-coreui-repositorytarget-list',
 
   models: [
     'RepositoryTarget'
@@ -34,15 +34,15 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   refs: [
     {
       ref: 'list',
-      selector: 'nx-repositorytarget-list'
+      selector: 'nx-coreui-repositorytarget-list'
     },
     {
       ref: 'info',
-      selector: 'nx-repositorytarget-feature nx-info-panel'
+      selector: 'nx-coreui-repositorytarget-feature nx-info-panel'
     },
     {
       ref: 'settings',
-      selector: 'nx-repositorytarget-feature nx-repositorytarget-settings'
+      selector: 'nx-coreui-repositorytarget-feature nx-coreui-repositorytarget-settings'
     }
   ],
   icons: {
@@ -57,7 +57,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   },
   features: {
     path: '/Repository/Targets',
-    view: { xtype: 'nx-repositorytarget-feature' },
+    view: { xtype: 'nx-coreui-repositorytarget-feature' },
     visible: function () {
       return NX.Permissions.check('nexus:targets', 'read');
     }
@@ -76,16 +76,16 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
         }
       },
       component: {
-        'nx-repositorytarget-list button[action=new]': {
+        'nx-coreui-repositorytarget-list button[action=new]': {
           click: me.showAddWindow
         },
-        'nx-repositorytarget-list button[action=delete]': {
+        'nx-coreui-repositorytarget-list button[action=delete]': {
           click: me.delete
         },
-        'nx-repositorytarget-add button[action=add]': {
+        'nx-coreui-repositorytarget-add button[action=add]': {
           click: me.create
         },
-        'nx-repositorytarget-settings button[action=save]': {
+        'nx-coreui-repositorytarget-settings button[action=save]': {
           click: me.update
         }
       }
@@ -111,7 +111,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   },
 
   showAddWindow: function () {
-    Ext.widget('nx-repositorytarget-add');
+    Ext.widget('nx-coreui-repositorytarget-add');
   },
 
   create: function (button) {

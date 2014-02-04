@@ -30,10 +30,10 @@ startTest({
 
         next();
       },
-      { waitFor: 'rowsVisible', args: 'nx-repository-list' },
+      { waitFor: 'rowsVisible', args: 'nx-coreui-repository-list' },
       function (next) {
-        var repoGrid = t.cq1('nx-repository-list'),
-            deleteButton = t.cq1('nx-repository-list button[action=delete]');
+        var repoGrid = t.cq1('nx-coreui-repository-list'),
+            deleteButton = t.cq1('nx-coreui-repository-list button[action=delete]');
 
         t.ok(deleteButton.isDisabled(), 'Delete button is disabled');
         repoGrid.getSelectionModel().select(0);
@@ -41,17 +41,17 @@ startTest({
         numberOfRecs = repoGrid.getStore().getCount();
         next();
       },
-      { click: '>>nx-repository-list button[action=delete]' },
+      { click: '>>nx-coreui-repository-list button[action=delete]' },
       { waitFor: 'CQVisible', args: 'messagebox' },
       { click: '>>button[text=No]' },
       function (next) {
-        var repoGrid = t.cq1('nx-repository-list');
+        var repoGrid = t.cq1('nx-coreui-repository-list');
 
         t.is(repoGrid.getStore().getCount(), numberOfRecs, "Selected record was not deleted");
 
         next();
       },
-      { click: '>>nx-repository-list button[action=delete]' },
+      { click: '>>nx-coreui-repository-list button[action=delete]' },
       { waitFor: 'CQVisible', args: 'messagebox' },
       { click: '>>button[text=Yes]' },
       function (next) {
@@ -60,7 +60,7 @@ startTest({
         });
       },
       function (next) {
-        var repoGrid = t.cq1('nx-repository-list');
+        var repoGrid = t.cq1('nx-coreui-repository-list');
 
         t.isLess(repoGrid.getStore().getCount(), numberOfRecs, "Selected record was deleted");
 

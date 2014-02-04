@@ -12,7 +12,7 @@
  */
 Ext.define('NX.coreui.view.repositorytarget.Add', {
   extend: 'Ext.window.Window',
-  alias: 'widget.nx-repositorytarget-add',
+  alias: 'widget.nx-coreui-repositorytarget-add',
 
   title: 'Create new target',
 
@@ -28,7 +28,7 @@ Ext.define('NX.coreui.view.repositorytarget.Add', {
 
     Ext.apply(me, {
       items: {
-        xtype: 'nx-repositorytarget-settings',
+        xtype: 'nx-coreui-repositorytarget-settings',
         buttons: [
           { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
           { text: 'Cancel', handler: me.close, scope: me }

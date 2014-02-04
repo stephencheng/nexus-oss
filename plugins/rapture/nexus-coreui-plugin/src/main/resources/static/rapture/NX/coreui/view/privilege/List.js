@@ -12,7 +12,7 @@
  */
 Ext.define('NX.coreui.view.privilege.List', {
   extend: 'Ext.grid.Panel',
-  alias: 'widget.nx-privilege-list',
+  alias: 'widget.nx-coreui-privilege-list',
 
   store: 'Privilege',
 
