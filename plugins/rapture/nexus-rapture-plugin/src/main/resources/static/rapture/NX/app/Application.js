@@ -72,12 +72,8 @@ Ext.define('NX.app.Application', {
     // HACK: Temporary controller for random stuff while we are building out the framework
     'Temp'
   ],
-  models: [
-    'Message'
-  ],
-  stores: [
-    'Message'
-  ],
+  models: [],
+  stores: [],
   views: [],
   refs: [],
 

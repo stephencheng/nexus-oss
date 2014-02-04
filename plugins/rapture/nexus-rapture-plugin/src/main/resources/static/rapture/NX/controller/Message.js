@@ -20,14 +20,16 @@ Ext.define('NX.controller.Message', {
     logAware: 'NX.LogAware'
   },
 
+  models: [
+    'Message'
+  ],
+  stores: [
+    'Message'
+  ],
   views: [
     'header.Messages',
     'message.Panel',
     'message.Notification'
-  ],
-
-  stores: [
-    'Message'
   ],
 
   refs: [
