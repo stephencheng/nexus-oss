@@ -19,10 +19,14 @@ Ext.define('NX.controller.MasterDetail', {
     'NX.view.info.Panel',
     'NX.view.info.Entry'
   ],
-
   mixins: {
     logAware: 'NX.LogAware'
   },
+
+  views: [
+    'masterdetail.Panel',
+    'masterdetail.Tabs'
+  ],
 
   permission: undefined,
 

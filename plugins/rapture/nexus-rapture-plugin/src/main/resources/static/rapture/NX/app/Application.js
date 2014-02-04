@@ -78,10 +78,7 @@ Ext.define('NX.app.Application', {
   stores: [
     'Message'
   ],
-  views: [
-    'masterdetail.Panel',
-    'masterdetail.Tabs'
-  ],
+  views: [],
   refs: [],
 
   constructor: function (config) {
