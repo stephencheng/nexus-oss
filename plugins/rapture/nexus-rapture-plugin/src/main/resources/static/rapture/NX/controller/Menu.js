@@ -270,7 +270,7 @@ Ext.define('NX.controller.Menu', {
 
     if (me.mode) {
       modeButton = headerPanel.down('button[mode=' + me.mode + ']');
-      if (modeButton.isHidden()) {
+      if (!modeButton || modeButton.isHidden()) {
         delete me.mode;
       }
     }

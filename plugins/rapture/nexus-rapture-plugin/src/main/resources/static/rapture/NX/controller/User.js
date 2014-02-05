@@ -187,6 +187,8 @@ Ext.define('NX.controller.User', {
 
         delete me.user;
 
+        NX.Bookmarks.navigateTo(NX.Bookmarks.fromToken('default'));
+
         me.fireEvent('logout');
 
         me.fetchPermissions();
