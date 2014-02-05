@@ -24,6 +24,17 @@ Ext.define('NX.controller.Main', {
     'Footer'
   ],
 
+  refs: [
+    {
+      ref: 'viewport',
+      selector: 'viewport'
+    },
+    {
+      ref: 'main',
+      selector: 'nx-main'
+    }
+  ],
+
   /**
    * @override
    */
@@ -40,6 +51,42 @@ Ext.define('NX.controller.Main', {
         variants: ['x16', 'x24', 'x32', 'x48', 'x100']
       }
     });
+
+    me.listen({
+      component: {
+        'viewport': {
+          afterrender: me.onLaunch
+        }
+      }
+    });
+  },
+
+  /**
+   * @override
+   * Show {@link NX.view.Main} view from {@link Ext.container.Viewport}.
+   */
+  onLaunch: function () {
+    var me = this,
+        viewport = me.getViewport();
+
+    if (viewport) {
+      me.logDebug('Showing main view');
+      viewport.add({ xtype: 'nx-main' });
+    }
+  },
+
+  /**
+   * @public
+   * Removes {@link NX.view.Main} view from {@link Ext.container.Viewport}.
+   */
+  onDestroy: function () {
+    var me = this,
+        viewport = me.getViewport();
+
+    if (viewport) {
+      me.logDebug('Removing main view');
+      viewport.remove(me.getMain());
+    }
   }
 
 });
