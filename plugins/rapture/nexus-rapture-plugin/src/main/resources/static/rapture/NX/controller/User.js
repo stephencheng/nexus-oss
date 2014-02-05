@@ -148,19 +148,11 @@ Ext.define('NX.controller.User', {
    * @private
    */
   updateUser: function (user) {
-    var me = this,
-        loginButton = me.getLoginButton(),
-        logoutButton = me.getLogoutButton(),
-        userButton = me.getUserButton();
+    var me = this;
 
     if (user) {
       if (!Ext.isDefined(me.user) || (me.user.id != user.id)) {
         NX.Messages.add({text: 'User logged in: ' + user.id, type: 'default' });
-
-        loginButton.hide();
-        userButton.setText(user.id);
-        userButton.show();
-        logoutButton.show();
 
         me.user = user;
 
@@ -184,10 +176,6 @@ Ext.define('NX.controller.User', {
       if (me.user) {
         NX.Messages.add({text: 'User logged out', type: 'default' });
 
-        loginButton.show();
-        userButton.hide();
-        logoutButton.hide();
-
         if (me.activityMonitor) {
           me.activityMonitor.stop();
           delete me.activityMonitor;
@@ -207,6 +195,9 @@ Ext.define('NX.controller.User', {
         me.fetchPermissions();
       }
     }
+
+    me.manageButtons();
+
     me.started = true;
   },
 
@@ -438,6 +429,28 @@ Ext.define('NX.controller.User', {
     });
 
     return perms;
+  },
+
+  manageButtons: function () {
+    var me = this,
+        loginButton = me.getLoginButton(),
+        logoutButton = me.getLogoutButton(),
+        userButton = me.getUserButton();
+
+    if (loginButton) {
+      if (me.user) {
+        loginButton.hide();
+        userButton.setText(me.user.id);
+        userButton.show();
+        logoutButton.show();
+      }
+      else {
+        loginButton.show();
+        userButton.setText('Not logged in');
+        userButton.hide();
+        logoutButton.hide();
+      }
+    }
   }
 
 });
