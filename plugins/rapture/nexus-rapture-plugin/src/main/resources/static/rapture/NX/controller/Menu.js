@@ -444,7 +444,7 @@ Ext.define('NX.controller.Menu', {
   unregisterModeButton: function (button) {
     var me = this;
 
-    me.availableModes.remove(button);
+    Ext.Array.remove(me.availableModes, button);
   }
 
 });
