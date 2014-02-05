@@ -70,6 +70,9 @@ Ext.define('NX.coreui.controller.Capabilities', {
 
     me.listen({
       component: {
+        'nx-coreui-capability-list': {
+          beforerender: me.loadCapabilityType
+        },
         'nx-coreui-capability-list button[action=new]': {
           click: me.showAddWindow
         },
@@ -207,6 +210,11 @@ Ext.define('NX.coreui.controller.Capabilities', {
     var me = this;
 
     me.getCapabilityStore().load();
+  },
+
+  loadCapabilityType: function () {
+    var me = this;
+    me.getCapabilityTypeStore().load();
   },
 
   onCapabilityTypeLoad: function () {

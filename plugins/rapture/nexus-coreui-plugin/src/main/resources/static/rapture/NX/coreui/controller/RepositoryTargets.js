@@ -76,6 +76,9 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
         }
       },
       component: {
+        'nx-coreui-repositorytarget-list': {
+          beforerender: me.loadContentClass
+        },
         'nx-coreui-repositorytarget-list button[action=new]': {
           click: me.showAddWindow
         },
@@ -112,6 +115,11 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
 
   showAddWindow: function () {
     Ext.widget('nx-coreui-repositorytarget-add');
+  },
+
+  loadContentClass: function () {
+    var me = this;
+    me.getContentClassStore().load();
   },
 
   create: function (button) {
