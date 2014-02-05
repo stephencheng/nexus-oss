@@ -134,13 +134,12 @@ public class ApplicationDirectComponent
     return null;
   }
 
-  private InfoXO getInfo() {
+  public InfoXO getInfo() {
     InfoXO infoXO = new InfoXO();
     SystemStatus status = applicationStatusSource.getSystemStatus();
 
-    infoXO.setName(status.getAppName());
-    infoXO.setEdition(status.getEditionShort());
-    infoXO.setVersion(status.getVersion());
+    infoXO.setRequiresLicense(!"OSS".equals(status.getEditionShort()));
+    infoXO.setLicenseInstalled(status.isLicenseInstalled());
 
     return infoXO;
   }

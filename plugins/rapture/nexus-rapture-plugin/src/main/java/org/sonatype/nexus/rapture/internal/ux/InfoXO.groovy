@@ -23,9 +23,7 @@ import groovy.transform.ToString
 @ToString(includePackage = false, includeNames = true)
 class InfoXO
 {
-  String name
+  boolean requiresLicense
 
-  String edition
-
-  String version
+  boolean licenseInstalled
 }

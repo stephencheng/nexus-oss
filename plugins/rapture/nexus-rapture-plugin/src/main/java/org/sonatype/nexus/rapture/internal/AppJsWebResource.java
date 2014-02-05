@@ -24,6 +24,7 @@ import javax.inject.Singleton;
 
 import org.sonatype.nexus.ApplicationStatusSource;
 import org.sonatype.nexus.rapture.Rapture;
+import org.sonatype.nexus.rapture.internal.ux.ApplicationDirectComponent;
 import org.sonatype.nexus.web.BaseUrlHolder;
 import org.sonatype.nexus.webresources.WebResourceService;
 import org.sonatype.sisu.goodies.template.TemplateParameters;
@@ -51,15 +52,19 @@ public class AppJsWebResource
 
   private final ApplicationStatusSource applicationStatusSource;
 
+  private final ApplicationDirectComponent applicationDirectComponent;
+
   private final Provider<WebResourceService> webResourceServiceProvider; // avoid circular dep
 
   @Inject
   public AppJsWebResource(final Rapture rapture,
                           final ApplicationStatusSource applicationStatusSource,
+                          final ApplicationDirectComponent applicationDirectComponent,
                           final Provider<WebResourceService> webResourceServiceProvider)
   {
     this.rapture = checkNotNull(rapture, "rapture");
     this.applicationStatusSource = checkNotNull(applicationStatusSource);
+    this.applicationDirectComponent = checkNotNull(applicationDirectComponent);
     this.webResourceServiceProvider = checkNotNull(webResourceServiceProvider);
   }
 
@@ -88,6 +93,7 @@ public class AppJsWebResource
         .set("baseUrl", BaseUrlHolder.get())
         .set("settings", rapture.getSettings())
         .set("status", applicationStatusSource.getSystemStatus())
+        .set("info", applicationDirectComponent.getInfo())
     );
   }
 

@@ -31,7 +31,11 @@ NX.app.baseUrl = '$baseUrl';
 ## configure status
 NX.app.status = {
   version: "$status.version",
-  edition: "$status.editionShort"
+  edition: "$status.editionShort",
+  info: {
+    requiresLicense: $info.requiresLicense,
+    licenseInstalled: $info.licenseInstalled
+  }
 };
 
 ## configure settings
