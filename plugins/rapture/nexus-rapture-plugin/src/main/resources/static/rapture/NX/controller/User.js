@@ -267,42 +267,43 @@ Ext.define('NX.controller.User', {
   /**
    * @public
    * Shows login or authentication window based on the fact that we have an user or not.
-   * @param {String} [message] optional message to be shown (a default message will be shown if not provided)
+   * @param {Object} [options] TODO
    */
-  askToAuthenticate: function (message) {
+  askToAuthenticate: function (options) {
     var me = this;
 
     if (me.hasUser()) {
-      me.showAuthenticateWindow(message);
+      me.showAuthenticateWindow(options);
     }
     else {
-      me.showLoginWindow();
+      me.showLoginWindow(options);
     }
   },
 
   /**
    * @private
    * Shows login window.
+   * @param {Object} [options] TODO
    */
-  showLoginWindow: function () {
+  showLoginWindow: function (options) {
     var me = this;
 
     if (!me.getLogin()) {
-      me.getLoginView().create();
+      me.getLoginView().create({ options: options });
     }
   },
 
   /**
    * @private
    * Shows authenticate window.
-   * @param {String} [message] optional message to be shown (a default message will be shown if not provided)
+   * @param {Object} [options] TODO
    */
-  showAuthenticateWindow: function (message) {
+  showAuthenticateWindow: function (options) {
     var me = this,
         win;
 
     if (!me.getAuthenticate()) {
-      win = me.getAuthenticateView().create({ message: message });
+      win = me.getAuthenticateView().create({ message: options.message, options: options });
       if (me.hasUser()) {
         win.down('form').getForm().setValues({ username: me.user.id });
         win.down('#password').focus();
@@ -357,7 +358,7 @@ Ext.define('NX.controller.User', {
   authenticate: function (button) {
     var me = this;
 
-    me.doLogin(button, "Authenticate...")
+    me.doLogin(button, "Authenticate...");
   },
 
   /**
@@ -380,6 +381,9 @@ Ext.define('NX.controller.User', {
       if (Ext.isDefined(response) && response.success) {
         me.updateUser(response.data);
         win.close();
+        if (win.options && Ext.isFunction(win.options.success)) {
+          win.options.success.call(win.options.scope, win.options);
+        }
       }
     });
   },

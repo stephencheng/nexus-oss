@@ -25,7 +25,7 @@ Ext.define('NX.controller.Menu', {
     'header.DashboardMode',
     'header.SearchMode',
     'header.BrowseMode',
-    'header.AdminMode',
+    'header.AdminMode'
   ],
 
   stores: [
@@ -194,7 +194,12 @@ Ext.define('NX.controller.Menu', {
     if (checkIfUserRequired) {
       feature = me.getFeatureStore().findRecord('bookmark', bookmark.getSegment(0));
       if (feature && feature.get('authenticationRequired') && NX.Permissions.available() && !userController.hasUser()) {
-        userController.askToAuthenticate();
+        userController.askToAuthenticate({
+          success: function () {
+            me.logDebug("Redirecting to: " + bookmark.getToken());
+            NX.Bookmarks.navigateTo(bookmark);
+          }
+        });
       }
     }
   },
@@ -325,7 +330,7 @@ Ext.define('NX.controller.Menu', {
     Ext.suspendLayouts();
 
     modeButton = me.getHeaderPanel().down('button[mode=' + me.mode + ']');
-    if(modeButton && modeButton.tooltip){
+    if (modeButton && modeButton.tooltip) {
       menuTitle = modeButton.tooltip;
     }
     me.getFeatureMenu().setTitle(menuTitle);
