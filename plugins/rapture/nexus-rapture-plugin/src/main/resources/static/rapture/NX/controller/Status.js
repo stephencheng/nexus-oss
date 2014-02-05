@@ -74,8 +74,10 @@ Ext.define('NX.controller.Status', {
    *
    * @private
    */
-  onSuccess: function(event) {
-    var me = this, status;
+  onSuccess: function (event) {
+    var me = this,
+        ctx = NX.ApplicationContext,
+        status;
 
     // TODO: determine if the server has been restarted and force reload of the UI
 
@@ -89,6 +91,12 @@ Ext.define('NX.controller.Status', {
     status = event.data.data;
     me.fireEvent('info', status.info);
     me.fireEvent('user', status.user);
+
+    if (!ctx.isLicenseInstalled() && status.info.licenseInstalled) {
+      NX.Messages.add({ text: 'License installed', type: 'success' });
+    }
+    ctx.setRequiresLicense(status.info.requiresLicense);
+    ctx.setLicenseInstalled(status.info.licenseInstalled);
 
     // fire commands if there are any
     if (status.commands) {
@@ -105,42 +113,50 @@ Ext.define('NX.controller.Status', {
    *
    * @private
    */
-  onError: function(event) {
+  onError: function (event) {
     var me = this,
-        messages = me.getApplication().getMessageController();
+        ctx = NX.ApplicationContext;
 
     if (event.code === 'xhr') {
-      // we appear to have lost the server connection
-      me.disconnectedTimes++;
-      if (me.disconnectedTimes <= me.maxDisconnectWarnings) {
-        messages.addMessage({ text: 'Server disconnected', type: 'warning' });
+      if (event.xhr.status === 402) {
+        if (ctx.isLicenseInstalled()) {
+          NX.Messages.add({ text: 'License uninstalled', type: 'warning' });
+          ctx.setLicenseInstalled(false);
+        }
       }
+      else {
+        // we appear to have lost the server connection
+        me.disconnectedTimes++;
+        if (me.disconnectedTimes <= me.maxDisconnectWarnings) {
+          NX.Messages.add({ text: 'Server disconnected', type: 'warning' });
+        }
 
-      // Give up after a few attempts and disable the UI
-      if (me.disconnectedTimes > me.maxDisconnectWarnings) {
-        messages.addMessage({text: 'Server disconnected', type: 'danger' });
+        // Give up after a few attempts and disable the UI
+        if (me.disconnectedTimes > me.maxDisconnectWarnings) {
+          NX.Messages.add({text: 'Server disconnected', type: 'danger' });
 
-        // Stop polling
-        me.statusProvider.disconnect();
+          // Stop polling
+          me.statusProvider.disconnect();
 
-        // Show the UI with a modal dialog error
-        NX.Dialogs.showError(
-            'Server disconnected',
-            'There is a problem communicating with the server',
-            {
-              fn: function() {
-                // retry after the dialog is dismissed
-                me.statusProvider.connect();
+          // Show the UI with a modal dialog error
+          NX.Dialogs.showError(
+              'Server disconnected',
+              'There is a problem communicating with the server',
+              {
+                fn: function () {
+                  // retry after the dialog is dismissed
+                  me.statusProvider.connect();
+                }
+
+                // FIXME: Show "Retry" as button text
+                // FIXME: Get icon to show up ... stupid icons
               }
-
-              // FIXME: Show "Retry" as button text
-              // FIXME: Get icon to show up ... stupid icons
-            }
-        );
+          );
+        }
       }
     }
     else if (event.type === 'exception') {
-      messages.addMessage({text: event.message, type: 'danger' });
+      NX.Messages.add({text: event.message, type: 'danger' });
     }
   },
 
