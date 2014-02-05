@@ -15,7 +15,5 @@ Ext.define('NX.view.Viewport', {
 
   layout: 'fit',
 
-  items: {
-    xtype: 'nx-main'
-  }
+  items: []
 });
