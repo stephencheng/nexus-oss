@@ -36,6 +36,9 @@ public class RaptureSettingsCapabilityConfiguration
   public static final String DEBUG_ALLOWED = "debugAllowed";
 
   @NonNls
+  public static final String STATUS_INTERVAL = "statusInterval";
+
+  @NonNls
   public static final String SESSION_TIMEOUT = "sessionTimeout";
 
   public RaptureSettingsCapabilityConfiguration() {
@@ -45,12 +48,14 @@ public class RaptureSettingsCapabilityConfiguration
   public RaptureSettingsCapabilityConfiguration(final Map<String, String> properties) {
     checkNotNull(properties);
     setDebugAllowed(parseBoolean(properties.get(DEBUG_ALLOWED), DEFAULT_DEBUG_ALLOWED));
+    setStatusInterval(parseInteger(properties.get(STATUS_INTERVAL), DEFAULT_STATUS_INTERVAL));
     setSessionTimeout(parseInteger(properties.get(SESSION_TIMEOUT), DEFAULT_SESSION_TIMEOUT));
   }
 
   public Map<String, String> asMap() {
     final Map<String, String> props = Maps.newHashMap();
     props.put(DEBUG_ALLOWED, Boolean.toString(isDebugAllowed()));
+    props.put(STATUS_INTERVAL, Integer.toString(getStatusInterval()));
     props.put(SESSION_TIMEOUT, Integer.toString(getSessionTimeout()));
     return props;
   }
@@ -78,6 +83,7 @@ public class RaptureSettingsCapabilityConfiguration
     return getClass().getSimpleName()
         + "{"
         + "debugAllowed=" + isDebugAllowed()
+        + ", statusInterval=" + getStatusInterval()
         + ", sessionTimeout=" + getSessionTimeout()
         + "}";
   }

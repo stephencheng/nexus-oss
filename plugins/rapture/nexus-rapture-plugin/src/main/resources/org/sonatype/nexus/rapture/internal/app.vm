@@ -41,6 +41,7 @@ NX.app.status = {
 ## configure settings
 NX.app.settings = {
   debugAllowed: $settings.debugAllowed,
+  statusInterval: $settings.statusInterval,
   sessionTimeout: $settings.sessionTimeout
 };
 

@@ -63,6 +63,12 @@ public class RaptureSettingsCapabilityDescriptor
     @DefaultMessage("Allow developer debugging")
     String debugAllowedHelp();
 
+    @DefaultMessage("Status interval")
+    String statusIntervalLabel();
+
+    @DefaultMessage("Interval between status requests (seconds)")
+    String statusIntervalHelp();
+
     @DefaultMessage("Session timeout")
     String sessionTimeoutLabel();
 
@@ -84,6 +90,12 @@ public class RaptureSettingsCapabilityDescriptor
             messages.debugAllowedHelp(),
             FormField.OPTIONAL
         ).withInitialValue(RaptureSettings.DEFAULT_DEBUG_ALLOWED),
+        new NumberTextFormField(
+            RaptureSettingsCapabilityConfiguration.STATUS_INTERVAL,
+            messages.statusIntervalLabel(),
+            messages.statusIntervalHelp(),
+            FormField.MANDATORY
+        ).withInitialValue(RaptureSettings.DEFAULT_STATUS_INTERVAL),
         new NumberTextFormField(
             RaptureSettingsCapabilityConfiguration.SESSION_TIMEOUT,
             messages.sessionTimeoutLabel(),
@@ -110,16 +122,20 @@ public class RaptureSettingsCapabilityDescriptor
 
   @Override
   public Validator validator() {
-    // Allow only one capability of this type
     return validators().logical().and(
         validators().capability().uniquePer(TYPE),
+        validators().value().isAPositiveInteger(TYPE, RaptureSettingsCapabilityConfiguration.STATUS_INTERVAL),
         validators().value().isAPositiveInteger(TYPE, RaptureSettingsCapabilityConfiguration.SESSION_TIMEOUT)
     );
   }
 
   @Override
   public Validator validator(final CapabilityIdentity id) {
-    return validators().value().isAPositiveInteger(TYPE, RaptureSettingsCapabilityConfiguration.SESSION_TIMEOUT);
+    return validators().logical().and(
+        validators().capability().uniquePerExcluding(id, TYPE),
+        validators().value().isAPositiveInteger(TYPE, RaptureSettingsCapabilityConfiguration.STATUS_INTERVAL),
+        validators().value().isAPositiveInteger(TYPE, RaptureSettingsCapabilityConfiguration.SESSION_TIMEOUT)
+    );
   }
 
   @Override

@@ -26,12 +26,15 @@ public class RaptureSettings
 
   public static final boolean DEFAULT_DEBUG_ALLOWED = true;
 
-  public static final int DEFAULT_SESSION_TIMEOUT = 30;
+  public static final int DEFAULT_STATUS_INTERVAL = 5; // seconds
+
+  public static final int DEFAULT_SESSION_TIMEOUT = 30; // minutes
 
   private boolean debugAllowed = DEFAULT_DEBUG_ALLOWED;
 
-  private int sessionTimeout = DEFAULT_SESSION_TIMEOUT;
+  private int statusInterval = DEFAULT_STATUS_INTERVAL;
 
+  private int sessionTimeout = DEFAULT_SESSION_TIMEOUT;
 
   public boolean isDebugAllowed() {
     return debugAllowed;
@@ -39,6 +42,14 @@ public class RaptureSettings
 
   public void setDebugAllowed(final boolean debugAllowed) {
     this.debugAllowed = debugAllowed;
+  }
+
+  public int getStatusInterval() {
+    return statusInterval;
+  }
+
+  public void setStatusInterval(final int statusInterval) {
+    this.statusInterval = statusInterval;
   }
 
   public int getSessionTimeout() {
