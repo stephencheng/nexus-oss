@@ -194,12 +194,15 @@ Ext.define('NX.controller.Menu', {
     if (checkIfUserRequired) {
       feature = me.getFeatureStore().findRecord('bookmark', bookmark.getSegment(0));
       if (feature && feature.get('authenticationRequired') && NX.Permissions.available() && !userController.hasUser()) {
-        userController.askToAuthenticate({
-          success: function () {
-            me.logDebug("Redirecting to: " + bookmark.getToken());
-            NX.Bookmarks.navigateTo(bookmark);
-          }
-        });
+        userController.askToAuthenticate(
+            undefined,
+            {
+              success: function () {
+                me.logDebug("Redirecting to: " + bookmark.getToken());
+                NX.Bookmarks.navigateTo(bookmark);
+              }
+            }
+        );
       }
     }
   },

@@ -267,13 +267,14 @@ Ext.define('NX.controller.User', {
   /**
    * @public
    * Shows login or authentication window based on the fact that we have an user or not.
+   * @param {String} [message] Message to be shown in authentication window
    * @param {Object} [options] TODO
    */
-  askToAuthenticate: function (options) {
+  askToAuthenticate: function (message, options) {
     var me = this;
 
     if (me.hasUser()) {
-      me.showAuthenticateWindow(options);
+      me.showAuthenticateWindow(message, options);
     }
     else {
       me.showLoginWindow(options);
@@ -296,14 +297,15 @@ Ext.define('NX.controller.User', {
   /**
    * @private
    * Shows authenticate window.
+   * @param {String} [message] Message to be shown in authentication window
    * @param {Object} [options] TODO
    */
-  showAuthenticateWindow: function (options) {
+  showAuthenticateWindow: function (message, options) {
     var me = this,
         win;
 
     if (!me.getAuthenticate()) {
-      win = me.getAuthenticateView().create({ message: options.message, options: options });
+      win = me.getAuthenticateView().create({ message: message, options: options });
       if (me.hasUser()) {
         win.down('form').getForm().setValues({ username: me.user.id });
         win.down('#password').focus();
