@@ -349,24 +349,6 @@ Ext.define('NX.controller.User', {
    * @private
    */
   login: function (button) {
-    var me = this;
-
-    me.doLogin(button, "Logging you in...")
-  },
-
-  /**
-   * @private
-   */
-  authenticate: function (button) {
-    var me = this;
-
-    me.doLogin(button, "Authenticate...");
-  },
-
-  /**
-   * @private
-   */
-  doLogin: function (button, action) {
     var me = this,
         win = button.up('window'),
         form = button.up('form'),
@@ -374,11 +356,38 @@ Ext.define('NX.controller.User', {
         userName = NX.util.Base64.encode(values.username),
         userPass = NX.util.Base64.encode(values.password);
 
-    win.getEl().mask(action);
+    win.getEl().mask('Logging you in...');
 
-    me.logDebug(action);
+    me.logDebug('Logging you in...');
 
     NX.direct.rapture_Application.login(userName, userPass, values.remember === 'on', function (response) {
+      win.getEl().unmask();
+      if (Ext.isDefined(response) && response.success) {
+        me.updateUser(response.data);
+        win.close();
+        if (win.options && Ext.isFunction(win.options.success)) {
+          win.options.success.call(win.options.scope, win.options);
+        }
+      }
+    });
+  },
+
+  /**
+   * @private
+   */
+  authenticate: function (button) {
+    var me = this,
+        win = button.up('window'),
+        form = button.up('form'),
+        values = Ext.applyIf(form.getValues(), { username: me.user ? me.user.id : undefined }),
+        userName = NX.util.Base64.encode(values.username),
+        userPass = NX.util.Base64.encode(values.password);
+
+    win.getEl().mask('Authenticate...');
+
+    me.logDebug('Authenticate...');
+
+    NX.direct.rapture_Application.authenticate(userName, userPass, function (response) {
       win.getEl().unmask();
       if (Ext.isDefined(response) && response.success) {
         me.updateUser(response.data);

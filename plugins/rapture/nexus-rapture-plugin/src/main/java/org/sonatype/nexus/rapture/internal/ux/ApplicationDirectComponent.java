@@ -96,6 +96,18 @@ public class ApplicationDirectComponent
   }
 
   @DirectMethod
+  public UserXO authenticate(final String base64Username,
+                             final String base64Password) throws Exception
+  {
+    boolean rememberMe = false;
+    Subject subject = securitySystem.getSubject();
+    if (subject != null) {
+      rememberMe = subject.isRemembered();
+    }
+    return login(base64Username, base64Password, rememberMe);
+  }
+
+  @DirectMethod
   public UserXO login(final String base64Username,
                       final String base64Password,
                       final boolean rememberMe) throws Exception
