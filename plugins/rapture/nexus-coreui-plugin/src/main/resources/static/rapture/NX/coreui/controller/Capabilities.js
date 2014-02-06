@@ -69,6 +69,11 @@ Ext.define('NX.coreui.controller.Capabilities', {
     me.callParent();
 
     me.listen({
+      controller: {
+        '#Refresh': {
+          refresh: me.loadCapabilityType
+        }
+      },
       component: {
         'nx-coreui-capability-list': {
           beforerender: me.loadCapabilityType
@@ -179,7 +184,7 @@ Ext.define('NX.coreui.controller.Capabilities', {
   },
 
   showAbout: function (capabilityTypeModel) {
-    this.getAbout().showAbout(capabilityTypeModel?capabilityTypeModel.get('about'):undefined);
+    this.getAbout().showAbout(capabilityTypeModel ? capabilityTypeModel.get('about') : undefined);
   },
 
   showAddWindow: function () {
@@ -213,8 +218,12 @@ Ext.define('NX.coreui.controller.Capabilities', {
   },
 
   loadCapabilityType: function () {
-    var me = this;
-    me.getCapabilityTypeStore().load();
+    var me = this,
+        list = me.getList();
+
+    if (list) {
+      me.getCapabilityTypeStore().load();
+    }
   },
 
   onCapabilityTypeLoad: function () {
@@ -247,7 +256,7 @@ Ext.define('NX.coreui.controller.Capabilities', {
         else if (Ext.isDefined(response.errors)) {
           remainingErrors = form.markInvalid(response.errors);
           if (remainingErrors) {
-            NX.Messages.add({ text:remainingErrors, type: 'warning' });
+            NX.Messages.add({ text: remainingErrors, type: 'warning' });
           }
         }
       }
@@ -275,7 +284,7 @@ Ext.define('NX.coreui.controller.Capabilities', {
         else if (Ext.isDefined(response.errors)) {
           remainingErrors = form.markInvalid(response.errors);
           if (remainingErrors) {
-            NX.Messages.add({ text:remainingErrors, type: 'warning' });
+            NX.Messages.add({ text: remainingErrors, type: 'warning' });
           }
         }
       }

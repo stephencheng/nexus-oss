@@ -75,6 +75,11 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
           load: me.reselect
         }
       },
+      controller: {
+        '#Refresh': {
+          refresh: me.loadContentClass
+        }
+      },
       component: {
         'nx-coreui-repositorytarget-list': {
           beforerender: me.loadContentClass
@@ -118,8 +123,12 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   },
 
   loadContentClass: function () {
-    var me = this;
-    me.getContentClassStore().load();
+    var me = this,
+        list = me.getList();
+
+    if (list) {
+      me.getContentClassStore().load();
+    }
   },
 
   create: function (button) {
