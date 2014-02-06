@@ -43,10 +43,8 @@ Ext.define('NX.controller.ExtDirect', {
       if (Ext.isDefined(result.authenticationRequired) && result.authenticationRequired === true) {
         NX.Messages.add({text: result.message, type: 'warning'});
         me.getApplication().getUserController().askToAuthenticate();
-        // cancel Ext.Direct callback
-        return false;
       }
-      if (!Ext.isDefined(result.errors)) {
+      else if (!Ext.isDefined(result.errors)) {
         NX.Messages.add({ text: result.message, type: 'warning' });
       }
     }
@@ -54,8 +52,6 @@ Ext.define('NX.controller.ExtDirect', {
     if (Ext.isDefined(transaction.serverException)) {
       NX.Messages.add({ text: transaction.serverException.exception.message, type: 'warning' });
     }
-
-    return true;
   }
 
 });
