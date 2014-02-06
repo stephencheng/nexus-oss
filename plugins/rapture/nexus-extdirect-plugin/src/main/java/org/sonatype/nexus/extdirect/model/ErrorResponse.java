@@ -14,7 +14,9 @@
 package org.sonatype.nexus.extdirect.model;
 
 import com.google.common.collect.Lists;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthenticatedException;
+import org.apache.shiro.subject.Subject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -33,10 +35,17 @@ public class ErrorResponse
   public ErrorResponse(final Throwable cause) {
     this(checkNotNull(cause).getMessage());
     authenticationRequired = cause instanceof UnauthenticatedException;
+    if (authenticationRequired) {
+      Subject subject = SecurityUtils.getSubject();
+      if (subject == null || !(subject.isRemembered() || subject.isAuthenticated())) {
+        message = "Access denied (authentication required)";
+      }
+    }
   }
 
   public ErrorResponse(final String message) {
     super(false, Lists.newArrayList());
     this.message = checkNotNull(message);
   }
+
 }
