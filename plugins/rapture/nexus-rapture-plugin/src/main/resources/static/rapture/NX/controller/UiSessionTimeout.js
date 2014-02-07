@@ -75,7 +75,7 @@ Ext.define('NX.controller.UiSessionTimeout', {
 
   /**
    * @private
-   * Reset state pooling when uiSettings.statusInterval changes.
+   * Reset UI session timeout when uiSettings.sessionTimeout changes.
    * @param {Object} uiSettings
    * @param {Number} uiSettings.sessionTimeout
    * @param {Object} oldUiSettings
