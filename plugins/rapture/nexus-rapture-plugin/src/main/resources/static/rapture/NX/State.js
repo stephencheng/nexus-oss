@@ -63,7 +63,7 @@ Ext.define('NX.State', {
    */
   requiresLicense: function () {
     var me = this;
-    return me.getValue('license', {})['requiresLicense'] === true;
+    return me.getValue('license', {})['required'] === true;
   },
 
   /**
@@ -72,7 +72,7 @@ Ext.define('NX.State', {
    */
   isLicenseInstalled: function () {
     var me = this;
-    return me.getValue('license', {})['licenseInstalled'] === true;
+    return me.getValue('license', {})['installed'] === true;
   },
 
   /**

@@ -245,9 +245,9 @@ Ext.define('NX.controller.State', {
 
     if (event.code === 'xhr') {
       if (event.xhr.status === 402) {
-        if (NX.State.isLicenseInstalled()) {
-          NX.State.setValue('license', Ext.apply(NX.State.getValue('license'), { installed: false }));
-        }
+        NX.State.setValueIfDifferent(
+            'license', Ext.apply(Ext.clone(NX.State.getValue('license')), { installed: false })
+        );
       }
       else {
         // we appear to have lost the server connection
