@@ -23,6 +23,7 @@ Ext.define('NX.app.PluginConfig', {
     'Search',
     'SettingsForm',
     'UiSessionTimeout',
+    'User',
 
     { id: 'Unlicensed',
       active: function () {

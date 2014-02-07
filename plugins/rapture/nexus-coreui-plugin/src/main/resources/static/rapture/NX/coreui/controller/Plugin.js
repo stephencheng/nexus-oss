@@ -33,7 +33,7 @@ Ext.define('NX.coreui.controller.Plugin', {
 
     // HACK: Show some items only if user is logged in for testing
     var visibleIfLoggedIn = function () {
-      return me.getApplication().getUserController().hasUser();
+      return Ext.isDefined(NX.State.getUser());
     };
 
     me.getApplication().getFeaturesController().registerFeature([

@@ -166,7 +166,7 @@ Ext.define('NX.controller.Menu', {
   navigateTo: function (bookmark) {
     var me = this,
         checkIfUserRequired = false,
-        userController = me.getApplication().getUserController(),
+        userController = me.getController('User'),
         node, mode, feature;
 
     if (bookmark) {
@@ -193,7 +193,10 @@ Ext.define('NX.controller.Menu', {
     }
     if (checkIfUserRequired) {
       feature = me.getFeatureStore().findRecord('bookmark', bookmark.getSegment(0));
-      if (feature && feature.get('authenticationRequired') && NX.Permissions.available() && !userController.hasUser()) {
+      if (userController
+          && feature && feature.get('authenticationRequired')
+          && NX.Permissions.available() && !Ext.isDefined(NX.State.getUser())) {
+
         userController.askToAuthenticate(
             undefined,
             {

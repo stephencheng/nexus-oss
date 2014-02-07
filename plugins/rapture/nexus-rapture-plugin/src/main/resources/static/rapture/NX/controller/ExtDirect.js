@@ -35,14 +35,17 @@ Ext.define('NX.controller.ExtDirect', {
    */
   checkResponse: function (provider, transaction) {
     var me = this,
-        result = transaction.result;
+        result = transaction.result,
+        userController = me.getController('User');
 
     if (Ext.isDefined(result)
         && Ext.isDefined(result.success) && result.success === false) {
 
       if (Ext.isDefined(result.authenticationRequired) && result.authenticationRequired === true) {
         NX.Messages.add({text: result.message, type: 'warning'});
-        me.getApplication().getUserController().askToAuthenticate();
+        if (userController) {
+          userController.askToAuthenticate();
+        }
       }
       else if (!Ext.isDefined(result.errors)) {
         NX.Messages.add({ text: result.message, type: 'warning' });

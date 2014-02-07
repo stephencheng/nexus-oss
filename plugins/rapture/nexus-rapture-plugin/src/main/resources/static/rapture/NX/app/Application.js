@@ -70,8 +70,7 @@ Ext.define('NX.app.Application', {
     'Features',
     'Icon',
     'Message',
-    'Permissions',
-    'User'
+    'Permissions'
   ],
 
   /**
