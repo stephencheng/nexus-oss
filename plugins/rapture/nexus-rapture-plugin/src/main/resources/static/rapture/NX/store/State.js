@@ -10,27 +10,7 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.store.Permission', {
+Ext.define('NX.store.State', {
   extend: 'Ext.data.Store',
-  model: 'NX.model.Permission',
-
-  proxy: {
-    type: 'direct',
-    paramsAsHash: false,
-
-    api: {
-      read: 'NX.direct.rapture_Security.getPermissions'
-    },
-
-    reader: {
-      type: 'json',
-      root: 'data',
-      idProperty: 'id',
-      successProperty: 'success'
-    }
-  },
-
-  sortOnLoad: true,
-  sorters: { property: 'id', direction: 'ASC' }
-
+  model: 'NX.model.State'
 });

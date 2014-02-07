@@ -83,7 +83,7 @@ Ext.define('NX.controller.UnsupportedBrowser', {
   },
 
   whenUserIsFeelingLucky: function () {
-    NX.ApplicationContext.setBrowserSupported(true);
+    NX.State.setBrowserSupported(true);
   }
 
 });

@@ -16,34 +16,23 @@
  *
  * @since 2.8
  */
-Ext.define('NX.ApplicationContext', {
+Ext.define('NX.State', {
   singleton: true,
-  requires: [
-    'Ext.util.HashMap'
-  ],
   mixins: {
     observable: 'Ext.util.Observable',
     logAware: 'NX.LogAware'
   },
-
-  /**
-   * @private
-   * {@link Ext.util.HashMap} containing context values by key
-   */
-  values: new Ext.util.HashMap(),
 
   constructor: function (config) {
     var me = this;
 
     me.mixins.observable.constructor.call(me, config);
 
-    me.values.on('replace', me.notifyChange, me);
-
     me.addEvents(
         /**
          * @event changed
-         * Fires when any of application contex values changes.
-         * @param {NX.ApplicationContext} this
+         * Fires when any of application context values changes.
+         * @param {NX.State} this
          */
         'changed'
     );
@@ -55,7 +44,7 @@ Ext.define('NX.ApplicationContext', {
    */
   isBrowserSupported: function () {
     var me = this;
-    return me.values.get('browserSupported') === true;
+    return me.getValue('browserSupported') === true;
   },
 
   /**
@@ -65,7 +54,7 @@ Ext.define('NX.ApplicationContext', {
   setBrowserSupported: function (value) {
     var me = this;
 
-    me.setIfNotEqual('browserSupported', value === true, me.isBrowserSupported());
+    me.setValueIfDifferent('browserSupported', value === true);
   },
 
   /**
@@ -74,16 +63,7 @@ Ext.define('NX.ApplicationContext', {
    */
   requiresLicense: function () {
     var me = this;
-    return me.values.get('requiresLicense') === true;
-  },
-
-  /**
-   * @public
-   * @param {boolean} value true, if license is required
-   */
-  setRequiresLicense: function (value) {
-    var me = this;
-    me.setIfNotEqual('requiresLicense', value === true, me.requiresLicense());
+    return me.getValue('license', {})['requiresLicense'] === true;
   },
 
   /**
@@ -92,30 +72,35 @@ Ext.define('NX.ApplicationContext', {
    */
   isLicenseInstalled: function () {
     var me = this;
-    return me.values.get('licenseInstalled') === true;
+    return me.getValue('license', {})['licenseInstalled'] === true;
+  },
+
+  getValue: function (key, defaultValue) {
+    var me = this;
+    return me.controller().getValue(key, defaultValue);
+  },
+
+  setValue: function (key, value) {
+    var me = this;
+    me.controller().setValue(key, value);
+  },
+
+  setValueIfDifferent: function (key, value) {
+    var me = this;
+    me.controller().setValueIfDifferent(key, value);
+  },
+
+  setValues: function (values) {
+    var me = this;
+    me.controller().setValues(values);
   },
 
   /**
-   * @public
-   * @param {boolean} value true, if license is installed
+   * @private
+   * @returns {NX.controller.State}
    */
-  setLicenseInstalled: function (value) {
-    var me = this;
-    me.setIfNotEqual('licenseInstalled', value === true, me.isLicenseInstalled());
-  },
-
-  setIfNotEqual: function (key, value, oldValue) {
-    var me = this;
-
-    if (value != oldValue) {
-      me.values.replace(key, value);
-    }
-  },
-
-  notifyChange: function (map, key, value) {
-    var me = this;
-    me.logDebug('Changed: ' + key + ' -> ' + value);
-    me.fireEvent('changed', me);
+  controller: function () {
+    return NX.getApplication().getStateController();
   }
 
 });

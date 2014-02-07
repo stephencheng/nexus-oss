@@ -83,8 +83,8 @@ Ext.define('NX.controller.User', {
 
     me.listen({
       controller: {
-        '#Status': {
-          user: me.updateUser,
+        '#State': {
+          userchanged: me.updateUser,
           commandfetchpermissions: me.fetchPermissions
         }
       },
@@ -147,8 +147,10 @@ Ext.define('NX.controller.User', {
   /**
    * @private
    */
-  updateUser: function (user) {
-    var me = this;
+  updateUser: function () {
+    var me = this,
+        user = NX.State.getValue('user'),
+        sessionTimeout = NX.State.getValue('uiSettings')['sessionTimeout'];
 
     if (user) {
       if (!Ext.isDefined(me.user) || (me.user.id != user.id)) {
@@ -160,14 +162,14 @@ Ext.define('NX.controller.User', {
 
         me.fetchPermissions();
 
-        if (NX.app.settings.sessionTimeout > 0) {
+        if (sessionTimeout > 0) {
           me.activityMonitor = Ext.create('Ext.ux.ActivityMonitor', {
             interval: 1000, // check every second,
-            maxInactive: ((NX.app.settings.sessionTimeout * 60) - me.SECONDS_TO_EXPIRE) * 1000,
+            maxInactive: ((sessionTimeout * 60) - me.SECONDS_TO_EXPIRE) * 1000,
             isInactive: me.showExpirationWindow.bind(me)
           });
           me.activityMonitor.start();
-          me.logDebug('Session expiration enabled for ' + NX.app.settings.sessionTimeout + ' minutes');
+          me.logDebug('Session expiration enabled for ' + sessionTimeout + ' minutes');
         }
       }
       me.user = Ext.apply(me.user, user);
@@ -360,10 +362,10 @@ Ext.define('NX.controller.User', {
 
     me.logDebug('Logging you in...');
 
-    NX.direct.rapture_Application.login(userName, userPass, values.remember === 'on', function (response) {
+    NX.direct.rapture_Security.login(userName, userPass, values.remember === 'on', function (response) {
       win.getEl().unmask();
       if (Ext.isDefined(response) && response.success) {
-        me.updateUser(response.data);
+        NX.State.setValue('user', response.data);
         win.close();
         if (win.options && Ext.isFunction(win.options.success)) {
           win.options.success.call(win.options.scope, win.options);
@@ -387,10 +389,10 @@ Ext.define('NX.controller.User', {
 
     me.logDebug('Authenticate...');
 
-    NX.direct.rapture_Application.authenticate(userName, userPass, function (response) {
+    NX.direct.rapture_Security.authenticate(userName, userPass, function (response) {
       win.getEl().unmask();
       if (Ext.isDefined(response) && response.success) {
-        me.updateUser(response.data);
+        NX.State.setValue('user', response.data);
         win.close();
         if (win.options && Ext.isFunction(win.options.success)) {
           win.options.success.call(win.options.scope, win.options);
@@ -407,9 +409,9 @@ Ext.define('NX.controller.User', {
 
     me.logDebug('Logout...');
 
-    NX.direct.rapture_Application.logout(function (response) {
+    NX.direct.rapture_Security.logout(function (response) {
       if (Ext.isDefined(response) && response.success) {
-        me.updateUser();
+        NX.State.setValue('user', undefined);
       }
     });
   },

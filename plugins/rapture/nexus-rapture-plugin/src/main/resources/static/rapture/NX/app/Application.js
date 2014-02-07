@@ -22,7 +22,7 @@ Ext.define('NX.app.Application', {
     'Ext.util.LocalStorage',
     'NX.view.Viewport',
     'NX.util.Url',
-    'NX.ApplicationContext',
+    'NX.State',
 
     // require custom extensions so we don't need to requirement explicitly everywhere
     'NX.ext.grid.IconColumn',
@@ -61,6 +61,7 @@ Ext.define('NX.app.Application', {
    * Always active controllers.
    */
   controllers: [
+    'State',
     'Bookmarking',
     'ExtDirect',
     'dev.Developer',
@@ -69,7 +70,6 @@ Ext.define('NX.app.Application', {
     'Features',
     'Icon',
     'Message',
-    'Status',
     'User'
   ],
 
@@ -87,13 +87,13 @@ Ext.define('NX.app.Application', {
       return NX.app.Application.supportedBrowser() && NX.app.Application.licensed();
     },
     supportedBrowser: function () {
-      return NX.ApplicationContext.isBrowserSupported();
+      return NX.State.isBrowserSupported();
     },
     unsupportedBrowser: function () {
       return !NX.app.Application.supportedBrowser();
     },
     licensed: function () {
-      return !NX.ApplicationContext.requiresLicense() || NX.ApplicationContext.isLicenseInstalled();
+      return !NX.State.requiresLicense() || NX.State.isLicenseInstalled();
     },
     unlicensed: function () {
       return !NX.app.Application.licensed();
@@ -221,14 +221,16 @@ Ext.define('NX.app.Application', {
 
     me.managedControllers = NX.app.pluginConfig.managedControllers;
 
-    NX.ApplicationContext.setBrowserSupported(true);
-    NX.ApplicationContext.setRequiresLicense(NX.app.status.info.requiresLicense);
-    NX.ApplicationContext.setLicenseInstalled(NX.app.status.info.licenseInstalled);
-
     Ext.create('NX.view.Viewport');
 
     me.syncManagedControllers();
-    NX.ApplicationContext.on('changed', me.syncManagedControllers, me);
+    me.listen({
+      controller: {
+        '#State': {
+          changed: me.syncManagedControllers
+        }
+      }
+    });
 
     // hide the loading mask after we have loaded
     var hideMask = function () {
@@ -246,7 +248,8 @@ Ext.define('NX.app.Application', {
    */
   syncManagedControllers: function () {
     var me = this,
-        ref, initializedControllers = [];
+        ref, initializedControllers = [],
+        changes = false;
 
     me.logDebug('Refreshing controllers');
 
@@ -255,6 +258,7 @@ Ext.define('NX.app.Application', {
       ref = me.managedControllers.get(key);
       if (!ref.active()) {
         if (ref.controller) {
+          changes = true;
           me.logDebug('Destroying controller: ' + key);
           ref.controller.eventbus.unlisten(ref.controller.id);
           if (Ext.isFunction(ref.controller.onDestroy)) {
@@ -275,6 +279,7 @@ Ext.define('NX.app.Application', {
       ref = me.managedControllers.get(key);
       if (ref.active()) {
         if (!ref.controller) {
+          changes = true;
           me.logDebug('Initializing controller: ' + key);
           ref.controller = me.getController(key);
           initializedControllers.push(ref.controller);
@@ -291,8 +296,10 @@ Ext.define('NX.app.Application', {
       controller.finishInit(me);
     });
 
-    // TODO shall we do this on each refresh?
-    me.getIconController().installStylesheet();
+    if (changes) {
+      // TODO shall we do this on each refresh?
+      me.getIconController().installStylesheet();
+    }
   }
 
 }, function () {
