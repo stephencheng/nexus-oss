@@ -50,14 +50,6 @@ Ext.define('NX.controller.User', {
     }
   ],
 
-  user: undefined,
-
-  /**
-   * @private
-   * True after first call to update user.
-   */
-  ready: false,
-
   init: function () {
     var me = this;
 
@@ -71,7 +63,7 @@ Ext.define('NX.controller.User', {
     me.listen({
       controller: {
         '#State': {
-          userchanged: me.updateUser
+          userchanged: me.onUserChanged
         }
       },
       component: {
@@ -117,27 +109,17 @@ Ext.define('NX.controller.User', {
   /**
    * @private
    */
-  updateUser: function () {
-    var me = this,
-        user = NX.State.getUser();
+  onUserChanged: function (user, oldUser) {
+    var me = this;
 
-    if (user) {
-      if (!Ext.isDefined(me.user) || (me.user.id != user.id)) {
-        NX.Messages.add({text: 'User logged in: ' + user.id, type: 'default' });
-
-        me.user = user;
-        me.fireEvent('login', user);
-      }
-      me.user = Ext.apply(me.user, user);
+    if (user && !oldUser) {
+      NX.Messages.add({text: 'User logged in: ' + user.id, type: 'default' });
+      me.fireEvent('login', user);
     }
-    else {
-      if (me.user) {
-        NX.Messages.add({text: 'User logged out', type: 'default' });
-
-        delete me.user;
-        NX.Bookmarks.navigateTo(NX.Bookmarks.fromToken('default'));
-        me.fireEvent('logout');
-      }
+    else if (!user && oldUser) {
+      NX.Messages.add({text: 'User logged out', type: 'default' });
+      NX.Bookmarks.navigateTo(NX.Bookmarks.fromToken('default'));
+      me.fireEvent('logout');
     }
 
     me.manageButtons();
@@ -150,7 +132,7 @@ Ext.define('NX.controller.User', {
    * @return {boolean}
    */
   hasUser: function () {
-    return Ext.isDefined(this.user);
+    return Ext.isDefined(NX.State.getUser());
   },
 
   /**
@@ -191,12 +173,13 @@ Ext.define('NX.controller.User', {
    */
   showAuthenticateWindow: function (message, options) {
     var me = this,
+        user = NX.State.getUser(),
         win;
 
     if (!me.getAuthenticate()) {
       win = me.getAuthenticateView().create({ message: message, options: options });
       if (me.hasUser()) {
-        win.down('form').getForm().setValues({ username: me.user.id });
+        win.down('form').getForm().setValues({ username: user.id });
         win.down('#password').focus();
       }
     }
@@ -241,7 +224,7 @@ Ext.define('NX.controller.User', {
     var me = this,
         win = button.up('window'),
         form = button.up('form'),
-        values = Ext.applyIf(form.getValues(), { username: me.user ? me.user.id : undefined }),
+        values = form.getValues(),
         userName = NX.util.Base64.encode(values.username),
         userPass = NX.util.Base64.encode(values.password);
 
@@ -268,7 +251,8 @@ Ext.define('NX.controller.User', {
     var me = this,
         win = button.up('window'),
         form = button.up('form'),
-        values = Ext.applyIf(form.getValues(), { username: me.user ? me.user.id : undefined }),
+        user = NX.State.getUser(),
+        values = Ext.applyIf(form.getValues(), { username: user ? user.id : undefined }),
         userName = NX.util.Base64.encode(values.username),
         userPass = NX.util.Base64.encode(values.password);
 
@@ -305,14 +289,15 @@ Ext.define('NX.controller.User', {
 
   manageButtons: function () {
     var me = this,
+        user = NX.State.getUser(),
         loginButton = me.getLoginButton(),
         logoutButton = me.getLogoutButton(),
         userButton = me.getUserButton();
 
     if (loginButton) {
-      if (me.user) {
+      if (user) {
         loginButton.hide();
-        userButton.setText(me.user.id);
+        userButton.setText(user.id);
         userButton.show();
         logoutButton.show();
       }
