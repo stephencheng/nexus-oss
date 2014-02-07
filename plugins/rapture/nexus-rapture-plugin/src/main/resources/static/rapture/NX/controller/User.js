@@ -141,8 +141,6 @@ Ext.define('NX.controller.User', {
     }
 
     me.manageButtons();
-
-    me.started = true;
   },
 
   /**
@@ -153,57 +151,6 @@ Ext.define('NX.controller.User', {
    */
   hasUser: function () {
     return Ext.isDefined(this.user);
-  },
-
-  /**
-   * @private
-   */
-  showExpirationWindow: function () {
-    var me = this;
-
-    NX.Messages.add({text: 'Session is about to expire', type: 'warning' });
-    me.getExpireSessionView().create();
-  },
-
-  /**
-   * @private
-   */
-  startTicking: function (win) {
-    var me = this;
-
-    me.expirationTicker = Ext.util.TaskManager.newTask({
-      run: function (count) {
-        win.down('label').setText('Session will expire in ' + (me.SECONDS_TO_EXPIRE - count) + ' seconds');
-        if (count == me.SECONDS_TO_EXPIRE) {
-          win.close();
-          NX.Messages.add({
-            text: 'Session expired after being inactive for ' + NX.app.settings.sessionTimeout + ' minutes',
-            type: 'warning'
-          });
-          me.logout();
-        }
-      },
-      interval: 1000,
-      repeat: me.SECONDS_TO_EXPIRE
-    });
-    me.expirationTicker.start();
-  },
-
-  /**
-   * @private
-   */
-  stopTicking: function (button) {
-    var me = this,
-        win = button.up('window');
-
-    if (me.expirationTicker) {
-      me.expirationTicker.destroy();
-      delete me.expirationTicker;
-    }
-    if (win) {
-      win.close();
-    }
-    me.activityMonitor.start();
   },
 
   /**
