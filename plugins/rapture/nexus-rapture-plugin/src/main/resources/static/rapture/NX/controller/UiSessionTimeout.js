@@ -88,7 +88,7 @@ Ext.define('NX.controller.UiSessionTimeout', {
     uiSettings = uiSettings || {};
     oldUiSettings = oldUiSettings || {};
 
-    if (!uiSettings.sessionTimeout !== oldUiSettings.sessionTimeout) {
+    if (uiSettings.sessionTimeout !== oldUiSettings.sessionTimeout) {
       me.setupTimeout(user ? uiSettings.sessionTimeout : undefined);
     }
   },
