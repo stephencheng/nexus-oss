@@ -93,7 +93,7 @@ public class AppJsWebResource
         .set("pluginConfigClassNames", join(classNames))
         .set("baseUrl", BaseUrlHolder.get())
         .set("status", applicationStatusSource.getSystemStatus())
-        .set("state", gson.toJson(stateComponent.get()))
+        .set("state", gson.toJson(stateComponent.getValues()))
     );
   }
 

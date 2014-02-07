@@ -13,6 +13,8 @@
 
 package org.sonatype.nexus.rapture.internal.ux;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -38,6 +40,7 @@ import org.apache.shiro.codec.Base64;
 import org.apache.shiro.subject.Subject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.sonatype.nexus.rapture.internal.ux.StateComponent.shouldSend;
 
 /**
  * Security Ext.Direct component.
@@ -60,8 +63,6 @@ public class SecurityComponent
   private static final int DELETE = 4;
 
   private static final int CREATE = 8;
-
-  public static final String PRIVILEGES = "privileges";
 
   private final SecuritySystem securitySystem;
 
@@ -101,9 +102,11 @@ public class SecurityComponent
       subject.logout();
     }
 
-    HttpSession session = WebContextManager.get().getRequest().getSession(false);
-    if (session != null) {
-      session.invalidate();
+    if (WebContextManager.isWebContextAttachedToCurrentThread()) {
+      HttpSession session = WebContextManager.get().getRequest().getSession(false);
+      if (session != null) {
+        session.invalidate();
+      }
     }
   }
 
@@ -125,37 +128,27 @@ public class SecurityComponent
 
   @DirectMethod
   public List<PermissionXO> getPermissions() {
+    List<PermissionXO> permissions = null;
     Subject subject = securitySystem.getSubject();
     if (isLoggedIn(subject)) {
-      Map<String, Integer> privileges = calculatePrivileges(subject);
-      HttpSession session = WebContextManager.get().getRequest().getSession(false);
-      if (session != null) {
-        session.setAttribute(PRIVILEGES, privileges);
-      }
-      return asPermissions(privileges);
+      permissions = asPermissions(calculatePrivileges(subject));
     }
-    return null;
+    // store hash so we do not send later on a command to fetch
+    shouldSend("permissions", permissions);
+    return permissions;
   }
 
-  CommandXO checkPermissions() {
-    HttpSession session = WebContextManager.get().getRequest().getSession(false);
-    if (session != null) {
-      Subject subject = securitySystem.getSubject();
-      if (isLoggedIn(subject)) {
-        Map<String, Integer> currentPrivileges = calculatePrivileges(subject);
-        // TODO make teh diff based on a has not store the whole privileges map in session
-        Map<String, Integer> privileges = (Map<String, Integer>) session.getAttribute(PRIVILEGES);
-        if (privileges == null) {
-          privileges = Maps.newHashMap();
-        }
-        if (!Maps.difference(privileges, currentPrivileges).areEqual()) {
-          CommandXO command = new CommandXO();
-          command.setType("fetchpermissions");
-          return command;
-        }
-      }
+  public List<CommandXO> getCommands() {
+    List<CommandXO> commands = Lists.newArrayList();
+
+    List<PermissionXO> permissions = getPermissions();
+    if (permissions != null && shouldSend("permissions", permissions)) {
+      CommandXO command = new CommandXO();
+      command.setType("fetchpermissions");
+      commands.add(command);
     }
-    return null;
+
+    return commands;
   }
 
   private boolean isLoggedIn(final Subject subject) {
@@ -238,6 +231,14 @@ public class SecurityComponent
         perms.add(permissionXO);
       }
     }
+
+    Collections.sort(perms, new Comparator<PermissionXO>()
+    {
+      @Override
+      public int compare(final PermissionXO o1, final PermissionXO o2) {
+        return o1.getId().compareTo(o2.getId());
+      }
+    });
 
     return perms;
   }
