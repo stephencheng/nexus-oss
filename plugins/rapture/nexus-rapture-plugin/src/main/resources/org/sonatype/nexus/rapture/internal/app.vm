@@ -31,24 +31,26 @@ NX.app.baseUrl = '$baseUrl';
 ## configure status
 NX.app.status = {
   version: "$status.version",
-  edition: "$status.editionShort",
-  info: {
-    requiresLicense: $info.requiresLicense,
-    licenseInstalled: $info.licenseInstalled
-  }
+  edition: "$status.editionShort"
 };
 
 ## configure settings
-NX.app.settings = {
-  debugAllowed: $settings.debugAllowed,
-  statusInterval: $settings.statusInterval,
-  sessionTimeout: $settings.sessionTimeout
+NX.app.state = {
+  license: {
+    required: $state.license.required,
+    installed: $state.license.installed
+  },
+  uiSettings: {
+    debugAllowed: $state.uiSettings.debugAllowed,
+    statusInterval: $state.uiSettings.statusInterval,
+    sessionTimeout: $state.uiSettings.sessionTimeout
+  }
 };
 
 ## Set the debug flag if allowed
 NX.app.debug = false;
 if (window.location.search === '?debug') {
-  if (NX.app.settings.debugAllowed) {
+  if (NX.app.state.uiSettings.debugAllowed) {
     console.log('Debug mode enabled');
     NX.app.debug = true;
   }

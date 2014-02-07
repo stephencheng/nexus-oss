@@ -23,8 +23,7 @@ import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import org.sonatype.nexus.ApplicationStatusSource;
-import org.sonatype.nexus.rapture.Rapture;
-import org.sonatype.nexus.rapture.internal.ux.ApplicationDirectComponent;
+import org.sonatype.nexus.rapture.internal.ux.StateComponent;
 import org.sonatype.nexus.web.BaseUrlHolder;
 import org.sonatype.nexus.webresources.WebResourceService;
 import org.sonatype.sisu.goodies.template.TemplateParameters;
@@ -48,23 +47,19 @@ public class AppJsWebResource
 
   private static final String PLUGIN_CONFIG_SUFFIX = "/app/PluginConfig.js";
 
-  private final Rapture rapture;
-
   private final ApplicationStatusSource applicationStatusSource;
 
-  private final ApplicationDirectComponent applicationDirectComponent;
+  private final StateComponent stateComponent;
 
   private final Provider<WebResourceService> webResourceServiceProvider; // avoid circular dep
 
   @Inject
-  public AppJsWebResource(final Rapture rapture,
-                          final ApplicationStatusSource applicationStatusSource,
-                          final ApplicationDirectComponent applicationDirectComponent,
+  public AppJsWebResource(final ApplicationStatusSource applicationStatusSource,
+                          final StateComponent stateComponent,
                           final Provider<WebResourceService> webResourceServiceProvider)
   {
-    this.rapture = checkNotNull(rapture, "rapture");
     this.applicationStatusSource = checkNotNull(applicationStatusSource);
-    this.applicationDirectComponent = checkNotNull(applicationDirectComponent);
+    this.stateComponent = checkNotNull(stateComponent);
     this.webResourceServiceProvider = checkNotNull(webResourceServiceProvider);
   }
 
@@ -91,9 +86,8 @@ public class AppJsWebResource
     return render("app.vm", new TemplateParameters()
         .set("pluginConfigClassNames", join(classNames))
         .set("baseUrl", BaseUrlHolder.get())
-        .set("settings", rapture.getSettings())
         .set("status", applicationStatusSource.getSystemStatus())
-        .set("info", applicationDirectComponent.getInfo())
+        .set("state", stateComponent.get())
     );
   }
 
