@@ -16,9 +16,11 @@ package org.sonatype.nexus.rapture.internal.ux;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Provider;
 import javax.inject.Singleton;
 import javax.servlet.http.HttpSession;
 
@@ -26,6 +28,7 @@ import org.sonatype.nexus.ApplicationStatusSource;
 import org.sonatype.nexus.SystemStatus;
 import org.sonatype.nexus.extdirect.DirectComponentSupport;
 import org.sonatype.nexus.rapture.Rapture;
+import org.sonatype.nexus.rapture.StateContributor;
 import org.sonatype.nexus.util.DigesterUtils;
 
 import com.google.common.collect.Lists;
@@ -36,6 +39,7 @@ import com.softwarementors.extjs.djn.config.annotations.DirectAction;
 import com.softwarementors.extjs.djn.config.annotations.DirectPollMethod;
 import com.softwarementors.extjs.djn.servlet.ssm.WebContextManager;
 import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang.StringUtils;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -55,18 +59,18 @@ public class StateComponent
 
   private final ApplicationStatusSource applicationStatusSource;
 
-  private final SecurityComponent security;
+  private final List<Provider<StateContributor>> stateContributors;
 
   private final static Gson gson = new GsonBuilder().create();
 
   @Inject
   public StateComponent(final Rapture rapture,
                         final ApplicationStatusSource applicationStatusSource,
-                        final SecurityComponent security)
+                        final List<Provider<StateContributor>> stateContributors)
   {
     this.rapture = checkNotNull(rapture, "rapture");
     this.applicationStatusSource = checkNotNull(applicationStatusSource);
-    this.security = checkNotNull(security);
+    this.stateContributors = checkNotNull(stateContributors);
   }
 
   @DirectPollMethod(event = "rapture_State_get")
@@ -82,17 +86,55 @@ public class StateComponent
   public Map<String, Object> getValues() {
     HashMap<String, Object> values = Maps.newHashMap();
 
+    for (Provider<StateContributor> contributor : stateContributors) {
+      try {
+        Map<String, Object> stateValues = contributor.get().getState();
+        if (stateValues != null) {
+          for (Entry<String, Object> entry : stateValues.entrySet()) {
+            if (StringUtils.isNotBlank(entry.getKey())) {
+              send(values, entry.getKey(), entry.getValue());
+            }
+            else {
+              log.warn("Empty state id returned by {} (ignored)", contributor.getClass().getName());
+            }
+          }
+        }
+      }
+      catch (Exception e) {
+        log.warn("Failed to get state from {} (ignored)", contributor.getClass().getName(), e);
+      }
+    }
+
     send(values, "license", getLicense());
     send(values, "uiSettings", rapture.getSettings());
-    send(values, "user", security.getUser());
 
     return values;
   }
 
-  public List<CommandXO> getCommands() {
+  private List<CommandXO> getCommands() {
     List<CommandXO> commands = Lists.newArrayList();
 
-    send(commands, security.getCommands());
+    for (Provider<StateContributor> contributor : stateContributors) {
+      try {
+        Map<String, Object> stateCommands = contributor.get().getCommands();
+        if (stateCommands != null) {
+          for (Entry<String, Object> entry : stateCommands.entrySet()) {
+            if (StringUtils.isNotBlank(entry.getKey())) {
+              CommandXO command = new CommandXO();
+              command.setType(entry.getKey());
+              command.setData(entry.getValue());
+              commands.add(command);
+            }
+            else {
+              log.warn("Empty command id returned by {} (ignored)", contributor.getClass().getName());
+            }
+          }
+        }
+      }
+      catch (Exception e) {
+        log.warn("Failed to get commands from {} (ignored)", contributor.getClass().getName(), e);
+      }
+    }
 
     return commands;
   }
@@ -101,12 +143,6 @@ public class StateComponent
     boolean shouldSend = shouldSend(key, value);
     if (shouldSend) {
       values.put(key, value);
-    }
-  }
-
-  private void send(List<CommandXO> toSend, final List<CommandXO> commands) {
-    if (commands != null) {
-      toSend.addAll(commands);
     }
   }
 

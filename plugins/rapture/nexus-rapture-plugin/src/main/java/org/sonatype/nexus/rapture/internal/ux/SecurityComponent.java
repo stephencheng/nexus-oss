@@ -15,6 +15,7 @@ package org.sonatype.nexus.rapture.internal.ux;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -25,6 +26,7 @@ import javax.inject.Singleton;
 import javax.servlet.http.HttpSession;
 
 import org.sonatype.nexus.extdirect.DirectComponentSupport;
+import org.sonatype.nexus.rapture.StateContributor;
 import org.sonatype.security.SecuritySystem;
 import org.sonatype.security.authorization.Privilege;
 
@@ -52,6 +54,7 @@ import static org.sonatype.nexus.rapture.internal.ux.StateComponent.shouldSend;
 @DirectAction(action = "rapture_Security")
 public class SecurityComponent
     extends DirectComponentSupport
+    implements StateContributor
 {
 
   private static final int NONE = 0;
@@ -138,14 +141,20 @@ public class SecurityComponent
     return permissions;
   }
 
-  public List<CommandXO> getCommands() {
-    List<CommandXO> commands = Lists.newArrayList();
+  @Override
+  public Map<String, Object> getState() {
+    HashMap<String, Object> state = Maps.newHashMap();
+    state.put("user", getUser());
+    return state;
+  }
+
+  @Override
+  public Map<String, Object> getCommands() {
+    HashMap<String, Object> commands = Maps.newHashMap();
 
     List<PermissionXO> permissions = getPermissions();
     if (permissions != null && shouldSend("permissions", permissions)) {
-      CommandXO command = new CommandXO();
-      command.setType("fetchpermissions");
-      commands.add(command);
+      commands.put("fetchpermissions", null);
     }
 
     return commands;
