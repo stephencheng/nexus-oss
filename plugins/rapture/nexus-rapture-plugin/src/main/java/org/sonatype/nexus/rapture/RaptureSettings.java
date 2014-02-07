@@ -13,15 +13,12 @@
 
 package org.sonatype.nexus.rapture;
 
-import org.sonatype.sisu.goodies.common.ComponentSupport;
-
 /**
  * RaptureSettings.
  *
  * @since 2.8
  */
 public class RaptureSettings
-    extends ComponentSupport
 {
 
   public static final boolean DEFAULT_DEBUG_ALLOWED = true;

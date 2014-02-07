@@ -16,14 +16,14 @@ package org.sonatype.nexus.rapture.internal.ux
 import groovy.transform.ToString
 
 /**
- * Status exchange object.
+ * License exchange object.
  *
  * @since 2.8
  */
 @ToString(includePackage = false, includeNames = true)
-class InfoXO
+class LicenseXO
 {
-  boolean requiresLicense
+  boolean required
 
-  boolean licenseInstalled
+  boolean installed
 }

@@ -21,11 +21,9 @@ import groovy.transform.ToString
  * @since 2.8
  */
 @ToString(includePackage = false, includeNames = true)
-class StatusXO
+class StateXO
 {
-  InfoXO info
-
-  UserXO user
+  Map<String, Object> values
 
   List<CommandXO> commands
 }
