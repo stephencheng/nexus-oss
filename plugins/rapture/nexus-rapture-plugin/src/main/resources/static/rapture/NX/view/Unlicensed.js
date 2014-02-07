@@ -63,17 +63,6 @@ Ext.define('NX.view.Unlicensed', {
       // default to hidden, only show if debug enabled
       hidden: true
     }
-  ],
+  ]
 
-  /**
-   * @protected
-   */
-  initComponent: function () {
-    this.callParent();
-
-    // if debug enabled, show developer tools
-    if (NX.app.debug) {
-      this.down('nx-dev-panel').show();
-    }
-  }
 });

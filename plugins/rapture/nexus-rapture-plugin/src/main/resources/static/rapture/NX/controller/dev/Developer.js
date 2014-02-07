@@ -31,6 +31,10 @@ Ext.define('NX.controller.dev.Developer', {
     {
       ref: 'branding',
       selector: 'nx-header-branding'
+    },
+    {
+      ref: 'developer',
+      selector: 'nx-dev-panel'
     }
   ],
 
@@ -41,7 +45,16 @@ Ext.define('NX.controller.dev.Developer', {
     var me = this;
 
     me.listen({
+      controller: {
+        '#State': {
+          debugchanged: me.manageDeveloperPanel,
+          uisettingschanged: me.onUiSettingsChanged
+        }
+      },
       component: {
+        'nx-dev-panel': {
+          afterrender: me.manageDeveloperPanel
+        },
         'nx-dev-tests button[action=testError]': {
           click: me.testError
         },
@@ -56,6 +69,42 @@ Ext.define('NX.controller.dev.Developer', {
         }
       }
     });
+  },
+
+  /**
+   * @private
+   * Reset debug value when uiSettings.debugAllowed changes.
+   * @param {Object} uiSettings
+   * @param {Number} uiSettings.debugAllowed
+   * @param {Object} oldUiSettings
+   * @param {Number} oldUiSettings.debugAllowed
+   */
+  onUiSettingsChanged: function (uiSettings, oldUiSettings) {
+    uiSettings = uiSettings || {};
+    oldUiSettings = oldUiSettings || {};
+
+    if (uiSettings.debugAllowed !== oldUiSettings.debugAllowed) {
+      NX.State.setValueIfDifferent('debug', uiSettings.debugAllowed && (window.location.search === '?debug'));
+    }
+  },
+
+  /**
+   * @private
+   * Show/Hide developer panel based on debug state.
+   */
+  manageDeveloperPanel: function () {
+    var me = this,
+        debug = NX.State.getValue('debug'),
+        developerPanel = me.getDeveloper();
+
+    if (developerPanel) {
+      if (debug) {
+        developerPanel.show();
+      }
+      else {
+        developerPanel.hide();
+      }
+    }
   },
 
   /**
