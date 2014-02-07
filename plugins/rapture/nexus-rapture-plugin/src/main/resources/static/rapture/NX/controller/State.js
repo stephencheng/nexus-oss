@@ -294,8 +294,6 @@ Ext.define('NX.controller.State', {
    * @param {Number} oldLicense.installed
    */
   onLicenseChanged: function (license, oldLicense) {
-    var me = this;
-
     if (license && oldLicense) {
       if (license.installed && !oldLicense.installed) {
         NX.Messages.add({ text: 'License installed', type: 'success' });
