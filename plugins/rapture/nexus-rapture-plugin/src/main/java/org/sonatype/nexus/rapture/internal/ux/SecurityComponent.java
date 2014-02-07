@@ -131,13 +131,18 @@ public class SecurityComponent
 
   @DirectMethod
   public List<PermissionXO> getPermissions() {
+    List<PermissionXO> permissions = calculatePermissions();
+    // store hash so we do not send later on a command to fetch
+    shouldSend("permissions", permissions);
+    return permissions;
+  }
+
+  public List<PermissionXO> calculatePermissions() {
     List<PermissionXO> permissions = null;
     Subject subject = securitySystem.getSubject();
     if (isLoggedIn(subject)) {
       permissions = asPermissions(calculatePrivileges(subject));
     }
-    // store hash so we do not send later on a command to fetch
-    shouldSend("permissions", permissions);
     return permissions;
   }
 
@@ -152,7 +157,7 @@ public class SecurityComponent
   public Map<String, Object> getCommands() {
     HashMap<String, Object> commands = Maps.newHashMap();
 
-    List<PermissionXO> permissions = getPermissions();
+    List<PermissionXO> permissions = calculatePermissions();
     if (permissions != null && shouldSend("permissions", permissions)) {
       commands.put("fetchpermissions", null);
     }
