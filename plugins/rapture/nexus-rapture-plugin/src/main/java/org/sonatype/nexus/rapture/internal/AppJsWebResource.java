@@ -29,6 +29,7 @@ import org.sonatype.nexus.webresources.WebResourceService;
 import org.sonatype.sisu.goodies.template.TemplateParameters;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -93,7 +94,7 @@ public class AppJsWebResource
         .set("pluginConfigClassNames", join(classNames))
         .set("baseUrl", BaseUrlHolder.get())
         .set("status", applicationStatusSource.getSystemStatus())
-        .set("state", gson.toJson(stateComponent.getValues()))
+        .set("state", gson.toJson(stateComponent.getValues(Maps.<String, String>newHashMap())))
     );
   }
 

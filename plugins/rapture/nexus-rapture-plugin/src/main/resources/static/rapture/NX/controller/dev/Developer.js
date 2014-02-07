@@ -84,7 +84,7 @@ Ext.define('NX.controller.dev.Developer', {
     oldUiSettings = oldUiSettings || {};
 
     if (uiSettings.debugAllowed !== oldUiSettings.debugAllowed) {
-      NX.State.setValueIfDifferent('debug', uiSettings.debugAllowed && (window.location.search === '?debug'));
+      NX.State.setValue('debug', uiSettings.debugAllowed && (window.location.search === '?debug'));
     }
   },
 

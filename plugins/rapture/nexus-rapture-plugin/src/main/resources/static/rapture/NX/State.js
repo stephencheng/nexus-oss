@@ -54,7 +54,7 @@ Ext.define('NX.State', {
   setBrowserSupported: function (value) {
     var me = this;
 
-    me.setValueIfDifferent('browserSupported', value === true);
+    me.setValue('browserSupported', value === true);
   },
 
   /**
@@ -91,7 +91,7 @@ Ext.define('NX.State', {
    */
   setUser: function (user) {
     var me = this;
-    me.setValueIfDifferent('user', user);
+    me.setValue('user', user);
   },
 
   getValue: function (key, defaultValue) {
@@ -102,11 +102,6 @@ Ext.define('NX.State', {
   setValue: function (key, value) {
     var me = this;
     me.controller().setValue(key, value);
-  },
-
-  setValueIfDifferent: function (key, value) {
-    var me = this;
-    me.controller().setValueIfDifferent(key, value);
   },
 
   setValues: function (values) {

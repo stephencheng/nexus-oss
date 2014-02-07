@@ -16,14 +16,14 @@ package org.sonatype.nexus.rapture.internal.ux
 import groovy.transform.ToString
 
 /**
- * State exchange object.
+ * State value exchange object.
  *
  * @since 2.8
  */
 @ToString(includePackage = false, includeNames = true)
-class StateXO
+class StateValueXO
 {
-  Map<String, Object> values
+  String hash
 
-  List<CommandXO> commands
+  Object value
 }

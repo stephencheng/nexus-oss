@@ -88,46 +88,77 @@ Ext.define('NX.controller.State', {
     return value;
   },
 
-  setValue: function (key, value) {
+  /**
+   * @public
+   * @param {String} key
+   * @param {Object} value
+   * @param {String} [hash]
+   */
+  setValue: function (key, value, hash) {
     var me = this,
         model = me.getStateStore().getById(key);
 
     if (!model) {
       if (value) {
-        me.getStateStore().add(me.getStateModel().create({ key: key, value: value }));
+        me.getStateStore().add(me.getStateModel().create({ key: key, value: value, hash: hash }));
       }
     }
     else {
       if (value) {
-        model.set('value', value);
+        if (!Ext.Object.equals(value, model.get('value'))) {
+          model.set('value', value);
+        }
+        if (!Ext.Object.equals(hash, model.get('hash'))) {
+          model.set('hash', hash)
+        }
       }
       else {
         me.getStateStore().remove(model);
       }
     }
     me.getStateStore().commitChanges();
+    if (me.statusProvider) {
+      if (Ext.isDefined(value) && hash) {
+        me.statusProvider.baseParams[key] = hash;
+      }
+      else {
+        delete me.statusProvider.baseParams[key];
+      }
+    }
   },
 
-  setValueIfDifferent: function (key, value) {
+  /**
+   * @public
+   * @param {String} key
+   * @param {Object} value
+   * @param {String} [hash]
+   */
+  setValueIfDifferent: function (key, value, hash) {
     var me = this;
 
     if (!Ext.Object.equals(value, me.getValue(key))) {
-      me.setValue(key, value);
+      me.setValue(key, value, hash);
     }
   },
 
   setValues: function (map) {
     var me = this,
-        valueToSet;
+        hash, valueToSet;
 
     if (map) {
       Ext.Object.each(map, function (key, value) {
         valueToSet = value;
-        if (!Ext.isPrimitive(value) && !Ext.isArray(value)
-            && Ext.ClassManager.getByAlias('nx.state.' + key)) {
-          valueToSet = Ext.ClassManager.instantiateByAlias('nx.state.' + key, value);
+        if (Ext.isObject(value) && value.hash && value.value) {
+          hash = value.hash;
+          valueToSet = value.value;
         }
-        me.setValueIfDifferent(key, valueToSet);
+        if (valueToSet) {
+          if (!Ext.isPrimitive(valueToSet) && !Ext.isArray(valueToSet)
+              && Ext.ClassManager.getByAlias('nx.state.' + key)) {
+            valueToSet = Ext.ClassManager.instantiateByAlias('nx.state.' + key, valueToSet);
+          }
+        }
+        me.setValue(key, valueToSet, hash);
       });
     }
   },
@@ -176,6 +207,8 @@ Ext.define('NX.controller.State', {
           type: 'polling',
           url: NX.direct.api.POLLING_URLS.rapture_State_get,
           interval: uiSettings.statusInterval * 1000,
+          baseParams: {
+          },
           listeners: {
             data: me.onServerData,
             scope: me
@@ -247,9 +280,7 @@ Ext.define('NX.controller.State', {
 
     if (event.code === 'xhr') {
       if (event.xhr.status === 402) {
-        NX.State.setValueIfDifferent(
-            'license', Ext.apply(Ext.clone(NX.State.getValue('license')), { installed: false })
-        );
+        NX.State.setValue('license', Ext.apply(Ext.clone(NX.State.getValue('license')), { installed: false }));
       }
       else {
         // we appear to have lost the server connection

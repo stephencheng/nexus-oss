@@ -74,16 +74,16 @@ public class StateComponent
   }
 
   @DirectPollMethod(event = "rapture_State_get")
-  public StateXO get(final Map<String, String> parameters) {
+  public StateXO get(final Map<String, String> hashes) {
     StateXO stateXO = new StateXO();
 
-    stateXO.setValues(getValues());
+    stateXO.setValues(getValues(hashes));
     stateXO.setCommands(getCommands());
 
     return stateXO;
   }
 
-  public Map<String, Object> getValues() {
+  public Map<String, Object> getValues(final Map<String, String> hashes) {
     HashMap<String, Object> values = Maps.newHashMap();
 
     for (Provider<StateContributor> contributor : stateContributors) {
@@ -92,7 +92,7 @@ public class StateComponent
         if (stateValues != null) {
           for (Entry<String, Object> entry : stateValues.entrySet()) {
             if (StringUtils.isNotBlank(entry.getKey())) {
-              send(values, entry.getKey(), entry.getValue());
+              send(values, hashes, entry.getKey(), entry.getValue());
             }
             else {
               log.warn("Empty state id returned by {} (ignored)", contributor.getClass().getName());
@@ -105,8 +105,8 @@ public class StateComponent
       }
     }
 
-    send(values, "license", getLicense());
-    send(values, "uiSettings", rapture.getSettings());
+    send(values, hashes, "license", getLicense());
+    send(values, hashes, "uiSettings", rapture.getSettings());
 
     return values;
   }
@@ -139,11 +139,26 @@ public class StateComponent
     return commands;
   }
 
-  private void send(final Map<String, Object> values, final String key, final Object value) {
-    boolean shouldSend = shouldSend(key, value);
-    if (shouldSend) {
-      values.put(key, value);
+  private void send(final Map<String, Object> values,
+                    final Map<String, String> hashes,
+                    final String key,
+                    final Object value)
+  {
+    String hash = hash(value);
+    if (!ObjectUtils.equals(hash, hashes.get(key))) {
+      StateValueXO stateValueXO = new StateValueXO();
+      stateValueXO.setHash(hash);
+      stateValueXO.setValue(value);
+      values.put(key, stateValueXO);
     }
+  }
+
+  public static String hash(final Object value) {
+    if (value != null) {
+      // TODO is there another way to not use serialized json? :D
+      return DigesterUtils.getSha1Digest(gson.toJson(value));
+    }
+    return null;
   }
 
   public static boolean shouldSend(final String key, final Object value) {

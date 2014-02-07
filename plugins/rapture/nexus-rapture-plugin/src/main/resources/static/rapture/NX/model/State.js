@@ -15,6 +15,7 @@ Ext.define('NX.model.State', {
   idProperty: 'key',
   fields: [
     { name: 'key', type: 'string' },
-    { name: 'value', defaultValue: undefined }
+    { name: 'value', defaultValue: undefined },
+    { name: 'hash', type: 'string' }
   ]
 });
