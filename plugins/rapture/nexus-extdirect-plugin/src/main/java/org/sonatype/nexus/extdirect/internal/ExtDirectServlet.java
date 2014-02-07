@@ -10,9 +10,13 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
+
 package org.sonatype.nexus.extdirect.internal;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -22,6 +26,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.servlet.ServletConfig;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
 
 import org.sonatype.configuration.validation.InvalidConfigurationException;
 import org.sonatype.nexus.configuration.application.ApplicationConfiguration;
@@ -32,6 +39,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.inject.Key;
+import com.softwarementors.extjs.djn.EncodingUtils;
 import com.softwarementors.extjs.djn.api.RegisteredMethod;
 import com.softwarementors.extjs.djn.config.ApiConfiguration;
 import com.softwarementors.extjs.djn.router.dispatcher.Dispatcher;
@@ -70,6 +78,18 @@ public class ExtDirectServlet
   {
     this.applicationConfiguration = checkNotNull(applicationConfiguration);
     this.beanLocator = checkNotNull(beanLocator);
+  }
+
+  @Override
+  public void doPost(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
+    HttpServletRequest wrappedRequest = new HttpServletRequestWrapper(request)
+    {
+      @Override
+      public BufferedReader getReader() throws IOException {
+        return new BufferedReader(new InputStreamReader(getInputStream(), EncodingUtils.UTF8));
+      }
+    };
+    super.doPost(wrappedRequest, response);
   }
 
   @Override
