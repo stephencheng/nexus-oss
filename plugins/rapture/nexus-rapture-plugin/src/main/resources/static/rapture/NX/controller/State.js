@@ -73,6 +73,7 @@ Ext.define('NX.controller.State', {
 
   onLaunch: function () {
     NX.State.setBrowserSupported(false);
+    NX.State.setValue(NX.app.debug);
     NX.State.setValues(NX.app.state);
   },
 
@@ -104,6 +105,7 @@ Ext.define('NX.controller.State', {
         me.getStateStore().remove(model);
       }
     }
+    me.getStateStore().commitChanges();
   },
 
   setValueIfDifferent: function (key, value) {
