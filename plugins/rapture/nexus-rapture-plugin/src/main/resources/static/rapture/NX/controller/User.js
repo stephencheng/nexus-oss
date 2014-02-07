@@ -13,8 +13,7 @@
 Ext.define('NX.controller.User', {
   extend: 'Ext.app.Controller',
   requires: [
-    'NX.util.Base64',
-    'NX.Permissions'
+    'NX.util.Base64'
   ],
   mixins: {
     logAware: 'NX.LogAware'
@@ -25,12 +24,7 @@ Ext.define('NX.controller.User', {
     'header.Logout',
     'header.User',
     'Authenticate',
-    'Login',
-    'ExpireSession'
-  ],
-
-  stores: [
-    'Permission'
+    'Login'
   ],
 
   refs: [
@@ -77,15 +71,7 @@ Ext.define('NX.controller.User', {
     me.listen({
       controller: {
         '#State': {
-          userchanged: me.updateUser,
-          commandfetchpermissions: me.fetchPermissions
-        }
-      },
-      store: {
-        '#Permission': {
-          load: me.firePermissionsChanged,
-          update: me.firePermissionsChanged,
-          remove: me.firePermissionsChanged
+          userchanged: me.updateUser
         }
       },
       component: {
@@ -124,13 +110,7 @@ Ext.define('NX.controller.User', {
          * @event logout
          * Fires when a user had been successfully logged out.
          */
-        'logout',
-        /**
-         * @event permissionschanged
-         * Fires when permissions change.
-         * @param {NX.Permissions}
-         */
-        'permissionschanged'
+        'logout'
     );
   },
 
@@ -147,7 +127,6 @@ Ext.define('NX.controller.User', {
 
         me.user = user;
         me.fireEvent('login', user);
-        me.fetchPermissions();
       }
       me.user = Ext.apply(me.user, user);
     }
@@ -158,10 +137,6 @@ Ext.define('NX.controller.User', {
         delete me.user;
         NX.Bookmarks.navigateTo(NX.Bookmarks.fromToken('default'));
         me.fireEvent('logout');
-        me.fetchPermissions();
-      }
-      else if (!me.started) {
-        me.fetchPermissions();
       }
     }
 
@@ -379,40 +354,6 @@ Ext.define('NX.controller.User', {
         NX.State.setUser(undefined);
       }
     });
-  },
-
-  /**
-   * @private
-   */
-  fetchPermissions: function () {
-    var me = this;
-
-    me.getPermissionStore().load();
-  },
-
-  /**
-   * @private
-   */
-  firePermissionsChanged: function () {
-    var me = this;
-
-    NX.Permissions.setPermissions(me.getPermissions());
-    me.logDebug('Permissions changed. Firing event');
-    me.fireEvent('permissionschanged', NX.Permissions);
-  },
-
-  /**
-   * @private
-   */
-  getPermissions: function () {
-    var me = this,
-        perms = {};
-
-    me.getPermissionStore().each(function (rec) {
-      perms[rec.get('id')] = rec.get('value');
-    });
-
-    return perms;
   },
 
   manageButtons: function () {

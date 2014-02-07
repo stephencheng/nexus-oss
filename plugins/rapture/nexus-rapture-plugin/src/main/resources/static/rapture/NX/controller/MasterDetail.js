@@ -46,8 +46,8 @@ Ext.define('NX.controller.MasterDetail', {
     me.listen({
       component: componentListener,
       controller: {
-        '#User': {
-          permissionschanged: me.applyPermissions
+        '#Permissions': {
+          changed: me.applyPermissions
         },
         '#Bookmarking': {
           navigate: me.navigateTo
