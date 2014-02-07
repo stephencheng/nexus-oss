@@ -96,6 +96,9 @@ Ext.define('NX.controller.User', {
         }
       },
       component: {
+        'nx-header-panel': {
+          afterrender: me.manageButtons
+        },
         'nx-header-login': {
           click: me.showLoginWindow
         },
