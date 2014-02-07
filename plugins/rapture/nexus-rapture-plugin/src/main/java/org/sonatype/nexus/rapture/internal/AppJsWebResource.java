@@ -29,6 +29,8 @@ import org.sonatype.nexus.webresources.WebResourceService;
 import org.sonatype.sisu.goodies.template.TemplateParameters;
 
 import com.google.common.collect.Lists;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -53,6 +55,8 @@ public class AppJsWebResource
 
   private final Provider<WebResourceService> webResourceServiceProvider; // avoid circular dep
 
+  private final Gson gson;
+
   @Inject
   public AppJsWebResource(final ApplicationStatusSource applicationStatusSource,
                           final StateComponent stateComponent,
@@ -61,6 +65,8 @@ public class AppJsWebResource
     this.applicationStatusSource = checkNotNull(applicationStatusSource);
     this.stateComponent = checkNotNull(stateComponent);
     this.webResourceServiceProvider = checkNotNull(webResourceServiceProvider);
+
+    gson = new GsonBuilder().setPrettyPrinting().create();
   }
 
   @Override
@@ -87,7 +93,7 @@ public class AppJsWebResource
         .set("pluginConfigClassNames", join(classNames))
         .set("baseUrl", BaseUrlHolder.get())
         .set("status", applicationStatusSource.getSystemStatus())
-        .set("state", stateComponent.get())
+        .set("state", gson.toJson(stateComponent.get()))
     );
   }
 

@@ -73,6 +73,7 @@
         <configuration>
           <sharedDependencies>
             <sharedDependency>com.softwarementors.extjs:directjngine</sharedDependency>
+            <sharedDependency>com.google.code.gson:gson</sharedDependency>
           </sharedDependencies>
         </configuration>
       </plugin>

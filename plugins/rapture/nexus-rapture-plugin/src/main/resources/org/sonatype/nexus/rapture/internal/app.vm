@@ -34,18 +34,8 @@ NX.app.status = {
   edition: "$status.editionShort"
 };
 
-## configure settings
-NX.app.state = {
-  license: {
-    required: $state.license.required,
-    installed: $state.license.installed
-  },
-  uiSettings: {
-    debugAllowed: $state.uiSettings.debugAllowed,
-    statusInterval: $state.uiSettings.statusInterval,
-    sessionTimeout: $state.uiSettings.sessionTimeout
-  }
-};
+## initial state
+NX.app.state = $state;
 
 ## Set the debug flag if allowed
 NX.app.debug = false;
