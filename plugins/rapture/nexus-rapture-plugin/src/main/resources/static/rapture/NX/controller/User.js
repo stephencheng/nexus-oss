@@ -14,8 +14,7 @@ Ext.define('NX.controller.User', {
   extend: 'Ext.app.Controller',
   requires: [
     'NX.util.Base64',
-    'NX.Permissions',
-    'Ext.ux.ActivityMonitor'
+    'NX.Permissions'
   ],
   mixins: {
     logAware: 'NX.LogAware'
@@ -57,8 +56,6 @@ Ext.define('NX.controller.User', {
     }
   ],
 
-  SECONDS_TO_EXPIRE: 30,
-
   user: undefined,
 
   /**
@@ -66,10 +63,6 @@ Ext.define('NX.controller.User', {
    * True after first call to update user.
    */
   ready: false,
-
-  activityMonitor: undefined,
-
-  expirationTicker: undefined,
 
   init: function () {
     var me = this;
@@ -116,12 +109,6 @@ Ext.define('NX.controller.User', {
         },
         'nx-authenticate form': {
           afterrender: me.installAuthenticateEnterKey
-        },
-        'nx-expire-session': {
-          afterrender: me.startTicking
-        },
-        'nx-expire-session button[action=cancel]': {
-          click: me.stopTicking
         }
       }
     });
@@ -152,28 +139,15 @@ Ext.define('NX.controller.User', {
    */
   updateUser: function () {
     var me = this,
-        user = NX.State.getValue('user'),
-        sessionTimeout = NX.State.getValue('uiSettings')['sessionTimeout'];
+        user = NX.State.getUser();
 
     if (user) {
       if (!Ext.isDefined(me.user) || (me.user.id != user.id)) {
         NX.Messages.add({text: 'User logged in: ' + user.id, type: 'default' });
 
         me.user = user;
-
         me.fireEvent('login', user);
-
         me.fetchPermissions();
-
-        if (sessionTimeout > 0) {
-          me.activityMonitor = Ext.create('Ext.ux.ActivityMonitor', {
-            interval: 1000, // check every second,
-            maxInactive: ((sessionTimeout * 60) - me.SECONDS_TO_EXPIRE) * 1000,
-            isInactive: me.showExpirationWindow.bind(me)
-          });
-          me.activityMonitor.start();
-          me.logDebug('Session expiration enabled for ' + sessionTimeout + ' minutes');
-        }
       }
       me.user = Ext.apply(me.user, user);
     }
@@ -181,21 +155,9 @@ Ext.define('NX.controller.User', {
       if (me.user) {
         NX.Messages.add({text: 'User logged out', type: 'default' });
 
-        if (me.activityMonitor) {
-          me.activityMonitor.stop();
-          delete me.activityMonitor;
-        }
-        if (me.expirationTicker) {
-          me.expirationTicker.destroy();
-          delete me.expirationTicker;
-        }
-
         delete me.user;
-
         NX.Bookmarks.navigateTo(NX.Bookmarks.fromToken('default'));
-
         me.fireEvent('logout');
-
         me.fetchPermissions();
       }
       else if (!me.started) {
@@ -368,7 +330,7 @@ Ext.define('NX.controller.User', {
     NX.direct.rapture_Security.login(userName, userPass, values.remember === 'on', function (response) {
       win.getEl().unmask();
       if (Ext.isDefined(response) && response.success) {
-        NX.State.setValue('user', response.data);
+        NX.State.setUser(response.data);
         win.close();
         if (win.options && Ext.isFunction(win.options.success)) {
           win.options.success.call(win.options.scope, win.options);
@@ -395,7 +357,7 @@ Ext.define('NX.controller.User', {
     NX.direct.rapture_Security.authenticate(userName, userPass, function (response) {
       win.getEl().unmask();
       if (Ext.isDefined(response) && response.success) {
-        NX.State.setValue('user', response.data);
+        NX.State.setUser(response.data);
         win.close();
         if (win.options && Ext.isFunction(win.options.success)) {
           win.options.success.call(win.options.scope, win.options);
@@ -414,7 +376,7 @@ Ext.define('NX.controller.User', {
 
     NX.direct.rapture_Security.logout(function (response) {
       if (Ext.isDefined(response) && response.success) {
-        NX.State.setValue('user', undefined);
+        NX.State.setUser(undefined);
       }
     });
   },

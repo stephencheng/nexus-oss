@@ -75,6 +75,25 @@ Ext.define('NX.State', {
     return me.getValue('license', {})['licenseInstalled'] === true;
   },
 
+  /**
+   * @public
+   * @returns {Object} current user, if any
+   */
+  getUser: function () {
+    var me = this;
+    return me.getValue('user');
+  },
+
+  /**
+   * @public
+   * @param {Object} [user] current user to be set
+   * @returns {*}
+   */
+  setUser: function (user) {
+    var me = this;
+    me.setValueIfDifferent('user', user);
+  },
+
   getValue: function (key, defaultValue) {
     var me = this;
     return me.controller().getValue(key, defaultValue);

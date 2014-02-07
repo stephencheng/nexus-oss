@@ -22,6 +22,7 @@ Ext.define('NX.app.PluginConfig', {
     'Refresh',
     'Search',
     'SettingsForm',
+    'UiSessionTimeout',
 
     { id: 'Unlicensed',
       active: function () {
