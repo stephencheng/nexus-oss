@@ -23,6 +23,7 @@ Ext.define('NX.controller.dev.Developer', {
     'dev.Icons',
     'dev.Messages',
     'dev.Features',
+    'dev.State',
     'dev.Stores'
   ],
 
