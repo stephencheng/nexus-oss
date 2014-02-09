@@ -127,20 +127,6 @@ Ext.define('NX.controller.State', {
     }
   },
 
-  /**
-   * @public
-   * @param {String} key
-   * @param {Object} value
-   * @param {String} [hash]
-   */
-  setValueIfDifferent: function (key, value, hash) {
-    var me = this;
-
-    if (!Ext.Object.equals(value, me.getValue(key))) {
-      me.setValue(key, value, hash);
-    }
-  },
-
   setValues: function (map) {
     var me = this,
         hash, valueToSet;
@@ -170,9 +156,11 @@ Ext.define('NX.controller.State', {
     });
   },
 
-  onEntryUpdated: function (store, model) {
+  onEntryUpdated: function (store, model, operation, modifiedFieldNames) {
     var me = this;
-    me.notifyChange(model.get('key'), model.get('value'), model.modified.value);
+    if ((operation === Ext.data.Model.EDIT) && modifiedFieldNames.indexOf('value') > -1) {
+      me.notifyChange(model.get('key'), model.get('value'), model.modified.value);
+    }
   },
 
   onEntryRemoved: function (store, model) {
