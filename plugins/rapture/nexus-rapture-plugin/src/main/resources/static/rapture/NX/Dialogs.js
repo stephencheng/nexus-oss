@@ -22,6 +22,24 @@ Ext.define('NX.Dialogs', {
   /**
    * @public
    */
+  showInfo: function (title, message, options) {
+    options = options || {};
+
+    // set default configuration
+    Ext.applyIf(options, {
+      title: title || 'Information',
+      msg: message,
+      buttons: Ext.Msg.OK,
+      icon: Ext.MessageBox.INFO,
+      closable: false
+    });
+
+    Ext.Msg.show(options);
+  },
+
+  /**
+   * @public
+   */
   showError: function (title, message, options) {
     options = options || {};
 
