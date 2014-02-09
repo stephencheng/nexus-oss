@@ -108,10 +108,19 @@ public class StateComponent
     }
 
     send(values, hashes, "serverId", serverId);
+    send(values, hashes, "status", getStatus());
     send(values, hashes, "license", getLicense());
     send(values, hashes, "uiSettings", rapture.getSettings());
 
     return values;
+  }
+
+  private StatusXO getStatus() {
+    SystemStatus systemStatus = applicationStatusSource.getSystemStatus();
+    StatusXO status = new StatusXO();
+    status.setEdition(systemStatus.getEditionShort());
+    status.setVersion(systemStatus.getVersion());
+    return status;
   }
 
   private List<CommandXO> getCommands() {

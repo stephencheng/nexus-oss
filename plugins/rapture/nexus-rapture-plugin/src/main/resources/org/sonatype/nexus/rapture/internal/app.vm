@@ -28,12 +28,6 @@ Ext.each(NX.app.pluginConfigClassNames, function(className) {
 ## configure basics
 NX.app.baseUrl = '$baseUrl';
 
-## configure status
-NX.app.status = {
-  version: "$status.version",
-  edition: "$status.editionShort"
-};
-
 ## initial state
 NX.app.state = $state;
 
