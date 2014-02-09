@@ -63,6 +63,8 @@ public class StateComponent
 
   private final static Gson gson = new GsonBuilder().create();
 
+  private final static String serverId = String.valueOf(System.nanoTime());
+
   @Inject
   public StateComponent(final Rapture rapture,
                         final ApplicationStatusSource applicationStatusSource,
@@ -105,6 +107,7 @@ public class StateComponent
       }
     }
 
+    send(values, hashes, "serverId", serverId);
     send(values, hashes, "license", getLicense());
     send(values, hashes, "uiSettings", rapture.getSettings());
 

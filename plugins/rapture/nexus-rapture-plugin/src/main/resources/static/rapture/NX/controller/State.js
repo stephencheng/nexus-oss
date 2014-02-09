@@ -50,7 +50,8 @@ Ext.define('NX.controller.State', {
       controller: {
         '#State': {
           uisettingschanged: me.onUiSettingsChanged,
-          licensechanged: me.onLicenseChanged
+          licensechanged: me.onLicenseChanged,
+          serveridchanged: me.onServerIdChanged
         }
       },
       store: {
@@ -236,8 +237,6 @@ Ext.define('NX.controller.State', {
     var me = this,
         state;
 
-    // TODO: determine if the server has been restarted and force reload of the UI
-
     // re-enable the UI we are now connected again
     if (me.disconnectedTimes > 0) {
       me.disconnectedTimes = 0;
@@ -322,6 +321,20 @@ Ext.define('NX.controller.State', {
       else if (!license.installed && oldLicense.installed) {
         NX.Messages.add({ text: 'License uninstalled', type: 'warning' });
       }
+    }
+  },
+
+  onServerIdChanged: function (serverId, oldServerId) {
+    if (oldServerId && (serverId !== oldServerId)) {
+      NX.Dialogs.showInfo(
+          'Server restarted',
+          'Application will be reloaded as server has been restarted',
+          {
+            fn: function () {
+              window.location.reload();
+            }
+          }
+      );
     }
   }
 
