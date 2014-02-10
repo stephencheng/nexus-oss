@@ -24,6 +24,10 @@ Ext.define('NX.view.dev.State', {
   columns: [
     { text: 'key', dataIndex: 'key', width: 250 },
     { text: 'hash', dataIndex: 'hash' },
-    { text: 'value', xtype: 'templatecolumn', tpl: '{[Ext.JSON.encode(values.value)]}', flex: 1 }
+    { text: 'value', dataIndex: 'value', flex: 1,
+      renderer: function (value) {
+        return Ext.JSON.encode(value);
+      }
+    }
   ]
 });
