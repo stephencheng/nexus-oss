@@ -70,6 +70,29 @@ Ext.define('NX.view.Main', {
       // default to hidden, only show if debug enabled
       hidden: true
     }
-  ]
+  ],
+
+  initComponent: function () {
+    var me = this;
+
+    me.callParent();
+
+    me.down('nx-header-panel>toolbar').add([
+      '->',
+      { xtype: 'nx-header-dashboard-mode' },
+      { xtype: 'nx-header-search-mode' },
+      { xtype: 'nx-header-browse-mode' },
+      { xtype: 'nx-header-admin-mode' },
+      '->',
+      { xtype: 'nx-searchbox', itemId: 'quicksearch', emptyText: 'quick search' },
+      '->',
+      { xtype: 'nx-header-messages', ui: 'header' },
+      { xtype: 'nx-header-refresh', ui: 'header' },
+      { xtype: 'nx-header-help', ui: 'header' },
+      { xtype: 'nx-header-login', ui: 'header' },
+      { xtype: 'nx-header-user', hidden: true },
+      { xtype: 'nx-header-logout', ui: 'header' }
+    ]);
+  }
 
 });
