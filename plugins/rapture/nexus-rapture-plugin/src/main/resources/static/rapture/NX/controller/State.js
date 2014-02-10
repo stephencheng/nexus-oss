@@ -73,7 +73,9 @@ Ext.define('NX.controller.State', {
   },
 
   onLaunch: function () {
-    NX.State.setBrowserSupported(true);
+    NX.State.setBrowserSupported(
+        !Ext.isIE || (Ext.isIE9p && Ext.isIE11m)
+    );
     NX.State.setValue(NX.app.debug);
     NX.State.setValues(NX.app.state);
   },
