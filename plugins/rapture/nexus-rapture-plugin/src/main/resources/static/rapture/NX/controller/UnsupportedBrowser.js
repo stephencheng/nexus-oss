@@ -51,8 +51,8 @@ Ext.define('NX.controller.UnsupportedBrowser', {
         'viewport': {
           afterrender: me.onLaunch
         },
-        'nx-unsupported-browser button[action=lucky]': {
-          click: me.whenUserIsFeelingLucky
+        'nx-unsupported-browser button[action=continue]': {
+          click: me.onContinue
         }
       }
     });
@@ -86,7 +86,7 @@ Ext.define('NX.controller.UnsupportedBrowser', {
     }
   },
 
-  whenUserIsFeelingLucky: function () {
+  onContinue: function () {
     NX.State.setBrowserSupported(true);
   }
 

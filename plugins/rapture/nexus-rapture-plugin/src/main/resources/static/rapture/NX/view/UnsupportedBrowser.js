@@ -39,7 +39,8 @@ Ext.define('NX.view.UnsupportedBrowser', {
       items: [
         {
           xtype: 'label',
-          html: 'Unsupported browser detected',
+          text: 'The browser you are using is not supported',
+          // TODO replace style with UI
           style: {
             'color': '#000000',
             'font-size': '20px',
@@ -48,7 +49,29 @@ Ext.define('NX.view.UnsupportedBrowser', {
             'padding': '20px'
           }
         },
-        { xtype: 'button', text: 'I\'m feeling lucky', action: 'lucky' }
+        {
+          xtype: 'label',
+          text: 'Bellow is a list of alternatives that are supported by this web application',
+          // TODO replace style with UI
+          style: {
+            'font-size': '10px'
+          }
+        },
+        {
+          xtype: 'panel',
+          padding: '20 0 50 0',
+          layout: {
+            type: 'hbox'
+          },
+          items: [
+            { xtype: 'image', width: 72, height: 72, src: NX.Icons.url('chrome', 'x72') },
+            { xtype: 'image', width: 72, height: 72, src: NX.Icons.url('firefox', 'x72') },
+            { xtype: 'image', width: 72, height: 72, src: NX.Icons.url('ie', 'x72') },
+            { xtype: 'image', width: 72, height: 72, src: NX.Icons.url('opera', 'x72') },
+            { xtype: 'image', width: 72, height: 72, src: NX.Icons.url('safari', 'x72') }
+          ]
+        },
+        { xtype: 'button', text: 'ignore and continue', action: 'continue' }
       ]
     },
     {
