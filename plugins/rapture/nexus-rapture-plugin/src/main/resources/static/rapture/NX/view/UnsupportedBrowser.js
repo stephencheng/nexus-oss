@@ -23,6 +23,12 @@ Ext.define('NX.view.UnsupportedBrowser', {
 
   items: [
     {
+      xtype: 'nx-header-panel',
+      region: 'north',
+      collapsible: false
+    },
+
+    {
       xtype: 'panel',
       region: 'center',
       layout: {

@@ -22,7 +22,11 @@ Ext.define('NX.controller.UnsupportedBrowser', {
   },
 
   views: [
-    'UnsupportedBrowser'
+    'UnsupportedBrowser',
+    'header.Panel',
+    'header.Branding',
+    'header.Logo',
+    'Footer'
   ],
 
   refs: [
