@@ -23,6 +23,11 @@ Ext.define('NX.view.Unlicensed', {
 
   items: [
     {
+      xtype: 'nx-header-panel',
+      region: 'north',
+      collapsible: false
+    },
+    {
       xtype: 'panel',
       region: 'center',
       layout: {

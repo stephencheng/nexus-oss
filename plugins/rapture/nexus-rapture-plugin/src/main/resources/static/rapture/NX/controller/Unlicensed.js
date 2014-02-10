@@ -22,7 +22,11 @@ Ext.define('NX.controller.Unlicensed', {
   },
 
   views: [
-    'Unlicensed'
+    'Unlicensed',
+    'header.Panel',
+    'header.Branding',
+    'header.Logo',
+    'Footer'
   ],
 
   refs: [
