@@ -25,6 +25,7 @@ Ext.define('NX.view.header.Panel', {
     {
       xtype: 'toolbar',
 
+      // TODO replace style with UI
       style: {
         backgroundColor: '#000000'
       },
