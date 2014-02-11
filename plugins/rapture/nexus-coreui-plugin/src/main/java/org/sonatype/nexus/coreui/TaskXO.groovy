@@ -45,4 +45,8 @@ class TaskXO
   Long lastRun
 
   String lastRunResult
+
+  boolean runnable
+
+  boolean stoppable
 }

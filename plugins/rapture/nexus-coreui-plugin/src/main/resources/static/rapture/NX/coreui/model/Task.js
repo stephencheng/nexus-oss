@@ -28,6 +28,8 @@ Ext.define('NX.coreui.model.Task', {
     'schedule',
     'nextRun',
     'lastRun',
-    'lastRunResult'
+    'lastRunResult',
+    'runnable',
+    'stoppable'
   ]
 });

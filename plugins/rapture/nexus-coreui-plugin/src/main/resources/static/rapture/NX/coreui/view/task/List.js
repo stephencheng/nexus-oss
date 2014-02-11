@@ -41,7 +41,9 @@ Ext.define('NX.coreui.view.task.List', {
 
   tbar: [
     { xtype: 'button', text: 'New', glyph: 'xf055@FontAwesome' /* fa-plus-circle */, action: 'new', disabled: true },
-    { xtype: 'button', text: 'Delete', glyph: 'xf056@FontAwesome' /* fa-minus-circle */, action: 'delete', disabled: true }
+    { xtype: 'button', text: 'Delete', glyph: 'xf056@FontAwesome' /* fa-minus-circle */, action: 'delete', disabled: true },
+    { xtype: 'button', text: 'Run', glyph: 'xf04b@FontAwesome' /* fa-play */, action: 'run', disabled: true },
+    { xtype: 'button', text: 'Stop', glyph: 'xf04d@FontAwesome' /* fa-stop */, action: 'stop', disabled: true }
   ],
 
   plugins: ['gridfilterbox']

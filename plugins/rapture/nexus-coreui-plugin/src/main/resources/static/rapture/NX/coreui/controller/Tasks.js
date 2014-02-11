@@ -71,6 +71,12 @@ Ext.define('NX.coreui.controller.Tasks', {
       component: {
         'nx-coreui-task-list': {
           beforerender: me.loadTaskType
+        },
+        'nx-coreui-task-list button[action=run]': {
+          click: me.runTask
+        },
+        'nx-coreui-task-list button[action=stop]': {
+          click: me.stopTask
         }
       },
       store: {
@@ -100,6 +106,8 @@ Ext.define('NX.coreui.controller.Tasks', {
         'Last Result': model.get('lastRunResult')
       });
     }
+
+    me.enablePlayerButtons();
   },
 
   loadTaskType: function () {
@@ -129,6 +137,37 @@ Ext.define('NX.coreui.controller.Tasks', {
 
   /**
    * @override
+   * Enable/Disable player buttons.
+   */
+  onPermissionsChanged: function () {
+    var me = this;
+    me.enablePlayerButtons();
+  },
+
+  enablePlayerButtons: function () {
+    var me = this,
+        list = me.getList(),
+        model = me.selectedModel(),
+        runButton, stopButton;
+
+    runButton = list.down('button[action=run]');
+    if (model && model.get('runnable') && NX.Permissions.check('nexus:tasksrun', 'read')) {
+      runButton.enable();
+    }
+    else {
+      runButton.disable();
+    }
+    stopButton = list.down('button[action=stop]');
+    if (model && model.get('stoppable') && NX.Permissions.check('nexus:tasksrun', 'delete')) {
+      stopButton.enable();
+    }
+    else {
+      stopButton.disable();
+    }
+  },
+
+  /**
+   * @override
    * Delete task.
    * @param model task to be deleted
    */
@@ -144,6 +183,54 @@ Ext.define('NX.coreui.controller.Tasks', {
         });
       }
     });
+  },
+
+  /**
+   * @override
+   * Run selected task.
+   */
+  runTask: function () {
+    var me = this,
+        model = me.selectedModel(),
+        description;
+
+    if (model) {
+      description = me.getDescription(model);
+      NX.Dialogs.askConfirmation('Confirm?', 'Run ' + description + ' task?', function () {
+        NX.direct.coreui_Task.run(model.getId(), function (response) {
+          me.loadStore();
+          if (Ext.isDefined(response) && response.success) {
+            NX.Messages.add({
+              text: 'Task started: ' + description, type: 'success'
+            });
+          }
+        });
+      }, {scope: me});
+    }
+  },
+
+  /**
+   * @override
+   * Stop selected task.
+   */
+  stopTask: function () {
+    var me = this,
+        model = me.selectedModel(),
+        description;
+
+    if (model) {
+      description = me.getDescription(model);
+      NX.Dialogs.askConfirmation('Confirm?', 'Stop ' + description + ' task?', function () {
+        NX.direct.coreui_Task.stop(model.getId(), function (response) {
+          me.loadStore();
+          if (Ext.isDefined(response) && response.success) {
+            NX.Messages.add({
+              text: 'Task stopped: ' + description, type: 'success'
+            });
+          }
+        });
+      }, {scope: me});
+    }
   }
 
 });

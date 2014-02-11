@@ -329,6 +329,23 @@ Ext.define('NX.controller.MasterDetail', {
         me.deleteModel(selection[0])
       }, {scope: me});
     }
+  },
+
+  /**
+   * @returns {Ext.data.Model} selected model if there is a selection, undefined otherwise
+   */
+  selectedModel: function () {
+    var me = this,
+        list = me.getList(),
+        selection, model;
+
+    if (list) {
+      selection = list.getSelectionModel().getSelection();
+      if (selection.length) {
+        model = selection[0];
+      }
+    }
+    return model;
   }
 
 });

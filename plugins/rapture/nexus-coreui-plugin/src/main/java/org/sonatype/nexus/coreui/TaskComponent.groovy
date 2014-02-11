@@ -67,7 +67,9 @@ extends DirectComponentSupport
           schedule: getSchedule(input.schedule),
           lastRun: input.lastRun?.time,
           lastRunResult: getLastRunResult(input),
-          nextRun: getNextRun(input)?.time
+          nextRun: getNextRun(input)?.time,
+          runnable: input.taskState in [TaskState.SUBMITTED, TaskState.WAITING],
+          stoppable: input.taskState in [TaskState.RUNNING, TaskState.SLEEPING]
       )
       return result
     }
@@ -78,6 +80,20 @@ extends DirectComponentSupport
   @RequiresPermissions('nexus:tasks:delete')
   void delete(final String id) {
     nexusScheduler.getTaskById(id)?.cancel();
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:tasksrun:get')
+  void run(final String id) {
+    nexusScheduler.getTaskById(id)?.runNow();
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:tasksrun:delete')
+  void stop(final String id) {
+    nexusScheduler.getTaskById(id)?.cancelOnly();
   }
 
   /**
