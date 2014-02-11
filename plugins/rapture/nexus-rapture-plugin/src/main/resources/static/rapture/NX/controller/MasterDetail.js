@@ -30,6 +30,17 @@ Ext.define('NX.controller.MasterDetail', {
 
   permission: undefined,
 
+  onSelection: Ext.emptyFn,
+
+  onPermissionsChanged: Ext.emptyFn,
+
+  getDescription: Ext.emptyFn,
+
+  /**
+   * @cfg {Function} optional function to be called on delete
+   */
+  deleteModel: undefined,
+
   init: function () {
     var me = this,
         componentListener = {};
@@ -42,6 +53,13 @@ Ext.define('NX.controller.MasterDetail', {
     componentListener[me.list + ' ^ nx-masterdetail-panel nx-masterdetail-tabs > tabpanel'] = {
       tabchange: me.bookmark
     };
+
+    // bind to a delete button if delete function defined
+    if (me.deleteModel) {
+      componentListener[me.list + ' button[action=delete]'] = {
+        click: me.onDelete
+      };
+    }
 
     me.listen({
       component: componentListener,
@@ -65,12 +83,6 @@ Ext.define('NX.controller.MasterDetail', {
       me.getApplication().getFeaturesController().registerFeature(me.features);
     }
   },
-
-  onSelection: Ext.emptyFn,
-
-  onPermissionsChanged: Ext.emptyFn,
-
-  getDescription: Ext.emptyFn,
 
   loadStore: function () {
     var me = this,
@@ -217,7 +229,7 @@ Ext.define('NX.controller.MasterDetail', {
       selectedModels = list.getSelectionModel().getSelection();
       button = list.down('button[action=delete]');
       if (button) {
-        if (selectedModels.length > 0 && me.shouldEnableDeleteButton()) {
+        if (selectedModels.length > 0 && me.deleteModel && me.shouldEnableDeleteButton()) {
           button.enable();
         }
         else {
@@ -303,6 +315,19 @@ Ext.define('NX.controller.MasterDetail', {
       else {
         list.getSelectionModel().deselectAll();
       }
+    }
+  },
+
+  onDelete: function () {
+    var me = this,
+        selection = me.getList().getSelectionModel().getSelection(),
+        description;
+
+    if (Ext.isDefined(selection) && selection.length > 0) {
+      description = me.getDescription(selection[0]);
+      NX.Dialogs.askConfirmation('Confirm deletion?', description, function () {
+        me.deleteModel(selection[0])
+      }, {scope: me});
     }
   }
 

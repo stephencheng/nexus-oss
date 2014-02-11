@@ -87,9 +87,6 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
         'nx-coreui-repositorytarget-list button[action=new]': {
           click: me.showAddWindow
         },
-        'nx-coreui-repositorytarget-list button[action=delete]': {
-          click: me.delete
-        },
         'nx-coreui-repositorytarget-add button[action=add]': {
           click: me.create
         },
@@ -181,24 +178,23 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     });
   },
 
-  delete: function () {
+  /**
+   * @override
+   * Delete repository target.
+   * @param model repository target to be deleted
+   */
+  deleteModel: function (model) {
     var me = this,
-        selection = me.getList().getSelectionModel().getSelection(),
-        description;
+        description = me.getDescription(model);
 
-    if (selection.length) {
-      description = me.getDescription(selection[0]);
-      NX.Dialogs.askConfirmation('Confirm deletion?', description, function () {
-        NX.direct.coreui_RepositoryTarget.delete(selection[0].getId(), function (response) {
-          me.loadStore();
-          if (Ext.isDefined(response) && response.success) {
-            NX.Messages.add({
-              text: 'Target deleted: ' + description, type: 'success'
-            });
-          }
+    NX.direct.coreui_RepositoryTarget.delete(model.getId(), function (response) {
+      me.loadStore();
+      if (Ext.isDefined(response) && response.success) {
+        NX.Messages.add({
+          text: 'Target deleted: ' + description, type: 'success'
         });
-      }, {scope: me});
-    }
+      }
+    });
   }
 
 });

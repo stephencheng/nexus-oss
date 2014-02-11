@@ -125,6 +125,25 @@ Ext.define('NX.coreui.controller.Tasks', {
   shouldEnableNewButton: function () {
     var me = this;
     return me.getTaskTypeStore().getCount() > 0 && me.callParent()
+  },
+
+  /**
+   * @override
+   * Delete task.
+   * @param model task to be deleted
+   */
+  deleteModel: function (model) {
+    var me = this,
+        description = me.getDescription(model);
+
+    NX.direct.coreui_Task.delete(model.getId(), function (response) {
+      me.loadStore();
+      if (Ext.isDefined(response) && response.success) {
+        NX.Messages.add({
+          text: 'Task deleted: ' + description, type: 'success'
+        });
+      }
+    });
   }
 
 });

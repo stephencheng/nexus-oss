@@ -55,20 +55,6 @@ Ext.define('NX.coreui.controller.Repositories', {
   },
   permission: 'nexus:repositories',
 
-  init: function () {
-    var me = this;
-
-    me.callParent();
-
-    me.listen({
-      component: {
-        'nx-coreui-repository-list button[action=delete]': {
-          click: me.deleteRepository
-        }
-      }
-    });
-  },
-
   getDescription: function (model) {
     return model.get('name');
   },
@@ -90,24 +76,23 @@ Ext.define('NX.coreui.controller.Repositories', {
     }
   },
 
-  deleteRepository: function () {
+  /**
+   * @override
+   * Delete repository.
+   * @param model repository to be deleted
+   */
+  deleteModel: function (model) {
     var me = this,
-        selection = me.getList().getSelectionModel().getSelection(),
-        description;
+        description = me.getDescription(model);
 
-    if (Ext.isDefined(selection) && selection.length > 0) {
-      description = me.getDescription(selection[0]);
-      NX.Dialogs.askConfirmation('Confirm deletion?', description, function () {
-        NX.direct.coreui_Repository.delete(selection[0].getId(), function (response, status) {
-          me.loadStore();
-          if (Ext.isDefined(response) && response.success) {
-            NX.Messages.add({
-              text: 'Repository deleted: ' + description, type: 'success'
-            });
-          }
+    NX.direct.coreui_Repository.delete(model.getId(), function (response) {
+      me.loadStore();
+      if (Ext.isDefined(response) && response.success) {
+        NX.Messages.add({
+          text: 'Repository deleted: ' + description, type: 'success'
         });
-      }, {scope: me});
-    }
+      }
+    });
   },
 
   getLocalStatus: function (model) {

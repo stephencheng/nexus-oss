@@ -81,9 +81,6 @@ Ext.define('NX.coreui.controller.Capabilities', {
         'nx-coreui-capability-list button[action=new]': {
           click: me.showAddWindow
         },
-        'nx-coreui-capability-list button[action=delete]': {
-          click: me.deleteCapability
-        },
         'nx-coreui-capability-summary button[action=save]': {
           click: me.updateCapability
         },
@@ -291,24 +288,23 @@ Ext.define('NX.coreui.controller.Capabilities', {
     });
   },
 
-  deleteCapability: function (button) {
+  /**
+   * @override
+   * Delete capability.
+   * @param model capability to be deleted
+   */
+  deleteModel: function (model) {
     var me = this,
-        selection = me.getList().getSelectionModel().getSelection(),
-        description;
+        description = me.getDescription(model);
 
-    if (Ext.isDefined(selection) && selection.length > 0) {
-      description = me.getDescription(selection[0]);
-      NX.Dialogs.askConfirmation('Confirm deletion?', description, function () {
-        NX.direct.capability_Capability.delete(selection[0].getId(), function (response) {
-          me.loadStore();
-          if (Ext.isDefined(response) && response.success) {
-            NX.Messages.add({
-              text: 'Capability deleted: ' + description, type: 'success'
-            });
-          }
+    NX.direct.capability_Capability.delete(model.getId(), function (response) {
+      me.loadStore();
+      if (Ext.isDefined(response) && response.success) {
+        NX.Messages.add({
+          text: 'Capability deleted: ' + description, type: 'success'
         });
-      }, {scope: me});
-    }
+      }
+    });
   }
 
 });
