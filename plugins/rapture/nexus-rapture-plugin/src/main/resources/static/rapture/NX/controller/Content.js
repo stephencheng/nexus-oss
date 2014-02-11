@@ -63,6 +63,9 @@ Ext.define('NX.controller.Content', {
     else {
       cmp = Ext.widget(view);
     }
+    me.mon(cmp, 'destroy', function () {
+      me.logDebug('Destroyed: ' + cmp.self.getName());
+    });
 
     // remove the current contents
     content.removeAll();
