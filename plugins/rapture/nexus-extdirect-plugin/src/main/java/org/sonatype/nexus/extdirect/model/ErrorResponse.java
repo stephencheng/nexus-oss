@@ -33,7 +33,7 @@ public class ErrorResponse
   private boolean authenticationRequired;
 
   public ErrorResponse(final Throwable cause) {
-    this(checkNotNull(cause).getMessage());
+    this(checkNotNull(cause).getMessage() == null ? cause.getClass().getName() : cause.getMessage());
     authenticationRequired = cause instanceof UnauthenticatedException;
     if (authenticationRequired) {
       Subject subject = SecurityUtils.getSubject();
