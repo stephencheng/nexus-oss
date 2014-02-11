@@ -15,6 +15,7 @@ package org.sonatype.nexus.coreui
 
 import com.softwarementors.extjs.djn.config.annotations.DirectAction
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod
+import org.apache.shiro.authz.annotation.RequiresAuthentication
 import org.apache.shiro.authz.annotation.RequiresPermissions
 import org.sonatype.nexus.extdirect.DirectComponent
 import org.sonatype.nexus.extdirect.DirectComponentSupport
@@ -70,6 +71,13 @@ extends DirectComponentSupport
       )
       return result
     }
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:tasks:delete')
+  void delete(final String id) {
+    nexusScheduler.getTaskById(id)?.cancel();
   }
 
   /**
