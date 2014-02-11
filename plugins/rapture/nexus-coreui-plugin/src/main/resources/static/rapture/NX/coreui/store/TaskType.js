@@ -10,23 +10,31 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.app.PluginConfig', {
+/**
+ * Task type store.
+ *
+ * @since 2.8
+ */
+Ext.define('NX.coreui.store.TaskType', {
+  extend: 'Ext.data.Store',
+  model: 'NX.coreui.model.TaskType',
 
-  namespaces: [
-    'NX.coreui'
-  ],
+  proxy: {
+    type: 'direct',
+    paramsAsHash: false,
 
-  controllers: [
-    'NX.coreui.controller.Capabilities',
-    'NX.coreui.controller.Plugin',
-    'NX.coreui.controller.PluginConsole',
-    'NX.coreui.controller.Repositories',
-    // TODO remove this bellow as is just an example on how to add an extra tab to a master detail
-    'NX.coreui.controller.RepositoriesExtraTab',
-    'NX.coreui.controller.RepositoryTargets',
-    'NX.coreui.controller.Privileges',
-    'NX.coreui.controller.Roles',
-    'NX.coreui.controller.Tasks',
-    'NX.coreui.controller.Users'
-  ]
+    api: {
+      read: 'NX.direct.coreui_Task.types'
+    },
+
+    reader: {
+      type: 'json',
+      root: 'data',
+      idProperty: 'id',
+      successProperty: 'success'
+    }
+  },
+
+  sortOnLoad: true,
+  sorters: { property: 'name', direction: 'ASC' }
 });

@@ -83,10 +83,6 @@ Ext.define('NX.controller.Temp', {
       },
 
       // system
-      'feature-system-tasks': {
-        file: 'time.png',
-        variants: ['x16', 'x32']
-      },
       'feature-system-pgp': {
         file: 'gnupg_keys.png',
         variants: ['x16', 'x32']
@@ -226,10 +222,6 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/System/PGP',
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/System/Tasks',
         visible: visibleIfLoggedIn
       },
       {
