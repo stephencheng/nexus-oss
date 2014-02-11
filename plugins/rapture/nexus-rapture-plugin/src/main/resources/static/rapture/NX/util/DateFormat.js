@@ -62,5 +62,31 @@ Ext.define('NX.util.DateFormat', {
     // TODO: Eventually let this customizable by user, for now its hardcoded
 
     return format;
+  },
+
+  /**
+   * @public
+   * Formats the passed timestamp using the specified format pattern.
+   * @param {Number} value The value to format converted to a date by the Javascript's built-in Date#parse method.
+   * @param {String} [format] Any valid date format string. Defaults to {@link Ext.Date#defaultFormat}.
+   * @return {String} The formatted date string
+   */
+  timestamp: function (value, format) {
+    var me = this;
+    format = format || NX.util.DateFormat.forName('datetime')['long'];
+    return value ? Ext.util.Format.date(new Date(value), format) : undefined;
+  },
+
+  /**
+   * @public
+   * Returns a timestamp rendering function that can be reused to apply a date format multiple times efficiently.
+   * @param {String} format Any valid date format string. Defaults to {@link Ext.Date#defaultFormat}.
+   * @return {Function} The date formatting function
+   */
+  timestampRenderer: function (format) {
+    return function (value) {
+      return NX.util.DateFormat.timestamp(value, format);
+    }
   }
+
 });
