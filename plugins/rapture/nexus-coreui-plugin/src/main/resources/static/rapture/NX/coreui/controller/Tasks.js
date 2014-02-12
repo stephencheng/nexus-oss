@@ -73,10 +73,12 @@ Ext.define('NX.coreui.controller.Tasks', {
           beforerender: me.loadTaskType
         },
         'nx-coreui-task-list button[action=run]': {
-          click: me.runTask
+          click: me.runTask,
+          afterrender: me.bindRunButton
         },
         'nx-coreui-task-list button[action=stop]': {
-          click: me.stopTask
+          click: me.stopTask,
+          afterrender: me.bindStopButton
         }
       },
       store: {
@@ -106,8 +108,6 @@ Ext.define('NX.coreui.controller.Tasks', {
         'Last Result': model.get('lastRunResult')
       });
     }
-
-    me.enablePlayerButtons();
   },
 
   loadTaskType: function () {
@@ -121,49 +121,68 @@ Ext.define('NX.coreui.controller.Tasks', {
 
   onTaskTypeLoad: function () {
     var me = this;
-
     me.reselect();
-    me.enableNewButton();
   },
 
   /**
    * @override
-   * Enable only when there are task types.
+   * @protected
+   * Enable 'New' when user has 'create' permission and there is at least one task type.
    */
-  shouldEnableNewButton: function () {
-    var me = this;
-    return me.getTaskTypeStore().getCount() > 0 && me.callParent()
+  bindNewButton: function (button) {
+    button.mon(
+        NX.Conditions.and(
+            NX.Conditions.isPermitted('nexus:tasks', 'create'),
+            NX.Conditions.storeHasRecords('TaskType')
+        ),
+        {
+          satisfied: button.enable,
+          unsatisfied: button.disable,
+          scope: button
+        }
+    );
   },
 
   /**
    * @override
-   * Enable/Disable player buttons.
+   * @private
+   * Enable 'Run' when user has 'read' permission and task is 'runnable'.
    */
-  onPermissionsChanged: function () {
-    var me = this;
-    me.enablePlayerButtons();
+  bindRunButton: function (button) {
+    button.mon(
+        NX.Conditions.and(
+            NX.Conditions.isPermitted('nexus:tasksrun', 'read'),
+            NX.Conditions.gridHasSelection('nx-coreui-task-list', function (model) {
+              return model.get('runnable');
+            })
+        ),
+        {
+          satisfied: button.enable,
+          unsatisfied: button.disable,
+          scope: button
+        }
+    );
   },
 
-  enablePlayerButtons: function () {
-    var me = this,
-        list = me.getList(),
-        model = me.selectedModel(),
-        runButton, stopButton;
-
-    runButton = list.down('button[action=run]');
-    if (model && model.get('runnable') && NX.Permissions.check('nexus:tasksrun', 'read')) {
-      runButton.enable();
-    }
-    else {
-      runButton.disable();
-    }
-    stopButton = list.down('button[action=stop]');
-    if (model && model.get('stoppable') && NX.Permissions.check('nexus:tasksrun', 'delete')) {
-      stopButton.enable();
-    }
-    else {
-      stopButton.disable();
-    }
+  /**
+   * @override
+   * @private
+   * Enable 'Stop' when user has 'delete' permission and task is 'stoppable'.
+   */
+  bindStopButton: function (button) {
+    button.mon(
+        NX.Conditions.and(
+            NX.Conditions.isPermitted('nexus:tasksrun', 'delete'),
+            NX.Conditions.gridHasSelection('nx-coreui-task-list', function (model) {
+              return model.get('stoppable');
+            })
+        ),
+        {
+          satisfied: button.enable,
+          unsatisfied: button.disable,
+          scope: button
+        }
+    );
   },
 
   /**
@@ -229,7 +248,7 @@ Ext.define('NX.coreui.controller.Tasks', {
             });
           }
         });
-      }, {scope: me});
+      }, { scope: me });
     }
   }
 

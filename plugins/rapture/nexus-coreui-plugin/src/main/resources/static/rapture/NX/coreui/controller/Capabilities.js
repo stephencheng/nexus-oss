@@ -199,15 +199,6 @@ Ext.define('NX.coreui.controller.Capabilities', {
     win.down('nx-coreui-capability-settings-fieldset').setCapabilityType(capabilityTypeModel);
   },
 
-  /**
-   * @override
-   * Enable only when there are capabilities types.
-   */
-  shouldEnableNewButton: function () {
-    var me = this;
-    return me.getCapabilityTypeStore().getCount() > 0 && me.callParent()
-  },
-
   onCapabilityStatusBeforeLoad: function () {
     var me = this;
 
@@ -227,7 +218,26 @@ Ext.define('NX.coreui.controller.Capabilities', {
     var me = this;
 
     me.reselect();
-    me.enableNewButton();
+  },
+
+  /**
+   * @override
+   * @protected
+   * Enable 'New' when user has 'create' permission and there is at least one capability type.
+   */
+  bindNewButton: function (button) {
+    var me = this;
+    button.mon(
+        NX.Conditions.and(
+            NX.Conditions.isPermitted(me.permission, 'create'),
+            NX.Conditions.storeHasRecords('CapabilityType')
+        ),
+        {
+          satisfied: button.enable,
+          unsatisfied: button.disable,
+          scope: button
+        }
+    );
   },
 
   createCapability: function (button) {

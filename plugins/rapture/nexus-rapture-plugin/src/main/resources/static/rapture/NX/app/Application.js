@@ -35,7 +35,8 @@ Ext.define('NX.app.Application', {
     'NX.ext.form.OptionalFieldSet',
     'NX.ext.form.field.ValueSet',
     'NX.ext.grid.column.Timestamp',
-    'NX.ext.form.action.DirectUpdate'
+    'NX.ext.form.action.DirectUpdate',
+    'NX.Conditions'
   ],
 
   mixins: {

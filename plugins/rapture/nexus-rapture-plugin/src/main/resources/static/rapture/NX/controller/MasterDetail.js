@@ -13,8 +13,6 @@
 Ext.define('NX.controller.MasterDetail', {
   extend: 'Ext.app.Controller',
   requires: [
-    'NX.Permissions',
-
     // many impls use this
     'NX.view.info.Panel',
     'NX.view.info.Entry'
@@ -32,8 +30,6 @@ Ext.define('NX.controller.MasterDetail', {
 
   onSelection: Ext.emptyFn,
 
-  onPermissionsChanged: Ext.emptyFn,
-
   getDescription: Ext.emptyFn,
 
   /**
@@ -50,6 +46,9 @@ Ext.define('NX.controller.MasterDetail', {
       selectionchange: me.onSelectionChange,
       selection: me.onSelection
     };
+    componentListener[me.list + ' button[action=new]'] = {
+      afterrender: me.bindNewButton
+    };
     componentListener[me.list + ' ^ nx-masterdetail-panel nx-masterdetail-tabs > tabpanel'] = {
       tabchange: me.bookmark
     };
@@ -57,6 +56,7 @@ Ext.define('NX.controller.MasterDetail', {
     // bind to a delete button if delete function defined
     if (me.deleteModel) {
       componentListener[me.list + ' button[action=delete]'] = {
+        afterrender: me.bindDeleteButton,
         click: me.onDelete
       };
     }
@@ -64,9 +64,6 @@ Ext.define('NX.controller.MasterDetail', {
     me.listen({
       component: componentListener,
       controller: {
-        '#Permissions': {
-          changed: me.applyPermissions
-        },
         '#Bookmarking': {
           navigate: me.navigateTo
         },
@@ -145,7 +142,6 @@ Ext.define('NX.controller.MasterDetail', {
 
     list.mon(list.getStore(), 'load', me.onStoreLoad, me);
     me.loadStore();
-    me.applyPermissions();
   },
 
   onSelectionChange: function (selectionModel, selected) {
@@ -170,73 +166,7 @@ Ext.define('NX.controller.MasterDetail', {
       tabs.setDescription('Empty selection');
     }
 
-    me.enableDeleteButton();
-
     me.getList().fireEvent('selection', me.getList(), model);
-  },
-
-  applyPermissions: function () {
-    var me = this,
-        list = me.getList();
-
-    if (list) {
-      me.enableNewButton();
-      me.enableDeleteButton();
-      me.onPermissionsChanged();
-    }
-  },
-
-  shouldEnableNewButton: function () {
-    var me = this;
-    if (me.permission) {
-      return NX.Permissions.check(me.permission, 'create')
-    }
-    return true;
-  },
-
-  enableNewButton: function () {
-    var me = this,
-        list = me.getList(),
-        button;
-
-    if (list) {
-      button = list.down('button[action=new]');
-      if (button) {
-        if (me.shouldEnableNewButton()) {
-          button.enable();
-        }
-        else {
-          button.disable();
-        }
-      }
-    }
-  },
-
-  shouldEnableDeleteButton: function () {
-    var me = this;
-    if (me.permission) {
-      return NX.Permissions.check(me.permission, 'delete')
-    }
-    return true;
-  },
-
-  enableDeleteButton: function () {
-    var me = this,
-        list = me.getList(),
-        selectedModels, button;
-
-    if (list) {
-      selectedModels = list.getSelectionModel().getSelection();
-      button = list.down('button[action=delete]');
-      if (button) {
-        if (selectedModels.length > 0 && me.deleteModel && me.shouldEnableDeleteButton()) {
-          button.enable();
-        }
-        else {
-          button.disable();
-        }
-      }
-    }
   },
 
   /**
@@ -346,6 +276,41 @@ Ext.define('NX.controller.MasterDetail', {
       }
     }
     return model;
+  },
+
+  /**
+   * @protected
+   * Enable 'New' when user has 'create' permission.
+   */
+  bindNewButton: function (button) {
+    var me = this;
+    button.mon(
+        NX.Conditions.isPermitted(me.permission, 'create'),
+        {
+          satisfied: button.enable,
+          unsatisfied: button.disable,
+          scope: button
+        }
+    );
+  },
+
+  /**
+   * @protected
+   * Enable 'Delete' when user has 'delete' permission.
+   */
+  bindDeleteButton: function (button) {
+    var me = this;
+    button.mon(
+        NX.Conditions.and(
+            NX.Conditions.isPermitted(me.permission, 'delete'),
+            NX.Conditions.gridHasSelection(me.list)
+        ),
+        {
+          satisfied: button.enable,
+          unsatisfied: button.disable,
+          scope: button
+        }
+    );
   }
 
 });
