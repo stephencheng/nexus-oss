@@ -69,6 +69,7 @@ Ext.define('NX.util.condition.Condition', {
 
     if (me.bounded) {
       me.clearListeners();
+      Ext.app.EventBus.unlisten(me.id);
       me.setBounded(false);
     }
 
