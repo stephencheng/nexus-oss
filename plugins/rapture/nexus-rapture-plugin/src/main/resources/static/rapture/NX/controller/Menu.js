@@ -132,11 +132,12 @@ Ext.define('NX.controller.Menu', {
     var me = this,
         path = record.get('path');
 
-    me.logDebug('Selected feature: ' + path);
+    if (path && path.length > 0) {
+      me.logDebug('Selected feature: ' + path);
+      me.populateFeatureGroupStore(record);
+      me.fireEvent('featureselected', me.getFeatureStore().getById(path));
+    }
 
-    me.populateFeatureGroupStore(record);
-
-    me.fireEvent('featureselected', me.getFeatureStore().getById(path));
     if (me.bookmarkingEnabled) {
       me.bookmark(record);
     }
