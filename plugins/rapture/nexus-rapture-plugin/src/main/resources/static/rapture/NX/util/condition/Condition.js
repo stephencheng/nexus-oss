@@ -21,7 +21,7 @@ Ext.define('NX.util.condition.Condition', {
   },
 
   statics: {
-    idGenerator: Ext.create('Ext.data.SequentialIdGenerator', { prefix: 'condition-' })
+    counter: 1
   },
 
   /**
@@ -79,7 +79,7 @@ Ext.define('NX.util.condition.Condition', {
   constructor: function (config) {
     var me = this;
 
-    me.id = NX.util.condition.Condition.idGenerator.generate();
+    me.id = me.self.getName() + '-' + NX.util.condition.Condition.counter++;
 
     me.mixins.observable.constructor.call(me, config);
 
