@@ -44,6 +44,29 @@ Ext.define('NX.util.condition.Condition', {
    */
   satisfied: false,
 
+  constructor: function (config) {
+    var me = this;
+
+    me.id = me.self.getName() + '-' + NX.util.condition.Condition.counter++;
+
+    me.mixins.observable.constructor.call(me, config);
+
+    me.addEvents(
+        /**
+         * @event satisfied
+         * Fires when condition is satisfied.
+         * @param {NX.util.condition.Condition} this
+         */
+        'satisfied',
+        /**
+         * @event unsatisfied
+         * Fires when condition is not satisfied.
+         * @param {NX.util.condition.Condition} this
+         */
+        'unsatisfied'
+    );
+  },
+
   /**
    * @protected
    * Sets {@link #bounded} = true.
@@ -74,29 +97,6 @@ Ext.define('NX.util.condition.Condition', {
     }
 
     return me;
-  },
-
-  constructor: function (config) {
-    var me = this;
-
-    me.id = me.self.getName() + '-' + NX.util.condition.Condition.counter++;
-
-    me.mixins.observable.constructor.call(me, config);
-
-    me.addEvents(
-        /**
-         * @event satisfied
-         * Fires when condition is satisfied.
-         * @param {NX.util.condition.Condition} this
-         */
-        'satisfied',
-        /**
-         * @event unsatisfied
-         * Fires when condition is not satisfied.
-         * @param {NX.util.condition.Condition} this
-         */
-        'unsatisfied'
-    );
   },
 
   /**
