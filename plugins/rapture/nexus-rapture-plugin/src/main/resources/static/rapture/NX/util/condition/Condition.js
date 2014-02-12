@@ -20,6 +20,15 @@ Ext.define('NX.util.condition.Condition', {
     logAware: 'NX.LogAware'
   },
 
+  statics: {
+    idGenerator: Ext.create('Ext.data.SequentialIdGenerator', { prefix: 'condition-' })
+  },
+
+  /**
+   * Generated id used by event bus.
+   */
+  id: undefined,
+
   /**
    * @private {Number} number of listeners listening to this condition
    */
@@ -68,6 +77,8 @@ Ext.define('NX.util.condition.Condition', {
 
   constructor: function (config) {
     var me = this;
+
+    me.id = NX.util.condition.Condition.idGenerator.generate();
 
     me.mixins.observable.constructor.call(me, config);
 
