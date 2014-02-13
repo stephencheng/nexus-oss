@@ -35,8 +35,8 @@ extends DirectComponentSupport
   @RequiresAuthentication
   @RequiresPermissions('nexus:artifact:create')
   void upload(final Map<String, String> params, final Map<String, FileItem> artifacts) {
-    log.debug('Params: {}', params)
-    log.debug('Files: {}', artifacts)
+    log.info('Params: {}', params)
+    log.info('Files: {}', artifacts)
   }
 
 }
