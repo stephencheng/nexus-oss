@@ -40,6 +40,7 @@ Ext.define('NX.coreui.view.upload.MavenUpload', {
     me.items = [
       {
         xtype: 'form',
+        standardSubmit: true,
         api: {
           submit: 'NX.direct.maven_Maven.upload'
         },
