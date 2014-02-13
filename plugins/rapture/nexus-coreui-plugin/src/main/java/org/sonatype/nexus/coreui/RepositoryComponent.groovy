@@ -10,6 +10,7 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
+
 package org.sonatype.nexus.coreui
 
 import com.softwarementors.extjs.djn.config.annotations.DirectAction
@@ -20,12 +21,13 @@ import org.sonatype.nexus.extdirect.DirectComponent
 import org.sonatype.nexus.extdirect.DirectComponentSupport
 import org.sonatype.nexus.proxy.ResourceStoreRequest
 import org.sonatype.nexus.proxy.item.RepositoryItemUid
+import org.sonatype.nexus.proxy.maven.MavenGroupRepository
+import org.sonatype.nexus.proxy.maven.MavenHostedRepository
+import org.sonatype.nexus.proxy.maven.MavenProxyRepository
+import org.sonatype.nexus.proxy.maven.MavenRepository
+import org.sonatype.nexus.proxy.maven.MavenShadowRepository
 import org.sonatype.nexus.proxy.registry.RepositoryRegistry
-import org.sonatype.nexus.proxy.repository.GroupRepository
-import org.sonatype.nexus.proxy.repository.HostedRepository
-import org.sonatype.nexus.proxy.repository.ProxyRepository
-import org.sonatype.nexus.proxy.repository.Repository
-import org.sonatype.nexus.proxy.repository.ShadowRepository
+import org.sonatype.nexus.proxy.repository.*
 import org.sonatype.nexus.rest.RepositoryURLBuilder
 
 import javax.inject.Inject
@@ -41,13 +43,25 @@ import javax.inject.Singleton
 @Singleton
 @DirectAction(action = 'coreui_Repository')
 class RepositoryComponent
-    extends DirectComponentSupport
+extends DirectComponentSupport
 {
   @Inject
   RepositoryRegistry repositoryRegistry
 
   @Inject
   RepositoryURLBuilder repositoryURLBuilder
+
+  private def typesToClass = [
+      'proxy': ProxyRepository.class,
+      'hosted': HostedRepository.class,
+      'shadow': ShadowRepository.class,
+      'group': GroupRepository.class,
+      'maven': MavenRepository.class,
+      'proxy+maven': MavenProxyRepository.class,
+      'hosted+maven': MavenHostedRepository.class,
+      'shadow+maven': MavenShadowRepository.class,
+      'group+maven': MavenGroupRepository.class
+  ]
 
   /**
    * Retrieve a list of available repositories.
@@ -85,6 +99,31 @@ class RepositoryComponent
     repositoryRegistry.removeRepository(id)
   }
 
+  /**
+   * Retrieve a list of available repositories by specified type.
+   */
+  @DirectMethod
+  @RequiresPermissions('nexus:repositories:read')
+  List<ReferenceXO> getByType(final String type) {
+    def List<Repository> repositories
+    if (type) {
+      def clazz = typesToClass[type]
+      if (!clazz) {
+        throw new IllegalArgumentException('Repository type not supported: ' + type)
+      }
+      repositories = repositoryRegistry.getRepositoriesWithFacet(clazz)
+    }
+    else {
+      repositories = repositoryRegistry.repositories;
+    }
+    return repositories.collect { input ->
+      new ReferenceXO(
+          id: input.id,
+          name: input.name
+      )
+    }
+  }
+
   private static String typeOf(final Repository repository) {
     def kind = repository.repositoryKind
     if (kind.isFacetAvailable(ProxyRepository.class)) {
@@ -101,4 +140,5 @@ class RepositoryComponent
     }
     return null
   }
+
 }
