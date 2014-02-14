@@ -60,6 +60,12 @@ Ext.define('NX.controller.Menu', {
   bookmarkingEnabled: true,
 
   /**
+   * @private {String}
+   * Current selected path
+   */
+  currentSelectedPath: undefined,
+
+  /**
    * @override
    */
   init: function () {
@@ -132,14 +138,18 @@ Ext.define('NX.controller.Menu', {
     var me = this,
         path = record.get('path');
 
-    if (path && path.length > 0) {
-      me.logDebug('Selected feature: ' + path);
-      me.populateFeatureGroupStore(record);
-      me.fireEvent('featureselected', me.getFeatureStore().getById(path));
-    }
+    if (path !== me.currentSelectedPath) {
+      me.currentSelectedPath = path;
 
-    if (me.bookmarkingEnabled) {
-      me.bookmark(record);
+      if (path && path.length > 0) {
+        me.logDebug('Selected feature: ' + path);
+        me.populateFeatureGroupStore(record);
+        me.fireEvent('featureselected', me.getFeatureStore().getById(path));
+      }
+
+      if (me.bookmarkingEnabled) {
+        me.bookmark(record);
+      }
     }
   },
 
