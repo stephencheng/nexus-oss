@@ -17,12 +17,6 @@ Ext.define('NX.coreui.controller.MavenUpload', {
     'upload.MavenUpload',
     'upload.MavenUploadArtifact'
   ],
-  refs: [
-    {
-      ref: 'panel',
-      selector: 'nx-coreui-upload-maven'
-    }
-  ],
 
   counter: 0,
 
