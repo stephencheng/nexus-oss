@@ -130,6 +130,7 @@ Ext.define('NX.controller.dev.Permissions', {
     });
 
     context.record.set('value', value);
+    context.record.commit();
   },
 
   onSelectionChange: function (selectionModel, records) {

@@ -41,7 +41,7 @@ Ext.define('NX.controller.Permissions', {
       store: {
         '#Permission': {
           load: me.firePermissionsChanged,
-          update: me.firePermissionsChanged,
+          update: me.onUpdate,
           remove: me.firePermissionsChanged
         }
       }
@@ -61,6 +61,14 @@ Ext.define('NX.controller.Permissions', {
     var me = this;
 
     me.fetchPermissions();
+  },
+
+  onUpdate: function (store, record, operation) {
+    var me = this;
+
+    if (operation === Ext.data.Model.COMMIT) {
+      me.firePermissionsChanged();
+    }
   },
 
   /**
