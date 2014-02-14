@@ -74,7 +74,7 @@ Ext.define('NX.controller.Menu', {
     me.listen({
       controller: {
         '#Permissions': {
-          changed: me.onPermissionsChange
+          changed: me.refreshMenu
         },
         '#Bookmarking': {
           navigate: me.navigateTo
@@ -119,16 +119,6 @@ Ext.define('NX.controller.Menu', {
         selection = me.getFeatureMenu().getSelectionModel().getSelection();
 
     return NX.Bookmarks.fromToken(selection ? selection[0].get('bookmark') : me.mode);
-  },
-
-  /**
-   * @private
-   */
-  onPermissionsChange: function () {
-    var me = this;
-
-    me.refreshMenu();
-    me.navigateTo(NX.Bookmarks.getBookmark());
   },
 
   /**
@@ -245,6 +235,7 @@ Ext.define('NX.controller.Menu', {
     me.refreshVisibleModes();
     me.refreshTree();
     me.toggleMenu();
+    me.navigateTo(NX.Bookmarks.getBookmark());
   },
 
   /**
