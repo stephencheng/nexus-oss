@@ -118,7 +118,7 @@ Ext.define('NX.controller.User', {
     }
     else if (!user && oldUser) {
       NX.Messages.add({text: 'User logged out', type: 'default' });
-      NX.Bookmarks.navigateTo(NX.Bookmarks.fromToken('default'));
+      NX.Bookmarks.navigateTo(NX.Bookmarks.fromToken(''));
       me.fireEvent('logout');
     }
 
