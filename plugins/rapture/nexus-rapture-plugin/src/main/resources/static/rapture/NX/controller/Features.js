@@ -25,11 +25,11 @@ Ext.define('NX.controller.Features', {
   ],
 
   statics:{
-    featureVisible: function () {
+    alwaysVisible: function () {
       return true;
     },
 
-    featureNotVisible: function () {
+    alwaysHidden: function () {
       return false;
     }
   },
@@ -75,15 +75,15 @@ Ext.define('NX.controller.Features', {
         if (Ext.isDefined(feature.visible)) {
           if (!Ext.isFunction(feature.visible)) {
             if (feature.visible) {
-              feature.visible = NX.controller.Features.featureVisible;
+              feature.visible = NX.controller.Features.alwaysVisible;
             }
             else {
-              feature.visible = NX.controller.Features.featureNotVisible;
+              feature.visible = NX.controller.Features.alwaysHidden;
             }
           }
         }
         else {
-          feature.visible = NX.controller.Features.featureVisible;
+          feature.visible = NX.controller.Features.alwaysVisible;
         }
 
         me.getFeatureStore().addSorted(me.getFeatureModel().create(feature));
