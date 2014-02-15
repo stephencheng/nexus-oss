@@ -244,7 +244,7 @@ Ext.define('NX.controller.Menu', {
       else {
         delete me.currentSelectedPath;
         if (firstSegment) {
-          feature = me.getFeatureStore().findRecord('bookmark', firstSegment);
+          feature = me.getFeatureStore().findRecord('bookmark', firstSegment, 0, false, false, true);
         }
         me.getFeatureMenu().getSelectionModel().deselectAll();
         if (feature) {
@@ -258,7 +258,8 @@ Ext.define('NX.controller.Menu', {
             iconName: feature.get('iconName'),
             view: {
               xtype: 'nx-feature-notvisible',
-              text: feature.get('text') + ' feature is not available'
+              text: feature.get('text') + ' feature is not available as '
+                  + (NX.State.getValue('user') ? ' you do not have the required permissions' : ' you are not logged in')
             }
           }));
         }
