@@ -13,7 +13,8 @@
 Ext.define('NX.controller.Menu', {
   extend: 'Ext.app.Controller',
   requires: [
-    'NX.Bookmarks'
+    'NX.Bookmarks',
+    'NX.controller.User'
   ],
   mixins: {
     logAware: 'NX.LogAware'
@@ -22,12 +23,17 @@ Ext.define('NX.controller.Menu', {
   views: [
     'feature.Menu',
     'feature.TODO',
+    'feature.NotFound',
+    'feature.NotVisible',
     'header.DashboardMode',
     'header.SearchMode',
     'header.BrowseMode',
     'header.AdminMode'
   ],
 
+  models: [
+    'Feature'
+  ],
   stores: [
     'Feature',
     'FeatureMenu',
@@ -66,10 +72,23 @@ Ext.define('NX.controller.Menu', {
   currentSelectedPath: undefined,
 
   /**
+   * @private {Boolean}
+   * True if menu should auto navigate to first available feature.
+   */
+  navigateToFirstFeature: false,
+
+  /**
    * @override
    */
   init: function () {
     var me = this;
+
+    me.getApplication().getIconController().addIcons({
+      'feature-notfound': {
+        file: 'feed.png',
+        variants: ['x16', 'x32']
+      }
+    });
 
     me.listen({
       controller: {
@@ -78,6 +97,9 @@ Ext.define('NX.controller.Menu', {
         },
         '#Bookmarking': {
           navigate: me.navigateTo
+        },
+        '#User': {
+          logout: me.onLogout
         }
       },
       component: {
@@ -118,27 +140,39 @@ Ext.define('NX.controller.Menu', {
     var me = this,
         selection = me.getFeatureMenu().getSelectionModel().getSelection();
 
-    return NX.Bookmarks.fromToken(selection ? selection[0].get('bookmark') : me.mode);
+    return NX.Bookmarks.fromToken(selection.length ? selection[0].get('bookmark') : me.mode);
   },
 
   /**
    * @private
    */
-  onSelection: function (panel, record) {
+  onSelection: function (panel, featureMenuModel) {
     var me = this,
-        path = record.get('path');
+        path = featureMenuModel.get('path');
 
     if (path !== me.currentSelectedPath) {
       me.currentSelectedPath = path;
 
-      if (path && path.length > 0) {
-        me.logDebug('Selected feature: ' + path);
-        me.populateFeatureGroupStore(record);
-        me.fireEvent('featureselected', me.getFeatureStore().getById(path));
-      }
-
+      me.logDebug('Selected feature: ' + path);
+      me.selectFeature(me.getFeatureStore().getById(featureMenuModel.get('path')));
+      me.populateFeatureGroupStore(featureMenuModel);
       if (me.bookmarkingEnabled) {
-        me.bookmark(record);
+        me.bookmark(featureMenuModel);
+      }
+    }
+  },
+
+  /**
+   * @private
+   */
+  selectFeature: function (featureModel) {
+    var me = this,
+        path;
+
+    if (featureModel) {
+      path = featureModel.get('path');
+      if (path && path.length > 0) {
+        me.fireEvent('featureselected', featureModel);
       }
     }
   },
@@ -166,49 +200,95 @@ Ext.define('NX.controller.Menu', {
    */
   navigateTo: function (bookmark) {
     var me = this,
-        checkIfUserRequired = false,
         userController = me.getController('User'),
-        node, mode, feature;
+        node, mode, feature, firstSegment;
 
     if (bookmark) {
-      me.logDebug('Navigate to: ' + bookmark.getSegment(0));
+      firstSegment = bookmark.getSegment(0);
+      me.logDebug('Navigate to: ' + firstSegment);
+
       mode = me.getMode(bookmark);
-      if (me.mode != mode) {
+      if (me.mode !== mode) {
         me.mode = mode;
         me.refreshModeButtons();
         me.refreshTree();
         me.toggleMenu();
       }
-      node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', bookmark.getSegment(0), true);
-      checkIfUserRequired = !node;
-    }
-    if (!node) {
-      me.logDebug('Feature "' + bookmark.getSegment(0) + '" not found. Selecting first available feature');
-      node = me.getFeatureMenuStore().getRootNode().firstChild;
-    }
-    if (node) {
-      me.bookmarkingEnabled = false;
-      me.getFeatureMenu().selectPath(node.getPath('text'), 'text', undefined, function () {
-        me.bookmarkingEnabled = true;
-      });
-    }
-    if (checkIfUserRequired) {
-      feature = me.getFeatureStore().findRecord('bookmark', bookmark.getSegment(0));
-      if (userController
-          && feature && feature.get('authenticationRequired')
-          && NX.Permissions.available() && !Ext.isDefined(NX.State.getUser())) {
-
-        userController.askToAuthenticate(
-            undefined,
-            {
-              success: function () {
-                me.logDebug("Redirecting to: " + bookmark.getToken());
-                NX.Bookmarks.navigateTo(bookmark);
-              }
+      if (firstSegment) {
+        node = me.getFeatureMenuStore().getRootNode().findChild('bookmark', firstSegment, true);
+      }
+      if (!node && (!Ext.isDefined(firstSegment) || me.navigateToFirstFeature)) {
+        if (!me.mode) {
+          Ext.each(me.availableModes, function (button) {
+            if (!button.isHidden()) {
+              me.mode = button.mode;
+              return false;
             }
-        );
+            return true;
+          });
+          me.logDebug('Auto selecting mode: ' + me.mode);
+          me.refreshModeButtons();
+          me.refreshTree();
+          me.toggleMenu();
+        }
+        node = me.getFeatureMenuStore().getRootNode().firstChild;
+        me.logDebug('Automatically selected: ' + node.get('bookmark'));
+      }
+      if (node) {
+        me.bookmarkingEnabled = me.navigateToFirstFeature;
+        me.navigateToFirstFeature = false;
+        me.getFeatureMenu().selectPath(node.getPath('text'), 'text', undefined, function () {
+          me.bookmarkingEnabled = true;
+        });
+      }
+      else {
+        delete me.currentSelectedPath;
+        if (firstSegment) {
+          feature = me.getFeatureStore().findRecord('bookmark', firstSegment);
+        }
+        me.getFeatureMenu().getSelectionModel().deselectAll();
+        if (feature) {
+          if (userController && feature.get('authenticationRequired') && NX.Permissions.available()) {
+            me.logDebug('Asking user to authenticate as feature exists but is not visible');
+            userController.askToAuthenticate(
+                //undefined,
+                //{
+                //  success: function () {
+                //    me.logDebug("Redirecting to: " + bookmark.getToken());
+                //    NX.Bookmarks.navigateTo(bookmark);
+                //  }
+                //}
+            );
+          }
+          me.selectFeature(me.getFeatureModel().create({
+            path: feature.get('path'),
+            description: feature.get('description'),
+            iconName: feature.get('iconName'),
+            view: {
+              xtype: 'nx-feature-notvisible',
+              text: feature.get('text') + ' feature is not available'
+            }
+          }));
+        }
+        else {
+          me.selectFeature(me.getFeatureModel().create({
+            path: '/Not Found',
+            description: firstSegment,
+            iconName: 'feature-notfound',
+            view: {
+              xtype: 'nx-feature-notfound',
+              path: firstSegment
+            },
+            visible: NX.controller.Features.featureVisible
+          }));
+        }
       }
     }
+  },
+
+  onLogout: function () {
+    var me = this;
+    me.navigateToFirstFeature = true;
   },
 
   /**
@@ -250,7 +330,7 @@ Ext.define('NX.controller.Menu', {
 
     me.getFeatureStore().each(function (rec) {
       feature = rec.getData();
-      if (me.isFeatureVisible(feature) && visibleModes.indexOf(feature.mode) === -1) {
+      if (feature.visible() && visibleModes.indexOf(feature.mode) === -1) {
         visibleModes.push(feature.mode);
       }
     });
@@ -287,18 +367,10 @@ Ext.define('NX.controller.Menu', {
         delete me.mode;
       }
     }
-    if (!me.mode) {
-      Ext.each(me.availableModes, function (button) {
-        if (!button.isHidden()) {
-          me.mode = button.mode;
-          return false;
-        }
-        return true;
-      });
-      me.logDebug('Auto selecting mode: ' + me.mode);
+    if (me.mode) {
+      modeButton = headerPanel.down('button[mode=' + me.mode + ']');
+      modeButton.toggle(true, true);
     }
-    modeButton = headerPanel.down('button[mode=' + me.mode + ']');
-    modeButton.toggle(true, true);
   },
 
   /**
@@ -311,20 +383,27 @@ Ext.define('NX.controller.Menu', {
         menuCollapsed = false,
         numberOfFeatures = me.getFeatureMenuStore().getRootNode().childNodes.length;
 
-    if (numberOfFeatures <= 1) {
-      Ext.each(me.availableModes, function (button) {
-        if ((me.mode === button.mode) && (button.collapseMenu === true)) {
-          menuCollapsed = true;
-        }
-      });
-    }
+    if (me.mode) {
+      menu.show();
 
-    // expand/collapse w/o animation to avoid problems with undefined panel placeholder.el
-    if (menuCollapsed) {
-      menu.collapse(undefined, false);
+      if (numberOfFeatures <= 1) {
+        Ext.each(me.availableModes, function (button) {
+          if ((me.mode === button.mode) && (button.collapseMenu === true)) {
+            menuCollapsed = true;
+          }
+        });
+      }
+
+      // expand/collapse w/o animation to avoid problems with undefined panel placeholder.el
+      if (menuCollapsed) {
+        menu.collapse(undefined, false);
+      }
+      else {
+        menu.expand(false);
+      }
     }
     else {
-      menu.expand(false);
+      menu.hide();
     }
   },
 
@@ -349,7 +428,7 @@ Ext.define('NX.controller.Menu', {
     me.getFeatureStore().each(function (rec) {
       feature = rec.getData();
       // iterate only visible features
-      if ((!me.mode || (me.mode == feature.mode)) && me.isFeatureVisible(feature)) {
+      if ((me.mode == feature.mode) && feature.visible()) {
         segments = feature.path.split('/');
         parent = me.getFeatureMenuStore().getRootNode();
         for (var i = 2; i < segments.length; i++) {
@@ -392,29 +471,11 @@ Ext.define('NX.controller.Menu', {
     Ext.resumeLayouts(true);
   },
 
-  /**
-   * Check if a feature is visible.
-   * @private
-   */
-  isFeatureVisible: function (feature) {
-    var visible = true;
-
-    if (feature.visible) {
-      if (Ext.isBoolean(feature.visible)) {
-        visible = feature.visible;
-      }
-      else if (Ext.isFunction(feature.visible)) {
-        visible = feature.visible.call();
-      }
-      else {
-        visible = false;
-      }
-    }
-    return visible;
-  },
-
   getMode: function (bookmark) {
-    return bookmark.getSegment(0).split('/')[0];
+    if (bookmark && bookmark.getSegment(0)) {
+      return bookmark.getSegment(0).split('/')[0]
+    }
+    return undefined;
   },
 
   /**
@@ -436,7 +497,10 @@ Ext.define('NX.controller.Menu', {
     var me = this;
 
     me.logDebug('Mode changed: ' + mode);
-    me.navigateTo(NX.Bookmarks.fromToken(mode));
+    me.mode = mode;
+    me.refreshTree();
+    me.toggleMenu();
+    me.navigateTo(NX.Bookmarks.fromToken(me.getFeatureMenuStore().getRootNode().firstChild.get('bookmark')));
     NX.Bookmarks.bookmark(me.getBookmark());
   },
 
