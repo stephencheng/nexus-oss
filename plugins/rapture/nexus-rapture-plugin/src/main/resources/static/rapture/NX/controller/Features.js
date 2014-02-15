@@ -24,6 +24,16 @@ Ext.define('NX.controller.Features', {
     'FeatureMenu'
   ],
 
+  statics:{
+    featureVisible: function () {
+      return true;
+    },
+
+    featureNotVisible: function () {
+      return false;
+    }
+  },
+
   /**
    * Registers features.
    * @param {Array/Object} features to be registered
@@ -33,10 +43,7 @@ Ext.define('NX.controller.Features', {
         mode, path;
 
     if (features) {
-      if (!Ext.isArray(features)) {
-        features = [features];
-      }
-      Ext.each(features, function (feature) {
+      Ext.each(Ext.Array.from(features), function (feature) {
         if (!feature.path) {
           throw Ext.Error.raise('Feature missing path');
         }
@@ -65,6 +72,20 @@ Ext.define('NX.controller.Features', {
           feature.bookmark = NX.Bookmarks.encode(path).toLowerCase();
         }
 
+        if (Ext.isDefined(feature.visible)) {
+          if (!Ext.isFunction(feature.visible)) {
+            if (feature.visible) {
+              feature.visible = NX.controller.Features.featureVisible;
+            }
+            else {
+              feature.visible = NX.controller.Features.featureNotVisible;
+            }
+          }
+        }
+        else {
+          feature.visible = NX.controller.Features.featureVisible;
+        }
+
         me.getFeatureStore().addSorted(me.getFeatureModel().create(feature));
       });
     }
@@ -74,7 +95,7 @@ Ext.define('NX.controller.Features', {
    * @private
    * @param feature
    */
-  configureIcon: function(path, feature) {
+  configureIcon: function (path, feature) {
     var me = this,
         defaultIconName = 'feature-' + path.toLowerCase().replace(/\//g, '-').replace(/\s/g, '');
 
