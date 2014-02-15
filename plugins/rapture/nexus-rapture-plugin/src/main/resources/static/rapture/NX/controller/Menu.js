@@ -74,7 +74,7 @@ Ext.define('NX.controller.Menu', {
     me.listen({
       controller: {
         '#Permissions': {
-          changed: me.onPermissionsChanged
+          changed: me.refreshMenu
         },
         '#Bookmarking': {
           navigate: me.navigateTo
@@ -458,19 +458,6 @@ Ext.define('NX.controller.Menu', {
     var me = this;
 
     Ext.Array.remove(me.availableModes, button);
-  },
-
-  /**
-   * @private
-   * Refresh menu and sync bookmark if necessary.
-   */
-  onPermissionsChanged: function (button) {
-    var me = this;
-
-    me.refreshMenu();
-    if (me.getBookmark().getSegment(0) !== NX.Bookmarks.getBookmark().getSegment(0)) {
-      NX.Bookmarks.bookmark(me.getBookmark(), me);
-    }
   }
 
 });
