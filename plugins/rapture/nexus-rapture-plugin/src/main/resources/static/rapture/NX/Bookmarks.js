@@ -18,7 +18,7 @@
  */
 Ext.define('NX.Bookmarks', {
   singleton: true,
-  requires:[
+  requires: [
     'NX.Bookmark'
   ],
 
@@ -26,7 +26,7 @@ Ext.define('NX.Bookmarks', {
    * @private
    * @returns {NX.controller.Bookmarking}
    */
-  controller: function() {
+  controller: function () {
     return NX.getApplication().getBookmarkingController();
   },
 
@@ -68,13 +68,11 @@ Ext.define('NX.Bookmarks', {
    * @returns {NX.Bookmark} created bookmark
    */
   fromSegments: function (segments) {
-    if (!Ext.isDefined(segments)) {
-      throw Ext.Error.raise('Bookmarks segments cannot be undefined');
+    var token;
+    if (Ext.isDefined(segments)) {
+      token = Ext.Array.from(segments).join(':')
     }
-    if (!Ext.isArray(segments)) {
-      segments = [segments];
-    }
-    return Ext.create('NX.Bookmark', { token: segments.join(':') });
+    return Ext.create('NX.Bookmark', { token: token });
   },
 
   /**

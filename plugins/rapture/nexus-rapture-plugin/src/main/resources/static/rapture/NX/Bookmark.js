@@ -47,10 +47,17 @@ Ext.define('NX.Bookmark', {
     if (token && !Ext.isString(token)) {
       throw Ext.Error.raise('Invalid token');
     }
-    if (!token) {
-      token = '';
+    if (token && (token.trim().length === 0)) {
+      token = undefined;
     }
-    me.segments = token.split(':');
+    // avoid nulls
+    if (!token) {
+      token = undefined;
+    }
+    me.segments = [];
+    if (token) {
+      me.segments = token.split(':');
+    }
     return token;
   },
 
