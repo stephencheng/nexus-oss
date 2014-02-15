@@ -250,15 +250,7 @@ Ext.define('NX.controller.Menu', {
         if (feature) {
           if (userController && feature.get('authenticationRequired') && NX.Permissions.available()) {
             me.logDebug('Asking user to authenticate as feature exists but is not visible');
-            userController.askToAuthenticate(
-                //undefined,
-                //{
-                //  success: function () {
-                //    me.logDebug("Redirecting to: " + bookmark.getToken());
-                //    NX.Bookmarks.navigateTo(bookmark);
-                //  }
-                //}
-            );
+            userController.askToAuthenticate();
           }
           me.selectFeature(me.getFeatureModel().create({
             path: feature.get('path'),

@@ -16,8 +16,8 @@ Ext.define('NX.view.feature.NotVisible', {
 
   layout: {
     type: 'vbox',
-    align: 'stretch',
-    pack: 'start'
+    align: 'center',
+    pack: 'center'
   },
 
   initComponent: function () {
@@ -28,7 +28,11 @@ Ext.define('NX.view.feature.NotVisible', {
         xtype: 'label',
         text: me.text,
         style: {
-          'text-align': 'center'
+          'color': '#000000',
+          'font-size': '20px',
+          'font-weight': 'bold',
+          'text-align': 'center',
+          'padding': '20px'
         }
       }
     ];
