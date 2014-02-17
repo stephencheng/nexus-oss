@@ -39,7 +39,7 @@ Ext.define('NX.coreui.view.system.General', {
       settingsFormTitle: 'General system settings',
       api: {
         load: 'NX.direct.coreui_SystemGeneral.read',
-        update: 'NX.direct.coreui_SystemGeneral.update'
+        submit: 'NX.direct.coreui_SystemGeneral.update'
       },
       items: [
         {

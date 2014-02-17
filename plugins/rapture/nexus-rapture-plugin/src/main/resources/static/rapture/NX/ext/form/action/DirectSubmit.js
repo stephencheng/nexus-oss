@@ -19,17 +19,14 @@
  *
  * @since 2.8
  */
-Ext.define('NX.ext.form.action.DirectUpdate', {
-  extend: 'Ext.form.action.DirectSubmit',
-  alias: 'formaction.directupdate',
-
-  type: 'directupdate',
+Ext.define('NX.ext.form.action.DirectSubmit', {
+  override: 'Ext.form.action.DirectSubmit',
 
   doSubmit: function () {
     var me = this,
         form = me.form,
         api = form.api,
-        fn = api.update,
+        fn = api.submit,
         callback = Ext.Function.bind(me.onComplete, me),
         formInfo = me.buildForm(),
         options;
@@ -40,7 +37,9 @@ Ext.define('NX.ext.form.action.DirectUpdate', {
       //</debug>
 
       api.update = fn = Ext.direct.Manager.parseMethod(fn);
-      me.cleanup(formInfo);
+      //<override> avoid cleanup as that resets values of file upload fields
+      //me.cleanup(formInfo);
+      //</override>
 
       //<debug>
       if (!Ext.isFunction(fn)) {
@@ -55,7 +54,10 @@ Ext.define('NX.ext.form.action.DirectUpdate', {
       };
     }
 
-    fn.call(window, form.getFieldValues(), callback, me, options);
+    //<override> call using field values if direct function formHandler = false
+    //fn.call(window, formInfo.formEl, callback, me, options);
+    fn.call(window, fn.directCfg.method.formHandler ? formInfo.formEl : form.getFieldValues(), callback, me, options);
+    //</override>
     me.cleanup(formInfo);
   }
 

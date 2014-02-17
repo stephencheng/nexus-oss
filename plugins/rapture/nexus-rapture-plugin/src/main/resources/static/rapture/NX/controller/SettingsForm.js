@@ -82,8 +82,8 @@ Ext.define('NX.controller.SettingsForm', {
    * @private
    */
   onDirectUpdate: function (form) {
-    if (form.api && form.api.update) {
-      form.getForm().doAction('directupdate', {
+    if (form.api && form.api.submit) {
+      form.getForm().submit({
         success: function () {
           if (form.settingsFormTitle) {
             NX.Messages.add({ text: form.settingsFormTitle + ' updated', type: 'success' });

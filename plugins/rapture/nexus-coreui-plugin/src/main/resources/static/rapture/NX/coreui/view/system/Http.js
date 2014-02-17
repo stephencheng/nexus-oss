@@ -39,7 +39,7 @@ Ext.define('NX.coreui.view.system.Http', {
       settingsFormTitle: 'HTTP system settings',
       api: {
         load: 'NX.direct.coreui_SystemHttp.read',
-        update: 'NX.direct.coreui_SystemHttp.update'
+        submit: 'NX.direct.coreui_SystemHttp.update'
       },
       items: [
         // request settings

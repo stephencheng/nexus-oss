@@ -24,6 +24,9 @@ Ext.define('NX.app.Application', {
     'NX.util.Url',
     'NX.State',
 
+    // Ext overrides
+    'NX.ext.form.action.DirectSubmit',
+
     // require custom extensions so we don't need to requirement explicitly everywhere
     'NX.ext.grid.IconColumn',
     'NX.ext.SearchBox'
@@ -35,7 +38,6 @@ Ext.define('NX.app.Application', {
     'NX.ext.form.OptionalFieldSet',
     'NX.ext.form.field.ValueSet',
     'NX.ext.grid.column.Timestamp',
-    'NX.ext.form.action.DirectUpdate',
     'NX.Conditions'
   ],
 
