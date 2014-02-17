@@ -13,6 +13,8 @@
 
 /**
  * **{@link Ext.form.action.DirectSubmit}** overrides (see inline comments marked with &lt;override/&gt;
+ * @see "https://support.sencha.com/index.php#ticket-16118"
+ * @see "https://support.sencha.com/index.php#ticket-16102"
  *
  * @since 2.8
  */
