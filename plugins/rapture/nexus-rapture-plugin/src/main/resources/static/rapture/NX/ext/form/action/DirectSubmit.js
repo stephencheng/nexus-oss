@@ -12,10 +12,7 @@
  */
 
 /**
- * An **{@link Ext.form.action.DirectSubmit}** that sends the json object as param to form.api.update function.
- *
- * The main reason it exists is to circumvent {@link Ext.form.action.DirectSubmit} bug that on submit will submit form
- * values as it would had been using a formHandler = true, instead of calling using the json object.
+ * **{@link Ext.form.action.DirectSubmit}** overrides (see inline comments marked with &lt;override/&gt;
  *
  * @since 2.8
  */
