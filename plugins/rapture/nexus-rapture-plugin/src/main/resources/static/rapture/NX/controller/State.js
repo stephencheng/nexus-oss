@@ -76,7 +76,7 @@ Ext.define('NX.controller.State', {
     NX.State.setBrowserSupported(
         !Ext.isIE || (Ext.isIE9p && Ext.isIE11m)
     );
-    NX.State.setValue(NX.app.debug);
+    NX.State.setValue('debug', NX.app.debug);
     NX.State.setValues(NX.app.state);
   },
 
@@ -102,12 +102,12 @@ Ext.define('NX.controller.State', {
         model = me.getStateStore().getById(key);
 
     if (!model) {
-      if (value) {
+      if (Ext.isDefined(value)) {
         me.getStateStore().add(me.getStateModel().create({ key: key, value: value, hash: hash }));
       }
     }
     else {
-      if (value) {
+      if (Ext.isDefined(value)) {
         if (!Ext.Object.equals(value, model.get('value'))) {
           model.set('value', value);
         }
@@ -183,13 +183,22 @@ Ext.define('NX.controller.State', {
    * Reset state pooling when uiSettings.statusInterval changes.
    * @param {Object} uiSettings
    * @param {Number} uiSettings.statusInterval
+   * @param {Boolean} uiSettings.debugAllowed
    * @param {Object} oldUiSettings
    * @param {Number} oldUiSettings.statusInterval
+   * @param {Boolean} oldUiSettings.debugAllowed
    */
   onUiSettingsChanged: function (uiSettings, oldUiSettings) {
     var me = this;
 
-    if (uiSettings && uiSettings.statusInterval > 0) {
+    uiSettings = uiSettings || {};
+    oldUiSettings = oldUiSettings || {};
+
+    if (uiSettings.debugAllowed !== oldUiSettings.debugAllowed) {
+      NX.State.setValue('debug', uiSettings.debugAllowed && (window.location.search === '?debug'));
+    }
+
+    if (uiSettings.statusInterval > 0) {
       if (!oldUiSettings || (uiSettings.statusInterval !== oldUiSettings.statusInterval)) {
         if (me.statusProvider) {
           me.statusProvider.disconnect();
