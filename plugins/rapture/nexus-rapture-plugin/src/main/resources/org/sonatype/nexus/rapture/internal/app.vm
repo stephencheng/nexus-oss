@@ -34,7 +34,7 @@ NX.app.state = $state;
 ## Set the debug flag if allowed
 NX.app.debug = false;
 if (window.location.search === '?debug') {
-  if (NX.app.state.uiSettings.debugAllowed) {
+  if (NX.app.state.uiSettings.value.debugAllowed) {
     console.log('Debug mode enabled');
     NX.app.debug = true;
   }
