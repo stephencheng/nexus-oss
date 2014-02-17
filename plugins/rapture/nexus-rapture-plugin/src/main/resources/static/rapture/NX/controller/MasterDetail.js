@@ -68,7 +68,7 @@ Ext.define('NX.controller.MasterDetail', {
           navigate: me.navigateTo
         },
         '#Refresh': {
-          refresh: me.onRefresh
+          refresh: me.refreshList
         }
       }
     });
@@ -122,7 +122,7 @@ Ext.define('NX.controller.MasterDetail', {
     }
   },
 
-  onRefresh: function () {
+  refreshList: function () {
     var me = this,
         list = me.getList(),
         contentPanel;
