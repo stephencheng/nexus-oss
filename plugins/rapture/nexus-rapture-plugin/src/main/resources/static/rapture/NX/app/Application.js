@@ -68,9 +68,6 @@ Ext.define('NX.app.Application', {
     'State',
     'Bookmarking',
     'ExtDirect',
-    'dev.Developer',
-    'dev.Permissions',
-    'dev.Stores',
     'Features',
     'Icon',
     'Message',
@@ -101,6 +98,9 @@ Ext.define('NX.app.Application', {
     },
     unlicensed: function () {
       return !NX.app.Application.licensed();
+    },
+    debugMode: function () {
+      return NX.State.getValue('debug') === true;
     }
   },
 
@@ -314,6 +314,27 @@ Ext.define('NX.app.Application', {
         controllers: []
       },
       keys = Object.keys(custom),
+      parseFunction = function (fn) {
+        if (Ext.isBoolean(fn)) {
+          fn = function () {
+            return fn;
+          }
+        }
+        else if (Ext.isString(fn)) {
+          var parts = fn.split('.'),
+              i = 0,
+              len = parts.length,
+              current = Ext.global;
+
+          while (current && i < len) {
+            current = current[parts[i]];
+            ++i;
+          }
+
+          fn = Ext.isFunction(current) ? current : null;
+        }
+        return fn || null;
+      },
       pluginConfig;
 
   NX.Log.debug('[NX.app.Application]', 'Processing plugins for customizations: ' + keys);
@@ -340,15 +361,14 @@ Ext.define('NX.app.Application', {
                 })
               }
               else if (Ext.isObject(controller) && Ext.isString(controller.id) && controller.id.length > 0) {
-                if (Ext.isFunction(controller.active)) {
-                  custom[key].push(controller.id);
-                  managedControllers.add(controller);
-                }
-                else {
+                custom[key].push(controller.id);
+                managedControllers.add(Ext.apply(controller, { active: parseFunction(controller.active) }));
+                if (!Ext.isFunction(managedControllers.get(controller.id).active)) {
                   Ext.Error.raise(
                       'Invalid customization; class: ' + className + ', property: controllers, value: ' +
                           controller.id
-                          + ' active: must be a function that returns a boolean'
+                          + ' active: must be a function that returns a boolean, a boolean'
+                          + ' or a string reference to the fully qualified name of the function'
                   );
                 }
               }
