@@ -23,6 +23,7 @@ import org.sonatype.nexus.capability.support.CapabilityDescriptorSupport;
 import org.sonatype.nexus.formfields.CheckboxFormField;
 import org.sonatype.nexus.formfields.FormField;
 import org.sonatype.nexus.formfields.NumberTextFormField;
+import org.sonatype.nexus.formfields.StringTextFormField;
 import org.sonatype.nexus.plugins.capabilities.CapabilityIdentity;
 import org.sonatype.nexus.plugins.capabilities.CapabilityType;
 import org.sonatype.nexus.plugins.capabilities.Tag;
@@ -76,6 +77,12 @@ public class RaptureSettingsCapabilityDescriptor
         "Period of inactivity before session is timing out (minutes). A value of 0 will mean that session never expires"
     )
     String sessionTimeoutHelp();
+
+    @DefaultMessage("Title")
+    String titleLabel();
+
+    @DefaultMessage("Browser page title")
+    String titleHelp();
   }
 
   private static final Messages messages = I18N.create(Messages.class);
@@ -84,6 +91,12 @@ public class RaptureSettingsCapabilityDescriptor
 
   public RaptureSettingsCapabilityDescriptor() {
     formFields = Lists.<FormField>newArrayList(
+        new StringTextFormField(
+            RaptureSettingsCapabilityConfiguration.TITLE,
+            messages.titleLabel(),
+            messages.titleHelp(),
+            FormField.MANDATORY
+        ).withInitialValue(RaptureSettings.DEFAULT_TITLE),
         new CheckboxFormField(
             RaptureSettingsCapabilityConfiguration.DEBUG_ALLOWED,
             messages.debugAllowedLabel(),

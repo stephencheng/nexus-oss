@@ -21,6 +21,8 @@ package org.sonatype.nexus.rapture;
 public class RaptureSettings
 {
 
+  public static final String DEFAULT_TITLE = "Sonatype Nexus";
+
   public static final boolean DEFAULT_DEBUG_ALLOWED = true;
 
   public static final int DEFAULT_STATUS_INTERVAL = 5; // seconds
@@ -32,6 +34,8 @@ public class RaptureSettings
   private int statusInterval = DEFAULT_STATUS_INTERVAL;
 
   private int sessionTimeout = DEFAULT_SESSION_TIMEOUT;
+
+  private String title;
 
   public boolean isDebugAllowed() {
     return debugAllowed;
@@ -55,6 +59,14 @@ public class RaptureSettings
 
   public void setSessionTimeout(final int sessionTimeout) {
     this.sessionTimeout = sessionTimeout;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(final String title) {
+    this.title = title;
   }
 
 }
