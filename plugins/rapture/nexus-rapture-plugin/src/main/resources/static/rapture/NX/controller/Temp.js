@@ -59,10 +59,6 @@ Ext.define('NX.controller.Temp', {
         file: 'database.png',
         variants: ['x16', 'x32']
       },
-      'feature-repository-routing': {
-        file: 'arrow_branch.png',
-        variants: ['x16', 'x32']
-      },
       'feature-repository-managed': {
         file: 'database_yellow.png',
         variants: ['x16', 'x32']
@@ -177,10 +173,6 @@ Ext.define('NX.controller.Temp', {
         path: '/Repository',
         view: 'NX.view.feature.Group',
         weight: 50,
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/Repository/Routing',
         visible: visibleIfLoggedIn
       },
       {
