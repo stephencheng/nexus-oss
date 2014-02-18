@@ -35,6 +35,7 @@ import javax.inject.Singleton
 class ContentClassComponent
 extends DirectComponentSupport
 {
+
   @Inject
   RepositoryTypeRegistry repositoryTypeRegistry
 
@@ -44,12 +45,11 @@ extends DirectComponentSupport
   @DirectMethod
   @RequiresPermissions('nexus:componentscontentclasses:read')
   List<ContentClassXO> read() {
-    return repositoryTypeRegistry.contentClasses.collect { input ->
-      def result = new ContentClassXO(
-          id: input.value.id,
-          name: input.value.name
+    repositoryTypeRegistry.contentClasses.collect {
+      new ContentClassXO(
+          id: it.value.id,
+          name: it.value.name
       )
-      return result
     }
   }
 
