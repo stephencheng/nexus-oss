@@ -187,8 +187,8 @@ Ext.define('NX.coreui.controller.RepositoryRoutes', {
 
   /**
    * @override
-   * Delete repository target.
-   * @param model repository target to be deleted
+   * Delete repository route.
+   * @param {NX.coreui.model.RepositoryRoute} model repository route to be deleted
    */
   deleteModel: function (model) {
     var me = this,

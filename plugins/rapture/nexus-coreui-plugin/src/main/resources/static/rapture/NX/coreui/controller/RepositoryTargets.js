@@ -175,7 +175,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   /**
    * @override
    * Delete repository target.
-   * @param model repository target to be deleted
+   * @param {NX.coreui.model.RepositoryTarget} model repository target to be deleted
    */
   deleteModel: function (model) {
     var me = this,
