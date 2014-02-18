@@ -138,49 +138,33 @@ Ext.define('NX.coreui.controller.RepositoryRoutes', {
   create: function (button) {
     var me = this,
         win = button.up('window'),
-        form = button.up('form'),
-        model = me.getRepositoryRouteModel().create(),
-        values = form.getValues();
+        form = button.up('form');
 
-    model.set(values);
-
-    NX.direct.coreui_RepositoryRoute.create(model.data, function (response) {
-      if (Ext.isDefined(response)) {
-        if (response.success) {
-          win.close();
-          NX.Messages.add({
-            text: 'Route created: ' + me.getDescription(me.getRepositoryRouteModel().create(response.data)),
-            type: 'success'
-          });
-          me.loadStoreAndSelect(response.data.id);
-        }
-        else if (Ext.isDefined(response.errors)) {
-          form.getForm().markInvalid(response.errors);
-        }
+    form.submit({
+      waitMsg: 'Creating route...',
+      success: function (form, action) {
+        win.close();
+        NX.Messages.add({
+          text: 'Route created: ' + me.getDescription(me.getRepositoryRouteModel().create(action.result.data)),
+          type: 'success'
+        });
+        me.loadStoreAndSelect(action.result.data.id);
       }
     });
   },
 
   update: function (button) {
     var me = this,
-        form = button.up('form'),
-        model = form.getRecord(),
-        values = form.getValues();
+        form = button.up('form');
 
-    model.set(values);
-
-    NX.direct.coreui_RepositoryRoute.update(model.data, function (response) {
-      if (Ext.isDefined(response)) {
-        if (response.success) {
-          NX.Messages.add({
-            text: 'Route updated: ' + me.getDescription(me.getRepositoryRouteModel().create(response.data)),
-            type: 'success'
-          });
-          me.loadStore();
-        }
-        else if (Ext.isDefined(response.errors)) {
-          form.getForm().markInvalid(response.errors);
-        }
+    form.submit({
+      waitMsg: 'Updating route...',
+      success: function (form, action) {
+        NX.Messages.add({
+          text: 'Route updated: ' + me.getDescription(me.getRepositoryRouteModel().create(action.result.data)),
+          type: 'success'
+        });
+        me.loadStore();
       }
     });
   },
@@ -197,9 +181,7 @@ Ext.define('NX.coreui.controller.RepositoryRoutes', {
     NX.direct.coreui_RepositoryRoute.delete(model.getId(), function (response) {
       me.loadStore();
       if (Ext.isDefined(response) && response.success) {
-        NX.Messages.add({
-          text: 'Route deleted: ' + description, type: 'success'
-        });
+        NX.Messages.add({ text: 'Route deleted: ' + description, type: 'success' });
       }
     });
   }

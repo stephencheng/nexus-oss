@@ -14,6 +14,10 @@ Ext.define('NX.coreui.view.repositoryroute.Settings', {
   extend: 'Ext.form.Panel',
   alias: 'widget.nx-coreui-repositoryroute-settings',
 
+  api: {
+    submit: 'NX.direct.coreui_RepositoryRoute.update'
+  },
+
   bodyPadding: 10,
   defaultType: 'textfield',
   autoScroll: true,
@@ -23,6 +27,7 @@ Ext.define('NX.coreui.view.repositoryroute.Settings', {
   ],
 
   defaults: {
+    allowBlank: false,
     htmlDecode: true
   },
 
@@ -40,11 +45,14 @@ Ext.define('NX.coreui.view.repositoryroute.Settings', {
 
     me.items = [
       {
+        xtype: 'hiddenfield',
+        name: 'id'
+      },
+      {
         xtype: 'textfield',
         name: 'pattern',
         fieldLabel: 'URL pattern',
-        emptyText: 'enter a pattern',
-        allowBlank: false
+        emptyText: 'enter a pattern'
       },
       {
         xtype: 'combo',
@@ -52,7 +60,6 @@ Ext.define('NX.coreui.view.repositoryroute.Settings', {
         itemId: 'mappingType',
         fieldLabel: 'Rule Type',
         emptyText: 'select a type',
-        allowBlank: false,
         editable: false,
         store: [
           ['BLOCKING', 'Blocking'],
@@ -66,7 +73,6 @@ Ext.define('NX.coreui.view.repositoryroute.Settings', {
         name: 'groupId',
         fieldLabel: 'Repository Group',
         emptyText: 'select a group',
-        allowBlank: false,
         editable: false,
         store: me.groupStore,
         queryMode: 'local',
