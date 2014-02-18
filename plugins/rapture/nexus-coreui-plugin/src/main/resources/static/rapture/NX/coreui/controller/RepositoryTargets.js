@@ -64,6 +64,9 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   },
   permission: 'nexus:targets',
 
+  /**
+   * @override
+   */
   init: function () {
     var me = this;
 
@@ -97,10 +100,16 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     });
   },
 
+  /**
+   * @override
+   */
   getDescription: function (model) {
     return model.get('name');
   },
 
+  /**
+   * @override
+   */
   onSelection: function (list, model) {
     var me = this;
 
@@ -109,10 +118,17 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     }
   },
 
+  /**
+   * @private
+   */
   showAddWindow: function () {
     Ext.widget('nx-coreui-repositorytarget-add');
   },
 
+  /**
+   * @private
+   * (Re)load context class store.
+   */
   loadContentClass: function () {
     var me = this,
         list = me.getList();
@@ -122,6 +138,10 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     }
   },
 
+  /**
+   * @private
+   * Creates a new repository target.
+   */
   create: function (button) {
     var me = this,
         win = button.up('window'),
@@ -140,6 +160,10 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     });
   },
 
+  /**
+   * @private
+   * Updates a repository target.
+   */
   update: function (button) {
     var me = this,
         form = button.up('form');
@@ -157,8 +181,9 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   },
 
   /**
+   * @private
    * @override
-   * Delete repository target.
+   * Deletes a repository target.
    * @param {NX.coreui.model.RepositoryTarget} model repository target to be deleted
    */
   deleteModel: function (model) {

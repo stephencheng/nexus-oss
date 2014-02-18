@@ -65,6 +65,9 @@ Ext.define('NX.coreui.controller.RepositoryRoutes', {
   },
   permission: 'nexus:routes',
 
+  /**
+   * @override
+   */
   init: function () {
     var me = this;
 
@@ -93,10 +96,16 @@ Ext.define('NX.coreui.controller.RepositoryRoutes', {
     });
   },
 
+  /**
+   * @override
+   */
   getDescription: function (model) {
     return model.get('pattern');
   },
 
+  /**
+   * @override
+   */
   onSelection: function (list, model) {
     var me = this;
 
@@ -105,6 +114,9 @@ Ext.define('NX.coreui.controller.RepositoryRoutes', {
     }
   },
 
+  /**
+   * @private
+   */
   showAddWindow: function () {
     Ext.widget('nx-coreui-repositoryroute-add');
   },
@@ -123,8 +135,12 @@ Ext.define('NX.coreui.controller.RepositoryRoutes', {
     }
   },
 
-  onMappingTypeChanged: function (combo, newValue) {
-    var mappedRepositories = combo.up('form').down('#mappedRepositoriesIds');
+  /**
+   * @private
+   * Hides mapped repositories if mapping type = 'BLOCKING'.
+   */
+  onMappingTypeChanged: function (mappingTypeCombo, newValue) {
+    var mappedRepositories = mappingTypeCombo.up('form').down('#mappedRepositoriesIds');
 
     if (newValue === 'BLOCKING') {
       mappedRepositories.hide();
@@ -135,6 +151,10 @@ Ext.define('NX.coreui.controller.RepositoryRoutes', {
     }
   },
 
+  /**
+   * @private
+   * Creates a new repository route.
+   */
   create: function (button) {
     var me = this,
         win = button.up('window'),
@@ -153,6 +173,10 @@ Ext.define('NX.coreui.controller.RepositoryRoutes', {
     });
   },
 
+  /**
+   * @private
+   * Updates a repository route.
+   */
   update: function (button) {
     var me = this,
         form = button.up('form');
@@ -170,8 +194,9 @@ Ext.define('NX.coreui.controller.RepositoryRoutes', {
   },
 
   /**
+   * @private
    * @override
-   * Delete repository route.
+   * Deletes a repository route.
    * @param {NX.coreui.model.RepositoryRoute} model repository route to be deleted
    */
   deleteModel: function (model) {

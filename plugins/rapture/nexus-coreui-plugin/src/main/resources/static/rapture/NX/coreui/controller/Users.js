@@ -56,6 +56,9 @@ Ext.define('NX.coreui.controller.Users', {
   },
   permission: 'security:users',
 
+  /**
+   * @override
+   */
   init: function () {
     var me = this;
 
@@ -76,10 +79,16 @@ Ext.define('NX.coreui.controller.Users', {
     });
   },
 
+  /**
+   * @override
+   */
   getDescription: function (model) {
     return model.get('firstName') + ' ' + model.get('lastName');
   },
 
+  /**
+   * @override
+   */
   onSelection: function (list, model) {
     var me = this;
 
@@ -88,10 +97,17 @@ Ext.define('NX.coreui.controller.Users', {
     }
   },
 
+  /**
+   * @private
+   */
   showAddWindow: function () {
     Ext.widget('nx-coreui-user-add');
   },
 
+  /**
+   * @private
+   * Creates a new user.
+   */
   create: function (button) {
     var me = this,
         win = button.up('window'),
@@ -110,6 +126,10 @@ Ext.define('NX.coreui.controller.Users', {
     });
   },
 
+  /**
+   * @private
+   * Updates a user.
+   */
   update: function (button) {
     var me = this,
         form = button.up('form');
@@ -127,8 +147,9 @@ Ext.define('NX.coreui.controller.Users', {
   },
 
   /**
+   * @private
    * @override
-   * Delete user.
+   * Deletes a user.
    * @param model user to be deleted
    */
   deleteModel: function (model) {
