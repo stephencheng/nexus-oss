@@ -20,6 +20,8 @@ Ext.define('NX.coreui.view.capability.Settings', {
     xtype: 'nx-coreui-capability-settings-fieldset'
   },
 
+  buttonAlign: 'left',
+
   buttons: [
     { text: 'Save', action: 'save', ui: 'primary' },
     { text: 'Discard',

@@ -70,8 +70,9 @@ Ext.define('NX.coreui.view.capability.Add', {
         }
       ],
 
+      buttonAlign: 'left',
       buttons: [
-        { text: 'Add', action: 'add' },
+        { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
         { text: 'Cancel', handler: me.close, scope: me }
       ],
 

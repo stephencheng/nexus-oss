@@ -23,9 +23,10 @@ Ext.define('NX.coreui.view.repositoryroute.Settings', {
   ],
 
   defaults: {
-    anchor: '100%',
     htmlDecode: true
   },
+
+  buttonAlign: 'left',
 
   initComponent: function () {
     var me = this;
@@ -88,6 +89,7 @@ Ext.define('NX.coreui.view.repositoryroute.Settings', {
     ];
 
     if (!me.buttons) {
+
       me.buttons = [
         { text: 'Save', action: 'save', ui: 'primary' },
         { text: 'Discard',

@@ -19,9 +19,10 @@ Ext.define('NX.coreui.view.repositorytarget.Settings', {
   autoScroll: true,
 
   defaults: {
-    anchor: '100%',
     htmlDecode: true
   },
+
+  buttonAlign: 'left',
 
   initComponent: function () {
     var me = this;

@@ -47,6 +47,7 @@ Ext.define('NX.coreui.view.capability.Summary', {
           anchor: '100%'
         }
       },
+      buttonAlign: 'left',
       buttons: [
         { text: 'Save', action: 'save', ui: 'primary' },
         { text: 'Discard',
