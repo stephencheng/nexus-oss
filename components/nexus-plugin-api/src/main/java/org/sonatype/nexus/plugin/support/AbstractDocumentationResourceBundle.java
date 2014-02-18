@@ -143,8 +143,8 @@ public abstract class AbstractDocumentationResourceBundle
 
     assert baseClass.getProtocol().equals("jar");
 
-    String jarPath = baseClass.getPath().substring(5, baseClass.getPath().indexOf("!"));
-    return new ZipFile(URLDecoder.decode(jarPath, "UTF-8"));
+    //FIXME!!! String jarPath = baseClass.getPath().substring(5, baseClass.getPath().indexOf("!"));
+    return null;//FIXME!!! new ZipFile(URLDecoder.decode(jarPath, "UTF-8"));
   }
 
 }

@@ -18,7 +18,7 @@ import java.util.List;
 
 import org.sonatype.nexus.index.tasks.descriptors.RepairIndexTaskDescriptor;
 import org.sonatype.nexus.integrationtests.AbstractNexusProxyIntegrationTest;
-import org.sonatype.nexus.rest.model.NexusArtifact;
+import org.sonatype.nexus.rest.model.index.NexusArtifact;
 import org.sonatype.nexus.rest.model.ScheduledServicePropertyResource;
 import org.sonatype.nexus.test.utils.TaskScheduleUtil;
 

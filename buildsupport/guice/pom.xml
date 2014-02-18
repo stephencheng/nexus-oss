@@ -101,6 +101,12 @@
         <artifactId>org.eclipse.sisu.plexus</artifactId>
         <version>${eclipse-sisu.version}</version>
       </dependency>
+
+      <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.framework</artifactId>
+        <version>4.2.1</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

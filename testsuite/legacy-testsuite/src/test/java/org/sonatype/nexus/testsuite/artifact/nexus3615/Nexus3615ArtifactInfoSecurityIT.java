@@ -16,7 +16,7 @@ package org.sonatype.nexus.testsuite.artifact.nexus3615;
 import java.io.IOException;
 
 import org.sonatype.nexus.integrationtests.TestContainer;
-import org.sonatype.nexus.rest.model.ArtifactInfoResource;
+import org.sonatype.nexus.rest.model.index.ArtifactInfoResource;
 import org.sonatype.nexus.test.utils.RoleMessageUtil;
 import org.sonatype.nexus.test.utils.UserMessageUtil;
 import org.sonatype.security.rest.model.RoleResource;

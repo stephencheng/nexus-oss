@@ -16,12 +16,12 @@ package org.sonatype.nexus.rest.index;
 import org.sonatype.nexus.rest.indextreeview.IndexBrowserTreeNodeDTO;
 import org.sonatype.nexus.rest.indextreeview.IndexBrowserTreeViewResponseDTO;
 import org.sonatype.nexus.rest.model.AliasingListConverter;
-import org.sonatype.nexus.rest.model.NexusArtifact;
-import org.sonatype.nexus.rest.model.NexusNGArtifact;
-import org.sonatype.nexus.rest.model.NexusNGArtifactHit;
-import org.sonatype.nexus.rest.model.NexusNGArtifactLink;
-import org.sonatype.nexus.rest.model.SearchNGResponse;
-import org.sonatype.nexus.rest.model.SearchResponse;
+import org.sonatype.nexus.rest.model.index.NexusArtifact;
+import org.sonatype.nexus.rest.model.index.NexusNGArtifact;
+import org.sonatype.nexus.rest.model.index.NexusNGArtifactHit;
+import org.sonatype.nexus.rest.model.index.NexusNGArtifactLink;
+import org.sonatype.nexus.rest.model.index.SearchNGResponse;
+import org.sonatype.nexus.rest.model.index.SearchResponse;
 
 import com.thoughtworks.xstream.XStream;
 

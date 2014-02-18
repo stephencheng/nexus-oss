@@ -25,11 +25,11 @@ import org.sonatype.nexus.mindexer.client.SearchResponse;
 import org.sonatype.nexus.mindexer.client.SearchResponseArtifact;
 import org.sonatype.nexus.mindexer.client.SearchResponseRepository;
 import org.sonatype.nexus.rest.index.MIndexerXStreamConfiguratorLightweight;
-import org.sonatype.nexus.rest.model.NexusNGArtifact;
-import org.sonatype.nexus.rest.model.NexusNGArtifactHit;
-import org.sonatype.nexus.rest.model.NexusNGArtifactLink;
-import org.sonatype.nexus.rest.model.NexusNGRepositoryDetail;
-import org.sonatype.nexus.rest.model.SearchNGResponse;
+import org.sonatype.nexus.rest.model.index.NexusNGArtifact;
+import org.sonatype.nexus.rest.model.index.NexusNGArtifactHit;
+import org.sonatype.nexus.rest.model.index.NexusNGArtifactLink;
+import org.sonatype.nexus.rest.model.index.NexusNGRepositoryDetail;
+import org.sonatype.nexus.rest.model.index.SearchNGResponse;
 
 import com.sun.jersey.api.client.ClientHandlerException;
 import com.sun.jersey.api.client.UniformInterfaceException;

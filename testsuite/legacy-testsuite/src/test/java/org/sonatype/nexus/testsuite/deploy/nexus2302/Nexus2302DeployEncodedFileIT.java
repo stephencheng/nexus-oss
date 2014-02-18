@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.sonatype.nexus.integrationtests.AbstractNexusIntegrationTest;
 import org.sonatype.nexus.rest.model.ContentListResource;
-import org.sonatype.nexus.rest.model.NexusArtifact;
+import org.sonatype.nexus.rest.model.index.NexusArtifact;
 import org.sonatype.nexus.test.utils.ContentListMessageUtil;
 import org.sonatype.nexus.test.utils.FileTestingUtils;
 import org.sonatype.nexus.test.utils.MavenDeployer;

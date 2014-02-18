@@ -14,8 +14,8 @@
 package org.sonatype.nexus.client.model;
 
 import org.sonatype.nexus.rest.model.AliasingListConverter;
-import org.sonatype.nexus.rest.model.NexusArtifact;
-import org.sonatype.nexus.rest.model.SearchResponse;
+import org.sonatype.nexus.rest.model.index.NexusArtifact;
+import org.sonatype.nexus.rest.model.index.SearchResponse;
 
 import org.junit.Test;
 

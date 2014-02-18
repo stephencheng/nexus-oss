@@ -20,7 +20,7 @@ import org.sonatype.nexus.integrationtests.AbstractNexusIntegrationTest;
 import org.sonatype.nexus.integrationtests.ITGroups.INDEX;
 import org.sonatype.nexus.rest.indextreeview.IndexBrowserTreeNodeDTO;
 import org.sonatype.nexus.rest.indextreeview.IndexBrowserTreeViewResponseDTO;
-import org.sonatype.nexus.rest.model.SearchNGResponse;
+import org.sonatype.nexus.rest.model.index.SearchNGResponse;
 import org.sonatype.nexus.test.utils.TaskScheduleUtil;
 
 import org.apache.maven.index.treeview.TreeNode;

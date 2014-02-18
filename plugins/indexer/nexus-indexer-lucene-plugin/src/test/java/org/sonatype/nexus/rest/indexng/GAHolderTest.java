@@ -21,7 +21,7 @@ import org.sonatype.aether.util.version.GenericVersionScheme;
 import org.sonatype.aether.version.InvalidVersionSpecificationException;
 import org.sonatype.aether.version.Version;
 import org.sonatype.aether.version.VersionScheme;
-import org.sonatype.nexus.rest.model.NexusNGArtifact;
+import org.sonatype.nexus.rest.model.index.NexusNGArtifact;
 import org.sonatype.sisu.litmus.testsupport.TestSupport;
 
 import com.google.common.collect.Lists;

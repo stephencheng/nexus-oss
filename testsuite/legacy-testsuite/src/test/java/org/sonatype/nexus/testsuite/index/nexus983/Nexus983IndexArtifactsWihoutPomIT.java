@@ -18,7 +18,7 @@ import java.util.List;
 
 import org.sonatype.nexus.integrationtests.AbstractNexusIntegrationTest;
 import org.sonatype.nexus.integrationtests.ITGroups.INDEX;
-import org.sonatype.nexus.rest.model.NexusArtifact;
+import org.sonatype.nexus.rest.model.index.NexusArtifact;
 import org.sonatype.nexus.test.utils.RepositoryMessageUtil;
 import org.sonatype.nexus.test.utils.TaskScheduleUtil;
 

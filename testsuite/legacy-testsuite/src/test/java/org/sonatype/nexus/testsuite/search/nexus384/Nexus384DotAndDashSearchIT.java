@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.sonatype.nexus.integrationtests.AbstractNexusIntegrationTest;
 import org.sonatype.nexus.integrationtests.TestContainer;
-import org.sonatype.nexus.rest.model.NexusArtifact;
+import org.sonatype.nexus.rest.model.index.NexusArtifact;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;

@@ -38,9 +38,9 @@ import org.sonatype.nexus.proxy.registry.RepositoryRegistry;
 import org.sonatype.nexus.proxy.repository.Repository;
 import org.sonatype.nexus.rest.AbstractArtifactViewProvider;
 import org.sonatype.nexus.rest.NoSuchRepositoryAccessException;
-import org.sonatype.nexus.rest.model.ArtifactInfoResource;
-import org.sonatype.nexus.rest.model.ArtifactInfoResourceResponse;
-import org.sonatype.nexus.rest.model.RepositoryUrlResource;
+import org.sonatype.nexus.rest.model.index.ArtifactInfoResource;
+import org.sonatype.nexus.rest.model.index.ArtifactInfoResourceResponse;
+import org.sonatype.nexus.rest.model.index.RepositoryUrlResource;
 import org.sonatype.plexus.rest.ReferenceFactory;
 
 import org.apache.maven.index.ArtifactInfo;

@@ -13,7 +13,7 @@
 
 package org.sonatype.nexus.testsuite.artifact.nexus3615;
 
-import org.sonatype.nexus.rest.model.ArtifactInfoResource;
+import org.sonatype.nexus.rest.model.index.ArtifactInfoResource;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;

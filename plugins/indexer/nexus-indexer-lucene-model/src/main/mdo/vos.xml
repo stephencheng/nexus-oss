@@ -27,7 +27,7 @@
   <defaults>
     <default>
       <key>package</key>
-      <value>org.sonatype.nexus.rest.model</value>
+      <value>org.sonatype.nexus.rest.model.index</value>
     </default>
   </defaults>
 

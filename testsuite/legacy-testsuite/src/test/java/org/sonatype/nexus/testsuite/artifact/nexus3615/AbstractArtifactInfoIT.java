@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sonatype.nexus.integrationtests.AbstractNexusIntegrationTest;
-import org.sonatype.nexus.rest.model.RepositoryUrlResource;
+import org.sonatype.nexus.rest.model.index.RepositoryUrlResource;
 import org.sonatype.nexus.test.utils.TaskScheduleUtil;
 
 public abstract class AbstractArtifactInfoIT

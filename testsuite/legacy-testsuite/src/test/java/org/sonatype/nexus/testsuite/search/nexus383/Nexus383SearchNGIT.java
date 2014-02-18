@@ -18,7 +18,7 @@ import java.io.FileInputStream;
 import java.util.Date;
 
 import org.sonatype.nexus.integrationtests.AbstractNexusIntegrationTest;
-import org.sonatype.nexus.rest.model.SearchNGResponse;
+import org.sonatype.nexus.rest.model.index.SearchNGResponse;
 import org.sonatype.nexus.test.utils.GroupMessageUtil;
 import org.sonatype.nexus.test.utils.RepositoryMessageUtil;
 import org.sonatype.nexus.test.utils.TaskScheduleUtil;

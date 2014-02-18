@@ -20,7 +20,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
 import org.sonatype.nexus.rest.indexng.SearchNGIndexPlexusResource;
-import org.sonatype.nexus.rest.model.SearchResponse;
+import org.sonatype.nexus.rest.model.index.SearchResponse;
 import org.sonatype.plexus.rest.resource.PathProtectionDescriptor;
 
 import org.codehaus.enunciate.contract.jaxrs.ResourceMethodSignature;

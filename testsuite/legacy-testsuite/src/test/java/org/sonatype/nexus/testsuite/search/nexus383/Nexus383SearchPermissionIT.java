@@ -18,7 +18,7 @@ import java.util.List;
 
 import org.sonatype.nexus.integrationtests.AbstractPrivilegeTest;
 import org.sonatype.nexus.integrationtests.TestContainer;
-import org.sonatype.nexus.rest.model.NexusArtifact;
+import org.sonatype.nexus.rest.model.index.NexusArtifact;
 import org.sonatype.nexus.test.utils.NexusRequestMatchers;
 
 import org.junit.Assert;

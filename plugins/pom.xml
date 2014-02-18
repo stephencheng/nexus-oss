@@ -42,6 +42,9 @@
     <maven.yuicompressor.nomunge>true</maven.yuicompressor.nomunge>
     <maven.yuicompressor.disableOptimizations>true</maven.yuicompressor.disableOptimizations>
     <maven.yuicompressor.linebreakpos>0<!-- preserve linebreaks --></maven.yuicompressor.linebreakpos>
+
+    <plugin.id>${project.build.finalName}</plugin.id>
+    <plugin.zip>${project.build.directory}/${plugin.id}-bundle.zip</plugin.zip>
   </properties>
 
   <modules>
@@ -666,6 +669,89 @@
   </dependencyManagement>
 
   <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.4.0</version>
+        <executions>
+          <execution>
+            <id>bundle-manifest</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+            <configuration>
+              <supportedProjectTypes>
+                <type>nexus-plugin</type>
+              </supportedProjectTypes>
+              <rebuildBundle>true</rebuildBundle>
+              <instructions>
+                <Include-Resource>{maven-resources},@${plugin.zip}</Include-Resource>
+                <Bundle-ClassPath>
+                  ${plugin.id}/${plugin.id}.jar,$(findpath;${plugin.id}/dependencies/.*[.]jar)
+                </Bundle-ClassPath>
+                <_exportcontents>*</_exportcontents>
+                <Import-Package>*;resolution:=optional</Import-Package>
+                <_consumer-policy>0</_consumer-policy>
+                <_provider-policy>0</_provider-policy>
+                <_nodefaultversion>true</_nodefaultversion>
+                <_nouses>true</_nouses>
+              </instructions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>add-bundle-manifest</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+                <if>
+                  <available file="${plugin.zip}" />
+                  <then>
+                    <pathconvert pathsep="," property="bundle.deps">
+                      <zipfileset src="${plugin.zip}" includes="*/dependencies/*.jar" />
+                      <chainedmapper>
+                        <flattenmapper />
+                        <globmapper from="*" to="dependencies/*" />
+                      </chainedmapper>
+                    </pathconvert>
+                    <manifest file="${project.build.outputDirectory}/META-INF/MANIFEST.MF" mode="update">
+                      <attribute name="Bundle-ClassPath" value="${plugin.id}.jar,${bundle.deps}"/>
+                    </manifest>
+                    <zip file="${plugin.zip}" update="true">
+                      <zipfileset dir="${project.build.outputDirectory}" includes="META-INF/MANIFEST.MF" prefix="${plugin.id}" />
+                    </zip>
+                  </then>
+                </if>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.9.3</version>
+          </dependency>
+          <dependency>
+            <groupId>ant-contrib</groupId>
+            <artifactId>ant-contrib</artifactId>
+            <version>1.0b3</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
     <pluginManagement>
       <plugins>
 

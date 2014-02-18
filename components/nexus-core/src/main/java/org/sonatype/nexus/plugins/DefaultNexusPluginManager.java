@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -46,19 +47,19 @@ import org.sonatype.nexus.plugins.repository.NoSuchPluginRepositoryArtifactExcep
 import org.sonatype.nexus.plugins.repository.PluginRepositoryArtifact;
 import org.sonatype.nexus.util.AlphanumComparator;
 import org.sonatype.plugin.metadata.GAVCoordinate;
-import org.sonatype.plugins.model.ClasspathDependency;
 import org.sonatype.plugins.model.PluginDependency;
 import org.sonatype.plugins.model.PluginMetadata;
 import org.sonatype.sisu.goodies.eventbus.EventBus;
+
+import org.osgi.framework.wiring.BundleWiring;
+
+import org.osgi.framework.BundleException;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Key;
 import com.google.inject.Module;
 import com.yammer.metrics.annotation.Timed;
-import org.codehaus.plexus.classworlds.realm.ClassRealm;
-import org.codehaus.plexus.classworlds.realm.DuplicateRealmException;
-import org.codehaus.plexus.classworlds.realm.NoSuchRealmException;
 import org.eclipse.sisu.Parameters;
 import org.eclipse.sisu.bean.BeanManager;
 import org.eclipse.sisu.inject.DefaultRankingFunction;
@@ -72,10 +73,14 @@ import org.eclipse.sisu.plexus.PlexusBeanModule;
 import org.eclipse.sisu.plexus.PlexusBindingModule;
 import org.eclipse.sisu.plexus.PlexusXmlBeanConverter;
 import org.eclipse.sisu.plexus.PlexusXmlBeanModule;
+import org.eclipse.sisu.space.BundleClassSpace;
 import org.eclipse.sisu.space.ClassSpace;
-import org.eclipse.sisu.space.URLClassSpace;
 import org.eclipse.sisu.wire.ParameterKeys;
 import org.eclipse.sisu.wire.WireModule;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.launch.Framework;
+import org.osgi.framework.launch.FrameworkFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -99,6 +104,8 @@ public class DefaultNexusPluginManager
 
   private final List<AbstractInterceptorModule> interceptorModules;
 
+  private final BundleContext frameworkContext;
+
   private final Map<GAVCoordinate, PluginDescriptor> activePlugins = new HashMap<GAVCoordinate, PluginDescriptor>();
 
   private final Map<GAVCoordinate, PluginResponse> pluginResponses = new HashMap<GAVCoordinate, PluginResponse>();
@@ -119,6 +126,16 @@ public class DefaultNexusPluginManager
     this.locator = checkNotNull(locator);
     this.variables = checkNotNull(variables);
     this.interceptorModules = checkNotNull(interceptorModules);
+
+    Framework framework = ServiceLoader.load(FrameworkFactory.class).iterator().next().newFramework(variables);
+    try {
+      framework.start();
+    }
+    catch (BundleException e) {
+      e.printStackTrace();
+    }
+
+    frameworkContext = framework.getBundleContext();
   }
 
   // ----------------------------------------------------------------------
@@ -305,87 +322,40 @@ public class DefaultNexusPluginManager
   void createPluginInjector(final PluginRepositoryArtifact plugin, final PluginDescriptor descriptor)
       throws NoSuchPluginRepositoryArtifactException
   {
-    final String realmId = descriptor.getPluginCoordinates().toString();
-    final ClassRealm containerRealm = locator.locate(Key.get(ClassRealm.class)).iterator().next().getValue();
-    ClassRealm pluginRealm;
     try {
-      pluginRealm = containerRealm.createChildRealm(realmId);
-    }
-    catch (final DuplicateRealmException e1) {
-      try {
-        pluginRealm = containerRealm.getWorld().getRealm(realmId);
-      }
-      catch (final NoSuchRealmException e2) {
-        throw new IllegalStateException();
-      }
-    }
+      final Bundle pluginBundle = frameworkContext.installBundle("reference:" + plugin.getFile().getParentFile().toURI());
 
-    final List<URL> scanList = new ArrayList<URL>();
+      final List<PlexusBeanModule> beanModules = new ArrayList<PlexusBeanModule>();
 
-    final URL pluginURL = toURL(plugin);
-    if (null != pluginURL) {
-      pluginRealm.addURL(pluginURL);
-      scanList.add(pluginURL);
-    }
+      // Scan for Plexus XML and annotated components
+      final ClassSpace pluginSpace = new BundleClassSpace(pluginBundle);
+      beanModules.add(new PlexusXmlBeanModule(pluginSpace, variables));
+      beanModules.add(new PlexusAnnotatedBeanModule(pluginSpace, variables).with(NexusTypeBinder.STRATEGY));
+      BeanManager beanManager = locator.locate(Key.get(BeanManager.class)).iterator().next().getValue();
 
-    for (final ClasspathDependency d : descriptor.getPluginMetadata().getClasspathDependencies()) {
-      final GAVCoordinate gav =
-          new GAVCoordinate(d.getGroupId(), d.getArtifactId(), d.getVersion(), d.getClassifier(), d.getType());
-
-      final URL url = toURL(repositoryManager.resolveDependencyArtifact(plugin, gav));
-      if (null != url) {
-        pluginRealm.addURL(url);
-        if (d.isHasComponents() || d.isShared() || hasComponents(url)) {
-          scanList.add(url);
+      // Assemble plugin components and resources
+      final List<Module> modules = new ArrayList<Module>();
+      modules.add(new PluginModule());
+      modules.addAll(interceptorModules);
+      modules.add(new PlexusBindingModule(beanManager, beanModules));
+      modules.add(new AbstractModule()
+      {
+        @Override
+        protected void configure() {
+          // TEMP: extender bundle will handle this in next step
+          bind(MutableBeanLocator.class).toInstance(locator);
+          bind(RankingFunction.class).toInstance(new DefaultRankingFunction(pluginRank.incrementAndGet()));
+          bind(PlexusBeanLocator.class).to(DefaultPlexusBeanLocator.class);
+          bind(PlexusBeanConverter.class).to(PlexusXmlBeanConverter.class);
+          bind(ParameterKeys.PROPERTIES).toInstance(variables);
         }
-      }
+      });
+
+      Guice.createInjector(new WireModule(modules));
     }
-
-    for (final GAVCoordinate gav : descriptor.getResolvedPlugins()) {
-      final String importId = gav.toString();
-      for (final String classname : activePlugins.get(gav).getExportedClassnames()) {
-        try {
-          pluginRealm.importFrom(importId, classname);
-        }
-        catch (final NoSuchRealmException e) {
-          // should never happen
-        }
-      }
+    catch (Exception e) {
+      throw new IllegalStateException(e);
     }
-
-    final List<PlexusBeanModule> beanModules = new ArrayList<PlexusBeanModule>();
-
-    // Scan for Plexus XML components
-    final ClassSpace pluginSpace = new URLClassSpace(pluginRealm);
-    beanModules.add(new PlexusXmlBeanModule(pluginSpace, variables));
-
-    // Scan for annotated components
-    final ClassSpace annSpace = new URLClassSpace(pluginRealm, scanList.toArray(new URL[scanList.size()]));
-    beanModules.add(new PlexusAnnotatedBeanModule(annSpace, variables).with(NexusTypeBinder.STRATEGY));
-
-    BeanManager beanManager = locator.locate(Key.get(BeanManager.class)).iterator().next().getValue();
-
-    // Assemble plugin components and resources
-    final List<Module> modules = new ArrayList<Module>();
-    modules.add(new PluginModule());
-    modules.addAll(interceptorModules);
-    modules.add(new PlexusBindingModule(beanManager, beanModules));
-    modules.add(new AbstractModule()
-    {
-      @Override
-      protected void configure() {
-        // TEMP: extender bundle will handle this in next step
-        bind(MutableBeanLocator.class).toInstance(locator);
-        bind(RankingFunction.class).toInstance(new DefaultRankingFunction(pluginRank.incrementAndGet()));
-        bind(PlexusBeanLocator.class).to(DefaultPlexusBeanLocator.class);
-        bind(PlexusBeanConverter.class).to(PlexusXmlBeanConverter.class);
-        bind(ParameterKeys.PROPERTIES).toInstance(variables);
-      }
-    });
-
-    Guice.createInjector(new WireModule(modules));
-
-    descriptor.setExportedClassnames(findExportedClassnames(annSpace));
   }
 
   private static List<String> findExportedClassnames(final ClassSpace annSpace) {
