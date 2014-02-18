@@ -105,12 +105,6 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     var me = this;
 
     if (Ext.isDefined(model)) {
-      me.getInfo().showInfo({
-        'Id': model.get('id'),
-        'Name': model.get('name'),
-        'Repository Type': model.get('contentClassId'),
-        'Patterns': model.get('patterns').join(',')
-      });
       me.getSettings().loadRecord(model);
     }
   },
