@@ -15,10 +15,12 @@ package org.sonatype.nexus.coreui
 
 import com.softwarementors.extjs.djn.config.annotations.DirectAction
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod
+import org.apache.shiro.authz.annotation.RequiresAuthentication
 import org.apache.shiro.authz.annotation.RequiresPermissions
 import org.sonatype.nexus.extdirect.DirectComponent
 import org.sonatype.nexus.extdirect.DirectComponentSupport
 import org.sonatype.security.SecuritySystem
+import org.sonatype.security.usermanagement.DefaultUser
 import org.sonatype.security.usermanagement.UserSearchCriteria
 
 import javax.inject.Inject
@@ -39,23 +41,73 @@ extends DirectComponentSupport
   @Inject
   SecuritySystem securitySystem
 
+  def asUserXO = {
+    new UserXO(
+        id: it.userId,
+        realm: it.source,
+        firstName: it.firstName,
+        lastName: it.lastName,
+        email: it.emailAddress,
+        status: it.status
+    )
+  }
+
   /**
    * Retrieve a list of available users.
    */
   @DirectMethod
   @RequiresPermissions('security:users:read')
   List<UserXO> read() {
-    return securitySystem.searchUsers(new UserSearchCriteria(source: 'default')).collect { input ->
-      def result = new UserXO(
-          id: input.userId,
-          realm: input.source,
-          firstName: input.firstName,
-          lastName: input.lastName,
-          email: input.emailAddress,
-          status: input.status
-      )
-      return result
-    }
+    securitySystem.searchUsers(new UserSearchCriteria(source: 'default')).collect(asUserXO)
+  }
+
+  /**
+   * @param userXO to be created
+   * @return created user
+   */
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('security:users:create')
+  UserXO create(final UserXO userXO) {
+    asUserXO(securitySystem.addUser(new DefaultUser(
+        userId: userXO.id,
+        source: 'default',
+        firstName: userXO.firstName,
+        lastName: userXO.lastName,
+        emailAddress: userXO.email,
+        status: userXO.status
+    ), userXO.password))
+  }
+
+  /**
+   * @param userXO to be updated
+   * @return updated user
+   */
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('security:users:create')
+  UserXO update(final UserXO userXO) {
+    asUserXO(securitySystem.updateUser(securitySystem.getUser(userXO.id).with {
+      firstName = userXO.firstName
+      lastName = userXO.lastName
+      emailAddress = userXO.email
+      status = userXO.status
+
+      return it
+    }))
+  }
+
+  /**
+   * Deletes a user.
+   * @param id of user to be deleted
+   * @param realm of user to be deleted
+   */
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('security:users:delete')
+  void delete(final String id, final String realm) {
+    // TODO check that user to be deleted is not the current user or user marked with anonymous
+    securitySystem.deleteUser(id, realm)
   }
 
 }

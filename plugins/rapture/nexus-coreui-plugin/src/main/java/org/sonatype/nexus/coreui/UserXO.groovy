@@ -14,6 +14,7 @@
 package org.sonatype.nexus.coreui
 
 import groovy.transform.ToString
+import org.sonatype.security.usermanagement.UserStatus
 
 /**
  * User exchange object.
@@ -33,5 +34,7 @@ class UserXO
 
   String email
 
-  String status
+  UserStatus status
+
+  String password
 }
