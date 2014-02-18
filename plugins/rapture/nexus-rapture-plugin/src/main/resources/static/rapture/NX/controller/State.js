@@ -184,9 +184,11 @@ Ext.define('NX.controller.State', {
    * @param {Object} uiSettings
    * @param {Number} uiSettings.statusInterval
    * @param {Boolean} uiSettings.debugAllowed
+   * @param {String} uiSettings.title
    * @param {Object} oldUiSettings
    * @param {Number} oldUiSettings.statusInterval
    * @param {Boolean} oldUiSettings.debugAllowed
+   * @param {String} oldUiSettings.title
    */
   onUiSettingsChanged: function (uiSettings, oldUiSettings) {
     var me = this;
@@ -196,6 +198,10 @@ Ext.define('NX.controller.State', {
 
     if (uiSettings.debugAllowed !== oldUiSettings.debugAllowed) {
       NX.State.setValue('debug', uiSettings.debugAllowed && (window.location.search === '?debug'));
+    }
+
+    if (uiSettings.title !== oldUiSettings.title) {
+      document.title = document.title.replace(oldUiSettings.title, uiSettings.title);
     }
 
     if (uiSettings.statusInterval > 0) {
