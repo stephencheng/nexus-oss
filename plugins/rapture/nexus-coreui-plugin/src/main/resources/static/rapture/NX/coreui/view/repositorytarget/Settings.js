@@ -14,6 +14,10 @@ Ext.define('NX.coreui.view.repositorytarget.Settings', {
   extend: 'Ext.form.Panel',
   alias: 'widget.nx-coreui-repositorytarget-settings',
 
+  api: {
+    submit: 'NX.direct.coreui_RepositoryTarget.update'
+  },
+
   bodyPadding: 10,
   defaultType: 'textfield',
   autoScroll: true,
@@ -28,6 +32,10 @@ Ext.define('NX.coreui.view.repositorytarget.Settings', {
     var me = this;
 
     me.items = [
+      {
+        xtype: 'hiddenfield',
+        name: 'id'
+      },
       {
         xtype: 'textfield',
         name: 'name',

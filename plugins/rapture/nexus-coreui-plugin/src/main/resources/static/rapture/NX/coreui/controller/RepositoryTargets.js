@@ -125,49 +125,33 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   create: function (button) {
     var me = this,
         win = button.up('window'),
-        form = button.up('form'),
-        model = me.getRepositoryTargetModel().create(),
-        values = form.getValues();
+        form = button.up('form');
 
-    model.set(values);
-
-    NX.direct.coreui_RepositoryTarget.create(model.data, function (response) {
-      if (Ext.isDefined(response)) {
-        if (response.success) {
-          win.close();
-          NX.Messages.add({
-            text: 'Target created: ' + me.getDescription(me.getRepositoryTargetModel().create(response.data)),
-            type: 'success'
-          });
-          me.loadStoreAndSelect(response.data.id);
-        }
-        else if (Ext.isDefined(response.errors)) {
-          form.getForm().markInvalid(response.errors);
-        }
+    form.submit({
+      waitMsg: 'Updating target...',
+      success: function (form, action) {
+        win.close();
+        NX.Messages.add({
+          text: 'Target created: ' + me.getDescription(me.getRepositoryTargetModel().create(action.result.data)),
+          type: 'success'
+        });
+        me.loadStoreAndSelect(action.result.data.id);
       }
     });
   },
 
   update: function (button) {
     var me = this,
-        form = button.up('form'),
-        model = form.getRecord(),
-        values = form.getValues();
+        form = button.up('form');
 
-    model.set(values);
-
-    NX.direct.coreui_RepositoryTarget.update(model.data, function (response) {
-      if (Ext.isDefined(response)) {
-        if (response.success) {
-          NX.Messages.add({
-            text: 'Target updated: ' + me.getDescription(me.getRepositoryTargetModel().create(response.data)),
-            type: 'success'
-          });
-          me.loadStore();
-        }
-        else if (Ext.isDefined(response.errors)) {
-          form.getForm().markInvalid(response.errors);
-        }
+    form.submit({
+      waitMsg: 'Updating target...',
+      success: function (form, action) {
+        NX.Messages.add({
+          text: 'Target updated: ' + me.getDescription(me.getRepositoryTargetModel().create(action.result.data)),
+          type: 'success'
+        });
+        me.loadStore();
       }
     });
   },
@@ -184,9 +168,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
     NX.direct.coreui_RepositoryTarget.delete(model.getId(), function (response) {
       me.loadStore();
       if (Ext.isDefined(response) && response.success) {
-        NX.Messages.add({
-          text: 'Target deleted: ' + description, type: 'success'
-        });
+        NX.Messages.add({ text: 'Target deleted: ' + description, type: 'success' });
       }
     });
   }
