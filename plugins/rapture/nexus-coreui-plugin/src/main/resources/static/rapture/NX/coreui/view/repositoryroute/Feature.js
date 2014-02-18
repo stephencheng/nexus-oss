@@ -23,8 +23,6 @@ Ext.define('NX.coreui.view.repositoryroute.Feature', {
 
   iconName: 'repositoryroute-default',
 
-  tabs: [
-    { xtype: 'nx-coreui-repositoryroute-settings', title: 'Settings' }
-  ]
+  tabs: { xtype: 'nx-coreui-repositoryroute-settings' }
 
 });
