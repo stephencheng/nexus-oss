@@ -61,7 +61,7 @@ extends DirectComponentSupport
   NexusConfiguration nexusConfiguration
 
   @Inject
-  DefaultRepositoryTemplateProvider repositoryTemplateProvider;
+  DefaultRepositoryTemplateProvider repositoryTemplateProvider
 
   private def typesToClass = [
       'proxy': ProxyRepository.class,
@@ -84,37 +84,62 @@ extends DirectComponentSupport
   @RequiresAuthentication
   @RequiresPermissions('nexus:repositories:create')
   RepositoryXO createGroup(final RepositoryGroupXO repositoryXO) {
+    create(repositoryXO, {}, { repo ->
+      ((GroupRepository) repo).memberRepositoryIds = repositoryXO.memberRepositoryIds
+    })
+  }
 
-    def template = templateManager.templates.getTemplateById(repositoryXO.template) as RepositoryTemplate
-
-    template.getConfigurableRepository().with {
-      it.id = repositoryXO.id
-      it.name = repositoryXO.name
-      it.exposed = repositoryXO.exposed
-      it.localStatus = LocalStatus.IN_SERVICE
-      return it
-    }
-
-    Repository created = template.create().with {
-      ((GroupRepository) it).memberRepositoryIds = repositoryXO.memberRepositoryIds
-      return it
-    }
-
-    nexusConfiguration.saveConfiguration()
-
-    return asRepositoryXO(created, templates())
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:create')
+  RepositoryXO createHosted(final RepositoryHostedXO repositoryXO) {
+    create(repositoryXO, { config ->
+      config.browseable = repositoryXO.browseable
+      config.writePolicy = repositoryXO.writePolicy
+    })
   }
 
   @DirectMethod
   @RequiresAuthentication
   @RequiresPermissions('nexus:repositories:update')
   RepositoryXO updateGroup(final RepositoryGroupXO repositoryXO) {
+    update(repositoryXO, GroupRepository.class, { repo ->
+      repo.memberRepositoryIds = repositoryXO.memberRepositoryIds
+    })
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:update')
+  RepositoryXO updateHosted(final RepositoryHostedXO repositoryXO) {
+    update(repositoryXO, HostedRepository.class, { repo ->
+      repo.browseable = repositoryXO.browseable
+      repo.writePolicy = repositoryXO.writePolicy
+    })
+  }
+
+  def RepositoryXO create(RepositoryXO repositoryXO, templateClosure = {}, repositoryClosure = {}) {
+    def template = templateManager.templates.getTemplateById(repositoryXO.template) as RepositoryTemplate
+    template.getConfigurableRepository().with { config ->
+      config.id = repositoryXO.id
+      config.name = repositoryXO.name
+      config.exposed = repositoryXO.exposed
+      config.localStatus = LocalStatus.IN_SERVICE
+      templateClosure(config)
+    }
+    Repository created = template.create()
+    repositoryClosure(created)
+    nexusConfiguration.saveConfiguration()
+    return asRepositoryXO(created, templates())
+  }
+
+  def <T extends Repository> RepositoryXO update(RepositoryXO repositoryXO, Class<T> repoType, repositoryClosure = {}) {
     if (repositoryXO.id) {
-      GroupRepository updated = repositoryRegistry.getRepositoryWithFacet(repositoryXO.id, GroupRepository.class).with {
-        it.name = repositoryXO.name
-        it.exposed = repositoryXO.exposed
-        it.memberRepositoryIds = repositoryXO.memberRepositoryIds
-        return it
+      T updated = repositoryRegistry.getRepositoryWithFacet(repositoryXO.id, repoType).with { repo ->
+        repo.name = repositoryXO.name
+        repo.exposed = repositoryXO.exposed
+        repositoryClosure(repo)
+        return repo
       }
       nexusConfiguration.saveConfiguration()
       return asRepositoryXO(updated, templates())
@@ -144,7 +169,7 @@ extends DirectComponentSupport
       repositories = repositoryRegistry.getRepositoriesWithFacet(clazz)
     }
     else {
-      repositories = repositoryRegistry.repositories;
+      repositories = repositoryRegistry.repositories
     }
     if (format) {
       repositories = repositories.findResults {
@@ -205,19 +230,27 @@ extends DirectComponentSupport
   def applyCommon = { xo, repository, templates ->
     xo.id = repository.id
     xo.name = repository.name
-    xo.exposed = repository.exposed
     xo.type = typeOf(repository)
     xo.provider = repository.providerHint
     xo.providerName = providerOf(templates, xo.type, xo.provider)?.providerName
     xo.format = repository.repositoryContentClass.id
     xo.formatName = repository.repositoryContentClass.name
+    xo.browseable = repository.browseable
+    xo.exposed = repository.exposed
     xo.localStatus = repository.localStatus
     xo.url = repositoryURLBuilder.getExposedRepositoryContentUrl(repository)
   }
 
   def asRepositoryXO = { repo, templates ->
     def xo
-    if (repo.repositoryKind.isFacetAvailable(ProxyRepository.class)) {
+    if (repo.repositoryKind.isFacetAvailable(HostedRepository.class)) {
+      def hxo = new RepositoryHostedXO()
+      repo.adaptToFacet(HostedRepository.class).with { hosted ->
+        hxo.writePolicy = hosted.writePolicy
+      }
+      xo = hxo
+    }
+    else if (repo.repositoryKind.isFacetAvailable(ProxyRepository.class)) {
       def pxo = new RepositoryProxyXO()
       repo.adaptToFacet(ProxyRepository.class).with { proxy ->
         pxo.proxyMode = proxy.proxyMode

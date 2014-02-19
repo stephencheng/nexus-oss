@@ -48,12 +48,6 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsCommon', {
       readOnly: true,
       submitValue: false,
       allowBlank: true
-    },
-    {
-      xtype: 'checkbox',
-      name: 'exposed',
-      fieldLabel: 'Publish URL',
-      value: true
     }
   ]
 

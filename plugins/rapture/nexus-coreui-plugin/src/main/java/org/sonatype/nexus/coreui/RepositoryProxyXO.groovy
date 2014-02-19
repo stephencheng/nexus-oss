@@ -25,8 +25,6 @@ class RepositoryProxyXO
 extends RepositoryXO
 {
   String proxyMode
-
   String remoteStatus
-
   String remoteStatusReason
 }

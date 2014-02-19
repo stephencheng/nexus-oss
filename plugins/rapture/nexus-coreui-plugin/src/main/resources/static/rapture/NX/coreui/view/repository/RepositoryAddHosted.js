@@ -10,26 +10,30 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.model.Repository', {
-  extend: 'Ext.data.Model',
-  fields: [
-    'id',
-    'name',
-    'type',
-    'provider',
-    'providerName',
-    'format',
-    'formatName',
-    'exposed',
-    'localStatus',
-    'url',
-    'browseable',         // hosted
-    'writePolicy',        // hosted
-    'indexable',          // hosted maven
-    'repositoryPolicy',   // hosted/proxy maven
-    'proxyMode',          // proxy
-    'remoteStatus',       // proxy
-    'remoteStatusReason', // proxy
-    'memberRepositoryIds' // group
-  ]
+Ext.define('NX.coreui.view.repository.RepositoryAddHosted', {
+  extend: 'NX.coreui.view.repository.RepositoryAdd',
+  alias: 'widget.nx-repository-add-hosted',
+
+  title: 'Create new hosted repository',
+
+  initComponent: function () {
+    var me = this;
+
+    Ext.apply(me, {
+      items: {
+        xtype: 'nx-repository-settings-hosted',
+        template: me.template,
+        api: {
+          submit: 'NX.direct.coreui_Repository.createHosted'
+        },
+        buttons: [
+          { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
+          { text: 'Cancel', handler: me.close, scope: me }
+        ]
+      }
+    });
+
+    me.callParent(arguments);
+  }
+
 });

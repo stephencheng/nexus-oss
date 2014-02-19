@@ -23,7 +23,5 @@ import groovy.transform.ToString
 class RepositoryGroupXO
 extends RepositoryXO
 {
-
   List<String> memberRepositoryIds
-
 }
