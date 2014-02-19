@@ -23,7 +23,7 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
   ],
   stores: [
     'RepositoryTarget',
-    'ContentClass'
+    'RepositoryFormat'
   ],
   views: [
     'repositorytarget.Add',
@@ -74,18 +74,18 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
 
     me.listen({
       store: {
-        '#ContentClass': {
+        '#RepositoryFormat': {
           load: me.reselect
         }
       },
       controller: {
         '#Refresh': {
-          refresh: me.loadContentClass
+          refresh: me.loadRepositoryFormat
         }
       },
       component: {
         'nx-coreui-repositorytarget-list': {
-          beforerender: me.loadContentClass
+          beforerender: me.loadRepositoryFormat
         },
         'nx-coreui-repositorytarget-list button[action=new]': {
           click: me.showAddWindow
@@ -127,14 +127,14 @@ Ext.define('NX.coreui.controller.RepositoryTargets', {
 
   /**
    * @private
-   * (Re)load context class store.
+   * (Re)load repository format store.
    */
-  loadContentClass: function () {
+  loadRepositoryFormat: function () {
     var me = this,
         list = me.getList();
 
     if (list) {
-      me.getContentClassStore().load();
+      me.getRepositoryFormatStore().load();
     }
   },
 

@@ -15,7 +15,7 @@ Ext.define('NX.coreui.model.RepositoryTarget', {
   fields: [
     'id',
     'name',
-    'contentClassId',
+    'format',
     'patterns'
   ]
 });

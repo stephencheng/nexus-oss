@@ -26,7 +26,7 @@ Ext.define('NX.coreui.view.repositorytarget.List', {
       }
     },
     { header: 'Name', dataIndex: 'name', flex: 1 },
-    { header: 'Repository Type', dataIndex: 'contentClassId' },
+    { header: 'Repository Type', dataIndex: 'format' },
     { header: 'Patterns', dataIndex: 'patterns', flex: 1 }
   ],
 

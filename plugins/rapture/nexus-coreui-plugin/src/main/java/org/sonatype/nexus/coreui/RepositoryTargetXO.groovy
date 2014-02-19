@@ -27,7 +27,7 @@ class RepositoryTargetXO
 
   String name
 
-  String contentClassId
+  String format
 
   List<String> patterns
 }

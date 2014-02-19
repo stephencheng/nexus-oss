@@ -23,6 +23,7 @@ Ext.define('NX.coreui.view.repositorytarget.Settings', {
   autoScroll: true,
 
   defaults: {
+    allowBlank: false,
     htmlDecode: true
   },
 
@@ -41,16 +42,14 @@ Ext.define('NX.coreui.view.repositorytarget.Settings', {
         name: 'name',
         itemId: 'name',
         fieldLabel: 'Name',
-        emptyText: 'enter a target name',
-        //allowBlank: false
+        emptyText: 'enter a target name'
       },
       {
         xtype: 'combo',
-        name: 'contentClassId',
+        name: 'format',
         fieldLabel: 'Repository Type',
         emptyText: 'select a repository type',
-        //allowBlank: false,
-        store: 'ContentClass',
+        store: 'RepositoryFormat',
         queryMode: 'local',
         displayField: 'name',
         valueField: 'id'
@@ -61,9 +60,7 @@ Ext.define('NX.coreui.view.repositorytarget.Settings', {
         itemId: 'patterns',
         fieldLabel: 'Patterns',
         emptyText: 'enter a pattern expression',
-        //allowBlank: false,
-        sorted: true,
-        //height: 600
+        sorted: true
       }
     ];
 

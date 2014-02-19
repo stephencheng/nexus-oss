@@ -70,7 +70,7 @@ extends DirectComponentSupport
     validate(target);
     target.id = Long.toHexString(System.nanoTime());
     def result = new Target(
-        target.id, target.name, repositoryTypeRegistry.contentClasses[target.contentClassId], target.patterns
+        target.id, target.name, repositoryTypeRegistry.contentClasses[target.format], target.patterns
     )
     targetRegistry.addRepositoryTarget(result)
     nexusConfiguration.saveConfiguration();
@@ -85,7 +85,7 @@ extends DirectComponentSupport
     // TODO validate id and that id exists
     if (target.id) {
       def result = new Target(
-          target.id, target.name, repositoryTypeRegistry.contentClasses[target.contentClassId], target.patterns
+          target.id, target.name, repositoryTypeRegistry.contentClasses[target.format], target.patterns
       )
       targetRegistry.addRepositoryTarget(result)
       nexusConfiguration.saveConfiguration();
@@ -107,7 +107,7 @@ extends DirectComponentSupport
     return new RepositoryTargetXO(
         id: input.id,
         name: input.name,
-        contentClassId: input.contentClass.id,
+        format: input.contentClass.id,
         patterns: input.patternTexts.toList().sort()
     )
   }
@@ -118,13 +118,13 @@ extends DirectComponentSupport
     if (StringUtils.isBlank(target.name)) {
       validations.addValidationError(new ValidationMessage('name', 'Name cannot be empty'))
     }
-    if (StringUtils.isBlank(target.contentClassId)) {
-      validations.addValidationError(new ValidationMessage('contentClassId', 'Repository type cannot be empty'))
+    if (StringUtils.isBlank(target.format)) {
+      validations.addValidationError(new ValidationMessage('repositoryFormat', 'Repository type cannot be empty'))
     }
     else {
-      def contentClass = repositoryTypeRegistry.contentClasses[target.contentClassId]
+      def contentClass = repositoryTypeRegistry.contentClasses[target.format]
       if (!contentClass) {
-        validations.addValidationError(new ValidationMessage('contentClassId', 'Repository type does not exist'))
+        validations.addValidationError(new ValidationMessage('repositoryFormat', 'Repository type does not exist'))
       }
     }
     if (!target.patterns || target.patterns.empty) {
