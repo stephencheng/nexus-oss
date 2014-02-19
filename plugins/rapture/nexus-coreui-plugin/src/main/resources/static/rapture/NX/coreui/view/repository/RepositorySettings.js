@@ -37,7 +37,7 @@ Ext.define('NX.coreui.view.repository.RepositorySettings', {
 
     if (!me.buttons) {
       me.buttons = [
-        { text: 'Save', action: 'save', ui: 'primary' },
+        { text: 'Save', action: 'save', formBind: true, ui: 'primary' },
         { text: 'Discard', action: 'discard' }
       ];
     }
