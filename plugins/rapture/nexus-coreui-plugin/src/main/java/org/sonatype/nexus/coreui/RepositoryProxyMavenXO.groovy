@@ -14,31 +14,19 @@
 package org.sonatype.nexus.coreui
 
 import groovy.transform.ToString
+import org.sonatype.nexus.proxy.maven.ChecksumPolicy
 
 /**
- * Repository Proxy exchange object.
+ * Repository Proxy Maven exchange object.
  *
  * @since 2.8
  */
 @ToString(includePackage = false, includeNames = true)
-class RepositoryProxyXO
-extends RepositoryXO
+class RepositoryProxyMavenXO
+extends RepositoryProxyXO
 {
-  String proxyMode
-  String remoteStatus
-  String remoteStatusReason
-  String remoteStorageUrl
-  Boolean autoBlockActive
-  Boolean fileTypeValidation
-  Boolean authEnabled
-  String authUsername
-  String authPassword
-  String authNtlmHost
-  String authNtlmDomain
-  String userAgentCustomisation
-  String urlParameters
-  Integer timeout
-  Integer retries
-  Integer notFoundCacheTTL
-  Integer itemMaxAge
+  Boolean downloadRemoteIndexes
+  ChecksumPolicy checksumPolicy
+  Integer artifactMaxAge
+  Integer metadataMaxAge
 }

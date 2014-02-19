@@ -23,13 +23,31 @@ Ext.define('NX.coreui.model.Repository', {
     'exposed',
     'localStatus',
     'url',
-    'browseable',         // hosted
-    'writePolicy',        // hosted
-    'indexable',          // hosted maven
-    'repositoryPolicy',   // hosted/proxy maven
-    'proxyMode',          // proxy
-    'remoteStatus',       // proxy
-    'remoteStatusReason', // proxy
-    'memberRepositoryIds' // group
+    'browseable',             // hosted
+    'writePolicy',            // hosted
+    'indexable',              // hosted maven
+    'repositoryPolicy',       // hosted/proxy maven
+    'proxyMode',              // proxy
+    'remoteStatus',           // proxy
+    'remoteStatusReason',     // proxy
+    'remoteStorageUrl',       // proxy
+    'autoBlockActive',        // proxy
+    'fileTypeValidation',     // proxy
+    'authEnabled',            // proxy
+    'authUsername',           // proxy
+    'authPassword',           // proxy
+    'authNtlmHost',           // proxy
+    'authNtlmDomain',         // proxy
+    'userAgentCustomisation', // proxy
+    'urlParameters',          // proxy
+    'timeout',                // proxy
+    'retries',                // proxy
+    'notFoundCacheTTL',       // proxy
+    'itemMaxAge',             // proxy
+    'downloadRemoteIndexes',  // proxy maven
+    'checksumPolicy',         // proxy maven
+    'artifactMaxAge',         // proxy maven
+    'metadataMaxAge',         // proxy maven
+    'memberRepositoryIds'     // group
   ]
 });

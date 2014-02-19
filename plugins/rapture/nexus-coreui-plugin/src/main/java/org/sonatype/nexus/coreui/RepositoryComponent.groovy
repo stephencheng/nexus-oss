@@ -23,6 +23,7 @@ import org.sonatype.nexus.extdirect.DirectComponentSupport
 import org.sonatype.nexus.proxy.ResourceStoreRequest
 import org.sonatype.nexus.proxy.item.RepositoryItemUid
 import org.sonatype.nexus.proxy.maven.MavenHostedRepository
+import org.sonatype.nexus.proxy.maven.MavenProxyRepository
 import org.sonatype.nexus.proxy.maven.MavenRepository
 import org.sonatype.nexus.proxy.registry.RepositoryRegistry
 import org.sonatype.nexus.proxy.registry.RepositoryTypeRegistry
@@ -219,11 +220,11 @@ extends DirectComponentSupport
     throw new IllegalArgumentException('Missing id for repository to be updated')
   }
 
-  def doUpdateGroup = { GroupRepository repo, RepositoryGroupXO repositoryXO ->
+  def static doUpdateGroup = { GroupRepository repo, RepositoryGroupXO repositoryXO ->
     repo.memberRepositoryIds = repositoryXO.memberRepositoryIds
   }
 
-  def doUpdateHosted = { HostedRepository repo, RepositoryHostedXO repositoryXO ->
+  def static doUpdateHosted = { HostedRepository repo, RepositoryHostedXO repositoryXO ->
     repo.browseable = repositoryXO.browseable
     repo.writePolicy = repositoryXO.writePolicy
     if (repo instanceof MavenRepository) {
@@ -232,59 +233,129 @@ extends DirectComponentSupport
     }
   }
 
-  def applyCommon = { RepositoryXO xo, Repository repo, List<RepositoryTemplateXO> templates ->
-    xo.id = repo.id
-    xo.name = repo.name
-    xo.type = typeOf(repo)
-    xo.provider = repo.providerHint
-    xo.providerName = providerOf(templates, xo.type, xo.provider)?.providerName
-    xo.format = repo.repositoryContentClass.id
-    xo.formatName = repo.repositoryContentClass.name
-    xo.browseable = repo.browseable
-    xo.exposed = repo.exposed
-    xo.localStatus = repo.localStatus
-    xo.url = repositoryURLBuilder.getExposedRepositoryContentUrl(repo)
+  def asRepositoryXO(Repository repo, List<RepositoryTemplateXO> templates) {
+    def RepositoryXO xo = null
+    repo.adaptToFacet(MavenHostedRepository.class)?.with {
+      xo = doGetMavenHosted(it, xo)
+    }
+    repo.adaptToFacet(HostedRepository.class)?.with {
+      xo = doGetHosted(it, xo)
+    }
+    repo.adaptToFacet(MavenProxyRepository.class)?.with {
+      xo = doGetMavenProxy(it, xo)
+    }
+    repo.adaptToFacet(ProxyRepository.class)?.with {
+      xo = doGetProxy(it, xo)
+    }
+    repo.adaptToFacet(GroupRepository.class)?.with {
+      xo = doGetGroup(it, xo)
+    }
+    return doGet(repo, xo, templates)
   }
 
-  def asRepositoryXO = { Repository repo, List<RepositoryTemplateXO> templates ->
-    def xo
-    if (repo.repositoryKind.isFacetAvailable(HostedRepository.class)) {
-      def hxo = new RepositoryHostedXO()
-      if (repo instanceof HostedRepository) {
-        hxo.writePolicy = repo.writePolicy
+  def static doGetMavenHosted(MavenHostedRepository repo, RepositoryXO xo) {
+    if (!xo) xo = new RepositoryHostedXO();
+    if (xo instanceof RepositoryHostedXO) {
+      xo.with {
+        indexable = repo.indexable
+        repositoryPolicy = repo.repositoryPolicy
       }
-      if (repo instanceof MavenHostedRepository) {
-        hxo.indexable = repo.indexable
-        hxo.repositoryPolicy = repo.repositoryPolicy
-      }
-      xo = hxo
     }
-    else if (repo.repositoryKind.isFacetAvailable(ProxyRepository.class)) {
-      def pxo = new RepositoryProxyXO()
-      if (repo instanceof ProxyRepository) {
-        pxo.proxyMode = repo.proxyMode
-        repo.getRemoteStatus(new ResourceStoreRequest(RepositoryItemUid.PATH_ROOT), false)?.with { remoteStatus ->
-          pxo.remoteStatus = remoteStatus
-          pxo.remoteStatusReason = remoteStatus.reason
-        }
-      }
-      xo = pxo
-    }
-    else if (repo.repositoryKind.isFacetAvailable(GroupRepository.class)) {
-      def gxo = new RepositoryGroupXO()
-      if (repo instanceof GroupRepository) {
-        gxo.memberRepositoryIds = repo.memberRepositoryIds
-      }
-      xo = gxo
-    }
-    else {
-      xo = new RepositoryXO()
-    }
-    applyCommon(xo, repo, templates)
     return xo
   }
 
-  def typeOf = { repository ->
+  def static doGetHosted(HostedRepository repo, RepositoryXO xo) {
+    if (!xo) xo = new RepositoryHostedXO();
+    if (xo instanceof RepositoryHostedXO) {
+      xo.with {
+        writePolicy = repo.writePolicy
+      }
+    }
+    return xo
+  }
+
+  def static doGetMavenProxy(MavenProxyRepository repo, RepositoryXO xo) {
+    if (!xo) xo = new RepositoryProxyMavenXO();
+    if (xo instanceof RepositoryProxyMavenXO) {
+      xo.with {
+        downloadRemoteIndexes = repo.downloadRemoteIndexes
+        checksumPolicy = repo.checksumPolicy
+        artifactMaxAge = repo.artifactMaxAge
+        metadataMaxAge = repo.metadataMaxAge
+      }
+    }
+    return xo
+  }
+
+  def static doGetProxy(ProxyRepository repo, RepositoryXO xo) {
+    if (!xo) xo = new RepositoryProxyXO();
+    if (xo instanceof RepositoryProxyXO) {
+      xo.with {
+        def rsc = repo.remoteStorageContext
+        def rcs = rsc?.remoteConnectionSettings
+        proxyMode = repo.proxyMode
+        remoteStorageUrl = repo.remoteUrl
+        autoBlockActive = repo.autoBlockActive
+        fileTypeValidation = repo.fileTypeValidation
+        userAgentCustomisation = rcs?.userAgentCustomizationString
+        urlParameters = rcs?.queryString
+        timeout = rcs?.connectionTimeout
+        retries = rcs?.retrievalRetryCount
+        notFoundCacheTTL = repo.notFoundCacheTimeToLive
+        itemMaxAge = repo.itemMaxAge
+        authEnabled = false
+        rsc?.remoteAuthenticationSettings?.with { ras ->
+          authEnabled = true
+          if (ras instanceof UsernamePasswordRemoteAuthenticationSettings) {
+            authUsername = ras.username
+            authPassword = ras.password
+          }
+          if (ras instanceof NtlmRemoteAuthenticationSettings) {
+            authNtlmHost = ras.ntlmHost
+            authNtlmDomain = ras.ntlmDomain
+          }
+          return
+        }
+        repo.getRemoteStatus(new ResourceStoreRequest(RepositoryItemUid.PATH_ROOT), false)?.with { status ->
+          remoteStatus = status
+          remoteStatusReason = status.reason
+        }
+      }
+    }
+    return xo
+  }
+
+  def static doGetGroup(GroupRepository repo, RepositoryXO xo) {
+    if (!xo) xo = new RepositoryGroupXO();
+    if (xo instanceof RepositoryGroupXO) {
+      xo.with {
+        memberRepositoryIds = repo.memberRepositoryIds
+      }
+    }
+    return xo
+  }
+
+  def doGet(Repository repo, RepositoryXO xo, List<RepositoryTemplateXO> templates) {
+    if (!xo) xo = new RepositoryXO();
+    if (xo instanceof RepositoryXO) {
+      xo.with {
+        id = repo.id
+        name = repo.name
+        type = typeOf(repo)
+        provider = repo.providerHint
+        providerName = providerOf(templates, xo.type, xo.provider)?.providerName
+        format = repo.repositoryContentClass.id
+        formatName = repo.repositoryContentClass.name
+        browseable = repo.browseable
+        exposed = repo.exposed
+        localStatus = repo.localStatus
+        url = repositoryURLBuilder.getExposedRepositoryContentUrl(repo)
+      }
+    }
+    return xo
+  }
+
+  def static typeOf(Repository repository) {
     def kind = repository.repositoryKind
     if (kind.isFacetAvailable(ProxyRepository.class)) {
       return 'proxy'
@@ -301,7 +372,7 @@ extends DirectComponentSupport
     return null
   }
 
-  Closure<RepositoryTemplateXO> providerOf = { List<RepositoryTemplateXO> templates, type, provider ->
+  def static providerOf(List<RepositoryTemplateXO> templates, type, provider) {
     templates.find { template -> template.type == type && template.provider == provider }
   }
 
