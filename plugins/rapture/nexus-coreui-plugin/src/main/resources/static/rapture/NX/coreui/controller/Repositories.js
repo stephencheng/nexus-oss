@@ -30,13 +30,15 @@ Ext.define('NX.coreui.controller.Repositories', {
     'repository.RepositoryAddGroup',
     'repository.RepositoryAddHosted',
     'repository.RepositoryAddHostedMaven',
+    'repository.RepositoryAddProxy',
     'repository.RepositoryFeature',
     'repository.RepositoryList',
     'repository.RepositorySettingsTab',
     'repository.RepositorySettingsCommon',
     'repository.RepositorySettingsGroup',
     'repository.RepositorySettingsHosted',
-    'repository.RepositorySettingsHostedMaven'
+    'repository.RepositorySettingsHostedMaven',
+    'repository.RepositorySettingsProxy'
   ],
   refs: [
     {
