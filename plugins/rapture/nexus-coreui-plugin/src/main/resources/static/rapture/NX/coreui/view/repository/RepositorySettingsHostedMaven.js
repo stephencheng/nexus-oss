@@ -49,6 +49,8 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsHostedMaven', {
           ['SNAPSHOT', 'Snapshots']
         ],
         queryMode: 'local',
+        readOnly: true,
+        allowBlank: true,
         submitValue: false
       },
       {
