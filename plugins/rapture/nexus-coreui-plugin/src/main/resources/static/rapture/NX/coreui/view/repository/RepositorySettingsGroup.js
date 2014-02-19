@@ -67,7 +67,7 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsGroup', {
       },
       {
         xtype: 'checkbox',
-        name: 'publishUrl',
+        name: 'exposed',
         fieldLabel: 'Publish URL',
         value: true
       },

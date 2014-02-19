@@ -20,6 +20,7 @@ Ext.define('NX.coreui.model.Repository', {
     'providerName',
     'format',
     'formatName',
+    'exposed',
     'localStatus',
     'url',
     // proxy
