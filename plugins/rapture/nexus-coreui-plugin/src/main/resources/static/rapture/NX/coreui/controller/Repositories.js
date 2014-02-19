@@ -32,7 +32,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     'repository.RepositoryAddHostedMaven',
     'repository.RepositoryFeature',
     'repository.RepositoryList',
-    'repository.RepositorySettings',
+    'repository.RepositorySettingsTab',
     'repository.RepositorySettingsCommon',
     'repository.RepositorySettingsGroup',
     'repository.RepositorySettingsHosted',
@@ -49,7 +49,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     },
     {
       ref: 'settings',
-      selector: 'nx-coreui-repository-feature nx-coreui-repository-settings'
+      selector: 'nx-coreui-repository-feature nx-coreui-repository-settings-tab'
     }
   ],
   icons: {
@@ -100,10 +100,10 @@ Ext.define('NX.coreui.controller.Repositories', {
         'nx-coreui-repository-add button[action=add]': {
           click: me.create
         },
-        'nx-coreui-repository-settings button[action=save]': {
+        'nx-coreui-repository-settings-tab button[action=save]': {
           click: me.update
         },
-        'nx-coreui-repository-settings button[action=discard]': {
+        'nx-coreui-repository-settings-tab button[action=discard]': {
           click: me.discard
         }
       }
