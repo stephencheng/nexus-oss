@@ -21,7 +21,7 @@ Ext.define('NX.coreui.view.repository.RepositoryFeature', {
 
   tabs: [
     { xtype: 'nx-info-panel' },
-    { xtype: 'nx-coreui-repository-settings' }
+    { xtype: 'nx-coreui-repository-settings-tab' }
   ]
 
 });

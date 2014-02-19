@@ -11,32 +11,20 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.coreui.view.repository.RepositorySettingsHostedMaven', {
-  extend: 'Ext.form.Panel',
-  alias: ['widget.nx-repository-settings-hosted-maven1','widget.nx-repository-settings-hosted-maven2'],
+  extend: 'NX.coreui.view.repository.RepositorySettings',
+  alias: ['widget.nx-repository-settings-hosted-maven1', 'widget.nx-repository-settings-hosted-maven2'],
 
   api: {
     submit: 'NX.direct.coreui_Repository.updateHosted'
   },
-  trackResetOnLoad: true,
-
-  bodyPadding: 10,
-  defaultType: 'textfield',
-  autoScroll: true,
-
-  defaults: {
-    allowBlank: false,
-    htmlDecode: true
-  },
-
-  buttonAlign: 'left',
 
   initComponent: function () {
     var me = this;
 
     me.items = [
-      {
-        xtype: 'nx-coreui-repository-settings-common'
-      },
+      //{
+      //  xtype: 'nx-coreui-repository-settings-common'
+      //},
       {
         xtype: 'combo',
         name: 'repositoryPolicy',
@@ -86,30 +74,7 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsHostedMaven', {
       }
     ];
 
-    if (!me.buttons) {
-      me.buttons = [
-        { text: 'Save', action: 'save', ui: 'primary' },
-        { text: 'Discard', action: 'discard' }
-      ];
-    }
-
     me.callParent(arguments);
-
-    me.down('#providerName').setValue(me.template.providerName);
-    me.down('#formatName').setValue(me.template.formatName);
-  },
-
-  reloadRepositories: function () {
-    var me = this;
-
-    // TODO: cannot load the store as the item selector used for members is giving errors
-    if (me.repositoriesStore.getCount() === 0) {
-      me.repositoriesStore.load({
-        params: {
-          format: me.template.format
-        }
-      });
-    }
   }
 
 });

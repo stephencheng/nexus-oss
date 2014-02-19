@@ -11,24 +11,12 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.coreui.view.repository.RepositorySettingsGroup', {
-  extend: 'Ext.form.Panel',
+  extend: 'NX.coreui.view.repository.RepositorySettings',
   alias: 'widget.nx-repository-settings-group',
 
   api: {
     submit: 'NX.direct.coreui_Repository.updateGroup'
   },
-  trackResetOnLoad: true,
-
-  bodyPadding: 10,
-  defaultType: 'textfield',
-  autoScroll: true,
-
-  defaults: {
-    allowBlank: false,
-    htmlDecode: true
-  },
-
-  buttonAlign: 'left',
 
   initComponent: function () {
     var me = this;
@@ -37,9 +25,9 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsGroup', {
     me.reloadRepositories();
 
     me.items = [
-      {
-        xtype: 'nx-coreui-repository-settings-common'
-      },
+      //{
+      //  xtype: 'nx-coreui-repository-settings-common'
+      //},
       {
         xtype: 'checkbox',
         name: 'exposed',
@@ -59,17 +47,7 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsGroup', {
       }
     ];
 
-    if (!me.buttons) {
-      me.buttons = [
-        { text: 'Save', action: 'save', ui: 'primary' },
-        { text: 'Discard', action: 'discard' }
-      ];
-    }
-
     me.callParent(arguments);
-
-    me.down('#providerName').setValue(me.template.providerName);
-    me.down('#formatName').setValue(me.template.formatName);
   },
 
   reloadRepositories: function () {
