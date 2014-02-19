@@ -31,6 +31,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     'repository.RepositoryFeature',
     'repository.RepositoryList',
     'repository.RepositorySettings',
+    'repository.RepositorySettingsCommon',
     'repository.RepositorySettingsGroup'
   ],
   refs: [

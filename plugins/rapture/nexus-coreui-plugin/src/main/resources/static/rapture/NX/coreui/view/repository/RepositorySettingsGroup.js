@@ -38,38 +38,7 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsGroup', {
 
     me.items = [
       {
-        name: 'id',
-        itemId: 'id',
-        fieldLabel: 'Group Id',
-        emptyText: 'enter a repository id',
-        readOnly: true
-      },
-      {
-        name: 'name',
-        fieldLabel: 'Group Name',
-        emptyText: 'enter a repository name'
-      },
-      {
-        name: 'providerName',
-        fieldLabel: 'Provider',
-        value: me.template.providerName,
-        readOnly: true,
-        submitValue: false,
-        allowBlank: true
-      },
-      {
-        name: 'formatName',
-        fieldLabel: 'Format',
-        value: me.template.formatName,
-        readOnly: true,
-        submitValue: false,
-        allowBlank: true
-      },
-      {
-        xtype: 'checkbox',
-        name: 'exposed',
-        fieldLabel: 'Publish URL',
-        value: true
+        xtype: 'nx-coreui-repository-settings-common'
       },
       {
         xtype: 'nx-itemselector',
@@ -92,6 +61,9 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsGroup', {
     }
 
     me.callParent(arguments);
+
+    me.down('#providerName').setValue(me.template.providerName);
+    me.down('#formatName').setValue(me.template.formatName);
   },
 
   reloadRepositories: function () {
