@@ -22,6 +22,7 @@ import org.sonatype.nexus.extdirect.DirectComponent
 import org.sonatype.nexus.extdirect.DirectComponentSupport
 import org.sonatype.nexus.proxy.ResourceStoreRequest
 import org.sonatype.nexus.proxy.item.RepositoryItemUid
+import org.sonatype.nexus.proxy.maven.MavenHostedRepository
 import org.sonatype.nexus.proxy.registry.RepositoryRegistry
 import org.sonatype.nexus.proxy.registry.RepositoryTypeRegistry
 import org.sonatype.nexus.proxy.repository.*
@@ -115,6 +116,8 @@ extends DirectComponentSupport
     update(repositoryXO, HostedRepository.class, { repo ->
       repo.browseable = repositoryXO.browseable
       repo.writePolicy = repositoryXO.writePolicy
+      repositoryXO.indexable?.with { repo.indexable = it }
+      repositoryXO.repositoryPolicy?.with { repo.repositoryPolicy = it }
     })
   }
 
@@ -247,6 +250,10 @@ extends DirectComponentSupport
       def hxo = new RepositoryHostedXO()
       repo.adaptToFacet(HostedRepository.class).with { hosted ->
         hxo.writePolicy = hosted.writePolicy
+      }
+      repo.adaptToFacet(MavenHostedRepository.class).with { mavenHosted ->
+        hxo.indexable = mavenHosted.indexable
+        hxo.repositoryPolicy = mavenHosted.repositoryPolicy
       }
       xo = hxo
     }

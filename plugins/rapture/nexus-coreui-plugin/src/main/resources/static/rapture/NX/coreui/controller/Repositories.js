@@ -29,12 +29,14 @@ Ext.define('NX.coreui.controller.Repositories', {
   views: [
     'repository.RepositoryAddGroup',
     'repository.RepositoryAddHosted',
+    'repository.RepositoryAddHostedMaven',
     'repository.RepositoryFeature',
     'repository.RepositoryList',
     'repository.RepositorySettings',
     'repository.RepositorySettingsCommon',
     'repository.RepositorySettingsGroup',
-    'repository.RepositorySettingsHosted'
+    'repository.RepositorySettingsHosted',
+    'repository.RepositorySettingsHostedMaven'
   ],
   refs: [
     {
