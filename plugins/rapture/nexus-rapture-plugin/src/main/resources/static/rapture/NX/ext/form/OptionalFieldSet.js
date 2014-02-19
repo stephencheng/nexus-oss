@@ -42,7 +42,7 @@ Ext.define('NX.ext.form.OptionalFieldSet', {
     if (container.items) {
       container.items.each(function (item) {
         if (enable) {
-          if (!item.disabledOnCollapse) {
+          if (!item.disabledOnCollapse && !item.isXType('container')) {
             item.enable();
           }
           delete item.disabledOnCollapse;
@@ -57,7 +57,9 @@ Ext.define('NX.ext.form.OptionalFieldSet', {
           if (!Ext.isDefined(item.disabledOnCollapse)) {
             item.disabledOnCollapse = item.isDisabled();
           }
-          item.disable();
+          if (!item.isXType('container')) {
+            item.disable();
+          }
           if (item.isXType('nx-optionalfieldset')) {
             if (!Ext.isDefined(item.collapsedOnCollapse)) {
               item.collapsedOnCollapse = item.collapsed;
