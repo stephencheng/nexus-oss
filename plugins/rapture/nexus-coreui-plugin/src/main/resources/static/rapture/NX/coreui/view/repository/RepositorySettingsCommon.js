@@ -11,7 +11,7 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.coreui.view.repository.RepositorySettingsCommon', {
-  extend: 'Ext.container.Container',
+  extend: 'Ext.form.FieldContainer',
   alias: 'widget.nx-coreui-repository-settings-common',
 
   defaults: {
