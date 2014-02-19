@@ -17,18 +17,18 @@ import com.softwarementors.extjs.djn.config.annotations.DirectAction
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod
 import org.apache.shiro.authz.annotation.RequiresAuthentication
 import org.apache.shiro.authz.annotation.RequiresPermissions
+import org.sonatype.nexus.configuration.application.NexusConfiguration
 import org.sonatype.nexus.extdirect.DirectComponent
 import org.sonatype.nexus.extdirect.DirectComponentSupport
 import org.sonatype.nexus.proxy.ResourceStoreRequest
 import org.sonatype.nexus.proxy.item.RepositoryItemUid
-import org.sonatype.nexus.proxy.maven.MavenGroupRepository
-import org.sonatype.nexus.proxy.maven.MavenHostedRepository
-import org.sonatype.nexus.proxy.maven.MavenProxyRepository
-import org.sonatype.nexus.proxy.maven.MavenRepository
-import org.sonatype.nexus.proxy.maven.MavenShadowRepository
 import org.sonatype.nexus.proxy.registry.RepositoryRegistry
+import org.sonatype.nexus.proxy.registry.RepositoryTypeRegistry
 import org.sonatype.nexus.proxy.repository.*
 import org.sonatype.nexus.rest.RepositoryURLBuilder
+import org.sonatype.nexus.templates.TemplateManager
+import org.sonatype.nexus.templates.repository.DefaultRepositoryTemplateProvider
+import org.sonatype.nexus.templates.repository.RepositoryTemplate
 
 import javax.inject.Inject
 import javax.inject.Named
@@ -49,19 +49,64 @@ extends DirectComponentSupport
   RepositoryRegistry repositoryRegistry
 
   @Inject
+  RepositoryTypeRegistry repositoryTypeRegistry
+
+  @Inject
   RepositoryURLBuilder repositoryURLBuilder
+
+  @Inject
+  TemplateManager templateManager
+
+  @Inject
+  NexusConfiguration nexusConfiguration
+
+  @Inject
+  DefaultRepositoryTemplateProvider repositoryTemplateProvider;
 
   private def typesToClass = [
       'proxy': ProxyRepository.class,
       'hosted': HostedRepository.class,
       'shadow': ShadowRepository.class,
-      'group': GroupRepository.class,
-      'maven': MavenRepository.class,
-      'proxy+maven': MavenProxyRepository.class,
-      'hosted+maven': MavenHostedRepository.class,
-      'shadow+maven': MavenShadowRepository.class,
-      'group+maven': MavenGroupRepository.class
+      'group': GroupRepository.class
   ]
+
+  def applyCommon = { xo, repository ->
+    xo.id = repository.id
+    xo.name = repository.name
+    xo.exposed = repository.exposed
+    xo.type = typeOf(repository)
+    xo.provider = repository.providerHint
+    xo.format = repository.repositoryContentClass.id
+    xo.localStatus = repository.localStatus
+    xo.url = repositoryURLBuilder.getExposedRepositoryContentUrl(repository)
+  }
+
+  def asRepositoryXO = { repo ->
+    def xo
+    if (repo.repositoryKind.isFacetAvailable(ProxyRepository.class)) {
+      def pxo = new RepositoryProxyXO()
+      repo.adaptToFacet(ProxyRepository.class).with { proxy ->
+        pxo.proxyMode = proxy.proxyMode
+        proxy.getRemoteStatus(new ResourceStoreRequest(RepositoryItemUid.PATH_ROOT), false)?.with { remoteStatus ->
+          pxo.remoteStatus = remoteStatus
+          pxo.remoteStatusReason = remoteStatus.reason
+        }
+      }
+      xo = pxo
+    }
+    else if (repo.repositoryKind.isFacetAvailable(GroupRepository.class)) {
+      def gxo = new RepositoryGroupXO()
+      repo.adaptToFacet(GroupRepository.class)?.with { group ->
+        gxo.memberRepositoryIds = group.memberRepositoryIds
+      }
+      xo = gxo
+    }
+    else {
+      xo = new RepositoryXO()
+    }
+    applyCommon(xo, repo)
+    return xo
+  }
 
   /**
    * Retrieve a list of available repositories.
@@ -69,27 +114,49 @@ extends DirectComponentSupport
   @DirectMethod
   @RequiresPermissions('nexus:repositories:read')
   List<RepositoryXO> read() {
-    return repositoryRegistry.repositories.collect { input ->
-      def result = new RepositoryXO(
-          id: input.id,
-          name: input.name,
-          type: typeOf(input),
-          format: input.providerHint,
-          localStatus: input.localStatus,
-          url: repositoryURLBuilder.getExposedRepositoryContentUrl(input)
-      )
+    return repositoryRegistry.repositories.collect(asRepositoryXO)
+  }
 
-      // add additional details if repo is a proxy
-      input.adaptToFacet(ProxyRepository.class)?.with { proxy ->
-        result.proxyMode = proxy.proxyMode
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:create')
+  RepositoryXO createGroup(final RepositoryGroupXO repositoryXO) {
 
-        def remoteStatus = proxy.getRemoteStatus(new ResourceStoreRequest(RepositoryItemUid.PATH_ROOT), false)
-        result.remoteStatus = remoteStatus
-        result.remoteStatusReason = remoteStatus.reason
-      }
+    def template = templateManager.templates.getTemplateById(repositoryXO.template) as RepositoryTemplate
 
-      return result
+    template.getConfigurableRepository().with {
+      it.id = repositoryXO.id
+      it.name = repositoryXO.name
+      it.exposed = repositoryXO.exposed
+      it.localStatus = LocalStatus.IN_SERVICE
+      return it
     }
+
+    Repository created = template.create().with {
+      ((GroupRepository) it).memberRepositoryIds = repositoryXO.memberRepositoryIds
+      return it
+    }
+
+    nexusConfiguration.saveConfiguration()
+
+    return asRepositoryXO(created)
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:update')
+  RepositoryXO updateGroup(final RepositoryGroupXO repositoryXO) {
+    if (repositoryXO.id) {
+      GroupRepository updated = repositoryRegistry.getRepositoryWithFacet(repositoryXO.id, GroupRepository.class).with {
+        it.name = repositoryXO.name
+        it.exposed = repositoryXO.exposed
+        it.memberRepositoryIds = repositoryXO.memberRepositoryIds
+        return it
+      }
+      nexusConfiguration.saveConfiguration()
+      return asRepositoryXO(updated)
+    }
+    throw new IllegalArgumentException('Missing id for repository to be updated')
   }
 
   @DirectMethod
@@ -104,7 +171,7 @@ extends DirectComponentSupport
    */
   @DirectMethod
   @RequiresPermissions('nexus:repositories:read')
-  List<ReferenceXO> getByType(final String type) {
+  List<ReferenceXO> filterBy(final String type, final String format) {
     def List<Repository> repositories
     if (type) {
       def clazz = typesToClass[type]
@@ -116,12 +183,59 @@ extends DirectComponentSupport
     else {
       repositories = repositoryRegistry.repositories;
     }
-    return repositories.collect { input ->
+    if (format) {
+      repositories = repositories.findResults {
+        it.repositoryContentClass.id == format ? it : null
+      }
+    }
+    repositories.collect {
       new ReferenceXO(
-          id: input.id,
-          name: input.name
+          id: it.id,
+          name: it.name
       )
     }
+  }
+
+  /**
+   * Retrieve a list of available content classes.
+   */
+  @DirectMethod
+  @RequiresPermissions('nexus:componentscontentclasses:read')
+  List<RepositoryFormatXO> formats() {
+    repositoryTypeRegistry.contentClasses.collect {
+      new RepositoryFormatXO(
+          id: it.value.id,
+          name: it.value.name
+      )
+    }
+  }
+
+  /**
+   * Retrieve a list of available repository templates.
+   */
+  @DirectMethod
+  @RequiresPermissions('nexus:componentsrepotypes:read')
+  List<RepositoryTemplateXO> templates() {
+    def providers = []
+    def asProvider = { template, type ->
+      new RepositoryTemplateXO(
+          id: template.id,
+          type: type,
+          provider: template.repositoryProviderHint,
+          format: template.contentClass.id,
+          description: template.description
+      )
+    }
+    def types = typesToClass
+    templateManager.templates.getTemplates(RepositoryTemplate.class).templatesList.each {
+      def template = it as RepositoryTemplate
+      types.each {
+        if (template.targetFits(it.value)) {
+          providers.add(asProvider(template, it.key))
+        }
+      }
+    }
+    return providers
   }
 
   private static String typeOf(final Repository repository) {

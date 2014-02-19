@@ -28,15 +28,15 @@ class RepositoryXO
 
   String type
 
+  String provider
+
   String format
 
   String localStatus
 
-  String proxyMode
-
-  String remoteStatus
-
-  String remoteStatusReason
+  boolean exposed
 
   String url
+
+  String template
 }

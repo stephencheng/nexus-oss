@@ -16,10 +16,10 @@ Ext.define('NX.coreui.store.RepositoryOfType', {
 
   proxy: {
     type: 'direct',
-    paramOrder: 'type',
+    paramOrder: 'type,format',
 
     api: {
-      read: 'NX.direct.coreui_Repository.getByType'
+      read: 'NX.direct.coreui_Repository.filterBy'
     },
 
     reader: {

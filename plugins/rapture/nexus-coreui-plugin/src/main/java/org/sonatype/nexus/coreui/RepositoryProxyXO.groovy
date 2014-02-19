@@ -1,4 +1,4 @@
-/*
+/**
  * Sonatype Nexus (TM) Open Source Version
  * Copyright (c) 2007-2013 Sonatype, Inc.
  * All rights reserved. Includes the third-party code listed at http://links.sonatype.com/products/nexus/oss/attributions.
@@ -10,23 +10,23 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.model.Repository', {
-  extend: 'Ext.data.Model',
-  fields: [
-    'id',
-    'name',
-    'type',
-    'provider',
-    'providerName',
-    'format',
-    'formatName',
-    'localStatus',
-    'url',
-    // proxy
-    'proxyMode',
-    'remoteStatus',
-    'remoteStatusReason',
-    // group
-    'memberRepositoryIds'
-  ]
-});
+
+package org.sonatype.nexus.coreui
+
+import groovy.transform.ToString
+
+/**
+ * Repository Proxy exchange object.
+ *
+ * @since 2.8
+ */
+@ToString(includePackage = false, includeNames = true)
+class RepositoryProxyXO
+extends RepositoryXO
+{
+  String proxyMode
+
+  String remoteStatus
+
+  String remoteStatusReason
+}

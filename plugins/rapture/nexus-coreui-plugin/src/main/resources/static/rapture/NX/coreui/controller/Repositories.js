@@ -19,12 +19,19 @@ Ext.define('NX.coreui.controller.Repositories', {
 
   list: 'nx-coreui-repository-list',
 
-  stores: [
+  models: [
     'Repository'
   ],
+  stores: [
+    'Repository',
+    'RepositoryTemplate'
+  ],
   views: [
+    'repository.RepositoryAddGroup',
     'repository.RepositoryFeature',
-    'repository.RepositoryList'
+    'repository.RepositoryList',
+    'repository.RepositorySettings',
+    'repository.RepositorySettingsGroup'
   ],
   refs: [
     {
@@ -34,6 +41,10 @@ Ext.define('NX.coreui.controller.Repositories', {
     {
       ref: 'info',
       selector: 'nx-coreui-repository-feature nx-info-panel'
+    },
+    {
+      ref: 'settings',
+      selector: 'nx-coreui-repository-feature nx-coreui-repository-settings'
     }
   ],
   icons: {
@@ -55,12 +66,52 @@ Ext.define('NX.coreui.controller.Repositories', {
   },
   permission: 'nexus:repositories',
 
+  /**
+   * @override
+   */
+  init: function () {
+    var me = this;
+
+    me.callParent();
+
+    me.listen({
+      store: {
+        '#RepositoryTemplate': {
+          load: me.onRepositoryTemplateLoad
+        }
+      },
+      controller: {
+        '#Refresh': {
+          refresh: me.loadRepositoryTemplate
+        }
+      },
+      component: {
+        'nx-coreui-repository-list': {
+          beforerender: me.loadRepositoryTemplate
+        },
+        'nx-coreui-repository-list menuitem[action=new]': {
+          click: me.showAddWindow
+        },
+        'nx-coreui-repository-add button[action=add]': {
+          click: me.create
+        },
+        'nx-coreui-repository-settings button[action=save]': {
+          click: me.update
+        },
+        'nx-coreui-repository-settings button[action=discard]': {
+          click: me.discard
+        }
+      }
+    });
+  },
+
   getDescription: function (model) {
     return model.get('name');
   },
 
   onSelection: function (list, model) {
-    var me = this;
+    var me = this,
+        settingsTab, settingsForm;
 
     if (Ext.isDefined(model)) {
       me.getInfo().showInfo({
@@ -73,7 +124,140 @@ Ext.define('NX.coreui.controller.Repositories', {
         'Remote status': me.getRemoteStatus(model),
         'Url': NX.util.Url.asLink(model.get('url'))
       });
+
+      settingsForm = me.createComponent(
+          'settings',
+          {
+            type: model.get('type').toLowerCase(),
+            provider: model.get('provider'),
+            format: model.get('format')
+          }
+      );
+      settingsTab = me.getSettings();
+      settingsTab.removeAll();
+      if (settingsForm) {
+        settingsTab.add(settingsForm);
+        settingsForm.loadRecord(model);
+      }
     }
+  },
+
+  /**
+   * @private
+   * (Re)load repository template store.
+   */
+  loadRepositoryTemplate: function () {
+    var me = this,
+        list = me.getList();
+
+    if (list) {
+      me.getRepositoryTemplateStore().load();
+    }
+  },
+
+  onRepositoryTemplateLoad: function (store) {
+    var me = this,
+        list = me.getList(),
+        newButton, templatesPerType = {};
+
+    if (list) {
+      newButton = list.down('button[action=new]');
+      newButton.menu.removeAll();
+      store.each(function (template) {
+        if (!templatesPerType[template.get('type')]) {
+          templatesPerType[template.get('type')] = [];
+        }
+        templatesPerType[template.get('type')].push({
+          text: template.get('description'),
+          action: 'new',
+          template: template
+        })
+      });
+      Ext.Object.each(templatesPerType, function (key, value) {
+        newButton.menu.add({
+          text: Ext.String.capitalize(key) + ' Repository',
+          menu: value
+        });
+      });
+      me.reselect();
+    }
+  },
+
+  /**
+   * @private
+   */
+  showAddWindow: function (menu) {
+    var me = this,
+        template = menu.template;
+
+    me.createComponent('add', Ext.apply({}, template.data));
+  },
+
+  createComponent: function (action, template) {
+    var me = this,
+        cmpName = 'widget.nx-repository-' + action + '-' + template.type + '-' + template.provider,
+        cmpClass;
+
+    cmpClass = Ext.ClassManager.getByAlias(cmpName);
+    if (!cmpClass) {
+      cmpClass = Ext.ClassManager.getByAlias('widget.nx-repository-' + action + '-' + template.type);
+    }
+    if (cmpClass) {
+      return cmpClass.create({ template: template });
+    }
+    me.logWarn('Could not create component for: ' + cmpName);
+    return undefined;
+  },
+
+  /**
+   * @private
+   * Rests form.
+   */
+  discard: function (button) {
+    var form = button.up('form');
+    form.loadRecord(form.getRecord());
+  },
+
+  /**
+   * @private
+   * Creates a new repository.
+   */
+  create: function (button) {
+    var me = this,
+        win = button.up('window'),
+        form = button.up('form');
+
+    form.submit({
+      waitMsg: 'Creating repository...',
+      success: function (form, action) {
+        win.close();
+        NX.Messages.add({
+          text: 'Repository created: ' + me.getDescription(me.getRepositoryModel().create(action.result.data)),
+          type: 'success'
+        });
+        me.loadStoreAndSelect(action.result.data.id);
+      }
+    });
+  },
+
+  /**
+   * @private
+   * Updates a repository.
+   */
+  update: function (button) {
+    var me = this,
+        form = button.up('form');
+
+    form.submit({
+      waitMsg: 'Updating repository...',
+      success: function (form, action) {
+        NX.Messages.add({
+          text: 'Repository updated: ' + me.getDescription(me.getRepositoryModel().create(action.result.data)),
+          type: 'success'
+        });
+        me.loadStore();
+      }
+    });
   },
 
   /**

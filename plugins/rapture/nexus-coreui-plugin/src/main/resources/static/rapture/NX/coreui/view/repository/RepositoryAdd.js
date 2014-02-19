@@ -10,23 +10,30 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.model.Repository', {
-  extend: 'Ext.data.Model',
-  fields: [
-    'id',
-    'name',
-    'type',
-    'provider',
-    'providerName',
-    'format',
-    'formatName',
-    'localStatus',
-    'url',
-    // proxy
-    'proxyMode',
-    'remoteStatus',
-    'remoteStatusReason',
-    // group
-    'memberRepositoryIds'
-  ]
+Ext.define('NX.coreui.view.repository.RepositoryAdd', {
+  extend: 'Ext.window.Window',
+  alias: 'widget.nx-coreui-repository-add',
+
+  layout: 'fit',
+  autoShow: true,
+  modal: true,
+  constrain: true,
+  width: 640,
+  defaultFocus: 'id',
+
+  initComponent: function () {
+    var me = this;
+
+    me.callParent(arguments);
+
+    me.down('#id').setReadOnly(false);
+
+    me.down('form').add({
+      xtype: 'hiddenfield',
+      name: 'template',
+      value: me.template.id
+    });
+  }
+
+
 });
