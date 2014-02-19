@@ -22,9 +22,6 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsHostedMaven', {
     var me = this;
 
     me.items = [
-      //{
-      //  xtype: 'nx-coreui-repository-settings-common'
-      //},
       {
         xtype: 'combo',
         name: 'repositoryPolicy',

@@ -25,9 +25,6 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsGroup', {
     me.reloadRepositories();
 
     me.items = [
-      //{
-      //  xtype: 'nx-coreui-repository-settings-common'
-      //},
       {
         xtype: 'checkbox',
         name: 'exposed',
