@@ -13,6 +13,10 @@
 Ext.define('NX.coreui.view.system.Http', {
   extend: 'Ext.Panel',
   alias: 'widget.nx-coreui-system-http',
+  requires: [
+    'NX.coreui.view.AuthenticationSettings',
+    'NX.coreui.view.HttpRequestSettings'
+  ],
 
   layout: {
     type: 'vbox',
@@ -48,28 +52,8 @@ Ext.define('NX.coreui.view.system.Http', {
           html: '<p>HTTP request settings.</p>'
         },
         {
-          xtype: 'textfield',
-          name: 'userAgentCustomisation',
-          fieldLabel: 'User-agent customization',
-          width: 400
+          xtype: 'nx-coreui-httprequestsettings'
         },
-        {
-          xtype: 'textfield',
-          name: 'urlParameters',
-          fieldLabel: 'URL parameters',
-          width: 400
-        },
-        {
-          xtype: 'numberfield',
-          name: 'timeout',
-          fieldLabel: 'Timeout seconds'
-        },
-        {
-          xtype: 'numberfield',
-          name: 'retries',
-          fieldLabel: 'Retry attempts'
-        },
-
         {
           xtype: 'nx-optionalfieldset',
           title: 'HTTP Proxy',
@@ -100,30 +84,10 @@ Ext.define('NX.coreui.view.system.Http', {
               checkboxToggle: true,
               checkboxName: 'httpAuthEnabled',
               collapsed: true,
-              items: [
-                {
-                  xtype: 'textfield',
-                  name: 'httpAuthUsername',
-                  fieldLabel: 'Username',
-                  allowBlank: false
-                },
-                {
-                  xtype: 'textfield',
-                  name: 'httpAuthPassword',
-                  fieldLabel: 'Password',
-                  inputType: 'password'
-                },
-                {
-                  xtype: 'textfield',
-                  name: 'httpAuthNtlmHost',
-                  fieldLabel: 'NT LAN Host'
-                },
-                {
-                  xtype: 'textfield',
-                  name: 'httpAuthNtlmDomain',
-                  fieldLabel: 'NT LAN Manager Domain'
-                }
-              ]
+              items: {
+                xtype: 'nx-coreui-authenticationsettings',
+                namePrefix: 'http'
+              }
             },
             {
               xtype: 'nx-valueset',
@@ -166,30 +130,10 @@ Ext.define('NX.coreui.view.system.Http', {
               checkboxToggle: true,
               checkboxName: 'httpsAuthEnabled',
               collapsed: true,
-              items: [
-                {
-                  xtype: 'textfield',
-                  name: 'httpsAuthUsername',
-                  fieldLabel: 'Username',
-                  allowBlank: false
-                },
-                {
-                  xtype: 'textfield',
-                  name: 'httpsAuthPassword',
-                  fieldLabel: 'Password',
-                  inputType: 'password'
-                },
-                {
-                  xtype: 'textfield',
-                  name: 'httpsAuthNtlmHost',
-                  fieldLabel: 'NT LAN Host'
-                },
-                {
-                  xtype: 'textfield',
-                  name: 'httpsAuthNtlmDomain',
-                  fieldLabel: 'NT LAN Manager Domain'
-                }
-              ]
+              items: {
+                xtype: 'nx-coreui-authenticationsettings',
+                namePrefix: 'http'
+              }
             }
           ]
         }
