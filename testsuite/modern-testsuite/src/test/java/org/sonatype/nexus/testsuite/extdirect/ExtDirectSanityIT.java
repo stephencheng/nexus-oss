@@ -21,7 +21,7 @@ import org.sonatype.nexus.client.core.subsystem.Utilities;
 import org.sonatype.nexus.client.rest.jersey.JerseyNexusClient;
 import org.sonatype.nexus.testsuite.NexusCoreITSupport;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
