@@ -30,7 +30,11 @@ class RepositoryXO
 
   String provider
 
+  String providerName
+
   String format
+
+  String formatName
 
   String localStatus
 

@@ -168,7 +168,7 @@ Ext.define('NX.coreui.controller.Repositories', {
           templatesPerType[template.get('type')] = [];
         }
         templatesPerType[template.get('type')].push({
-          text: template.get('description'),
+          text: template.get('providerName'),
           action: 'new',
           template: template
         })

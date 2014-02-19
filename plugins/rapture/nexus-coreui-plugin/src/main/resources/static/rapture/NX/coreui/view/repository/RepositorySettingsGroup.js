@@ -52,16 +52,18 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsGroup', {
       {
         name: 'providerName',
         fieldLabel: 'Provider',
-        value: me.template.description,
+        value: me.template.providerName,
         readOnly: true,
-        submitValue: false
+        submitValue: false,
+        allowBlank: true
       },
       {
-        name: 'format',
+        name: 'formatName',
         fieldLabel: 'Format',
-        value: me.template.format,
+        value: me.template.formatName,
         readOnly: true,
-        submitValue: false
+        submitValue: false,
+        allowBlank: true
       },
       {
         xtype: 'checkbox',

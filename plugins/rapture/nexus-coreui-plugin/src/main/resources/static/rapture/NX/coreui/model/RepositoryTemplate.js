@@ -16,7 +16,8 @@ Ext.define('NX.coreui.model.RepositoryTemplate', {
     'id',
     'type',
     'provider',
+    'providerName',
     'format',
-    'description'
+    'formatName'
   ]
 });

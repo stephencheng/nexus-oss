@@ -25,9 +25,14 @@ Ext.define('NX.coreui.view.repository.RepositoryList', {
         return 'repository-default';
       }
     },
-    {header: 'Name', dataIndex: 'name', flex: 1},
-    {header: 'Type', dataIndex: 'type', flex: 1},
-    {header: 'Format', dataIndex: 'format', flex: 1}
+    { header: 'Name', dataIndex: 'name', flex: 1 },
+    { header: 'Type', dataIndex: 'type',
+      renderer: function (value) {
+        return Ext.String.capitalize(value);
+      }
+    },
+    { header: 'Format', dataIndex: 'formatName' },
+    { header: 'Format', dataIndex: 'providerName' }
   ],
 
   tbar: [
@@ -37,5 +42,5 @@ Ext.define('NX.coreui.view.repository.RepositoryList', {
     { xtype: 'button', text: 'Delete', glyph: 'xf056@FontAwesome' /* fa-minus-circle */, action: 'delete', disabled: true }
   ],
 
-  plugins: [ 'gridfilterbox' ]
+  plugins: ['gridfilterbox']
 });

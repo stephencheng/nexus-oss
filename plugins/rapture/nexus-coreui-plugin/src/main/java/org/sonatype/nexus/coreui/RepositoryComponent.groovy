@@ -70,51 +70,14 @@ extends DirectComponentSupport
       'group': GroupRepository.class
   ]
 
-  def applyCommon = { xo, repository ->
-    xo.id = repository.id
-    xo.name = repository.name
-    xo.exposed = repository.exposed
-    xo.type = typeOf(repository)
-    xo.provider = repository.providerHint
-    xo.format = repository.repositoryContentClass.id
-    xo.localStatus = repository.localStatus
-    xo.url = repositoryURLBuilder.getExposedRepositoryContentUrl(repository)
-  }
-
-  def asRepositoryXO = { repo ->
-    def xo
-    if (repo.repositoryKind.isFacetAvailable(ProxyRepository.class)) {
-      def pxo = new RepositoryProxyXO()
-      repo.adaptToFacet(ProxyRepository.class).with { proxy ->
-        pxo.proxyMode = proxy.proxyMode
-        proxy.getRemoteStatus(new ResourceStoreRequest(RepositoryItemUid.PATH_ROOT), false)?.with { remoteStatus ->
-          pxo.remoteStatus = remoteStatus
-          pxo.remoteStatusReason = remoteStatus.reason
-        }
-      }
-      xo = pxo
-    }
-    else if (repo.repositoryKind.isFacetAvailable(GroupRepository.class)) {
-      def gxo = new RepositoryGroupXO()
-      repo.adaptToFacet(GroupRepository.class)?.with { group ->
-        gxo.memberRepositoryIds = group.memberRepositoryIds
-      }
-      xo = gxo
-    }
-    else {
-      xo = new RepositoryXO()
-    }
-    applyCommon(xo, repo)
-    return xo
-  }
-
   /**
    * Retrieve a list of available repositories.
    */
   @DirectMethod
   @RequiresPermissions('nexus:repositories:read')
   List<RepositoryXO> read() {
-    return repositoryRegistry.repositories.collect(asRepositoryXO)
+    def templates = templates()
+    return repositoryRegistry.repositories.collect { asRepositoryXO(it, templates) }
   }
 
   @DirectMethod
@@ -139,7 +102,7 @@ extends DirectComponentSupport
 
     nexusConfiguration.saveConfiguration()
 
-    return asRepositoryXO(created)
+    return asRepositoryXO(created, templates())
   }
 
   @DirectMethod
@@ -154,7 +117,7 @@ extends DirectComponentSupport
         return it
       }
       nexusConfiguration.saveConfiguration()
-      return asRepositoryXO(updated)
+      return asRepositoryXO(updated, templates())
     }
     throw new IllegalArgumentException('Missing id for repository to be updated')
   }
@@ -222,8 +185,9 @@ extends DirectComponentSupport
           id: template.id,
           type: type,
           provider: template.repositoryProviderHint,
+          providerName: template.description,
           format: template.contentClass.id,
-          description: template.description
+          formatName: template.contentClass.name
       )
     }
     def types = typesToClass
@@ -238,21 +202,66 @@ extends DirectComponentSupport
     return providers
   }
 
-  private static String typeOf(final Repository repository) {
+  def applyCommon = { xo, repository, templates ->
+    xo.id = repository.id
+    xo.name = repository.name
+    xo.exposed = repository.exposed
+    xo.type = typeOf(repository)
+    xo.provider = repository.providerHint
+    xo.providerName = providerOf(templates, xo.type, xo.provider)?.providerName
+    xo.format = repository.repositoryContentClass.id
+    xo.formatName = repository.repositoryContentClass.name
+    xo.localStatus = repository.localStatus
+    xo.url = repositoryURLBuilder.getExposedRepositoryContentUrl(repository)
+  }
+
+  def asRepositoryXO = { repo, templates ->
+    def xo
+    if (repo.repositoryKind.isFacetAvailable(ProxyRepository.class)) {
+      def pxo = new RepositoryProxyXO()
+      repo.adaptToFacet(ProxyRepository.class).with { proxy ->
+        pxo.proxyMode = proxy.proxyMode
+        proxy.getRemoteStatus(new ResourceStoreRequest(RepositoryItemUid.PATH_ROOT), false)?.with { remoteStatus ->
+          pxo.remoteStatus = remoteStatus
+          pxo.remoteStatusReason = remoteStatus.reason
+        }
+      }
+      xo = pxo
+    }
+    else if (repo.repositoryKind.isFacetAvailable(GroupRepository.class)) {
+      def gxo = new RepositoryGroupXO()
+      repo.adaptToFacet(GroupRepository.class)?.with { group ->
+        gxo.memberRepositoryIds = group.memberRepositoryIds
+      }
+      xo = gxo
+    }
+    else {
+      xo = new RepositoryXO()
+    }
+    applyCommon(xo, repo, templates)
+    return xo
+  }
+
+  def typeOf = { repository ->
     def kind = repository.repositoryKind
     if (kind.isFacetAvailable(ProxyRepository.class)) {
-      return 'Proxy'
+      return 'proxy'
     }
     else if (kind.isFacetAvailable(HostedRepository.class)) {
-      return 'Hosted'
+      return 'hosted'
     }
     else if (kind.isFacetAvailable(ShadowRepository.class)) {
-      return 'Virtual'
+      return 'virtual'
     }
     else if (kind.isFacetAvailable(GroupRepository.class)) {
-      return 'Group'
+      return 'group'
     }
     return null
   }
+
+  def providerOf = { templates, type, provider ->
+    templates.find { template -> template.type == type && template.provider == provider }
+  }
+
 
 }

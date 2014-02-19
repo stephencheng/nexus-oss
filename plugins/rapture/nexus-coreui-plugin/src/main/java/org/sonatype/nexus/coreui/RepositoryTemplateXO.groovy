@@ -29,7 +29,9 @@ class RepositoryTemplateXO
 
   String provider
 
+  String providerName
+
   String format
 
-  String description
+  String formatName
 }
