@@ -120,7 +120,7 @@ extends DirectComponentSupport
   @DirectMethod
   @RequiresAuthentication
   @RequiresPermissions('nexus:repositories:update')
-  RepositoryXO updateHostedMaven(final RepositoryHostedXO repositoryXO) {
+  RepositoryXO updateHostedMaven(final RepositoryHostedMavenXO repositoryXO) {
     update(repositoryXO, MavenHostedRepository.class, doUpdateHosted, doUpdateHostedMaven)
   }
 
