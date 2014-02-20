@@ -15,7 +15,7 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsHostedMaven', {
   alias: ['widget.nx-repository-settings-hosted-maven1', 'widget.nx-repository-settings-hosted-maven2'],
 
   api: {
-    submit: 'NX.direct.coreui_Repository.updateHosted'
+    submit: 'NX.direct.coreui_Repository.updateHostedMaven'
   },
 
   initComponent: function () {

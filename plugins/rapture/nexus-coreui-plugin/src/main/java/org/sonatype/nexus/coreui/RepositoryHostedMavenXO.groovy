@@ -18,13 +18,14 @@ import org.sonatype.nexus.proxy.maven.RepositoryPolicy
 import org.sonatype.nexus.proxy.repository.RepositoryWritePolicy
 
 /**
- * Repository Hosted exchange object.
+ * Repository Hosted Maven exchange object.
  *
  * @since 2.8
  */
 @ToString(includePackage = false, includeNames = true)
-class RepositoryHostedXO
-extends RepositoryXO
+class RepositoryHostedMavenXO
+extends RepositoryHostedXO
 {
-  RepositoryWritePolicy writePolicy
+  Boolean indexable
+  RepositoryPolicy repositoryPolicy
 }

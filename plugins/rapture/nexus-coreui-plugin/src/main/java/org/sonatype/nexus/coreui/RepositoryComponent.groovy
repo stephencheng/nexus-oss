@@ -24,7 +24,6 @@ import org.sonatype.nexus.proxy.ResourceStoreRequest
 import org.sonatype.nexus.proxy.item.RepositoryItemUid
 import org.sonatype.nexus.proxy.maven.MavenHostedRepository
 import org.sonatype.nexus.proxy.maven.MavenProxyRepository
-import org.sonatype.nexus.proxy.maven.MavenRepository
 import org.sonatype.nexus.proxy.registry.RepositoryRegistry
 import org.sonatype.nexus.proxy.registry.RepositoryTypeRegistry
 import org.sonatype.nexus.proxy.repository.*
@@ -109,6 +108,20 @@ extends DirectComponentSupport
   @RequiresPermissions('nexus:repositories:update')
   RepositoryXO updateHosted(final RepositoryHostedXO repositoryXO) {
     update(repositoryXO, HostedRepository.class, doUpdateHosted)
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:create')
+  RepositoryXO createHostedMaven(final RepositoryHostedXO repositoryXO) {
+    create(repositoryXO, doUpdateHosted, doUpdateHostedMaven)
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:update')
+  RepositoryXO updateHostedMaven(final RepositoryHostedXO repositoryXO) {
+    update(repositoryXO, MavenHostedRepository.class, doUpdateHosted, doUpdateHostedMaven)
   }
 
   @DirectMethod
@@ -259,9 +272,10 @@ extends DirectComponentSupport
   def static doUpdateHosted = { HostedRepository repo, RepositoryHostedXO repositoryXO ->
     repo.browseable = repositoryXO.browseable
     repo.writePolicy = repositoryXO.writePolicy
-    if (repo instanceof MavenRepository) {
-      if (repositoryXO.indexable != null) repo.indexable = repositoryXO.indexable
-    }
+  }
+
+  def static doUpdateHostedMaven = { MavenHostedRepository repo, RepositoryHostedMavenXO repositoryXO ->
+    repo.indexable = repositoryXO.indexable
   }
 
   def static doUpdateProxy = { ProxyRepository repo, RepositoryProxyXO repositoryXO ->
@@ -294,7 +308,7 @@ extends DirectComponentSupport
   }
 
   def static doUpdateProxyMaven = { MavenProxyRepository repo, RepositoryProxyMavenXO repositoryXO ->
-    if (repositoryXO.downloadRemoteIndexes != null) repo.downloadRemoteIndexes = repositoryXO.downloadRemoteIndexes
+    repo.downloadRemoteIndexes = repositoryXO.downloadRemoteIndexes
     if (repositoryXO.checksumPolicy != null) repo.checksumPolicy = repositoryXO.checksumPolicy
     if (repositoryXO.artifactMaxAge != null) repo.artifactMaxAge = repositoryXO.artifactMaxAge
     if (repositoryXO.metadataMaxAge != null) repo.metadataMaxAge = repositoryXO.metadataMaxAge
@@ -321,8 +335,8 @@ extends DirectComponentSupport
   }
 
   def static doGetMavenHosted(MavenHostedRepository repo, RepositoryXO xo) {
-    if (!xo) xo = new RepositoryHostedXO();
-    if (xo instanceof RepositoryHostedXO) {
+    if (!xo) xo = new RepositoryHostedMavenXO();
+    if (xo instanceof RepositoryHostedMavenXO) {
       xo.with {
         indexable = repo.indexable
         repositoryPolicy = repo.repositoryPolicy

@@ -24,7 +24,7 @@ Ext.define('NX.coreui.view.repository.RepositoryAddHostedMaven', {
         xtype: 'nx-repository-settings-hosted-maven2',
         template: me.template,
         api: {
-          submit: 'NX.direct.coreui_Repository.createHosted'
+          submit: 'NX.direct.coreui_Repository.createHostedMaven'
         },
         buttons: [
           { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
