@@ -87,7 +87,7 @@ extends DirectComponentSupport
   @RequiresAuthentication
   @RequiresPermissions('nexus:repositories:create')
   RepositoryXO createGroup(final RepositoryGroupXO repositoryXO) {
-    create(repositoryXO, doUpdateHosted)
+    create(repositoryXO, doUpdateGroup)
   }
 
   @DirectMethod
@@ -129,14 +129,14 @@ extends DirectComponentSupport
   @RequiresAuthentication
   @RequiresPermissions('nexus:repositories:create')
   RepositoryXO createProxyMaven(final RepositoryProxyMavenXO repositoryXO) {
-    create(repositoryXO, doUpdateProxy)
+    create(repositoryXO, doUpdateProxy, doUpdateProxyMaven)
   }
 
   @DirectMethod
   @RequiresAuthentication
   @RequiresPermissions('nexus:repositories:update')
   RepositoryXO updateProxyMaven(final RepositoryProxyMavenXO repositoryXO) {
-    update(repositoryXO, MavenProxyRepository.class, doUpdateProxy)
+    update(repositoryXO, MavenProxyRepository.class, doUpdateProxy, doUpdateProxyMaven)
   }
 
   @DirectMethod
@@ -219,7 +219,7 @@ extends DirectComponentSupport
     return providers
   }
 
-  def RepositoryXO create(RepositoryXO repositoryXO, Closure updateClosure) {
+  def RepositoryXO create(RepositoryXO repositoryXO, Closure... updateClosures) {
     def template = templateManager.templates.getTemplateById(repositoryXO.template) as RepositoryTemplate
     template.getConfigurableRepository().with {
       id = repositoryXO.id
@@ -229,19 +229,23 @@ extends DirectComponentSupport
       return it
     }
     Repository created = template.create()
-    updateClosure(created, repositoryXO)
+    updateClosures.each { updateClosure ->
+      updateClosure(created, repositoryXO)
+    }
     nexusConfiguration.saveConfiguration()
     return asRepositoryXO(created, templates())
   }
 
-  def <T extends Repository> RepositoryXO update(RepositoryXO repositoryXO, Class<T> repoType, updateClosure) {
+  def <T extends Repository> RepositoryXO update(RepositoryXO repositoryXO, Class<T> repoType, Closure... updateClosures) {
     if (repositoryXO.id) {
       T updated = repositoryRegistry.getRepositoryWithFacet(repositoryXO.id, repoType).with {
         name = repositoryXO.name
         exposed = repositoryXO.exposed
         return it
       }
-      updateClosure(updated, repositoryXO)
+      updateClosures.each { updateClosure ->
+        updateClosure(updated, repositoryXO)
+      }
       nexusConfiguration.saveConfiguration()
       return asRepositoryXO(updated, templates())
     }
@@ -287,12 +291,13 @@ extends DirectComponentSupport
           retrievalRetryCount: repositoryXO.retries
       )
     }
-    if (repo instanceof MavenProxyRepository && repositoryXO instanceof RepositoryProxyMavenXO) {
-      if (repositoryXO.downloadRemoteIndexes != null) repo.downloadRemoteIndexes = repositoryXO.downloadRemoteIndexes
-      if (repositoryXO.checksumPolicy != null) repo.checksumPolicy = repositoryXO.checksumPolicy
-      if (repositoryXO.artifactMaxAge != null) repo.artifactMaxAge = repositoryXO.artifactMaxAge
-      if (repositoryXO.metadataMaxAge != null) repo.metadataMaxAge = repositoryXO.metadataMaxAge
-    }
+  }
+
+  def static doUpdateProxyMaven = { MavenProxyRepository repo, RepositoryProxyMavenXO repositoryXO ->
+    if (repositoryXO.downloadRemoteIndexes != null) repo.downloadRemoteIndexes = repositoryXO.downloadRemoteIndexes
+    if (repositoryXO.checksumPolicy != null) repo.checksumPolicy = repositoryXO.checksumPolicy
+    if (repositoryXO.artifactMaxAge != null) repo.artifactMaxAge = repositoryXO.artifactMaxAge
+    if (repositoryXO.metadataMaxAge != null) repo.metadataMaxAge = repositoryXO.metadataMaxAge
   }
 
   def asRepositoryXO(Repository repo, List<RepositoryTemplateXO> templates) {
