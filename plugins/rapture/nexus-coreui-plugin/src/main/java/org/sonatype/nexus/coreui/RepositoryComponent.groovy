@@ -113,6 +113,34 @@ extends DirectComponentSupport
 
   @DirectMethod
   @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:create')
+  RepositoryXO createProxy(final RepositoryProxyXO repositoryXO) {
+    create(repositoryXO, doUpdateProxy)
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:update')
+  RepositoryXO updateProxy(final RepositoryProxyXO repositoryXO) {
+    update(repositoryXO, ProxyRepository.class, doUpdateProxy)
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:create')
+  RepositoryXO createProxyMaven(final RepositoryProxyMavenXO repositoryXO) {
+    create(repositoryXO, doUpdateProxy)
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:update')
+  RepositoryXO updateProxyMaven(final RepositoryProxyMavenXO repositoryXO) {
+    update(repositoryXO, MavenProxyRepository.class, doUpdateProxy)
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
   @RequiresPermissions('nexus:repositories:delete')
   void delete(final String id) {
     repositoryRegistry.removeRepository(id)
@@ -229,7 +257,41 @@ extends DirectComponentSupport
     repo.writePolicy = repositoryXO.writePolicy
     if (repo instanceof MavenRepository) {
       if (repositoryXO.indexable != null) repo.indexable = repositoryXO.indexable
-      if (repositoryXO.repositoryPolicy != null) repo.repositoryPolicy = repositoryXO.repositoryPolicy
+    }
+  }
+
+  def static doUpdateProxy = { ProxyRepository repo, RepositoryProxyXO repositoryXO ->
+    repo.browseable = repositoryXO.browseable
+    repo.remoteUrl = repositoryXO.remoteStorageUrl
+    repo.autoBlockActive = repositoryXO.autoBlockActive
+    repo.fileTypeValidation = repositoryXO.fileTypeValidation
+    repo.notFoundCacheTimeToLive = repositoryXO.notFoundCacheTTL
+    repo.itemMaxAge = repositoryXO.itemMaxAge
+    if (repositoryXO.authEnabled) {
+      if (repositoryXO.authNtlmHost || repositoryXO.authNtlmDomain) {
+        repo.remoteAuthenticationSettings = new NtlmRemoteAuthenticationSettings(
+            repositoryXO.authUsername, repositoryXO.authPassword, repositoryXO.authNtlmDomain, repositoryXO.authNtlmHost
+        )
+      }
+      else {
+        repo.remoteAuthenticationSettings = new UsernamePasswordRemoteAuthenticationSettings(
+            repositoryXO.authUsername, repositoryXO.authPassword
+        )
+      }
+    }
+    if (repositoryXO.httpRequestSettings) {
+      repo.remoteConnectionSettings = new DefaultRemoteConnectionSettings(
+          userAgentCustomizationString: repositoryXO.userAgentCustomisation,
+          queryString: repositoryXO.urlParameters,
+          connectionTimeout: repositoryXO.timeout,
+          retrievalRetryCount: repositoryXO.retries
+      )
+    }
+    if (repo instanceof MavenProxyRepository && repositoryXO instanceof RepositoryProxyMavenXO) {
+      if (repositoryXO.downloadRemoteIndexes != null) repo.downloadRemoteIndexes = repositoryXO.downloadRemoteIndexes
+      if (repositoryXO.checksumPolicy != null) repo.checksumPolicy = repositoryXO.checksumPolicy
+      if (repositoryXO.artifactMaxAge != null) repo.artifactMaxAge = repositoryXO.artifactMaxAge
+      if (repositoryXO.metadataMaxAge != null) repo.metadataMaxAge = repositoryXO.metadataMaxAge
     }
   }
 
@@ -278,6 +340,7 @@ extends DirectComponentSupport
     if (!xo) xo = new RepositoryProxyMavenXO();
     if (xo instanceof RepositoryProxyMavenXO) {
       xo.with {
+        repositoryPolicy = repo.repositoryPolicy
         downloadRemoteIndexes = repo.downloadRemoteIndexes
         checksumPolicy = repo.checksumPolicy
         artifactMaxAge = repo.artifactMaxAge
@@ -301,6 +364,7 @@ extends DirectComponentSupport
         urlParameters = rcs?.queryString
         timeout = rcs?.connectionTimeout
         retries = rcs?.retrievalRetryCount
+        httpRequestSettings = userAgentCustomisation || urlParameters || timeout || retries
         notFoundCacheTTL = repo.notFoundCacheTimeToLive
         itemMaxAge = repo.itemMaxAge
         authEnabled = false

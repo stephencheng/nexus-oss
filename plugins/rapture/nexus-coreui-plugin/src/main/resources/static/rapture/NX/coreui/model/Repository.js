@@ -23,7 +23,7 @@ Ext.define('NX.coreui.model.Repository', {
     'exposed',
     'localStatus',
     'url',
-    'browseable',             // hosted
+    'browseable',             // hosted/proxy
     'writePolicy',            // hosted
     'indexable',              // hosted maven
     'repositoryPolicy',       // hosted/proxy maven
@@ -38,6 +38,7 @@ Ext.define('NX.coreui.model.Repository', {
     'authPassword',           // proxy
     'authNtlmHost',           // proxy
     'authNtlmDomain',         // proxy
+    'httpRequestSettings',    // proxy
     'userAgentCustomisation', // proxy
     'urlParameters',          // proxy
     'timeout',                // proxy

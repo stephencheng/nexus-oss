@@ -19,7 +19,7 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsProxyMaven', {
   ],
 
   api: {
-    submit: 'NX.direct.coreui_Repository.updateProxy'
+    submit: 'NX.direct.coreui_Repository.updateProxyMaven'
   },
 
   initComponent: function () {

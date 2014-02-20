@@ -35,6 +35,7 @@ extends RepositoryXO
   String authPassword
   String authNtlmHost
   String authNtlmDomain
+  Boolean httpRequestSettings
   String userAgentCustomisation
   String urlParameters
   Integer timeout

@@ -15,6 +15,7 @@ package org.sonatype.nexus.coreui
 
 import groovy.transform.ToString
 import org.sonatype.nexus.proxy.maven.ChecksumPolicy
+import org.sonatype.nexus.proxy.maven.RepositoryPolicy
 
 /**
  * Repository Proxy Maven exchange object.
@@ -25,6 +26,7 @@ import org.sonatype.nexus.proxy.maven.ChecksumPolicy
 class RepositoryProxyMavenXO
 extends RepositoryProxyXO
 {
+  RepositoryPolicy repositoryPolicy
   Boolean downloadRemoteIndexes
   ChecksumPolicy checksumPolicy
   Integer artifactMaxAge
