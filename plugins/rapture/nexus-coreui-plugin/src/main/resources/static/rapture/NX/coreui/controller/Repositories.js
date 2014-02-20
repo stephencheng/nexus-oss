@@ -32,6 +32,7 @@ Ext.define('NX.coreui.controller.Repositories', {
     'repository.RepositoryAddHostedMaven',
     'repository.RepositoryAddProxy',
     'repository.RepositoryAddProxyMaven',
+    'repository.RepositoryAddVirtual',
     'repository.RepositoryFeature',
     'repository.RepositoryList',
     'repository.RepositorySettingsTab',
@@ -40,7 +41,8 @@ Ext.define('NX.coreui.controller.Repositories', {
     'repository.RepositorySettingsHosted',
     'repository.RepositorySettingsHostedMaven',
     'repository.RepositorySettingsProxy',
-    'repository.RepositorySettingsProxyMaven'
+    'repository.RepositorySettingsProxyMaven',
+    'repository.RepositorySettingsVirtual',
   ],
   refs: [
     {

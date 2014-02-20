@@ -49,6 +49,8 @@ Ext.define('NX.coreui.model.Repository', {
     'checksumPolicy',         // proxy maven
     'artifactMaxAge',         // proxy maven
     'metadataMaxAge',         // proxy maven
-    'memberRepositoryIds'     // group
+    'memberRepositoryIds',    // group,
+    'synchronizeAtStartup',   // virtual
+    'shadowOf'                // virtual
   ]
 });

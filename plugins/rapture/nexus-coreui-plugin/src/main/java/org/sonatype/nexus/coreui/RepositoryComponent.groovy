@@ -17,6 +17,7 @@ import com.softwarementors.extjs.djn.config.annotations.DirectAction
 import com.softwarementors.extjs.djn.config.annotations.DirectMethod
 import org.apache.shiro.authz.annotation.RequiresAuthentication
 import org.apache.shiro.authz.annotation.RequiresPermissions
+import org.codehaus.plexus.util.xml.Xpp3Dom
 import org.sonatype.nexus.configuration.application.NexusConfiguration
 import org.sonatype.nexus.extdirect.DirectComponent
 import org.sonatype.nexus.extdirect.DirectComponentSupport
@@ -24,6 +25,7 @@ import org.sonatype.nexus.proxy.ResourceStoreRequest
 import org.sonatype.nexus.proxy.item.RepositoryItemUid
 import org.sonatype.nexus.proxy.maven.MavenHostedRepository
 import org.sonatype.nexus.proxy.maven.MavenProxyRepository
+import org.sonatype.nexus.proxy.maven.maven2.M2LayoutedM1ShadowRepositoryConfiguration
 import org.sonatype.nexus.proxy.registry.RepositoryRegistry
 import org.sonatype.nexus.proxy.registry.RepositoryTypeRegistry
 import org.sonatype.nexus.proxy.repository.*
@@ -154,6 +156,20 @@ extends DirectComponentSupport
 
   @DirectMethod
   @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:create')
+  RepositoryXO createVirtual(final RepositoryVirtualXO repositoryXO) {
+    create(repositoryXO, [doCreateVirtual], [doUpdateVirtual])
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
+  @RequiresPermissions('nexus:repositories:update')
+  RepositoryXO updateVirtual(final RepositoryVirtualXO repositoryXO) {
+    update(repositoryXO, ShadowRepository.class, doUpdateVirtual)
+  }
+
+  @DirectMethod
+  @RequiresAuthentication
   @RequiresPermissions('nexus:repositories:delete')
   void delete(final String id) {
     repositoryRegistry.removeRepository(id)
@@ -213,7 +229,7 @@ extends DirectComponentSupport
     def asProvider = { template, type ->
       new RepositoryTemplateXO(
           id: template.id,
-          type: type,
+          type: type == 'shadow' ? 'virtual' : type,
           provider: template.repositoryProviderHint,
           providerName: template.description,
           format: template.contentClass.id,
@@ -233,13 +249,20 @@ extends DirectComponentSupport
   }
 
   def RepositoryXO create(RepositoryXO repositoryXO, Closure... updateClosures) {
+    return create(repositoryXO, [], updateClosures as List)
+  }
+
+  def RepositoryXO create(RepositoryXO repositoryXO, List<Closure> createClosures, List<Closure> updateClosures) {
     def template = templateManager.templates.getTemplateById(repositoryXO.template) as RepositoryTemplate
-    template.getConfigurableRepository().with {
+    ConfigurableRepository configurable = template.getConfigurableRepository().with {
       id = repositoryXO.id
       name = repositoryXO.name
       exposed = repositoryXO.exposed
       localStatus = LocalStatus.IN_SERVICE
       return it
+    }
+    createClosures.each { createClosure ->
+      createClosure(configurable, repositoryXO)
     }
     Repository created = template.create()
     updateClosures.each { updateClosure ->
@@ -314,6 +337,20 @@ extends DirectComponentSupport
     if (repositoryXO.metadataMaxAge != null) repo.metadataMaxAge = repositoryXO.metadataMaxAge
   }
 
+  def static doCreateVirtual = { ConfigurableRepository repo, RepositoryVirtualXO repositoryXO ->
+    // HACK: we should not use a Maven2->Maven1 config
+    M2LayoutedM1ShadowRepositoryConfiguration exConf = new M2LayoutedM1ShadowRepositoryConfiguration(
+        repo.getCurrentConfiguration(true).externalConfiguration as Xpp3Dom
+    )
+    exConf.masterRepositoryId = repositoryXO.shadowOf
+    exConf.synchronizeAtStartup = repositoryXO.synchronizeAtStartup
+  }
+
+  def doUpdateVirtual = { ShadowRepository repo, RepositoryVirtualXO repositoryXO ->
+    repo.synchronizeAtStartup = repositoryXO.synchronizeAtStartup
+    repo.masterRepository = repositoryRegistry.getRepository(repositoryXO.shadowOf)
+  }
+
   def asRepositoryXO(Repository repo, List<RepositoryTemplateXO> templates) {
     def RepositoryXO xo = null
     repo.adaptToFacet(MavenHostedRepository.class)?.with {
@@ -330,6 +367,9 @@ extends DirectComponentSupport
     }
     repo.adaptToFacet(GroupRepository.class)?.with {
       xo = doGetGroup(it, xo)
+    }
+    repo.adaptToFacet(ShadowRepository.class)?.with {
+      xo = doGetVirtual(it, xo)
     }
     return doGet(repo, xo, templates)
   }
@@ -413,6 +453,17 @@ extends DirectComponentSupport
     if (xo instanceof RepositoryGroupXO) {
       xo.with {
         memberRepositoryIds = repo.memberRepositoryIds
+      }
+    }
+    return xo
+  }
+
+  def static doGetVirtual(ShadowRepository repo, RepositoryXO xo) {
+    if (!xo) xo = new RepositoryVirtualXO();
+    if (xo instanceof RepositoryVirtualXO) {
+      xo.with {
+        synchronizeAtStartup = repo.synchronizeAtStartup
+        shadowOf = repo.masterRepository.id
       }
     }
     return xo
