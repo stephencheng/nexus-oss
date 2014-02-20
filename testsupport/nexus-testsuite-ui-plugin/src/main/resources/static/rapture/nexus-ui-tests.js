@@ -16,33 +16,39 @@ Harness.configure({
   title: 'Nexus UI Suite',
   viewDOM: true,
 
-  preload: [
-    "resources/baseapp-debug.css",
-    "resources/rapture.css",
-    "baseapp-debug.js",
-    "extdirect-debug.js"
-  ]
+  testClass   : NX.TestClass,
+  hostPageUrl: '/nexus/rapture.html'
+
 });
 
 Harness.start(
     {
-      group: 'Capability',
+      group: 'Sanity',
       items: [
-        'tests/capability/direct.js',
-        'tests/capability/list.js',
-        'tests/capability/sanity.js'
-      ]
-    },
-    {
-      group: 'Repository',
-      items: [
-        'tests/repository/direct.js',
-        'tests/repository/sanity.js',
-        {
-          preload: [],
-          hostPageUrl: 'index.html',
-          url: 'tests/repository/remove-repository.js'
-        }
+        { url: 'tests/sanity/LoginLogout.js' },
+        { url: 'tests/sanity/ModeButtons.js' },
+        { url: 'tests/sanity/UnsupportedBrowser.js' }
       ]
     }
+
+    //{
+    //  group: 'Capability',
+    //  items: [
+    //    'tests/capability/direct.js',
+    //    'tests/capability/list.js',
+    //    'tests/capability/sanity.js'
+    //  ]
+    //},
+    //{
+    //  group: 'Repository',
+    //  items: [
+    //    'tests/repository/direct.js',
+    //    'tests/repository/sanity.js',
+    //    {
+    //      preload: [],
+    //      hostPageUrl: '/nexus/rapture.html',
+    //      url: 'tests/repository/remove-repository.js'
+    //    }
+    //  ]
+    //}
 );
