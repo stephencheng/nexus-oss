@@ -23,7 +23,7 @@ StartTest(function (t) {
     t.is(menu.title, mode, 'Menu title is "' + mode + '"');
     t.is(menu.collapsed, collapsed ? 'left' : false, 'Menu is ' + (collapsed ? 'collapsed' : 'not collapsed'));
     next();
-  }
+  };
 
   t.waitForStateReceived(function () {
     t.logout();
