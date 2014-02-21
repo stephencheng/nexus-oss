@@ -16,15 +16,21 @@
  * @since 2.8
  */
 StartTest(function (t) {
-  t.chain(
-      t.do(t.logout),
-      { waitFor: 'CQVisible', args: 'nx-header-login' },
-      { click: '>>nx-header-login' },
-      { waitFor: 'CQVisible', args: 'nx-login' },
-      { type: 'admin[TAB]' },
-      { type: 'admin123[ENTER]' },
-      { waitFor: 'CQVisible', args: 'nx-header-logout' },
-      { click: '>>nx-header-logout' },
-      { waitFor: 'CQVisible', args: 'nx-header-login' }
-  );
+
+  t.waitForStateReceived(function () {
+    t.logout();
+    t.waitForUserToBeLoggedOut(function () {
+      t.chain(
+          { waitFor: 'CQVisible', args: 'nx-header-login' },
+          { click: '>>nx-header-login' },
+          { waitFor: 'CQVisible', args: 'nx-login' },
+          { type: 'admin[TAB]' },
+          { type: 'admin123[ENTER]' },
+          { waitFor: 'CQVisible', args: 'nx-header-logout' },
+          { click: '>>nx-header-logout' },
+          { waitFor: 'CQVisible', args: 'nx-header-login' }
+      );
+    });
+  });
+
 });

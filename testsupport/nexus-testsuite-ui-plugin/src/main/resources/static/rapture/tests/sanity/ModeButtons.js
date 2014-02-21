@@ -16,20 +16,29 @@
  * @since 2.8
  */
 StartTest(function (t) {
-  t.chain(
-      t.do(t.logout),
-      // before login we should have 3 visible and 2 hidden buttons
-      { waitFor: 'CQ', args: 'nx-header-dashboard-mode[hidden=false]' },
-      { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
-      { waitFor: 'CQ', args: 'nx-header-browse-mode[hidden=false]' },
-      { waitFor: 'CQ', args: 'nx-header-admin-mode[hidden=true]' },
-      { waitFor: 'CQ', args: 'nx-header-user[hidden=true]' },
-      t.do(t.login),
-      // after login we should have 5 visible
-      { waitFor: 'CQ', args: 'nx-header-dashboard-mode[hidden=false]' },
-      { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
-      { waitFor: 'CQ', args: 'nx-header-browse-mode[hidden=false]' },
-      { waitFor: 'CQ', args: 'nx-header-admin-mode[hidden=false]' },
-      { waitFor: 'CQ', args: 'nx-header-user[hidden=false]' }
-  );
+
+  t.waitForStateReceived(function () {
+    t.logout();
+    t.waitForUserToBeLoggedOut(function () {
+      t.chain(
+          // before login we should have 3 visible and 2 hidden buttons
+          { waitFor: 'CQ', args: 'nx-header-dashboard-mode[hidden=false]' },
+          { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
+          { waitFor: 'CQ', args: 'nx-header-browse-mode[hidden=false]' },
+          { waitFor: 'CQ', args: 'nx-header-admin-mode[hidden=true]' },
+          { waitFor: 'CQ', args: 'nx-header-user[hidden=true]' },
+          function(next){
+            t.login();
+            t.waitForUserToBeLoggedIn(next);
+          },
+          // after login we should have 5 visible
+          { waitFor: 'CQ', args: 'nx-header-dashboard-mode[hidden=false]' },
+          { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
+          { waitFor: 'CQ', args: 'nx-header-browse-mode[hidden=false]' },
+          { waitFor: 'CQ', args: 'nx-header-admin-mode[hidden=false]' },
+          { waitFor: 'CQ', args: 'nx-header-user[hidden=false]' }
+      );
+    });
+  });
+
 });

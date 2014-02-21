@@ -16,11 +16,15 @@
  * @since 2.8
  */
 StartTest(function (t) {
-  t.chain(
-      { waitFor: 'CQVisible', args: 'nx-main' },
-      t.do(t.setState, 'browserSupported', false),
-      { waitFor: 'CQVisible', args: 'button[action=continue]' },
-      { click: '>>button[action=continue]' },
-      { waitFor: 'CQVisible', args: 'nx-main' }
-  );
+
+  t.waitForStateReceived(function () {
+    t.chain(
+        { waitFor: 'CQVisible', args: 'nx-main' },
+        t.do(t.setState, 'browserSupported', false),
+        { waitFor: 'CQVisible', args: 'button[action=continue]' },
+        { click: '>>button[action=continue]' },
+        { waitFor: 'CQVisible', args: 'nx-main' }
+    );
+  });
+
 });

@@ -13,8 +13,62 @@ Class('NX.TestClass', {
       }
     },
 
-    login: function () {
+    waitForStateReceived: function (callback, scope, timeout) {
+      var stateController = this.stateController();
+
+      return this.waitFor({
+        method: function () {
+          return stateController.isReceiving();
+        },
+        callback: callback,
+        scope: scope,
+        timeout: timeout,
+        assertionName: 'waitForStateReceived',
+        description: ' receiving state from server'
+      });
+    },
+
+    waitForUserToBeLoggedIn: function (callback, scope, timeout) {
+      var userController = this.userController();
+
+      return this.waitFor({
+        method: function () {
+          return userController.hasUser();
+        },
+        callback: callback,
+        scope: scope,
+        timeout: timeout,
+        assertionName: 'waitForUserToBeLoggedIn',
+        description: ' user to be logged in'
+      });
+    },
+
+    waitForUserToBeLoggedOut: function (callback, scope, timeout) {
+      var userController = this.userController();
+
+      return this.waitFor({
+        method: function () {
+          return !userController.hasUser();
+        },
+        callback: callback,
+        scope: scope,
+        timeout: timeout,
+        assertionName: 'waitForUserToBeLoggedOut',
+        description: ' user to not be logged in'
+      });
+    },
+
+    setState: function (key, value) {
       var NX = this.global.NX;
+
+      NX.State.setValue(key, value);
+      this.diag('State "' + key + '" set to "' + value + '"');
+    },
+
+    login: function () {
+      var me = this,
+          NX = this.global.NX,
+          loginAssertion = me.startWaiting('Logging in as admin ...', me.getSourceLine());
 
       NX.direct.rapture_Security.login(
           NX.util.Base64.encode('admin'),
@@ -23,23 +77,43 @@ Class('NX.TestClass', {
           function (response) {
             if (Ext.isDefined(response) && response.success) {
               NX.State.setUser(response.data);
+              me.finalizeWaiting(loginAssertion, true, 'Logged in as admin');
+            }
+            else {
+              me.finalizeWaiting(loginAssertion, false, 'Could not login as admin');
             }
           }
       );
     },
 
     logout: function () {
-      this.controller('User').logout();
-    },
+      var me = this,
+          NX = this.global.NX,
+          logoutAssertion = me.startWaiting('Logging out ...', me.getSourceLine());
 
-    setState: function (key, value) {
-      var NX = this.global.NX;
-
-      NX.State.setValue(key, value);
+      NX.direct.rapture_Security.logout(
+          function (response) {
+            if (Ext.isDefined(response) && response.success) {
+              NX.State.setUser(undefined);
+              me.finalizeWaiting(logoutAssertion, true, 'Logged out');
+            }
+            else {
+              me.finalizeWaiting(logoutAssertion, false, 'Could not logout');
+            }
+          }
+      );
     },
 
     controller: function (name) {
       return this.global.NX.getApplication().getController(name);
+    },
+
+    stateController: function () {
+      return this.controller('State');
+    },
+
+    userController: function () {
+      return this.controller('User');
     }
 
   }
