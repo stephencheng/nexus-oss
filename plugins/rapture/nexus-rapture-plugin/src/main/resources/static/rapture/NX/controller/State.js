@@ -57,7 +57,7 @@ Ext.define('NX.controller.State', {
         '#State': {
           uisettingschanged: me.onUiSettingsChanged,
           licensechanged: me.onLicenseChanged,
-          serveridchanged: me.onServerIdChanged
+          serveridchanged: me.reloadWhenServerIdChanged
         }
       },
       store: {
@@ -90,7 +90,7 @@ Ext.define('NX.controller.State', {
    * @public
    * @returns {Boolean} true when status is being received from server
    */
-  isReceiving: function(){
+  isReceiving: function () {
     return this.receiving;
   },
 
@@ -267,6 +267,7 @@ Ext.define('NX.controller.State', {
    */
   onSuccess: function (event) {
     var me = this,
+        serverId = me.getValue('serverId'),
         state;
 
     me.receiving = true;
@@ -280,13 +281,15 @@ Ext.define('NX.controller.State', {
     // propagate event data
     state = event.data.data;
 
-    me.setValues(state.values);
+    if (!me.reloadWhenServerIdChanged(serverId, state.values.serverId ? state.values.serverId.value : serverId)) {
+      me.setValues(state.values);
 
-    // fire commands if there are any
-    if (state.commands) {
-      Ext.each(state.commands, function (command) {
-        me.fireEvent('command' + command.type.toLowerCase(), command.data);
-      });
+      // fire commands if there are any
+      if (state.commands) {
+        Ext.each(state.commands, function (command) {
+          me.fireEvent('command' + command.type.toLowerCase(), command.data);
+        });
+      }
     }
 
     // TODO: Fire global refresh event
@@ -360,7 +363,7 @@ Ext.define('NX.controller.State', {
     }
   },
 
-  onServerIdChanged: function (serverId, oldServerId) {
+  reloadWhenServerIdChanged: function (serverId, oldServerId) {
     if (oldServerId && (serverId !== oldServerId)) {
       NX.Dialogs.showInfo(
           'Server restarted',
@@ -371,7 +374,9 @@ Ext.define('NX.controller.State', {
             }
           }
       );
+      return true;
     }
+    return false;
   }
 
 });
