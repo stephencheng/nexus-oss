@@ -38,7 +38,7 @@ Ext.define('NX.controller.User', {
     },
     {
       ref: 'userButton',
-      selector: 'nx-header-user'
+      selector: 'nx-header-user-mode'
     },
     {
       ref: 'login',

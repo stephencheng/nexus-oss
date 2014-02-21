@@ -17,7 +17,7 @@
  */
 Ext.define('NX.view.header.User', {
   extend: 'NX.view.header.Mode',
-  alias: 'widget.nx-header-user',
+  alias: 'widget.nx-header-user-mode',
 
   text: 'User',
   tooltip: 'User',

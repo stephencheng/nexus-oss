@@ -90,7 +90,7 @@ Ext.define('NX.view.Main', {
       { xtype: 'nx-header-refresh', ui: 'header' },
       { xtype: 'nx-header-help', ui: 'header' },
       { xtype: 'nx-header-login', ui: 'header' },
-      { xtype: 'nx-header-user', hidden: true },
+      { xtype: 'nx-header-user-mode', hidden: true },
       { xtype: 'nx-header-logout', ui: 'header' }
     ]);
   }
