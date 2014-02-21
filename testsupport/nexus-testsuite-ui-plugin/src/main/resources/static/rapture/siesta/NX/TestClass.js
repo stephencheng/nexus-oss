@@ -58,6 +58,37 @@ Class('NX.TestClass', {
       });
     },
 
+    waitForControllerToExist: function (controller, callback, scope, timeout) {
+      var me = this;
+
+      return this.waitFor({
+        method: function () {
+          return Ext.isDefined(me.controller(controller));
+        },
+        callback: callback,
+        scope: scope,
+        timeout: timeout,
+        assertionName: 'waitForControllerToExist',
+        description: ' controller "' + controller + '" to exist'
+      });
+    },
+
+    waitForControllerToNotExist: function (controller, callback, scope, timeout) {
+      var me = this;
+
+      return this.waitFor({
+        method: function () {
+          var _controller = me.controller(controller)
+          return !Ext.isDefined(_controller);
+        },
+        callback: callback,
+        scope: scope,
+        timeout: timeout,
+        assertionName: 'waitForControllerToNotExist',
+        description: ' controller "' + controller + '" to not exist'
+      });
+    },
+
     setState: function (key, value) {
       var NX = this.global.NX;
 
@@ -105,7 +136,7 @@ Class('NX.TestClass', {
     },
 
     controller: function (name) {
-      return this.global.NX.getApplication().getController(name);
+      return this.global.NX.getApplication().controllers.get(name);
     },
 
     stateController: function () {
