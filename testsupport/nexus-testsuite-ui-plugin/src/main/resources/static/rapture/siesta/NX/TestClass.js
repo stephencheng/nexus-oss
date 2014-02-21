@@ -88,6 +88,13 @@ Class('NX.TestClass', {
       });
     },
 
+    navigateTo: function (bookmark) {
+      var NX = this.global.NX;
+
+      NX.Bookmarks.navigateTo(NX.Bookmarks.fromToken(bookmark));
+      this.diag('Navigate to "' + bookmark + '"');
+    },
+
     setState: function (key, value) {
       var NX = this.global.NX;
 
@@ -152,6 +159,10 @@ Class('NX.TestClass', {
 
     userController: function () {
       return this.controller('User');
+    },
+
+    bookmarks: function () {
+      return this.global.NX.Bookmarks;
     }
 
   }

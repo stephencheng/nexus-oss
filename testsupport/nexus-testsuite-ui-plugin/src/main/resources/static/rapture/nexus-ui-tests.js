@@ -25,6 +25,7 @@ Harness.start(
     {
       group: 'Sanity',
       items: [
+        { url: 'tests/sanity/Bookmarking.js' },
         { url: 'tests/sanity/LoginLogout.js' },
         { url: 'tests/sanity/ModeButtons.js' },
         { url: 'tests/sanity/UnsupportedBrowser.js' }
