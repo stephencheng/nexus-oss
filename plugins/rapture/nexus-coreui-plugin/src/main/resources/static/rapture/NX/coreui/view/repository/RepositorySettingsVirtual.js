@@ -59,7 +59,11 @@ Ext.define('NX.coreui.view.repository.RepositorySettingsVirtual', {
   reloadRepositories: function () {
     var me = this;
 
-    me.repositoryStore.load();
+    me.repositoryStore.load({
+      params: {
+        format: me.template.masterFormat
+      }
+    });
   }
 
 });

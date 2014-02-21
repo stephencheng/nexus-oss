@@ -24,14 +24,10 @@ import groovy.transform.ToString
 class RepositoryTemplateXO
 {
   String id
-
   String type
-
   String provider
-
   String providerName
-
   String format
-
   String formatName
+  String masterFormat // only when template is virtual
 }

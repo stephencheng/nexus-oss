@@ -226,14 +226,15 @@ extends DirectComponentSupport
   @RequiresPermissions('nexus:componentsrepotypes:read')
   List<RepositoryTemplateXO> templates() {
     def providers = []
-    def asProvider = { template, type ->
+    def asProvider = { template, type, masterFormat ->
       new RepositoryTemplateXO(
           id: template.id,
           type: type == 'shadow' ? 'virtual' : type,
           provider: template.repositoryProviderHint,
           providerName: template.description,
           format: template.contentClass.id,
-          formatName: template.contentClass.name
+          formatName: template.contentClass.name,
+          masterFormat: masterFormat
       )
     }
     def types = typesToClass
@@ -241,7 +242,11 @@ extends DirectComponentSupport
       def template = it as RepositoryTemplate
       types.each {
         if (template.targetFits(it.value)) {
-          providers.add(asProvider(template, it.key))
+          def masterFormat = null
+          if (it.key == 'shadow' && template.contentClass.id.startsWith('maven')) {
+            masterFormat = template.contentClass.id == 'maven1' ? 'maven2' : 'maven1';
+          }
+          providers.add(asProvider(template, it.key, masterFormat))
         }
       }
     }
