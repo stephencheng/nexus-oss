@@ -313,8 +313,8 @@ extends DirectComponentSupport
     repo.remoteUrl = repositoryXO.remoteStorageUrl
     repo.autoBlockActive = repositoryXO.autoBlockActive
     repo.fileTypeValidation = repositoryXO.fileTypeValidation
-    repo.notFoundCacheTimeToLive = repositoryXO.notFoundCacheTTL
-    repo.itemMaxAge = repositoryXO.itemMaxAge
+    if (repositoryXO.notFoundCacheTTL != null) repo.notFoundCacheTimeToLive = repositoryXO.notFoundCacheTTL
+    if (repositoryXO.itemMaxAge != null) repo.itemMaxAge = repositoryXO.itemMaxAge
     if (repositoryXO.authEnabled) {
       if (repositoryXO.authNtlmHost || repositoryXO.authNtlmDomain) {
         repo.remoteAuthenticationSettings = new NtlmRemoteAuthenticationSettings(
