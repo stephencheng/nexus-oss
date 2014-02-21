@@ -37,6 +37,8 @@ import org.sonatype.nexus.templates.repository.RepositoryTemplate
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 /**
  * Repository {@link DirectComponent}.
@@ -482,7 +484,7 @@ extends DirectComponentSupport
         name = repo.name
         type = typeOf(repo)
         provider = repo.providerHint
-        providerName = providerOf(templates, xo.type, xo.provider)?.providerName
+        providerName = nameOfProvider(templates, xo.type, xo.provider)
         format = repo.repositoryContentClass.id
         formatName = repo.repositoryContentClass.name
         browseable = repo.browseable
@@ -511,8 +513,18 @@ extends DirectComponentSupport
     return null
   }
 
-  def static providerOf(List<RepositoryTemplateXO> templates, type, provider) {
-    templates.find { template -> template.type == type && template.provider == provider }
+  private static final Pattern BRACKETS_PATTERN = Pattern.compile("(.*)( \\(.*\\))");
+
+  def static String nameOfProvider(List<RepositoryTemplateXO> templates, type, provider) {
+    def template = templates.find { template -> template.type == type && template.provider == provider }
+    def name = template?.providerName
+    if (name) {
+      Matcher m = BRACKETS_PATTERN.matcher(name);
+      if (m.matches() && m.groupCount() == 2) {
+        name = m.group(1);
+      }
+    }
+    return name
   }
 
 }

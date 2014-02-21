@@ -32,7 +32,7 @@ Ext.define('NX.coreui.view.repository.RepositoryList', {
       }
     },
     { header: 'Format', dataIndex: 'formatName' },
-    { header: 'Format', dataIndex: 'providerName' }
+    { header: 'Provider', dataIndex: 'providerName' }
   ],
 
   tbar: [
