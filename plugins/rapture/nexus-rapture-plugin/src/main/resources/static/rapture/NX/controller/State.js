@@ -43,6 +43,12 @@ Ext.define('NX.controller.State', {
    */
   maxDisconnectWarnings: 3,
 
+  /**
+   * @private
+   * True when state is received from server.
+   */
+  receiving: false,
+
   init: function () {
     var me = this;
 
@@ -78,6 +84,14 @@ Ext.define('NX.controller.State', {
     );
     NX.State.setValue('debug', NX.app.debug);
     NX.State.setValues(NX.app.state);
+  },
+
+  /**
+   * @public
+   * @returns {Boolean} true when status is being received from server
+   */
+  isReceiving: function(){
+    return this.receiving;
   },
 
   getValue: function (key, defaultValue) {
@@ -208,6 +222,7 @@ Ext.define('NX.controller.State', {
       if (!oldUiSettings || (uiSettings.statusInterval !== oldUiSettings.statusInterval)) {
         if (me.statusProvider) {
           me.statusProvider.disconnect();
+          me.receiving = false;
         }
         me.statusProvider = Ext.Direct.addProvider({
           type: 'polling',
@@ -254,6 +269,8 @@ Ext.define('NX.controller.State', {
     var me = this,
         state;
 
+    me.receiving = true;
+
     // re-enable the UI we are now connected again
     if (me.disconnectedTimes > 0) {
       me.disconnectedTimes = 0;
@@ -287,6 +304,8 @@ Ext.define('NX.controller.State', {
         NX.State.setValue('license', Ext.apply(Ext.clone(NX.State.getValue('license')), { installed: false }));
       }
       else {
+        me.receiving = false;
+
         // we appear to have lost the server connection
         me.disconnectedTimes++;
         if (me.disconnectedTimes <= me.maxDisconnectWarnings) {
