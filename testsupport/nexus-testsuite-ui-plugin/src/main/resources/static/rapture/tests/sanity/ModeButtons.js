@@ -17,6 +17,14 @@
  */
 StartTest(function (t) {
 
+  var checkMode = function (mode, collapsed, next) {
+    var menu = t.cq1('nx-feature-menu');
+    t.diag('While in ' + mode + ' mode');
+    t.is(menu.title, mode, 'Menu title is "' + mode + '"');
+    t.is(menu.collapsed, collapsed ? 'left' : false, 'Menu is ' + (collapsed ? 'collapsed' : 'not collapsed'));
+    next();
+  }
+
   t.waitForStateReceived(function () {
     t.logout();
     t.waitForUserToBeLoggedOut(function () {
@@ -26,8 +34,8 @@ StartTest(function (t) {
           { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
           { waitFor: 'CQ', args: 'nx-header-browse-mode[hidden=false]' },
           { waitFor: 'CQ', args: 'nx-header-admin-mode[hidden=true]' },
-          { waitFor: 'CQ', args: 'nx-header-user[hidden=true]' },
-          function(next){
+          { waitFor: 'CQ', args: 'nx-header-user-mode[hidden=true]' },
+          function (next) {
             t.login();
             t.waitForUserToBeLoggedIn(next);
           },
@@ -36,7 +44,27 @@ StartTest(function (t) {
           { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
           { waitFor: 'CQ', args: 'nx-header-browse-mode[hidden=false]' },
           { waitFor: 'CQ', args: 'nx-header-admin-mode[hidden=false]' },
-          { waitFor: 'CQ', args: 'nx-header-user[hidden=false]' }
+          { waitFor: 'CQ', args: 'nx-header-user-mode[hidden=false]' },
+          { click: '>>nx-header-dashboard-mode' },
+          function (next) {
+            checkMode('Dashboard', true, next);
+          },
+          { click: '>>nx-header-search-mode' },
+          function (next) {
+            checkMode('Search', true, next);
+          },
+          { click: '>>nx-header-browse-mode' },
+          function (next) {
+            checkMode('Browse', false, next);
+          },
+          { click: '>>nx-header-admin-mode' },
+          function (next) {
+            checkMode('Administration', false, next);
+          },
+          { click: '>>nx-header-user-mode' },
+          function (next) {
+            checkMode('User', false, next);
+          }
       );
     });
   });
