@@ -117,7 +117,7 @@ extends DirectComponentSupport
   @DirectMethod
   @RequiresAuthentication
   @RequiresPermissions('nexus:repositories:create')
-  RepositoryXO createHostedMaven(final RepositoryHostedXO repositoryXO) {
+  RepositoryXO createHostedMaven(final RepositoryHostedMavenXO repositoryXO) {
     create(repositoryXO, doUpdateHosted, doUpdateHostedMaven)
   }
 
