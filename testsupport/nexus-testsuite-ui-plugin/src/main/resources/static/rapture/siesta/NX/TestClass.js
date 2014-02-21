@@ -63,7 +63,7 @@ Class('NX.TestClass', {
 
       return this.waitFor({
         method: function () {
-          return Ext.isDefined(me.controller(controller));
+          return Ext.isDefined(me.controllerUnguarded(controller));
         },
         callback: callback,
         scope: scope,
@@ -78,8 +78,7 @@ Class('NX.TestClass', {
 
       return this.waitFor({
         method: function () {
-          var _controller = me.controller(controller)
-          return !Ext.isDefined(_controller);
+          return !Ext.isDefined(me.controllerUnguarded(controller));
         },
         callback: callback,
         scope: scope,
@@ -136,6 +135,14 @@ Class('NX.TestClass', {
     },
 
     controller: function (name) {
+      var controller = this.controllerUnguarded(name);
+      if (!controller) {
+        t.fail('Controller "' + name + '" does not exist');
+      }
+      return controller
+    },
+
+    controllerUnguarded: function (name) {
       return this.global.NX.getApplication().controllers.get(name);
     },
 
