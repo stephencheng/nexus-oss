@@ -60,10 +60,10 @@ public class UiISiestaLiteTSupport
 
   @Parameterized.Parameters
   public static List<Object[]> drivers() {
-    return Lists.newArrayList(
-        new Object[]{firefox()},
+    return Lists.<Object[]>newArrayList(
+        new Object[]{firefox()}
         //new Object[]{chrome()},
-        new Object[]{remote(BrowserType.FIREFOX, "25", Platform.LINUX)}
+        //new Object[]{remote(BrowserType.FIREFOX, "25", Platform.LINUX)}
     );
   }
 
