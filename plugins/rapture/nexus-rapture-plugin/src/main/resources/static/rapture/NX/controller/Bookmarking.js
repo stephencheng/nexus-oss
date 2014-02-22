@@ -39,6 +39,7 @@ Ext.define('NX.controller.Bookmarking', {
     // The only requirement for this to work is that you must have a hidden field and
     // an iframe available in the page with ids corresponding to Ext.History.fieldId
     // and Ext.History.iframeId.  See history.html for an example.
+    Ext.History.useTopWindow = false;
     Ext.History.init();
 
     me.bindToHistory();
