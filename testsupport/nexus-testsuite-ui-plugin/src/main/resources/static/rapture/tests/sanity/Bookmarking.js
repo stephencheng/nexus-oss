@@ -28,15 +28,11 @@ StartTest(function (t) {
     t.waitForUserToBeLoggedIn(function () {
       t.chain(
           { click: '>>nx-header-browse-mode' },
-          function (next) {
-            t.waitForBookmark('browse/components', next);
-          },
+          { waitFor: 'bookmark', args: 'browse/components' },
 
           { click: '>>nx-header-search-mode' },
           { waitFor: 'CQVisible', args: 'nx-search' },
-          function (next) {
-            t.waitForBookmark('search/search', next);
-          },
+          { waitFor: 'bookmark', args: 'search/search'},
 
           { click: '>>nx-header-admin-mode' },
           function (next) {
@@ -44,9 +40,7 @@ StartTest(function (t) {
             next();
           },
           { waitFor: 'rowsVisible', args: 'nx-coreui-repository-list' },
-          function (next) {
-            t.waitForBookmark('admin/repository/repositories', next);
-          },
+          { waitFor: 'bookmark', args: 'admin/repository/repositories' },
 
           function (next) {
             var grid = t.cq1('nx-coreui-repository-list');
@@ -77,9 +71,7 @@ StartTest(function (t) {
             next();
           },
           { waitFor: 'rowsVisible', args: 'nx-coreui-repositorytarget-list' },
-          function (next) {
-            t.waitForBookmark('admin/repository/targets', next);
-          },
+          { waitFor: 'bookmark', args: 'admin/repository/targets' },
 
           t.do(goBack),
           { waitFor: 'rowsVisible', args: 'nx-coreui-repository-list' },
@@ -110,25 +102,17 @@ StartTest(function (t) {
 
           t.do(goBack),
           { waitFor: 'rowsVisible', args: 'nx-coreui-repository-list' },
-          function (next) {
-            t.waitForBookmark('admin/repository/repositories', next)
-          },
+          { waitFor: 'bookmark', args: 'admin/repository/repositories' },
 
           t.do(goBack),
-          function (next) {
-            t.waitForBookmark('admin/repository', next);
-          },
+          { waitFor: 'bookmark', args: 'admin/repository' },
 
           t.do(goBack),
           { waitFor: 'CQVisible', args: 'nx-search' },
-          function (next) {
-            t.waitForBookmark('search/search', next);
-          },
+          { waitFor: 'bookmark', args: 'search/search' },
 
           t.do(goBack),
-          function (next) {
-            t.waitForBookmark('browse/components', next);
-          }
+          { waitFor: 'bookmark', args: 'browse/components' }
       );
 
     });
