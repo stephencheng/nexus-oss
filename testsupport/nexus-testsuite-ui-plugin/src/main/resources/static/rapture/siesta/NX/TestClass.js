@@ -37,7 +37,7 @@ Class('NX.TestClass', {
 
       return this.waitFor({
         method: function () {
-          return userController.hasUser();
+          return userController.hasUser() && this.global.NX.Permissions.available();
         },
         callback: callback,
         scope: scope,
