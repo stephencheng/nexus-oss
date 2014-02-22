@@ -22,21 +22,13 @@ StartTest(function (t) {
 
       { waitFor: 'CQVisible', args: 'nx-main' },
       t.do(t.setState, 'browserSupported', false),
-      function (next) {
-        t.waitForControllerToExist('UnsupportedBrowser', next);
-      },
-      function (next) {
-        t.waitForControllerToNotExist('Main', next);
-      },
+      { waitFor: 'controllerToExist', args: 'UnsupportedBrowser' },
+      { waitFor: 'controllerToNotExist', args: 'Main' },
       { waitFor: 'CQVisible', args: 'button[action=continue]' },
       { click: '>>button[action=continue]' },
       { waitFor: 'CQVisible', args: 'nx-main' },
-      function (next) {
-        t.waitForControllerToNotExist('UnsupportedBrowser', next);
-      },
-      function (next) {
-        t.waitForControllerToExist('Main', next);
-      }
+      { waitFor: 'controllerToNotExist', args: 'UnsupportedBrowser' },
+      { waitFor: 'controllerToExist', args: 'Main' }
   );
 
 });
