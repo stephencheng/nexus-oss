@@ -23,12 +23,12 @@ Harness.configure({
 
 Harness.start(
     {
-      group: 'Sanity',
+      group: 'Framework',
       items: [
-        { url: 'tests/sanity/Bookmarking.js' },
-        { url: 'tests/sanity/LoginLogout.js' },
-        { url: 'tests/sanity/ModeButtons.js' },
-        { url: 'tests/sanity/UnsupportedBrowser.js' }
+        { url: 'tests/framework/Bookmarking.js' },
+        { url: 'tests/framework/LoginLogout.js' },
+        { url: 'tests/framework/ModeButtons.js' },
+        { url: 'tests/framework/UnsupportedBrowser.js' }
       ]
     },
 
