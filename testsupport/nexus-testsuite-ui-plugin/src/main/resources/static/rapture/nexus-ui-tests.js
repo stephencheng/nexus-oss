@@ -30,6 +30,13 @@ Harness.start(
         { url: 'tests/sanity/ModeButtons.js' },
         { url: 'tests/sanity/UnsupportedBrowser.js' }
       ]
+    },
+
+    {
+      group: 'RepositoryTarget',
+      items: [
+        { url: 'tests/repositorytarget/CRUDRepositoryTarget.js' }
+      ]
     }
 
     //{
