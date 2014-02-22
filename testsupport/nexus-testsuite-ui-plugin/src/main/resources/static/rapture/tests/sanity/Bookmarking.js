@@ -23,99 +23,97 @@ StartTest(function (t) {
       },
       selected0Id, selected2Id;
 
-  t.waitForStateReceived(function () {
-    t.login();
-    t.waitForUserToBeLoggedIn(function () {
-      t.chain(
-          { click: '>>nx-header-browse-mode' },
-          { waitFor: 'bookmark', args: 'browse/components' },
+  t.chain(
+      { waitFor: 'stateReceived' },
+      t.do(t.login),
+      { waitFor: 'userToBeLoggedIn' },
 
-          { click: '>>nx-header-search-mode' },
-          { waitFor: 'CQVisible', args: 'nx-search' },
-          { waitFor: 'bookmark', args: 'search/search'},
+      { click: '>>nx-header-browse-mode' },
+      { waitFor: 'bookmark', args: 'browse/components' },
 
-          { click: '>>nx-header-admin-mode' },
-          function (next) {
-            t.navigateTo('admin/repository/repositories');
-            next();
-          },
-          { waitFor: 'rowsVisible', args: 'nx-coreui-repository-list' },
-          { waitFor: 'bookmark', args: 'admin/repository/repositories' },
+      { click: '>>nx-header-search-mode' },
+      { waitFor: 'CQVisible', args: 'nx-search' },
+      { waitFor: 'bookmark', args: 'search/search'},
 
-          function (next) {
-            var grid = t.cq1('nx-coreui-repository-list');
+      { click: '>>nx-header-admin-mode' },
+      function (next) {
+        t.navigateTo('admin/repository/repositories');
+        next();
+      },
+      { waitFor: 'rowsVisible', args: 'nx-coreui-repository-list' },
+      { waitFor: 'bookmark', args: 'admin/repository/repositories' },
 
-            grid.getSelectionModel().select(0);
-            selected0Id = grid.getSelectionModel().getSelection()[0].getId();
-            t.diag('Selected repository: ' + selected0Id);
-            next();
-          },
-          function (next) {
-            t.waitForBookmark('admin/repository/repositories:' + selected0Id + ':summary', next);
-          },
+      function (next) {
+        var grid = t.cq1('nx-coreui-repository-list');
 
-          function (next) {
-            var grid = t.cq1('nx-coreui-repository-list');
+        grid.getSelectionModel().select(0);
+        selected0Id = grid.getSelectionModel().getSelection()[0].getId();
+        t.diag('Selected repository: ' + selected0Id);
+        next();
+      },
+      function (next) {
+        t.waitForBookmark('admin/repository/repositories:' + selected0Id + ':summary', next);
+      },
 
-            grid.getSelectionModel().select(2);
-            selected2Id = grid.getSelectionModel().getSelection()[0].getId();
-            t.diag('Selected repository: ' + selected2Id);
-            next();
-          },
-          function (next) {
-            t.waitForBookmark('admin/repository/repositories:' + selected2Id + ':summary', next);
-          },
+      function (next) {
+        var grid = t.cq1('nx-coreui-repository-list');
 
-          function (next) {
-            t.navigateTo('admin/repository/targets');
-            next();
-          },
-          { waitFor: 'rowsVisible', args: 'nx-coreui-repositorytarget-list' },
-          { waitFor: 'bookmark', args: 'admin/repository/targets' },
+        grid.getSelectionModel().select(2);
+        selected2Id = grid.getSelectionModel().getSelection()[0].getId();
+        t.diag('Selected repository: ' + selected2Id);
+        next();
+      },
+      function (next) {
+        t.waitForBookmark('admin/repository/repositories:' + selected2Id + ':summary', next);
+      },
 
-          t.do(goBack),
-          { waitFor: 'rowsVisible', args: 'nx-coreui-repository-list' },
-          function (next) {
-            t.waitForBookmark('admin/repository/repositories:' + selected2Id + ':summary', next);
-          },
-          function (next) {
-            var grid = t.cq1('nx-coreui-repository-list'),
-                selected;
+      function (next) {
+        t.navigateTo('admin/repository/targets');
+        next();
+      },
+      { waitFor: 'rowsVisible', args: 'nx-coreui-repositorytarget-list' },
+      { waitFor: 'bookmark', args: 'admin/repository/targets' },
 
-            selected = grid.getSelectionModel().getSelection();
-            t.is(selected[0].getId(), selected2Id, 'Repository "' + selected2Id + '" is selected');
-            next();
-          },
+      t.do(goBack),
+      { waitFor: 'rowsVisible', args: 'nx-coreui-repository-list' },
+      function (next) {
+        t.waitForBookmark('admin/repository/repositories:' + selected2Id + ':summary', next);
+      },
+      function (next) {
+        var grid = t.cq1('nx-coreui-repository-list'),
+            selected;
 
-          t.do(goBack),
-          function (next) {
-            t.waitForBookmark('admin/repository/repositories:' + selected0Id + ':summary', next);
-          },
-          function (next) {
-            var grid = t.cq1('nx-coreui-repository-list'),
-                selected;
+        selected = grid.getSelectionModel().getSelection();
+        t.is(selected[0].getId(), selected2Id, 'Repository "' + selected2Id + '" is selected');
+        next();
+      },
 
-            selected = grid.getSelectionModel().getSelection();
-            t.is(selected[0].getId(), selected0Id, 'Repository "' + selected0Id + '" is selected');
-            next();
-          },
+      t.do(goBack),
+      function (next) {
+        t.waitForBookmark('admin/repository/repositories:' + selected0Id + ':summary', next);
+      },
+      function (next) {
+        var grid = t.cq1('nx-coreui-repository-list'),
+            selected;
 
-          t.do(goBack),
-          { waitFor: 'rowsVisible', args: 'nx-coreui-repository-list' },
-          { waitFor: 'bookmark', args: 'admin/repository/repositories' },
+        selected = grid.getSelectionModel().getSelection();
+        t.is(selected[0].getId(), selected0Id, 'Repository "' + selected0Id + '" is selected');
+        next();
+      },
 
-          t.do(goBack),
-          { waitFor: 'bookmark', args: 'admin/repository' },
+      t.do(goBack),
+      { waitFor: 'rowsVisible', args: 'nx-coreui-repository-list' },
+      { waitFor: 'bookmark', args: 'admin/repository/repositories' },
 
-          t.do(goBack),
-          { waitFor: 'CQVisible', args: 'nx-search' },
-          { waitFor: 'bookmark', args: 'search/search' },
+      t.do(goBack),
+      { waitFor: 'bookmark', args: 'admin/repository' },
 
-          t.do(goBack),
-          { waitFor: 'bookmark', args: 'browse/components' }
-      );
+      t.do(goBack),
+      { waitFor: 'CQVisible', args: 'nx-search' },
+      { waitFor: 'bookmark', args: 'search/search' },
 
-    });
-  });
+      t.do(goBack),
+      { waitFor: 'bookmark', args: 'browse/components' }
+  );
 
 });

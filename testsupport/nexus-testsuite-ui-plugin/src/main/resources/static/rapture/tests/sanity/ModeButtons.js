@@ -25,48 +25,47 @@ StartTest(function (t) {
     next();
   };
 
-  t.waitForStateReceived(function () {
-    t.logout();
-    t.waitForUserToBeLoggedOut(function () {
-      t.chain(
-          // before login we should have 3 visible and 2 hidden buttons
-          { waitFor: 'CQ', args: 'nx-header-dashboard-mode[hidden=false]' },
-          { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
-          { waitFor: 'CQ', args: 'nx-header-browse-mode[hidden=false]' },
-          { waitFor: 'CQ', args: 'nx-header-admin-mode[hidden=true]' },
-          { waitFor: 'CQ', args: 'nx-header-user-mode[hidden=true]' },
-          function (next) {
-            t.login();
-            t.waitForUserToBeLoggedIn(next);
-          },
-          // after login we should have 5 visible
-          { waitFor: 'CQ', args: 'nx-header-dashboard-mode[hidden=false]' },
-          { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
-          { waitFor: 'CQ', args: 'nx-header-browse-mode[hidden=false]' },
-          { waitFor: 'CQ', args: 'nx-header-admin-mode[hidden=false]' },
-          { waitFor: 'CQ', args: 'nx-header-user-mode[hidden=false]' },
-          { click: '>>nx-header-dashboard-mode' },
-          function (next) {
-            checkMode('Dashboard', true, next);
-          },
-          { click: '>>nx-header-search-mode' },
-          function (next) {
-            checkMode('Search', true, next);
-          },
-          { click: '>>nx-header-browse-mode' },
-          function (next) {
-            checkMode('Browse', false, next);
-          },
-          { click: '>>nx-header-admin-mode' },
-          function (next) {
-            checkMode('Administration', false, next);
-          },
-          { click: '>>nx-header-user-mode' },
-          function (next) {
-            checkMode('User', false, next);
-          }
-      );
-    });
-  });
+  t.chain(
+      { waitFor: 'stateReceived' },
+      t.do(t.logout),
+      { waitFor: 'userToBeLoggedOut' },
+
+      // before login we should have 3 visible and 2 hidden buttons
+      { waitFor: 'CQ', args: 'nx-header-dashboard-mode[hidden=false]' },
+      { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
+      { waitFor: 'CQ', args: 'nx-header-browse-mode[hidden=false]' },
+      { waitFor: 'CQ', args: 'nx-header-admin-mode[hidden=true]' },
+      { waitFor: 'CQ', args: 'nx-header-user-mode[hidden=true]' },
+      function (next) {
+        t.login();
+        t.waitForUserToBeLoggedIn(next);
+      },
+      // after login we should have 5 visible
+      { waitFor: 'CQ', args: 'nx-header-dashboard-mode[hidden=false]' },
+      { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
+      { waitFor: 'CQ', args: 'nx-header-browse-mode[hidden=false]' },
+      { waitFor: 'CQ', args: 'nx-header-admin-mode[hidden=false]' },
+      { waitFor: 'CQ', args: 'nx-header-user-mode[hidden=false]' },
+      { click: '>>nx-header-dashboard-mode' },
+      function (next) {
+        checkMode('Dashboard', true, next);
+      },
+      { click: '>>nx-header-search-mode' },
+      function (next) {
+        checkMode('Search', true, next);
+      },
+      { click: '>>nx-header-browse-mode' },
+      function (next) {
+        checkMode('Browse', false, next);
+      },
+      { click: '>>nx-header-admin-mode' },
+      function (next) {
+        checkMode('Administration', false, next);
+      },
+      { click: '>>nx-header-user-mode' },
+      function (next) {
+        checkMode('User', false, next);
+      }
+  );
 
 });
