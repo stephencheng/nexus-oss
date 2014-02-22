@@ -19,7 +19,6 @@ StartTest(function (t) {
 
   t.chain(
       { waitFor: 'stateReceived' },
-      t.do(t.logout),
       { waitFor: 'userToBeLoggedOut' },
 
       { waitFor: 'CQVisible', args: 'nx-header-login' },

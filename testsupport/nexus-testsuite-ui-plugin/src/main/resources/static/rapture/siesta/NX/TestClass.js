@@ -28,8 +28,12 @@ Class('NX.TestClass', {
       });
     },
 
-    waitForUserToBeLoggedIn: function (callback, scope, timeout) {
+    waitForUserToBeLoggedIn: function (shouldLogin, callback, scope, timeout) {
       var userController = this.userController();
+
+      if (shouldLogin) {
+        this.login();
+      }
 
       return this.waitFor({
         method: function () {
@@ -43,8 +47,12 @@ Class('NX.TestClass', {
       });
     },
 
-    waitForUserToBeLoggedOut: function (callback, scope, timeout) {
+    waitForUserToBeLoggedOut: function (shouldLogout, callback, scope, timeout) {
       var userController = this.userController();
+
+      if (shouldLogout) {
+        this.logout();
+      }
 
       return this.waitFor({
         method: function () {

@@ -25,7 +25,6 @@ StartTest(function (t) {
 
   t.chain(
       { waitFor: 'stateReceived' },
-      t.do(t.login),
       { waitFor: 'userToBeLoggedIn' },
 
       { click: '>>nx-header-browse-mode' },

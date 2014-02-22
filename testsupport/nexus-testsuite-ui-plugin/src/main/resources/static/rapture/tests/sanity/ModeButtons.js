@@ -27,7 +27,6 @@ StartTest(function (t) {
 
   t.chain(
       { waitFor: 'stateReceived' },
-      t.do(t.logout),
       { waitFor: 'userToBeLoggedOut' },
 
       // before login we should have 3 visible and 2 hidden buttons
@@ -38,7 +37,6 @@ StartTest(function (t) {
       { waitFor: 'CQ', args: 'nx-header-user-mode[hidden=true]' },
 
       // after login we should have 5 visible
-      t.do(t.login),
       { waitFor: 'userToBeLoggedIn' },
       { waitFor: 'CQ', args: 'nx-header-dashboard-mode[hidden=false]' },
       { waitFor: 'CQ', args: 'nx-header-search-mode[hidden=false]' },
