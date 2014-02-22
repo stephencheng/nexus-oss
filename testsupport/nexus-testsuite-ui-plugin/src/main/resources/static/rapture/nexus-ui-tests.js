@@ -16,7 +16,7 @@ Harness.configure({
   title: 'Nexus UI Suite',
   viewDOM: true,
 
-  testClass   : NX.TestClass,
+  testClass   : NX.Test,
   hostPageUrl: '/nexus/rapture.html'
 
 });

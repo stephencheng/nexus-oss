@@ -1,4 +1,4 @@
-Class('NX.TestClass', {
+Class('NX.Test', {
   isa: Siesta.Test.ExtJS,
 
   methods: {
