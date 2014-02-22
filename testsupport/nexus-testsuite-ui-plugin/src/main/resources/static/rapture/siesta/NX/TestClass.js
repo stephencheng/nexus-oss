@@ -88,6 +88,20 @@ Class('NX.TestClass', {
       });
     },
 
+    waitForBookmark: function (bookmark, callback, scope, timeout) {
+      var bookmarks = this.bookmarks();
+      return this.waitFor({
+        method: function () {
+          return bookmarks.getBookmark().getToken() === bookmark;
+        },
+        callback: callback,
+        scope: scope,
+        timeout: timeout,
+        assertionName: 'waitForBookmark',
+        description: ' bookmark to be set to "' + bookmark + '"'
+      });
+    },
+
     navigateTo: function (bookmark) {
       var NX = this.global.NX;
 
