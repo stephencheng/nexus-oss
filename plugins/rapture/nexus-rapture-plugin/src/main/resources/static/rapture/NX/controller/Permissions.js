@@ -78,6 +78,7 @@ Ext.define('NX.controller.Permissions', {
     var me = this;
 
     me.logDebug('Fetching permissions...');
+    NX.Permissions.resetPermissions();
     me.getPermissionStore().load();
   },
 

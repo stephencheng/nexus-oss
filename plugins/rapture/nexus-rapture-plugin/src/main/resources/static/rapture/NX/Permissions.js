@@ -60,6 +60,10 @@ Ext.define('NX.Permissions', {
     me.permissions = Ext.apply({}, perms);
   },
 
+  resetPermissions: function () {
+    delete this.permissions;
+  },
+
   /**
    * @public
    */
