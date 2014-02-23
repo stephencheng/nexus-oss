@@ -16,7 +16,7 @@ Ext.define('NX.coreui.store.RepositoryTemplate', {
 
   proxy: {
     type: 'direct',
-    paramsAsHash: false,
+    paramOrder: 'typeFilter,formatFilter',
 
     api: {
       read: 'NX.direct.coreui_Repository.templates'

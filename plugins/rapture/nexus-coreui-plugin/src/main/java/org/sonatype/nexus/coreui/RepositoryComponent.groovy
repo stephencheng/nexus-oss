@@ -82,7 +82,7 @@ extends DirectComponentSupport
   @DirectMethod
   @RequiresPermissions('nexus:repositories:read')
   List<RepositoryXO> read() {
-    def templates = templates()
+    def templates = templates(null, null)
     return repositoryRegistry.repositories.collect { asRepositoryXO(it, templates) }
   }
 
@@ -222,16 +222,16 @@ extends DirectComponentSupport
   }
 
   /**
-   * Retrieve a list of available repository templates.
+   * Retrieve a list of available repository templates, optionally filtering them by type/format.
    */
   @DirectMethod
   @RequiresPermissions('nexus:componentsrepotypes:read')
-  List<RepositoryTemplateXO> templates() {
+  List<RepositoryTemplateXO> templates(String typeFilter, String formatFilter) {
     def providers = []
     def asProvider = { template, type, masterFormat ->
       new RepositoryTemplateXO(
           id: template.id,
-          type: type == 'shadow' ? 'virtual' : type,
+          type: type,
           provider: template.repositoryProviderHint,
           providerName: template.description,
           format: template.contentClass.id,
@@ -244,11 +244,17 @@ extends DirectComponentSupport
       def template = it as RepositoryTemplate
       types.each {
         if (template.targetFits(it.value)) {
-          def masterFormat = null
-          if (it.key == 'shadow' && template.contentClass.id.startsWith('maven')) {
+          def masterFormat = null,
+              type = it.key == 'shadow' ? 'virtual' : it.key,
+              format = template.contentClass.id
+
+          if (type == 'virtual' && template.contentClass.id.startsWith('maven')) {
             masterFormat = template.contentClass.id == 'maven1' ? 'maven2' : 'maven1';
           }
-          providers.add(asProvider(template, it.key, masterFormat))
+
+          if ((type == (typeFilter ?: type) && (format == (formatFilter ?: format)))) {
+            providers.add(asProvider(template, type, masterFormat))
+          }
         }
       }
     }
@@ -276,7 +282,7 @@ extends DirectComponentSupport
       updateClosure(created, repositoryXO)
     }
     nexusConfiguration.saveConfiguration()
-    return asRepositoryXO(created, templates())
+    return asRepositoryXO(created, templates(null, null))
   }
 
   def <T extends Repository> RepositoryXO update(RepositoryXO repositoryXO, Class<T> repoType, Closure... updateClosures) {
@@ -290,7 +296,7 @@ extends DirectComponentSupport
         updateClosure(updated, repositoryXO)
       }
       nexusConfiguration.saveConfiguration()
-      return asRepositoryXO(updated, templates())
+      return asRepositoryXO(updated, templates(null, null))
     }
     throw new IllegalArgumentException('Missing id for repository to be updated')
   }
