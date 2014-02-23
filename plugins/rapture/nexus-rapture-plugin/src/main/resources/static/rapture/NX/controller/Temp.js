@@ -41,14 +41,6 @@ Ext.define('NX.controller.Temp', {
         file: 'database_green.png',
         variants: ['x16', 'x32']
       },
-      'feature-staging-rules': {
-        file: 'measure.png',
-        variants: ['x16', 'x32']
-      },
-      'feature-staging-profiles': {
-        file: 'palette.png',
-        variants: ['x16', 'x32']
-      },
 
       // repository
       'feature-repository': {
@@ -183,14 +175,6 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/Staging/Repositories',
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/Staging/Profiles',
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/Staging/Rules',
         visible: visibleIfLoggedIn
       },
       {
