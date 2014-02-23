@@ -19,7 +19,8 @@ Harness.configure({
   testClass: NX.Test,
 
   preload: [
-    'baseapp-debug.js'
+    'baseapp-debug.js',
+    'extdirect-debug.js'
   ]
 
 });
@@ -49,9 +50,17 @@ Harness.start(
 
     {
       group: 'RepositoryTarget',
-      hostPageUrl: '/nexus/rapture.html',
       items: [
-        { url: 'tests/repositorytarget/CRUDRepositoryTarget.js' }
+        {
+          group: 'Functional',
+          hostPageUrl: '/nexus/rapture.html',
+          items: [
+            { url: 'tests/repositorytarget/RepositoryTargetCRUD.js' }
+          ]
+        },
+        { url: 'tests/repositorytarget/RepositoryTargetExtDirectRead.js' },
+        { url: 'tests/repositorytarget/RepositoryTargetExtDirectCreate.js' },
+        { url: 'tests/repositorytarget/RepositoryTargetExtDirectCreateValidation.js' }
       ]
     }
 
