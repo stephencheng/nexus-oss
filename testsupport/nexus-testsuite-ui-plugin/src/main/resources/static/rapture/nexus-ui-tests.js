@@ -16,8 +16,11 @@ Harness.configure({
   title: 'Nexus UI Suite',
   viewDOM: true,
 
-  testClass   : NX.Test,
-  hostPageUrl: '/nexus/rapture.html'
+  testClass: NX.Test,
+
+  preload: [
+    'baseapp-debug.js'
+  ]
 
 });
 
@@ -25,15 +28,28 @@ Harness.start(
     {
       group: 'Framework',
       items: [
-        { url: 'tests/framework/Bookmarking.js' },
-        { url: 'tests/framework/LoginLogout.js' },
-        { url: 'tests/framework/ModeButtons.js' },
-        { url: 'tests/framework/UnsupportedBrowser.js' }
+        {
+          group: 'Functional',
+          hostPageUrl: '/nexus/rapture.html',
+          items: [
+            { url: 'tests/framework/Bookmarking.js' },
+            { url: 'tests/framework/LoginLogout.js' },
+            { url: 'tests/framework/ModeButtons.js' },
+            { url: 'tests/framework/UnsupportedBrowser.js' }
+          ]
+        },
+        {
+          group: 'State',
+          items: [
+            { url: 'tests/framework/state/StateChangeEvent.js' }
+          ]
+        }
       ]
     },
 
     {
       group: 'RepositoryTarget',
+      hostPageUrl: '/nexus/rapture.html',
       items: [
         { url: 'tests/repositorytarget/CRUDRepositoryTarget.js' }
       ]
