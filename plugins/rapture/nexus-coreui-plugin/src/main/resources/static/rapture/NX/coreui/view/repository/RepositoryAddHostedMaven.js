@@ -12,26 +12,20 @@
  */
 Ext.define('NX.coreui.view.repository.RepositoryAddHostedMaven', {
   extend: 'NX.coreui.view.repository.RepositoryAdd',
-  alias: ['widget.nx-repository-add-hosted-maven1','widget.nx-repository-add-hosted-maven2'],
+  alias: ['widget.nx-repository-add-hosted-maven1', 'widget.nx-repository-add-hosted-maven2'],
 
   title: 'Create new Maven hosted repository',
 
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
-      items: {
-        xtype: 'nx-repository-settings-hosted-maven2',
-        template: me.template,
-        api: {
-          submit: 'NX.direct.coreui_Repository.createHostedMaven'
-        },
-        buttons: [
-          { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
-          { text: 'Cancel', handler: me.close, scope: me }
-        ]
+    me.items = {
+      xtype: 'nx-repository-settings-hosted-maven2',
+      template: me.template,
+      api: {
+        submit: 'NX.direct.coreui_Repository.createHostedMaven'
       }
-    });
+    };
 
     me.callParent(arguments);
 

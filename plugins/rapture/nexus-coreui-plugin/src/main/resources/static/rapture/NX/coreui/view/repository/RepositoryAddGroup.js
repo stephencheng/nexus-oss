@@ -19,19 +19,13 @@ Ext.define('NX.coreui.view.repository.RepositoryAddGroup', {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
-      items: {
-        xtype: 'nx-repository-settings-group',
-        template: me.template,
-        api: {
-          submit: 'NX.direct.coreui_Repository.createGroup'
-        },
-        buttons: [
-          { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
-          { text: 'Cancel', handler: me.close, scope: me }
-        ]
+    me.items = {
+      xtype: 'nx-repository-settings-group',
+      template: me.template,
+      api: {
+        submit: 'NX.direct.coreui_Repository.createGroup'
       }
-    });
+    };
 
     me.callParent(arguments);
   }

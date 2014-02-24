@@ -11,33 +11,21 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.coreui.view.user.Add', {
-  extend: 'Ext.window.Window',
+  extend: 'NX.view.AddWindow',
   alias: 'widget.nx-coreui-user-add',
 
   title: 'Create new user',
-
-  layout: 'fit',
-  autoShow: true,
-  modal: true,
-  constrain: true,
-  width: 640,
   defaultFocus: 'id',
+
+  items: {
+    xtype: 'nx-coreui-user-settings',
+    api: {
+      submit: 'NX.direct.coreui_User.create'
+    }
+  },
 
   initComponent: function () {
     var me = this;
-
-    Ext.apply(me, {
-      items: {
-        xtype: 'nx-coreui-user-settings',
-        api: {
-          submit: 'NX.direct.coreui_User.create'
-        },
-        buttons: [
-          { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
-          { text: 'Cancel', handler: me.close, scope: me }
-        ]
-      }
-    });
 
     me.callParent(arguments);
 

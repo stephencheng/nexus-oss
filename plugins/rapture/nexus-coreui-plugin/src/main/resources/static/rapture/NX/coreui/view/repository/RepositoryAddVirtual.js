@@ -19,19 +19,13 @@ Ext.define('NX.coreui.view.repository.RepositoryAddVirtual', {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
-      items: {
-        xtype: 'nx-repository-settings-virtual',
-        template: me.template,
-        api: {
-          submit: 'NX.direct.coreui_Repository.createVirtual'
-        },
-        buttons: [
-          { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
-          { text: 'Cancel', handler: me.close, scope: me }
-        ]
+    me.items = {
+      xtype: 'nx-repository-settings-virtual',
+      template: me.template,
+      api: {
+        submit: 'NX.direct.coreui_Repository.createVirtual'
       }
-    });
+    };
 
     me.callParent(arguments);
 

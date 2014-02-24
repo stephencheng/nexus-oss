@@ -12,26 +12,20 @@
  */
 Ext.define('NX.coreui.view.repository.RepositoryAddProxyMaven', {
   extend: 'NX.coreui.view.repository.RepositoryAdd',
-  alias: ['widget.nx-repository-add-proxy-maven1','widget.nx-repository-add-proxy-maven2'],
+  alias: ['widget.nx-repository-add-proxy-maven1', 'widget.nx-repository-add-proxy-maven2'],
 
   title: 'Create new proxy repository',
 
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
-      items: {
-        xtype: 'nx-repository-settings-proxy-maven2',
-        template: me.template,
-        api: {
-          submit: 'NX.direct.coreui_Repository.createProxyMaven'
-        },
-        buttons: [
-          { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
-          { text: 'Cancel', handler: me.close, scope: me }
-        ]
+    me.items = {
+      xtype: 'nx-repository-settings-proxy-maven2',
+      template: me.template,
+      api: {
+        submit: 'NX.direct.coreui_Repository.createProxyMaven'
       }
-    });
+    };
 
     me.callParent(arguments);
 

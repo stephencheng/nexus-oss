@@ -11,35 +11,17 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.coreui.view.repositorytarget.Add', {
-  extend: 'Ext.window.Window',
+  extend: 'NX.view.AddWindow',
   alias: 'widget.nx-coreui-repositorytarget-add',
 
   title: 'Create new target',
-
-  layout: 'fit',
-  autoShow: true,
-  modal: true,
-  constrain: true,
-  width: 640,
   defaultFocus: 'name',
 
-  initComponent: function () {
-    var me = this;
-
-    Ext.apply(me, {
-      items: {
-        xtype: 'nx-coreui-repositorytarget-settings',
-        api: {
-          submit: 'NX.direct.coreui_RepositoryTarget.create'
-        },
-        buttons: [
-          { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
-          { text: 'Cancel', handler: me.close, scope: me }
-        ]
-      }
-    });
-
-    me.callParent(arguments);
+  items: {
+    xtype: 'nx-coreui-repositorytarget-settings',
+    api: {
+      submit: 'NX.direct.coreui_RepositoryTarget.create'
+    }
   }
 
 });

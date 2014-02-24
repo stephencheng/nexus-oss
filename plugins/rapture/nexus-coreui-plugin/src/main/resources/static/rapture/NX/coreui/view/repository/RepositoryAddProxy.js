@@ -19,19 +19,13 @@ Ext.define('NX.coreui.view.repository.RepositoryAddProxy', {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
-      items: {
-        xtype: 'nx-repository-settings-proxy',
-        template: me.template,
-        api: {
-          submit: 'NX.direct.coreui_Repository.createProxy'
-        },
-        buttons: [
-          { text: 'Add', action: 'add', formBind: true, ui: 'primary' },
-          { text: 'Cancel', handler: me.close, scope: me }
-        ]
+    me.items = {
+      xtype: 'nx-repository-settings-proxy',
+      template: me.template,
+      api: {
+        submit: 'NX.direct.coreui_Repository.createProxy'
       }
-    });
+    };
 
     me.callParent(arguments);
   }
