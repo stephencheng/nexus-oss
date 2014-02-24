@@ -40,6 +40,9 @@ Ext.define('NX.view.SettingsForm', {
         if (record) {
           form.loadRecord(record);
         }
+        else if (form.api && form.api.load) {
+          form.load();
+        }
         else {
           form.getForm().reset();
         }
