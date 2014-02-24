@@ -33,15 +33,10 @@ Ext.define('NX.controller.SettingsForm', {
       },
       component: {
         'form[settingsForm=true]': {
-          beforerender: me.onBeforeRender,
-          directload: me.onDirectLoad,
-          directupdate: me.onDirectUpdate
+          beforerender: me.loadForm
         },
-        'form[settingsForm=true] button[action=savesettings]': {
-          click: me.onDirectUpdateButtonClick
-        },
-        'form[settingsForm=true] button[action=discardsettings]': {
-          click: me.onDirectDiscardButtonClick
+        'form[settingsForm=true] button[action=save]': {
+          click: me.submitForm
         }
       }
     });
@@ -51,10 +46,12 @@ Ext.define('NX.controller.SettingsForm', {
    * @private
    */
   onRefresh: function () {
-    var forms = Ext.ComponentQuery.query('form[settingsForm=true]');
+    var me = this,
+        forms = Ext.ComponentQuery.query('form[settingsForm=true]');
+
     if (forms) {
       Ext.each(forms, function (form) {
-        form.fireEvent('directload', form);
+        me.loadForm(form);
         if (form.settingsFormTitle) {
           NX.Messages.add({ text: form.settingsFormTitle + ' refreshed', type: 'default'});
         }
@@ -65,14 +62,7 @@ Ext.define('NX.controller.SettingsForm', {
   /**
    * @private
    */
-  onBeforeRender: function (form) {
-    form.fireEvent('directload', form);
-  },
-
-  /**
-   * @private
-   */
-  onDirectLoad: function (form) {
+  loadForm: function (form) {
     if (form.api && form.api.load) {
       form.load();
     }
@@ -81,33 +71,20 @@ Ext.define('NX.controller.SettingsForm', {
   /**
    * @private
    */
-  onDirectUpdate: function (form) {
+  submitForm: function (button) {
+    var me = this,
+        form = button.up('form');
+
     if (form.api && form.api.submit) {
       form.getForm().submit({
         success: function () {
           if (form.settingsFormTitle) {
             NX.Messages.add({ text: form.settingsFormTitle + ' updated', type: 'success' });
           }
-          form.fireEvent('directload', form);
+          me.loadForm(form);
         }
       });
     }
-  },
-
-  /**
-   * @private
-   */
-  onDirectUpdateButtonClick: function (button) {
-    var form = button.up('^form[settingsForm=true]')
-    form.fireEvent('directupdate', form);
-  },
-
-  /**
-   * @private
-   */
-  onDirectDiscardButtonClick: function (button) {
-    var form = button.up('^form[settingsForm=true]')
-    form.fireEvent('directload', form);
   }
 
 });
