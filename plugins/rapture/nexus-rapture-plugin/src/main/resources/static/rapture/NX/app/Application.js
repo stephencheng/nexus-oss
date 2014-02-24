@@ -38,6 +38,7 @@ Ext.define('NX.app.Application', {
     'NX.ext.grid.plugin.FilterBox',
     'NX.ext.grid.plugin.Filtering',
     'NX.ext.form.OptionalFieldSet',
+    'NX.ext.form.field.ClearableComboBox',
     'NX.ext.form.field.ValueSet',
     'NX.ext.grid.column.Timestamp',
     'NX.Conditions'
