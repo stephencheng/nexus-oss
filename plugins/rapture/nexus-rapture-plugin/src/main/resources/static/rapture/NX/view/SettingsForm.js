@@ -34,8 +34,15 @@ Ext.define('NX.view.SettingsForm', {
     { text: 'Save', action: 'save', ui: 'primary' },
     { text: 'Discard',
       handler: function () {
-        var form = this.up('form');
-        form.loadRecord(form.getRecord());
+        var form = this.up('form'),
+            record = form.getRecord();
+
+        if (record) {
+          form.loadRecord(record);
+        }
+        else {
+          form.getForm().reset();
+        }
       }
     }
   ]
