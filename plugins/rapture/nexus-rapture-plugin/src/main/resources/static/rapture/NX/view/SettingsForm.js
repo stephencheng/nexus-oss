@@ -31,7 +31,7 @@ Ext.define('NX.view.SettingsForm', {
   buttonAlign: 'left',
 
   buttons: [
-    { text: 'Save', action: 'save', ui: 'primary' },
+    { text: 'Save', formBind: true, action: 'save', ui: 'primary' },
     { text: 'Discard',
       handler: function () {
         var form = this.up('form'),
