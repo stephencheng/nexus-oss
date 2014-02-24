@@ -11,30 +11,12 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.coreui.view.system.Http', {
-  extend: 'Ext.Panel',
+  extend: 'NX.view.SettingsPanel',
   alias: 'widget.nx-coreui-system-http',
   requires: [
     'NX.coreui.view.AuthenticationSettings',
     'NX.coreui.view.HttpRequestSettings'
   ],
-
-  layout: {
-    type: 'vbox',
-    align: 'stretch',
-    pack: 'start'
-  },
-
-  maxWidth: 1024,
-
-  style: {
-    margin: '20px'
-  },
-
-  defaults: {
-    style: {
-      margin: '0px 0px 20px 0px'
-    }
-  },
 
   items: [
     {
