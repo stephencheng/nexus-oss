@@ -11,27 +11,16 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.coreui.view.repositoryroute.Settings', {
-  extend: 'Ext.form.Panel',
+  extend: 'NX.view.SettingsForm',
   alias: 'widget.nx-coreui-repositoryroute-settings',
 
   api: {
     submit: 'NX.direct.coreui_RepositoryRoute.update'
   },
 
-  bodyPadding: 10,
-  defaultType: 'textfield',
-  autoScroll: true,
-
   models: [
     'Reference'
   ],
-
-  defaults: {
-    allowBlank: false,
-    htmlDecode: true
-  },
-
-  buttonAlign: 'left',
 
   initComponent: function () {
     var me = this;
@@ -93,19 +82,6 @@ Ext.define('NX.coreui.view.repositoryroute.Settings', {
         delimiter: null
       }
     ];
-
-    if (!me.buttons) {
-
-      me.buttons = [
-        { text: 'Save', action: 'save', ui: 'primary' },
-        { text: 'Discard',
-          handler: function () {
-            var form = this.up('form');
-            form.loadRecord(form.getRecord());
-          }
-        }
-      ];
-    }
 
     me.callParent(arguments);
 

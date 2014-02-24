@@ -11,23 +11,12 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.coreui.view.user.Settings', {
-  extend: 'Ext.form.Panel',
+  extend: 'NX.view.SettingsForm',
   alias: 'widget.nx-coreui-user-settings',
 
   api: {
     submit: 'NX.direct.coreui_User.update'
   },
-
-  bodyPadding: 10,
-  defaultType: 'textfield',
-  autoScroll: true,
-
-  defaults: {
-    htmlDecode: true,
-    allowBlank: false
-  },
-
-  buttonAlign: 'left',
 
   initComponent: function () {
     var me = this;
@@ -73,18 +62,6 @@ Ext.define('NX.coreui.view.user.Settings', {
         queryMode: 'local'
       }
     ];
-
-    if (!me.buttons) {
-      me.buttons = [
-        { text: 'Save', action: 'save', ui: 'primary' },
-        { text: 'Discard',
-          handler: function () {
-            var form = this.up('form');
-            form.loadRecord(form.getRecord());
-          }
-        }
-      ];
-    }
 
     me.callParent(arguments);
   }

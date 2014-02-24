@@ -10,22 +10,34 @@
  * of Sonatype, Inc. Apache Maven is a trademark of the Apache Software Foundation. M2eclipse is a trademark of the
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
-Ext.define('NX.coreui.view.capability.Settings', {
-  extend: 'NX.view.SettingsForm',
-  alias: 'widget.nx-coreui-capability-settings',
+/**
+ * Base form panel.
+ *
+ * @since 2.8
+ */
+Ext.define('NX.view.SettingsForm', {
+  extend: 'Ext.form.Panel',
+  alias: 'widget.nx-settingsform',
 
-  title: 'Settings',
+  bodyPadding: 10,
+  autoScroll: true,
 
-  items: {
-    xtype: 'nx-coreui-capability-settings-fieldset'
+  defaults: {
+    xtype: 'textfield',
+    allowBlank: false,
+    htmlDecode: true
   },
 
-  getValues: function () {
-    return this.down('nx-coreui-capability-settings-fieldset').exportCapability(this.getForm())
-  },
+  buttonAlign: 'left',
 
-  markInvalid: function (errors) {
-    return this.down('nx-coreui-capability-settings-fieldset').markInvalid(this.getForm(), errors)
-  }
+  buttons: [
+    { text: 'Save', action: 'save', ui: 'primary' },
+    { text: 'Discard',
+      handler: function () {
+        var form = this.up('form');
+        form.loadRecord(form.getRecord());
+      }
+    }
+  ]
 
 });

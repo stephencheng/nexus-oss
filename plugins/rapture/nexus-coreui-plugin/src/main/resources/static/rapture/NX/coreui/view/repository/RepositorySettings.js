@@ -11,19 +11,8 @@
  * Eclipse Foundation. All other trademarks are the property of their respective owners.
  */
 Ext.define('NX.coreui.view.repository.RepositorySettings', {
-  extend: 'Ext.form.Panel',
+  extend: 'NX.view.SettingsForm',
   alias: 'widget.nx-coreui-repository-settings',
-
-  bodyPadding: 10,
-  autoScroll: true,
-
-  defaults: {
-    xtype: 'textfield',
-    allowBlank: false,
-    htmlDecode: true
-  },
-
-  buttonAlign: 'left',
 
   initComponent: function () {
     var me = this;
@@ -34,13 +23,6 @@ Ext.define('NX.coreui.view.repository.RepositorySettings', {
         xtype: 'nx-coreui-repository-settings-common'
       }
     ]);
-
-    if (!me.buttons) {
-      me.buttons = [
-        { text: 'Save', action: 'save', formBind: true, ui: 'primary' },
-        { text: 'Discard', action: 'discard' }
-      ];
-    }
 
     me.callParent(arguments);
 
