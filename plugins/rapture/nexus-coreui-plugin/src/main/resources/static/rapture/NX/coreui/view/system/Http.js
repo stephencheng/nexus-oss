@@ -38,7 +38,7 @@ Ext.define('NX.coreui.view.system.Http', {
 
   items: [
     {
-      xtype: 'form',
+      xtype: 'nx-settingsform',
       settingsForm: true,
       settingsFormTitle: 'HTTP system settings',
       api: {
@@ -137,12 +137,6 @@ Ext.define('NX.coreui.view.system.Http', {
             }
           ]
         }
-      ],
-
-      buttonAlign: 'left',
-      buttons: [
-        { text: 'Save', action: 'savesettings', ui: 'primary', formBind: true },
-        { text: 'Discard', action: 'discardsettings' }
       ]
     }
   ]
