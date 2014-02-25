@@ -79,10 +79,6 @@ Ext.define('NX.controller.Temp', {
         file: 'servers_network.png',
         variants: ['x16', 'x32']
       },
-      'feature-system-ssl': {
-        file: 'ssl_certificates.png',
-        variants: ['x16', 'x32']
-      },
 
       // support
       'feature-support': {
@@ -202,10 +198,6 @@ Ext.define('NX.controller.Temp', {
       },
       {
         path: '/System/Smart Proxy',
-        visible: visibleIfLoggedIn
-      },
-      {
-        path: '/System/SSL',
         visible: visibleIfLoggedIn
       },
       {
