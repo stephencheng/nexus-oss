@@ -47,8 +47,10 @@ public abstract class AbstractLdapAuthenticatingRealm
   private final LdapManager ldapManager;
 
   public AbstractLdapAuthenticatingRealm(final LdapManager ldapManager) {
-    setName(NAME);
     this.ldapManager = checkNotNull(ldapManager);
+    setName(NAME);
+    setAuthenticationCachingEnabled(true);
+    setAuthorizationCachingEnabled(true);
   }
 
   @Override
