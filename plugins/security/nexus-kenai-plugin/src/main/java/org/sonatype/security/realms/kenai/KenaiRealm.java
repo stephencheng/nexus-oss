@@ -78,7 +78,7 @@ public class KenaiRealm
     this.hc4Provider = checkNotNull(hc4Provider);
     setName(ROLE);
     setAuthenticationCachingEnabled(true);
-    setAuthorizationCachingEnabled(false); // is "cheaply" constructed, do not eat memory
+    setAuthorizationCachingEnabled(true);
   }
 
   // ------------ AUTHENTICATION ------------
