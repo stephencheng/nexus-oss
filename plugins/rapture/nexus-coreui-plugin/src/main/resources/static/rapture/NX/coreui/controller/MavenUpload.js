@@ -122,7 +122,12 @@ Ext.define('NX.coreui.controller.MavenUpload', {
         name = 'a.' + me.counter++;
 
     form.add({ xtype: me.artifactPanelXType, name: name });
-    form.down('field[name=' + name + ']').fileInputEl.dom.click();
+
+    // HACK: avoid 'Access Denied' in IE which does not like the fact that we are programmatic clicking the button
+    if (!Ext.isIE) {
+      form.down('field[name=' + name + ']').fileInputEl.dom.click();
+    }
+
     me.refreshAddButton(form);
   },
 
@@ -164,9 +169,6 @@ Ext.define('NX.coreui.controller.MavenUpload', {
         form = button.up('form'),
         artifactPanel = button.up(me.artifactPanelXType),
         coordinates = me.guessCoordinates(fileName);
-
-    // HACK: avid 'Access Denied' in IE which does not like dynamic added file upload fields
-    form.down('field[name=' + button.name + ']').reset();
 
     artifactPanel.classifier.setValue(coordinates.classifier);
     artifactPanel.extension.setValue(coordinates.extension);
