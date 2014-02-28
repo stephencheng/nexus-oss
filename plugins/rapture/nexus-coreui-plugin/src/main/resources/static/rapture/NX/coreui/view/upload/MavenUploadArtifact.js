@@ -38,6 +38,7 @@ Ext.define('NX.coreui.view.upload.MavenUploadArtifact', {
             fieldLabel: 'File',
             name: me.name,
             allowBlank: false,
+            clearOnSubmit: false,
             width: 600,
             buttonConfig: {
               text: undefined, glyph: 'xf016@FontAwesome' /* fa-file-o */

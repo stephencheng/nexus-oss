@@ -144,9 +144,12 @@ Ext.define('NX.coreui.controller.MavenUpload', {
    * @private
    */
   refreshAddButton: function (form) {
-    var me = this;
+    var me = this,
+        addButton = form.down('button[action=add]');
 
-    form.remove(form.down('button[action=add]'));
+    if (addButton) {
+      form.remove(addButton);
+    }
     form.add({
       xtype: 'button',
       action: 'add',
@@ -164,6 +167,9 @@ Ext.define('NX.coreui.controller.MavenUpload', {
         form = button.up('form'),
         artifactPanel = button.up(me.artifactPanelXType),
         coordinates = me.guessCoordinates(fileName);
+
+    // HACK: avid 'Access Denied' in IE which does not like dynamic added file upload fields
+    form.down('field[name=' + button.name + ']').reset();
 
     artifactPanel.classifier.setValue(coordinates.classifier);
     artifactPanel.extension.setValue(coordinates.extension);
